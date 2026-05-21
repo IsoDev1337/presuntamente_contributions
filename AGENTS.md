@@ -134,13 +134,17 @@ Skills planeadas para usar con Claude Code en este repo:
 
 En Fase 0 son placeholders; se implementan según se necesiten.
 
+**Convención clave**: las skills se moldean con la experiencia, **no se fijan upfront**. Cada caso investigado refina la skill correspondiente. La primera versión es la mínima útil; cada uso aporta mejoras. No esperar a "diseñar la skill perfecta" antes de usarla.
+
 ## Workflow para agentes
 
-1. **Antes de cambiar algo**: lee el doc de diseño correspondiente. Si el cambio contradice un principio o regla, NO lo hagas; pregunta.
+0. **Lee [`/ROADMAP.md`](ROADMAP.md)** antes de hacer cualquier otra cosa. Es el estado vivo del proyecto: dónde estamos, qué toca, decisiones pendientes, aprendizajes. **Obligatorio.**
+1. **Antes de cambiar algo no trivial**: lee el doc de diseño correspondiente en `docs/diseno/`. Si el cambio contradice un principio o regla, NO lo hagas; pregunta.
 2. **Para crear/modificar contenido**: trabaja en rama, no en main. Una rama por unidad de cambio coherente.
 3. **Valida localmente** antes de pushear: `pnpm validate` y `pnpm build`.
 4. **PR descriptivo**: explica qué, por qué, y cita fuentes.
 5. **Si encuentras un dato sensible**: NO lo publiques sin consultar `docs/diseno/04-riesgos-legales-y-eticos.md`.
+6. **Al cerrar la sesión o tras un cambio significativo**: actualiza [`/ROADMAP.md`](ROADMAP.md) — backlog, estado, aprendizajes. **Obligatorio.**
 
 ## Cuando dudes
 
