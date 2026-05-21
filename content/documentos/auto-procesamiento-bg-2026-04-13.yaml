@@ -1,0 +1,26 @@
+id: auto-procesamiento-bg-2026-04-13
+titulo: "Auto del Juzgado de Instrucción nº 41 de Madrid de 13 de abril de 2026 (caso Begoña Gómez): cierre de instrucción, procesamiento por cuatro delitos y archivo del intrusismo profesional"
+tipo: auto_judicial
+nivel_fuente: 4
+nivel_fuente_justificacion: |
+  Resolución del Juzgado de Instrucción nº 41 de Madrid por la que se
+  cierra la instrucción de la causa y se propone juzgar a Begoña Gómez,
+  Cristina Álvarez y Juan Carlos Barrabés ante un Tribunal del Jurado
+  por presuntos delitos de tráfico de influencias, corrupción en los
+  negocios, malversación de caudales públicos y apropiación indebida,
+  archivando el delito de intrusismo profesional. La existencia, fecha,
+  autor y contenido sustancial del auto están documentados de forma
+  cruzada por al menos tres líneas editoriales distintas (Infobae,
+  Libertad Digital, El Español); no se ha localizado todavía nota
+  institucional del CGPJ con URL canónica en poderjudicial.es ni
+  publicación íntegra del auto en CENDOJ. Nivel 4 por ausencia de
+  documento oficial localizable; el hito derivado cumple V-13 al
+  apoyarse en cobertura multimedio cruzada.
+productor_organizacion_id: juzgado-instruccion-41-madrid
+fecha_documento: "2026-04-13"
+fecha_publicacion: "2026-04-13"
+estado_acceso: acceso_restringido_pero_citable
+idioma: es
+caso_principal_id: begona-gomez
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"
