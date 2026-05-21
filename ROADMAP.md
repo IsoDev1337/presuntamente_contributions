@@ -4,7 +4,7 @@
 >
 > El roadmap **conceptual** — razonamiento de las fases, criterios de salida, esfuerzo estimado — vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión **operativa**: dónde estamos, qué hay encima de la mesa, qué se ha aprendido.
 
-**Última actualización:** 2026-05-21 (noche tardía — Fase 1.0 ✅ completa; añadidos /aviso-legal, /rectificar, templates de issue, CODEOWNERS, badge phase-archivo, componentes Money/Acronym/Contraposicion preparados).
+**Última actualización:** 2026-05-21 (noche tardía — Fase 1.0 ✅ + PR2 de contenido Plus Ultra entregado: 3 personas, 2 hitos, 2 hechos, 3 documentos, 3 roles, 2 medios como organización).
 
 ---
 
@@ -12,7 +12,7 @@
 
 - **Fase activa**: Fase 0 ✅ · Fase 1.0 (integración del design system) **completa en main, 5 lotes** ✅. Próxima fase: Fase 1 (MVP Plus Ultra) — completar los YAMLs pendientes (PR2 con operación UDEF de 2025-12-11 y cambio_organo a JCI 4) y publicar el primer caso real.
 - **Último hito**: Lotes 3, 4 y 5 entregados en main en una sola sesión. Ficha completa de caso en `/casos/[slug]` con 8 secciones canónicas siguiendo doc 02. Listados + fichas individuales de personas y organizaciones. Biblioteca documental. Página institucional `/sobre`. Pagefind integrado: 17 páginas indexadas, 682 palabras, búsqueda funcional en `/buscar`. `pnpm validate` 26 OK, `pnpm build` 17 páginas, `astro check` 0/0/0, mobile y desktop verificados visualmente.
-- **Próximo paso comprometido**: PR2 de contenido Plus Ultra — operación UDEF 2025-12-11, cambio_organo JI 15 Madrid → JCI 4 AN (marzo 2026), 2-6 ejecutivos PU detenidos, resto de hitos/hechos/documentos pendientes (ver §"Fase 1 — MVP Plus Ultra"). Tras eso, primer caso adicional sugerido: Begoña Gómez (testea trayectoria con desimputaciones).
+- **Próximo paso comprometido**: PR3 de contenido Plus Ultra cuando aparezcan fuentes oficiales pendientes (nota CGPJ del cambio_organo, comunicado oficial Policía Nacional de la operación UDEF, auto íntegro del 19-may en CENDOJ); o primer caso adicional sugerido: Begoña Gómez (testea trayectoria con desimputaciones).
 - **Dev server local**: `pnpm dev` en `http://localhost:4321` (config en [`.claude/launch.json`](.claude/launch.json)).
 - **Workflow git**: **commits directos a `main`**, sin ramas ni PRs, decidido por el maintainer el 2026-05-21 mientras dure el MVP. Detalle en [`AGENTS.md` §"Workflow de rama y PRs"](AGENTS.md). PR #2 (Lote 1 de integración) es el último PR formal mientras esta política esté activa.
 
@@ -72,14 +72,14 @@ Trabajando en rama `fase-1/integrar-design-system` ([PR #2](https://github.com/d
 ### Fase 1 — MVP Plus Ultra
 - [x] Completar schemas con todas las propiedades: `hito`, `hecho`, `documento`, `rol-en-caso`, `organizacion`, `relacion-entre-casos`. Cerrados con `additionalProperties: false` + reglas if/then para V-09, V-10, V-11, V-14, V-15 (rama `fase-1/plus-ultra-content`).
 - [x] Skill `incorporar-hito` v0 — toma PDF de auto, propone YAML de `Hito` + `Hecho`(s) + `Documento`(s) + cambios en `RolEnCaso`. Guardarraíles del doc 03 §4 explícitos. Marcada explícitamente como v0 iterativa (rama `fase-1/plus-ultra-content`).
-- [ ] YAMLs del caso Plus Ultra:
+- [ ] YAMLs del caso Plus Ultra (en curso, PR1+PR2 entregados, pendientes nuevos hallazgos):
   - [x] `Caso` raíz.
-  - [ ] 4-8 `Persona` implicadas — **2/4 en PR1** (juez Calama, José Luis Rodríguez Zapatero). 2-6 pendientes para PR2 (ejecutivos PU detenidos en operación UDEF de 2025-12-11).
-  - [x] 5-10 `Organizacion` — 7 en PR1 (AN, JCI 4, JI 15 Madrid, Fiscalía Anticorrupción, SEPI, Plus Ultra, Manos Limpias).
-  - [ ] 8-15 `RolEnCaso` — **3/8 en PR1** (Calama juez_instructor, Manos Limpias acusacion_popular, Zapatero investigado). Resto pendiente PR2.
-  - [ ] 8-15 `Hito` — **2/8 en PR1** (querella Manos Limpias 2025-12-23, auto imputación Zapatero 2026-05-19). Pendiente PR2: operación UDEF 2025-12-11, cambio_organo JI 15 Madrid → JCI 4 AN (marzo 2026).
-  - [ ] 15-25 `Hecho` — **3/15 en PR1** (préstamo SEPI atribuido, presunta trama de tráfico de influencias investigada, rescate por cauces irregulares investigado). Resto pendiente PR2.
-  - [ ] 10-20 `Documento` — **3/10 en PR1** (querella Manos Limpias, nota SEPI 2021-03, auto JCI 4 del 2026-05-19). Resto pendiente PR2.
+  - [x] 4-8 `Persona` implicadas — **5/4-8 tras PR2** (juez Calama, Zapatero, Julio Martínez Sola, Roberto Roselli, Javier Martínez Martínez). Cuotas cubiertas; nuevos hallazgos se incorporan en PR3+ cuando aparezcan en fuente oficial.
+  - [x] 5-10 `Organizacion` — **9 tras PR2**: 7 de PR1 (AN, JCI 4, JI 15 Madrid, Fiscalía Anticorrupción, SEPI, Plus Ultra, Manos Limpias) + 2 medios en PR2 (Infobae, Libertad Digital).
+  - [x] 8-15 `RolEnCaso` — **6/8-15 tras PR2** (Calama juez_instructor, Manos Limpias acusacion_popular, Zapatero investigado, Julio Martínez Sola investigado, Roberto Roselli investigado, Javier Martínez Martínez investigado). Cuota baja cubierta; ampliar conforme aparezcan formalmente nuevos delitos atribuidos a los detenidos en autos.
+  - [x] 8-15 `Hito` — **4/8-15 tras PR2** (querella Manos Limpias 2025-12-23, operación UDEF 2025-12-11, cambio_organo JI 15 Madrid → JCI 4 AN marzo 2026, auto imputación Zapatero 2026-05-19). Cuota baja cubierta. Pendientes para PR3+: auto íntegro del 19-may si aparece en CENDOJ, denuncia de Plus Ultra contra UDEF del 2026-03-06 (procedimiento secundario).
+  - [x] 15-25 `Hecho` — **5/15-25 tras PR2** (préstamo SEPI atribuido, presunta trama tráfico influencias investigada, rescate por cauces irregulares investigado, detenciones ejecutivos atribuido cobertura cruzada, trama organizada Zapatero investigado por auto). Pendiente PR3+: hechos más finos cuando se publique el auto íntegro del 19-may.
+  - [x] 10-20 `Documento` — **6/10-20 tras PR2** (querella Manos Limpias, nota SEPI 2021-03, auto JCI 4 19-may, Infobae operación UDEF, Libertad Digital detención, Infobae cambio_organo). Pendientes para PR3+: nota CGPJ del cambio de órgano (subir el hito a N1), comunicado oficial Policía Nacional/Interior de la operación UDEF, auto íntegro de CENDOJ.
 - [x] Delitos del catálogo aplicables a Plus Ultra — 5 en PR1 (tráfico de influencias, organización criminal, falsedad documental, blanqueo de capitales, malversación).
 - [x] Componentes Astro de la ficha (siguiendo doc 02): `PgCasoDetalle`, encabezado, resumen ejecutivo, estado procesal, personas implicadas (sin micro-swimlane gráfico, ese queda para Fase 2), cronología, hechos clasificados por estado epistémico, biblioteca de documentos, sección "cómo se ha redactado". *(Lote 3 de la integración del design system.)*
 - [x] Pagefind integrado y funcionando con el caso indexado. *(Lote 5.)*
