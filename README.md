@@ -13,7 +13,18 @@ Ofrecer una **referencia objetiva, trazable y sin cuota política** sobre los pr
 
 ## Estado
 
-Fase de implementación inicial. **No hay versión pública todavía.**
+Fase 1.0 (integración del design system) ✅ — el sitio se construye estático con Astro 5 sobre los YAML del propio repo. Primer caso fichado: **Plus Ultra**. Inventario actual: 1 caso · 5 personas · 9 organizaciones · 6 documentos · 4 hitos · 5 hechos · 6 roles.
+
+Todavía **no hay versión pública desplegada**: el dominio `presuntamente.org` está reservado pero no comprado, y el aviso legal requiere revisión con abogado antes de publicar (ver [`LEGAL.md`](LEGAL.md)). Mientras tanto el sitio funciona localmente con `pnpm dev` y el catálogo evoluciona en este repositorio.
+
+Estado vivo y backlog detallado en [`ROADMAP.md`](ROADMAP.md).
+
+## Stack
+
+- [Astro 5](https://astro.build) (static build) + CSS nativo + [Open Props](https://open-props.style/) como capa base.
+- Content Collections sobre los YAML de [`/content/`](content/), validados también por JSON Schema vía [`pnpm validate`](scripts/validate.mjs).
+- [Pagefind](https://pagefind.app) para búsqueda full-text estática.
+- pnpm 11, Node 24 (ver [`.nvmrc`](.nvmrc)).
 
 ## Licencias
 
@@ -22,7 +33,7 @@ Fase de implementación inicial. **No hay versión pública todavía.**
 
 ## Contribuir
 
-Ver [`CONTRIBUTING.md`](CONTRIBUTING.md). En esta fase inicial sólo se aceptan sugerencias vía issue.
+Ver [`CONTRIBUTING.md`](CONTRIBUTING.md). Hoy se aceptan sugerencias y rectificaciones vía issue ([templates](.github/ISSUE_TEMPLATE/)); el modelo de PR formales se activará en Fase 4 (apertura editorial) — hasta entonces el maintainer único trabaja en commits directos a `main`.
 
 ## Documentación de diseño
 

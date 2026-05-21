@@ -25,7 +25,7 @@ Ver [`LEGAL.md`](LEGAL.md). Resumen: issue con etiqueta `rectificacion` o correo
 
 ## Para colaboradores con permisos (futuro)
 
-Pendiente: protocolo de PR cuando entren colaboradores externos a partir de Fase 4 del roadmap.
+Pendiente: protocolo de PR cuando entren colaboradores externos a partir de Fase 4 del roadmap. Mientras tanto, el maintainer único trabaja en **commits directos a `main`** (sin ramas ni Pull Requests) y el push lo lanza siempre él, no los agentes. Detalle en [`AGENTS.md`](AGENTS.md) §"Workflow de rama y PRs".
 
 Política prevista: ver `docs/diseno/03-estrategia-de-mantenimiento.md` y `docs/diseno/04-riesgos-legales-y-eticos.md`.
 
@@ -35,7 +35,8 @@ Política prevista: ver `docs/diseno/03-estrategia-de-mantenimiento.md` y `docs/
 pnpm install
 pnpm dev        # arrancar Astro en local
 pnpm validate   # validar todos los YAML del repo contra los schemas
-pnpm build      # build estático del sitio
+pnpm build      # build estático del sitio + índice Pagefind
+pnpm preview    # servir dist/ con el índice de búsqueda construido
 ```
 
-Node 20 (ver `.nvmrc`). pnpm 9+.
+Node 24 (ver [`.nvmrc`](.nvmrc)). pnpm 11 (declarado en `package.json` → `packageManager`).
