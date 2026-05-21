@@ -1,0 +1,21 @@
+id: infobae-operacion-udef-2025-12-11
+titulo: "Infobae — operación UDEF en Plus Ultra: detención del presidente y del CEO (11 diciembre 2025)"
+tipo: articulo_prensa
+nivel_fuente: 4
+nivel_fuente_justificacion: |
+  Cobertura periodística de un evento procesal con relevancia pública.
+  Nivel 4 por tratarse de un medio de comunicación, no de una fuente
+  oficial primaria. La operación está documentada de forma cruzada por
+  al menos tres medios con líneas editoriales distintas (Infobae,
+  Libertad Digital, Diario Alerta), por lo que cumple V-13 (la prensa no
+  es soporte único): el hecho derivado lleva además respaldo de otro
+  documento N4 en distinta línea editorial.
+productor_organizacion_id: infobae
+fecha_documento: "2025-12-11"
+fecha_publicacion: "2026-05-19"
+url_canonica: "https://www.infobae.com/espana/2026/05/19/jose-luis-rodriguez-zapatero-imputado-en-el-caso-plus-ultra-por-blanqueo-de-capitales/"
+estado_acceso: publico
+idioma: es
+caso_principal_id: plus-ultra
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-21"
