@@ -43,7 +43,7 @@ const tabs: { key: NavKey; label: string; href: string }[] = [
 const buildTime = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
 // El subtítulo del bloque de marca es sólo el descriptor institucional;
 // la versión y el build hash viven exclusivamente en el footer (.site-footer .meta).
-const brandSub = 'Inventario público de casos de corrupción';
+const brandSub = 'Inventario público de casos de corrupción en España';
 ---
 
 <!doctype html>
@@ -112,7 +112,7 @@ const brandSub = 'Inventario público de casos de corrupción';
     <footer class="site-footer">
       <div class="site-footer__inner">
         <div>
-          <h6>presuntamente</h6>
+          <h6>presuntamente.org</h6>
           <p>Inventario público, interactivo y open-source de los casos de corrupción más relevantes en España.</p>
           <p class="meta">© 2026 · v0.0.0-alpha · build {buildTime}</p>
         </div>

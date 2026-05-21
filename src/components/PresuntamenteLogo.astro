@@ -47,7 +47,10 @@ const {
 } = Astro.props;
 
 const isotipoSrc = '/branding/logo.png';
-const wordmarkText = 'presuntamente';
+// Wordmark incluye el TLD para reforzar identidad de proyecto público:
+// "presuntamente.org" en lugar de sólo "presuntamente". El TLD se renderiza
+// en el mismo peso/color para mantener uniformidad visual.
+const wordmarkText = 'presuntamente.org';
 ---
 
 {variant === 'wordmark+isotipo' && (

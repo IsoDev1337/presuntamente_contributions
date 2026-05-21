@@ -415,10 +415,43 @@ li { margin: var(--space-1) 0; }
 .site-lang .sep { color: rgba(255, 255, 255, 0.3); }
 
 @media (max-width: 720px) {
-  .site-header__inner { grid-template-columns: 1fr auto; }
-  .site-nav { display: none; }
-  .site-brand__sub { display: none; }
-  .site-brand { min-height: 64px; padding: var(--space-2) var(--space-4); }
+  /* En mobile el header se reorganiza en dos filas:
+   *   fila 1 → brand block (blanco) + ES/CAT a la derecha
+   *   fila 2 → nav horizontal a todo el ancho sobre la banda navy,
+   *            scrollable si los items no caben. Sin hamburger.
+   * Mantiene la estética ministerial: bandas horizontales visibles,
+   * nada oculto detrás de widgets. */
+  .site-header__inner {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+  .site-brand {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 64px;
+    padding: var(--space-2) var(--space-4);
+  }
+  .site-lang {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .site-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .site-nav a {
+    padding: 0 var(--space-3);
+    height: 40px;
+    font-size: 12px;
+    flex-shrink: 0;
+    border-bottom-width: 2px;
+    margin-bottom: -2px;
+  }
 }
 
 /* Sub-strip beneath header — breadcrumb / utility */
