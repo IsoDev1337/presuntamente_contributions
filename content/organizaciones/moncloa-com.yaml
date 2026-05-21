@@ -1,0 +1,14 @@
+id: moncloa-com
+nombre: "Moncloa.com"
+nombres_alternativos:
+  - "Moncloa"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Diario digital español de información política y económica fundado
+  en 2014. Cubre con detalle los procesos judiciales contra cargos
+  públicos y figuras del entorno gubernamental.
+ambito_territorial: nacional
+localidad: "Madrid"
+url_canonica: "https://www.moncloa.com/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

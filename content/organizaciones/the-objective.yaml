@@ -1,0 +1,15 @@
+id: the-objective
+nombre: "TheObjective"
+nombres_alternativos:
+  - "The Objective"
+  - "TheObjective.com"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Diario digital español fundado en 2018. Cubre actualidad política,
+  económica y judicial con secciones específicas de tribunales y
+  análisis de poder.
+ambito_territorial: nacional
+localidad: "Madrid"
+url_canonica: "https://theobjective.com/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

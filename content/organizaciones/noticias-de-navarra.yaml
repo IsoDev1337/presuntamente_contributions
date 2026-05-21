@@ -1,0 +1,16 @@
+id: noticias-de-navarra
+nombre: "Noticias de Navarra"
+nombres_alternativos:
+  - "Diario de Noticias"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Diario generalista con sede en Pamplona, integrado en el grupo
+  editorial Zeroa Multimedia. Cubre actualidad navarra, nacional y
+  política institucional.
+ambito_territorial: autonomico
+localidad: "Pamplona"
+provincia: "Navarra"
+comunidad_autonoma: "Navarra"
+url_canonica: "https://www.noticiasdenavarra.com/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

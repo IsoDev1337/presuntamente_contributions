@@ -1,0 +1,18 @@
+id: juzgado-instruccion-41-madrid
+nombre: "Juzgado de Instrucción nº 41 de Madrid"
+nombres_alternativos:
+  - "JI nº 41 Madrid"
+  - "Juzgado nº 41 de Madrid"
+tipo: juzgado
+descripcion_corta: |
+  Juzgado de Instrucción nº 41 de Madrid. Tramita procedimientos
+  penales en fase de instrucción dentro del partido judicial de Madrid.
+  Es titular desde 2015 el magistrado Juan Carlos Peinado.
+jurisdiccion: penal
+ambito_territorial: local
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+organo_superior_id: audiencia-provincial-madrid
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

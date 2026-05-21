@@ -1,0 +1,16 @@
+id: maldita-es
+nombre: "Maldita.es"
+nombres_alternativos:
+  - "Maldita"
+  - "Maldita.es Periodismo"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Plataforma periodística independiente española sin ánimo de lucro,
+  fundada en 2018, especializada en verificación de información,
+  desinformación y rendición de cuentas del discurso público. Sus
+  secciones más conocidas son Maldito Bulo y Maldita Hemeroteca.
+ambito_territorial: nacional
+localidad: "Madrid"
+url_canonica: "https://maldita.es/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

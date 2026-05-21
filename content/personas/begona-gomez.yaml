@@ -1,0 +1,28 @@
+id: begona-gomez
+nombre_completo: "María Begoña Gómez Fernández"
+nombres_alternativos:
+  - "Begoña Gómez"
+  - "Begoña Gómez Fernández"
+es_figura_publica: true
+cargo_publico_actual: "Codirectora de la Cátedra Extraordinaria de Transformación Social Competitiva — Universidad Complutense de Madrid"
+cargos_publicos_historicos:
+  - cargo: "Directora del Africa Center del Instituto de Empresa"
+    desde: "2018-09-01"
+    hasta: "2022-12-31"
+  - cargo: "Codirectora de la Cátedra de Transformación Social Competitiva (UCM)"
+    desde: "2020-11-01"
+fecha_nacimiento: "1971-03-24"
+nacionalidad: "española"
+biografia_corta: |
+  María Begoña Gómez Fernández, nacida en Bilbao el 24 de marzo de 1971,
+  es esposa del presidente del Gobierno de España, Pedro Sánchez, desde
+  2006. Es especialista en marketing y dirección de organizaciones no
+  lucrativas. Ha desarrollado su trayectoria profesional en consultoría
+  de externalización comercial (grupo Inmark, 2000-2018) y en el ámbito
+  académico privado. Entre 2018 y 2022 dirigió el África Center del
+  Instituto de Empresa. Codirige una cátedra extraordinaria en la
+  Universidad Complutense de Madrid centrada en transformación social
+  competitiva.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

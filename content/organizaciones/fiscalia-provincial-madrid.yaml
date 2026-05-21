@@ -1,0 +1,19 @@
+id: fiscalia-provincial-madrid
+nombre: "Fiscalía Provincial de Madrid"
+nombres_alternativos:
+  - "Fiscalía de Madrid"
+tipo: fiscalia
+descripcion_corta: |
+  Fiscalía con jurisdicción provincial en Madrid. Interviene en los
+  procedimientos penales seguidos ante los juzgados de instrucción del
+  partido judicial de Madrid. En el caso Begoña Gómez ha sostenido desde
+  la apertura de las diligencias previas, y de forma reiterada en
+  sucesivos recursos, que no aprecia indicios de delito y ha solicitado
+  el archivo de la causa.
+jurisdiccion: penal
+ambito_territorial: provincial
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

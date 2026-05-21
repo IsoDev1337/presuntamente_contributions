@@ -1,0 +1,24 @@
+id: juan-carlos-peinado
+nombre_completo: "Juan Carlos Peinado García"
+nombres_alternativos:
+  - "Juan Carlos Peinado"
+  - "Peinado"
+es_figura_publica: true
+cargo_publico_actual: "Magistrado titular del Juzgado de Instrucción nº 41 de Madrid"
+cargos_publicos_historicos:
+  - cargo: "Magistrado titular del Juzgado de Instrucción nº 41 de Madrid"
+    desde: "2015-01-01"
+nacionalidad: "española"
+biografia_corta: |
+  Magistrado español. Accedió a la carrera judicial en 1994 por el
+  denominado tercer turno (juristas de reconocido prestigio). Es titular
+  del Juzgado de Instrucción nº 41 de Madrid desde 2015. Anteriormente
+  desempeñó funciones judiciales en Arenas de San Pedro (Ávila),
+  Talavera de la Reina, Getafe y Madrid. Compagina su actividad con la
+  docencia universitaria en Derecho, dictada en la Universidad
+  Complutense y en la Universidad CEU San Pablo. El Consejo General del
+  Poder Judicial le autorizó a prolongar su actividad jurisdiccional
+  más allá de la edad ordinaria de jubilación.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

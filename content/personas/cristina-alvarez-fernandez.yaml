@@ -1,0 +1,20 @@
+id: cristina-alvarez-fernandez
+nombre_completo: "María Cristina Álvarez Fernández"
+nombres_alternativos:
+  - "Cristina Álvarez"
+es_figura_publica: true
+cargo_publico_actual: "Asesora en el Gabinete de la Presidencia del Gobierno (Complejo de la Moncloa)"
+cargos_publicos_historicos:
+  - cargo: "Asesora en el Gabinete de la Presidencia del Gobierno"
+    desde: "2018-06-01"
+nacionalidad: "española"
+biografia_corta: |
+  Funcionaria del Gabinete de la Presidencia del Gobierno desde 2018,
+  con funciones de asesoría a la esposa del presidente. Su nombramiento
+  como asesora pública y su vinculación profesional con Begoña Gómez en
+  actividades vinculadas a la Cátedra de Transformación Social
+  Competitiva de la UCM forman parte del objeto del procedimiento que
+  instruye el Juzgado de Instrucción nº 41 de Madrid.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

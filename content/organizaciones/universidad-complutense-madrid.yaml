@@ -1,0 +1,20 @@
+id: universidad-complutense-madrid
+nombre: "Universidad Complutense de Madrid"
+nombres_alternativos:
+  - "UCM"
+  - "Complutense"
+tipo: organismo_publico
+descripcion_corta: |
+  Universidad pública con sede en Madrid. Fundada en 1499 (Alcalá) y
+  trasladada a Madrid en 1836. En el procedimiento del caso Begoña Gómez
+  es la institución titular de la Cátedra Extraordinaria de
+  Transformación Social Competitiva que codirige la investigada y
+  aparece personada como perjudicada en octubre de 2025.
+ambito_territorial: autonomico
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+siglas: "UCM"
+url_canonica: "https://www.ucm.es/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

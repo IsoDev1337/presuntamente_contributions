@@ -1,0 +1,19 @@
+id: audiencia-provincial-madrid
+nombre: "Audiencia Provincial de Madrid"
+nombres_alternativos:
+  - "AP Madrid"
+  - "Audiencia de Madrid"
+tipo: tribunal
+descripcion_corta: |
+  Tribunal con sede en Madrid que conoce, entre otras materias, los
+  recursos de apelación frente a resoluciones de los Juzgados de
+  Instrucción del partido judicial de Madrid. En el procedimiento del
+  caso Begoña Gómez resuelve los recursos contra las resoluciones del
+  Juzgado de Instrucción nº 41 de Madrid.
+jurisdiccion: penal
+ambito_territorial: provincial
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

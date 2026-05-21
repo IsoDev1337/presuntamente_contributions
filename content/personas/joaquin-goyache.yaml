@@ -1,0 +1,24 @@
+id: joaquin-goyache
+nombre_completo: "Joaquín Goyache Goñi"
+nombres_alternativos:
+  - "Joaquín Goyache"
+  - "Goyache"
+es_figura_publica: true
+cargo_publico_actual: "Rector de la Universidad Complutense de Madrid"
+cargos_publicos_historicos:
+  - cargo: "Rector de la Universidad Complutense de Madrid"
+    desde: "2019-05-31"
+nacionalidad: "española"
+biografia_corta: |
+  Catedrático universitario y rector de la Universidad Complutense de
+  Madrid desde 2019. Compareció en el procedimiento del Juzgado de
+  Instrucción nº 41 de Madrid relativo a la Cátedra de Transformación
+  Social Competitiva, primero como testigo y posteriormente como
+  investigado. La Audiencia Provincial de Madrid revocó su condición de
+  investigado en mayo de 2025 al considerar que no concurrían
+  indicios racionales de criminalidad. Conforme al principio de
+  presunción de inocencia, rige la inocencia mientras no recaiga
+  resolución firme en contrario.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

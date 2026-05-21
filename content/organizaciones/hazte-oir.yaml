@@ -1,0 +1,16 @@
+id: hazte-oir
+nombre: "Asociación HazteOír.org"
+nombres_alternativos:
+  - "Hazte Oír"
+  - "HazteOír"
+tipo: asociacion_acusacion_popular
+descripcion_corta: |
+  Asociación civil española que actúa habitualmente como acusación
+  popular en procedimientos penales de relevancia pública. Se personó
+  como acusación popular en el procedimiento del Juzgado de Instrucción
+  nº 41 de Madrid relativo al caso Begoña Gómez en abril de 2024.
+ambito_territorial: nacional
+siglas: "HO"
+localidad: "Madrid"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"
