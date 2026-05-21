@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Aviso legal y política editorial
+    url: https://github.com/davidchicano/presuntamente/blob/main/LEGAL.md
+    about: >-
+      Antes de abrir un issue, revisa el aviso legal y los principios editoriales del proyecto.
+  - name: CONTRIBUTING
+    url: https://github.com/davidchicano/presuntamente/blob/main/CONTRIBUTING.md
+    about: Cómo proponer cambios al inventario.

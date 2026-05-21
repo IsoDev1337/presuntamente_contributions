@@ -1,0 +1,10 @@
+# CODEOWNERS — presuntamente
+#
+# Placeholder mientras el maintainer es único. Cuando entren contribuyentes
+# externos al proyecto, se definirán bloques por área (content/, src/, docs/,
+# schemas/) con co-maintainers distintos por sección y se activarán required
+# reviews vía branch protection.
+#
+# Mientras tanto, todo cambio en main pasa por el maintainer único.
+
+* @davidchicano

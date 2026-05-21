@@ -1,0 +1,98 @@
+name: Solicitud de rectificación
+description: >-
+  Solicita la rectificación de una afirmación publicada en presuntamente.org. Trámite alineado con
+  el derecho de rectificación (LO 2/1984) y con el procedimiento del doc 04 §6.
+title: "[rectificación] "
+labels:
+  - rectificacion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Solicitud de rectificación
+
+        Gracias por contribuir a la calidad del inventario. **Sin fuente verificable, la
+        rectificación no puede tramitarse** — el sitio no toma decisiones editoriales por mera
+        discrepancia. Plazos comprometidos: acuse en 48 h hábiles, resolución provisional en 7 días
+        hábiles.
+
+  - type: input
+    id: ficha
+    attributes:
+      label: Ficha afectada (URL)
+      description: Pega la URL completa de la página donde aparece la afirmación cuestionada.
+      placeholder: https://presuntamente.org/casos/plus-ultra
+    validations:
+      required: true
+
+  - type: textarea
+    id: afirmacion
+    attributes:
+      label: Afirmación concreta cuestionada
+      description: >-
+        Cita literalmente la afirmación o describe la sección de la ficha que consideras que debe
+        corregirse.
+      placeholder: >-
+        Sección "Hechos bajo investigación", enunciado del hecho pu-prestamo-sepi-2021-03-09…
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivo
+    attributes:
+      label: Motivo de la rectificación
+      description: Qué consideras incorrecto o impreciso, y por qué.
+    validations:
+      required: true
+
+  - type: textarea
+    id: fuente
+    attributes:
+      label: Fuente que sostiene la rectificación
+      description: >-
+        URL oficial (BOE, CENDOJ, poderjudicial.es, organismo público), PDF de resolución, nota
+        institucional o cobertura periodística cruzada que respalde la rectificación propuesta.
+        Indica el pasaje o página concreta cuando aplique.
+      placeholder: >-
+        https://www.boe.es/diario_boe/txt.php?id=… (Fundamento de Derecho Tercero)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: relacion
+    attributes:
+      label: Relación con la afirmación cuestionada
+      description: Opcional. Ayuda a contextualizar la solicitud (la tramitación es la misma).
+      options:
+        - Persona mencionada en la ficha
+        - Representante legal de la persona mencionada
+        - Organización mencionada en la ficha
+        - Tercero interesado (académico, periodista, otro)
+        - Sin relación directa, detección de error de hecho
+    validations:
+      required: false
+
+  - type: input
+    id: contacto
+    attributes:
+      label: Email de contacto (opcional)
+      description: >-
+        Para enviarte la respuesta motivada. Si no lo aportas, la respuesta queda únicamente en este
+        issue público.
+      placeholder: nombre@dominio.example
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmaciones
+    attributes:
+      label: Confirmaciones
+      options:
+        - label: >-
+            He revisado el aviso legal y entiendo que esta solicitud queda como issue público en el
+            repositorio.
+          required: true
+        - label: >-
+            La fuente aportada es verificable por el equipo editorial (URL accesible, PDF
+            adjuntable o documento oficial citado con suficiente detalle).
+          required: true

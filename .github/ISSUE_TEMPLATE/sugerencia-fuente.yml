@@ -1,0 +1,93 @@
+name: Sugerencia de fuente
+description: >-
+  Propón una fuente que falta en una ficha (sentencia publicada, informe institucional, escrito de
+  fiscalía, cobertura cruzada).
+title: "[fuente] "
+labels:
+  - sugerencia-fuente
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Sugerencia de fuente
+
+        Si has detectado una fuente que **falta** en una ficha del inventario, abre este issue. Las
+        fuentes propuestas se evalúan contra la lista blanca de dominios oficiales y los criterios
+        del doc 01 §3 antes de incorporarse.
+
+  - type: input
+    id: ficha
+    attributes:
+      label: Ficha donde añadir la fuente (URL)
+      description: Pega la URL completa de la ficha a la que se refiere la sugerencia.
+      placeholder: https://presuntamente.org/casos/plus-ultra
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de documento
+      description: Categoría aproximada del documento que propones añadir.
+      options:
+        - Sentencia firme (N1)
+        - Auto judicial (N1/N2 según firmeza)
+        - Escrito de Fiscalía (N2)
+        - Informe UDEF/UCO (N2)
+        - Informe institucional (Tribunal de Cuentas, AIReF, CGPJ, Consejo de Estado) (N3)
+        - Boletín oficial (N1)
+        - Investigación periodística (N4)
+        - Otro
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL canónica de la fuente
+      description: >-
+        URL oficial estable. Para sentencias y autos, preferentemente desde CENDOJ o poderjudicial.es;
+        para BOE, desde boe.es; para informes institucionales, desde la web del organismo emisor.
+    validations:
+      required: true
+
+  - type: input
+    id: archivo
+    attributes:
+      label: URL de archivo (recomendado)
+      description: >-
+        URL en archive.org / archive.ph como mirror inmutable. Obligatorio para fuentes de Nivel 4.
+      placeholder: https://web.archive.org/web/…
+    validations:
+      required: false
+
+  - type: textarea
+    id: pasaje
+    attributes:
+      label: Pasaje relevante
+      description: >-
+        Fundamento jurídico, página o sección concreta dentro del documento que aporta información
+        nueva o complementaria a la ficha.
+      placeholder: "Fundamento de Derecho Tercero, pp. 23-25."
+    validations:
+      required: false
+
+  - type: textarea
+    id: aporte
+    attributes:
+      label: Qué aporta esta fuente
+      description: >-
+        Describe qué hecho nuevo respalda o qué hecho existente refuerza/contrasta. Ayuda al editor a
+        decidir dónde incorporarla.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmaciones
+    attributes:
+      label: Confirmaciones
+      options:
+        - label: La fuente es pública y verificable (no requiere credenciales privadas para leerse).
+          required: true
+        - label: He revisado la ficha y no me consta que esta fuente esté ya incorporada.
+          required: true
