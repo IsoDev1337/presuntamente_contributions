@@ -114,14 +114,21 @@ Este repo es público. **No incluyas datos personales del maintainer** (direcci�
 
 - Git configurado con email noreply de GitHub (`<id>+davidchicano@users.noreply.github.com`).
 - Mensajes en español, imperativo presente: "Añade ficha Plus Ultra", "Corrige tipo de hecho en pieza X".
-- Una idea por commit. PRs pequeños.
+- Una idea por commit. Commits pequeños y coherentes.
 
-### PRs
+### Workflow de rama y PRs
 
-- Cada PR cambia una cosa coherente. Hitos grandes se trocean en varios PRs.
-- Descripción del PR explica el **por qué** del cambio y cita la fuente (si aplica).
-- CI verde antes de merge. Si una V-NN bloquea, arreglar antes.
-- Self-merge permitido en MVP (sólo maintainer); cuando entren más colaboradores, CODEOWNERS exigirá review.
+**Política actual (decidida por el maintainer el 2026-05-21):** trabajar **directamente sobre `main`**, sin ramas ni Pull Requests, mientras dure el MVP y hasta que el maintainer indique lo contrario. Push directo a `origin/main` tras `pnpm validate` + `pnpm build` verdes.
+
+Razón: en fase MVP el repo tiene un solo maintainer y los ciclos de feedback se hacen en sesiones de Claude Code, no en una review formal de GitHub. Las ramas + PRs ralentizan sin aportar.
+
+**Cuando el maintainer reactive el modelo de ramas + PRs** (esperable cuando entren contribuyentes externos o cuando se establezcan CODEOWNERS), volver a:
+- Una rama por unidad de cambio coherente.
+- PR descriptivo con qué, por qué y fuentes.
+- CI verde antes de merge.
+- Self-merge sólo del maintainer.
+
+Si una sesión va a tocar algo arriesgado (migración, refactor amplio, cambio que rompe convenciones), aún en política directa el agente debe **proponer crear una rama puntual y preguntar** antes de meter el cambio en main.
 
 ## Skills locales (`.claude/skills/`)
 
@@ -142,9 +149,9 @@ En Fase 0 son placeholders; se implementan según se necesiten.
 
 0. **Lee [`/ROADMAP.md`](ROADMAP.md)** antes de hacer cualquier otra cosa. Es el estado vivo del proyecto: dónde estamos, qué toca, decisiones pendientes, aprendizajes. **Obligatorio.**
 1. **Antes de cambiar algo no trivial**: lee el doc de diseño correspondiente en `docs/diseno/`. Si tocas algo visual o de marca, además [`/DESIGN.md`](DESIGN.md). Si el cambio contradice un principio o regla, NO lo hagas; pregunta.
-2. **Para crear/modificar contenido**: trabaja en rama, no en main. Una rama por unidad de cambio coherente.
+2. **Para crear/modificar contenido**: por defecto, commit directo a `main` (ver §"Workflow de rama y PRs"). Si el cambio es arriesgado o amplio, propón rama puntual antes de tocar nada.
 3. **Valida localmente** antes de pushear: `pnpm validate` y `pnpm build`.
-4. **PR descriptivo**: explica qué, por qué, y cita fuentes.
+4. **Commits descriptivos**: explica qué, por qué, y cita fuentes en el mensaje.
 5. **Si encuentras un dato sensible**: NO lo publiques sin consultar `docs/diseno/04-riesgos-legales-y-eticos.md`.
 6. **Al cerrar la sesión o tras un cambio significativo**: actualiza [`/ROADMAP.md`](ROADMAP.md) — backlog, estado, aprendizajes. **Obligatorio.**
 
