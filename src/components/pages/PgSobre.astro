@@ -1,0 +1,207 @@
+---
+// PgSobre — página institucional con qué es el proyecto, política
+// editorial, niveles de fuente, cómo rectificar y licencias.
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionH from '@/components/SectionH.astro';
+import type { Lang } from '@/lib/labels';
+
+interface Props { lang?: Lang; }
+const { lang = 'es' } = Astro.props;
+
+const strings = {
+  title: 'Sobre presuntamente',
+  description:
+    'Misión, principios editoriales, niveles de fuente, cómo rectificar y licencias del inventario público presuntamente.org.',
+  eyebrow: 'Sección 5 · Sobre',
+  sub:
+    'Información institucional sobre el proyecto: misión, principios editoriales, escala de niveles de fuente, ' +
+    'protocolo de rectificación y licencias del código y del contenido.',
+};
+---
+
+<BaseLayout
+  title={strings.title}
+  lang={lang}
+  description={strings.description}
+  activeNav="sobre"
+  breadcrumb={[
+    { label: 'Inicio', href: lang === 'ca' ? '/cat' : '/' },
+    { label: 'Sobre' },
+  ]}
+>
+  <section class="page-id">
+    <div>
+      <p class="page-id__eyebrow">{strings.eyebrow}</p>
+      <h1 class="page-id__title">{strings.title}</h1>
+      <p class="page-id__sub">{strings.sub}</p>
+    </div>
+    <div class="page-id__meta">
+      <span>Estado: borrador</span>
+      <span>·</span>
+      <span>Fase 1 — MVP Plus Ultra</span>
+    </div>
+  </section>
+
+  <SectionH num="1." title="Qué es presuntamente" id="que-es" />
+  <div class="prose">
+    <p>
+      <strong>presuntamente.org</strong> es un inventario público, interactivo y open-source de los
+      casos de corrupción más relevantes en España. La misión es <strong>reducir desinformación</strong>
+      ofreciendo una referencia objetiva, trazable y sin cuota política de los procedimientos
+      judiciales relevantes.
+    </p>
+    <p>
+      Cada caso se documenta a partir de fuentes primarias (BOE, CENDOJ, autos, sentencias) y,
+      complementariamente, de cobertura periodística cruzada. Cada afirmación lleva su nivel de
+      fuente visible. Las personas mencionadas como investigadas o procesadas se presumen inocentes
+      hasta que recaiga sentencia firme.
+    </p>
+  </div>
+
+  <SectionH num="2." title="Principios editoriales" id="principios" />
+  <ol class="principios">
+    <li>
+      <strong>Imputación nunca equivale a condena.</strong> El modelo distingue investigado,
+      procesado, acusado, condenado, absuelto y desimputado, con trayectoria temporal completa.
+    </li>
+    <li>
+      <strong>Cada afirmación con su fuente y nivel.</strong> Los hechos exigen documento de
+      respaldo con nivel (N1–N4) visible inline, nunca escondido en tooltip.
+    </li>
+    <li>
+      <strong>Tratamiento sin cuota política.</strong> Casos vivos o cerrados, de cualquier
+      partido, ordenados por relevancia objetiva. Ningún color, icono o badge se asocia a partido
+      político.
+    </li>
+    <li>
+      <strong>Presunción de inocencia en el lenguaje.</strong> Verbos prohibidos para hechos no
+      acreditados ("robó", "estafó", "se apropió"). Preferidos: "se investiga", "se atribuye",
+      "consta en el informe X que…".
+    </li>
+    <li>
+      <strong>No exposición innecesaria de personas privadas.</strong> Sólo aparecen personas con
+      rol formal en el procedimiento. Cuando un rol se cierra, se revisa la anonimización.
+    </li>
+    <li>
+      <strong>El git log es el changelog público.</strong> Nunca se borra información; las
+      correcciones conservan el histórico.
+    </li>
+  </ol>
+
+  <SectionH num="3." title="Niveles de fuente (N1–N4)" id="niveles" />
+  <div class="prose">
+    <p>Cada Documento del inventario lleva un nivel de fuente que comunica su autoridad:</p>
+  </div>
+  <ul class="niveles">
+    <li>
+      <span class="badge badge--n1">N1</span>
+      <div>
+        <strong>Oficial primaria.</strong> Sentencias firmes, autos judiciales firmes, BOE, leyes y
+        reales decretos. Documento producido directamente por el órgano competente.
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--n2">N2</span>
+      <div>
+        <strong>Oficial secundaria / instructora.</strong> Informes UDEF/UCO, escritos de Fiscalía,
+        autos no firmes, escritos de acusación particular o popular.
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--n3">N3</span>
+      <div>
+        <strong>Institucional / pericial.</strong> Informes del Tribunal de Cuentas, AIReF, CGPJ,
+        Consejo de Estado; notas institucionales de organismos públicos; periciales.
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--n4">N4</span>
+      <div>
+        <strong>Cobertura periodística.</strong> Investigaciones publicadas por medios. Nunca soporte
+        único (V-13): un hecho con sólo respaldo periodístico se etiqueta como "atribuido" o
+        "investigado", no como acreditado.
+      </div>
+    </li>
+  </ul>
+
+  <SectionH num="4." title="Cómo proponer una corrección" id="rectificar" />
+  <div class="prose">
+    <p>
+      El derecho a rectificación está garantizado. Si detectas un error en una ficha (un nombre mal
+      escrito, una fecha incorrecta, una atribución sin fuente, una persona privada expuesta sin
+      necesidad), puedes:
+    </p>
+    <ol>
+      <li>Abrir un issue en el repositorio público con el rótulo <code>rectificacion</code>.</li>
+      <li>
+        Enviar un correo a la dirección de contacto del repositorio (pendiente de configurar
+        dominio).
+      </li>
+    </ol>
+    <p>
+      Las correcciones se procesan en orden de entrada. Los cambios significativos quedan
+      registrados en el git log y, cuando aplican, en el campo <code>corregido_por</code> de la
+      entidad afectada — el histórico no se borra.
+    </p>
+  </div>
+
+  <SectionH num="5." title="Licencias y código" id="licencias" />
+  <div class="prose">
+    <ul class="meta-list">
+      <li>
+        <strong>Código:</strong> AGPL-3.0-or-later. Cualquiera puede usar, modificar y desplegar el
+        software; las modificaciones desplegadas deben publicarse bajo la misma licencia.
+      </li>
+      <li>
+        <strong>Contenido editorial:</strong> CC BY-SA 4.0. Cualquiera puede reutilizar las fichas
+        citando la fuente y compartiendo bajo la misma licencia.
+      </li>
+      <li>
+        <strong>Repositorio público:</strong>
+        <a href="https://github.com/davidchicano/presuntamente" target="_blank" rel="noopener">
+          github.com/davidchicano/presuntamente ↗
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="aviso aviso--accent mt-6">
+    Este sitio publica información sobre procedimientos judiciales en curso. Las personas mencionadas
+    como investigadas o procesadas se presumen inocentes hasta que recaiga sentencia firme.
+  </div>
+</BaseLayout>
+
+<style>
+  .principios { padding-left: 24px; margin: 0 0 var(--space-4); }
+  .principios li { margin: 8px 0; line-height: 1.55; }
+
+  .niveles {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .niveles li {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 14px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    align-items: start;
+  }
+  .niveles li:last-child { border-bottom: 0; }
+  .niveles li > div { font: 400 13px/1.55 var(--font-sans); }
+
+  .meta-list { margin: 0; padding-left: 18px; }
+  .meta-list li { margin: 4px 0; }
+
+  .prose code {
+    font-family: var(--font-mono);
+    background: var(--color-surface-muted);
+    padding: 1px 4px;
+    border: 1px solid var(--color-border);
+    font-size: 0.9em;
+  }
+</style>
