@@ -1,0 +1,29 @@
+id: operacion-udef-detenciones-2025-12-11
+caso_id: plus-ultra
+tipo: imputacion
+fecha: "2025-12-11"
+fecha_precision: dia
+titulo: "La UDEF registra la sede de Plus Ultra y detiene al presidente, al CEO y a un empresario implicado"
+descripcion: |
+  Agentes de la Unidad de Delincuencia Económica y Fiscal (UDEF) de la
+  Policía Nacional registran la sede de Plus Ultra Líneas Aéreas en el
+  marco de las diligencias previas instruidas a petición de la Fiscalía
+  Anticorrupción. En la operación quedan detenidos el presidente y
+  dueño de la compañía, Julio Martínez Sola; su director ejecutivo,
+  Roberto Roselli; y el empresario Javier Martínez Martínez. Los tres
+  son puestos posteriormente en libertad con medidas cautelares y
+  pasan a la condición de investigados por presunto blanqueo de
+  capitales y otros delitos conexos. La operación se realiza bajo
+  autoridad del Juzgado de Instrucción nº 15 de Madrid, órgano titular
+  de la causa hasta su posterior traslado a la Audiencia Nacional.
+personas_afectadas:
+  - julio-martinez-sola
+  - roberto-roselli
+  - javier-martinez-martinez
+organizaciones_afectadas:
+  - plus-ultra-lineas-aereas
+  - juzgado-instruccion-15-madrid
+documento_principal_id: infobae-operacion-udef-2025-12-11
+documentos_relacionados:
+  - libertaddigital-detencion-plus-ultra-2025-12-11
+fase_resultante: instruccion
