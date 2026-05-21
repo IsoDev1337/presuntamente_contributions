@@ -1,11 +1,26 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 
 interface Props {
   lang?: 'es' | 'ca';
 }
 
 const { lang = 'es' } = Astro.props;
+
+// Cifras del inventario cableadas a Content Collections (Lote 2).
+// Por construcción del modelo, sólo aparece en /content/personas/ alguien con
+// rol formal en algún caso (V-17), así que personas.length ≡ "personas con
+// rol". Mismo razonamiento para organizaciones citadas y documentos
+// primarios. Cuando el inventario crezca convendrá filtrar por
+// `estado_publicacion === 'publicado'`; mientras todo está en borrador
+// contamos todas las entradas para reflejar el estado real del repo.
+const [casos, personas, organizaciones, documentos] = await Promise.all([
+  getCollection('casos'),
+  getCollection('personas'),
+  getCollection('organizaciones'),
+  getCollection('documentos'),
+]);
 
 // TODO i18n: cuando se active el catalán, añadir la rama 'ca' en strings y
 // crear el wrapper en /src/pages/cat/index.astro que llame con lang="ca".
@@ -20,13 +35,11 @@ const strings = {
       'Referencia objetiva y trazable de los procedimientos judiciales relevantes. ' +
       'Cada afirmación cita su fuente y su nivel de fuente. Imputación nunca equivale a condena.',
   },
-  // Lote 2 reemplazará el contador hardcoded por una cifra leída de las
-  // Content Collections (casos.length, personas.length, etc.).
   contadores: [
-    { label: 'Casos catalogados',     value: '1' },
-    { label: 'Personas con rol',       value: '2' },
-    { label: 'Organizaciones citadas', value: '7' },
-    { label: 'Documentos primarios',   value: '3' },
+    { label: 'Casos catalogados',      value: String(casos.length) },
+    { label: 'Personas con rol',       value: String(personas.length) },
+    { label: 'Organizaciones citadas', value: String(organizaciones.length) },
+    { label: 'Documentos primarios',   value: String(documentos.length) },
   ],
   secciones: [
     {
