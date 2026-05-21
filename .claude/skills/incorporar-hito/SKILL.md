@@ -3,7 +3,7 @@ name: incorporar-hito
 description: Incorpora un nuevo Hito a un Caso existente a partir de un PDF de auto judicial, sentencia, informe UCO/UDEF o documento procesal equivalente. Genera borrador YAML de Hito + Documento + Hechos derivados + cambios en RolEnCaso, listo para PR. Aplica los guardarraíles del doc 03 §4. Trigger cuando el usuario pide "incorporar este auto", "añade este hito a", "procesa este PDF de Calama", o referencia un documento procesal nuevo en un caso existente.
 ---
 
-# Skill `incorporar-hito` — v0
+# Skill `incorporar-hito` — v1
 
 ## Propósito
 
@@ -106,4 +106,94 @@ Esta es la `v0`. Tras cada uso real (cada PDF procesado), añade aquí lecciones
 
 ## Histórico
 
-*(vacío en v0; rellenar con cada caso futuro)*
+### Plus Ultra PR1 (2026-05-21) — bautismo de la skill
+
+Primer uso real. Se incorpora el auto del JCI nº 4 del 19-may-2026 que cita
+a Zapatero como investigado. Fuente N1: nota institucional del CGPJ en
+`poderjudicial.es` (dominio en lista blanca DominiosOficiales). El auto
+íntegro no estaba en CENDOJ todavía; se cita por extracto institucional.
+
+Lecciones:
+
+- **`acreditado` excluye factuales administrativos no controvertidos.** Un
+  Real Decreto en BOE o una nota institucional sobre una decisión del
+  Consejo de Ministros NO se puede modelar como `acreditado` aunque sean
+  factualmente verificables: V-04 exige sentencia firme. Modelarlos como
+  `atribuido` con el organismo emisor como actor identificado en el
+  enunciado. Ejemplo: el préstamo SEPI 2021-03-09 se modela como
+  `atribuido` con la nota SEPI N1 como respaldo.
+- **Tensión brief vs realidad procesal en casos vivos.** Cuando el brief
+  del usuario está desactualizado respecto a la realidad procesal (un auto
+  publicado después de redactar el brief), respetar el brief, documentar
+  la discrepancia en `NOTES.md` del caso + `ROADMAP.md → Decisiones
+  pendientes`, y deferir al maintainer. NO improvisar ni asumir luz verde.
+- **Verbos del doc 04 §3 obligatorios** en todos los enunciados: "consta
+  en el auto…", "se atribuye indiciariamente", "el instructor considera
+  que…". Final explícito de presunción de inocencia ("rige el principio
+  de presunción de inocencia mientras no recaiga resolución firme").
+
+### Plus Ultra PR2 (2026-05-21/22) — operación UDEF + cambio_organo
+
+Segundo uso. Se incorporan 2 hitos sin documento procesal jurisdiccional
+publicado: operación UDEF del 11-dic-2025 (detenciones del presidente, CEO
+y un empresario) y cambio_organo del 3-mar-2026 (JI 15 Madrid → JCI 4 AN).
+Sólo había cobertura periodística N4 disponible; ni la nota CGPJ ni el
+comunicado oficial de la Policía Nacional pudieron localizarse con URL
+canónica.
+
+Lecciones:
+
+- **Hitos sin documento N1 son aceptables si cumplen V-13 (cruce N4).**
+  Cuando un hito relevante sólo tiene cobertura periodística disponible,
+  redactar el `Documento` principal como N4 (`tipo=articulo_prensa`) con
+  `nivel_fuente_justificacion` que explicite que es cobertura cruzada y
+  que se cumplirá V-13 al menos en dos líneas editoriales distintas.
+  Añadir uno o más `documentos_relacionados` al Hito apuntando a las
+  otras líneas. Cuando aparezca el documento oficial (nota CGPJ,
+  comunicado policial, auto en CENDOJ), sustituir el `documento_principal_id`
+  por el oficial y elevar el nivel.
+- **Mapeo de "operación policial" → tipo=`imputacion`.** El schema no
+  tiene un tipo "operación policial" o "registro" en el enum de Hito.
+  Para operaciones UDEF/UCO con detenciones que llevan a investigados,
+  usar `tipo=imputacion` con descripción explícita del flujo (registro,
+  detención, libertad provisional, medidas cautelares). Si la operación
+  fuera meramente un registro sin detenciones, usar `informe_organismo_publico`.
+- **Anonimización del propio órgano se respeta.** Si la nota CGPJ
+  identifica a un sospechoso con iniciales (ej. "Manuel F. G.", "Julio M.
+  M."), NO crear `Persona` con nombre completo aunque la prensa lo haya
+  identificado. Esperar a que el levantamiento se publique formalmente o
+  hasta que el nombre completo aparezca en fuente oficial. La cobertura
+  periodística NO autoriza desanonimizar.
+- **Familiares no implicados quedan FUERA del inventario** aunque la UDEF
+  haya registrado su empresa o domicilio, salvo que un auto les atribuya
+  rol procesal formal. Doc 04 §11. Si el registro es relevante para
+  describir un hito, se menciona dentro de la descripción del hito sin
+  crear `Persona`.
+- **Procedimientos secundarios derivados (denuncia X contra UDEF por
+  filtración) quedan FUERA del inventario principal** salvo que el
+  maintainer decida modelarlos como pieza separada. PR2 ignoró la
+  denuncia de Plus Ultra contra la UDEF (admitida 2026-03-06) por ser
+  procedimiento secundario en otro juzgado.
+- **Las medidas cautelares concretas que siguen a una detención
+  (libertad con retirada de pasaporte, comparecencia bimensual) se
+  modelan dentro de la descripción del hito de la operación**, no como
+  hito separado. El schema no tiene tipo "libertad provisional" y la
+  decisión es accesoria al registro inicial.
+- **`hito_origen_id` en cada RolEnCaso es obligatorio en la práctica**
+  aunque el schema sólo lo exija para `condenado` (V-10). Sin él, el
+  rol queda "huérfano" sin trazabilidad. Convención: siempre apuntar al
+  hito que abre el rol (auto de imputación, operación UDEF, designación
+  como juez instructor, etc.).
+- **Medios de comunicación como `Organizacion` tipo=medio_comunicacion**
+  son necesarios cuando se usan como `productor_organizacion_id` de un
+  Documento. Crear la ficha de la org del medio antes de los Documentos
+  (o en el mismo PR si es la primera vez que aparece). Atributos
+  mínimos: nombre, tipo, descripcion_corta, ambito_territorial,
+  localidad, url_canonica. `linea_editorial_declarada` queda para
+  cuando haya cita literal del "Quiénes somos"; no asumir.
+- **`url_archivo` (archive.org / archive.ph) queda pendiente del
+  maintainer.** El agente no puede llamar a `web.archive.org/save` ni
+  con WebFetch (dominio bloqueado) ni de forma fiable con Claude in
+  Chrome (timeouts del CDP). Anotar en NOTES.md del caso como
+  pendiente para que el maintainer archive manualmente y rellene el
+  campo en una pasada posterior. Mirror obligatorio para fuentes N4.

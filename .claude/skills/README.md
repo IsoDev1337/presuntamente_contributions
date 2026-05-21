@@ -1,11 +1,15 @@
 # Skills locales del proyecto presuntamente
 
-Skills para usar con Claude Code en este repositorio. **En Fase 0 son placeholders**; se implementan según se necesiten.
+Skills para usar con Claude Code en este repositorio. Se construyen iterativamente con cada uso real (`AGENTS.md` §"Skills locales"); cada SKILL.md tiene una sección `## Histórico` con lecciones de cada caso real.
 
-## Skills planeadas
+## Skills implementadas
 
-- **`investigar-caso`** — arrancar un caso nuevo desde URL/nombre. Crea el esqueleto YAML en `/content/casos/<slug>/` y abre PR.
-- **`incorporar-hito`** — añadir Hito + Hechos + Documento a un caso existente desde un PDF de auto. Aplica los guardarraíles del doc 03 §4 (nunca asigna `tipo = acreditado` automáticamente; nunca inventa).
+- **`investigar-caso`** v0 — arrancar un caso nuevo desde URL/nombre/brief. Localiza órgano titular, implicados con rol formal y hitos clave; genera el esqueleto YAML inicial (Caso + 1-2 Hitos + Documentos + 1-3 Roles + Hechos). Aplica los guardarraíles del doc 03 §4 + tensión brief/realidad procesal aprendida con Plus Ultra.
+- **`incorporar-hito`** v1 — añadir Hito + Hechos + Documento a un caso existente desde un PDF de auto, una nota CGPJ o cobertura cruzada. Nunca asigna `tipo = acreditado` automáticamente; nunca inventa. Histórico de uso real: Plus Ultra PR1 y PR2.
+- **`presuntamente-design`** — diseño visual canónico del sitio. Tokens, componentes, lenguaje gov-retro. User-invocable con `/presuntamente-design`.
+
+## Skills planeadas (placeholders)
+
 - **`revisar-señales`** — procesar `content/signals.yaml`, descartar ruido, proponer PRs por las señales reales.
 - **`validar-repo`** — ejecutar `pnpm validate` con output agrupado por entidad y resumen.
 - **`rectificar`** — gestionar una solicitud de rectificación entrante (issue con etiqueta `rectificacion`). Aplica el procedimiento del doc 04 §6.
