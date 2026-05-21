@@ -14,6 +14,7 @@
 - **Último hito**: Lote 1 de integración entregado en rama `fase-1/integrar-design-system`. Tokens del bundle portados a `global.css`, chrome ministerial completo (header con doble trim navy+mostaza + nav/lang underline animado, footer con filete tricolor `#8e2424`/mostaza/`#8e2424`), `PresuntamenteLogo.astro` con isótipo PNG 52px + wordmark texto `presuntamente.org`, split de rutas `/` (PgInicio landing) y `/casos` (PgCasos catálogo), mobile-friendly (nav como segunda banda scrollable). 7 commits, 2 páginas que compilan limpias, dark mode verificado.
 - **Próximo paso comprometido**: cuando el maintainer revise y mergee PR #2, abrir Lote 2 — Astro Content Collections sobre los YAML de `/content/` y cablear `PgCasos` y los contadores de `PgInicio` a la collection real.
 - **Dev server local**: `pnpm dev` en `http://localhost:4321` (config en [`.claude/launch.json`](.claude/launch.json)).
+- **Workflow git**: **commits directos a `main`**, sin ramas ni PRs, decidido por el maintainer el 2026-05-21 mientras dure el MVP. Detalle en [`AGENTS.md` §"Workflow de rama y PRs"](AGENTS.md). PR #2 (Lote 1 de integración) es el último PR formal mientras esta política esté activa.
 
 ---
 
