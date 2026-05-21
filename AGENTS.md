@@ -39,6 +39,8 @@ Si vas a tocar algo no trivial, consulta primero el doc correspondiente.
 ```
 /AGENTS.md                  ← este fichero
 /CLAUDE.md                  ← symlink → AGENTS.md
+/ROADMAP.md                 ← estado vivo del proyecto (leer al iniciar, actualizar al cerrar)
+/DESIGN.md                  ← lenguaje visual canónico (Claude Design + Claude Code)
 /README.md                  ← descripción público-facing
 /CONTRIBUTING.md            ← cómo contribuir
 /LICENSE                    ← AGPL-3.0 (código)
@@ -139,7 +141,7 @@ En Fase 0 son placeholders; se implementan según se necesiten.
 ## Workflow para agentes
 
 0. **Lee [`/ROADMAP.md`](ROADMAP.md)** antes de hacer cualquier otra cosa. Es el estado vivo del proyecto: dónde estamos, qué toca, decisiones pendientes, aprendizajes. **Obligatorio.**
-1. **Antes de cambiar algo no trivial**: lee el doc de diseño correspondiente en `docs/diseno/`. Si el cambio contradice un principio o regla, NO lo hagas; pregunta.
+1. **Antes de cambiar algo no trivial**: lee el doc de diseño correspondiente en `docs/diseno/`. Si tocas algo visual o de marca, además [`/DESIGN.md`](DESIGN.md). Si el cambio contradice un principio o regla, NO lo hagas; pregunta.
 2. **Para crear/modificar contenido**: trabaja en rama, no en main. Una rama por unidad de cambio coherente.
 3. **Valida localmente** antes de pushear: `pnpm validate` y `pnpm build`.
 4. **PR descriptivo**: explica qué, por qué, y cita fuentes.

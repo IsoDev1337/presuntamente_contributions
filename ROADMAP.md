@@ -24,8 +24,8 @@ Una idea, un bullet. `[ ]` pendiente, `[x]` hecho. Items completados se eliminan
 ### Antes de Fase 1
 - [x] Configurar git con email noreply.
 - [x] Commit y push inicial del scaffolding.
-- [x] Doc 07 (prompt de branding) escrito y entregado al maintainer.
-- [ ] Resultado de la plataforma externa de diseño aplicado al sistema visual del repo: `src/styles/global.css` y componentes en `src/components/`.
+- [x] Lenguaje visual canónico en [`/DESIGN.md`](DESIGN.md) (formato esperado por Claude Design + Claude Code).
+- [ ] Resultado de Claude Design aplicado al sistema visual del repo: `src/styles/global.css` y componentes en `src/components/`.
 
 ### Fase 1 — MVP Plus Ultra
 - [ ] Completar schemas con todas las propiedades: `hito`, `hecho`, `documento`, `rol-en-caso`, `organizacion` (los que ahora son skeletons con `additionalProperties: true`).
@@ -83,7 +83,7 @@ Detalle en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fa
 Cosas que aprendemos por el camino y conviene recordar más allá de los docs de diseño.
 
 - **Las skills se moldean con la experiencia.** No fijar las skills upfront; iterarlas mientras se investiga cada caso. Cada nuevo caso refina la skill correspondiente.
-- **Branding lo hace una plataforma externa basada en Claude.** El prompt está en [`docs/diseno/07-prompt-branding.md`](docs/diseno/07-prompt-branding.md). Cuando vuelva el resultado, se integra en `src/styles/global.css` y componentes en `src/components/`. Mantener el patrón `Pg*` para páginas.
+- **Branding lo hace Claude Design** (plataforma de Anthropic, separada de Claude Code). El lenguaje visual canónico vive en [`/DESIGN.md`](DESIGN.md) en raíz, formato estándar que Claude Design lee del repo conectado y que Claude Code consumirá en el Handoff. Cuando vuelva el resultado de Claude Design, se integra en `src/styles/global.css` y componentes en `src/components/`, respetando el patrón `Pg*`.
 - **El maintainer no quiere revisar docs largos por defecto.** Resumir, decidir, preguntar sólo cuando es genuinamente bloqueante.
 - **`additionalProperties: true` en schemas skeleton es intencional**; se cierra a `false` cuando la propiedad final del schema se conozca al fichar Plus Ultra.
 
