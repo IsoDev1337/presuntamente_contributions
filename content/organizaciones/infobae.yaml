@@ -1,0 +1,15 @@
+id: infobae
+nombre: "Infobae"
+nombres_alternativos:
+  - "Infobae España"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Medio de comunicación digital con edición específica para España.
+  Empresa de origen argentino, parte del grupo Infobae América. Su
+  cobertura del caso Plus Ultra desde diciembre de 2025 ha aportado
+  varios reportajes citables como fuente de Nivel 4 en este inventario.
+ambito_territorial: nacional
+localidad: "Madrid"
+url_canonica: "https://www.infobae.com/espana/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-21"
