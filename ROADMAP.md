@@ -4,7 +4,7 @@
 >
 > El roadmap **conceptual** — razonamiento de las fases, criterios de salida, esfuerzo estimado — vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión **operativa**: dónde estamos, qué hay encima de la mesa, qué se ha aprendido.
 
-**Última actualización:** 2026-05-21 (noche tardía — Fase 1.0 ✅ + PR2 de contenido Plus Ultra entregado: 3 personas, 2 hitos, 2 hechos, 3 documentos, 3 roles, 2 medios como organización).
+**Última actualización:** 2026-05-22 — Fase 1.0 ✅ + PR2 Plus Ultra ✅ + skills consolidadas (`incorporar-hito` v1, `investigar-caso` v0) + LEGAL.md consolidado. Cierre de sesión: 17 commits locales, push pendiente del maintainer.
 
 ---
 
@@ -89,11 +89,12 @@ Trabajando en rama `fase-1/integrar-design-system` ([PR #2](https://github.com/d
 - [x] `NOTES.md` del caso Plus Ultra con metadata, decisiones tomadas, referencias *(ya estaba en main desde PR1; queda actualizado en cuanto entren los YAMLs pendientes en PR2)*.
 
 ### Después de Fase 1, antes de Fase 2
-- [ ] Revisar y consolidar `incorporar-hito` con lo aprendido al fichar Plus Ultra.
-- [ ] Crear `investigar-caso` v0 con lo aprendido.
+- [x] Revisar y consolidar `incorporar-hito` con lo aprendido al fichar Plus Ultra → **v1 en main** con 9 lecciones templatizadas en la sección Histórico (PR1 + PR2).
+- [x] Crear `investigar-caso` v0 con lo aprendido → **v0 en main** con 8 guardarraíles + flujo de arranque + bautismo retrospectivo Plus Ultra como caso 0.
 - [x] Templates de issue (`rectificacion`, `sugerencia-fuente`) en `.github/ISSUE_TEMPLATE/` con `config.yml` que enlaza a LEGAL.md y CONTRIBUTING.md.
 - [x] `CODEOWNERS` placeholder con `@davidchicano` como maintainer único hasta entrar contribuyentes externos.
-- [ ] Primer caso adicional sugerido: Begoña Gómez (testea trayectoria con desimputaciones).
+- [x] `LEGAL.md` raíz consolidado como índice corto que delega en `PgAvisoLegal.astro` del sitio (evita drift entre dos textos).
+- [ ] Primer caso adicional sugerido: **Begoña Gómez** (testea trayectoria con desimputaciones). Prompt de arranque preparado al cierre de la sesión 2026-05-22 para sesión nueva con la skill `/investigar-caso`.
 
 ---
 
