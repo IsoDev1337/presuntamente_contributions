@@ -1,0 +1,252 @@
+---
+// PgRectificar — instrucciones operativas para solicitar rectificación.
+// Texto derivado de docs/diseno/04-riesgos-legales-y-eticos.md §6.
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionH from '@/components/SectionH.astro';
+import type { Lang } from '@/lib/labels';
+
+interface Props { lang?: Lang; }
+const { lang = 'es' } = Astro.props;
+
+const strings = {
+  title: 'Proponer una corrección',
+  description:
+    'Cómo solicitar la rectificación de una afirmación publicada en presuntamente.org: vías habilitadas, información necesaria, plazos y tipos de respuesta.',
+  eyebrow: 'Rectificación',
+  sub:
+    'Toda persona que se considere afectada por una afirmación publicada puede solicitar su ' +
+    'rectificación. Esta página describe el procedimiento operativo, los plazos comprometidos y ' +
+    'los tipos de respuesta posibles.',
+};
+
+const repoUrl = 'https://github.com/davidchicano/presuntamente';
+const issueRectificarUrl = `${repoUrl}/issues/new?template=rectificacion.yml`;
+const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
+---
+
+<BaseLayout
+  title={strings.title}
+  lang={lang}
+  description={strings.description}
+  breadcrumb={[
+    { label: 'Inicio', href: lang === 'ca' ? '/cat' : '/' },
+    { label: 'Rectificar' },
+  ]}
+>
+  <section class="page-id">
+    <div>
+      <p class="page-id__eyebrow">{strings.eyebrow}</p>
+      <h1 class="page-id__title">{strings.title}</h1>
+      <p class="page-id__sub">{strings.sub}</p>
+    </div>
+    <div class="page-id__meta">
+      <span>Plazo legal: LO 2/1984</span>
+      <span>·</span>
+      <span>Compromiso: 7 días hábiles</span>
+    </div>
+  </section>
+
+  <SectionH num="1." title="Vías habilitadas" id="vias" />
+  <ul class="vias">
+    <li>
+      <h3>Issue público en GitHub <span class="vias__rec">recomendado</span></h3>
+      <p>
+        Abre una incidencia con la etiqueta <code>rectificacion</code> usando el template oficial.
+        Es la vía más transparente: queda registro público del cambio editorial.
+      </p>
+      <p>
+        <a class="btn btn--primary" href={issueRectificarUrl} target="_blank" rel="noopener">
+          Abrir issue de rectificación ↗
+        </a>
+      </p>
+    </li>
+    <li>
+      <h3>Correo electrónico</h3>
+      <p>
+        Envía la solicitud a <code>rectificacion@presuntamente.org</code> (el buzón se activa cuando
+        el sitio se publique con dominio propio). Mientras tanto puedes contactar por la vía de issue
+        público o, si prefieres no usar GitHub, por mensaje directo al maintainer mediante los
+        canales públicos del repositorio.
+      </p>
+    </li>
+    <li>
+      <h3>Burofax o vía postal</h3>
+      <p>
+        Cuando aplique formalmente la <abbr title="Ley Orgánica 2/1984 reguladora del derecho de rectificación">LO 2/1984</abbr>,
+        la dirección postal del responsable se publicará en el aviso legal con la activación del
+        dominio. Mientras tanto, las vías electrónicas son suficientes para iniciar el procedimiento.
+      </p>
+    </li>
+  </ul>
+
+  <SectionH num="2." title="Información necesaria" id="info" />
+  <div class="prose">
+    <p>Para procesar la solicitud, indica:</p>
+    <ol class="numerada">
+      <li><strong>Ficha afectada</strong> (URL de presuntamente.org).</li>
+      <li><strong>Afirmación concreta cuestionada</strong> o sección de la ficha.</li>
+      <li><strong>Motivo de la rectificación</strong> (qué falla y por qué).</li>
+      <li>
+        <strong>Documento o fuente</strong> que sostiene la rectificación: URL oficial, PDF de
+        resolución, nota institucional o cobertura periodística cruzada. Sin fuente, la
+        rectificación no puede tramitarse — el sitio no toma decisiones editoriales por mera
+        discrepancia.
+      </li>
+      <li>
+        <strong>Identificación opcional del solicitante</strong> con email de contacto. Solicitudes
+        anónimas se atienden si la fuente aportada es suficientemente sólida; respuestas
+        individualizadas requieren contacto.
+      </li>
+    </ol>
+  </div>
+
+  <SectionH num="3." title="Plazos comprometidos" id="plazos" />
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th style="width: 40%;">Hito</th>
+        <th style="width: 30%;">Plazo</th>
+        <th>Compromiso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Acuse de recibo</td>
+        <td class="c-mono">48 horas hábiles</td>
+        <td>Confirmación de recepción y referencia interna.</td>
+      </tr>
+      <tr>
+        <td>Resolución provisional</td>
+        <td class="c-mono">7 días hábiles</td>
+        <td>Análisis editorial, comprobación de fuentes y decisión preliminar.</td>
+      </tr>
+      <tr>
+        <td>Publicación de rectificación si procede</td>
+        <td class="c-mono">Plazo legal LO 2/1984</td>
+        <td>Cambio efectivo en la ficha con anotación visible.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <SectionH num="4." title="Tipos de respuesta posibles" id="tipos" />
+  <ul class="tipos">
+    <li>
+      <h3>Rectificación íntegra</h3>
+      <p>El hecho era inexacto. Se sustituye y se anota la rectificación visiblemente en la ficha.</p>
+    </li>
+    <li>
+      <h3>Rectificación parcial</h3>
+      <p>Se matiza el enunciado conservando lo verificable y eliminando o reformulando lo erróneo.</p>
+    </li>
+    <li>
+      <h3>Mantención motivada</h3>
+      <p>La información se sostiene. La respuesta argumenta por qué citando los documentos vigentes.</p>
+    </li>
+    <li>
+      <h3>Retirada provisional</h3>
+      <p>Mientras se aclara, el hecho o la sección se retira temporalmente.</p>
+    </li>
+    <li>
+      <h3>Retirada definitiva</h3>
+      <p>El hecho era injustificable. Se elimina con anotación de corrección en el log público.</p>
+    </li>
+  </ul>
+
+  <SectionH num="5." title="Otras vías de mejora del inventario" id="otras" />
+  <div class="prose">
+    <p>
+      Si no quieres rectificar nada pero detectas una <strong>fuente que falta</strong> (sentencia
+      publicada, informe institucional reciente, escrito de fiscalía no incluido), abre un issue de
+      sugerencia con el template específico:
+    </p>
+    <p>
+      <a class="btn" href={issueSugerirUrl} target="_blank" rel="noopener">
+        Sugerir una nueva fuente ↗
+      </a>
+    </p>
+  </div>
+
+  <div class="aviso aviso--accent mt-6">
+    El procedimiento de rectificación es el mismo independientemente del cargo o relevancia pública
+    del solicitante. Las solicitudes se atienden por orden de entrada con prioridad a las que
+    aportan fuente oficial firme.
+  </div>
+</BaseLayout>
+
+<style>
+  .vias {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .vias > li {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .vias > li:last-child { border-bottom: 0; }
+  .vias h3 {
+    font: 700 var(--font-size-3)/1.2 var(--font-sans);
+    margin: 0 0 8px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .vias__rec {
+    display: inline-flex;
+    padding: 1px 6px;
+    border: 1px solid var(--color-accent-secondary-border);
+    background: var(--color-accent-secondary-soft);
+    color: #6b4d00;
+    font: 700 10px/1.5 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .vias p {
+    margin: 0 0 8px;
+    font: 400 13px/1.55 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .vias p:last-child { margin-bottom: 0; }
+
+  .numerada { margin: 0 0 var(--space-4); padding-left: 24px; }
+  .numerada li { margin: 8px 0; line-height: 1.55; }
+
+  .tipos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .tipos > li {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .tipos > li:last-child { border-bottom: 0; }
+  .tipos h3 {
+    font: 700 var(--font-size-2)/1.2 var(--font-sans);
+    margin: 0 0 4px;
+  }
+  .tipos p {
+    margin: 0;
+    font: 400 13px/1.55 var(--font-sans);
+    color: var(--color-fg-muted);
+  }
+
+  .prose code {
+    font-family: var(--font-mono);
+    background: var(--color-surface-muted);
+    padding: 1px 4px;
+    border: 1px solid var(--color-border);
+    font-size: 0.9em;
+  }
+
+  abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+</style>

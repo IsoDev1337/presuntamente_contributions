@@ -1,0 +1,157 @@
+---
+// PgAvisoLegal — texto institucional del sitio.
+// Estructura derivada del borrador en docs/diseno/04-riesgos-legales-y-eticos.md
+// §8 y del placeholder vigente en LEGAL.md. Mientras el sitio no esté
+// publicado con dominio propio, la identificación LSSI completa queda
+// pendiente; el aviso lo deja explícito al lector.
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionH from '@/components/SectionH.astro';
+import type { Lang } from '@/lib/labels';
+
+interface Props { lang?: Lang; }
+const { lang = 'es' } = Astro.props;
+
+const strings = {
+  title: 'Aviso legal',
+  description:
+    'Aviso legal y editorial de presuntamente.org: presunción de inocencia, categorización de afirmaciones, mecanismo de rectificación, responsable y licencias.',
+  eyebrow: 'Marco legal',
+  sub:
+    'Aviso legal y editorial. Borrador alineado con docs/diseno/04-riesgos-legales-y-eticos.md §8; ' +
+    'la identificación LSSI completa del responsable se activa cuando el sitio se publique con ' +
+    'dominio propio.',
+};
+---
+
+<BaseLayout
+  title={strings.title}
+  lang={lang}
+  description={strings.description}
+  breadcrumb={[
+    { label: 'Inicio', href: lang === 'ca' ? '/cat' : '/' },
+    { label: 'Aviso legal' },
+  ]}
+>
+  <section class="page-id">
+    <div>
+      <p class="page-id__eyebrow">{strings.eyebrow}</p>
+      <h1 class="page-id__title">{strings.title}</h1>
+      <p class="page-id__sub">{strings.sub}</p>
+    </div>
+    <div class="page-id__meta">
+      <span>Estado: borrador</span>
+      <span>·</span>
+      <span>Revisar con abogado antes de publicación con dominio</span>
+    </div>
+  </section>
+
+  <SectionH num="1." title="Qué es este sitio" id="que" />
+  <div class="prose">
+    <p>
+      <strong>presuntamente.org</strong> es un sitio de información ciudadana que recoge y estructura
+      información pública sobre procedimientos judiciales relevantes en España. No es un medio de
+      comunicación tradicional ni un órgano oficial.
+    </p>
+    <p>
+      Las afirmaciones se basan en fuentes públicas citadas en línea con su nivel de fuente visible
+      (N1 oficial primaria, N2 oficial secundaria, N3 institucional, N4 cobertura periodística).
+    </p>
+  </div>
+
+  <SectionH num="2." title="Presunción de inocencia" id="presuncion" />
+  <div class="prose">
+    <p>
+      Toda persona mencionada en este sitio como <strong>investigada, procesada, acusada</strong> o
+      relacionada con un procedimiento penal en curso se presume inocente hasta que recaiga sentencia
+      firme condenatoria. La inclusión de su nombre en una ficha responde exclusivamente al hecho de
+      que figura formalmente en un procedimiento de relevancia pública, no a una valoración de
+      culpabilidad.
+    </p>
+  </div>
+
+  <SectionH num="3." title="Categorización de afirmaciones" id="categorizacion" />
+  <div class="prose">
+    <p>
+      Las afirmaciones de cada ficha están categorizadas según su <strong>estado epistémico</strong>:
+      acreditadas, bajo investigación, atribuidas por un actor identificado, exculpatorias, desmentidas.
+      Cada afirmación cita la fuente y nivel de fuente que la sostiene. Cuando una afirmación pierde
+      vigencia por resolución posterior, se marca como superada y se enlaza al hecho corrector — no
+      se borra.
+    </p>
+  </div>
+
+  <SectionH num="4." title="Rectificación" id="rectificacion" />
+  <div class="prose">
+    <p>
+      Cualquier persona que se considere afectada por una información publicada puede solicitar
+      rectificación. Las vías habilitadas y el procedimiento operativo están en
+      <a href={lang === 'ca' ? '/cat/rectificar' : '/rectificar'}>la página de rectificación</a>.
+      Plazos comprometidos: acuse de recibo en 48 horas hábiles, resolución provisional en 7 días
+      hábiles, publicación de rectificación si procede dentro del plazo legal (LO 2/1984).
+    </p>
+  </div>
+
+  <SectionH num="5." title="Responsable a efectos de LSSI" id="responsable" />
+  <div class="aviso aviso--accent">
+    <p>
+      <strong>Identificación pendiente.</strong> Mientras el sitio opera como repositorio público sin
+      dominio comprado, la identificación completa a efectos de la Ley de Servicios de la Sociedad de
+      la Información (Ley 34/2002) queda pendiente. Se activará en cuanto el dominio
+      <code>presuntamente.org</code> esté operativo. El mantenimiento del repositorio se hace público
+      vía GitHub (<a href="https://github.com/davidchicano/presuntamente" target="_blank" rel="noopener">davidchicano/presuntamente</a>);
+      cualquier comunicación formal puede dirigirse por esa vía mientras tanto.
+    </p>
+  </div>
+
+  <SectionH num="6." title="Tratamiento de datos personales" id="datos" />
+  <div class="prose">
+    <p>
+      Este sitio menciona personas <strong>únicamente en su condición de sujeto procesal</strong> de un
+      procedimiento de relevancia pública. No se publican datos personales más allá de los
+      estrictamente necesarios para describir su rol procesal: nombre completo, cargo público
+      relevante, fechas de inicio y fin del rol. No se publican direcciones, teléfonos, datos
+      bancarios, datos de familiares no implicados, ni cualquier otro dato no procesalmente
+      necesario.
+    </p>
+    <p>
+      Las personas privadas (sin condición de figura pública) que pierden su rol activo en un
+      procedimiento se someten al protocolo de anonimización V-17 documentado en
+      <code>docs/diseno/01-modelo-de-datos.md</code>. Los derechos de acceso, rectificación, supresión
+      y oposición (art. 15-22 RGPD) se atienden por las vías de la sección 4.
+    </p>
+  </div>
+
+  <SectionH num="7." title="Licencias" id="licencias" />
+  <div class="prose">
+    <ul class="meta-list">
+      <li>
+        <strong>Contenido editorial</strong> bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>:
+        cualquiera puede reutilizar las fichas citando la fuente y compartiendo bajo la misma licencia.
+      </li>
+      <li>
+        <strong>Código del sitio</strong> bajo <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener">AGPL-3.0</a>:
+        cualquiera puede usar, modificar y desplegar el software; las modificaciones desplegadas deben
+        publicarse bajo la misma licencia.
+      </li>
+    </ul>
+  </div>
+
+  <div class="aviso aviso--accent mt-6">
+    Este aviso es un borrador alineado con el doc de diseño legal del proyecto. Debe revisarse con
+    abogado especializado antes de la publicación con dominio propio y de la activación de cualquier
+    canal de contacto formal.
+  </div>
+</BaseLayout>
+
+<style>
+  .meta-list { margin: 0; padding-left: 18px; }
+  .meta-list li { margin: 8px 0; line-height: 1.55; }
+  .prose code {
+    font-family: var(--font-mono);
+    background: var(--color-surface-muted);
+    padding: 1px 4px;
+    border: 1px solid var(--color-border);
+    font-size: 0.9em;
+  }
+</style>
