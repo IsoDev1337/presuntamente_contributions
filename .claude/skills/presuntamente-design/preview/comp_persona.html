@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Card de persona implicada</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .p { border: var(--border); border-radius: 2px; padding: 14px 16px; background: var(--color-bg); display: grid; grid-template-columns: 44px 1fr; gap: 14px; }
+  .p-init { width: 44px; height: 44px; border-radius: 2px; background: var(--color-bg-muted); border: var(--border); display: flex; align-items: center; justify-content: center; font: 600 16px/1 var(--font-sans); color: var(--color-fg-muted); }
+  .p-name { font: 600 16px/1.2 var(--font-sans); margin: 0 0 2px; }
+  .p-role { font: 400 12px/1.4 var(--font-sans); color: var(--color-fg-muted); margin: 0 0 8px; }
+  .p-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .b { display: inline-flex; padding: 2px 8px; border: 1px solid; border-radius: 2px; font: 600 10px/1.4 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; }
+  .b-proc { color: #8a6b1f; background: #f4ecd6; border-color: #dec999; }
+  .b-cond { color: #1f3a68; background: #e3e8f1; border-color: #bdc8de; }
+  .swim { display: flex; align-items: center; gap: 0; height: 14px; border-radius: 1px; overflow: hidden; }
+  .seg { height: 100%; display:flex; align-items:center; padding: 0 6px; font: 600 9px/1 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; color: #fff; }
+  .seg-inv { background: #8a6b1f; flex: 2; }
+  .seg-pro { background: #475972; flex: 2; }
+  .seg-cond{ background: #2f4a35; flex: 1; }
+  .swim-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--color-fg-muted); margin-top: 4px; }
+</style>
+<article class="p">
+  <div class="p-init">FC</div>
+  <div>
+    <h4 class="p-name">Francisco Correa Sánchez</h4>
+    <p class="p-role">Empresario · Cabeza visible de la trama</p>
+    <div class="p-badges"><span class="b b-proc">Procesado</span><span class="b b-cond">Condenado · S2018</span></div>
+    <div class="swim" title="Trayectoria">
+      <div class="seg seg-inv">Investigado</div>
+      <div class="seg seg-pro">Procesado</div>
+      <div class="seg seg-cond">Condenado</div>
+    </div>
+    <div class="swim-meta"><span>2009</span><span>2014</span><span>2018</span></div>
+  </div>
+</article>
+</div>
+</body>
+</html>

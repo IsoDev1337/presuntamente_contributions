@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Money + Acronym · citaciones inline</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .prose { font: 400 15px/1.65 var(--font-sans); color: var(--color-fg); }
+  .prose p { margin: 0 0 12px; }
+  .money {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 5px;
+    border: 1px solid #1f3a68;
+    background: #f0f0f0;
+    border-radius: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-fg);
+    white-space: nowrap;
+    vertical-align: 1px;
+    line-height: 1.5;
+  }
+  .acron {
+    text-decoration: underline dotted 1px;
+    text-decoration-color: var(--color-fg-muted);
+    text-underline-offset: 3px;
+    color: inherit;
+    cursor: help;
+  }
+  .acron-link {
+    text-decoration: underline dotted 1px;
+    text-decoration-color: var(--color-fg-muted);
+    text-underline-offset: 3px;
+    color: inherit;
+    cursor: pointer;
+  }
+  .acron-link:hover { color: #1f3a68; text-decoration-color: #1f3a68; }
+  .note { margin-top: 14px; padding: 10px 12px; background: #f0f0f0; border: 1px solid var(--color-border); font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); line-height: 1.5; }
+</style>
+<div class="prose">
+  <p>El 22 de junio de 2020, la <a class="acron-link" href="#" title="Sociedad Estatal de Participaciones Industriales">SEPI</a> aprobó un préstamo de <span class="money">53,5 M€</span> a Plus Ultra Líneas Aéreas. Según el informe <a class="acron-link" href="#" title="Unidad de Delincuencia Económica y Fiscal">UDEF</a> remitido al <a class="acron-link" href="#" title="Juzgado Central de Instrucción">JCI</a> nº 1 de la <a class="acron-link" href="#" title="Audiencia Nacional">AN</a>, la compañía no cumplía los criterios técnicos exigidos.</p>
+  <p>La fianza solicitada por la acusación popular ascendió a <span class="money">8,2 M€</span>; el juzgado la rebajó a <span class="money">2,1 M€</span> en auto posterior.</p>
+</div>
+<div class="note">
+  Money: borde fino navy, fill surface-muted, monoespaciada. · Acronym: subrayado punteado, lookup interno a /organizaciones/&lt;slug&gt;. <strong>NUNCA link a Wikipedia.</strong>
+</div>
+</div>
+</body>
+</html>

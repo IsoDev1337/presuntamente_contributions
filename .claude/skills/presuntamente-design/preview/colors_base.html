@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Paleta base</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
+  .sw { display: flex; flex-direction: column; gap: 6px; }
+  .chip { height: 74px; border: 1px solid var(--color-border); }
+  .chip-name { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg); }
+  .chip-hex  { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); }
+</style>
+<div class="palette">
+  <div class="sw"><div class="chip" style="background:#fafafa"></div><span class="chip-name">--color-bg</span><span class="chip-hex">#fafafa</span></div>
+  <div class="sw"><div class="chip" style="background:#ffffff"></div><span class="chip-name">--color-surface</span><span class="chip-hex">#ffffff</span></div>
+  <div class="sw"><div class="chip" style="background:#f0f0f0"></div><span class="chip-name">--surface-muted</span><span class="chip-hex">#f0f0f0</span></div>
+  <div class="sw"><div class="chip" style="background:#dcdcd6"></div><span class="chip-name">--color-border</span><span class="chip-hex">#dcdcd6</span></div>
+</div>
+<div class="palette">
+  <div class="sw"><div class="chip" style="background:#15171a"></div><span class="chip-name">--color-fg</span><span class="chip-hex">#15171a</span></div>
+  <div class="sw"><div class="chip" style="background:#5b6066"></div><span class="chip-name">--fg-muted</span><span class="chip-hex">#5b6066</span></div>
+  <div class="sw"><div class="chip" style="background:#8a8d93"></div><span class="chip-name">--fg-subtle</span><span class="chip-hex">#8a8d93</span></div>
+  <div class="sw"><div class="chip" style="background:#a8a8a2"></div><span class="chip-name">--border-strong</span><span class="chip-hex">#a8a8a2</span></div>
+</div>
+</div>
+</body>
+</html>

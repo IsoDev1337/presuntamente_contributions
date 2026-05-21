@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Encabezado de persona / organización</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .m { border: 1px solid var(--color-border); border-top: 3px solid #1f3a68; background: #fff; padding: 14px 16px; display: grid; grid-template-columns: 56px 1fr; gap: 14px; }
+  .init { width: 56px; height: 56px; background: #e3e8f1; border: 1px solid #1f3a68; display: flex; align-items: center; justify-content: center; font: 700 20px/1 var(--font-sans); color: #1f3a68; }
+  .eye { font: 700 10px/1 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; color: #a78100; margin: 0 0 6px; }
+  .name { font: 700 24px/1.15 var(--font-sans); letter-spacing: -0.005em; margin: 0 0 6px; }
+  .lede { font: 400 13px/1.5 var(--font-sans); color: var(--color-fg); margin: 0; max-width: 50ch; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--color-border); font: 400 12px/1 var(--font-sans); color: var(--color-fg-muted); }
+  .row strong { color: var(--color-fg); font-weight: 600; }
+  .row .sep { color: var(--color-border); }
+  .b { display: inline-flex; padding: 1px 6px; border: 1px solid #a8a8a2; border-radius: 0; font: 700 10px/1.5 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; background: #f0f0f0; }
+</style>
+<div class="m">
+  <div class="init">FC</div>
+  <div>
+    <p class="eye">Ficha de persona · Figura pública</p>
+    <h2 class="name">Francisco Correa Sánchez</h2>
+    <p class="lede">Empresario español identificado por las resoluciones judiciales como cabeza visible de la trama de adjudicaciones públicas conocida mediáticamente como Gürtel.</p>
+    <div class="row"><span class="b">Condenado · Caso Gürtel</span><span class="sep">·</span><span><strong>3</strong> casos referenciados</span></div>
+  </div>
+</div>
+</div>
+</body>
+</html>

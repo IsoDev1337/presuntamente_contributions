@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Citación inline en prosa</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .cit { font: 400 16px/1.65 var(--font-sans); color: var(--color-fg); }
+  .cit a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; }
+  kbd.cite {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 1px 6px; margin: 0 1px;
+    border: 1px solid #1f3a68;
+    color: #fff;
+    background: #1f3a68;
+    border-radius: 0;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    vertical-align: 1px;
+  }
+  kbd.cite .n { font-weight: 700; }
+  .note { margin-top: 14px; font-size: 11px; color: var(--color-fg-muted); }
+</style>
+<p class="cit">El 22 de junio de 2020, <a href="#">SEPI</a> aprobó un préstamo de 53 millones de euros a <a href="#">Plus Ultra Líneas Aéreas</a> <kbd class="cite"><span class="n">N1</span> · Auto SEPI</kbd>. El informe de la UDEF sostiene que la compañía no cumplía los criterios técnicos exigidos <kbd class="cite"><span class="n">N2</span> · UDEF 2022</kbd>.</p>
+<div class="note">Badge siempre visible. Nunca en tooltip (P-02).</div>
+</div>
+</body>
+</html>

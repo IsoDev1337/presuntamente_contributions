@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Familias tipográficas</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .fam { display: grid; grid-template-columns: 90px 1fr; gap: 14px; align-items: baseline; padding: 10px 0; border-bottom: var(--border); }
+  .fam:last-child { border-bottom: 0; }
+  .fam-label { font-size: 11px; letter-spacing: var(--ls-caps); text-transform: uppercase; font-weight: 600; color: var(--color-fg-muted); }
+  .fam-sans  { font: 600 28px/1.1 var(--font-sans); letter-spacing: -0.01em; }
+  .fam-serif { font: 600 28px/1.1 var(--font-serif); letter-spacing: -0.015em; }
+  .fam-mono  { font: 500 22px/1.1 var(--font-mono); }
+  .fam-name { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); margin-top: 4px; }
+</style>
+<div class="fam">
+  <span class="fam-label">Sans</span>
+  <div>
+    <div class="fam-sans">Aa Bb Cc 0123 — Hechos acreditados</div>
+    <div class="fam-name">Gill Sans Nova → Gill Sans → Lato · 400 / 600 / 700</div>
+  </div>
+</div>
+<div class="fam">
+  <span class="fam-label">Serif</span>
+  <div>
+    <div class="fam-serif">Aa Bb Cc 0123 — Caso Gürtel</div>
+    <div class="fam-name">Source Serif 4 · display opcional · ficha</div>
+  </div>
+</div>
+<div class="fam">
+  <span class="fam-label">Mono</span>
+  <div>
+    <div class="fam-mono">DPA 275/2008 — JCI nº6, AN</div>
+    <div class="fam-name">JetBrains Mono · identificadores judiciales</div>
+  </div>
+</div>
+</div>
+</body>
+</html>

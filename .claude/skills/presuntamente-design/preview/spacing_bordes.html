@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Bordes y radios</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .demo {
+    height: 110px;
+    background: var(--color-surface);
+    border: 1.5px solid var(--color-accent);
+    position: relative;
+    overflow: hidden;
+  }
+  .demo .tag {
+    position: absolute; top: 8px; left: 10px;
+    font: 700 11px/1 var(--font-sans);
+    letter-spacing: var(--ls-caps);
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .demo .px {
+    position: absolute; bottom: 8px; left: 10px;
+    font: 400 11px/1 var(--font-mono);
+    color: var(--color-fg-muted);
+  }
+  /* Corner inset, zoom 12x sobre la esquina superior derecha para que se
+   * vea con qué curva real se renderiza el radius. */
+  .demo .zoom {
+    position: absolute;
+    top: -1.5px; right: -1.5px;
+    width: 60px; height: 60px;
+    overflow: hidden;
+    border-left: 1px dashed var(--color-border-strong);
+    border-bottom: 1px dashed var(--color-border-strong);
+    background: var(--color-surface-muted);
+  }
+  .demo .zoom::after {
+    /* Esquina ampliada x12 con borde navy 1.5px, escalada */
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 180px; height: 180px;
+    border: 18px solid var(--color-accent);
+    background: var(--color-surface);
+    transform-origin: top right;
+  }
+  .demo--r0 { border-radius: 0; }
+  .demo--r0 .zoom::after { border-radius: 0; }
+  .demo--r2 { border-radius: 2px; }
+  .demo--r2 .zoom::after { border-radius: 24px; }
+  .demo--r4 { border-radius: 4px; }
+  .demo--r4 .zoom::after { border-radius: 48px; }
+
+  .border-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  .b-demo {
+    height: 64px;
+    background: var(--color-surface);
+    display: flex; align-items: end;
+    padding: 8px 10px;
+    font: 400 11px/1 var(--font-mono);
+    color: var(--color-fg-muted);
+  }
+  .b-fine    { border: 1px solid var(--color-border); }
+  .b-strong  { border: 1px solid var(--color-border-strong); }
+  .b-accent  { border: 1px solid var(--color-accent); }
+  .b-leftacc { border: 1px solid var(--color-border); border-left: 3px solid var(--color-accent); }
+
+  .note {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--color-fg);
+  }
+  .note strong { font-weight: 700; }
+</style>
+
+<div class="row">
+  <div class="demo demo--r0">
+    <span class="tag">radius 0</span>
+    <span class="px">por defecto · admin total</span>
+    <span class="zoom"></span>
+  </div>
+  <div class="demo demo--r2">
+    <span class="tag">radius 2</span>
+    <span class="px">excepción permitida</span>
+    <span class="zoom"></span>
+  </div>
+  <div class="demo demo--r4">
+    <span class="tag">radius 4</span>
+    <span class="px">máximo DESIGN.md §6</span>
+    <span class="zoom"></span>
+  </div>
+</div>
+
+<div class="border-row">
+  <div class="b-demo b-fine">border-fine · 1px #dcdcd6</div>
+  <div class="b-demo b-strong">border-strong · 1px #a8a8a2</div>
+  <div class="b-demo b-leftacc">left-accent · 3px navy</div>
+</div>
+
+<div class="note">
+  <strong>Radius 0 es la regla en este sistema.</strong> Todos los componentes del UI kit (badges, tablas, filas, filtros, cards) usan <code>border-radius: 0</code>. El 2px y el 4px son el techo permitido por DESIGN.md §6 pero no se usan en producción. El zoom de la esquina muestra la curva real (×12) para que se note la diferencia entre los tres valores.
+</div>
+</div>
+</body>
+</html>

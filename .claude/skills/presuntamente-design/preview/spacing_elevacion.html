@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Elevación</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .stage {
+    background: var(--color-surface-muted);
+    padding: 16px 16px 28px;
+    position: relative;
+  }
+  .stage h6 {
+    margin: 0 0 10px;
+    font: 700 10px/1 var(--font-sans);
+    letter-spacing: var(--ls-caps);
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 12px;
+    font: 600 12px/1.3 var(--font-sans);
+    color: var(--color-fg);
+    position: relative;
+  }
+  .card .rule {
+    display: block;
+    margin-top: 4px;
+    font: 400 11px/1.4 var(--font-mono);
+    color: var(--color-fg-muted);
+  }
+  .lvl-1 { box-shadow: none; }
+  .lvl-2 { box-shadow: 0 1px 0 0 rgba(21,23,26,0.08); }
+  .lvl-3 { box-shadow: 0 4px 8px -2px rgba(21,23,26,0.12), 0 0 0 1px rgba(21,23,26,0.04); border: 1px solid var(--color-border); }
+
+  /* Zoom de la arista inferior x6 — muestra el rastro de la sombra */
+  .edge-zoom {
+    margin-top: 14px;
+    height: 36px;
+    background: var(--color-surface-muted);
+    border: 1px dashed var(--color-border-strong);
+    overflow: hidden;
+    position: relative;
+  }
+  .edge-zoom::before {
+    content: 'zoom ×6';
+    position: absolute; top: 2px; left: 4px;
+    font: 400 9px/1 var(--font-mono);
+    color: var(--color-fg-subtle);
+  }
+  .edge-zoom .strip {
+    position: absolute;
+    left: 12px; right: 12px;
+    bottom: 4px;
+    height: 4px;
+    background: #fff;
+    border-top: 1px solid var(--color-border);
+    transform: scaleY(6);
+    transform-origin: bottom;
+  }
+  .edge-zoom--1 .strip { box-shadow: none; }
+  .edge-zoom--2 .strip { box-shadow: 0 1px 0 0 rgba(21,23,26,0.45); }
+  .edge-zoom--3 .strip { box-shadow: 0 2px 0 0 rgba(21,23,26,0.45), 0 4px 2px rgba(21,23,26,0.18); }
+
+  .note {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-accent-soft);
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--color-fg);
+  }
+  .note strong { font-weight: 700; }
+</style>
+
+<div class="grid">
+  <div class="stage">
+    <h6>Reposo (todo)</h6>
+    <div class="card lvl-1">
+      Card en página
+      <span class="rule">box-shadow: none</span>
+    </div>
+    <div class="edge-zoom edge-zoom--1"><div class="strip"></div></div>
+  </div>
+
+  <div class="stage">
+    <h6>Sticky / dropdown abierto</h6>
+    <div class="card lvl-2">
+      TOC sticky · select abierto
+      <span class="rule">0 1px 0 rgba(0,0,0,.08)</span>
+    </div>
+    <div class="edge-zoom edge-zoom--2"><div class="strip"></div></div>
+  </div>
+
+  <div class="stage">
+    <h6>Popover / modal</h6>
+    <div class="card lvl-3">
+      Tooltip · modal · menú flotante
+      <span class="rule">0 4px 8px -2px rgba(0,0,0,.12)</span>
+    </div>
+    <div class="edge-zoom edge-zoom--3"><div class="strip"></div></div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>Elevación = plana por defecto.</strong> El sistema prohíbe <code>box-shadow</code> en componentes en reposo (DESIGN.md §6). La jerarquía la transmiten el tamaño, el color y la posición, nunca la profundidad. Sólo se admite sombra para elementos <strong>flotantes</strong> (popover, modal, menú desplegado fuera del flujo). El zoom ×6 sobre la arista inferior muestra el rastro real de cada nivel.
+</div>
+</div>
+</body>
+</html>

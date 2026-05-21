@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Botones y enlaces</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .btn { display:inline-flex; align-items:center; gap:6px; padding: 8px 14px; border: 1px solid; border-radius: 2px; font: 600 13px/1 var(--font-sans); letter-spacing: 0; cursor: pointer; background: var(--color-bg); color: var(--color-fg); border-color: var(--color-border-strong); }
+  .btn:hover { background: var(--color-bg-muted); }
+  .btn--prim { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+  .btn--prim:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+  .btn--ghost { background: transparent; border-color: transparent; color: var(--color-accent); text-decoration: underline; padding: 8px 0; }
+  .lbl { font-size: 11px; letter-spacing: var(--ls-caps); text-transform: uppercase; font-weight: 600; color: var(--color-fg-muted); width: 80px; flex-shrink: 0; }
+  .ico { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  a.link { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; font-size: 14px; }
+</style>
+<div class="row" style="margin-bottom:12px;"><span class="lbl">Acciones</span>
+  <button class="btn btn--prim">Consultar ficha</button>
+  <button class="btn">Descargar PDF</button>
+  <button class="btn--ghost">Proponer rectificación ↗</button>
+</div>
+<div class="row" style="margin-bottom:12px;"><span class="lbl">Con icono</span>
+  <button class="btn"><svg class="ico" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>Enlace canónico</button>
+  <button class="btn"><svg class="ico" viewBox="0 0 24 24"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg>Archive.org</button>
+</div>
+<div class="row"><span class="lbl">Texto</span>
+  <a class="link" href="#">Ver cronología</a>
+  <a class="link" href="#">37 implicados ↗</a>
+</div>
+</div>
+</body>
+</html>

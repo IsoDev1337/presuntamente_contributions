@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Listado de casos · fila de tabla</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .tbl { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--color-border); font-size: 13px; }
+  .tbl thead th { background: #f0f0f0; padding: 6px 12px; font: 700 11px/1.2 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-fg); text-align: left; border-bottom: 2px solid var(--color-border-strong); }
+  .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .tbl tbody tr:hover { background: var(--color-bg-muted); cursor: pointer; }
+  .name { font-weight: 600; color: #15171a; }
+  .sub { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); margin-top: 2px; font-weight: 400; }
+  .mono { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); color: var(--color-fg-muted); }
+  .badge { display: inline-flex; padding: 1px 6px; border: 1px solid; border-radius: 0; font: 700 10px/1.5 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; }
+  .b-firme { color: #15171a; border-color: #a8a8a2; background: #f0f0f0; }
+  .b-instr { color: #6b4d00; border-color: #d8b542; background: #f7ecc5; }
+</style>
+<table class="tbl">
+  <thead><tr><th>Caso</th><th>Fase</th><th>Órgano</th><th class="num">Impl.</th><th>Último hito</th></tr></thead>
+  <tbody>
+    <tr><td><span class="name">Caso Gürtel</span><span class="sub">DPA 275/2008</span></td><td><span class="badge b-firme">Sentencia firme</span></td><td class="mono">JCI nº6, AN</td><td class="num">37</td><td class="mono">2024-11-18</td></tr>
+    <tr><td><span class="name">Caso Plus Ultra</span><span class="sub">DPA 87/2021</span></td><td><span class="badge b-instr">Instrucción</span></td><td class="mono">JCI nº1, AN</td><td class="num">4</td><td class="mono">2026-05-19</td></tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

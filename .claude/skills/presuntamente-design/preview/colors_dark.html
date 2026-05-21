@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Paleta · dark mode</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .dark-wrap { background:#15171a; padding: 18px; border-radius: var(--radius-1); }
+  .palette { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .sw { display: flex; flex-direction: column; gap: 6px; }
+  .chip { height: 64px; border: 1px solid #2e3035; border-radius: var(--radius-1); }
+  .chip-name { font-family: var(--font-mono); font-size: 11px; color: #ece9e0; }
+  .chip-hex  { font-family: var(--font-mono); font-size: 11px; color: #a8a59a; }
+</style>
+<div class="dark-wrap">
+  <div class="palette">
+    <div class="sw"><div class="chip" style="background:#15171a"></div><span class="chip-name">--color-bg</span><span class="chip-hex">#15171a</span></div>
+    <div class="sw"><div class="chip" style="background:#1f2125"></div><span class="chip-name">--bg-muted</span><span class="chip-hex">#1f2125</span></div>
+    <div class="sw"><div class="chip" style="background:#ece9e0"></div><span class="chip-name">--color-fg</span><span class="chip-hex">#ece9e0</span></div>
+    <div class="sw"><div class="chip" style="background:#7fa3d6"></div><span class="chip-name">--accent</span><span class="chip-hex">#7fa3d6</span></div>
+    <div class="sw"><div class="chip" style="background:#2e3035"></div><span class="chip-name">--border</span><span class="chip-hex">#2e3035</span></div>
+  </div>
+</div>
+</div>
+</body>
+</html>

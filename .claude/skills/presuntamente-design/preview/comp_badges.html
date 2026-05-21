@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Badges rectangulares</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 12px; }
+  .lbl { font: 700 11px/1 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-fg-muted); width: 100px; flex-shrink: 0; }
+  .b { display: inline-flex; align-items: center; gap: 4px; padding: 1px 6px; border: 1px solid; border-radius: 0; font: 700 10px/1.5 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; }
+  .n1{color:#fff;background:#1f3a68;border-color:#1f3a68;font-family:var(--font-mono)}
+  .n2{color:#fff;background:#4a6694;border-color:#4a6694;font-family:var(--font-mono)}
+  .n3{color:#1f3a68;background:#e3e8f1;border-color:#b6c4dd;font-family:var(--font-mono)}
+  .n4{color:#1f3a68;background:transparent;border-color:#1f3a68;font-family:var(--font-mono)}
+  .ph { color: #15171a; border-color: #a8a8a2; background: #f0f0f0; }
+  .ph-i { color: #6b4d00; border-color: #d8b542; background: #f7ecc5; }
+  .ph-j { color: #1f3a68; border-color: #1f3a68; background: #e3e8f1; }
+  .ph-f { color: #15171a; border-color: #a8a8a2; background: #f0f0f0; }
+  .acred{color:#2f6a3a;background:#eef4ef;border-color:#b6cdb8}
+  .inv{color:#8a6b1f;background:#f7f0dd;border-color:#dec999}
+  .exc{color:#5b6878;background:#ecedf1;border-color:#bdc4cf}
+  .des{color:#76777a;background:#f0f0f0;border-color:#c8c8c8}
+</style>
+<div class="row"><span class="lbl">Nivel</span>
+  <span class="b n1">N1</span><span class="b n2">N2</span><span class="b n3">N3</span><span class="b n4">N4</span>
+</div>
+<div class="row"><span class="lbl">Fase</span>
+  <span class="b ph-i">Instrucción</span><span class="b ph-j">Juicio oral</span><span class="b ph-f">Sentencia firme</span><span class="b ph">Archivado</span>
+</div>
+<div class="row"><span class="lbl">Estado epist.</span>
+  <span class="b acred">Acreditado</span><span class="b inv">Investigado</span><span class="b exc">Exculpatorio</span><span class="b des">Desmentido</span>
+</div>
+</div>
+</body>
+</html>

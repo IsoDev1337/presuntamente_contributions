@@ -1,0 +1,1121 @@
+/* presuntamente — UI kit · web (sitio principal)
+ * Estilos consumidos por index.html. Importa los tokens canónicos del sistema.
+ *
+ * Aesthetic: densidad administrativa > generosidad editorial. Cada componente
+ * debe leerse como un expediente de oficina o un portal ministerial, no como
+ * un magazine. Tablas con bordes, formularios con fondo gris frío, badges
+ * rectangulares, bandas de color en headers, banda navy + bloque identitario.
+ */
+@import url("../../colors_and_type.css");
+
+/* ============================================================================
+ * Reset menor + base
+ * ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  line-height: var(--lh-body);
+}
+a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a:hover { color: var(--color-accent-hover); }
+button { font-family: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ============================================================================
+ * Layout — contenedor administrativo
+ * ========================================================================== */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: var(--space-5) var(--space-5) var(--space-7);
+}
+.main--narrow { max-width: 80ch; }
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--color-accent); color: #fff; padding: 8px 12px;
+}
+.skip:focus { left: 8px; top: 8px; z-index: 100; }
+
+/* ============================================================================
+ * HEADER ministerial — banda navy + bloque identitario
+ * ========================================================================== */
+.site-header {
+  background: var(--color-accent);
+  color: #fff;
+  border-bottom: 3px solid var(--color-accent-secondary);
+}
+.site-header__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: stretch;
+  gap: 0;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Brand block — logo + wordmark + sub */
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: #fff;
+  border-right: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-fg);
+  min-height: 64px;
+}
+.site-brand:hover { background: var(--color-surface-muted); }
+.site-brand__logo {
+  width: 40px; height: 40px;
+  display: block;
+  flex-shrink: 0;
+}
+.site-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.site-brand__name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.005em;
+  color: var(--color-accent);
+}
+.site-brand__sub {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--color-fg-muted);
+  margin-top: 3px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Nav */
+.site-nav {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding-left: var(--space-4);
+}
+.site-nav a {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+  font: 600 13px/1 var(--font-sans);
+  letter-spacing: 0.01em;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  position: relative;
+}
+.site-nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.site-nav a.is-active {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border-bottom-color: var(--color-accent-secondary);
+}
+
+/* Lang */
+.site-lang {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 var(--space-4);
+  font: 700 11px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+.site-lang a { color: rgba(255,255,255,0.6); text-decoration: none; }
+.site-lang a.is-on { color: #fff; }
+.site-lang .sep { color: rgba(255,255,255,0.3); }
+
+/* Sub-strip beneath header — breadcrumb/utility */
+.site-substrip {
+  background: var(--color-surface-muted);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+}
+.site-substrip__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 6px var(--space-5);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-family: var(--font-mono);
+}
+.site-substrip a { color: var(--color-fg-muted); text-decoration: none; }
+.site-substrip a:hover { color: var(--color-fg); text-decoration: underline; }
+
+/* ============================================================================
+ * FOOTER
+ * ========================================================================== */
+.site-footer {
+  background: var(--color-surface-muted);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-6) var(--space-5);
+}
+.site-footer__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: var(--space-6);
+}
+.site-footer h6 {
+  font: 700 11px/1.4 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-3);
+  color: var(--color-fg);
+  border-top: 2px solid var(--color-accent);
+  padding-top: var(--space-2);
+}
+.site-footer p, .site-footer a {
+  font-size: var(--font-size-1);
+  color: var(--color-fg-muted);
+  display: block;
+  margin: 4px 0;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.site-footer a:hover { text-decoration: underline; color: var(--color-fg); }
+.site-footer .meta { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-subtle); margin-top: var(--space-3); }
+
+/* ============================================================================
+ * Banda identitaria (sub-header de página)
+ * ========================================================================== */
+.page-id {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-4);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3);
+  align-items: center;
+}
+.page-id__eyebrow {
+  font: 700 10px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  margin: 0 0 4px;
+}
+.page-id__title {
+  font: 600 var(--font-size-4)/1.2 var(--font-sans);
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--color-fg);
+}
+.page-id__sub {
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--color-fg-muted);
+  margin: 4px 0 0;
+}
+.page-id__meta {
+  display: flex; gap: var(--space-3); align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+}
+
+/* ============================================================================
+ * Section heading administrativo (1., 1.1., …)
+ * ========================================================================== */
+.sec-h {
+  display: flex; align-items: baseline; gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-top: 2px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-border);
+  margin: var(--space-6) 0 var(--space-4);
+  background: var(--color-surface-muted);
+  padding-inline: var(--space-3);
+}
+.sec-h .num {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-1);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.sec-h h2 {
+  margin: 0;
+  font: 700 var(--font-size-3)/1.2 var(--font-sans);
+  letter-spacing: -0.005em;
+  color: var(--color-fg);
+}
+.sec-h .right {
+  margin-left: auto;
+  font-size: var(--font-size-1);
+  font-family: var(--font-mono);
+  color: var(--color-fg-muted);
+}
+
+.sub-h {
+  font: 700 12px/1.4 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-secondary-hover);
+  margin: var(--space-5) 0 var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 4px;
+}
+
+/* ============================================================================
+ * Filtros — formulario administrativo
+ * ========================================================================== */
+.filter-bar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: var(--space-3);
+  align-items: end;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field label {
+  font: 700 11px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+.field input, .field select {
+  padding: 7px 10px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  border-radius: 0;
+  font: 400 14px/1.4 var(--font-sans);
+  color: var(--color-fg);
+  width: 100%;
+  min-width: 0;
+}
+.field input:focus, .field select:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+  border-color: var(--color-accent);
+}
+.filter-bar .btn { align-self: end; }
+
+/* ============================================================================
+ * TABLAS administrativas — el componente central del listado
+ * ========================================================================== */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-1);
+}
+.tbl thead th {
+  background: var(--color-surface-muted);
+  color: var(--color-fg);
+  font: 700 11px/1.2 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 2px solid var(--color-border-strong);
+  vertical-align: bottom;
+}
+.tbl tbody td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+.tbl tbody tr:last-child td { border-bottom: 0; }
+.tbl tbody tr { cursor: pointer; }
+.tbl tbody tr:hover { background: var(--color-bg-muted); }
+
+/* Celdas tipadas */
+.tbl .c-name { font-weight: 600; color: var(--color-fg); }
+.tbl .c-name__sub {
+  display: block;
+  font-weight: 400;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+  margin-top: 2px;
+}
+.tbl .c-mono { font-family: var(--font-mono); font-size: var(--font-size-0); color: var(--color-fg-muted); }
+.tbl .c-num  { font-variant-numeric: tabular-nums; text-align: right; font-family: var(--font-mono); color: var(--color-fg-muted); }
+.tbl .c-date { font-family: var(--font-mono); white-space: nowrap; color: var(--color-fg-muted); font-size: var(--font-size-0); }
+.tbl .c-tight { white-space: nowrap; }
+
+/* Caption */
+.tbl-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+}
+
+/* ============================================================================
+ * BADGES — rectangulares, borde fino, NUNCA píldoras
+ * ========================================================================== */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 1px 6px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  font: 700 10px/1.5 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--color-surface);
+  color: var(--color-fg);
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.badge--accent  { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
+.badge--accent-secondary { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
+.badge--n1 { color: var(--color-nivel-1-fg); border-color: var(--color-nivel-1-border); background: var(--color-nivel-1-bg); font-family: var(--font-mono); }
+.badge--n2 { color: var(--color-nivel-2-fg); border-color: var(--color-nivel-2-border); background: var(--color-nivel-2-bg); font-family: var(--font-mono); }
+.badge--n3 { color: var(--color-nivel-3-fg); border-color: var(--color-nivel-3-border); background: var(--color-nivel-3-bg); font-family: var(--font-mono); }
+.badge--n4 { color: var(--color-nivel-4-fg); border-color: var(--color-nivel-4-border); background: transparent; font-family: var(--font-mono); }
+.badge--acreditado  { color: var(--color-acreditado);  border-color: var(--color-acreditado-border);  background: var(--color-acreditado-bg); }
+.badge--investigado { color: var(--color-investigado); border-color: var(--color-investigado-border); background: var(--color-investigado-bg); }
+.badge--exculpatorio{ color: var(--color-exculpatorio);border-color: var(--color-exculpatorio-border);background: var(--color-exculpatorio-bg); }
+.badge--desmentido  { color: var(--color-desmentido);  border-color: var(--color-desmentido-border);  background: var(--color-desmentido-bg); }
+.badge--phase-instr { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
+.badge--phase-juicio { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
+.badge--phase-firme { color: var(--color-fg); border-color: var(--color-border-strong); background: var(--color-surface-muted); }
+
+/* ============================================================================
+ * Botones
+ * ========================================================================== */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  font: 600 13px/1 var(--font-sans);
+  background: var(--color-surface);
+  color: var(--color-fg);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--color-bg-muted); }
+.btn--primary { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+.btn--primary:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); color: #fff; }
+.btn--ghost { background: transparent; border-color: transparent; color: var(--color-accent); padding-inline: 0; text-decoration: underline; }
+
+/* ============================================================================
+ * Ficha — encabezado institucional
+ * ========================================================================== */
+.ficha-mast {
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.ficha-mast__breadcrumb {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+  margin: 0 0 var(--space-2);
+}
+.ficha-mast__breadcrumb a { color: var(--color-fg-muted); text-decoration: none; }
+.ficha-mast__breadcrumb a:hover { color: var(--color-fg); text-decoration: underline; }
+.ficha-mast__name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--font-size-5);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  margin: 0 0 6px;
+  color: var(--color-fg);
+}
+.ficha-mast__official {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-1);
+  color: var(--color-fg-muted);
+  margin: 0 0 var(--space-3);
+}
+.ficha-mast__row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-1);
+  color: var(--color-fg-muted);
+}
+.ficha-mast__row .sep { color: var(--color-border); }
+.ficha-mast__row strong { color: var(--color-fg); font-weight: 600; }
+
+/* Tabla resumen del estado procesal (a la derecha del mast) */
+.estado-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: var(--font-size-1);
+}
+.estado-table th {
+  text-align: left;
+  background: var(--color-surface-muted);
+  padding: 6px var(--space-3);
+  font: 700 11px/1.3 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  border-bottom: 1px solid var(--color-border);
+  width: 38%;
+  vertical-align: top;
+}
+.estado-table td {
+  padding: 6px var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-fg);
+  vertical-align: top;
+}
+.estado-table tr:last-child th, .estado-table tr:last-child td { border-bottom: 0; }
+.estado-table .mono { font-family: var(--font-mono); }
+
+/* ============================================================================
+ * Layout ficha — sidebar TOC + main
+ * ========================================================================== */
+.ficha-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--space-5);
+}
+@media (max-width: 900px) {
+  .ficha-layout { grid-template-columns: 1fr; }
+}
+.toc {
+  position: sticky; top: 12px; align-self: start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent-secondary);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-1);
+}
+.toc h6 {
+  font: 700 11px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+.toc ol { list-style: none; padding: 0; margin: 0; }
+.toc li { margin: 0; }
+.toc a {
+  display: block;
+  padding: 4px 0;
+  color: var(--color-fg-muted);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+.toc a:hover { color: var(--color-fg); }
+.toc a.is-active { color: var(--color-accent); font-weight: 600; }
+.toc a .n {
+  font-family: var(--font-mono);
+  margin-right: 6px;
+  color: var(--color-accent-secondary-hover);
+  font-weight: 600;
+}
+
+/* ============================================================================
+ * Prosa
+ * ========================================================================== */
+.prose { max-width: 76ch; }
+.prose p { font-size: var(--font-size-2); line-height: 1.6; margin: 0 0 var(--space-3); text-wrap: pretty; }
+.prose .lede {
+  font-size: var(--font-size-2);
+  line-height: 1.55;
+  color: var(--color-fg);
+  font-weight: 500;
+  border-left: 3px solid var(--color-accent-secondary);
+  padding: 6px var(--space-3);
+  background: var(--color-accent-secondary-soft);
+  margin: 0 0 var(--space-4);
+}
+
+/* Citación inline */
+kbd.cite {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 0 5px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--color-accent-soft);
+  vertical-align: 1px;
+}
+kbd.cite .n { font-weight: 700; }
+
+/* ============================================================================
+ * Aviso (warning bar — banda izquierda + fondo)
+ * ========================================================================== */
+.aviso {
+  border-left: 4px solid var(--color-accent-secondary);
+  background: var(--color-accent-secondary-soft);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-fg);
+  font-size: var(--font-size-1);
+  margin: var(--space-3) 0 var(--space-4);
+}
+.aviso strong { font-weight: 700; }
+.aviso--accent {
+  border-left-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+/* ============================================================================
+ * Cronología
+ * ========================================================================== */
+.timeline {
+  display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.timeline__item {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border);
+  align-items: stretch;
+}
+.timeline__item:last-child { border-bottom: 0; }
+.timeline__date {
+  background: var(--color-surface-muted);
+  padding: var(--space-3);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Glyph de calendario para la columna de fecha */
+.cal-glyph {
+  width: 56px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.cal-glyph__band {
+  background: var(--color-accent);
+  color: #fff;
+  font: 700 9px/1 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 0 3px;
+}
+.cal-glyph__day {
+  font: 700 26px/1 var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--color-fg);
+  padding: 6px 0 4px;
+  font-variant-numeric: tabular-nums;
+}
+.cal-glyph__year {
+  font: 400 10px/1 var(--font-mono);
+  color: var(--color-fg-muted);
+  border-top: 1px solid var(--color-border);
+  padding: 3px 0 4px;
+}
+.cal-glyph--mes .cal-glyph__day {
+  font-size: 26px;
+  padding: 6px 0;
+  letter-spacing: -0.04em;
+  color: var(--color-fg-muted);
+}
+.cal-glyph--ano .cal-glyph__band { background: var(--color-accent-secondary); color: #fff; }
+.cal-glyph--ano .cal-glyph__day { font-size: 20px; padding: 13px 0 11px; font-variant-numeric: tabular-nums; }
+.cal-glyph--ano .cal-glyph__year { display: none; }
+.cal-glyph--vacio .cal-glyph__band { background: var(--color-border-strong); }
+.cal-glyph--vacio .cal-glyph__day { font-size: 11px; padding: 14px 0; color: var(--color-fg-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.cal-glyph--vacio .cal-glyph__year { display: none; }
+
+/* Wrap glyph + raw date string (fuera del estilo) */
+.cal-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.cal-raw {
+  font: 400 10px/1.2 var(--font-mono);
+  color: var(--color-fg-subtle);
+}
+.hito {
+  padding: var(--space-3) var(--space-4);
+}
+.hito__head {
+  display: flex; align-items: center; gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.hito__date { display: none; } /* moved to grid column */
+.hito__title { font: 700 var(--font-size-2)/1.3 var(--font-sans); margin: 4px 0; }
+.hito__desc { font: 400 var(--font-size-1)/1.5 var(--font-sans); color: var(--color-fg-muted); margin: 0; }
+
+/* ============================================================================
+ * Hechos
+ * ========================================================================== */
+.hecho {
+  border: 1px solid;
+  border-left-width: 4px;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-2);
+  background: var(--color-surface);
+}
+.hecho--acreditado  { border-color: var(--color-acreditado-border);  border-left-color: var(--color-acreditado); }
+.hecho--investigado { border-color: var(--color-investigado-border); border-left-color: var(--color-investigado); }
+.hecho--exculpatorio{ border-color: var(--color-exculpatorio-border);border-left-color: var(--color-exculpatorio); }
+.hecho__head {
+  display: flex; align-items: center; gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
+}
+.hecho__date {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+  margin-left: auto;
+}
+.hecho__text { font: 400 var(--font-size-2)/1.55 var(--font-sans); color: var(--color-fg); margin: 0 0 var(--space-2); }
+.hecho__sources {
+  display: flex; flex-direction: column; gap: 4px;
+  border-top: 1px dashed var(--color-border);
+  padding-top: var(--space-2);
+}
+.hecho__source {
+  font: 400 var(--font-size-0)/1.4 var(--font-sans);
+  color: var(--color-fg-muted);
+  display: flex; gap: 8px; align-items: center;
+  font-family: var(--font-mono);
+}
+.hecho__source a { color: var(--color-accent); }
+
+/* Contraposición */
+.contra {
+  border: 1px solid var(--color-border-strong);
+  margin-bottom: var(--space-3);
+  background: var(--color-surface);
+}
+.contra__head {
+  padding: 6px var(--space-3);
+  background: var(--color-fg);
+  color: #fff;
+  font: 700 11px/1.4 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+}
+.contra__cols { display: grid; grid-template-columns: 1fr 1px 1fr; }
+.contra__col { padding: var(--space-3) var(--space-4); }
+.contra__sep { background: var(--color-border-strong); }
+.contra__actor {
+  font: 700 11px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  margin-bottom: var(--space-2);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border);
+}
+.contra__text { font: 400 var(--font-size-1)/1.5 var(--font-sans); margin: 0 0 var(--space-2); }
+.contra__src { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); }
+
+/* ============================================================================
+ * Documento card (row in biblioteca / ficha)
+ * ========================================================================== */
+.doc {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: -1px;
+}
+.doc:hover { background: var(--color-bg-muted); }
+.doc__ico {
+  width: 36px; height: 44px;
+  border: 1px solid var(--color-border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-fg-muted);
+  background: var(--color-surface-muted);
+}
+.doc__ico svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+.doc__title { font: 600 var(--font-size-2)/1.35 var(--font-sans); margin: 0 0 4px; color: var(--color-fg); }
+.doc__meta {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.doc__links {
+  display: flex; flex-direction: column; gap: 4px;
+  align-items: flex-end;
+  font-size: var(--font-size-0);
+  font-family: var(--font-mono);
+}
+.doc__links a { color: var(--color-accent); text-decoration: underline; }
+
+/* ============================================================================
+ * Persona card (used in ficha §2.4)
+ * ========================================================================== */
+.persona {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: var(--space-3) var(--space-4);
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--space-3);
+  margin-bottom: -1px;
+}
+/* ============================================================================
+ * Persona vs Organización — diferenciación visual obligatoria
+ * Persona  → glyph = iniciales en cuadrado con borde fino
+ * Org      → glyph = símbolo geométrico / icono según tipo
+ * ========================================================================== */
+.persona__init {
+  width: 44px; height: 44px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 14px/1 var(--font-sans);
+  color: var(--color-accent);
+  letter-spacing: 0;
+}
+
+.org-glyph {
+  width: 44px; height: 44px;
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border-strong);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-fg);
+  border-radius: 0;
+}
+.org-glyph svg {
+  width: 20px; height: 20px;
+  stroke: currentColor; fill: none; stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.org-glyph--judicial { background: var(--color-accent-soft); border-color: var(--color-accent); color: var(--color-accent); }
+.org-glyph--fiscal   { background: var(--color-accent-soft); border-color: var(--color-accent); color: var(--color-accent); }
+.org-glyph--policia  { background: var(--color-accent-soft); border-color: var(--color-accent); color: var(--color-accent); }
+.org-glyph--partido  { background: var(--color-surface); }
+.org-glyph--empresa  { background: var(--color-surface); }
+.org-glyph--organismo{ background: var(--color-accent-secondary-soft); border-color: var(--color-accent-secondary-border); color: #6b4d00; }
+.org-glyph--asoc     { background: var(--color-surface); }
+
+/* Larger entity-mast glyph variant */
+.entity-mast .org-glyph { width: 72px; height: 72px; }
+.entity-mast .org-glyph svg { width: 32px; height: 32px; }
+
+/* Ficha de Persona — foto con licencia obligatoria */
+.persona-photo {
+  width: 72px; height: 72px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+  object-fit: cover;
+  display: block;
+}
+.persona-photo-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+.persona-photo-figure figcaption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-fg-subtle);
+  max-width: 72px;
+  line-height: 1.3;
+}
+
+/* ============================================================================
+ * Micro-componentes de citación inline: Money + Acronym
+ * ========================================================================== */
+.cite-money {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-surface-muted);
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-fg);
+  white-space: nowrap;
+  vertical-align: 1px;
+  line-height: 1.5;
+}
+
+.cite-acronym {
+  text-decoration: underline dotted 1px;
+  text-decoration-color: var(--color-fg-muted);
+  text-underline-offset: 3px;
+  color: inherit;
+  cursor: help;
+  position: relative;
+}
+.cite-acronym--linked {
+  cursor: pointer;
+  color: inherit;
+  text-decoration-color: var(--color-fg-muted);
+}
+.cite-acronym--linked:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+.cite-acronym[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: var(--color-fg);
+  color: #fff;
+  padding: 4px 8px;
+  font: 400 11px/1.3 var(--font-sans);
+  white-space: nowrap;
+  border-radius: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.persona__name { font: 700 var(--font-size-2)/1.2 var(--font-sans); margin: 0 0 4px; }
+.persona__role { font: 400 var(--font-size-1)/1.4 var(--font-sans); color: var(--color-fg-muted); margin: 0 0 var(--space-2); }
+.persona__badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: var(--space-2); }
+
+.swimlane { display: flex; align-items: center; gap: 0; height: 14px; overflow: hidden; }
+.swimlane__seg {
+  height: 100%;
+  display: flex; align-items: center;
+  padding: 0 6px;
+  font: 700 9px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: #fff;
+}
+.seg--inv { background: var(--color-investigado); flex: 2; }
+.seg--pro { background: var(--color-exculpatorio); flex: 2; }
+.seg--cond { background: var(--color-acreditado); flex: 1; }
+.swimlane__meta {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+  margin-top: 4px;
+}
+
+/* ============================================================================
+ * Entity mast (Persona / Organización page header)
+ * ========================================================================== */
+.entity-mast {
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: var(--space-4);
+}
+.entity-mast__init {
+  width: 72px; height: 72px;
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-accent);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 24px/1 var(--font-sans);
+  color: var(--color-accent);
+}
+.entity-mast__eyebrow {
+  font: 700 11px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-accent-secondary-hover);
+  margin: 0 0 var(--space-2);
+}
+.entity-mast__name {
+  font: 700 var(--font-size-5)/1.15 var(--font-sans);
+  letter-spacing: -0.005em;
+  margin: 0 0 var(--space-2);
+  text-wrap: balance;
+}
+.entity-mast__lede {
+  font: 400 var(--font-size-2)/1.5 var(--font-sans);
+  color: var(--color-fg);
+  max-width: 60ch;
+  margin: 0;
+}
+.entity-mast__row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);
+  font-size: var(--font-size-1);
+  color: var(--color-fg-muted);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+.entity-mast__row .sep { color: var(--color-border); }
+.entity-mast__row strong { color: var(--color-fg); font-weight: 600; }
+
+/* Full-size trayectoria swimlane */
+.trayectoria {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: var(--space-4);
+}
+.trayectoria__axis {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+  margin-bottom: var(--space-2);
+}
+.trayectoria__axis-ticks {
+  display: flex;
+  justify-content: space-between;
+}
+.trayectoria__row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: var(--space-3);
+  align-items: center;
+  padding-block: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+.trayectoria__row:first-of-type { border-top: 0; }
+.trayectoria__label {
+  font: 700 11px/1.3 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg);
+}
+.trayectoria__label .dates {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-0);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-fg-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+.trayectoria__bar-track {
+  position: relative;
+  height: 16px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--color-border) 0 1px, transparent 1px 100px
+  );
+}
+.trayectoria__bar {
+  position: absolute;
+  top: 0; bottom: 0;
+  display: flex; align-items: center;
+  padding: 0 var(--space-2);
+  font: 700 10px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: #fff;
+}
+.trayectoria__bar--inv  { background: var(--color-investigado);  }
+.trayectoria__bar--pro  { background: var(--color-exculpatorio); }
+.trayectoria__bar--cond { background: var(--color-acreditado);   }
+.trayectoria__bar--des  { background: var(--color-desmentido);   }
+
+/* Cargos pasados */
+.cargos-list {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: var(--font-size-1);
+}
+.cargos-list thead th {
+  background: var(--color-surface-muted);
+  text-align: left;
+  padding: 6px var(--space-3);
+  font: 700 11px/1.3 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  border-bottom: 1px solid var(--color-border-strong);
+}
+.cargos-list td {
+  padding: 6px var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+.cargos-list tr:last-child td { border-bottom: 0; }
+.cargos-list .col-date { font-family: var(--font-mono); font-size: var(--font-size-0); color: var(--color-fg-muted); white-space: nowrap; text-align: right; }
+.cargos-list .col-rol { font-weight: 600; }
+
+/* ============================================================================
+ * Meta-redacción (cómo se ha redactado esta ficha)
+ * ========================================================================== */
+.meta-redaccion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent-secondary);
+}
+.meta-redaccion__cell {
+  padding: var(--space-3) var(--space-4);
+  border-right: 1px solid var(--color-border);
+}
+.meta-redaccion__cell:last-child { border-right: 0; }
+.meta-redaccion h6 {
+  font: 700 11px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+  margin: 0 0 6px;
+}
+.meta-redaccion .v {
+  font-size: var(--font-size-1);
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+}
+
+/* ============================================================================
+ * Helpers
+ * ========================================================================== */
+.row { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.stack { display: flex; flex-direction: column; gap: 0; }
+.hidden { display: none !important; }
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.muted { color: var(--color-fg-muted); }
+.mono { font-family: var(--font-mono); }

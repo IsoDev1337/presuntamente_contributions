@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Card de hecho con citación</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .h { border: 1px solid #b6cdb8; border-left: 4px solid #2f6a3a; background: #fff; padding: 12px 16px; }
+  .head { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+  .b { display: inline-flex; align-items: center; gap: 4px; padding: 1px 6px; border: 1px solid #b6cdb8; border-radius: 0; background: #eef4ef; color: #2f6a3a; font: 700 10px/1.5 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; }
+  .b .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .date { margin-left: auto; font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); }
+  .text { font: 400 15px/1.55 var(--font-sans); color: #15171a; margin: 0 0 8px; }
+  .sources { display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed var(--color-border); padding-top: 8px; }
+  .src { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); display: flex; gap: 8px; align-items: center; }
+  .src-b { display: inline-flex; padding: 1px 5px; border: 1px solid; border-radius: 0; font-family: var(--font-mono); font-size: 10px; font-weight: 700; }
+  .src-b--n1 { color:#fff; background:#1f3a68; border-color:#1f3a68; }
+  .src-b--n3 { color:#1f3a68; background:#e3e8f1; border-color:#b6c4dd; }
+  .src a { color: #1f3a68; text-decoration: underline; }
+</style>
+<article class="h">
+  <header class="head">
+    <span class="b"><span class="dot"></span>Acreditado</span>
+    <span class="date">2024-11-18</span>
+  </header>
+  <p class="text">La Sala Segunda del Tribunal Supremo ha confirmado las condenas y ha desestimado los recursos de casación.</p>
+  <div class="sources">
+    <div class="src"><span class="src-b src-b--n1">N1</span><a href="#">STS 1234/2024</a></div>
+    <div class="src"><span class="src-b src-b--n3">N3</span><a href="#">BOE-A-2024-19876</a></div>
+  </div>
+</article>
+</div>
+</body>
+</html>

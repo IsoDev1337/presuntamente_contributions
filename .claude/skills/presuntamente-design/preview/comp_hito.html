@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Card de hito · cronología</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  /* -- Calendar glyph -- 
+   * Aspecto de hoja de calendario administrativa: banda navy con mes+año
+   * en uppercase, número del día en grande, borde fino. Tres variantes
+   * según fecha_precision: día / mes / año.
+   */
+  .cal {
+    width: 56px;
+    border: 1px solid var(--color-border-strong);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .cal__band {
+    background: #1f3a68;
+    color: #fff;
+    font: 700 9px/1 var(--font-sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 0 3px;
+  }
+  .cal__day {
+    font: 700 26px/1 var(--font-sans);
+    letter-spacing: -0.01em;
+    color: #15171a;
+    padding: 6px 0 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cal__year {
+    font: 400 10px/1 var(--font-mono);
+    color: var(--color-fg-muted);
+    border-top: 1px solid var(--color-border);
+    padding: 3px 0 4px;
+  }
+  /* Variante precisión = mes (día desconocido): doble guion sustituye al día */
+  .cal--mes .cal__day { font-size: 26px; padding: 6px 0 6px; letter-spacing: -0.04em; color: var(--color-fg-muted); }
+  /* Variante precisión = año */
+  .cal--ano .cal__band { background: var(--color-accent-secondary, #c89b00); }
+  .cal--ano .cal__day { font-size: 22px; padding: 14px 0 12px; font-variant-numeric: tabular-nums; }
+  .cal--ano .cal__year { display: none; }
+
+  /* Fecha cruda debajo, fuera del estilo del glyph */
+  .cal-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .cal-raw { font: 400 10px/1.2 var(--font-mono); color: var(--color-fg-subtle); }
+
+  /* -- Timeline (igual estructura que el kit) -- */
+  .tl { border: 1px solid var(--color-border); background: var(--color-surface); }
+  .item {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: stretch;
+  }
+  .item:last-child { border: 0; }
+  .date-cell {
+    background: var(--color-surface-muted);
+    border-right: 1px solid var(--color-border);
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+  }
+  .hito { padding: 12px 16px; }
+  .head { display: flex; gap: 10px; align-items: center; margin-bottom: 4px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 1px 6px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 0;
+    font: 700 10px/1.5 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: #fff;
+  }
+  .ico { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .ind { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); }
+  .title { font: 700 14px/1.3 var(--font-sans); margin: 4px 0; }
+  .desc { font: 400 13px/1.5 var(--font-sans); color: var(--color-fg-muted); margin: 0; }
+</style>
+
+<div class="tl">
+  <div class="item">
+    <div class="date-cell">
+      <div class="cal-wrap">
+        <div class="cal" title="2024-11-18 · precisión: día">
+          <div class="cal__band">NOV</div>
+          <div class="cal__day">18</div>
+          <div class="cal__year">2024</div>
+        </div>
+        <span class="cal-raw">(2024-11-18)</span>
+      </div>
+    </div>
+    <div class="hito">
+      <div class="head">
+        <span class="badge">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M14 13l-7.5 7.5a2.12 2.12 0 0 1-3-3L11 10"/><path d="M22 7l-3-3"/><path d="m14 9 6-6"/></svg>
+          Jurisdiccional
+        </span>
+        <span class="ind">+ 3 hechos nuevos · 1 corregido</span>
+      </div>
+      <h4 class="title">Sentencia firme del Tribunal Supremo</h4>
+      <p class="desc">La Sala Segunda confirma las condenas dictadas en primera instancia y desestima los recursos de casación interpuestos.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="date-cell">
+      <div class="cal-wrap">
+        <div class="cal cal--mes" title="2014-09 · precisión: mes">
+          <div class="cal__band">SEP</div>
+          <div class="cal__day">––</div>
+          <div class="cal__year">2014</div>
+        </div>
+        <span class="cal-raw">(2014-09)</span>
+      </div>
+    </div>
+    <div class="hito">
+      <div class="head">
+        <span class="badge">Jurisdiccional</span>
+      </div>
+      <h4 class="title">Auto de separación de piezas</h4>
+      <p class="desc">Se separan piezas autónomas por ámbito territorial y por objeto, incluyendo la pieza «papeles de Bárcenas».</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="date-cell">
+      <div class="cal-wrap">
+        <div class="cal cal--ano" title="2009 · precisión: año">
+          <div class="cal__band">AÑO</div>
+          <div class="cal__day">2009</div>
+        </div>
+        <span class="cal-raw">(2009)</span>
+      </div>
+    </div>
+    <div class="hito">
+      <div class="head">
+        <span class="badge">Político</span>
+      </div>
+      <h4 class="title">Comisión de investigación en el Congreso</h4>
+      <p class="desc">El Congreso de los Diputados constituye una comisión de investigación sobre la financiación de partidos políticos.</p>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:12px;padding:10px 12px;border-left:3px solid var(--color-accent);background:var(--color-accent-soft);font-size:12px;line-height:1.55;color:var(--color-fg);">
+  Glyph de calendario con tres variantes según <code>fecha_precision</code>: <strong>día</strong> (mes + número + año), <strong>mes</strong> (mes + doble guion donde estaría el día + año), <strong>año</strong> (banda mostaza + año solo). La fecha cruda en paréntesis debajo es referencia textual sin estilar.
+</div>
+</div>
+</body>
+</html>

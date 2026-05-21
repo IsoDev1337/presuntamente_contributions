@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Header ministerial</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  /* --------------------------------------------------------------------
+   * Header ministerial · retro institucional con motion contenido.
+   * Detalles añadidos sobre la versión base:
+   *  - Nav: underline que se dibuja izq→der en hover (180ms ease-out).
+   *  - Brand block con doble trim inferior (línea navy + mostaza).
+   *  - Entrada: el frame sube 6px y aparece en 240ms (1ª carga).
+   *  - Lang toggle con barra que crece bajo la opción activa.
+   *  - prefers-reduced-motion respetado.
+   * -------------------------------------------------------------------- */
+  .frame {
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    animation: frame-enter 240ms ease-out both;
+  }
+  @keyframes frame-enter {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hairline mostaza superior (eliminado, era ruido) */
+
+  .band {
+    background: var(--color-accent);
+    color: #fff;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    position: relative;
+  }
+  /* Doble trim inferior: línea navy oscura + mostaza */
+  .band::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 3px;
+    background:
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.25) 0 1px,
+        transparent 1px 1px,
+        var(--color-accent-secondary) 1px 3px);
+  }
+
+  /* ----- Brand block ----- */
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    background: #fff;
+    border-right: 1px solid var(--color-border);
+    text-decoration: none;
+    position: relative;
+    transition: background 140ms ease-out;
+  }
+  .brand:hover { background: var(--color-surface-muted); }
+  /* Trim mostaza inferior interno (efecto "placa sellada") */
+  .brand::after {
+    content: '';
+    position: absolute;
+    left: 8px; right: 8px;
+    bottom: 4px;
+    height: 1px;
+    background: var(--color-accent-secondary);
+    opacity: 0.35;
+  }
+  .logo { width: 36px; height: 36px; }
+  .name { font: 700 17px/1 var(--font-sans); letter-spacing: -0.005em; color: #1f3a68; }
+  .sub  { display: block; margin-top: 4px; font: 400 10px/1.2 var(--font-sans); color: var(--color-fg-muted); }
+
+  /* ----- Nav ----- */
+  .nav { display: flex; align-items: stretch; padding-left: 8px; }
+  .nav a {
+    display: flex; align-items: center;
+    padding: 0 16px;
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    font: 600 12px/1 var(--font-sans);
+    letter-spacing: 0.01em;
+    position: relative;
+    transition: color 140ms ease-out, background 140ms ease-out;
+  }
+  .nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+
+  /* Underline mostaza animada (left → right) */
+  .nav a::after {
+    content: '';
+    position: absolute;
+    left: 16px; right: 16px;
+    bottom: 0;
+    height: 3px;
+    background: var(--color-accent-secondary);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 180ms ease-out;
+  }
+  .nav a:hover::after { transform: scaleX(1); }
+  .nav a.on { color: #fff; background: rgba(255,255,255,0.10); }
+  .nav a.on::after { transform: scaleX(1); }
+
+  /* ----- Lang ----- */
+  .lang {
+    display: flex; align-items: center;
+    padding: 0 16px;
+    font: 700 11px/1 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    gap: 8px;
+  }
+  .lang a {
+    color: inherit;
+    text-decoration: none;
+    padding: 4px 2px;
+    position: relative;
+    transition: color 140ms ease-out;
+  }
+  .lang a:hover, .lang a.on { color: #fff; }
+  .lang a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2px;
+    background: var(--color-accent-secondary);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 180ms ease-out;
+  }
+  .lang a.on::after { transform: scaleX(1); }
+  .lang a:hover::after { transform: scaleX(1); }
+  .lang .sep { color: rgba(255,255,255,0.25); }
+
+  /* ----- Sub-strip ----- */
+  .strip {
+    background: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-fg-muted);
+    padding: 5px 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .strip a { color: var(--color-fg-muted); text-decoration: none; }
+  .strip a:hover { color: var(--color-fg); text-decoration: underline; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .frame, .brand, .nav a, .nav a::after, .lang a, .lang a::after { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="frame">
+  <div class="band">
+    <a href="#" class="brand">
+      <img src="../assets/logo.png" alt="" class="logo">
+      <div>
+        <div class="name">presuntamente</div>
+        <span class="sub">Inventario público de casos de corrupción en España</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#" class="on">Casos</a>
+      <a href="#">Personas</a>
+      <a href="#">Organizaciones</a>
+      <a href="#">Biblioteca</a>
+      <a href="#">Sobre</a>
+    </nav>
+    <div class="lang">
+      <a href="#" class="on">ES</a>
+      <span class="sep">/</span>
+      <a href="#">CAT</a>
+    </div>
+  </div>
+  <div class="strip">
+    <span>Inicio &nbsp;/&nbsp; Casos</span>
+    <span>v0.0.0-alpha · última actualización 2026-05-21 14:32 UTC · sha 3f1a…b27d</span>
+  </div>
+</div>
+</div>
+</body>
+</html>

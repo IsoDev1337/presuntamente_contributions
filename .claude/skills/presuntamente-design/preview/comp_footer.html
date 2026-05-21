@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Footer del sitio</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .ft {
+    position: relative;
+    background: #f0f0f0;
+    border-top: 1px solid var(--color-border);
+    padding: 22px 20px 18px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 18px;
+    overflow: hidden;
+  }
+  /* Filete tricolor institucional — versión administrativa de los colores
+   * de España (rojo BOE apagado + mostaza institucional + rojo BOE apagado).
+   * NO la bandera saturada — los tonos del sistema, no del paño. */
+  .ft::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(
+      to right,
+      #8e2424 0 25%,
+      #c89b00 25% 75%,
+      #8e2424 75% 100%
+    );
+  }
+  /* Eco muy desaturado como banda de fondo — apenas perceptible (4% opacidad)
+   * para que se lea como textura institucional, no como fondo coloreado. */
+  .ft::after {
+    content: '';
+    position: absolute;
+    top: 6px; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(142, 36, 36, 0.04) 0 25%,
+      rgba(200, 155, 0, 0.05) 25% 75%,
+      rgba(142, 36, 36, 0.04) 75% 100%
+    );
+    pointer-events: none;
+  }
+  .ft > * { position: relative; z-index: 1; }
+  .ft h6 {
+    font: 700 11px/1.4 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+    color: #15171a;
+    border-top: 2px solid #1f3a68;
+    padding-top: 6px;
+  }
+  .ft a, .ft p {
+    font-size: 12px;
+    color: var(--color-fg-muted);
+    display: block;
+    margin: 4px 0;
+    text-decoration: none;
+    line-height: 1.5;
+  }
+  .ft a:hover { text-decoration: underline; color: #15171a; }
+  .ft .meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-fg-subtle);
+    margin-top: 8px;
+  }
+</style>
+<footer class="ft">
+  <div>
+    <h6>presuntamente</h6>
+    <p>Inventario público, interactivo y open-source.</p>
+    <p class="meta">© 2026 · build sha256:a91c…fd0e</p>
+  </div>
+  <div>
+    <h6>Marco</h6>
+    <a href="#">Aviso legal</a>
+    <a href="#">Política editorial</a>
+  </div>
+  <div>
+    <h6>Licencias</h6>
+    <a href="#">AGPL-3.0 (código)</a>
+    <a href="#">CC BY-SA 4.0 (contenido)</a>
+  </div>
+  <div>
+    <h6>Rectificación</h6>
+    <a href="#">Proponer corrección ↗</a>
+    <a href="#">Contactar maintainer</a>
+  </div>
+</footer>
+</div>
+</body>
+</html>

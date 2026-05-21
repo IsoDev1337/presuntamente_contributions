@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Campos de formulario</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  /* -------------------------------------------------------------------
+   * Formulario administrativo: filtros sobre fondo gris frío.
+   * Select propio (no nativo) para coherencia visual y de animación.
+   * ------------------------------------------------------------------- */
+  .bar {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 10px;
+    align-items: end;
+    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    padding: 12px 14px;
+  }
+  .field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .field label {
+    font: 700 10px/1 var(--font-sans);
+    letter-spacing: var(--ls-caps);
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  .inp {
+    padding: 7px 10px;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+    border-radius: 0;
+    font: 400 13px/1.4 var(--font-sans);
+    color: var(--color-fg);
+    width: 100%;
+    min-width: 0;
+  }
+  .inp:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+    border-color: var(--color-accent);
+  }
+  .btn {
+    padding: 7px 14px;
+    border: 1px solid var(--color-accent);
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 0;
+    font: 600 13px/1 var(--font-sans);
+    cursor: pointer;
+    align-self: end;
+    white-space: nowrap;
+    transition: background 140ms ease-out;
+  }
+  .btn:hover { background: var(--color-accent-hover); }
+
+  /* ----- Select propio ----- */
+  .sel { position: relative; }
+  .sel__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+    border-radius: 0;
+    font: 400 13px/1.4 var(--font-sans);
+    color: var(--color-fg);
+    cursor: pointer;
+    text-align: left;
+    min-width: 0;
+  }
+  .sel__trigger:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+    border-color: var(--color-accent);
+  }
+  .sel--open .sel__trigger {
+    border-color: var(--color-accent);
+    background: var(--color-surface);
+    z-index: 2;
+    position: relative;
+  }
+  .sel__caret {
+    width: 10px; height: 10px;
+    stroke: var(--color-fg-muted);
+    fill: none; stroke-width: 1.8;
+    flex-shrink: 0;
+    margin-left: 8px;
+    transition: transform 140ms ease-out;
+  }
+  .sel--open .sel__caret {
+    transform: rotate(180deg);
+    stroke: var(--color-accent);
+  }
+  .sel__menu {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0; right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-accent);
+    border-radius: 0;
+    z-index: 10;
+    max-height: 240px;
+    overflow-y: auto;
+
+    /* Animation: opacity + small translateY, 140ms ease-out */
+    opacity: 0;
+    transform: translateY(-4px);
+    pointer-events: none;
+    transition: opacity 140ms ease-out, transform 140ms ease-out;
+    visibility: hidden;
+  }
+  .sel--open .sel__menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+  .sel__opt {
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    font: 400 13px/1.4 var(--font-sans);
+    color: var(--color-fg);
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background 100ms ease-out;
+  }
+  .sel__opt:hover,
+  .sel__opt:focus-visible {
+    background: var(--color-bg-muted);
+    outline: none;
+  }
+  .sel__opt[aria-selected="true"] {
+    border-left-color: var(--color-accent);
+    background: var(--color-accent-soft);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sel__caret, .sel__menu, .sel__opt, .btn { transition: none; }
+  }
+</style>
+
+<div class="bar">
+  <div class="field">
+    <label for="q">Buscar</label>
+    <input id="q" class="inp" type="search" placeholder="Caso, organización, número de procedimiento…">
+  </div>
+
+  <div class="field">
+    <label id="lbl-fase">Fase procesal</label>
+    <div class="sel" data-sel="fase">
+      <button type="button" class="sel__trigger" aria-haspopup="listbox" aria-labelledby="lbl-fase" aria-expanded="false">
+        <span class="sel__value">Todas</span>
+        <svg class="sel__caret" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sel__menu" role="listbox">
+        <button type="button" class="sel__opt" role="option" aria-selected="true" data-v="all">Todas</button>
+        <button type="button" class="sel__opt" role="option" data-v="instr">Instrucción</button>
+        <button type="button" class="sel__opt" role="option" data-v="juicio">Juicio oral</button>
+        <button type="button" class="sel__opt" role="option" data-v="firme">Sentencia firme</button>
+        <button type="button" class="sel__opt" role="option" data-v="arch">Archivado</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label id="lbl-ord">Ordenar por</label>
+    <div class="sel" data-sel="ord">
+      <button type="button" class="sel__trigger" aria-haspopup="listbox" aria-labelledby="lbl-ord" aria-expanded="false">
+        <span class="sel__value">Último hito ↓</span>
+        <svg class="sel__caret" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="sel__menu" role="listbox">
+        <button type="button" class="sel__opt" role="option" aria-selected="true" data-v="hito">Último hito ↓</button>
+        <button type="button" class="sel__opt" role="option" data-v="apertura">Apertura ↓</button>
+        <button type="button" class="sel__opt" role="option" data-v="impl">Implicados ↓</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn">Aplicar</button>
+</div>
+
+<script>
+(() => {
+  const sels = document.querySelectorAll('.sel');
+  const closeAll = (except) => {
+    sels.forEach(s => {
+      if (s === except) return;
+      s.classList.remove('sel--open');
+      s.querySelector('.sel__trigger').setAttribute('aria-expanded', 'false');
+    });
+  };
+  sels.forEach(sel => {
+    const trigger = sel.querySelector('.sel__trigger');
+    const value   = sel.querySelector('.sel__value');
+    const opts    = sel.querySelectorAll('.sel__opt');
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = sel.classList.toggle('sel--open');
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      closeAll(sel);
+    });
+
+    opts.forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        opts.forEach(o => o.setAttribute('aria-selected', 'false'));
+        opt.setAttribute('aria-selected', 'true');
+        value.textContent = opt.textContent;
+        sel.classList.remove('sel--open');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.focus();
+      });
+    });
+
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        sel.classList.add('sel--open');
+        trigger.setAttribute('aria-expanded', 'true');
+        const selected = sel.querySelector('.sel__opt[aria-selected="true"]') || opts[0];
+        selected.focus();
+        closeAll(sel);
+      } else if (e.key === 'Escape') {
+        sel.classList.remove('sel--open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    opts.forEach((opt, i) => {
+      opt.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); opts[(i + 1) % opts.length].focus(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); opts[(i - 1 + opts.length) % opts.length].focus(); }
+        else if (e.key === 'Escape')  { sel.classList.remove('sel--open'); trigger.focus(); trigger.setAttribute('aria-expanded', 'false'); }
+      });
+    });
+  });
+
+  document.addEventListener('click', () => closeAll(null));
+})();
+</script>
+</div>
+</body>
+</html>

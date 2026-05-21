@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Escala tipográfica</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .row { display: grid; grid-template-columns: 90px 1fr 80px; gap: 14px; align-items: baseline; padding: 6px 0; border-bottom: var(--border); }
+  .row:last-child { border-bottom: 0; }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); }
+  .sample { color: var(--color-fg); font-family: var(--font-sans); line-height: 1.1; letter-spacing: -0.01em; }
+  .px { font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-muted); text-align: right; }
+</style>
+<div class="row"><span class="tok">--font-size-7</span><span class="sample" style="font:700 40px/1 var(--font-serif);">Display</span><span class="px">38–56px</span></div>
+<div class="row"><span class="tok">--font-size-6</span><span class="sample" style="font:700 30px/1 var(--font-sans);">H1</span><span class="px">30–40</span></div>
+<div class="row"><span class="tok">--font-size-5</span><span class="sample" style="font:600 24px/1 var(--font-sans);">H2</span><span class="px">24–31</span></div>
+<div class="row"><span class="tok">--font-size-4</span><span class="sample" style="font:600 20px/1 var(--font-sans);">H3</span><span class="px">20–24</span></div>
+<div class="row"><span class="tok">--font-size-3</span><span class="sample" style="font:400 18px/1.3 var(--font-sans);">Lede / subtítulo</span><span class="px">18–20</span></div>
+<div class="row"><span class="tok">--font-size-2</span><span class="sample" style="font:400 16px/1.4 var(--font-sans);">Body</span><span class="px">16–17</span></div>
+<div class="row"><span class="tok">--font-size-1</span><span class="sample" style="font:400 14px/1.4 var(--font-sans);">Body small</span><span class="px">14–15</span></div>
+<div class="row"><span class="tok">--font-size-0</span><span class="sample" style="font:400 12px/1.4 var(--font-sans);">Caption / meta</span><span class="px">12–13</span></div>
+</div>
+</body>
+</html>

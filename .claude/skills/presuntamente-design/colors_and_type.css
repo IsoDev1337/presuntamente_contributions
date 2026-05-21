@@ -1,0 +1,339 @@
+/* =========================================================================
+ * presuntamente — Design Tokens
+ * Fuente: davidchicano/presuntamente, /DESIGN.md (canónico).
+ * Estética: gov-retro español (BOE, CENDOJ, portales ministeriales ~2005-2012)
+ *           reinterpretado para 2026. Austera, sobria, institucional.
+ *
+ * NO USAR Tailwind, ni CSS-in-JS. CSS nativo + Open Props en el codebase real.
+ * Aquí los tokens viven en :root para ser portables a HTML estático.
+ * ========================================================================= */
+
+/* --- Fuentes ---------------------------------------------------------------
+ * Stack institucional español. La tipografía oficial del Gobierno desde 1999
+ * es Gill Sans (comercial, Monotype / Adobe Fonts). Como no podemos servirla
+ * libremente, el stack cae a Lato / Source Sans 3 (humanistas abiertas) y, en
+ * último término, al system stack.
+ *
+ *   1. Gill Sans Nova   — visitantes con Adobe Fonts
+ *   2. Gill Sans        — usuarios Apple la tienen nativa
+ *   3. Lato             — fallback abierto humanista (Google Fonts)
+ *   4. Source Sans 3    — otra humanista abierta (Google Fonts)
+ *   5. system stack
+ *
+ * Mono → JetBrains Mono (Google Fonts) con fallback al stack del sistema.
+ * Serif display opcional → Source Serif 4.
+ * --------------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: light dark;
+
+  /* ===== Paleta base (slots semánticos) =================================== */
+
+  /* Light mode — blanco roto institucional (BOE / Moncloa / ministerios).
+   * NO beige, NO gris claro. La sensación retro la cargan tipografía,
+   * bordes finos y densidad administrativa — no un fondo coloreado. */
+  --color-bg:           #fafafa;   /* fondo principal — off-white */
+  --color-bg-muted:     #f1f1ee;   /* hover en cards, separadores de fondo */
+  --color-surface:      #ffffff;   /* papel: cards y bloques sobre --color-bg */
+  --color-surface-muted:#f0f0f0;   /* gris frío — formularios, filtros, utilidad administrativa */
+  --color-fg:           #15171a;   /* texto principal */
+  --color-fg-muted:     #5b6066;   /* texto secundario */
+  --color-fg-subtle:    #8a8d93;   /* meta, timestamps */
+  --color-border:       #dcdcd6;   /* todas las líneas 1px */
+  --color-border-strong:#a8a8a2;   /* énfasis en separadores de bloque */
+
+  /* Acento institucional primario — azul oscuro frío (decisión cerrada). */
+  --color-accent:       #1f3a68;   /* azul institucional */
+  --color-accent-hover: #16294a;   /* press / hover oscuro */
+  --color-accent-soft:  #e3e8f1;   /* fondo de aviso institucional */
+  --color-accent-fg:    #ffffff;   /* texto sobre accent */
+
+  /* Acento secundario — mostaza / ocre institucional apagado.
+   * Es el SEGUNDO color estructural del sistema, no decorativo. Para badges
+   * de fase, sub-headings estructurales, bandas decorativas. NO el amarillo
+   * literal del badge "Gobierno de España" — un tono propio en la misma familia. */
+  --color-accent-secondary:        #c89b00;
+  --color-accent-secondary-hover:  #a78100;
+  --color-accent-secondary-soft:   #f7ecc5;
+  --color-accent-secondary-border: #d8b542;
+
+  /* ===== Colores funcionales — estado epistémico de los hechos ============
+   * Apagados, nunca neón, nunca asociables a partido político.
+   * Cada estado se transmite por tres canales: color + label + icono.
+   * Backgrounds tirando a blanco para sentar bien sobre --color-bg #fafafa.
+   * ====================================================================== */
+  --color-acreditado:        #2f6a3a;
+  --color-acreditado-bg:     #eef4ef;
+  --color-acreditado-border: #b6cdb8;
+
+  --color-investigado:       #8a6b1f;
+  --color-investigado-bg:    #f7f0dd;
+  --color-investigado-border:#dec999;
+
+  --color-exculpatorio:      #5b6878;
+  --color-exculpatorio-bg:   #ecedf1;
+  --color-exculpatorio-border:#bdc4cf;
+
+  --color-desmentido:        #7a7d82;
+  --color-desmentido-bg:     #f0f0f0;
+  --color-desmentido-border: #cfcfcf;
+
+  /* Hechos en contraposición: SIN color propio. Estructura, no tinta. */
+
+  /* ===== Niveles de fuente (badges 1–4) ===================================
+   * Gradient de oficialidad sobre el MISMO navy institucional (no colores
+   * distintos por nivel — esto introduciría semántica accidental). Más
+   * oficial = más peso visual. Misma forma rectangular en los cuatro.
+   * ====================================================================== */
+  --color-nivel-1-bg:      #1f3a68;  /* fill sólido accent  · sentencia / auto / BOE primario */
+  --color-nivel-1-fg:      #ffffff;
+  --color-nivel-1-border:  #1f3a68;
+
+  --color-nivel-2-bg:      #4a6694;  /* azul medio · informe UDEF / UCO / fiscalía */
+  --color-nivel-2-fg:      #ffffff;
+  --color-nivel-2-border:  #4a6694;
+
+  --color-nivel-3-bg:      #e3e8f1;  /* azul muy suave · institucional / pericial / medio con cita */
+  --color-nivel-3-fg:      #1f3a68;
+  --color-nivel-3-border:  #b6c4dd;
+
+  --color-nivel-4-bg:      transparent;  /* outline · cobertura periodística cruzada */
+  --color-nivel-4-fg:      #1f3a68;
+  --color-nivel-4-border:  #1f3a68;
+
+  /* Compat (legacy keys, mapped a la nueva paleta) */
+  --color-nivel-1:      var(--color-nivel-1-bg);
+  --color-nivel-2:      var(--color-nivel-2-bg);
+  --color-nivel-3:      var(--color-nivel-3-fg);
+  --color-nivel-4:      var(--color-nivel-4-fg);
+
+  /* ===== Fuentes y stack tipográfico ======================================
+   * Sans institucional: Gill Sans (oficial Gobierno de España desde 1999)
+   * con fallback humanista abierto. NUNCA importar Gill Sans desde un CDN
+   * libre — es comercial. Las fuentes abiertas del @import (Lato / Source
+   * Sans 3) son las que vé el visitante por defecto si no tiene Apple ni
+   * suscripción Adobe Fonts.
+   * ====================================================================== */
+  --font-sans: "Gill Sans Nova",          /* Adobe Fonts */
+               "Gill Sans",               /* Apple nativo */
+               "Lato",                    /* Google Fonts — humanista abierta */
+               "Source Sans 3",           /* alternativa humanista abierta */
+               ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif:"Source Serif 4", Charter, "Source Serif Pro", Georgia,
+               "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "Roboto Mono",
+               Consolas, monospace;
+
+  /* Escala fluida — clamp(min, fluido, max). Slots según DESIGN.md §3. */
+  --font-size-0: clamp(0.75rem, 0.72rem + 0.13vw, 0.81rem);   /* caption/meta */
+  --font-size-1: clamp(0.875rem, 0.85rem + 0.13vw, 0.94rem);  /* body small */
+  --font-size-2: clamp(1rem, 0.97rem + 0.16vw, 1.0625rem);    /* body */
+  --font-size-3: clamp(1.125rem, 1.08rem + 0.25vw, 1.25rem);  /* lede */
+  --font-size-4: clamp(1.25rem, 1.18rem + 0.4vw, 1.5rem);     /* h3 */
+  --font-size-5: clamp(1.5rem, 1.38rem + 0.65vw, 1.94rem);    /* h2 */
+  --font-size-6: clamp(1.875rem, 1.7rem + 0.9vw, 2.5rem);     /* h1 */
+  --font-size-7: clamp(2.375rem, 2.05rem + 1.7vw, 3.5rem);    /* display ficha */
+
+  /* Pesos */
+  --weight-regular: 400;
+  --weight-medium:  500;   /* sólo para chips/badges, nunca body */
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* Line height */
+  --lh-tight: 1.2;     /* headings */
+  --lh-body:  1.6;     /* body */
+  --lh-mono:  1.45;    /* mono */
+
+  /* Letter spacing */
+  --ls-wordmark: -0.01em;
+  --ls-display:  -0.015em;
+  --ls-caps:     0.04em;     /* labels en mayúsculas (BADGE, TIPO, etc.) */
+
+  /* ===== Espaciado ======================================================== */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4 */
+  --space-2: 0.5rem;    /* 8 */
+  --space-3: 0.75rem;   /* 12 */
+  --space-4: 1rem;      /* 16 */
+  --space-5: 1.5rem;    /* 24 */
+  --space-6: 2rem;      /* 32 */
+  --space-7: 3rem;      /* 48 */
+  --space-8: 4rem;      /* 64 */
+  --space-9: 6rem;      /* 96 */
+
+  /* ===== Bordes y radios ================================================== */
+  --border-width: 1px;
+  --border:       1px solid var(--color-border);
+  --border-strong:1px solid var(--color-border-strong);
+
+  --radius-0: 0;
+  --radius-1: 2px;
+  --radius-2: 4px;       /* máximo permitido por DESIGN.md §6 */
+
+  /* ===== Sombras ==========================================================
+   * Sin box-shadow por defecto. Si una sombra se justifica (popover, modal),
+   * debe ser plana y sutil.
+   * ====================================================================== */
+  --shadow-flat:    0 1px 0 0 rgba(21, 23, 26, 0.06);
+  --shadow-popover: 0 2px 0 0 rgba(21, 23, 26, 0.06),
+                    0 0 0 1px var(--color-border);
+
+  /* ===== Layout =========================================================== */
+  --content-max-width: 70ch;     /* ~700-800 px */
+  --content-max-wide:  84ch;     /* listados densos */
+  --container-padding-inline: clamp(1rem, 4vw, 2rem);
+
+  /* ===== Motion ===========================================================
+   * Sólo opacidad y color. Nada de transform decorativo.
+   * ====================================================================== */
+  --motion-duration: 140ms;
+  --motion-ease:     cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* --- Dark mode: luminosidad invertida, identidad intacta -------------------
+ * DESIGN.md §2 — "Mismos roles, mismos contrastes relativos, sin cambiar
+ * la paleta institucional."
+ * --------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:           #15171a;
+    --color-bg-muted:     #1f2125;
+    --color-surface:      #1a1c20;
+    --color-surface-muted:#23262b;
+    --color-fg:           #f0efe9;
+    --color-fg-muted:     #a8a59a;
+    --color-fg-subtle:    #76777a;
+    --color-border:       #2e3035;
+    --color-border-strong:#454850;
+
+    --color-accent:       #7fa3d6;
+    --color-accent-hover: #a6c0e3;
+    --color-accent-soft:  #1f2a3d;
+    --color-accent-fg:    #15171a;
+
+    --color-accent-secondary:        #d4a93b;
+    --color-accent-secondary-hover:  #e6c068;
+    --color-accent-secondary-soft:   #3a2f12;
+    --color-accent-secondary-border: #6b5418;
+
+    --color-acreditado-bg:     #1d2a1f;
+    --color-acreditado-border: #2f4a35;
+    --color-investigado-bg:    #2c2613;
+    --color-investigado-border:#5a4a1f;
+    --color-exculpatorio-bg:   #232830;
+    --color-exculpatorio-border:#3a4250;
+    --color-desmentido-bg:     #25262a;
+    --color-desmentido-border: #3a3b3f;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-duration: 0ms; }
+}
+
+/* =========================================================================
+ * Estilos base — para HTML estático.
+ * En el codebase Astro estos viven en src/styles/global.css.
+ * ========================================================================= */
+* { box-sizing: border-box; }
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-fg);
+  background: var(--color-bg);
+  line-height: var(--lh-body);
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { margin: 0; min-height: 100vh; }
+
+/* --- Tipografía semántica ------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  margin: 0 0 var(--space-4);
+  color: var(--color-fg);
+  text-wrap: balance;
+}
+h1 { font-size: var(--font-size-6); font-weight: var(--weight-bold); }
+h2 { font-size: var(--font-size-5); }
+h3 { font-size: var(--font-size-4); }
+h4 { font-size: var(--font-size-3); }
+h5 { font-size: var(--font-size-2); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--color-fg-muted); }
+h6 { font-size: var(--font-size-1); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--color-fg-muted); }
+
+.display {
+  font-family: var(--font-serif);
+  font-weight: var(--weight-semibold);
+  font-size: var(--font-size-7);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-2);
+  line-height: var(--lh-body);
+  text-wrap: pretty;
+  max-width: var(--content-max-width);
+}
+
+small, .text-meta {
+  font-size: var(--font-size-0);
+  color: var(--color-fg-muted);
+}
+
+.text-lede {
+  font-size: var(--font-size-3);
+  line-height: 1.55;
+  color: var(--color-fg);
+}
+
+code, kbd, samp, pre, .mono, .judicial-id {
+  font-family: var(--font-mono);
+  font-size: 0.94em;
+  line-height: var(--lh-mono);
+}
+
+kbd {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  border: var(--border);
+  border-radius: var(--radius-1);
+  background: var(--color-surface);
+  color: var(--color-fg);
+  font-weight: var(--weight-medium);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+a:hover { color: var(--color-accent-hover); }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+hr {
+  border: 0;
+  border-top: var(--border);
+  margin: var(--space-6) 0;
+}
+
+ul, ol { padding-inline-start: 1.25em; margin: 0 0 var(--space-4); }
+li { margin: var(--space-1) 0; }
+
+/* Section numbering helper for administrative-style layouts */
+.num-section { color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }

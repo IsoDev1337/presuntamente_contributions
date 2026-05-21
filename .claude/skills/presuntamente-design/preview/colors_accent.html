@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Acentos institucionales</title>
+<link rel="stylesheet" href="_card.css">
+</head>
+<body>
+<div class="card-root">
+<style>
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .group { display: flex; flex-direction: column; gap: 6px; }
+  .g-label { font: 700 11px/1 var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-fg-muted); margin-bottom: 4px; }
+  .swatches { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0; }
+  .sw { height: 72px; display: flex; align-items: flex-end; padding: 8px 10px; font-family: var(--font-mono); font-size: 11px; }
+  .meta { font: 400 11px/1.4 var(--font-sans); color: var(--color-fg-muted); margin-top: 6px; }
+</style>
+<div class="row">
+  <div class="group">
+    <div class="g-label">Primario · azul institucional</div>
+    <div class="swatches">
+      <div class="sw" style="background:#1f3a68;color:#fff">#1f3a68</div>
+      <div class="sw" style="background:#16294a;color:#fff;font-size:10px">hover</div>
+      <div class="sw" style="background:#e3e8f1;color:#1f3a68;font-size:10px">soft</div>
+    </div>
+    <div class="meta">--color-accent · franjas de header, focus, citaciones, enlaces</div>
+  </div>
+  <div class="group">
+    <div class="g-label">Secundario · mostaza institucional</div>
+    <div class="swatches">
+      <div class="sw" style="background:#c89b00;color:#fff">#c89b00</div>
+      <div class="sw" style="background:#a78100;color:#fff;font-size:10px">hover</div>
+      <div class="sw" style="background:#f7ecc5;color:#6b4d00;font-size:10px">soft</div>
+    </div>
+    <div class="meta">--color-accent-secondary · badges de fase, sub-h, bandas decorativas</div>
+  </div>
+</div>
+</div>
+</body>
+</html>
