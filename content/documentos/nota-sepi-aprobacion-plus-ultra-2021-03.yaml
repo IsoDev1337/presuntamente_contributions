@@ -1,14 +1,13 @@
 id: nota-sepi-aprobacion-plus-ultra-2021-03
 titulo: "Nota institucional de la SEPI sobre la autorización del Consejo de Ministros para el préstamo a Plus Ultra"
 tipo: nota_prensa_institucional
-nivel_fuente: 3
+nivel_fuente: 1
 nivel_fuente_justificacion: |
-  Comunicación institucional de la SEPI, organismo público dependiente
-  del Ministerio de Hacienda. Aunque su dominio (sepi.es) no está
-  incluido en la lista blanca DominiosOficiales del modelo y por tanto
-  no alcanza Nivel 1, la procedencia institucional y la verificación
-  cruzada con cobertura multi-medio (Público, Hosteltur, El Liberal)
-  justifican el Nivel 3.
+  Comunicación institucional publicada en sepi.es, dominio incluido en
+  la lista blanca DominiosOficiales del doc 01 §3 como entidad pública
+  empresarial con personalidad jurídica propia y publicaciones
+  trazables al organismo. Verificación cruzada con cobertura multi-medio
+  (Público, Hosteltur, El Liberal) refuerza la procedencia.
 productor_organizacion_id: sepi
 fecha_documento: "2021-03-09"
 url_canonica: "https://www.sepi.es/es/sala-de-prensa/notas-prensa"
