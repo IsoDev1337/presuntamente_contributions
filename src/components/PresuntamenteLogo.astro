@@ -1,0 +1,101 @@
+---
+/**
+ * PresuntamenteLogo — wordmark + isótipo del proyecto.
+ *
+ * Variantes:
+ *   - "wordmark+isotipo" (defecto): isótipo (silueta España) + wordmark al lado.
+ *     Uso típico: bloque de marca en el header del sitio.
+ *   - "wordmark": solo el wordmark vectorial. Uso: footers, pies de página.
+ *   - "isotipo": solo el isótipo (logo.png). Uso: favicon, header móvil
+ *     compacto, social cards, contextos donde el wordmark no cabe.
+ *
+ * `inverse` selecciona la variante clara del wordmark para fondos oscuros
+ * (banda navy). El isótipo PNG es el mismo (silueta navy sobre transparente);
+ * sobre banda oscura, el bloque de marca va dentro de una caja blanca para
+ * mantener el patrón ministerial (logo + wordmark sobre fondo blanco).
+ */
+interface Props {
+  variant?: 'wordmark+isotipo' | 'wordmark' | 'isotipo';
+  inverse?: boolean;
+  /** Subtítulo institucional opcional, solo aplica a "wordmark+isotipo". */
+  sub?: string;
+  /** alt text override para accesibilidad. */
+  alt?: string;
+  class?: string;
+}
+
+const {
+  variant = 'wordmark+isotipo',
+  inverse = false,
+  sub,
+  alt = 'presuntamente — inventario público de casos de corrupción en España',
+  class: className,
+} = Astro.props;
+
+const wordmarkSrc = inverse ? '/branding/wordmark-inverso.svg' : '/branding/wordmark.svg';
+const isotipoSrc = '/branding/logo.png';
+---
+
+{variant === 'wordmark+isotipo' && (
+  <span class:list={['p-logo', 'p-logo--wm-iso', className]} aria-label={alt}>
+    <img src={isotipoSrc} alt="" class="p-logo__iso" width="40" height="40" loading="eager" decoding="sync" />
+    <span class="p-logo__text">
+      <img src={wordmarkSrc} alt="" class="p-logo__wm" width="140" height="22" loading="eager" decoding="sync" />
+      {sub && <span class="p-logo__sub">{sub}</span>}
+    </span>
+  </span>
+)}
+
+{variant === 'wordmark' && (
+  <img src={wordmarkSrc} alt={alt} class:list={['p-logo', 'p-logo--wm', className]} width="140" height="22" loading="eager" decoding="sync" />
+)}
+
+{variant === 'isotipo' && (
+  <img src={isotipoSrc} alt={alt} class:list={['p-logo', 'p-logo--iso', className]} width="40" height="40" loading="eager" decoding="sync" />
+)}
+
+<style>
+  .p-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    line-height: 1;
+  }
+  .p-logo__iso {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: block;
+  }
+  .p-logo__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1;
+  }
+  .p-logo__wm {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .p-logo__sub {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--color-fg-muted);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .p-logo--iso {
+    width: 40px;
+    height: 40px;
+  }
+  .p-logo--wm {
+    height: 22px;
+    width: auto;
+  }
+
+  @media (max-width: 720px) {
+    .p-logo__sub { display: none; }
+  }
+</style>
