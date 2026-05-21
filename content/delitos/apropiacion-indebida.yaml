@@ -1,0 +1,15 @@
+id: apropiacion-indebida
+nombre_tipico: "Apropiación indebida"
+articulos_cp:
+  - "art. 253 CP"
+  - "art. 254 CP"
+familia: contra_patrimonio_y_orden_socioeconomico
+descripcion_breve: |
+  El Código Penal sanciona, dentro de los delitos contra el patrimonio,
+  a quien en perjuicio de otro se apropiare de cosas muebles o de un
+  valor patrimonial, recibidos en depósito, comisión o custodia, o por
+  cualquier otro título que produzca la obligación de entregarlos o
+  devolverlos, o negare haberlos recibido. La pena se gradúa en función
+  del valor de lo apropiado y de la concurrencia de circunstancias
+  agravantes (especial gravedad, abuso de relaciones personales, etc.).
+enlace_boe: "https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444"
