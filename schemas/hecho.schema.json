@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/hecho.schema.json",
+  "title": "Hecho",
+  "description": "Afirmación verificable sobre un caso. Ver docs/diseno/01-modelo-de-datos.md §2.6. Schema completo se materializa en Fase 1.",
+  "type": "object",
+  "required": ["id", "caso_id", "enunciado", "tipo", "documentos_respaldo"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string" },
+    "caso_id": { "type": "string" },
+    "enunciado": { "type": "string", "minLength": 1 },
+    "tipo": {
+      "type": "string",
+      "enum": ["acreditado", "investigado", "atribuido", "exculpatorio", "desmentido", "no_concluyente"]
+    },
+    "documentos_respaldo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["documento_id"],
+        "additionalProperties": false,
+        "properties": {
+          "documento_id": { "type": "string" },
+          "pasaje": { "type": "string" }
+        }
+      },
+      "minItems": 1
+    },
+    "nivel_fuente_efectivo": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "vigencia": { "type": "string", "enum": ["vigente", "superado", "retirado"] }
+  }
+}

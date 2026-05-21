@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/documento.schema.json",
+  "title": "Documento",
+  "description": "Documento concreto y citable que sostiene Hechos. Ver docs/diseno/01-modelo-de-datos.md §2.7. Schema completo se materializa en Fase 1.",
+  "type": "object",
+  "required": ["id", "titulo", "tipo", "nivel_fuente", "estado_publicacion"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "titulo": { "type": "string", "minLength": 1 },
+    "tipo": { "type": "string" },
+    "nivel_fuente": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "nivel_fuente_justificacion": { "type": "string" },
+    "fecha_documento": { "type": "string", "format": "date" },
+    "fecha_publicacion": { "type": "string", "format": "date" },
+    "url_canonica": { "type": "string", "format": "uri" },
+    "url_archivo": { "type": "string", "format": "uri" },
+    "ruta_local": { "type": "string" },
+    "hash_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "estado_acceso": {
+      "type": "string",
+      "enum": ["publico", "acceso_restringido_pero_citable", "filtrado_verificado", "retirado"]
+    },
+    "idioma": { "type": "string" },
+    "estado_publicacion": { "type": "string" },
+    "ultima_revision_editorial": { "type": "string", "format": "date" }
+  }
+}

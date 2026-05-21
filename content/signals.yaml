@@ -1,0 +1,14 @@
+# Bandeja de entrada del watcher.
+# Cada entrada es una señal candidata a incorporación; el maintainer decide.
+#
+# Schema preliminar (a formalizar en Fase 3 del roadmap):
+#   - id: string
+#     caso_id: string
+#     fuente: string (URL del candidato)
+#     snippet: string
+#     fecha_deteccion: date
+#     estado: pending | descartada | incorporada
+#
+# Pipeline de watchers: docs/diseno/03-estrategia-de-mantenimiento.md §2
+
+signals: []

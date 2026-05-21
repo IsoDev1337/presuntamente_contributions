@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/persona.schema.json",
+  "title": "Persona",
+  "description": "Persona física relevante para uno o más casos. Ver docs/diseno/01-modelo-de-datos.md §2.2.",
+  "type": "object",
+  "required": ["id", "nombre_completo", "es_figura_publica", "estado_publicacion"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "nombre_completo": { "type": "string", "minLength": 1 },
+    "nombres_alternativos": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+
+    "es_figura_publica": { "type": "boolean" },
+    "cargo_publico_actual": { "type": "string" },
+    "cargos_publicos_historicos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["cargo", "desde"],
+        "additionalProperties": false,
+        "properties": {
+          "cargo": { "type": "string" },
+          "organizacion_id": { "type": "string" },
+          "desde": { "type": "string", "format": "date" },
+          "hasta": { "type": "string", "format": "date" }
+        }
+      },
+      "default": []
+    },
+
+    "fecha_nacimiento": {
+      "type": "string",
+      "format": "date",
+      "description": "SÓLO si es_figura_publica = true. Nunca para testigos ni privados."
+    },
+    "nacionalidad": { "type": "string" },
+    "fallecido": { "type": "boolean", "default": false },
+    "fecha_fallecimiento": { "type": "string", "format": "date" },
+
+    "biografia_corta": { "type": "string" },
+
+    "estado_publicacion": {
+      "type": "string",
+      "enum": [
+        "borrador",
+        "en_revision",
+        "publicado",
+        "retirado_temporalmente",
+        "retirado_definitivamente"
+      ]
+    },
+    "ultima_revision_editorial": { "type": "string", "format": "date" }
+  }
+}

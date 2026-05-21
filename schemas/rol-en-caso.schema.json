@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/rol-en-caso.schema.json",
+  "title": "RolEnCaso",
+  "description": "Conexión persona × caso × periodo × rol × delitos. Ver docs/diseno/01-modelo-de-datos.md §2.4. Schema completo se materializa en Fase 1.",
+  "type": "object",
+  "required": ["id", "caso_id", "sujeto_tipo", "rol", "fecha_inicio"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string" },
+    "caso_id": { "type": "string" },
+    "sujeto_tipo": { "type": "string", "enum": ["persona", "organizacion"] },
+    "sujeto_persona_id": { "type": "string" },
+    "sujeto_organizacion_id": { "type": "string" },
+    "rol": { "type": "string" },
+    "delitos_atribuidos": { "type": "array", "items": { "type": "string" } },
+    "fecha_inicio": { "type": "string", "format": "date" },
+    "fecha_fin": { "type": "string", "format": "date" }
+  }
+}

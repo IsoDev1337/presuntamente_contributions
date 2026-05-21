@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/organizacion.schema.json",
+  "title": "Organizacion",
+  "description": "Entidad colectiva relevante para un caso. Polimórfica por tipo. Ver docs/diseno/01-modelo-de-datos.md §2.3. Schema completo se materializa en Fase 1.",
+  "type": "object",
+  "required": ["id", "nombre", "tipo", "estado_publicacion"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "nombre": { "type": "string", "minLength": 1 },
+    "nombres_alternativos": { "type": "array", "items": { "type": "string" } },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "juzgado",
+        "tribunal",
+        "fiscalia",
+        "partido_politico",
+        "empresa",
+        "asociacion_acusacion_popular",
+        "organismo_publico",
+        "policia_judicial_unidad",
+        "medio_comunicacion",
+        "sindicato",
+        "fundacion",
+        "entidad_financiera",
+        "consultora",
+        "otra"
+      ]
+    },
+    "descripcion_corta": { "type": "string" },
+    "estado_publicacion": { "type": "string" },
+    "ultima_revision_editorial": { "type": "string", "format": "date" }
+  }
+}

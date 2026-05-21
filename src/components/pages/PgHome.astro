@@ -1,0 +1,52 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Props {
+  lang?: 'es' | 'ca';
+}
+
+const { lang = 'es' } = Astro.props;
+
+// TODO i18n: cuando se active el catalán, añadir la rama 'ca' en strings y crear
+// los wrappers en /src/pages/cat/ que llamen a este componente con lang="ca".
+const strings = {
+  title: 'presuntamente',
+  tagline: 'Inventario interactivo de casos de corrupción en España.',
+  body:
+    'Sitio en construcción. La versión inicial está en preparación. ' +
+    'El objetivo es ofrecer una referencia objetiva y trazable de los procedimientos ' +
+    'judiciales relevantes, separando lo acreditado de lo investigado y citando cada afirmación.',
+  repo_link_text: 'Repositorio público (AGPL-3.0)',
+  docs_link_text: 'Diseño y principios del proyecto',
+};
+---
+
+<BaseLayout title={strings.title} lang={lang} description={strings.tagline}>
+  <h1>{strings.title}</h1>
+  <p class="lede">{strings.tagline}</p>
+  <p>{strings.body}</p>
+  <ul class="links">
+    <li>
+      <a href="https://github.com/davidchicano/presuntamente">{strings.repo_link_text}</a>
+    </li>
+    <li>
+      <a href="https://github.com/davidchicano/presuntamente/tree/main/docs/diseno">{strings.docs_link_text}</a>
+    </li>
+  </ul>
+</BaseLayout>
+
+<style>
+  .lede {
+    font-size: var(--font-size-3);
+    color: var(--color-fg-muted);
+    margin-block-end: var(--size-5);
+  }
+  .links {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--size-5);
+  }
+  .links li {
+    margin-block: var(--size-2);
+  }
+</style>

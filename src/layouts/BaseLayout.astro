@@ -1,0 +1,52 @@
+---
+import '@/styles/global.css';
+import 'open-props/style';
+
+interface Props {
+  title: string;
+  lang: 'es' | 'ca';
+  description?: string;
+}
+
+const {
+  title,
+  lang,
+  description = 'Inventario interactivo de casos de corrupción en España.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · presuntamente</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href={lang === 'ca' ? '/cat/' : '/'} class="site-logo">
+        <strong>presuntamente</strong>
+      </a>
+      <nav class="site-nav">
+        <a href="/" lang="es">ES</a>
+        <a href="/cat/" lang="ca">CA</a>
+      </nav>
+    </header>
+    <main class="site-main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        Contenido bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> ·
+        Código bajo <a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL-3.0</a> ·
+        <a href="https://github.com/davidchicano/presuntamente">Repositorio</a>
+      </p>
+      <p>
+        <a href="/aviso-legal">Aviso legal</a>
+        ·
+        <a href="/rectificar">Solicitar rectificación</a>
+      </p>
+    </footer>
+  </body>
+</html>

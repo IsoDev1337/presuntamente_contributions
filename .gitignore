@@ -1,0 +1,36 @@
+# Node
+node_modules/
+.pnpm-store/
+
+# Astro
+dist/
+.astro/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Local-only (no se publica)
+/local/

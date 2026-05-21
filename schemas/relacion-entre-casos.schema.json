@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/relacion-entre-casos.schema.json",
+  "title": "RelacionEntreCasos",
+  "description": "Conexión no jerárquica entre casos. Ver docs/diseno/01-modelo-de-datos.md §2.8. Schema completo se materializa en Fase 1.",
+  "type": "object",
+  "required": ["id", "caso_a_id", "caso_b_id", "tipo"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string" },
+    "caso_a_id": { "type": "string" },
+    "caso_b_id": { "type": "string" },
+    "tipo": {
+      "type": "string",
+      "enum": ["derivado_de", "comparte_actor_con", "conexion_factual", "misma_trama", "contradiccion_factual"]
+    },
+    "descripcion": { "type": "string" }
+  }
+}

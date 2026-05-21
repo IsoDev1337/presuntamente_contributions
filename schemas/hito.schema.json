@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/hito.schema.json",
+  "title": "Hito",
+  "description": "Evento cronológico puntual en un Caso. Ver docs/diseno/01-modelo-de-datos.md §2.5. Schema completo se materializa en Fase 1.",
+  "type": "object",
+  "required": ["id", "caso_id", "tipo", "fecha", "titulo"],
+  "additionalProperties": true,
+  "properties": {
+    "id": { "type": "string" },
+    "caso_id": { "type": "string" },
+    "tipo": { "type": "string" },
+    "fecha": { "type": "string", "format": "date" },
+    "fecha_precision": { "type": "string", "enum": ["dia", "mes", "anio"] },
+    "titulo": { "type": "string", "minLength": 1 },
+    "descripcion": { "type": "string" },
+    "personas_afectadas": { "type": "array", "items": { "type": "string" } },
+    "documento_principal_id": { "type": "string" }
+  }
+}

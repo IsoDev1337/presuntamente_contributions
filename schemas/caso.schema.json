@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/caso.schema.json",
+  "title": "Caso",
+  "description": "Un procedimiento o agrupación de procedimientos. Recursivo: un Caso puede ser pieza de otro Caso. Ver docs/diseno/01-modelo-de-datos.md §2.1.",
+  "type": "object",
+  "required": [
+    "id",
+    "nombre_oficial",
+    "nombre_mediatico",
+    "organo_judicial_id",
+    "fase_actual",
+    "fecha_apertura",
+    "origen_denuncia",
+    "estado_publicacion"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+(/[a-z0-9-]+)*$",
+      "description": "Slug human-readable. Para piezas hijas, se usa notación jerárquica padre/hijo (ej. 'koldo/cerdan')."
+    },
+    "nombre_oficial": { "type": "string", "minLength": 1 },
+    "nombre_mediatico": { "type": "string", "minLength": 1 },
+    "nombres_alternativos": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "descripcion_corta": { "type": "string" },
+
+    "caso_padre_id": { "type": "string" },
+    "tipo_pieza": {
+      "type": "string",
+      "enum": ["pieza_separada", "derivada_factual", "causa_conexa", "pieza_principal"]
+    },
+
+    "organo_judicial_id": { "type": "string" },
+    "numero_procedimiento": { "type": "string" },
+    "tipo_procedimiento": {
+      "type": "string",
+      "enum": [
+        "diligencias_previas",
+        "procedimiento_abreviado",
+        "sumario_ordinario",
+        "tribunal_jurado",
+        "causa_especial_aforado",
+        "recurso_amparo_tc",
+        "recurso_casacion_ts",
+        "otro"
+      ]
+    },
+    "ponente_actual_id": { "type": "string" },
+
+    "fase_actual": {
+      "type": "string",
+      "enum": [
+        "denuncia_o_querella",
+        "instruccion",
+        "fase_intermedia",
+        "juicio_oral",
+        "sentencia_primera_instancia",
+        "recurso",
+        "sentencia_firme",
+        "ejecucion",
+        "archivo_provisional",
+        "archivo_libre"
+      ]
+    },
+    "fecha_apertura": { "type": "string", "format": "date" },
+    "fecha_cierre": { "type": "string", "format": "date" },
+
+    "origen_denuncia": {
+      "type": "string",
+      "enum": [
+        "fiscalia_anticorrupcion",
+        "fiscalia_ordinaria",
+        "oficio_judicial",
+        "querella_particular",
+        "querella_partido_politico",
+        "querella_asociacion_acusacion_popular",
+        "denuncia_organismo_publico",
+        "denuncia_periodistica",
+        "comparecencia_congreso",
+        "otro"
+      ]
+    },
+    "querellante_inicial_id": { "type": "string" },
+    "delitos_atribuidos_en_la_causa": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "resumen_cifras": { "type": "string" },
+
+    "estado_publicacion": {
+      "type": "string",
+      "enum": [
+        "borrador",
+        "en_revision",
+        "publicado",
+        "retirado_temporalmente",
+        "retirado_definitivamente"
+      ]
+    },
+    "ultima_revision_editorial": { "type": "string", "format": "date" },
+    "nivel_relevancia_editorial": {
+      "type": "string",
+      "enum": ["baja", "media", "alta", "capital"]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "required": ["caso_padre_id"] },
+      "then": { "required": ["tipo_pieza"] }
+    }
+  ]
+}
