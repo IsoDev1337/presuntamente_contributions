@@ -30,11 +30,10 @@ const [casosCol, hitosCol, rolesCol, organizacionesCol] = await Promise.all([
   getCollection('organizaciones'),
 ]);
 
-// Helper: mapeo de fase_actual (10 valores) → bucket de UI (3 valores).
-// Sólo tenemos 3 badges de fase en global.css (instr / juicio / firme); los
-// archivos van al bucket "firme" como estado neutral de cierre — convendrá
-// añadir badge propio cuando entren casos archivados al inventario.
-function mapFase(fase: string): { kind: 'instr' | 'juicio' | 'firme'; label: string } {
+// Helper: mapeo de fase_actual (10 valores) → bucket de UI (4 valores).
+// instr / juicio / firme / archivo. Archivo tiene badge propio
+// (--phase-archivo) distinto a firme.
+function mapFase(fase: string): { kind: 'instr' | 'juicio' | 'firme' | 'archivo'; label: string } {
   if (fase === 'instruccion' || fase === 'fase_intermedia' || fase === 'denuncia_o_querella') {
     return { kind: 'instr', label: 'Instrucción' };
   }
@@ -44,8 +43,11 @@ function mapFase(fase: string): { kind: 'instr' | 'juicio' | 'firme'; label: str
   if (fase === 'sentencia_firme' || fase === 'ejecucion') {
     return { kind: 'firme', label: 'Sentencia firme' };
   }
-  if (fase === 'archivo_provisional' || fase === 'archivo_libre') {
-    return { kind: 'firme', label: 'Archivado' };
+  if (fase === 'archivo_provisional') {
+    return { kind: 'archivo', label: 'Archivo provisional' };
+  }
+  if (fase === 'archivo_libre') {
+    return { kind: 'archivo', label: 'Archivo libre' };
   }
   return { kind: 'instr', label: fase };
 }
@@ -169,6 +171,7 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
         <option value="instr">Instrucción</option>
         <option value="juicio">Juicio oral</option>
         <option value="firme">Sentencia firme</option>
+        <option value="archivo">Archivado</option>
       </select>
     </div>
     <div class="field">

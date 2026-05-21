@@ -1,15 +1,15 @@
 ---
 // PhaseBadge — badge de fase procesal.
-// Mapea los 10 valores del enum `fase_actual` a los 3 buckets de UI
-// disponibles (instr / juicio / firme). Los archivos van al bucket firme con
-// label "Archivado" como estado de cierre neutral; convendrá añadir un
-// badge propio cuando entren casos archivados al inventario.
+// Mapea los 10 valores del enum `fase_actual` a 4 buckets de UI:
+// instr / juicio / firme / archivo. Archivo tiene estilo propio
+// (--phase-archivo, gris desaturado, peso normal) distinto a firme para
+// no confundir "cerrado con sentencia firme" con "archivado sin condena".
 interface Props {
   fase: string;
 }
 const { fase } = Astro.props;
 
-function mapFase(f: string): { kind: 'instr' | 'juicio' | 'firme'; label: string } {
+function mapFase(f: string): { kind: 'instr' | 'juicio' | 'firme' | 'archivo'; label: string } {
   if (f === 'instruccion' || f === 'fase_intermedia' || f === 'denuncia_o_querella') {
     return { kind: 'instr', label: 'Instrucción' };
   }
@@ -19,8 +19,11 @@ function mapFase(f: string): { kind: 'instr' | 'juicio' | 'firme'; label: string
   if (f === 'sentencia_firme' || f === 'ejecucion') {
     return { kind: 'firme', label: 'Sentencia firme' };
   }
-  if (f === 'archivo_provisional' || f === 'archivo_libre') {
-    return { kind: 'firme', label: 'Archivado' };
+  if (f === 'archivo_provisional') {
+    return { kind: 'archivo', label: 'Archivo provisional' };
+  }
+  if (f === 'archivo_libre') {
+    return { kind: 'archivo', label: 'Archivo libre' };
   }
   return { kind: 'instr', label: f };
 }

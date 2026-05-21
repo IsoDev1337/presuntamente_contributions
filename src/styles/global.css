@@ -866,9 +866,14 @@ li { margin: var(--space-1) 0; }
 .badge--investigado  { color: var(--color-investigado);  border-color: var(--color-investigado-border);  background: var(--color-investigado-bg); }
 .badge--exculpatorio { color: var(--color-exculpatorio); border-color: var(--color-exculpatorio-border); background: var(--color-exculpatorio-bg); }
 .badge--desmentido   { color: var(--color-desmentido);   border-color: var(--color-desmentido-border);   background: var(--color-desmentido-bg); }
-.badge--phase-instr  { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
-.badge--phase-juicio { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
-.badge--phase-firme  { color: var(--color-fg); border-color: var(--color-border-strong); background: var(--color-surface-muted); }
+.badge--phase-instr   { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
+.badge--phase-juicio  { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
+.badge--phase-firme   { color: var(--color-fg); border-color: var(--color-border-strong); background: var(--color-surface-muted); }
+/* Archivado: gris desaturado más apagado que firme + texto en peso normal,
+   para que se lea como "cerrado sin condena" frente al firme (sentencia
+   firme, peso pleno). Misma forma rectangular; diferencia transmitida por
+   intensidad de color y peso tipográfico, no por hue. */
+.badge--phase-archivo { color: var(--color-fg-muted); border-color: var(--color-border); background: var(--color-bg-muted); font-weight: 500; }
 
 /* =========================================================================
  * Botones
