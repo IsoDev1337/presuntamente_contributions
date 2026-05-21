@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import PgCasoDetalle from '@/components/pages/PgCasoDetalle.astro';
+
+// Generación estática de una página por caso. La fuente de los slugs es la
+// collection `casos`; el id de cada entry ya coincide con el slug del YAML
+// (ver content.config.ts → generateId).
+export async function getStaticPaths() {
+  const casos = await getCollection('casos');
+  return casos.map((caso) => ({
+    params: { slug: caso.id },
+    props: { caso },
+  }));
+}
+
+const { caso } = Astro.props;
+---
+<PgCasoDetalle lang="es" caso={caso} />

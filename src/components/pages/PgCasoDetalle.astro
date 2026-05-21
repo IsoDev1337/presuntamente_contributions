@@ -1,0 +1,627 @@
+---
+// PgCasoDetalle — ficha individual de un Caso.
+// Sigue la arquitectura de doc 02 §1-§2 (encabezado, resumen, estado,
+// personas, organizaciones, cronología, hechos por estado epistémico,
+// biblioteca, cómo se redacta, pie). Toda la lectura se hace contra
+// Content Collections; la página es estática.
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionH from '@/components/SectionH.astro';
+import PhaseBadge from '@/components/PhaseBadge.astro';
+import PersonaCard from '@/components/PersonaCard.astro';
+import OrgCard from '@/components/OrgCard.astro';
+import Hito from '@/components/Hito.astro';
+import Hecho from '@/components/Hecho.astro';
+import DocumentoCard from '@/components/DocumentoCard.astro';
+import {
+  rolLabel,
+  rolGrupo,
+  tipoOrgLabel,
+  tipoHitoLabel,
+  tipoHitoFamilia,
+  tipoDocLabel,
+  faseLabel,
+  origenLabel,
+  iniciales,
+  type Lang,
+} from '@/lib/labels';
+
+interface Props {
+  lang?: Lang;
+  caso: CollectionEntry<'casos'>;
+}
+
+const { lang = 'es', caso } = Astro.props;
+const data = caso.data;
+
+// --- Collections relacionadas ------------------------------------------------
+
+const [hitosCol, hechosCol, rolesCol, personasCol, organizacionesCol, documentosCol, delitosCol] =
+  await Promise.all([
+    getCollection('hitos'),
+    getCollection('hechos'),
+    getCollection('roles'),
+    getCollection('personas'),
+    getCollection('organizaciones'),
+    getCollection('documentos'),
+    getCollection('delitos'),
+  ]);
+
+const hitos = hitosCol
+  .filter((h) => h.data.caso_id === data.id)
+  .sort((a, b) => b.data.fecha.localeCompare(a.data.fecha));
+const hechos = hechosCol.filter((h) => h.data.caso_id === data.id);
+const roles = rolesCol.filter((r) => r.data.caso_id === data.id);
+
+// Índices auxiliares
+const personaIndex = new Map(personasCol.map((p) => [p.data.id, p.data]));
+const orgIndex = new Map(organizacionesCol.map((o) => [o.data.id, o.data]));
+const docIndex = new Map(documentosCol.map((d) => [d.data.id, d.data]));
+const delitoIndex = new Map(delitosCol.map((d) => [d.data.id, d.data]));
+
+// --- §2.1 Encabezado / §2.3 Estado procesal ---------------------------------
+
+const organo = orgIndex.get(data.organo_judicial_id);
+const ultimoHito = hitos[0]?.data;
+const juezInstructor = roles.find((r) => r.data.rol === 'juez_instructor');
+const juezInstructorPersona = juezInstructor?.data.sujeto_persona_id
+  ? personaIndex.get(juezInstructor.data.sujeto_persona_id)
+  : undefined;
+
+// --- §2.4 Personas implicadas -----------------------------------------------
+// Agrupadas por rol procesal (imputación activa / condenado / exculpado /
+// otros / funcional), siguiendo doc 02 §2.4.
+
+interface PersonaView {
+  persona: ReturnType<typeof personaIndex.get>;
+  roles: { rol: string; rolLabel: string; fecha_inicio: string; fecha_fin?: string; delitos: string[]; notas?: string }[];
+}
+
+const personasMap = new Map<string, PersonaView>();
+for (const r of roles) {
+  if (r.data.sujeto_tipo !== 'persona' || !r.data.sujeto_persona_id) continue;
+  const persona = personaIndex.get(r.data.sujeto_persona_id);
+  if (!persona) continue;
+  if (!personasMap.has(persona.id)) {
+    personasMap.set(persona.id, { persona, roles: [] });
+  }
+  personasMap.get(persona.id)!.roles.push({
+    rol: r.data.rol,
+    rolLabel: rolLabel(r.data.rol, lang),
+    fecha_inicio: r.data.fecha_inicio,
+    fecha_fin: r.data.fecha_fin,
+    delitos: (r.data.delitos_atribuidos ?? []).map((d) => delitoIndex.get(d)?.nombre_tipico ?? d),
+    notas: r.data.notas,
+  });
+}
+
+const personasPorGrupo: Record<string, PersonaView[]> = {
+  imputacion_activa: [],
+  condenado: [],
+  exculpado: [],
+  otros: [],
+  funcional: [],
+};
+for (const pv of personasMap.values()) {
+  // Grupo = el "peor" estado vigente entre sus roles activos. Si todos
+  // están cerrados, vamos al grupo del rol más reciente.
+  const activos = pv.roles.filter((r) => !r.fecha_fin);
+  const referencia = activos.length > 0 ? activos[0] : pv.roles[pv.roles.length - 1];
+  const grupo = rolGrupo(referencia.rol);
+  personasPorGrupo[grupo].push(pv);
+}
+
+const grupoOrden: { key: keyof typeof personasPorGrupo; titulo: string; intro?: string }[] = [
+  {
+    key: 'imputacion_activa',
+    titulo: 'Investigados / procesados / acusados',
+    intro:
+      'Las personas en esta sección tienen un rol procesal activo de imputación. Conforme al principio de presunción de inocencia, su condición no implica valoración de culpabilidad mientras no recaiga resolución firme.',
+  },
+  { key: 'condenado', titulo: 'Condenados con sentencia firme' },
+  { key: 'exculpado', titulo: 'Absueltos / desimputados' },
+  { key: 'otros', titulo: 'Otros: denunciantes, testigos, acusación popular' },
+  { key: 'funcional', titulo: 'Funcionales: jueces, fiscales, abogados' },
+];
+
+// --- §2.5 Organizaciones implicadas -----------------------------------------
+
+interface OrgView {
+  org: ReturnType<typeof orgIndex.get>;
+  roles: { rol: string; rolLabel: string; fecha_inicio: string; fecha_fin?: string; notas?: string }[];
+}
+const orgsMap = new Map<string, OrgView>();
+for (const r of roles) {
+  if (r.data.sujeto_tipo !== 'organizacion' || !r.data.sujeto_organizacion_id) continue;
+  const org = orgIndex.get(r.data.sujeto_organizacion_id);
+  if (!org) continue;
+  if (!orgsMap.has(org.id)) orgsMap.set(org.id, { org, roles: [] });
+  orgsMap.get(org.id)!.roles.push({
+    rol: r.data.rol,
+    rolLabel: rolLabel(r.data.rol, lang),
+    fecha_inicio: r.data.fecha_inicio,
+    fecha_fin: r.data.fecha_fin,
+    notas: r.data.notas,
+  });
+}
+const orgsImplicadas = Array.from(orgsMap.values());
+
+// --- §2.6 Cronología ---------------------------------------------------------
+
+const cronologia = hitos.map((h) => {
+  const doc = h.data.documento_principal_id ? docIndex.get(h.data.documento_principal_id) : undefined;
+  return {
+    fecha: h.data.fecha,
+    precision: h.data.fecha_precision,
+    tipo: h.data.tipo,
+    tipoLabel: tipoHitoLabel(h.data.tipo),
+    tipoFamilia: tipoHitoFamilia(h.data.tipo),
+    titulo: h.data.titulo,
+    descripcion: h.data.descripcion,
+    doc,
+  };
+});
+
+// --- §2.7 Hechos clasificados por estado epistémico -------------------------
+
+interface HechoView {
+  tipo: 'acreditado' | 'investigado' | 'atribuido' | 'exculpatorio' | 'desmentido' | 'no_concluyente';
+  enunciado: string;
+  fechaTexto: string;
+  fuentes: { nivel: 1 | 2 | 3 | 4; titulo: string; href?: string; pasaje?: string }[];
+}
+
+function formatPeriodo(fop: { desde: string; hasta?: string; precision: string }): string {
+  if (fop.precision === 'rango' && fop.hasta) return `${fop.desde} → ${fop.hasta}`;
+  if (fop.precision === 'anio') return fop.desde.slice(0, 4);
+  if (fop.precision === 'mes') return fop.desde.slice(0, 7);
+  return fop.desde;
+}
+
+const hechosViews: HechoView[] = hechos.map((h) => ({
+  tipo: h.data.tipo,
+  enunciado: h.data.enunciado,
+  fechaTexto: formatPeriodo(h.data.fecha_o_periodo as { desde: string; hasta?: string; precision: string }),
+  fuentes: ((h.data as { documentos_respaldo?: { documento_id: string; pasaje?: string }[] }).documentos_respaldo ?? []).map((d) => {
+    const doc = docIndex.get(d.documento_id);
+    return {
+      nivel: (doc?.nivel_fuente ?? 4) as 1 | 2 | 3 | 4,
+      titulo: doc?.titulo ?? d.documento_id,
+      href: doc ? `#doc-${doc.id}` : undefined,
+      pasaje: d.pasaje,
+    };
+  }),
+}));
+
+const HECHOS_ORDEN: { tipos: HechoView['tipo'][]; titulo: string; aviso?: string; num: string }[] = [
+  { tipos: ['acreditado'],                  titulo: 'Hechos acreditados',     num: '6.1' },
+  {
+    tipos: ['investigado', 'atribuido'],
+    titulo: 'Hechos bajo investigación o atribuidos',
+    num: '6.2',
+    aviso:
+      'Los hechos en esta sección están bajo investigación judicial o atribuidos por una fuente con autoridad institucional pero no han sido acreditados por sentencia firme. Pueden ser confirmados, descartados o archivados en el futuro.',
+  },
+  { tipos: ['exculpatorio'],                titulo: 'Hechos exculpatorios',   num: '6.3' },
+  { tipos: ['desmentido', 'no_concluyente'], titulo: 'Hechos desmentidos o no concluyentes', num: '6.4' },
+];
+
+const hechosPorGrupo = HECHOS_ORDEN.map((g) => ({
+  ...g,
+  items: hechosViews.filter((h) => g.tipos.includes(h.tipo)),
+}));
+
+// --- §2.8 Biblioteca ---------------------------------------------------------
+
+// Documentos del caso = los que tienen caso_principal_id === data.id +
+// los referenciados desde hitos del caso + los referenciados en hechos del
+// caso. Deduplicar por id. Ordenar por nivel ascendente (más oficiales
+// primero) y fecha descendente.
+
+const docIds = new Set<string>();
+for (const d of documentosCol) {
+  if (d.data.caso_principal_id === data.id) docIds.add(d.data.id);
+}
+for (const h of hitos) if (h.data.documento_principal_id) docIds.add(h.data.documento_principal_id);
+for (const h of hechos) {
+  const ds = (h.data as { documentos_respaldo?: { documento_id: string }[] }).documentos_respaldo;
+  if (ds) for (const d of ds) docIds.add(d.documento_id);
+}
+
+const biblioteca = Array.from(docIds)
+  .map((id) => docIndex.get(id))
+  .filter((d): d is NonNullable<typeof d> => Boolean(d))
+  .map((d) => {
+    // citado en N hechos
+    let citado = 0;
+    for (const h of hechos) {
+      const ds = (h.data as { documentos_respaldo?: { documento_id: string }[] }).documentos_respaldo;
+      if (ds && ds.some((x) => x.documento_id === d.id)) citado++;
+    }
+    return {
+      d,
+      productor: d.productor_organizacion_id ? orgIndex.get(d.productor_organizacion_id)?.nombre : undefined,
+      citadoEn: citado,
+    };
+  })
+  .sort((a, b) => {
+    if (a.d.nivel_fuente !== b.d.nivel_fuente) return a.d.nivel_fuente - b.d.nivel_fuente;
+    return b.d.fecha_documento.localeCompare(a.d.fecha_documento);
+  });
+
+// --- Strings de UI -----------------------------------------------------------
+
+// TODO i18n: cuando se active el catalán, añadir rama 'ca'.
+const strings = {
+  eyebrow: 'Ficha de caso',
+  disclaimer:
+    'Esta ficha presenta información pública sobre un procedimiento judicial. ' +
+    'Las personas mencionadas como investigadas, procesadas o acusadas se presumen inocentes ' +
+    'hasta que recaiga sentencia firme. Cada afirmación está respaldada por su documento de fuente y su nivel.',
+  rectificar:
+    'Si detectas un error en esta ficha, abre un issue en el repositorio público con el rótulo `rectificacion`.',
+};
+
+const breadcrumb = [
+  { label: 'Inicio', href: lang === 'ca' ? '/cat' : '/' },
+  { label: 'Casos', href: lang === 'ca' ? '/cat/casos' : '/casos' },
+  { label: data.nombre_mediatico },
+];
+---
+
+<BaseLayout
+  title={data.nombre_mediatico}
+  lang={lang}
+  description={data.descripcion_corta ?? data.nombre_mediatico}
+  activeNav="casos"
+  breadcrumb={breadcrumb}
+>
+  <!-- §2.1 — Encabezado (ficha mast) -->
+  <section class="ficha-mast">
+    <p class="ficha-mast__eye">{strings.eyebrow}</p>
+    <h1 class="ficha-mast__name">{data.nombre_mediatico}</h1>
+    <p class="ficha-mast__official">{data.nombre_oficial}</p>
+    {data.nombres_alternativos && data.nombres_alternativos.length > 0 && (
+      <p class="ficha-mast__aka">
+        <span>También conocido como:</span>
+        {data.nombres_alternativos.map((n, i) => (
+          <>{i > 0 && <span>·</span>}<em>{n}</em></>
+        ))}
+      </p>
+    )}
+    <dl class="ficha-mast__grid">
+      <div>
+        <dt>Fase actual</dt>
+        <dd><PhaseBadge fase={data.fase_actual} /></dd>
+      </div>
+      {organo && (
+        <div>
+          <dt>Órgano judicial</dt>
+          <dd>{organo.nombre}</dd>
+        </div>
+      )}
+      {data.numero_procedimiento && (
+        <div>
+          <dt>Nº procedimiento</dt>
+          <dd class="mono">{data.numero_procedimiento}</dd>
+        </div>
+      )}
+      {ultimoHito && (
+        <div>
+          <dt>Último hito</dt>
+          <dd>
+            <span class="mono">{ultimoHito.fecha}</span>
+            <span> · {ultimoHito.titulo}</span>
+          </dd>
+        </div>
+      )}
+    </dl>
+  </section>
+
+  <!-- §2.2 — Resumen ejecutivo -->
+  <SectionH num="1." title="Resumen ejecutivo" id="resumen" />
+  <div class="prose">
+    {data.descripcion_corta && <p>{data.descripcion_corta}</p>}
+    {data.resumen_cifras && <p><strong>Cifras de referencia.</strong> {data.resumen_cifras}</p>}
+  </div>
+
+  <!-- §2.3 — Estado procesal actual -->
+  <SectionH num="2." title="Estado procesal actual" id="estado" />
+  <dl class="estado-grid">
+    <div><dt>Fase</dt><dd>{faseLabel(data.fase_actual)}</dd></div>
+    {organo && <div><dt>Órgano</dt><dd>{organo.nombre}</dd></div>}
+    {juezInstructorPersona && (
+      <div><dt>Juez instructor</dt><dd>{juezInstructorPersona.nombre_completo}</dd></div>
+    )}
+    <div><dt>Origen del procedimiento</dt><dd>{origenLabel(data.origen_denuncia)}</dd></div>
+    <div><dt>Fecha de apertura</dt><dd class="mono">{data.fecha_apertura}</dd></div>
+    {data.numero_procedimiento && (
+      <div><dt>Nº de procedimiento</dt><dd class="mono">{data.numero_procedimiento}</dd></div>
+    )}
+  </dl>
+
+  <!-- §2.4 — Personas implicadas -->
+  <SectionH
+    num="3."
+    title="Personas implicadas"
+    id="personas"
+    right={`${personasMap.size} persona${personasMap.size === 1 ? '' : 's'}`}
+  />
+  {grupoOrden.map((g) => {
+    const items = personasPorGrupo[g.key];
+    if (items.length === 0) return null;
+    return (
+      <div class="grupo">
+        <h3 class="grupo__title">{g.titulo}</h3>
+        {g.intro && <p class="grupo__intro">{g.intro}</p>}
+        <div class="grupo__cards">
+          {items.map((pv) => (
+            <PersonaCard
+              nombre={pv.persona!.nombre_completo}
+              cargo={pv.persona!.cargo_publico_actual}
+              esFiguraPublica={pv.persona!.es_figura_publica}
+              iniciales={iniciales(pv.persona!.nombre_completo)}
+              roles={pv.roles}
+              notas={pv.roles[0]?.notas}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  })}
+
+  <!-- §2.5 — Organizaciones implicadas -->
+  {orgsImplicadas.length > 0 && (
+    <>
+      <SectionH
+        num="4."
+        title="Organizaciones implicadas"
+        id="organizaciones"
+        right={`${orgsImplicadas.length} organización${orgsImplicadas.length === 1 ? '' : 'es'}`}
+      />
+      <div class="grupo__cards">
+        {orgsImplicadas.map((ov) => (
+          <OrgCard
+            nombre={ov.org!.nombre}
+            tipo={ov.org!.tipo}
+            tipoLabel={tipoOrgLabel(ov.org!.tipo)}
+            localidad={(ov.org as { localidad?: string }).localidad}
+            roles={ov.roles}
+            notas={ov.roles[0]?.notas}
+          />
+        ))}
+      </div>
+    </>
+  )}
+
+  <!-- §2.6 — Cronología -->
+  <SectionH num="5." title="Cronología" id="cronologia" right={`${cronologia.length} hito${cronologia.length === 1 ? '' : 's'}`} />
+  {cronologia.length === 0 ? (
+    <p class="muted">Sin hitos registrados todavía.</p>
+  ) : (
+    <div class="timeline">
+      {cronologia.map((h) => (
+        <Hito
+          fecha={h.fecha}
+          precision={h.precision}
+          tipo={h.tipo}
+          tipoLabel={h.tipoLabel}
+          tipoFamilia={h.tipoFamilia}
+          titulo={h.titulo}
+          descripcion={h.descripcion}
+          documentoTitulo={h.doc?.titulo}
+          documentoHref={h.doc ? `#doc-${h.doc.id}` : undefined}
+          documentoNivel={h.doc?.nivel_fuente as 1 | 2 | 3 | 4 | undefined}
+        />
+      ))}
+    </div>
+  )}
+
+  <!-- §2.7 — Hechos por estado epistémico -->
+  <SectionH
+    num="6."
+    title="Hechos clasificados por estado epistémico"
+    id="hechos"
+    right={`${hechos.length} hecho${hechos.length === 1 ? '' : 's'}`}
+  />
+  {hechosPorGrupo.map((g) => {
+    if (g.items.length === 0) return null;
+    return (
+      <div class="grupo">
+        <h3 class="grupo__title"><span class="grupo__num">{g.num}</span>{g.titulo}</h3>
+        {g.aviso && <p class="aviso aviso--mostaza">{g.aviso}</p>}
+        <div class="grupo__cards">
+          {g.items.map((h) => (
+            <Hecho tipo={h.tipo} enunciado={h.enunciado} fechaTexto={h.fechaTexto} fuentes={h.fuentes} />
+          ))}
+        </div>
+      </div>
+    );
+  })}
+
+  <!-- §2.8 — Biblioteca documental -->
+  <SectionH
+    num="7."
+    title="Biblioteca documental del caso"
+    id="biblioteca"
+    right={`${biblioteca.length} documento${biblioteca.length === 1 ? '' : 's'}`}
+  />
+  <div class="grupo__cards" id="biblioteca-list">
+    {biblioteca.map(({ d, productor, citadoEn }) => (
+      <div id={`doc-${d.id}`}>
+        <DocumentoCard
+          titulo={d.titulo}
+          tipo={d.tipo}
+          tipoLabel={tipoDocLabel(d.tipo)}
+          nivel={d.nivel_fuente as 1 | 2 | 3 | 4}
+          productor={productor}
+          fecha={d.fecha_documento}
+          urlCanonica={d.url_canonica}
+          urlArchivo={(d as { url_archivo?: string }).url_archivo}
+          citadoEn={citadoEn}
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- §2.11 — Cómo se ha redactado esta ficha -->
+  <SectionH num="8." title="Cómo se ha redactado esta ficha" id="redaccion" />
+  <div class="prose">
+    <p>
+      Esta ficha se compone a partir de los YAML del caso en el repositorio público
+      <a href="https://github.com/davidchicano/presuntamente">davidchicano/presuntamente</a>.
+      Cada hito enlaza con su documento principal de respaldo (auto judicial, escrito de fiscalía,
+      nota institucional) y cada hecho explicita su nivel de fuente (N1-N4).
+    </p>
+    <ul class="meta-list">
+      <li><strong>Estado de publicación:</strong> {data.estado_publicacion}</li>
+      {data.ultima_revision_editorial && (
+        <li><strong>Última revisión editorial:</strong> <span class="mono">{data.ultima_revision_editorial}</span></li>
+      )}
+      <li><strong>Nivel de relevancia editorial:</strong> {data.nivel_relevancia_editorial ?? '—'}</li>
+      <li>
+        <strong>Cómo proponer una corrección:</strong>
+        {' '}{strings.rectificar}
+      </li>
+    </ul>
+  </div>
+
+  <!-- §2.12 — Pie disclaimer -->
+  <div class="aviso aviso--accent mt-6">{strings.disclaimer}</div>
+</BaseLayout>
+
+<style>
+  /* === §2.1 Encabezado (ficha-mast) — extendido sobre el .ficha-mast del global.css === */
+  .ficha-mast__eye {
+    font: 700 11px/1 var(--font-sans);
+    letter-spacing: var(--ls-caps, 0.04em);
+    text-transform: uppercase;
+    color: var(--color-accent-secondary-hover);
+    margin: 0 0 8px;
+  }
+  .ficha-mast__name {
+    font: 700 clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem) / 1.15 var(--font-sans);
+    letter-spacing: -0.01em;
+    margin: 0 0 4px;
+    color: var(--color-fg);
+  }
+  .ficha-mast__official {
+    font: 400 var(--font-size-2) / 1.4 var(--font-sans);
+    color: var(--color-fg-muted);
+    margin: 0 0 12px;
+  }
+  .ficha-mast__aka {
+    font: 400 12px/1.4 var(--font-sans);
+    color: var(--color-fg-subtle);
+    margin: 0 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: baseline;
+  }
+  .ficha-mast__aka em { font-style: italic; color: var(--color-fg-muted); }
+  .ficha-mast__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border);
+  }
+  .ficha-mast__grid > div { display: flex; flex-direction: column; gap: 4px; }
+  .ficha-mast__grid dt {
+    font: 600 10px/1 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  .ficha-mast__grid dd {
+    margin: 0;
+    font: 400 13px/1.4 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .ficha-mast__grid .mono { font-family: var(--font-mono); font-size: 12px; }
+
+  /* === §2.3 Estado procesal === */
+  .estado-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    margin: 0 0 var(--space-5);
+  }
+  .estado-grid > div {
+    padding: 12px 14px;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .estado-grid dt {
+    font: 600 10px/1 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  .estado-grid dd {
+    margin: 0;
+    font: 400 13px/1.4 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .estado-grid .mono { font-family: var(--font-mono); font-size: 12px; }
+
+  /* === Grupos (personas por categoría, hechos por tipo) === */
+  .grupo { margin: 0 0 var(--space-5); }
+  .grupo__title {
+    font: 700 11px/1.4 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary-hover);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 4px;
+    margin: var(--space-4) 0 var(--space-3);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .grupo__num {
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+    font-size: 11px;
+  }
+  .grupo__intro {
+    margin: 0 0 var(--space-3);
+    padding: 10px 12px;
+    background: var(--color-surface-muted);
+    border-left: 3px solid var(--color-accent-secondary-border);
+    font: 400 13px/1.55 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .grupo__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  @media (min-width: 720px) {
+    .grupo__cards { grid-template-columns: 1fr; }
+  }
+
+  /* Timeline contenedora (cada Hito ya trae su borde inferior) */
+  .timeline {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .aviso--mostaza {
+    background: var(--color-accent-secondary-soft);
+    border-left: 3px solid var(--color-accent-secondary-border);
+    color: #6b4d00;
+  }
+
+  .meta-list { margin: 0; padding-left: 18px; }
+  .meta-list li { margin: 4px 0; }
+  .meta-list .mono { font-family: var(--font-mono); font-size: 12px; }
+</style>
