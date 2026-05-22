@@ -5,6 +5,7 @@
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CustomSelect from '@/components/CustomSelect.astro';
+import RolBadge from '@/components/RolBadge.astro';
 import { getCollection } from 'astro:content';
 import { rolLabel, rolGrupo, type Lang } from '@/lib/labels';
 
@@ -115,6 +116,7 @@ function searchBlob(p: (typeof personas)[number]): string {
     <span class="right">orden: alfabético</span>
   </header>
 
+  <div class="tbl-scroll">
   <table class="tbl" data-personas>
     <thead>
       <tr>
@@ -140,7 +142,7 @@ function searchBlob(p: (typeof personas)[number]): string {
           </td>
           <td>
             {p.rolPrincipal ? (
-              <span class="badge">{p.rolPrincipal.label}</span>
+              <RolBadge rol={p.rolPrincipal.rol} label={p.rolPrincipal.label} />
             ) : (
               <span class="muted">—</span>
             )}
@@ -151,6 +153,7 @@ function searchBlob(p: (typeof personas)[number]): string {
       ))}
     </tbody>
   </table>
+  </div>
 
   <p class="empty-state" data-empty hidden>Sin resultados para los filtros actuales.</p>
 </BaseLayout>

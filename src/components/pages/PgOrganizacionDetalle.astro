@@ -4,6 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionH from '@/components/SectionH.astro';
 import OrgGlyph from '@/components/OrgGlyph.astro';
 import RichProse from '@/components/RichProse.astro';
+import RolBadge from '@/components/RolBadge.astro';
 import { tipoOrgLabel, rolLabel, type Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; organizacion: CollectionEntry<'organizaciones'>; }
@@ -109,6 +110,7 @@ const breadcrumb = [
   {rolesOrg.length > 0 && (
     <>
       <SectionH num="3." title="Roles procesales asumidos" id="roles" right={`${rolesOrg.length} rol${rolesOrg.length === 1 ? '' : 'es'}`} />
+      <div class="tbl-scroll">
       <table class="tbl">
         <thead>
           <tr>
@@ -121,12 +123,13 @@ const breadcrumb = [
           {rolesOrg.map((r) => (
             <tr>
               <td class="c-mono">{r.fecha_inicio}{r.fecha_fin ? ` → ${r.fecha_fin}` : ' → vigente'}</td>
-              <td><span class="badge">{r.rolLabel}</span></td>
+              <td><RolBadge rol={r.rol} label={r.rolLabel} /></td>
               <td><a href={`/casos/${r.caso_id}`}>{casoIndex.get(r.caso_id)?.nombre_mediatico ?? r.caso_id}</a></td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </>
   )}
 

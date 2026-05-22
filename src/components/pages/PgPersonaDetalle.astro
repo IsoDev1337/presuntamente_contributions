@@ -7,6 +7,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionH from '@/components/SectionH.astro';
 import RichProse from '@/components/RichProse.astro';
+import RolBadge from '@/components/RolBadge.astro';
 import { rolLabel, iniciales, type Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; persona: CollectionEntry<'personas'>; }
@@ -114,6 +115,7 @@ const strings = {
     id="trayectoria"
     right={`${rolesPersona.length} rol${rolesPersona.length === 1 ? '' : 'es'}`}
   />
+  <div class="tbl-scroll">
   <table class="tbl">
     <thead>
       <tr>
@@ -131,7 +133,7 @@ const strings = {
             {r.fecha_fin ? ` → ${r.fecha_fin}` : ' → vigente'}
           </td>
           <td>
-            <span class:list={['badge', !r.activo && 'badge--ghost']}>{r.rolLabel}</span>
+            <RolBadge rol={r.rol} label={r.rolLabel} ghost={!r.activo} />
           </td>
           <td>
             <a href={`/casos/${r.caso_id}`}>{casoIndex.get(r.caso_id)?.nombre_mediatico ?? r.caso_id}</a>
@@ -147,6 +149,7 @@ const strings = {
       ))}
     </tbody>
   </table>
+  </div>
 
   <SectionH num="4." title="Cómo se ha redactado esta ficha" id="redaccion" />
   <div class="prose">

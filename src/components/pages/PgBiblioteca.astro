@@ -135,6 +135,7 @@ const tiposPresentes = Array.from(new Set(documentos.map((d) => d.tipo)))
     <span class="right">orden: nivel ↑ · fecha ↓</span>
   </header>
 
+  <div class="tbl-scroll">
   <table class="tbl" data-docs>
     <thead>
       <tr>
@@ -160,6 +161,7 @@ const tiposPresentes = Array.from(new Set(documentos.map((d) => d.tipo)))
       ))}
     </tbody>
   </table>
+  </div>
 
   <p class="empty-state" data-empty hidden>Sin resultados para los filtros actuales.</p>
 </BaseLayout>

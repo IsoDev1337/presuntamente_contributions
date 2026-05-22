@@ -113,17 +113,51 @@ for (const pv of personasMap.values()) {
   personasPorGrupo[grupo].push(pv);
 }
 
-const grupoOrden: { key: keyof typeof personasPorGrupo; titulo: string; intro?: string }[] = [
+// Cada subheading se compone de partes, donde las que corresponden a un rol
+// concreto reciben el color de F-estado del badge (DESIGN.md §2bis). Refuerza
+// la lectura: "investigados" en navy, "procesados / acusados" en mostaza,
+// "condenados" en granate, "absueltos" en verde, "desimputados" en azul-gris.
+interface SubheadParte {
+  text: string;
+  rolKey?: string;
+}
+const grupoOrden: {
+  key: keyof typeof personasPorGrupo;
+  partes: SubheadParte[];
+  intro?: string;
+}[] = [
   {
     key: 'imputacion_activa',
-    titulo: 'Investigados / procesados / acusados',
+    partes: [
+      { text: 'Investigados', rolKey: 'investigado' },
+      { text: ' / ' },
+      { text: 'procesados', rolKey: 'procesado' },
+      { text: ' / ' },
+      { text: 'acusados', rolKey: 'acusado' },
+    ],
     intro:
       'Las personas en esta sección tienen un rol procesal activo de imputación. Conforme al principio de presunción de inocencia, su condición no implica valoración de culpabilidad mientras no recaiga resolución firme.',
   },
-  { key: 'condenado', titulo: 'Condenados con sentencia firme' },
-  { key: 'exculpado', titulo: 'Absueltos / desimputados' },
-  { key: 'otros', titulo: 'Otros: denunciantes, testigos, acusación popular' },
-  { key: 'funcional', titulo: 'Funcionales: jueces, fiscales, abogados' },
+  {
+    key: 'condenado',
+    partes: [{ text: 'Condenados', rolKey: 'condenado_no_firme' }],
+  },
+  {
+    key: 'exculpado',
+    partes: [
+      { text: 'Absueltos', rolKey: 'absuelto' },
+      { text: ' / ' },
+      { text: 'desimputados', rolKey: 'desimputado' },
+    ],
+  },
+  {
+    key: 'otros',
+    partes: [{ text: 'Otros: denunciantes, testigos, acusación popular' }],
+  },
+  {
+    key: 'funcional',
+    partes: [{ text: 'Funcionales: jueces, fiscales, abogados' }],
+  },
 ];
 
 // --- §2.5 Organizaciones implicadas -----------------------------------------
@@ -360,7 +394,15 @@ const breadcrumb = [
     if (items.length === 0) return null;
     return (
       <div class="grupo">
-        <h3 class="grupo__title">{g.titulo}</h3>
+        <h3 class="grupo__title">
+          {g.partes.map((p) =>
+            p.rolKey ? (
+              <span class={`rol-color-${p.rolKey}`}>{p.text}</span>
+            ) : (
+              <span>{p.text}</span>
+            )
+          )}
+        </h3>
         {g.intro && <p class="grupo__intro">{g.intro}</p>}
         <div class="grupo__cards">
           {items.map((pv) => (

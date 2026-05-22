@@ -115,6 +115,7 @@ const tiposPresentes = Array.from(new Set(orgs.map((o) => o.tipo)))
     <span class="right">orden: alfabético</span>
   </header>
 
+  <div class="tbl-scroll">
   <table class="tbl" data-orgs>
     <thead>
       <tr>
@@ -132,13 +133,14 @@ const tiposPresentes = Array.from(new Set(orgs.map((o) => o.tipo)))
               <span class="c-name">{o.nombre}</span>
             </a>
           </td>
-          <td><span class="badge">{o.tipoLabel}</span></td>
+          <td><span class="badge badge--cat">{o.tipoLabel}</span></td>
           <td class="c-mono">{o.localidad ?? '—'}</td>
           <td class="c-num">{o.casosCount}</td>
         </tr>
       ))}
     </tbody>
   </table>
+  </div>
 
   <p class="empty-state" data-empty hidden>Sin resultados para los filtros actuales.</p>
 </BaseLayout>

@@ -31,12 +31,15 @@ const [casosCol, hitosCol, rolesCol, organizacionesCol] = await Promise.all([
   getCollection('organizaciones'),
 ]);
 
-// Helper: mapeo de fase_actual (10 valores) → bucket de UI (4 valores).
-// instr / juicio / firme / archivo. Archivo tiene badge propio
-// (--phase-archivo) distinto a firme.
-function mapFase(fase: string): { kind: 'instr' | 'juicio' | 'firme' | 'archivo'; label: string } {
-  if (fase === 'instruccion' || fase === 'fase_intermedia' || fase === 'denuncia_o_querella') {
+// Helper: mapeo de fase_actual (10 valores) → bucket de UI (5 valores).
+// Coincide con PhaseBadge.astro: instr / intermedia / juicio / firme / archivo.
+// Cada bucket tiene su micro-barra de progreso en el badge (F4).
+function mapFase(fase: string): { kind: 'instr' | 'intermedia' | 'juicio' | 'firme' | 'archivo'; label: string } {
+  if (fase === 'instruccion' || fase === 'denuncia_o_querella') {
     return { kind: 'instr', label: 'Instrucción' };
+  }
+  if (fase === 'fase_intermedia') {
+    return { kind: 'intermedia', label: 'Fase intermedia' };
   }
   if (fase === 'juicio_oral' || fase === 'sentencia_primera_instancia' || fase === 'recurso') {
     return { kind: 'juicio', label: 'Juicio oral' };
@@ -173,11 +176,12 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
         value="all"
         ariaLabel="Filtrar por fase procesal"
         options={[
-          { value: 'all',     label: 'Todas' },
-          { value: 'instr',   label: 'Instrucción' },
-          { value: 'juicio',  label: 'Juicio oral' },
-          { value: 'firme',   label: 'Sentencia firme' },
-          { value: 'archivo', label: 'Archivado' },
+          { value: 'all',        label: 'Todas' },
+          { value: 'instr',      label: 'Instrucción' },
+          { value: 'intermedia', label: 'Fase intermedia' },
+          { value: 'juicio',     label: 'Juicio oral' },
+          { value: 'firme',      label: 'Sentencia firme' },
+          { value: 'archivo',    label: 'Archivado' },
         ]}
       />
     </div>
@@ -210,6 +214,7 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
     <span>Última actualización del listado: 2026-05-21</span>
   </div>
 
+  <div class="tbl-scroll">
   <table class="tbl" data-catalog>
     <thead>
       <tr>
@@ -255,6 +260,7 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
       ))}
     </tbody>
   </table>
+  </div>
 
   <p class="empty-state" data-empty hidden>
     Sin resultados para los filtros actuales.

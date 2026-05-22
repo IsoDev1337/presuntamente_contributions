@@ -4,6 +4,7 @@
 // a la izquierda (NO iniciales — esa es la marca de Persona).
 
 import OrgGlyph from './OrgGlyph.astro';
+import RolBadge from './RolBadge.astro';
 
 interface RolView {
   rol: string;
@@ -37,7 +38,7 @@ const { nombre, tipo, tipoLabel, localidad, href, roles, notas } = Astro.props;
     <ul class="ocard__roles">
       {roles.map((r) => (
         <li class="ocard__role">
-          <span class="badge">{r.rolLabel}</span>
+          <RolBadge rol={r.rol} label={r.rolLabel} />
           <span class="ocard__role-dates">
             {r.fecha_inicio}
             {r.fecha_fin ? ` → ${r.fecha_fin}` : ' → vigente'}
@@ -52,7 +53,11 @@ const { nombre, tipo, tipoLabel, localidad, href, roles, notas } = Astro.props;
 <style>
   .ocard {
     border: 1px solid var(--color-border);
-    border-left: 3px solid var(--color-accent-secondary-border);
+    /* Border-left gris institucional muted: "organización presente en el caso",
+     * sin pisar el código cromático de roles (mostaza ya es procesado/acusado;
+     * navy ya es investigado/aparato judicial). El gris comunica "actor sin
+     * rol procesal de imputación" coherente con la sobriedad ministerial. */
+    border-left: 3px solid var(--color-border-strong);
     background: var(--color-surface);
     padding: 14px 16px;
     display: grid;

@@ -5,6 +5,14 @@
 // El swimlane de trayectoria queda fuera del MVP de este lote (lo añade el
 // Lote 4 con la ficha individual de Persona); aquí mostramos rol activo +
 // metadata.
+//
+// El border-left de la card refleja el color del **rol más reciente** de
+// esta persona en el caso: activo (sin fecha_fin) si existe; si no, el de
+// fecha_inicio más reciente. Esto da una lectura inmediata del "estado
+// actual" de cada persona en la sección de implicados, alineada con los
+// tokens --color-rol-* del sistema de badges (DESIGN.md §2bis).
+
+import RolBadge from './RolBadge.astro';
 
 interface RolView {
   rol: string;
@@ -25,8 +33,19 @@ interface Props {
 }
 
 const { nombre, cargo, esFiguraPublica, iniciales, href, roles, notas } = Astro.props;
+
+// Rol más reciente: activos primero (sin fecha_fin), luego por fecha_inicio
+// descendente. Si no hay roles, fallback a navy (--color-accent) vía el
+// fallback en CSS.
+function rolMasReciente(rs: RolView[]): string | null {
+  if (rs.length === 0) return null;
+  const activos = rs.filter((r) => !r.fecha_fin);
+  const pool = activos.length > 0 ? activos : rs;
+  return [...pool].sort((a, b) => b.fecha_inicio.localeCompare(a.fecha_inicio))[0].rol;
+}
+const rolReciente = rolMasReciente(roles);
 ---
-<article class="pcard">
+<article class:list={['pcard', rolReciente && `pcard--rol-${rolReciente}`]}>
   <div class="pcard__init" aria-hidden="true">{iniciales}</div>
   <div class="pcard__body">
     <h4 class="pcard__name">
@@ -40,7 +59,7 @@ const { nombre, cargo, esFiguraPublica, iniciales, href, roles, notas } = Astro.
     <ul class="pcard__roles">
       {roles.map((r) => (
         <li class="pcard__role">
-          <span class:list={['badge', `badge--rol-${r.rol}`]}>{r.rolLabel}</span>
+          <RolBadge rol={r.rol} label={r.rolLabel} />
           <span class="pcard__role-dates">
             {r.fecha_inicio}
             {r.fecha_fin ? ` → ${r.fecha_fin}` : ' → vigente'}
@@ -60,7 +79,7 @@ const { nombre, cargo, esFiguraPublica, iniciales, href, roles, notas } = Astro.
 <style>
   .pcard {
     border: 1px solid var(--color-border);
-    border-left: 3px solid var(--color-accent);
+    border-left: 3px solid var(--pcard-rol, var(--color-accent));
     background: var(--color-surface);
     padding: 14px 16px;
     display: grid;
@@ -72,6 +91,31 @@ const { nombre, cargo, esFiguraPublica, iniciales, href, roles, notas } = Astro.
     border-left-width: 5px;
     background: var(--color-bg-muted);
   }
+  /* Color del border-left por rol más reciente. Reusa los tokens del sistema
+   * de badges (DESIGN.md §2bis) para coherencia con los RolBadge dentro de
+   * la card. */
+  .pcard--rol-investigado        { --pcard-rol: var(--color-rol-investigado); }
+  .pcard--rol-procesado          { --pcard-rol: var(--color-rol-procesado); }
+  .pcard--rol-acusado            { --pcard-rol: var(--color-rol-acusado); }
+  .pcard--rol-condenado_no_firme { --pcard-rol: var(--color-rol-condenado-no-firme); }
+  .pcard--rol-condenado_firme    { --pcard-rol: var(--color-rol-condenado-firme); }
+  .pcard--rol-absuelto           { --pcard-rol: var(--color-rol-absuelto); }
+  .pcard--rol-desimputado        { --pcard-rol: var(--color-rol-desimputado); }
+  .pcard--rol-testigo            { --pcard-rol: var(--color-rol-testigo); }
+  .pcard--rol-juez_instructor,
+  .pcard--rol-juez_ponente,
+  .pcard--rol-fiscal,
+  .pcard--rol-magistrado,
+  .pcard--rol-abogado_defensa,
+  .pcard--rol-abogado_acusacion,
+  .pcard--rol-perito_judicial,
+  .pcard--rol-perito_parte,
+  .pcard--rol-secretario_judicial { --pcard-rol: var(--color-rol-aparato); }
+  .pcard--rol-denunciante,
+  .pcard--rol-querellante,
+  .pcard--rol-acusacion_particular,
+  .pcard--rol-acusacion_popular,
+  .pcard--rol-perjudicado        { --pcard-rol: var(--color-rol-acusacion-civil); }
   .pcard__init {
     width: 44px;
     height: 44px;
