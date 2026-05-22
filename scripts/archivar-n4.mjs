@@ -68,6 +68,7 @@ function pickPending(parsedDocs) {
     .filter(({ data }) => data?.nivel_fuente === 4)
     .filter(({ data }) => typeof data?.url_canonica === 'string' && data.url_canonica.length > 0)
     .filter(({ data }) => !data?.url_archivo)
+    .filter(({ data }) => !data?.url_archivo_no_disponible)
     .filter(({ data }) => (casoFilter ? data?.caso_principal_id === casoFilter : true));
 }
 

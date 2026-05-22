@@ -16,6 +16,8 @@ productor_organizacion_id: el-espanol
 fecha_documento: "2025-05-29"
 fecha_publicacion: "2025-05-29"
 url_canonica: "https://www.elespanol.com/madrid/comunidad/20250529/juez-propone-juzgar-gonzalez-amador-novio-ayuso-fraude-fiscal-falsedad-documental/1003743779954_0.html"
+url_archivo_no_disponible: |
+  elespanol.com bloquea al bot de archive.org con Cloudflare anti-bot (HTTP 520 al crawler). Captura manual posible vía archive.ph pero requiere intervención humana (CAPTCHA). V-13 se cumple por el respaldo cruzado del Hecho con otros documentos N4 archivados.
 estado_acceso: publico
 idioma: es
 caso_principal_id: gonzalez-amador

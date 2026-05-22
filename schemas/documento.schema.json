@@ -88,6 +88,11 @@
       "format": "uri",
       "description": "Mirror en archive.org / archive.ph (recomendado para Nivel 4)."
     },
+    "url_archivo_no_disponible": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Razón por la que este documento no se puede archivar (ej. el medio bloquea archive.org con Cloudflare anti-bot). Si está presente, el hook de archivado lo salta. Documenta editorialmente por qué V-13 no puede cumplirse con mirror propio y por qué el respaldo cruzado del Hecho se apoya en otros documentos."
+    },
     "ruta_local": {
       "type": "string",
       "description": "Path en el repo si tenemos copia almacenada (típicamente bajo /public/documentos/)."

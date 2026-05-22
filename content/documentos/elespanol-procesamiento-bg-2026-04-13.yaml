@@ -12,6 +12,8 @@ productor_organizacion_id: el-espanol
 fecha_documento: "2026-04-13"
 fecha_publicacion: "2026-04-13"
 url_canonica: "https://www.elespanol.com/espana/tribunales/20260413/juez-peinado-manda-juicio-jurado-begona-gomez-delitos/1003744204456_0.html"
+url_archivo_no_disponible: |
+  elespanol.com bloquea al bot de archive.org con Cloudflare anti-bot (HTTP 520 al crawler). Captura manual posible vía archive.ph pero requiere intervención humana (CAPTCHA). V-13 se cumple por el respaldo cruzado del Hecho con otros documentos N4 archivados.
 estado_acceso: publico
 idioma: es
 caso_principal_id: begona-gomez
