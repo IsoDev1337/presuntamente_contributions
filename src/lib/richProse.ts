@@ -56,10 +56,18 @@ export type DelitoLite = {
   nombre_tipico: string;
 };
 
+export type GlosarioLite = {
+  id: string;
+  label: string;
+  nombres_alternativos?: string[];
+  descripcion_breve: string;
+};
+
 export interface EnrichOpts {
   orgs: OrgLite[];
   personas?: PersonaLite[];
   delitos?: DelitoLite[];
+  glosario?: GlosarioLite[];
   excludeOrgIds?: string[];
   excludePersonaIds?: string[];
   /** Activa la auto-detección de delitos. Off por defecto: hoy
@@ -132,12 +140,23 @@ function parseEuropeanNumber(s: string): number {
 
 function formatAmount(num: number): string {
   // Forma europea: coma decimal, punto miles. Máx 2 decimales, sin ceros
-  // a la derecha innecesarios.
-  if (Number.isInteger(num)) {
-    if (num < 1000) return String(num);
-    return num.toLocaleString('es-ES', { maximumFractionDigits: 0 });
+  // a la derecha innecesarios. Formatter manual porque `toLocaleString`
+  // en este runtime no aplica grouping de forma fiable (verificado:
+  // (4743.53).toLocaleString('es-ES') → "4743,53" sin punto de miles).
+  const negative = num < 0;
+  const abs = Math.abs(num);
+  const rounded = Math.round(abs * 100) / 100;
+  const intPart = Math.trunc(rounded);
+  const decPart = rounded - intPart;
+  // Miles cada 3 dígitos desde la derecha.
+  const intStr = String(intPart).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  let out = intStr;
+  if (decPart > 0) {
+    // 2 decimales, recorta ceros a la derecha.
+    let dec = decPart.toFixed(2).slice(2).replace(/0+$/, '');
+    if (dec) out += `,${dec}`;
   }
-  return num.toLocaleString('es-ES', { maximumFractionDigits: 2 });
+  return negative ? `-${out}` : out;
 }
 
 function shortenMoney(amount: string, unit: string): string {
@@ -226,12 +245,16 @@ function pushMoneyCandidates(text: string, out: Candidate[]): void {
   while ((m = re.exec(text)) !== null) {
     const [full, amount, unit] = m;
     const shortened = shortenMoney(amount, unit);
+    // Colapsamos whitespace interno: los YAML con block scalar `|`
+    // pueden envolver el match entre "amount" y "unit" en un salto de
+    // línea (ej. "113.509,32\neuros") que afea el tooltip.
+    const raw = full.trim().replace(/\s+/g, ' ');
     out.push({
       start: m.index,
       end: m.index + full.length,
       html: `<span class="money" data-money data-money-raw="${escapeHtml(
-        full.trim(),
-      )}" title="${escapeHtml(full.trim())}">${escapeHtml(shortened)}</span>`,
+        raw,
+      )}" title="${escapeHtml(raw)}">${escapeHtml(shortened)}</span>`,
       priority: 0,
     });
   }
@@ -365,7 +388,27 @@ function processSegment(text: string, opts: EnrichOpts): string {
     }
   }
 
-  // 6. Resolver solapamientos: ordenamos por start ASC, end DESC (longer
+  // 6. Glosario (case-sensitive, prioridad 35). Programa públicos por
+  //    nombre comercial, operaciones policiales nombradas, sobrenombres
+  //    de tramas. Renderizadas como span con tooltip — sin link interno
+  //    porque no son páginas del inventario, ni externo por seguridad
+  //    editorial (NUNCA Wikipedia).
+  const glosarioTerms: Array<{ term: string; tooltip: string }> = [];
+  for (const g of opts.glosario ?? []) {
+    const terms = new Set<string>();
+    terms.add(g.label);
+    for (const a of g.nombres_alternativos ?? []) terms.add(a);
+    const tooltip = g.descripcion_breve.trim().replace(/\s+/g, ' ');
+    for (const term of terms) {
+      glosarioTerms.push({ term, tooltip });
+    }
+  }
+  glosarioTerms.sort((a, b) => b.term.length - a.term.length);
+  for (const t of glosarioTerms) {
+    pushTermCandidates(text, t.term, undefined, t.tooltip, 35, false, candidates);
+  }
+
+  // 7. Resolver solapamientos: ordenamos por start ASC, end DESC (longer
   //    wins en igual start), prioridad ASC (menor priority gana). Greedy
   //    seleccionamos no-solapados.
   candidates.sort((a, b) => {
@@ -382,7 +425,7 @@ function processSegment(text: string, opts: EnrichOpts): string {
     lastEnd = c.end;
   }
 
-  // 7. Stitch: tramos de texto plano se escapan al vuelo; cada candidato
+  // 8. Stitch: tramos de texto plano se escapan al vuelo; cada candidato
   //    inserta su HTML ya construido.
   let out = '';
   let cursor = 0;

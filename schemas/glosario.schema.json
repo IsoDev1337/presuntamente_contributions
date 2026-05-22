@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/glosario.schema.json",
+  "title": "EntradaGlosario",
+  "description": "Entrada de glosario para 'cosas de interés' que se citan en prosa pero no encajan como entidad formal (Organizacion / Persona / Delito). Programas o fondos públicos citados por su nombre comercial, operaciones policiales nombradas, sobrenombres mediáticos de tramas. Renderizado inline por RichProse con dotted underline y tooltip; sin link interno ni externo por seguridad editorial.",
+  "type": "object",
+  "required": ["id", "label", "descripcion_breve", "categoria", "estado_publicacion", "ultima_revision_editorial"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Slug en kebab-case. Único en /content/glosario/."
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Forma canónica del término tal cual aparece en prensa o documentos oficiales (ej. 'Fondo de Apoyo a la Solvencia de Empresas Estratégicas', 'Operación Kitchen', 'Gürtel')."
+    },
+    "nombres_alternativos": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Variantes y abreviaturas con las que el término puede citarse (ej. 'FASEE', 'Fondo SEPI' para el caso del Fondo de Apoyo a la Solvencia). RichProse detecta cualquiera y enlaza al mismo tooltip."
+    },
+    "categoria": {
+      "type": "string",
+      "enum": ["programa_publico", "operacion_policial", "trama_sobrenombre", "otra"],
+      "description": "Tipología editorial. 'programa_publico' para fondos / instrumentos públicos citados por nombre comercial; 'operacion_policial' para operaciones nombradas (Kitchen, Centauro, Catalonia); 'trama_sobrenombre' para casos consolidados mediáticamente por su sobrenombre (Gürtel, Lezo, Púnica)."
+    },
+    "descripcion_breve": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Una o dos frases que se renderizan como tooltip. Tono neutro, factual, sin valoración."
+    },
+    "estado_publicacion": {
+      "type": "string",
+      "enum": ["borrador", "publicado", "retirado"]
+    },
+    "ultima_revision_editorial": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}

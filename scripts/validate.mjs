@@ -28,6 +28,7 @@ const SCHEMA_FOR_PATH = [
   { match: (p) => p.startsWith('content/organizaciones/') && p.endsWith('.yaml'), schema: 'organizacion.schema.json' },
   { match: (p) => p.startsWith('content/documentos/') && p.endsWith('.yaml'), schema: 'documento.schema.json' },
   { match: (p) => p.startsWith('content/delitos/') && p.endsWith('.yaml'), schema: 'delito.schema.json' },
+  { match: (p) => p.startsWith('content/glosario/') && p.endsWith('.yaml'), schema: 'glosario.schema.json' },
   { match: (p) => p.startsWith('content/relaciones-entre-casos/') && p.endsWith('.yaml'), schema: 'relacion-entre-casos.schema.json' },
 ];
 
@@ -37,6 +38,7 @@ const SCHEMA_FILES = [
   'organizacion.schema.json',
   'documento.schema.json',
   'delito.schema.json',
+  'glosario.schema.json',
   'hito.schema.json',
   'hecho.schema.json',
   'rol-en-caso.schema.json',

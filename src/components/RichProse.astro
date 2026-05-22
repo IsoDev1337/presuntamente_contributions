@@ -14,7 +14,13 @@
 //   <RichProse text={org.descripcion_corta} excludeOrgIds={[org.id]} />
 
 import { getCollection } from 'astro:content';
-import { richProse, type OrgLite, type PersonaLite, type DelitoLite } from '@/lib/richProse';
+import {
+  richProse,
+  type OrgLite,
+  type PersonaLite,
+  type DelitoLite,
+  type GlosarioLite,
+} from '@/lib/richProse';
 
 interface Props {
   text: string;
@@ -39,10 +45,11 @@ const {
   excludePersonaIds,
 } = Astro.props as Props;
 
-const [orgsCol, personasCol, delitosCol] = await Promise.all([
+const [orgsCol, personasCol, delitosCol, glosarioCol] = await Promise.all([
   getCollection('organizaciones'),
   getCollection('personas'),
   getCollection('delitos'),
+  getCollection('glosario'),
 ]);
 
 const orgs: OrgLite[] = orgsCol.map((o) => ({
@@ -63,10 +70,18 @@ const delitos: DelitoLite[] = delitosCol.map((d) => ({
   nombre_tipico: d.data.nombre_tipico,
 }));
 
+const glosario: GlosarioLite[] = glosarioCol.map((g) => ({
+  id: g.data.id,
+  label: g.data.label,
+  nombres_alternativos: g.data.nombres_alternativos,
+  descripcion_breve: g.data.descripcion_breve,
+}));
+
 const html = richProse(text, {
   orgs,
   personas,
   delitos,
+  glosario,
   excludeOrgIds,
   excludePersonaIds,
   // Off hasta que exista /delitos/[slug].astro (Fase 2).

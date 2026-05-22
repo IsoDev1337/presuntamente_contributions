@@ -82,9 +82,10 @@ Y propone commits coherentes (una idea por commit, en español imperativo presen
 ### 5. Alimentar el diccionario de citaciones inline
 
 El sitio renderiza acrónimos institucionales, nombres de organización,
-nombres de persona y cifras monetarias como micro-componentes inline
-(`RichProse`, `src/lib/richProse.ts`). La v1 cubre 4 ejes de
-auto-detección, todos sin tener que marcar nada a mano en el YAML:
+nombres de persona, cifras monetarias y "cosas de interés" no
+jerárquicas como micro-componentes inline (`RichProse`,
+`src/lib/richProse.ts`). La v1 cubre 5 ejes de auto-detección, todos
+sin tener que marcar nada a mano en el YAML:
 
 1. **Money chip**: cifras monetarias detectadas y convertidas a forma
    corta canónica. `"53 millones de euros"`, `"5.000.000 €"`, `"53 M€"`,
@@ -98,6 +99,14 @@ auto-detección, todos sin tener que marcar nada a mano en el YAML:
    ("Audiencia Nacional" sí, "audiencia nacional" no).
 4. **Personas**: `nombre_completo` + `nombres_alternativos` enteros.
    Case-sensitive ("Zapatero" sí, "zapateros" no).
+5. **Glosario** (`/content/glosario/<slug>.yaml`): "cosas de interés"
+   no jerárquicas que se citan en prosa sin ser entidades formales.
+   Tres categorías: `programa_publico` (Fondo de Apoyo a la Solvencia,
+   PERTE Chip…), `operacion_policial` (Operación Kitchen, Operación
+   Catalonia…), `trama_sobrenombre` (Gürtel, Lezo, Púnica, ERE…). Se
+   renderiza con dotted underline + tooltip de `descripcion_breve`,
+   sin link interno (no son páginas del inventario) ni externo
+   (DESIGN.md §4: nunca a Wikipedia).
 
 **Al crear una `Organizacion` o `Persona` nueva**, añadir SIEMPRE en
 `nombres_alternativos` cómo la prensa y los autos la citan. Ejemplos:
@@ -109,6 +118,29 @@ auto-detección, todos sin tener que marcar nada a mano en el YAML:
 
 Sin esos alias, una mención en prosa como "según declaró Goyache" se
 quedará como texto plano en vez de enlazar a la ficha de la persona.
+
+**Al fichar un caso donde aparecen "cosas de interés" no entidades**
+(programa público citado por nombre comercial, operación policial
+nombrada, sobrenombre mediático de la trama), añadir una entrada de
+glosario en `/content/glosario/<slug>.yaml` con:
+
+```yaml
+id: operacion-kitchen
+label: "Operación Kitchen"
+nombres_alternativos:
+  - "caso Kitchen"
+categoria: operacion_policial
+descripcion_breve: |
+  Operación parapolicial atribuida al Ministerio del Interior entre
+  2013 y 2015, instruida ante el JCI nº 6 de la Audiencia Nacional,
+  consistente en el espionaje al exministro Luis Bárcenas con el
+  presunto objetivo de hacerse con documentación sensible para el PP.
+estado_publicacion: borrador
+ultima_revision_editorial: "YYYY-MM-DD"
+```
+
+Una entrada de glosario NO genera ruta web (no hay `/glosario/[slug]`).
+Sólo alimenta el tooltip de las menciones inline.
 
 #### Escape hatch (marcado explícito)
 

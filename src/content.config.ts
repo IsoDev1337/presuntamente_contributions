@@ -164,6 +164,33 @@ const delitos = defineCollection({
     .passthrough(),
 });
 
+// --- glosario ----------------------------------------------------------------
+//
+// "Cosas de interés" no jerárquicas que se citan en prosa sin ser entidades
+// formales: programas o fondos públicos por nombre comercial, operaciones
+// policiales nombradas, sobrenombres mediáticos de tramas. RichProse las
+// detecta automáticamente y las renderiza con dotted underline + tooltip
+// (sin link interno ni externo por defecto, por seguridad editorial).
+
+const glosario = defineCollection({
+  loader: glob({
+    pattern: '*.yaml',
+    base: './content/glosario',
+    generateId: ({ data }) => String(data.id),
+  }),
+  schema: z
+    .object({
+      id: z.string(),
+      label: z.string(),
+      nombres_alternativos: z.array(z.string()).default([]),
+      categoria: z.enum(['programa_publico', 'operacion_policial', 'trama_sobrenombre', 'otra']),
+      descripcion_breve: z.string(),
+      estado_publicacion: z.enum(['borrador', 'publicado', 'retirado']),
+      ultima_revision_editorial: z.string(),
+    })
+    .passthrough(),
+});
+
 // --- hitos (anidados en casos/<slug>/hitos/) ---------------------------------
 
 const hitos = defineCollection({
@@ -255,6 +282,7 @@ export const collections = {
   organizaciones,
   documentos,
   delitos,
+  glosario,
   hitos,
   hechos,
   roles,
