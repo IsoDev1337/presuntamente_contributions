@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#
+# pre-commit hook de presuntamente.org
+#
+# Si entran nuevos documentos N4 (artículos de prensa) en el staging,
+# los archiva automáticamente en archive.org y añade `url_archivo` al
+# YAML antes de cerrar el commit. Esto cumple V-13 del modelo (cobertura
+# cruzada + mirror permanente) sin que nadie tenga que recordarlo.
+#
+# Activación (una sola vez por máquina):
+#   git config core.hooksPath hooks
+#
+# Comportamiento:
+#   - Si no hay documentos N4 nuevos en el commit: skip silencioso.
+#   - Si archive.org no responde / hay timeout: avisa pero PERMITE el
+#     commit. Los YAMLs sin url_archivo se reintentan en futuros
+#     commits.
+#   - Para saltarse el hook puntualmente: git commit --no-verify
+#
+# NUNCA bloquea el commit por errores del archivado. La intención es
+# ser silencioso cuando todo va bien y útil cuando falla, no
+# obstaculizar.
+
+set -e
+
+# Skip si no hay node en PATH (entorno mínimo, otra máquina, etc.)
+if ! command -v node >/dev/null 2>&1; then
+  exit 0
+fi
+
+# Skip si el script no existe
+if [ ! -f "scripts/archivar-n4.mjs" ]; then
+  exit 0
+fi
+
+# ¿Hay documentos en staging?
+STAGED_DOCS=$(git diff --cached --name-only --diff-filter=AM -- 'content/documentos/*.yaml' | head -1)
+if [ -z "$STAGED_DOCS" ]; then
+  exit 0
+fi
+
+# Lanzar el archivado. El script nunca devuelve != 0 (catch global),
+# así que el commit pasa pase lo que pase con archive.org.
+node scripts/archivar-n4.mjs --staged-only || true
+
+exit 0

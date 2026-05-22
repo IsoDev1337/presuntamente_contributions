@@ -13,7 +13,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "archive:catchup": "node scripts/archivar-n4.mjs --catchup",
+    "archive:dry": "node scripts/archivar-n4.mjs --catchup --dry-run"
   },
   "dependencies": {
     "astro": "^5.0.0",

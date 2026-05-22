@@ -157,6 +157,26 @@ Como guía operativa:
 
 Excepción legítima al "uno por sesión": si la sesión incluye un cambio editorialmente delicado del que el maintainer podría querer revertir aisladamente (cambiar un nombre propio, modificar la calificación de un hecho de `acreditado` a `atribuido`, retirar una persona), aislar esa decisión en su propio commit ayuda al rollback selectivo. En el resto de los casos, un commit grande con un mensaje claro es preferible a cinco commits pequeños del mismo bloque.
 
+## Git hooks (`hooks/`)
+
+El repo trae hooks de git versionados en `/hooks/` (no `.git/hooks/`, que no se versiona). Para activarlos en una máquina nueva ejecuta una vez:
+
+```
+git config core.hooksPath hooks
+```
+
+Hooks vigentes:
+
+- **`hooks/pre-commit`** — Si entran nuevos documentos N4 (artículos de prensa) en el staging, los archiva automáticamente en `archive.org` y añade `url_archivo` al YAML antes de cerrar el commit. Cumple V-13 (mirror permanente para fuentes N4) sin que nadie tenga que recordarlo.
+  - **No bloquea nunca el commit**: si archive.org no responde / hay timeout / no hay red, avisa y deja pasar. Los YAMLs sin `url_archivo` se reintentan en el siguiente commit que toque docs.
+  - Si una sesión añade muchos documentos a la vez puede tardar ~10-20 segundos por URL. Para saltárselo puntualmente: `git commit --no-verify`.
+  - Sin autenticación: usa el endpoint anónimo de archive.org, cuota 8.000 captures/día (sobra varios órdenes de magnitud).
+
+Comandos relacionados:
+
+- `pnpm archive:dry` — Lista qué documentos N4 del repo no tienen `url_archivo` (dry-run, no llama a archive.org).
+- `pnpm archive:catchup` — Archiva TODO el backlog pendiente del repo (no solo lo del staging). Útil al activar el hook por primera vez o cuando se acumula backlog por sesiones con archive.org caído.
+
 ## Skills locales (`.claude/skills/`)
 
 Skills planeadas para usar con Claude Code en este repo:
