@@ -87,7 +87,7 @@ const breadcrumb = [
   {data.descripcion_corta && (
     <>
       <SectionH num="1." title="Descripción" id="descripcion" />
-      <div class="prose"><RichProse text={data.descripcion_corta} lang={lang} /></div>
+      <div class="prose"><RichProse text={data.descripcion_corta} lang={lang} excludeOrgIds={[data.id]} /></div>
     </>
   )}
 

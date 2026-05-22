@@ -83,7 +83,7 @@ const strings = {
     <>
       <SectionH num="1." title="Biografía" id="biografia" />
       <div class="prose">
-        <RichProse text={data.biografia_corta} lang={lang} />
+        <RichProse text={data.biografia_corta} lang={lang} excludePersonaIds={[data.id]} />
       </div>
     </>
   )}

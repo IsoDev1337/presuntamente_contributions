@@ -81,33 +81,93 @@ Y propone commits coherentes (una idea por commit, en español imperativo presen
 
 ### 5. Alimentar el diccionario de citaciones inline
 
-El sitio renderiza acrónimos institucionales y cifras monetarias como
-micro-componentes inline (`RichProse`, `src/lib/richProse.ts`). La
-auto-detección usa dos fuentes:
+El sitio renderiza acrónimos institucionales, nombres de organización,
+nombres de persona y cifras monetarias como micro-componentes inline
+(`RichProse`, `src/lib/richProse.ts`). La v1 cubre 4 ejes de
+auto-detección, todos sin tener que marcar nada a mano en el YAML:
 
-1. Una **lista blanca base** de acrónimos institucionales (UDEF, AN,
-   JCI, CGPJ, SEPI…) hardcoded en `richProse.ts`.
-2. **Cualquier sigla corta** (2-12 caracteres, mayúsculas) presente en
-   `nombres_alternativos` o `siglas` de las organizaciones del
-   inventario.
+1. **Money chip**: cifras monetarias detectadas y convertidas a forma
+   corta canónica. `"53 millones de euros"`, `"5.000.000 €"`, `"53 M€"`,
+   `"1 millón de euros"` → todas renderizan `53 M€` / `5 M€` / `1 M€`
+   con tooltip al texto original.
+2. **Acrónimos institucionales**: lista blanca base (UDEF, AN, JCI,
+   CGPJ, SEPI…) + cualquier sigla corta (2-12 caracteres, mayúsculas)
+   presente en `nombres_alternativos` o `siglas` del inventario.
+3. **Nombres largos de organización**: `nombre` + entradas con espacio
+   o mixed-case de `nombres_alternativos`. Case-sensitive
+   ("Audiencia Nacional" sí, "audiencia nacional" no).
+4. **Personas**: `nombre_completo` + `nombres_alternativos` enteros.
+   Case-sensitive ("Zapatero" sí, "zapateros" no).
 
-**Al crear una `Organizacion` nueva**, añadir SIEMPRE los alias/siglas
-con los que la prensa o los autos la citan en `nombres_alternativos`.
-Ejemplos del caso Plus Ultra:
+**Al crear una `Organizacion` o `Persona` nueva**, añadir SIEMPRE en
+`nombres_alternativos` cómo la prensa y los autos la citan. Ejemplos:
 
 - `juzgado-central-instruccion-4.yaml` → `nombres_alternativos: ["JCI nº 4", "JCI 4 AN"]`.
-- `sepi.yaml` → `siglas: "SEPI"` (la sigla SEPI también sale en la lista blanca base, pero el campo `siglas` es la fuente canónica).
+- `audiencia-nacional.yaml` → `nombres_alternativos: ["AN"]`.
+- `joaquin-goyache.yaml` → `nombres_alternativos: ["Joaquín Goyache", "Goyache"]`.
+- `jose-luis-rodriguez-zapatero.yaml` → `nombres_alternativos: ["Zapatero", "JLRZ", "Rodríguez Zapatero"]`.
 
-Sin esos alias, una mención en prosa como "según consta en el auto del
-JCI nº 4" se quedará como texto plano en vez de enlazar a la ficha.
+Sin esos alias, una mención en prosa como "según declaró Goyache" se
+quedará como texto plano en vez de enlazar a la ficha de la persona.
 
-**Al crear una `Persona` o un nombre completo de organización que vaya
-a citarse repetidamente en prosa** (p.ej. "Plus Ultra Líneas Aéreas",
-"Audiencia Nacional", "José Luis Rodríguez Zapatero"), anotarlo en
-`NOTES.md` del caso bajo una sección "## Citaciones inline pendientes"
-para que en el próximo refinamiento de `richProse` v1 se extienda la
-detección a esos nombres largos. (La v0 actual sólo cubre siglas y
-money; la v1 cubrirá nombres completos cuando se diseñe.)
+#### Escape hatch (marcado explícito)
+
+Cuando la auto-detección falle (un alias no cubierto, un nombre
+ambiguo, una cifra que requiere tooltip distinto del literal) o
+quieras forzar comportamiento, usa sintaxis explícita en el YAML:
+
+```yaml
+# Persona: el texto entre |...]] es lo que se renderiza.
+enunciado: |
+  El rector [[persona:joaquin-goyache|Goyache]] compareció…
+
+# Organización (cuando ni siglas ni nombre largo capturan el alias):
+descripcion: |
+  El [[org:juzgado-central-instruccion-4|JCI 4]] dictó auto…
+
+# Cifra con tooltip personalizado (label tras "|" es el tooltip):
+resumen_cifras: |
+  Contratos por [[€:113.509,32 €|cifra cuantificada por la UCM]].
+
+# Delito (auto-detección OFF hasta Fase 2; el escape hatch genera
+# texto plano por ahora, listo para activarse cuando exista la ruta):
+enunciado: |
+  Investigado por [[delito:trafico-de-influencias|tráfico de influencias]].
+```
+
+Reglas del escape hatch:
+
+- `[[org:<slug>|<label>]]` enlaza siempre a `/organizaciones/<slug>`.
+- `[[persona:<slug>|<label>]]` enlaza a `/personas/<slug>`.
+- `[[delito:<slug>|<label>]]` se reserva para Fase 2 (ruta inexistente
+  todavía); hoy se renderiza como texto plano sin link pero con la
+  sintaxis ya escrita.
+- `[[€:<texto>]]` o `[[€:<texto>|<tooltip>]]` para chip de money con
+  forma exacta no detectable.
+- El escape hatch tiene prioridad sobre la auto-detección y NO se
+  vuelve a procesar (no se autoenlaza dos veces).
+
+Usar el escape hatch con moderación. La auto-detección sigue siendo el
+camino principal: lo normal es ampliar `nombres_alternativos` cuando
+detectes que un alias falta, no salpicar el YAML de `[[...]]`.
+
+#### Anti-falsos-positivos automáticos
+
+`RichProse` no enlaza la ficha consigo misma:
+
+- En `/personas/<slug>`, los aliases de esa persona no se autoenlazan
+  en la propia biografía.
+- En `/organizaciones/<slug>`, igual con la descripción.
+- En `/casos/<slug>`, las menciones de la persona/organización cuyo
+  `id` coincide con el slug del caso (típico: el caso Begoña Gómez)
+  no se autoenlazan en el resumen ejecutivo, resumen_cifras ni en
+  los enunciados de Hecho. *(Hito.descripcion no aplica todavía la
+  exclusión — pendiente de plumbing cuando se cierre la sesión
+  paralela de badges.)*
+
+Titulares, breadcrumbs, nombres oficiales del caso y cabeceras de
+tabla NUNCA se enrutan por `RichProse` (son texto plano en el
+componente), así que ya están a salvo por construcción.
 
 ## Guardarraíles obligatorios
 

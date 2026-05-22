@@ -1,37 +1,77 @@
 ---
-// RichProse — renderiza texto plano enriqueciendo acrónimos institucionales
-// (UDEF, AN, JCI…) y cifras monetarias (53,5 M€) con los micro-componentes
-// inline del DESIGN §4. Carga la collection de organizaciones una vez por
-// invocación para que los acrónimos se enlacen a las fichas existentes
-// (Astro 5 cachea la collection entre invocaciones del mismo build).
+// RichProse — renderiza texto plano enriqueciendo:
+//   - Cifras monetarias (chips con forma corta canónica).
+//   - Acrónimos institucionales y nombres de organización (link a /organizaciones/<slug>).
+//   - Personas con rol formal en el inventario (link a /personas/<slug>).
+//   - Escape hatch [[org:slug|label]] / [[persona:slug|label]] / [[€:53,5 M€]].
+//
+// Carga las collections una vez por invocación; Astro deduplica entre llamadas.
 //
 // Uso:
-//   <RichProse text={hecho.enunciado} as="p" />
-//   <RichProse text={hito.descripcion} />          (default: <p>)
-//   <RichProse text={persona.biografia_corta} as="div" />
+//   <RichProse text={hecho.enunciado} />                                  (default: <p>)
+//   <RichProse text={hito.descripcion} as="div" />
+//   <RichProse text={persona.biografia_corta} excludePersonaIds={[persona.id]} />
+//   <RichProse text={org.descripcion_corta} excludeOrgIds={[org.id]} />
 
 import { getCollection } from 'astro:content';
-import { richProse } from '@/lib/richProse';
+import { richProse, type OrgLite, type PersonaLite, type DelitoLite } from '@/lib/richProse';
 
 interface Props {
   text: string;
-  /** Etiqueta envolvente. Default 'p'. Usar 'span' para inline, 'div' para
-   *  contenido sin estilos de párrafo. */
+  /** Etiqueta envolvente. Default 'p'. */
   as?: 'p' | 'div' | 'span';
   lang?: 'es' | 'ca';
   class?: string;
+  /** IDs de organizaciones que NO deben auto-enlazarse en este contexto
+   *  (típicamente la propia ficha de organización). */
+  excludeOrgIds?: string[];
+  /** IDs de personas que NO deben auto-enlazarse en este contexto
+   *  (típicamente la propia ficha de persona). */
+  excludePersonaIds?: string[];
 }
 
-const { text, as: Tag = 'p', lang = 'es', class: className } = Astro.props as Props;
+const {
+  text,
+  as: Tag = 'p',
+  lang = 'es',
+  class: className,
+  excludeOrgIds,
+  excludePersonaIds,
+} = Astro.props as Props;
 
-const orgsCol = await getCollection('organizaciones');
-const orgs = orgsCol.map((o) => ({
+const [orgsCol, personasCol, delitosCol] = await Promise.all([
+  getCollection('organizaciones'),
+  getCollection('personas'),
+  getCollection('delitos'),
+]);
+
+const orgs: OrgLite[] = orgsCol.map((o) => ({
   id: o.data.id,
   nombre: o.data.nombre,
   nombres_alternativos: (o.data as { nombres_alternativos?: string[] }).nombres_alternativos,
   siglas: (o.data as { siglas?: string }).siglas,
 }));
 
-const html = richProse(text, { orgs, lang });
+const personas: PersonaLite[] = personasCol.map((p) => ({
+  id: p.data.id,
+  nombre_completo: p.data.nombre_completo,
+  nombres_alternativos: (p.data as { nombres_alternativos?: string[] }).nombres_alternativos,
+}));
+
+const delitos: DelitoLite[] = delitosCol.map((d) => ({
+  id: d.data.id,
+  nombre_tipico: d.data.nombre_tipico,
+}));
+
+const html = richProse(text, {
+  orgs,
+  personas,
+  delitos,
+  excludeOrgIds,
+  excludePersonaIds,
+  // Off hasta que exista /delitos/[slug].astro (Fase 2).
+  enableDelitos: false,
+  lang,
+});
 ---
 <Tag class={className} set:html={html} />

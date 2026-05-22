@@ -359,9 +359,22 @@ const breadcrumb = [
   <!-- §2.2 — Resumen ejecutivo -->
   <SectionH num="1." title="Resumen ejecutivo" id="resumen" />
   <div class="prose">
-    {data.descripcion_corta && <RichProse text={data.descripcion_corta} />}
+    {data.descripcion_corta && (
+      <RichProse
+        text={data.descripcion_corta}
+        excludePersonaIds={[data.id]}
+        excludeOrgIds={[data.id]}
+      />
+    )}
     {data.resumen_cifras && (
-      <p><strong>Cifras de referencia.</strong> <RichProse text={data.resumen_cifras} as="span" /></p>
+      <p><strong>Cifras de referencia.</strong>{' '}
+        <RichProse
+          text={data.resumen_cifras}
+          as="span"
+          excludePersonaIds={[data.id]}
+          excludeOrgIds={[data.id]}
+        />
+      </p>
     )}
   </div>
 
@@ -484,7 +497,14 @@ const breadcrumb = [
         {g.aviso && <p class="aviso aviso--mostaza">{g.aviso}</p>}
         <div class="grupo__cards">
           {g.items.map((h) => (
-            <Hecho tipo={h.tipo} enunciado={h.enunciado} fechaTexto={h.fechaTexto} fuentes={h.fuentes} />
+            <Hecho
+              tipo={h.tipo}
+              enunciado={h.enunciado}
+              fechaTexto={h.fechaTexto}
+              fuentes={h.fuentes}
+              excludePersonaIds={[data.id]}
+              excludeOrgIds={[data.id]}
+            />
           ))}
         </div>
       </div>

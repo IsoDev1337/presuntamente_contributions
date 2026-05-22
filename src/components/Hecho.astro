@@ -21,16 +21,23 @@ interface Props {
   enunciado: string;
   fechaTexto?: string;
   fuentes: Fuente[];
+  excludeOrgIds?: string[];
+  excludePersonaIds?: string[];
 }
 
-const { tipo, enunciado, fechaTexto, fuentes } = Astro.props;
+const { tipo, enunciado, fechaTexto, fuentes, excludeOrgIds, excludePersonaIds } = Astro.props;
 ---
 <article class:list={['hecho', `hecho--${tipo}`]}>
   <header class="hecho__head">
     <EpistemicBadge tipo={tipo} />
     {fechaTexto && <span class="hecho__date">{fechaTexto}</span>}
   </header>
-  <RichProse text={enunciado} class="hecho__text" />
+  <RichProse
+    text={enunciado}
+    class="hecho__text"
+    excludeOrgIds={excludeOrgIds}
+    excludePersonaIds={excludePersonaIds}
+  />
   <ul class="hecho__sources">
     {fuentes.map((f) => (
       <li class="hecho__source">
