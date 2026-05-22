@@ -1,0 +1,17 @@
+id: jose-miguel-carrillo-procesado-ga-2025-05
+caso_id: gonzalez-amador
+sujeto_tipo: persona
+sujeto_persona_id: jose-miguel-carrillo-saborido
+rol: procesado
+delitos_atribuidos:
+  - delito-contra-hacienda-publica
+  - falsedad-documental
+fecha_inicio: "2025-05-29"
+hito_origen_id: auto-procesamiento-ga-2025-05-29
+notas: |
+  Por auto del Juzgado de Instrucción nº 19 de Madrid del 29 de mayo
+  de 2025 José Miguel Carrillo Saborido queda procesado por su
+  presunta participación en la emisión de facturas ficticias
+  utilizadas por Maxwell Cremona Ingeniería y Procesos S.L. para
+  minorar su tributación. Rige el principio de presunción de
+  inocencia mientras no recaiga resolución firme.

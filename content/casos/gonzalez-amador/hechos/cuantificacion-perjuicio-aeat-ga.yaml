@@ -1,0 +1,29 @@
+id: ga-cuantificacion-perjuicio-aeat
+caso_id: gonzalez-amador
+enunciado: |
+  Conforme al expediente de inspección remitido por la AEAT a la
+  Fiscalía Provincial de Madrid el 22 de enero de 2024, el perjuicio
+  cuantificado a la Hacienda Pública por la tributación irregular de
+  Maxwell Cremona Ingeniería y Procesos S.L. en los ejercicios 2020 y
+  2021 del Impuesto sobre Sociedades asciende a 350.951 euros. El
+  auto del Juzgado de Instrucción nº 19 de Madrid del 29 de mayo de
+  2025 toma esta cifra como base de la cuantificación del presunto
+  delito contra la Hacienda Pública.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2024-01-22"
+  precision: dia
+personas_implicadas:
+  - alberto-gonzalez-amador
+organizaciones_implicadas:
+  - aeat
+  - maxwell-cremona
+documentos_respaldo:
+  - documento_id: maldita-cronologia-ga-2025-12-09
+    pasaje: "Cronología del caso González Amador: detalle del expediente de la AEAT y de la cuantificación del perjuicio."
+  - documento_id: elespanol-procesamiento-ga-2025-05-29
+    pasaje: "Cuantificación del importe defraudado conforme al auto del 29 de mayo de 2025."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

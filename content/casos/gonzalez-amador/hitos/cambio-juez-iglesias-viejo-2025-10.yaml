@@ -1,0 +1,24 @@
+id: cambio-juez-iglesias-viejo-ga-2025-10
+caso_id: gonzalez-amador
+tipo: cambio_juez
+fecha: "2025-10-01"
+fecha_precision: mes
+titulo: "El magistrado Antonio Viejo asume la titularidad del Juzgado de Instrucción nº 19 de Madrid en sustitución de Inmaculada Iglesias, jubilada"
+descripcion: |
+  Tras la jubilación voluntaria de la magistrada Inmaculada Iglesias,
+  efectiva el 18 de agosto de 2025 y publicada en el Boletín Oficial
+  del Estado, la Comisión Permanente del Consejo General del Poder
+  Judicial otorga en septiembre de 2025 al magistrado Antonio Viejo la
+  titularidad del Juzgado de Instrucción nº 19 de Madrid. Viejo se
+  incorpora a su nuevo destino en octubre de 2025 y asume la
+  instrucción del procedimiento contra Alberto González Amador y los
+  demás procesados, así como las piezas derivadas que la magistrada
+  saliente había abierto sobre presuntas irregularidades en contratos
+  con el grupo sanitario Quirón.
+personas_afectadas:
+  - inmaculada-iglesias
+  - antonio-viejo
+organizaciones_afectadas:
+  - juzgado-instruccion-19-madrid
+documento_principal_id: confilegal-nombramiento-viejo-ga-2025-09-16
+fase_resultante: fase_intermedia

@@ -1,0 +1,37 @@
+id: ga-sistema-facturas-falsas
+caso_id: gonzalez-amador
+enunciado: |
+  Conforme al instructor, indiciariamente entre los ejercicios 2020 y
+  2021 la mercantil Maxwell Cremona Ingeniería y Procesos S.L., de la
+  que Alberto González Amador es administrador único, habría deducido
+  en su Impuesto sobre Sociedades gastos amparados en facturas
+  emitidas por personas vinculadas a la sociedad que "no se
+  correspondían con los servicios efectivamente prestados". El sistema
+  habría reducido indebidamente su tributación. Maximiliano Eduardo
+  Niederer González habría intervenido como "cooperador necesario" en
+  la emisión de las facturas de mayor importe; David Herrera Lobato y
+  los hermanos Agustín y José Miguel Carrillo Saborido habrían
+  participado de la emisión de facturas adicionales. Rige el
+  principio de presunción de inocencia.
+tipo: investigado
+fecha_o_periodo:
+  desde: "2020-01-01"
+  hasta: "2021-12-31"
+  precision: rango
+personas_implicadas:
+  - alberto-gonzalez-amador
+  - maximiliano-niederer
+  - david-herrera-lobato
+  - agustin-carrillo-saborido
+  - jose-miguel-carrillo-saborido
+organizaciones_implicadas:
+  - maxwell-cremona
+documentos_respaldo:
+  - documento_id: elespanol-procesamiento-ga-2025-05-29
+    pasaje: "Reproducción del pasaje del auto del 29 de mayo de 2025 sobre la falta de correspondencia entre las facturas y los servicios."
+  - documento_id: estrelladigital-auto-29may-ga-2025-05-29
+    pasaje: "Pasaje literal del auto: «no se ha aportado documentación técnica, contractual o mercantil que respalde de forma suficiente la realidad de los servicios facturados»."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

@@ -1,0 +1,18 @@
+id: iglesias-juez-instructor-ga-2024
+caso_id: gonzalez-amador
+sujeto_tipo: persona
+sujeto_persona_id: inmaculada-iglesias
+rol: juez_instructor
+fecha_inicio: "2024-04-01"
+fecha_fin: "2025-08-18"
+hito_origen_id: denuncia-aeat-fiscalia-ga-2024-01-22
+hito_fin_id: cambio-juez-iglesias-viejo-ga-2025-10
+notas: |
+  La magistrada Inmaculada Iglesias instruyó el procedimiento desde su
+  incoación tras la denuncia de la AEAT del 22 de enero de 2024 hasta
+  su jubilación voluntaria, efectiva el 18 de agosto de 2025 por
+  publicación en el Boletín Oficial del Estado. La fecha de inicio
+  aquí (2024-04-01) es aproximada por mes (precisión real:
+  fecha_precision=mes); el procedimiento se incoó tras la denuncia y
+  Iglesias instruyó hasta su jubilación. Pendiente de afinar la fecha
+  exacta de asignación con consulta directa al CGPJ.

@@ -1,0 +1,74 @@
+# Caso González Amador — esqueleto inicial (PR1).
+#
+# Procedimiento penal por presunto fraude fiscal y falsedad documental
+# seguido ante el Juzgado de Instrucción nº 19 de Madrid, con origen en
+# una denuncia de la AEAT a la Fiscalía Provincial de Madrid sobre
+# discrepancias en el Impuesto sobre Sociedades 2020 y 2021 de la
+# mercantil Maxwell Cremona S.L., cuyo administrador único es Alberto
+# González Amador, pareja de Isabel Díaz Ayuso. Por auto del 29 de mayo
+# de 2025 el Juzgado de Instrucción nº 19 cerró la instrucción y propuso
+# el enjuiciamiento de González Amador y otros cuatro investigados ante
+# Juzgado de lo Penal. La apertura del juicio oral se acordó el 22 de
+# septiembre de 2025; la Audiencia Provincial de Madrid (Sección 3ª)
+# confirmó el procesamiento por auto del 7 de noviembre de 2025.
+
+id: gonzalez-amador
+nombre_oficial: "Diligencias Previas — Juzgado de Instrucción nº 19 de Madrid"
+nombre_mediatico: "Caso González Amador"
+nombres_alternativos:
+  - "Caso del novio de Ayuso"
+  - "Caso de la pareja de Ayuso"
+  - "Caso Maxwell Cremona"
+
+descripcion_corta: |
+  Procedimiento penal seguido ante el Juzgado de Instrucción nº 19 de
+  Madrid, instruido inicialmente por la magistrada Inmaculada Iglesias
+  y, tras su jubilación, por el magistrado Antonio Viejo, sobre la
+  presunta defraudación a la Hacienda Pública por importe de 350.951
+  euros en los ejercicios 2020 y 2021 a través de la sociedad Maxwell
+  Cremona Ingeniería y Procesos S.L., de la que Alberto González Amador
+  es administrador único. El procedimiento se incoó tras denuncia
+  presentada por la Fiscalía Provincial de Madrid sobre la base del
+  expediente de inspección remitido por la AEAT el 22 de enero de 2024.
+  Por auto del 29 de mayo de 2025 el Juzgado de Instrucción nº 19 cerró
+  la instrucción y propuso el enjuiciamiento de Alberto González Amador
+  y otros cuatro investigados por presuntos delitos contra la Hacienda
+  Pública en concurso medial con falsedad en documento mercantil. Por
+  auto del 22 de septiembre de 2025 se acordó la apertura del juicio
+  oral. La Audiencia Provincial de Madrid (Sección 3ª) ratificó el
+  procesamiento por auto del 7 de noviembre de 2025, desestimando el
+  recurso de apelación de las defensas. El procedimiento se encuentra,
+  a la fecha de redacción de esta ficha, en fase intermedia a la espera
+  del señalamiento de juicio oral.
+
+organo_judicial_id: juzgado-instruccion-19-madrid
+numero_procedimiento: "Diligencias Previas (número exacto pendiente de confirmación pública)"
+tipo_procedimiento: procedimiento_abreviado
+ponente_actual_id: antonio-viejo
+
+fase_actual: fase_intermedia
+fecha_apertura: "2024-01-22"
+
+origen_denuncia: denuncia_organismo_publico
+querellante_inicial_id: aeat
+
+delitos_atribuidos_en_la_causa:
+  - delito-contra-hacienda-publica
+  - falsedad-documental
+  - organizacion-criminal
+
+resumen_cifras: |
+  Conforme al informe de la AEAT que sostiene la denuncia inicial, el
+  perjuicio cuantificado a la Hacienda Pública asciende a 350.951
+  euros, correspondientes a los ejercicios 2020 y 2021 del Impuesto
+  sobre Sociedades de la mercantil Maxwell Cremona Ingeniería y
+  Procesos S.L. La Fiscalía Provincial de Madrid y la Abogacía del
+  Estado solicitan 3 años y 9 meses de prisión para Alberto González
+  Amador por dos delitos contra la Hacienda Pública en concurso medial
+  con falsedad en documento mercantil. Las acusaciones populares del
+  PSOE y Más Madrid elevan la petición a 5 años de prisión y multa,
+  añadiendo delito contable continuado y pertenencia a grupo criminal.
+
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"
+nivel_relevancia_editorial: alta

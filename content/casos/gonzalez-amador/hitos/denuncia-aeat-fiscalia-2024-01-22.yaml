@@ -1,0 +1,26 @@
+id: denuncia-aeat-fiscalia-ga-2024-01-22
+caso_id: gonzalez-amador
+tipo: denuncia_presentada
+fecha: "2024-01-22"
+fecha_precision: dia
+titulo: "La AEAT remite a la Fiscalía Provincial de Madrid el expediente sobre Maxwell Cremona apreciando indicios de delito contra la Hacienda Pública por 350.951 euros"
+descripcion: |
+  Tras una actuación inspectora iniciada en mayo de 2022 sobre el
+  Impuesto sobre Sociedades de la mercantil Maxwell Cremona Ingeniería
+  y Procesos S.L., de la que Alberto González Amador es administrador
+  único, la AEAT aprecia el 22 de enero de 2024 indicios de la posible
+  comisión de dos delitos contra la Hacienda Pública y uno continuado
+  de falsedad en documento mercantil en los ejercicios 2020 y 2021,
+  por importe defraudado conjunto de 350.951 euros, y remite el
+  expediente a la Sección de Delitos Económicos de la Fiscalía
+  Provincial de Madrid para el ejercicio de la acción penal. El
+  expediente describe un sistema indiciario de facturas que no se
+  corresponderían con servicios efectivamente prestados.
+personas_afectadas:
+  - alberto-gonzalez-amador
+organizaciones_afectadas:
+  - aeat
+  - fiscalia-provincial-madrid
+  - maxwell-cremona
+documento_principal_id: maldita-cronologia-ga-2025-12-09
+fase_resultante: denuncia_o_querella

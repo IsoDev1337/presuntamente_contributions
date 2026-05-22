@@ -1,0 +1,35 @@
+id: ga-penas-pedidas-fiscalia-acusaciones
+caso_id: gonzalez-amador
+enunciado: |
+  En el escrito de calificación provisional, la Fiscalía Provincial
+  de Madrid y la Abogacía del Estado solicitan 3 años y 9 meses de
+  prisión y multa superior a 600.000 euros para Alberto González
+  Amador por dos presuntos delitos contra la Hacienda Pública en
+  concurso medial con un delito continuado de falsedad en documento
+  mercantil. Las acusaciones populares ejercidas por el PSOE y Más
+  Madrid elevan la petición a 5 años de prisión y multa, añadiendo a
+  los anteriores un delito contable continuado y un delito de
+  pertenencia a grupo criminal. Las peticiones son provisionales y se
+  modificarán, en su caso, en función del juicio oral.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2025-09-22"
+  precision: dia
+personas_implicadas:
+  - alberto-gonzalez-amador
+  - maximiliano-niederer
+  - david-herrera-lobato
+  - agustin-carrillo-saborido
+  - jose-miguel-carrillo-saborido
+organizaciones_implicadas:
+  - fiscalia-provincial-madrid
+  - abogacia-del-estado
+  - psoe
+  - mas-madrid
+documentos_respaldo:
+  - documento_id: confilegal-apertura-juicio-oral-ga-2025-09-22
+    pasaje: "Pliego de peticiones recogido en la crónica de la apertura del juicio oral del 22 de septiembre de 2025."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

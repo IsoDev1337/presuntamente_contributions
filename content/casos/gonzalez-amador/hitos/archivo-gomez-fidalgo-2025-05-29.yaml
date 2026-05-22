@@ -1,0 +1,22 @@
+id: archivo-gomez-fidalgo-ga-2025-05-29
+caso_id: gonzalez-amador
+tipo: archivo_provisional
+fecha: "2025-05-29"
+fecha_precision: dia
+titulo: "El Juzgado de Instrucción nº 19 de Madrid acuerda el sobreseimiento provisional respecto al asesor fiscal Javier Gómez Fidalgo por considerar insuficientes los indicios de su participación"
+descripcion: |
+  En el mismo auto del 29 de mayo de 2025 por el que se cierra la
+  instrucción contra los cinco principales investigados, la magistrada
+  Inmaculada Iglesias acuerda el sobreseimiento provisional de la
+  causa respecto al abogado fiscalista Javier Luis Gómez Fidalgo al
+  considerar que no concurren indicios suficientes de su participación
+  material en la elaboración del sistema indiciario de facturas
+  ficticias. El sobreseimiento es provisional: en caso de aparecer
+  elementos nuevos podría reabrirse. Rige el principio de presunción
+  de inocencia.
+personas_afectadas:
+  - javier-gomez-fidalgo
+organizaciones_afectadas:
+  - juzgado-instruccion-19-madrid
+documento_principal_id: estrelladigital-auto-29may-ga-2025-05-29
+fase_resultante: instruccion

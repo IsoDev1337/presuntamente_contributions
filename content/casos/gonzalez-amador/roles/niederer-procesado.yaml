@@ -1,0 +1,19 @@
+id: niederer-procesado-ga-2025-05
+caso_id: gonzalez-amador
+sujeto_tipo: persona
+sujeto_persona_id: maximiliano-niederer
+rol: procesado
+delitos_atribuidos:
+  - delito-contra-hacienda-publica
+  - falsedad-documental
+fecha_inicio: "2025-05-29"
+hito_origen_id: auto-procesamiento-ga-2025-05-29
+notas: |
+  Por auto del Juzgado de Instrucción nº 19 de Madrid del 29 de mayo
+  de 2025 Maximiliano Eduardo Niederer González queda procesado por
+  su presunta participación como cooperador necesario en la emisión
+  de facturas que no se corresponderían con servicios efectivamente
+  prestados, utilizadas por Maxwell Cremona Ingeniería y Procesos
+  S.L. para minorar su tributación. La condición de procesado no
+  implica valoración de culpabilidad: rige el principio de presunción
+  de inocencia mientras no recaiga resolución firme.

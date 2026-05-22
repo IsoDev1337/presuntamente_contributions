@@ -1,0 +1,25 @@
+id: imputacion-gomez-fidalgo-ga-2025-04-14
+caso_id: gonzalez-amador
+tipo: imputacion
+fecha: "2025-04-14"
+fecha_precision: dia
+titulo: "El Juzgado de Instrucción nº 19 de Madrid cita como investigado al asesor fiscal de González Amador, Javier Gómez Fidalgo"
+descripcion: |
+  La magistrada Inmaculada Iglesias, titular del Juzgado de
+  Instrucción nº 19 de Madrid, acuerda el 14 de abril de 2025 citar
+  como investigado al abogado fiscalista Javier Luis Gómez Fidalgo
+  por su presunta participación como cooperador necesario en la
+  elaboración de las autoliquidaciones del Impuesto sobre Sociedades
+  de Maxwell Cremona Ingeniería y Procesos S.L. correspondientes a
+  los ejercicios 2020 y 2021. Conforme al instructor, Gómez Fidalgo
+  habría tenido un papel determinante en la preparación de las
+  declaraciones tributarias en cuya regularización la AEAT cuantificó
+  el perjuicio a la Hacienda Pública en 350.951 euros. Rige el
+  principio de presunción de inocencia.
+personas_afectadas:
+  - javier-gomez-fidalgo
+organizaciones_afectadas:
+  - juzgado-instruccion-19-madrid
+  - fiscalia-provincial-madrid
+documento_principal_id: heraldodeleon-imputacion-gomez-fidalgo-ga-2025-04-14
+fase_resultante: instruccion

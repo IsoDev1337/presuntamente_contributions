@@ -1,0 +1,27 @@
+id: gonzalez-amador-procesado-ga-2025-05
+caso_id: gonzalez-amador
+sujeto_tipo: persona
+sujeto_persona_id: alberto-gonzalez-amador
+rol: procesado
+delitos_atribuidos:
+  - delito-contra-hacienda-publica
+  - falsedad-documental
+fecha_inicio: "2025-05-29"
+hito_origen_id: auto-procesamiento-ga-2025-05-29
+notas: |
+  Por auto del Juzgado de Instrucción nº 19 de Madrid del 29 de mayo
+  de 2025 Alberto González Amador queda procesado y propuesto para
+  enjuiciamiento por dos presuntos delitos contra la Hacienda Pública
+  (Impuesto sobre Sociedades de Maxwell Cremona Ingeniería y Procesos
+  S.L., ejercicios 2020 y 2021) en concurso medial con un delito
+  continuado de falsedad en documento mercantil. La Audiencia
+  Provincial de Madrid (Sección 3ª) confirmó el procesamiento por
+  auto del 7 de noviembre de 2025. La condición de procesado no
+  implica valoración de culpabilidad: rige el principio de presunción
+  de inocencia mientras no recaiga resolución firme en contrario.
+  Esta ficha quedará abierta hasta que un nuevo hito (sentencia
+  firme, absolución, archivo) cierre el rol. Las acusaciones
+  populares del PSOE y Más Madrid solicitan adicionalmente la
+  apreciación de un delito contable continuado y de pertenencia a
+  grupo criminal; al ser peticiones acusatorias y no resolución
+  judicial, no se añaden al campo delitos_atribuidos del rol.

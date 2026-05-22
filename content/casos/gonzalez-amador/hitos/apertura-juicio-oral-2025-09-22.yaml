@@ -1,0 +1,35 @@
+id: apertura-juicio-oral-ga-2025-09-22
+caso_id: gonzalez-amador
+tipo: apertura_juicio_oral
+fecha: "2025-09-22"
+fecha_precision: dia
+titulo: "El Juzgado de Instrucción nº 19 de Madrid acuerda la apertura del juicio oral contra Alberto González Amador y otros cuatro procesados"
+descripcion: |
+  Por auto del 22 de septiembre de 2025 la magistrada Inmaculada
+  Iglesias, titular del Juzgado de Instrucción nº 19 de Madrid,
+  acuerda la apertura del juicio oral contra Alberto González Amador,
+  Maximiliano Eduardo Niederer González, David Herrera Lobato, Agustín
+  Carrillo Saborido y José Miguel Carrillo Saborido por dos presuntos
+  delitos contra la Hacienda Pública en concurso medial con un delito
+  continuado de falsedad en documento mercantil. La Fiscalía
+  Provincial de Madrid y la Abogacía del Estado solicitan 3 años y 9
+  meses de prisión y multa superior a 600.000 euros; las acusaciones
+  populares del PSOE y Más Madrid elevan la petición a 5 años de
+  prisión y multa añadiendo delito contable continuado y pertenencia
+  a grupo criminal. Conforme al principio de presunción de inocencia,
+  la apertura del juicio oral no implica valoración alguna de
+  culpabilidad.
+personas_afectadas:
+  - alberto-gonzalez-amador
+  - maximiliano-niederer
+  - david-herrera-lobato
+  - agustin-carrillo-saborido
+  - jose-miguel-carrillo-saborido
+organizaciones_afectadas:
+  - juzgado-instruccion-19-madrid
+  - fiscalia-provincial-madrid
+  - abogacia-del-estado
+  - psoe
+  - mas-madrid
+documento_principal_id: confilegal-apertura-juicio-oral-ga-2025-09-22
+fase_resultante: fase_intermedia
