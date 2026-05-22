@@ -55,6 +55,7 @@ Corolario operativo: **la canonicalidad del dato vive en ficheros YAML en el rep
                                  └──────────────┘
 
        Catálogos de referencia: Delito, Nivel de fuente, Tipo de hito, ...
+       Catálogo ligero: EntradaGlosario (tooltips inline; no genera ruta web).
 ```
 
 Cada flecha es una relación reificada (tabla / fichero), no una columna implícita.
@@ -450,6 +451,33 @@ interface Delito {
   enlace_boe?: string;                   // URL al CP en BOE
 }
 ```
+
+### 2.10 EntradaGlosario (cosas de interés no jerárquicas)
+
+Catálogo ligero, paralelo al de Delito. NO genera ruta web ni participa de las validaciones cruzadas V-01..V-21. Sólo alimenta el tooltip de las menciones inline en `RichProse` (DESIGN.md §4). Útil para:
+
+- **Programas o fondos públicos citados por nombre comercial**: Fondo de Apoyo a la Solvencia de Empresas Estratégicas, PERTE Chip, FROB.
+- **Operaciones policiales nombradas**: Operación Kitchen, Operación Centauro, Operación Catalonia.
+- **Sobrenombres mediáticos de tramas**: Gürtel, Lezo, Púnica, ERE.
+
+```ts
+interface EntradaGlosario {
+  id: slug;                              // ej. "operacion-kitchen"
+  label: string;                         // forma canónica tal cual aparece en prensa o autos
+  nombres_alternativos?: array<string>;  // variantes/abreviaturas detectables (ej. "FASEE", "Fondo SEPI")
+  categoria: enum<                       // programa_publico | operacion_policial |
+    "programa_publico" |                 //   trama_sobrenombre | otra
+    "operacion_policial" |
+    "trama_sobrenombre" |
+    "otra"
+  >;
+  descripcion_breve: markdown;           // 1-2 frases neutras que se renderizan como tooltip
+  estado_publicacion: enum;
+  ultima_revision_editorial: date;
+}
+```
+
+**Por qué no son entidades de pleno derecho:** una operación policial o un sobrenombre de trama no tienen rol procesal, no producen documentos, no pueden ser perjudicado ni querellante. Forzarlas al modelo de Organización confundiría las restricciones del schema (V-06, V-11) y diluiría el inventario. Y la decisión editorial de mantener `descripcion_breve` como única superficie (sin página `/glosario/<slug>`) evita generar referencias canónicas a hechos no contrastados con el aparato V-X.
 
 ---
 

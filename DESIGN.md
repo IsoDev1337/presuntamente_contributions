@@ -331,6 +331,17 @@ Dentro del cuerpo de un Hecho, descripción de Hito o resumen ejecutivo, ciertos
 - Estilo: subrayado punteado fino sutil, mismo color que el texto del párrafo. Hover: cursor pointer + color → `--color-accent` si tiene link; sin cambio si solo tooltip.
 - Lista de acrónimos auto-detectables (mantenida en código): UDEF, UCO, AN, TS, TC, TSJ, AP, JCI, JI, BOE, CGPJ, SEPI, AEAT, FGE, CIS, AIReF, Tribunal de Cuentas, etc.
 
+**Entrada de Glosario** — referencia a "cosa de interés" no jerárquica.
+
+- Ejemplo: "a través del [Fondo de Apoyo a la Solvencia de Empresas Estratégicas] gestionado por…".
+- Aplica a programas o fondos públicos citados por nombre comercial (Fondo de Apoyo a la Solvencia, PERTE Chip), operaciones policiales nombradas (Operación Kitchen, Operación Centauro) y sobrenombres mediáticos de tramas (Gürtel, Lezo, Púnica).
+- Lookup: el sistema busca `label` y `nombres_alternativos` en `/content/glosario/`. Si hay match, **span con tooltip** que muestra `descripcion_breve`. **Sin link** — ni interno (no son páginas del inventario) ni externo (DESIGN §4 prohíbe Wikipedia / fuentes no controladas).
+- Estilo: igual al `<Acronym>` cuando no enlaza — subrayado punteado, cursor `help` al hover.
+
+**Auto-detección + escape hatch.** La lógica está en `src/lib/richProse.ts` (componente `<RichProse>`). Detecta automáticamente los tres tipos sobre el texto plano de Hecho.enunciado, Hito.descripcion, descripcion_corta y resumen_cifras. Cuando la auto-detección falla, sintaxis explícita en el YAML: `[[org:<slug>|<label>]]`, `[[persona:<slug>|<label>]]`, `[[€:<texto>|<tooltip>]]`.
+
+**Auto-exclusión en la propia ficha.** En `/personas/<slug>`, los aliases de esa persona no se autoenlazan en su biografía. Igual con `/organizaciones/<slug>`. En `/casos/<slug>`, la persona/organización cuyo `id` coincide con el slug del caso (típico: caso Begoña Gómez) no se autoenlaza en resumen ejecutivo, resumen_cifras, enunciados de Hecho ni descripciones de Hito. Titulares, breadcrumbs y nombre_oficial NUNCA se enrutan por RichProse (son texto plano por construcción).
+
 ---
 
 ## 5. Layout Principles
