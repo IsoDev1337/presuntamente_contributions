@@ -1,0 +1,37 @@
+id: sentencia-primera-instancia-fge-2025-11-20
+caso_id: fiscal-general-del-estado
+tipo: sentencia_primera_instancia
+fecha: "2025-11-20"
+fecha_precision: dia
+titulo: "La Sala Segunda del Tribunal Supremo condena al Fiscal General del Estado por revelación de secretos por mayoría de cinco votos frente a dos, con dos votos particulares disidentes"
+descripcion: |
+  El 20 de noviembre de 2025, tras la deliberación, la Sala Segunda
+  del Tribunal Supremo notifica a las partes el fallo condenatorio
+  de la Causa Especial nº 20557/2024. La Sentencia 1000/2025, de la
+  que es ponente el presidente de la Sala Andrés Martínez Arrieta
+  tras un cambio de ponencia motivado por la deliberación, declara
+  probado por mayoría de cinco votos contra dos que Álvaro García
+  Ortiz, o persona de su entorno con su conocimiento, filtró el
+  correo electrónico del 2 de febrero de 2024, y le condena como
+  autor responsable de un delito de revelación de datos reservados
+  del artículo 417.1 del Código Penal a multa de doce meses con
+  cuota diaria de veinte euros (siete mil doscientos euros en
+  total), a inhabilitación especial para el cargo de Fiscal General
+  del Estado por tiempo de dos años, al pago de las costas
+  procesales incluyendo las de la acusación particular, y a
+  indemnizar al perjudicado Alberto González Amador en diez mil
+  euros por daños morales. Las magistradas Ana María Ferrer García
+  y Susana Polo García anuncian votos particulares disidentes que se
+  reservan a la fecha de notificación de la sentencia íntegra. La
+  sentencia recoge además que la causa contra Pilar Rodríguez
+  Fernández fue archivada por auto del 29 de julio de 2025. La
+  presunción de inocencia formal subsiste hasta la firmeza de la
+  resolución.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+organizaciones_afectadas:
+  - tribunal-supremo
+documento_principal_id: cgpj-condena-fge-2025-11-20
+documentos_relacionados:
+  - elespanol-condena-5-2-fge-2025-11-20
+fase_resultante: sentencia_primera_instancia

@@ -1,0 +1,27 @@
+id: tribunal-supremo
+nombre: "Tribunal Supremo"
+nombres_alternativos:
+  - "TS"
+  - "Sala Segunda del Tribunal Supremo"
+  - "Sala de lo Penal del Tribunal Supremo"
+  - "Sala II del TS"
+  - "Alto Tribunal"
+tipo: tribunal
+descripcion_corta: |
+  Órgano jurisdiccional superior en todos los órdenes salvo el
+  constitucional, con sede en Madrid. Su Sala Segunda (de lo Penal)
+  conoce, entre otras competencias, de la instrucción y enjuiciamiento
+  de las causas penales contra aforados (causas especiales) cuyo
+  conocimiento le atribuye la Constitución, los Estatutos de
+  Autonomía o las leyes orgánicas, incluyendo las seguidas contra el
+  Fiscal General del Estado en activo. Conoce además del recurso
+  extraordinario de casación contra las resoluciones de los órganos
+  inferiores.
+jurisdiccion: penal
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+url_canonica: "https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Tribunal-Supremo"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

@@ -1,0 +1,27 @@
+id: inicio-vista-oral-fge-2025-11-03
+caso_id: fiscal-general-del-estado
+tipo: inicio_vista_oral
+fecha: "2025-11-03"
+fecha_precision: dia
+titulo: "Inicio del juicio oral ante la Sala Segunda del Tribunal Supremo contra el Fiscal General del Estado por presunto delito de revelación de secretos"
+descripcion: |
+  Entre el 3 y el 13 de noviembre de 2025 se desarrolla, ante el
+  tribunal de siete magistrados de la Sala Segunda del Tribunal
+  Supremo, la vista oral de la Causa Especial nº 20557/2024 contra
+  Álvaro García Ortiz. En la apertura de las sesiones, la defensa
+  niega el delito imputado y critica el carácter de la instrucción.
+  Durante el juicio se practican declaraciones de cuarenta testigos,
+  entre los que figuran tres agentes de la Unidad Central Operativa
+  (UCO) de la Guardia Civil, la entonces fiscal superior de Madrid
+  Almudena Lastra y la directora de comunicación de la Fiscalía.
+  García Ortiz declara el 12 de noviembre y sostiene que su
+  obsesión "era proteger a los fiscales, no perjudicar a González
+  Amador". Las acusaciones y la defensa formulan conclusiones
+  definitivas el 13 de noviembre. Rige el principio de presunción de
+  inocencia.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+organizaciones_afectadas:
+  - tribunal-supremo
+documento_principal_id: cgpj-apertura-juicio-oral-fge-2025-09-09
+fase_resultante: juicio_oral

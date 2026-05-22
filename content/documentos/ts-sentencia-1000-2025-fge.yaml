@@ -1,0 +1,31 @@
+id: ts-sentencia-1000-2025-fge
+titulo: "Sentencia 1000/2025 de la Sala Segunda (de lo Penal) del Tribunal Supremo, Causa Especial nº 20557/2024, de 9 de diciembre de 2025"
+tipo: sentencia
+nivel_fuente: 3
+nivel_fuente_justificacion: |
+  Texto íntegro de la sentencia 1000/2025 de la Sala Segunda del
+  Tribunal Supremo dictada el 9 de diciembre de 2025 en la Causa
+  Especial nº 20557/2024 contra Álvaro García Ortiz por delito de
+  revelación de datos reservados (art. 417.1 CP). A fecha de PR1 no
+  se localiza el texto íntegro en CENDOJ ni en `poderjudicial.es`
+  con URL canónica (a diferencia de la nota CGPJ asociada, que sí
+  está). La URL canónica adoptada apunta a la transcripción íntegra
+  publicada por Público.es, que ofrece la sentencia completa. La
+  veracidad del texto se verifica por triangulación con dos mirrors
+  públicos adicionales: el PDF disponible en `okdiario.com` y la
+  base documental de `civil-mercantil.com`, ambos coincidentes en
+  contenido literal. El nivel se ajusta a 3 (institucional /
+  pericial / filtrado verificado) en virtud del artículo 234.1 LOPJ
+  y la convención editorial del proyecto sobre documentos
+  jurisdiccionales sin URL oficial pero verificables por mirrors
+  estables. Cuando aparezca en CENDOJ se elevará a nivel 1
+  conservando el mismo `id`.
+productor_organizacion_id: tribunal-supremo
+fecha_documento: "2025-12-09"
+fecha_publicacion: "2025-12-09"
+url_canonica: "https://www.publico.es/politica/tribunales/consulta-texto-integro-sentencia-ex-fiscal-general-alvaro-garcia-ortiz.html"
+estado_acceso: filtrado_verificado
+idioma: es
+caso_principal_id: fiscal-general-del-estado
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

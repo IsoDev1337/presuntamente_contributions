@@ -1,0 +1,27 @@
+id: auto-procesamiento-fge-2025-06-09
+caso_id: fiscal-general-del-estado
+tipo: auto_procesamiento
+fecha: "2025-06-09"
+fecha_precision: dia
+titulo: "El magistrado instructor del Tribunal Supremo dicta auto de procedimiento abreviado contra el Fiscal General del Estado y la Fiscal Jefa Provincial de Madrid por presunto delito de revelación de secretos"
+descripcion: |
+  El magistrado instructor Ángel Luis Hurtado dicta el 9 de junio de
+  2025 auto de transformación a procedimiento abreviado y de
+  procesamiento contra Álvaro García Ortiz y Pilar Rodríguez
+  Fernández por presunto delito de revelación de secretos del
+  artículo 417 del Código Penal, en relación con la filtración del
+  correo electrónico del 2 de febrero de 2024. Conforme al
+  instructor, la prueba indiciariamente acreditada apunta a que
+  García Ortiz, actuando con conocimiento de los datos reservados
+  obtenidos del Ministerio Fiscal, intervino en la divulgación del
+  contenido del correo a un medio de comunicación. La condición de
+  procesados no implica valoración de culpabilidad: rige el principio
+  de presunción de inocencia mientras no recaiga resolución firme en
+  contrario.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+  - pilar-rodriguez-fernandez
+organizaciones_afectadas:
+  - tribunal-supremo
+documento_principal_id: cgpj-auto-procedimiento-abreviado-fge-2025-06-09
+fase_resultante: fase_intermedia

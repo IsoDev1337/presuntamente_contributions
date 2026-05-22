@@ -1,0 +1,24 @@
+id: apertura-juicio-oral-fge-2025-09-09
+caso_id: fiscal-general-del-estado
+tipo: apertura_juicio_oral
+fecha: "2025-09-09"
+fecha_precision: dia
+titulo: "El instructor del Tribunal Supremo abre juicio oral al Fiscal General del Estado por presunto delito de revelación de secretos"
+descripcion: |
+  Por auto del 9 de septiembre de 2025, el magistrado instructor de
+  la Sala Segunda del Tribunal Supremo, Ángel Luis Hurtado, acuerda
+  la apertura del juicio oral contra Álvaro García Ortiz por
+  presunto delito de revelación de secretos del artículo 417 del
+  Código Penal por la presunta facilitación a un medio de
+  comunicación del contenido reservado del correo electrónico del 2
+  de febrero de 2024. El tribunal de enjuiciamiento, compuesto por
+  siete magistrados de la Sala, se constituirá formalmente el 25 de
+  septiembre de 2025 y celebrará la vista oral entre el 3 y el 13
+  de noviembre de 2025. Rige el principio de presunción de
+  inocencia.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+organizaciones_afectadas:
+  - tribunal-supremo
+documento_principal_id: cgpj-apertura-juicio-oral-fge-2025-09-09
+fase_resultante: juicio_oral

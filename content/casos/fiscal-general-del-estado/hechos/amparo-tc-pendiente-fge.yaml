@@ -1,0 +1,34 @@
+id: amparo-tc-pendiente-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  Tras la firmeza de la condena en la jurisdicción ordinaria, se han
+  presentado ante el Tribunal Constitucional dos recursos de amparo
+  contra la Sentencia 1000/2025: uno por el Ministerio Fiscal el 10
+  de abril de 2026, alegando la vulneración de cinco derechos
+  fundamentales del condenado; y otro por la propia defensa de
+  Álvaro García Ortiz el 13 de abril de 2026, planteando
+  vulneración del derecho a la presunción de inocencia y del
+  derecho a un proceso con todas las garantías. A la fecha de
+  redacción de esta ficha, los recursos están pendientes de
+  resolución sobre admisibilidad; la presentación del amparo no
+  suspende automáticamente la ejecución de la pena de
+  inhabilitación.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2026-04-10"
+  hasta: "2026-04-13"
+  precision: rango
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+  - fiscalia-general-del-estado
+documentos_respaldo:
+  - documento_id: elindependiente-amparo-fiscalia-fge-2026-04-10
+    pasaje: "Cobertura del recurso del Ministerio Fiscal del 10 de abril de 2026."
+  - documento_id: theobjective-amparo-tc-fge-2026-04-13
+    pasaje: "Cobertura del recurso de la defensa del condenado del 13 de abril de 2026."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

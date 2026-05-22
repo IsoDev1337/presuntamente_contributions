@@ -1,0 +1,23 @@
+id: cgpj-notificacion-sentencia-fge-2025-12-09
+titulo: "Nota CGPJ — El Tribunal Supremo notifica la Sentencia 1000/2025 que condena por revelación de datos reservados al Fiscal General del Estado (9 dic 2025)"
+tipo: nota_prensa_institucional
+nivel_fuente: 1
+nivel_fuente_justificacion: |
+  Nota oficial del CGPJ publicada en `poderjudicial.es` anunciando
+  la notificación a las partes de la Sentencia 1000/2025 de la Sala
+  Segunda del Tribunal Supremo, dictada por mayoría de cinco
+  magistrados frente a dos. La nota resume los fundamentos:
+  "el fiscal general no puede responder a una noticia falsa
+  mediante la comisión de un delito" y "García Ortiz, o alguien de
+  su entorno con su conocimiento, filtró el correo electrónico" del
+  2 de febrero de 2024 del abogado del perjudicado. Dominio en la
+  lista blanca DominiosOficiales. Cumple V-12.
+productor_organizacion_id: tribunal-supremo
+fecha_documento: "2025-12-09"
+fecha_publicacion: "2025-12-09"
+url_canonica: "https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Tribunal-Supremo/Oficina-de-Comunicacion/Archivo-de-notas-de-prensa/El-Tribunal-Supremo-notifica-la-sentencia-que-condena-por-revelacion-de-datos-reservados-al-fiscal-general-del-Estado-"
+estado_acceso: publico
+idioma: es
+caso_principal_id: fiscal-general-del-estado
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

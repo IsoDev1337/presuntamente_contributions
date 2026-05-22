@@ -1,0 +1,19 @@
+id: dimision-garcia-ortiz-fge-2025-11-24
+caso_id: fiscal-general-del-estado
+tipo: dimision
+fecha: "2025-11-24"
+fecha_precision: dia
+titulo: "Álvaro García Ortiz presenta su dimisión como Fiscal General del Estado cuatro días después de la lectura del fallo condenatorio del Tribunal Supremo"
+descripcion: |
+  Cuatro días después de la lectura del fallo condenatorio del 20 de
+  noviembre de 2025, Álvaro García Ortiz presenta el 24 de noviembre
+  de 2025 su renuncia al cargo de Fiscal General del Estado. La
+  renuncia se formaliza como salida "a petición propia", a la espera
+  de la tramitación del Real Decreto de cese y del nombramiento de
+  sucesor.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+organizaciones_afectadas:
+  - fiscalia-general-del-estado
+documento_principal_id: boe-cese-garcia-ortiz-fge-2025-12-10
+fase_resultante: sentencia_primera_instancia

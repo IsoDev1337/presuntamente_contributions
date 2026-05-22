@@ -1,0 +1,27 @@
+id: angel-hurtado
+nombre_completo: "Ángel Luis Hurtado Adrián"
+nombres_alternativos:
+  - "Ángel Hurtado"
+  - "Hurtado Adrián"
+  - "magistrado Hurtado"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Magistrado de la Sala Segunda (de lo Penal) del Tribunal Supremo"
+    organizacion_id: tribunal-supremo
+    desde: "2023-09-01"
+nacionalidad: "española"
+biografia_corta: |
+  Ángel Luis Hurtado Adrián es magistrado español, miembro de la Sala
+  Segunda (de lo Penal) del Tribunal Supremo desde 2023. Designado por
+  acuerdo de la Sala instructor de la Causa Especial nº 20557/2024
+  seguida contra el entonces Fiscal General del Estado Álvaro García
+  Ortiz y, en un primer momento, contra la Fiscal Jefa Provincial de
+  Madrid Pilar Rodríguez Fernández por presunto delito de revelación
+  de datos reservados, tramitó la fase de instrucción del
+  procedimiento entre octubre de 2024 y julio de 2025, dictando el
+  auto de procesamiento del 9 de junio de 2025 y el auto del 29 de
+  julio de 2025 por el que se sobresee respecto de Rodríguez
+  Fernández y se confirma el procesamiento de García Ortiz.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

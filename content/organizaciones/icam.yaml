@@ -1,0 +1,25 @@
+id: icam
+nombre: "Ilustre Colegio de la Abogacía de Madrid"
+nombres_alternativos:
+  - "ICAM"
+  - "Colegio de Abogados de Madrid"
+  - "Ilustre Colegio de Abogados de Madrid"
+tipo: organismo_publico
+siglas: "ICAM"
+descripcion_corta: |
+  Corporación de derecho público de carácter representativo y
+  estructura democrática de los abogados ejercientes y no ejercientes
+  inscritos en su ámbito de competencia, con sede en Madrid.
+  Personado en la Causa Especial nº 20557/2024 del Tribunal Supremo
+  contra el entonces Fiscal General del Estado Álvaro García Ortiz
+  tras presentar el 20 de marzo de 2024 ante el Tribunal Superior de
+  Justicia de Madrid denuncia por presunto delito de revelación de
+  secretos en relación con la filtración del correo electrónico del
+  letrado colegiado Carlos Neira.
+ambito_territorial: autonomico
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+url_canonica: "https://www.icam.es"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

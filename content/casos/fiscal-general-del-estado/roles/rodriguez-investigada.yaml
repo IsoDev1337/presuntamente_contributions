@@ -1,0 +1,26 @@
+id: rodriguez-investigada-fge-2024-10
+caso_id: fiscal-general-del-estado
+sujeto_tipo: persona
+sujeto_persona_id: pilar-rodriguez-fernandez
+rol: investigado
+delitos_atribuidos:
+  - revelacion-de-secretos
+delitos_codigo_penal:
+  - "art. 417.1 CP"
+fecha_inicio: "2024-10-15"
+fecha_fin: "2025-07-29"
+hito_origen_id: apertura-causa-fge-2024-10-15
+hito_fin_id: desimputacion-rodriguez-fge-2025-07-29
+notas: |
+  Por acuerdo de la Sala Segunda del Tribunal Supremo del 15 de
+  octubre de 2024, la entonces Fiscal Jefa Provincial de Madrid
+  Pilar Rodríguez Fernández es citada como investigada por presunto
+  delito de revelación de secretos por su intervención en la
+  recopilación de correos electrónicos entre el fiscal Julián Salto
+  y el abogado Carlos Neira y su posterior remisión a la cuenta
+  personal del entonces Fiscal General del Estado. La condición de
+  investigada no implica valoración de culpabilidad: rige el
+  principio de presunción de inocencia. El rol se cierra el 29 de
+  julio de 2025 con el auto de la Sala de Apelaciones que acuerda el
+  sobreseimiento de la causa respecto de ella por estimar
+  insuficientes los indicios.

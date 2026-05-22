@@ -1,0 +1,28 @@
+id: garcia-ortiz-condenado-no-firme-fge-2025-11
+caso_id: fiscal-general-del-estado
+sujeto_tipo: persona
+sujeto_persona_id: alvaro-garcia-ortiz
+rol: condenado_no_firme
+delitos_atribuidos:
+  - revelacion-de-secretos
+delitos_codigo_penal:
+  - "art. 417.1 CP"
+fecha_inicio: "2025-11-20"
+fecha_fin: "2026-02-26"
+hito_origen_id: sentencia-primera-instancia-fge-2025-11-20
+hito_fin_id: sentencia-firme-fge-2026-02-26
+notas: |
+  Por Sentencia 1000/2025 de la Sala Segunda del Tribunal Supremo de
+  9 de diciembre de 2025, leído el fallo el 20 de noviembre de 2025,
+  Álvaro García Ortiz queda condenado como autor responsable de un
+  delito de revelación de datos reservados del artículo 417.1 del
+  Código Penal a multa de doce meses con cuota diaria de veinte
+  euros, inhabilitación especial para el cargo de Fiscal General
+  del Estado por dos años e indemnización al perjudicado de diez
+  mil euros, por mayoría de cinco votos frente a dos, con voto
+  particular disidente de las magistradas Ana María Ferrer García y
+  Susana Polo García. La presunción de inocencia formal subsiste
+  hasta la firmeza, pendiente de la resolución de los incidentes de
+  nulidad de actuaciones planteados por la defensa y por el
+  Ministerio Fiscal. El rol se cierra el 26 de febrero de 2026 con
+  la desestimación de los incidentes de nulidad.

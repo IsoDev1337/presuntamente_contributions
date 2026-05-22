@@ -1,0 +1,18 @@
+id: apif
+nombre: "Asociación Profesional e Independiente de Fiscales"
+nombres_alternativos:
+  - "APIF"
+tipo: asociacion_acusacion_popular
+siglas: "APIF"
+descripcion_corta: |
+  Asociación profesional de fiscales españoles de orientación
+  conservadora, una de las tres asociaciones representativas de la
+  Carrera Fiscal. Personada en la Causa Especial nº 20557/2024 del
+  Tribunal Supremo contra el entonces Fiscal General del Estado
+  Álvaro García Ortiz como acusación popular, en virtud del
+  artículo 125 de la Constitución y de los artículos 101 y 270 de la
+  Ley de Enjuiciamiento Criminal.
+ambito_territorial: nacional
+url_canonica: "https://www.apifiscales.es"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

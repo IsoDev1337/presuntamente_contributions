@@ -1,0 +1,31 @@
+id: pilar-rodriguez-fernandez
+nombre_completo: "María Pilar Rodríguez Fernández"
+nombres_alternativos:
+  - "Pilar Rodríguez"
+  - "Pilar Rodríguez Fernández"
+  - "fiscal jefa Rodríguez"
+  - "fiscal superior de Madrid Pilar Rodríguez"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Fiscal Jefa Provincial de Madrid"
+    organizacion_id: fiscalia-provincial-madrid
+    desde: "2019-09-01"
+    hasta: "2025-08-31"
+nacionalidad: "española"
+biografia_corta: |
+  Pilar Rodríguez Fernández es fiscal española, durante varios años
+  Fiscal Jefa Provincial de Madrid. Investigada inicialmente en la
+  Causa Especial nº 20557/2024 de la Sala Segunda del Tribunal
+  Supremo junto al entonces Fiscal General del Estado Álvaro García
+  Ortiz por presunto delito de revelación de datos reservados en
+  relación con la filtración del correo electrónico del 2 de febrero
+  de 2024 del abogado Carlos Neira, fue sobreseída provisionalmente
+  respecto de su actuación por auto de la Sala de lo Penal del 29 de
+  julio de 2025, en el que la Sala estimó insuficientes los indicios
+  de su intervención en la filtración. Tras el sobreseimiento fue
+  promovida a una plaza de Fiscal del Tribunal Supremo en la Sala de
+  lo Social. Rige el principio de presunción de inocencia respecto
+  de la imputación inicial, que decayó con el sobreseimiento.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

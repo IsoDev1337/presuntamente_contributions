@@ -1,0 +1,28 @@
+id: sentencia-firme-fge-2026-02-26
+caso_id: fiscal-general-del-estado
+tipo: sentencia_firme
+fecha: "2026-02-26"
+fecha_precision: dia
+titulo: "La Sala Segunda del Tribunal Supremo desestima los incidentes de nulidad y la condena por revelación de secretos contra García Ortiz adquiere firmeza"
+descripcion: |
+  Por Acuerdo del 26 de febrero de 2026, la Sala Segunda del
+  Tribunal Supremo desestima los incidentes de nulidad de
+  actuaciones presentados contra la Sentencia 1000/2025 por la
+  defensa del condenado y por el Ministerio Fiscal. La resolución
+  cierra la vía ordinaria de impugnación y la sentencia condenatoria
+  adquiere firmeza en la jurisdicción ordinaria. Queda expedita la
+  vía del recurso extraordinario de amparo ante el Tribunal
+  Constitucional, sin efecto suspensivo automático sobre la
+  ejecución de la pena. La pena de inhabilitación especial para el
+  cargo de Fiscal General del Estado, de dos años, se ha ejecutado
+  desde el cese efectivo del condenado el 10 de diciembre de 2025.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+organizaciones_afectadas:
+  - tribunal-supremo
+documento_principal_id: confilegal-firmeza-fge-2026-02-26
+documentos_relacionados:
+  - infobae-firmeza-fge-2026-02-26
+  - moncloa-firmeza-fge-2026-02-26
+  - ts-sentencia-1000-2025-fge
+fase_resultante: sentencia_firme

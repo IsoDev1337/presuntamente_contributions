@@ -1,0 +1,93 @@
+# Caso del Fiscal General del Estado — esqueleto inicial (PR1).
+#
+# Causa Especial nº 20557/2024 seguida ante la Sala Segunda de lo Penal
+# del Tribunal Supremo por presunto delito de revelación de datos
+# reservados (art. 417.1 del Código Penal) contra el entonces Fiscal
+# General del Estado Álvaro García Ortiz y, en un primer momento,
+# contra la entonces Fiscal Jefa Provincial de Madrid Pilar Rodríguez
+# Fernández, en relación con la filtración del correo electrónico
+# remitido el 2 de febrero de 2024 por el abogado Carlos Neira (en
+# nombre de su cliente Alberto González Amador) a la Fiscalía
+# Provincial de Madrid proponiendo un acuerdo de conformidad. Por
+# Sentencia 1000/2025 de la Sala Segunda del Tribunal Supremo, de 9
+# de diciembre de 2025, García Ortiz fue condenado por mayoría de
+# cinco votos frente a dos, con dos votos particulares disidentes, a
+# multa de doce meses con cuota diaria de veinte euros, a
+# inhabilitación especial para el cargo de Fiscal General del Estado
+# durante dos años y a indemnizar al perjudicado en diez mil euros.
+# La condena devino firme tras la desestimación, por Acuerdo de la
+# misma Sala de 26 de febrero de 2026, de los incidentes de nulidad
+# planteados por la defensa y por el Ministerio Fiscal.
+
+id: fiscal-general-del-estado
+nombre_oficial: "Causa Especial nº 20557/2024 — Sala Segunda del Tribunal Supremo"
+nombre_mediatico: "Caso del Fiscal General del Estado"
+nombres_alternativos:
+  - "Caso García Ortiz"
+  - "Caso del FGE"
+  - "Causa especial contra el Fiscal General"
+
+descripcion_corta: |
+  Causa especial seguida ante la Sala Segunda de lo Penal del Tribunal
+  Supremo, instruida por el magistrado Ángel Luis Hurtado, por presunto
+  delito de revelación de datos reservados (art. 417.1 del Código
+  Penal) en relación con la filtración del correo electrónico
+  remitido el 2 de febrero de 2024 por el abogado Carlos Neira, en
+  representación de su cliente Alberto González Amador, a la Fiscalía
+  Provincial de Madrid proponiendo un acuerdo de conformidad por dos
+  delitos contra la Hacienda Pública. La causa se abrió en el
+  Tribunal Supremo el 15 de octubre de 2024 tras la exposición
+  razonada elevada por el Tribunal Superior de Justicia de Madrid.
+  Fueron inicialmente investigados el entonces Fiscal General del
+  Estado, Álvaro García Ortiz, y la entonces Fiscal Jefa Provincial
+  de Madrid, Pilar Rodríguez Fernández; por auto de la Sala de lo
+  Penal de 29 de julio de 2025 se acordó el sobreseimiento respecto
+  de Rodríguez Fernández y se confirmó el procesamiento de García
+  Ortiz, que fue enjuiciado por un tribunal de siete magistrados
+  entre el 3 y el 13 de noviembre de 2025. Por Sentencia 1000/2025
+  de la Sala Segunda de 9 de diciembre de 2025, de la que fue ponente
+  el presidente de la sala Andrés Martínez Arrieta, García Ortiz fue
+  condenado por mayoría de cinco votos frente a dos, con voto
+  particular disidente de las magistradas Ana María Ferrer García y
+  Susana Polo García, a multa de doce meses con cuota diaria de
+  veinte euros, a inhabilitación especial para el cargo de Fiscal
+  General del Estado durante dos años y al pago de una indemnización
+  de diez mil euros por daños morales al perjudicado Alberto González
+  Amador. La condena devino firme el 26 de febrero de 2026 al
+  desestimar la Sala los incidentes de nulidad. El 24 de noviembre de
+  2025 García Ortiz presentó su dimisión y por Real Decreto 1138/2025
+  de 9 de diciembre fue cesado, siendo sustituido en el cargo por
+  Teresa Peramato Martín mediante Real Decreto 1140/2025. La causa,
+  pese a estar firme en la jurisdicción ordinaria, sigue abierta en
+  amparo ante el Tribunal Constitucional por sendos recursos
+  presentados por la Fiscalía y por el propio condenado en abril de
+  2026.
+
+organo_judicial_id: tribunal-supremo
+numero_procedimiento: "Causa Especial nº 20557/2024"
+tipo_procedimiento: causa_especial_aforado
+ponente_actual_id: andres-martinez-arrieta
+
+fase_actual: sentencia_firme
+fecha_apertura: "2024-10-15"
+
+origen_denuncia: querella_particular
+querellante_inicial_id: alberto-gonzalez-amador
+
+delitos_atribuidos_en_la_causa:
+  - revelacion-de-secretos
+
+resumen_cifras: |
+  Por Sentencia 1000/2025 de la Sala Segunda del Tribunal Supremo de
+  9 de diciembre de 2025 se impuso a Álvaro García Ortiz una pena de
+  multa de doce meses con cuota diaria de veinte euros (7.200 euros
+  en total), inhabilitación especial para el cargo de Fiscal General
+  del Estado durante dos años y el pago de una indemnización de
+  10.000 euros por daños morales al perjudicado Alberto González
+  Amador, así como las costas procesales incluyendo las de la
+  acusación particular. La condena fue adoptada por mayoría de cinco
+  votos frente a dos.
+
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"
+nivel_relevancia_editorial: capital

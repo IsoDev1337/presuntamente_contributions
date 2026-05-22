@@ -1,0 +1,26 @@
+id: tribunal-superior-justicia-madrid
+nombre: "Tribunal Superior de Justicia de Madrid"
+nombres_alternativos:
+  - "TSJ Madrid"
+  - "TSJM"
+  - "Tribunal Superior de Justicia"
+tipo: tribunal
+descripcion_corta: |
+  Órgano jurisdiccional superior de la Comunidad Autónoma de Madrid,
+  con sede en la capital. Su Sala de lo Penal recibió en abril y mayo
+  de 2024 las querellas y denuncias presentadas contra Álvaro García
+  Ortiz y otros responsables del Ministerio Fiscal por presunto
+  delito de revelación de secretos, designó instructor al magistrado
+  Francisco José Goyena y, el 15 de julio de 2024, elevó al Tribunal
+  Supremo la exposición razonada por la que se inhibió en favor del
+  órgano competente para enjuiciar al Fiscal General del Estado en
+  activo, en virtud del aforamiento del cargo.
+jurisdiccion: penal
+ambito_territorial: autonomico
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+organo_superior_id: tribunal-supremo
+url_canonica: "https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Tribunales-Superiores-de-Justicia/TSJ-Madrid"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

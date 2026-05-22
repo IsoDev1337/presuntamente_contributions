@@ -1,0 +1,24 @@
+id: cese-garcia-ortiz-fge-2025-12-10
+caso_id: fiscal-general-del-estado
+tipo: cese
+fecha: "2025-12-10"
+fecha_precision: dia
+titulo: "El BOE publica el cese de Álvaro García Ortiz como Fiscal General del Estado y el nombramiento de Teresa Peramato como su sucesora"
+descripcion: |
+  El Real Decreto 1138/2025, de 9 de diciembre, por el que se
+  dispone el cese a petición propia de Álvaro García Ortiz como
+  Fiscal General del Estado, se publica en el Boletín Oficial del
+  Estado del 10 de diciembre de 2025 (BOE-A-2025-25142). En el mismo
+  día se publica el Real Decreto 1140/2025, también de 9 de
+  diciembre, por el que se nombra Fiscal General del Estado a Teresa
+  Peramato Martín. El Consejo de Ministros aprecia la concurrencia
+  de la causa legal prevista en la ley aplicable y la sucesión se
+  produce en cumplimiento de la sentencia de inhabilitación del
+  Tribunal Supremo. Tras el cese, García Ortiz se reintegra a la
+  carrera fiscal en la Sala de lo Social del Tribunal Supremo.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+organizaciones_afectadas:
+  - fiscalia-general-del-estado
+documento_principal_id: boe-cese-garcia-ortiz-fge-2025-12-10
+fase_resultante: sentencia_primera_instancia

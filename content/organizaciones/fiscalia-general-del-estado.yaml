@@ -1,0 +1,24 @@
+id: fiscalia-general-del-estado
+nombre: "Fiscalía General del Estado"
+nombres_alternativos:
+  - "FGE"
+  - "Fiscalía General"
+  - "Ministerio Fiscal"
+tipo: fiscalia
+descripcion_corta: |
+  Órgano superior del Ministerio Fiscal en el ordenamiento español,
+  con sede en Madrid, encabezado por el Fiscal General del Estado,
+  cuyo nombramiento corresponde al Rey a propuesta del Gobierno y oído
+  el Consejo General del Poder Judicial. Tiene atribuida la dirección
+  del Ministerio Fiscal de acuerdo con el principio de unidad de
+  actuación y de dependencia jerárquica establecido en el artículo
+  124 de la Constitución y desarrollado por el Estatuto Orgánico del
+  Ministerio Fiscal.
+jurisdiccion: penal
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+url_canonica: "https://www.fiscal.es"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

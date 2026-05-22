@@ -1,0 +1,34 @@
+id: apertura-causa-fge-2024-10-15
+caso_id: fiscal-general-del-estado
+tipo: imputacion
+fecha: "2024-10-15"
+fecha_precision: dia
+titulo: "La Sala Segunda del Tribunal Supremo abre causa especial contra el Fiscal General del Estado por presunto delito de revelación de secretos y designa instructor al magistrado Ángel Luis Hurtado"
+descripcion: |
+  Por acuerdo de la Sala Segunda (de lo Penal) del Tribunal Supremo
+  del 15 de octubre de 2024, la Sala asume el conocimiento de la
+  causa, antes seguida ante el Tribunal Superior de Justicia de
+  Madrid, tras la exposición razonada elevada por el órgano
+  territorial el 15 de julio de 2024 por razón del aforamiento del
+  Fiscal General del Estado en activo. La Sala designa instructor
+  al magistrado Ángel Luis Hurtado y abre causa especial, registrada
+  con el número 20557/2024, contra Álvaro García Ortiz y Pilar
+  Rodríguez Fernández, entonces Fiscal Jefa Provincial de Madrid,
+  por presunto delito de revelación de secretos del artículo 417 del
+  Código Penal en relación con la filtración del correo electrónico
+  remitido el 2 de febrero de 2024 por el abogado Carlos Neira, en
+  representación de su cliente Alberto González Amador, a la
+  Fiscalía Provincial de Madrid proponiendo un acuerdo de
+  conformidad. La causa principal se acumula posteriormente a las
+  Causas Especiales nº 21116/2024 y nº 21258/2024, ambas instadas
+  por el Sindicato Colectivo de Funcionarios Manos Limpias. Rige el
+  principio de presunción de inocencia respecto de los investigados.
+personas_afectadas:
+  - alvaro-garcia-ortiz
+  - pilar-rodriguez-fernandez
+organizaciones_afectadas:
+  - tribunal-supremo
+  - fiscalia-general-del-estado
+  - fiscalia-provincial-madrid
+documento_principal_id: cgpj-apertura-causa-fge-2024-10-16
+fase_resultante: instruccion

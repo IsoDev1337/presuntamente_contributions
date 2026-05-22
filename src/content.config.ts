@@ -276,6 +276,42 @@ const roles = defineCollection({
     .passthrough(),
 });
 
+// --- relaciones-entre-casos --------------------------------------------------
+//
+// Conexión NO jerárquica entre dos casos del inventario. La jerarquía padre-pieza
+// vive en Caso.caso_padre_id; aquí se modelan vínculos transversales
+// (derivado_de, conexion_factual, misma_trama, etc.). La validación canónica
+// del schema vive en /schemas/relacion-entre-casos.schema.json (V-15: salvo
+// `comparte_actor_con`, exigen al menos un documento de respaldo).
+
+const relaciones = defineCollection({
+  loader: glob({
+    pattern: '*.yaml',
+    base: './content/relaciones-entre-casos',
+    generateId: ({ data }) => String(data.id),
+  }),
+  schema: z
+    .object({
+      id: z.string(),
+      caso_a_id: z.string(),
+      caso_b_id: z.string(),
+      tipo: z.enum([
+        'derivado_de',
+        'comparte_actor_con',
+        'conexion_factual',
+        'misma_trama',
+        'contradiccion_factual',
+      ]),
+      descripcion: z.string(),
+      documentos_respaldo: z.array(z.string()).default([]),
+      fecha_inicio: z.string().optional(),
+      fecha_fin: z.string().optional(),
+      estado_publicacion: ESTADO_PUBLICACION,
+      ultima_revision_editorial: z.string().optional(),
+    })
+    .passthrough(),
+});
+
 export const collections = {
   casos,
   personas,
@@ -286,4 +322,5 @@ export const collections = {
   hitos,
   hechos,
   roles,
+  relaciones,
 };

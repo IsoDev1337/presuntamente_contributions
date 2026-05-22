@@ -1,0 +1,35 @@
+id: penas-impuestas-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  El fallo dispositivo de la Sentencia 1000/2025 de la Sala Segunda
+  del Tribunal Supremo, dictada por mayoría de cinco votos frente a
+  dos, impone a Álvaro García Ortiz como autor responsable de un
+  delito de revelación de datos reservados del artículo 417.1 del
+  Código Penal una pena de multa de doce meses con una cuota diaria
+  de veinte euros, equivalente a siete mil doscientos euros en
+  total, y la pena de inhabilitación especial para el cargo de
+  Fiscal General del Estado por tiempo de dos años, con condena en
+  costas procesales incluyendo las de la acusación particular. La
+  sentencia es firme desde el 26 de febrero de 2026 y la
+  inhabilitación se ejecuta desde el cese efectivo del condenado el
+  10 de diciembre de 2025.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2025-12-09"
+  precision: dia
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+  - fiscalia-general-del-estado
+documentos_respaldo:
+  - documento_id: ts-sentencia-1000-2025-fge
+    pasaje: "Fallo dispositivo de la Sentencia 1000/2025."
+  - documento_id: cgpj-condena-fge-2025-11-20
+    pasaje: "Resumen oficial del fallo en la nota CGPJ del 20 de noviembre de 2025."
+  - documento_id: elespanol-condena-5-2-fge-2025-11-20
+    pasaje: "Cobertura periodística con detalle del resultado de la votación 5-2."
+nivel_fuente_efectivo: 1
+vigencia: vigente
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

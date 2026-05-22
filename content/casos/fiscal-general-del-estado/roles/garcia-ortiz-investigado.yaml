@@ -1,0 +1,23 @@
+id: garcia-ortiz-investigado-fge-2024-10
+caso_id: fiscal-general-del-estado
+sujeto_tipo: persona
+sujeto_persona_id: alvaro-garcia-ortiz
+rol: investigado
+delitos_atribuidos:
+  - revelacion-de-secretos
+delitos_codigo_penal:
+  - "art. 417.1 CP"
+fecha_inicio: "2024-10-15"
+fecha_fin: "2025-06-09"
+hito_origen_id: apertura-causa-fge-2024-10-15
+hito_fin_id: auto-procesamiento-fge-2025-06-09
+notas: |
+  Por acuerdo de la Sala Segunda del Tribunal Supremo del 15 de
+  octubre de 2024 se abre causa especial contra Álvaro García Ortiz
+  por presunto delito de revelación de secretos del artículo 417 del
+  Código Penal y se designa instructor al magistrado Ángel Luis
+  Hurtado. La condición de investigado no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia. El rol
+  se cierra el 9 de junio de 2025 con el auto de procedimiento
+  abreviado dictado por el instructor, que abre el rol consecutivo
+  de procesado.

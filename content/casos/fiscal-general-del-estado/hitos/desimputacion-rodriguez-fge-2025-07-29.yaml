@@ -1,0 +1,26 @@
+id: desimputacion-rodriguez-fge-2025-07-29
+caso_id: fiscal-general-del-estado
+tipo: desimputacion
+fecha: "2025-07-29"
+fecha_precision: dia
+titulo: "La Sala de Apelaciones del Tribunal Supremo desestima el recurso del Fiscal General contra el auto de procedimiento abreviado y archiva la causa respecto de la Fiscal Jefa Provincial de Madrid"
+descripcion: |
+  Por auto del 29 de julio de 2025, la Sala de Apelaciones del
+  Tribunal Supremo, conociendo de los recursos de apelación
+  presentados contra el auto de procedimiento abreviado del 9 de
+  junio de 2025, desestima el recurso de Álvaro García Ortiz y
+  confirma su procesamiento, y estima el recurso interpuesto en
+  relación con Pilar Rodríguez Fernández acordando el sobreseimiento
+  provisional de la causa respecto de ella por estimar insuficientes
+  los indicios racionales de su intervención en la filtración. Tras
+  esta resolución, Pilar Rodríguez Fernández queda desimputada
+  conforme a la doctrina del Tribunal Constitucional: la
+  desimputación implica el cese del rol procesal de investigada y
+  reabsorbe plenamente la presunción de inocencia.
+personas_afectadas:
+  - pilar-rodriguez-fernandez
+  - alvaro-garcia-ortiz
+organizaciones_afectadas:
+  - tribunal-supremo
+documento_principal_id: cgpj-archivo-rodriguez-fge-2025-07-29
+fase_resultante: fase_intermedia

@@ -1,0 +1,53 @@
+id: fge-deriva-de-gonzalez-amador
+caso_a_id: fiscal-general-del-estado
+caso_b_id: gonzalez-amador
+tipo: derivado_de
+descripcion: |
+  La Causa Especial nº 20557/2024 seguida ante la Sala Segunda del
+  Tribunal Supremo contra el entonces Fiscal General del Estado
+  Álvaro García Ortiz por presunto delito de revelación de secretos
+  deriva factualmente del procedimiento ante el Juzgado de
+  Instrucción nº 19 de Madrid contra Alberto González Amador por
+  presunto fraude fiscal y falsedad documental.
+
+  El nexo es directo y verificable: la conducta enjuiciada en el
+  caso del Fiscal General consiste en la filtración a un medio de
+  comunicación, el 13 de marzo de 2024, del contenido del correo
+  electrónico remitido el 2 de febrero de 2024 por el abogado
+  Carlos Neira, en representación de su cliente Alberto González
+  Amador, a la Fiscalía Provincial de Madrid, en el que se proponía
+  un acuerdo de conformidad reconociendo la existencia de dos
+  delitos contra la Hacienda Pública. Ese mismo correo es prueba
+  documental obrante en el procedimiento principal contra Alberto
+  González Amador.
+
+  La relación derivada se manifiesta también en el plano subjetivo:
+  Alberto González Amador es investigado en el procedimiento
+  principal y perjudicado/acusación particular en la causa
+  derivada; su abogado Carlos Neira ejerce la defensa en el
+  procedimiento principal y dirige la acusación particular en la
+  causa derivada. La Sentencia 1000/2025 del Tribunal Supremo,
+  firme desde el 26 de febrero de 2026, reconoce expresamente esta
+  condición al condenar al Fiscal General a indemnizar a Alberto
+  González Amador en diez mil euros por daños morales y al pago de
+  las costas de la acusación particular.
+
+  Ambos procedimientos siguen su curso autónomo en lo procesal: la
+  condena firme al Fiscal General no afecta a la presunción de
+  inocencia de Alberto González Amador en el procedimiento por
+  presunto fraude fiscal, que se sustancia ante el Juzgado de
+  Instrucción nº 19 de Madrid sobre delitos distintos y con su
+  propia trayectoria. Sin embargo, la defensa de Alberto González
+  Amador invoca, mediante escrito del 19 de febrero de 2026, la
+  sentencia firme del Tribunal Supremo contra el Fiscal General
+  como vulneración del derecho a un proceso penal justo y a la
+  presunción de inocencia, pidiendo aplicar sus consecuencias al
+  procedimiento principal. La admisión y resolución de esta
+  invocación por el órgano competente está pendiente.
+documentos_respaldo:
+  - ts-sentencia-1000-2025-fge
+  - cgpj-notificacion-sentencia-fge-2025-12-09
+  - elespanol-defensa-invoca-fge-ga-2026-02-19
+fecha_inicio: "2024-10-15"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

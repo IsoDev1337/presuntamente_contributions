@@ -1,0 +1,33 @@
+id: quebrantamiento-deber-reserva-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  La Sentencia 1000/2025 del Tribunal Supremo, firme desde el 26 de
+  febrero de 2026, fundamenta la condena en el quebrantamiento del
+  "reforzado deber de reserva" que pesaba sobre el Fiscal General
+  del Estado en relación con los datos reservados obtenidos del
+  Ministerio Fiscal. La Sala sostiene que el Fiscal General "no
+  puede responder a una noticia falsa mediante la comisión de un
+  delito" y que la conducta es contraria al estándar de
+  comportamiento exigible al máximo responsable del Ministerio
+  Fiscal. La sentencia no atribuye un móvil económico ni cuantifica
+  un perjuicio patrimonial: la conducta queda calificada como
+  revelación de datos reservados del artículo 417.1 del Código
+  Penal por incumplimiento de un deber funcional cualificado.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2025-12-09"
+  precision: dia
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+  - fiscalia-general-del-estado
+documentos_respaldo:
+  - documento_id: ts-sentencia-1000-2025-fge
+    pasaje: "Fundamento jurídico sobre el reforzado deber de reserva del Fiscal General del Estado."
+  - documento_id: cgpj-notificacion-sentencia-fge-2025-12-09
+    pasaje: "Cita literal del fundamento: \"el Fiscal General no puede responder a una noticia falsa mediante la comisión de un delito\"."
+nivel_fuente_efectivo: 1
+vigencia: vigente
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

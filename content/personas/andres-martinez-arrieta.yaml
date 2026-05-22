@@ -1,0 +1,26 @@
+id: andres-martinez-arrieta
+nombre_completo: "Andrés Martínez Arrieta"
+nombres_alternativos:
+  - "Martínez Arrieta"
+  - "presidente Martínez Arrieta"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Presidente de la Sala Segunda (de lo Penal) del Tribunal Supremo"
+    organizacion_id: tribunal-supremo
+    desde: "2022-04-01"
+nacionalidad: "española"
+biografia_corta: |
+  Andrés Martínez Arrieta es magistrado español, presidente de la
+  Sala Segunda (de lo Penal) del Tribunal Supremo. Como presidente
+  de la Sala que enjuició la Causa Especial nº 20557/2024 contra el
+  entonces Fiscal General del Estado Álvaro García Ortiz, fue
+  ponente final de la Sentencia 1000/2025 de 9 de diciembre de 2025,
+  asumiendo la ponencia tras los votos particulares presentados por
+  dos magistradas en deliberación. La sentencia, adoptada por
+  mayoría de cinco votos frente a dos, declara probado que García
+  Ortiz, o persona de su entorno con su conocimiento, filtró el
+  correo electrónico remitido el 2 de febrero de 2024 por el abogado
+  Carlos Neira a la Fiscalía Provincial de Madrid.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

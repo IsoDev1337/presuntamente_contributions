@@ -1,0 +1,27 @@
+id: garcia-ortiz-condenado-firme-fge-2026-02
+caso_id: fiscal-general-del-estado
+sujeto_tipo: persona
+sujeto_persona_id: alvaro-garcia-ortiz
+rol: condenado_firme
+delitos_atribuidos:
+  - revelacion-de-secretos
+delitos_codigo_penal:
+  - "art. 417.1 CP"
+fecha_inicio: "2026-02-26"
+hito_origen_id: sentencia-firme-fge-2026-02-26
+notas: |
+  La Sentencia 1000/2025 de la Sala Segunda del Tribunal Supremo
+  adquiere firmeza el 26 de febrero de 2026 al desestimar la Sala
+  los incidentes de nulidad de actuaciones planteados por la defensa
+  y por el Ministerio Fiscal. La condena es definitiva en la
+  jurisdicción ordinaria. Álvaro García Ortiz es el primer Fiscal
+  General del Estado de la democracia española condenado por
+  sentencia firme. El cumplimiento de la pena de inhabilitación
+  especial se inició con el cese efectivo del condenado el 10 de
+  diciembre de 2025. La presentación posterior de recursos de
+  amparo ante el Tribunal Constitucional (Ministerio Fiscal el 10
+  de abril de 2026; defensa el 13 de abril de 2026) no suspende
+  automáticamente la ejecución de la pena. Si el Tribunal
+  Constitucional otorga amparo con retroacción de actuaciones, este
+  rol se cerraría con `fecha_fin` apuntando al hito correspondiente
+  de la resolución del TC.

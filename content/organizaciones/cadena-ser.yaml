@@ -1,0 +1,17 @@
+id: cadena-ser
+nombre: "Cadena SER"
+nombres_alternativos:
+  - "SER"
+  - "Cadena Ser"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Emisora de radio española, parte de Prisa Radio, con sede en Madrid
+  y cobertura nacional. Citada en la Causa Especial nº 20557/2024
+  del Tribunal Supremo como medio receptor de la filtración del
+  correo electrónico del 2 de febrero de 2024 redactado por el
+  abogado Carlos Neira en representación de su cliente Alberto
+  González Amador, publicada en la noche del 13 de marzo de 2024.
+ambito_territorial: nacional
+url_canonica: "https://cadenaser.com"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

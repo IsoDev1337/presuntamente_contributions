@@ -1,0 +1,16 @@
+id: el-salto
+nombre: "El Salto Diario"
+nombres_alternativos:
+  - "El Salto"
+  - "elsaltodiario"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Medio español de comunicación digital de orientación progresista,
+  cooperativo, fundado en 2017 a partir de la fusión de varios
+  proyectos periodísticos independientes. Cobertura crítica del caso
+  del Fiscal General del Estado a partir de la publicación de la
+  Sentencia 1000/2025 del Tribunal Supremo.
+ambito_territorial: nacional
+url_canonica: "https://www.elsaltodiario.com"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

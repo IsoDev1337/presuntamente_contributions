@@ -1,0 +1,35 @@
+id: votos-particulares-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  Las magistradas Ana María Ferrer García y Susana Polo García
+  formulan sendos votos particulares disidentes a la Sentencia
+  1000/2025 de la Sala Segunda del Tribunal Supremo. Ambas
+  magistradas sostienen, en síntesis recogida por el propio tribunal
+  y por la cobertura periodística cruzada, que la prueba indiciaria
+  practicada en el juicio no permite atribuir más allá de toda duda
+  razonable la autoría material o intelectual de la filtración al
+  condenado, y que el estándar de prueba aplicado por la mayoría
+  rebaja la exigencia constitucional de la presunción de inocencia
+  en perjuicio del Fiscal General del Estado en activo. Los votos
+  particulares no afectan a la firmeza ni a la ejecutividad de la
+  sentencia, pero alimentan los recursos de amparo presentados
+  posteriormente ante el Tribunal Constitucional.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2025-12-09"
+  precision: dia
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+documentos_respaldo:
+  - documento_id: ts-sentencia-1000-2025-fge
+    pasaje: "Votos particulares anejos a la Sentencia 1000/2025."
+  - documento_id: cgpj-notificacion-sentencia-fge-2025-12-09
+    pasaje: "Mención oficial de la mayoría \"de los miembros\" y de la presentación de votos particulares."
+  - documento_id: elespanol-condena-5-2-fge-2025-11-20
+    pasaje: "Cobertura periodística que identifica nominalmente a las dos magistradas disidentes."
+nivel_fuente_efectivo: 1
+vigencia: vigente
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"
