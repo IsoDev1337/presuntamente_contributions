@@ -96,6 +96,43 @@ const brandSub = 'Inventario público de casos de corrupción en España';
           <span class="sep">/</span>
           <a href="/cat" class:list={[lang === 'ca' && 'is-on']} lang="ca">CAT</a>
         </div>
+        <button
+          type="button"
+          class="site-menu-btn"
+          aria-controls="site-menu-panel"
+          aria-expanded="false"
+          aria-label="Abrir menú"
+        >
+          <svg class="site-menu-btn__open" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <svg class="site-menu-btn__close" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 6l12 12M6 18L18 6" />
+          </svg>
+        </button>
+      </div>
+      <div
+        id="site-menu-panel"
+        class="site-menu-panel"
+        role="dialog"
+        aria-label="Menú de navegación"
+        hidden
+      >
+        <nav class="site-menu-panel__nav" aria-label="Principal (menú móvil)">
+          {tabs.map((t) => (
+            <a
+              href={t.href}
+              class:list={['site-menu-panel__link', activeNav === t.key && 'is-active']}
+            >
+              {t.label}
+            </a>
+          ))}
+        </nav>
+        <div class="site-menu-panel__lang" aria-label="Idioma">
+          <a href="/" class:list={[lang === 'es' && 'is-on']} lang="es">ES</a>
+          <span class="sep">/</span>
+          <a href="/cat" class:list={[lang === 'ca' && 'is-on']} lang="ca">CAT</a>
+        </div>
       </div>
     </header>
 
@@ -120,6 +157,70 @@ const brandSub = 'Inventario público de casos de corrupción en España';
     <main id="main" class="main" data-pagefind-body>
       <slot />
     </main>
+
+    <script>
+      // Botón hamburguesa (mobile <720px) + panel desplegable.
+      // Event-delegation desde document para sobrevivir al swap de
+      // ClientRouter sin re-attach manual. `astro:before-preparation` cierra
+      // el panel ante una navegación para que no quede abierto en la página
+      // destino.
+      let __menuListenersAttached = false;
+      function __ensureMenuListeners() {
+        if (__menuListenersAttached) return;
+        __menuListenersAttached = true;
+
+        const closeAny = () => {
+          document.querySelectorAll('.site-menu-btn[aria-expanded="true"]').forEach((btn) => {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-label', 'Abrir menú');
+            const panel = document.getElementById(btn.getAttribute('aria-controls') ?? '');
+            panel?.setAttribute('hidden', '');
+          });
+          document.body?.classList.remove('has-menu-open');
+        };
+
+        document.addEventListener('click', (e) => {
+          const target = e.target;
+          if (!(target instanceof Element)) return;
+          const btn = target.closest('.site-menu-btn');
+          if (btn) {
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            const panel = document.getElementById(btn.getAttribute('aria-controls') ?? '');
+            if (expanded) {
+              btn.setAttribute('aria-expanded', 'false');
+              btn.setAttribute('aria-label', 'Abrir menú');
+              panel?.setAttribute('hidden', '');
+              document.body?.classList.remove('has-menu-open');
+            } else {
+              btn.setAttribute('aria-expanded', 'true');
+              btn.setAttribute('aria-label', 'Cerrar menú');
+              panel?.removeAttribute('hidden');
+              document.body?.classList.add('has-menu-open');
+            }
+            return;
+          }
+          // Click en un link del panel: dejar que navegue + cerrar inmediatamente
+          // (la transición de ClientRouter también dispara close vía before-preparation).
+          if (target.closest('.site-menu-panel a')) {
+            closeAny();
+            return;
+          }
+          // Click fuera del panel y fuera del botón → cerrar.
+          const openBtn = document.querySelector('.site-menu-btn[aria-expanded="true"]');
+          if (!openBtn) return;
+          const panel = document.getElementById(openBtn.getAttribute('aria-controls') ?? '');
+          if (panel && !panel.contains(target)) closeAny();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeAny();
+        });
+
+        document.addEventListener('astro:before-preparation', closeAny);
+      }
+      __ensureMenuListeners();
+      document.addEventListener('astro:page-load', __ensureMenuListeners);
+    </script>
 
     <footer class="site-footer">
       <div class="site-footer__inner">

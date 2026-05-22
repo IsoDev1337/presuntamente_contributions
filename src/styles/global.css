@@ -719,9 +719,143 @@ li { margin: var(--space-1) 0; }
     flex-shrink: 0;
   }
 }
+/* =========================================================================
+ * Botón hamburguesa + panel desplegable (mobile <720px)
+ *
+ * En mobile real ocultamos el nav horizontal y el selector de idioma del
+ * header, y ofrecemos un botón ☰ al lado del buscador que despliega un panel
+ * navy bajo el header con todas las secciones (vertical, items grandes) y el
+ * selector de idioma al final. Cumple el patrón usual de menú móvil sin caer
+ * en hamburguesa en desktop. Activado en sesión 5f (2026-05-22).
+ * ========================================================================= */
+.site-menu-btn {
+  /* Oculto por defecto: solo aparece en <720px. */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  background: transparent;
+  border: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  align-self: stretch;
+  transition: color var(--motion-duration) var(--motion-ease),
+              background var(--motion-duration) var(--motion-ease);
+}
+.site-menu-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+.site-menu-btn:focus-visible {
+  outline: 2px solid var(--color-accent-secondary);
+  outline-offset: -2px;
+}
+.site-menu-btn svg {
+  width: 20px; height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.site-menu-btn__close { display: none; }
+.site-menu-btn[aria-expanded="true"] .site-menu-btn__open { display: none; }
+.site-menu-btn[aria-expanded="true"] .site-menu-btn__close { display: block; }
+
+.site-menu-panel {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  /* z-index alto para superar el trim tricolor del ::after del header
+   * (que ya tiene pointer-events:none). El panel "sale" del header. */
+  z-index: 50;
+  background: var(--color-accent);
+  /* Trim tricolor inferior, mismo lenguaje que el header. */
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.site-menu-panel::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    #8e2424 0 25%,
+    var(--color-accent-secondary) 25% 75%,
+    #8e2424 75% 100%
+  );
+  pointer-events: none;
+}
+.site-menu-panel__nav {
+  display: flex;
+  flex-direction: column;
+}
+.site-menu-panel__link {
+  display: block;
+  padding: 14px var(--space-5);
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font: 600 15px/1 var(--font-sans);
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background var(--motion-duration) var(--motion-ease),
+              color var(--motion-duration) var(--motion-ease);
+}
+.site-menu-panel__link:hover,
+.site-menu-panel__link:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  outline: 0;
+}
+.site-menu-panel__link.is-active {
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  /* Filete mostaza a la izquierda — análogo al subrayado del nav desktop. */
+  box-shadow: inset 3px 0 0 var(--color-accent-secondary);
+}
+.site-menu-panel__lang {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px var(--space-5);
+  background: rgba(0, 0, 0, 0.18);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  font: 700 12px/1 var(--font-sans);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.site-menu-panel__lang a {
+  color: inherit;
+  text-decoration: none;
+  padding: 4px 2px;
+  transition: color var(--motion-duration) var(--motion-ease);
+}
+.site-menu-panel__lang a.is-on,
+.site-menu-panel__lang a:hover,
+.site-menu-panel__lang a:focus-visible { color: #fff; outline: 0; }
+.site-menu-panel__lang .sep { color: rgba(255, 255, 255, 0.25); }
+
+/* Bloquear scroll del body cuando el panel está abierto, para evitar que el
+ * fondo se desplace bajo el menú. */
+body.has-menu-open { overflow: hidden; }
+
 @media (max-width: 720px) {
-  /* En mobile real ocultamos el texto "Buscar" para ceder espacio. La lupa
-   * sola es suficiente con `aria-label` para accesibilidad. */
+  /* En mobile real (<720px) el header colapsa de las 2 filas que tenía a
+   * 1 sola fila: brand + buscador + hamburguesa. El nav horizontal y el
+   * selector de idioma del header se ocultan; ambos viven dentro del panel
+   * desplegable. */
+  .site-header__inner {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-rows: auto;
+  }
+  .site-nav { display: none; }
+  .site-lang { display: none; }
+  .site-search { grid-column: 2; grid-row: 1; }
+  .site-menu-btn {
+    display: inline-flex;
+    grid-column: 3;
+    grid-row: 1;
+  }
+  /* La lupa sola es suficiente: el texto "Buscar" ya estorba en mobile. */
   .site-search span { display: none; }
 }
 
