@@ -80,7 +80,7 @@ const brandSub = 'Inventario público de casos de corrupción en España';
         <nav class="site-nav" aria-label="Principal">
           {tabs.map((t) => (
             <a href={t.href} class:list={[activeNav === t.key && 'is-active']}>
-              {t.label}
+              <span class="site-nav__label">{t.label}</span>
             </a>
           ))}
         </nav>
