@@ -1,17 +1,23 @@
 ---
-// PhaseBadge — badge de fase procesal.
-// Mapea los 10 valores del enum `fase_actual` a 4 buckets de UI:
-// instr / juicio / firme / archivo. Archivo tiene estilo propio
-// (--phase-archivo, gris desaturado, peso normal) distinto a firme para
-// no confundir "cerrado con sentencia firme" con "archivado sin condena".
+// PhaseBadge — badge de fase procesal del caso (familia F4).
+// Mapea los 10 valores del enum `fase_actual` a 5 buckets de UI con
+// micro-barra de progreso en la base (DESIGN.md §"Sistema de badges"):
+//   instr      → [█░░░]   Instrucción (incl. denuncia/querella inicial)
+//   intermedia → [██░░]   Fase intermedia (procesado, escrito acusación)
+//   juicio     → [███░]   Juicio oral, sentencia 1ª instancia, recurso
+//   firme      → [████]   Sentencia firme, ejecución
+//   archivo    → [░░░░]   Archivo provisional o libre (gris desaturado)
 interface Props {
   fase: string;
 }
 const { fase } = Astro.props;
 
-function mapFase(f: string): { kind: 'instr' | 'juicio' | 'firme' | 'archivo'; label: string } {
-  if (f === 'instruccion' || f === 'fase_intermedia' || f === 'denuncia_o_querella') {
+function mapFase(f: string): { kind: 'instr' | 'intermedia' | 'juicio' | 'firme' | 'archivo'; label: string } {
+  if (f === 'instruccion' || f === 'denuncia_o_querella') {
     return { kind: 'instr', label: 'Instrucción' };
+  }
+  if (f === 'fase_intermedia') {
+    return { kind: 'intermedia', label: 'Fase intermedia' };
   }
   if (f === 'juicio_oral' || f === 'sentencia_primera_instancia' || f === 'recurso') {
     return { kind: 'juicio', label: 'Juicio oral' };

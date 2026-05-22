@@ -79,6 +79,47 @@
   --color-nivel-4-fg:     #1f3a68;
   --color-nivel-4-border: #1f3a68;
 
+  /* ===== Roles procesales — F-estado (dot + color) ========================
+   * Dos ejes de progresión visual cruzados:
+   *   - Eje matiz: navy (investigado, cautelar) → mostaza (procesado / acusado,
+   *     valoración judicial) → rojo (condenado, sentencia).
+   *   - Eje saturación: outline (sin fill) → fill (con fondo del color).
+   *     Cada matiz tiene su par: procesado outline → acusado fill;
+   *     condenado_no_firme outline → condenado_firme fill.
+   *
+   * `investigado` queda explícitamente fuera de mostaza/rojo. Ser investigado
+   * no implica valoración judicial de implicación — una persona puede ser
+   * investigada y resultar totalmente inocente. Va en navy outline, como base
+   * neutra del procedimiento. (Ver feedback memoria + DESIGN.md §2.)
+   *
+   * `condenado` se separa en dos sub-roles: no_firme (sentencia recurrible,
+   * presunción de inocencia formal sigue viva) en rojo apagado outline, y
+   * firme (sentencia ejecutiva sin recurso) en rojo chillón fill. La sentencia
+   * firme es jurídicamente el único momento en que cae la presunción.
+   *
+   * Rojo BOE apagado #c44545 / rojo chillón #c92e2e, nunca el rojo PSOE
+   * saturado de campaña. La gradación expresa gravedad procesal, no juicio
+   * moral.
+   *
+   * Restricción dura mantenida: estos rojos NUNCA aparecen en estados
+   * epistémicos del Hecho (acreditado/investigado/desmentido) — ver §2.
+   * ====================================================================== */
+  --color-rol-investigado:        #1f3a68;  /* navy = caso base, no acusatorio */
+  --color-rol-procesado:          #c89b00;  /* mostaza outline */
+  --color-rol-procesado-text:     #6b4d00;
+  --color-rol-acusado:            #c89b00;  /* mostaza fill */
+  --color-rol-acusado-text:       #6b4d00;
+  --color-rol-acusado-bg:         #f7ecc5;
+  --color-rol-condenado-no-firme: #c44545;  /* rojo apagado outline */
+  --color-rol-condenado-firme:    #c92e2e;  /* rojo chillón fill */
+  --color-rol-absuelto:           #2f6a3a;  /* mismo verde que acreditado */
+  --color-rol-desimputado:        #5b6878;  /* mismo azul-gris que exculpatorio */
+  --color-rol-testigo:            #5b6066;
+
+  /* ===== Roles funcionales — F-función (border-left + glyph + fondo) ====== */
+  --color-rol-aparato:         #1f3a68;  /* navy fuerte: aparato judicial */
+  --color-rol-acusacion-civil: #4a6694;  /* azul suave: acusadores ciudadanos + parte civil */
+
   /* ===== Fuentes ==========================================================
    * Stack institucional: Gill Sans (oficial del Gobierno desde 1999) con
    * fallback humanista abierto (Lato / Source Sans 3) servido vía Google
@@ -617,14 +658,18 @@ li { margin: var(--space-1) 0; }
    * Mantiene la estética ministerial: bandas horizontales visibles,
    * nada oculto detrás de widgets. */
   .site-header__inner {
-    grid-template-columns: 1fr auto auto;
+    /* minmax(0, 1fr) en lugar de 1fr evita que el grid item se expanda al
+     * min-content de su hijo (escudo + wordmark del brand) y fuerce un
+     * ancho total que desborda el viewport. */
+    grid-template-columns: minmax(0, 1fr) auto auto;
     grid-template-rows: auto auto;
   }
   .site-brand {
     grid-column: 1;
     grid-row: 1;
-    min-height: 64px;
-    padding: var(--space-2) var(--space-4);
+    min-height: 56px;
+    padding: var(--space-2) var(--space-3);
+    min-width: 0;
   }
   .site-search {
     grid-column: 2;
@@ -645,6 +690,9 @@ li { margin: var(--space-1) 0; }
     overflow-x: auto;
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
+    /* min-width:0 evita que el grid item se expanda al tamaño natural de
+     * sus hijos (5 links con flex-shrink:0) y desborde el viewport. */
+    min-width: 0;
   }
   .site-nav a {
     padding: 0 var(--space-3);
@@ -877,6 +925,26 @@ li { margin: var(--space-1) 0; }
 /* =========================================================================
  * Tablas administrativas — el componente central del listado
  * ========================================================================= */
+/* Wrap obligatorio en mobile: las tablas densas (PgCasos, PgPersonas,
+ * PgOrganizaciones, PgBiblioteca, trayectoria de Persona, roles de Org)
+ * superan el ancho del viewport a <720px y, sin wrap, fuerzan scroll
+ * horizontal de toda la página. .tbl-scroll confina el scroll a la propia
+ * tabla y deja un sombreado sutil en el borde derecho que sugiere al
+ * lector que puede deslizar. */
+.tbl-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Sombra sutil en el borde derecho cuando hay overflow, para que el
+   * lector sepa que hay más contenido a la derecha. */
+  background:
+    linear-gradient(to right, var(--color-bg) 0%, transparent 8px) left center,
+    linear-gradient(to left,  var(--color-bg) 0%, transparent 8px) right center,
+    linear-gradient(to right, rgba(0,0,0,0.06), transparent 8px) left center,
+    linear-gradient(to left,  rgba(0,0,0,0.06), transparent 8px) right center;
+  background-repeat: no-repeat;
+  background-size: 12px 100%, 12px 100%, 8px 100%, 8px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
 .tbl {
   width: 100%;
   border-collapse: collapse;
@@ -934,8 +1002,27 @@ li { margin: var(--space-1) 0; }
 
 /* =========================================================================
  * Badges — rectangulares, borde fino, NUNCA píldoras
+ *
+ * Sistema de 4 familias por dimensión (DESIGN.md §"Sistema de badges"):
+ *   F1 Nivel (N1-N4)    → font-mono + gradiente navy sólido→outline
+ *   F-estado            → · dot a la izquierda + color (rectángulo fino)
+ *                          - Estado epistémico del Hecho (acreditado/inv/...)
+ *                          - Rol procesal del lado acusado (investigado..condenado_firme)
+ *                          Mismo vocabulario porque ambos comunican "estado de algo".
+ *                          Contexto desambigua: Hecho vs Persona.
+ *   F4 Fase del caso    → ▆▆▆░ micro-barra de progreso en la base
+ *   F-función           → ▌ border-left 3-4px + glyph + fondo neutro
+ *                          - Aparato judicial (juez/fiscal/...): ⚖ navy fuerte
+ *                          - Acusación civil + parte civil: ⚑ azul suave
+ *                          - Categoría de Hito/Org/Doc: glyph propio
+ *
+ * Cada familia añade un vocabulario distintivo NO superponible. El "contenedor"
+ * de F-estado (rectángulo fino normal) y el de F-función (rectángulo + border-
+ * left grueso) son visualmente distintos: aunque compartan colores entre
+ * familias, no colisionan porque el contenedor manda.
  * ========================================================================= */
 .badge {
+  position: relative;
   display: inline-flex; align-items: center; gap: 4px;
   padding: 1px 6px;
   border: 1px solid var(--color-border-strong);
@@ -948,25 +1035,243 @@ li { margin: var(--space-1) 0; }
   white-space: nowrap;
   vertical-align: 1px;
 }
+
+/* F2 vocabulario: dot circular a la izquierda. Estado epistémico (Hecho). */
 .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* F-función vocabulario: glyph monocromo a la izquierda.
+ *
+ * Para aparato judicial y acusación civil usamos SVG inline (currentColor)
+ * embebidos en RolBadge.astro, que aseguran reconocibilidad y monocromía
+ * cross-platform a 13px.
+ *
+ * Para subfamilias de Hito (jurisdiccional/político/mediático) y otros
+ * categóricos usamos caracteres del bloque Latin-1 Supplement / Misc
+ * Punctuation (◆, ¶), que sí están en fuentes humanistas. La balanza de
+ * "hito jurisdiccional" reusa el mismo SVG de aparato judicial. */
+.badge .glyph-svg {
+  display: inline-block;
+  margin-right: 2px;
+  flex-shrink: 0;
+  vertical-align: -2px;
+}
+.badge .glyph {
+  display: inline-block;
+  line-height: 1;
+  font-size: 12px;
+  color: currentColor;
+  font-family: var(--font-sans);
+  font-weight: 700;
+}
+
 .badge--accent           { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
 .badge--accent-secondary { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
+
+/* ------------------------------------------------------------------------ *
+ * F1 — Nivel de fuente (N1-N4). Font-mono compacto + gradiente navy:
+ * sólido (N1/N2) → claro (N3) → outline (N4). El "peso de llenado"
+ * comunica oficialidad. Nunca colores distintos por nivel.
+ * ------------------------------------------------------------------------ */
 .badge--n1 { color: var(--color-nivel-1-fg); border-color: var(--color-nivel-1-border); background: var(--color-nivel-1-bg); font-family: var(--font-mono); }
 .badge--n2 { color: var(--color-nivel-2-fg); border-color: var(--color-nivel-2-border); background: var(--color-nivel-2-bg); font-family: var(--font-mono); }
 .badge--n3 { color: var(--color-nivel-3-fg); border-color: var(--color-nivel-3-border); background: var(--color-nivel-3-bg); font-family: var(--font-mono); }
 .badge--n4 { color: var(--color-nivel-4-fg); border-color: var(--color-nivel-4-border); background: transparent; font-family: var(--font-mono); }
-.badge--acreditado   { color: var(--color-acreditado);   border-color: var(--color-acreditado-border);   background: var(--color-acreditado-bg); }
-.badge--investigado  { color: var(--color-investigado);  border-color: var(--color-investigado-border);  background: var(--color-investigado-bg); }
-.badge--exculpatorio { color: var(--color-exculpatorio); border-color: var(--color-exculpatorio-border); background: var(--color-exculpatorio-bg); }
-.badge--desmentido   { color: var(--color-desmentido);   border-color: var(--color-desmentido-border);   background: var(--color-desmentido-bg); }
-.badge--phase-instr   { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
-.badge--phase-juicio  { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
-.badge--phase-firme   { color: var(--color-fg); border-color: var(--color-border-strong); background: var(--color-surface-muted); }
-/* Archivado: gris desaturado más apagado que firme + texto en peso normal,
-   para que se lea como "cerrado sin condena" frente al firme (sentencia
-   firme, peso pleno). Misma forma rectangular; diferencia transmitida por
-   intensidad de color y peso tipográfico, no por hue. */
-.badge--phase-archivo { color: var(--color-fg-muted); border-color: var(--color-border); background: var(--color-bg-muted); font-weight: 500; }
+
+/* ------------------------------------------------------------------------ *
+ * F2 — Estado epistémico (Hecho). Borde sólido para tipo principal,
+ * borde dashed para sub-tipo semánticamente cercano (atribuido ⊂
+ * investigado; no_concluyente ⊂ desmentido). Nunca rojo (DESIGN.md §2).
+ * ------------------------------------------------------------------------ */
+.badge--acreditado    { color: var(--color-acreditado);   border-color: var(--color-acreditado-border);   background: var(--color-acreditado-bg); }
+.badge--investigado   { color: var(--color-investigado);  border-color: var(--color-investigado-border);  background: var(--color-investigado-bg); }
+.badge--atribuido     { color: var(--color-investigado);  border-color: var(--color-investigado-border);  background: var(--color-investigado-bg); border-style: dashed; }
+.badge--exculpatorio  { color: var(--color-exculpatorio); border-color: var(--color-exculpatorio-border); background: var(--color-exculpatorio-bg); }
+.badge--desmentido    { color: var(--color-desmentido);   border-color: var(--color-desmentido-border);   background: var(--color-desmentido-bg); }
+.badge--no-concluyente{ color: var(--color-desmentido);   border-color: var(--color-desmentido-border);   background: var(--color-desmentido-bg); border-style: dashed; }
+
+/* ------------------------------------------------------------------------ *
+ * F-estado — Rol procesal del lado acusado (Persona en Caso).
+ * Contenedor: rectángulo fino normal (sin border-left grueso — eso es
+ * F-función). Adorno: dot a la izquierda en el color del rol.
+ *
+ * Eje matiz × eje saturación:
+ *   investigado          → navy outline               (cautelar, no acusatorio)
+ *   procesado            → mostaza outline            (auto procesamiento)
+ *   acusado              → mostaza FILL               (escrito de acusación)
+ *   condenado_no_firme   → rojo apagado outline       (sentencia recurrible)
+ *   condenado_firme      → rojo chillón FILL          (sentencia ejecutiva)
+ *   absuelto             → verde outline              (cierre favorable)
+ *   desimputado          → gris azul outline          (sobreseimiento individual)
+ *   testigo              → gris neutro outline        (no es parte)
+ * ------------------------------------------------------------------------ */
+.badge--rol-investigado        { color: var(--color-rol-investigado); border-color: var(--color-rol-investigado); background: var(--color-surface); }
+.badge--rol-investigado .dot   { background: var(--color-rol-investigado); }
+.badge--rol-procesado          { color: var(--color-rol-procesado-text); border-color: var(--color-rol-procesado); background: var(--color-surface); }
+.badge--rol-procesado .dot     { background: var(--color-rol-procesado); }
+.badge--rol-acusado            { color: var(--color-rol-acusado-text); border-color: var(--color-rol-acusado); background: var(--color-rol-acusado-bg); }
+.badge--rol-acusado .dot       { background: var(--color-rol-acusado-text); }
+.badge--rol-condenado_no_firme       { color: var(--color-rol-condenado-no-firme); border-color: var(--color-rol-condenado-no-firme); background: var(--color-surface); }
+.badge--rol-condenado_no_firme .dot  { background: var(--color-rol-condenado-no-firme); }
+.badge--rol-condenado_firme          { color: #fff; border-color: var(--color-rol-condenado-firme); background: var(--color-rol-condenado-firme); }
+.badge--rol-condenado_firme .dot     { background: #fff; }
+.badge--rol-absuelto           { color: var(--color-rol-absuelto); border-color: var(--color-rol-absuelto); background: var(--color-surface); }
+.badge--rol-absuelto .dot      { background: var(--color-rol-absuelto); }
+.badge--rol-desimputado        { color: var(--color-rol-desimputado); border-color: var(--color-rol-desimputado); background: var(--color-surface); }
+.badge--rol-desimputado .dot   { background: var(--color-rol-desimputado); }
+.badge--rol-testigo            { color: var(--color-rol-testigo); border-color: var(--color-rol-testigo); background: var(--color-surface); }
+.badge--rol-testigo .dot       { background: var(--color-rol-testigo); }
+
+/* ------------------------------------------------------------------------ *
+ * F-función — Roles "de función en el procedimiento" (no son estado del
+ * lado acusado): aparato judicial (juez/fiscal/magistrado/defensa/perito)
+ * y acusación civil / parte civil (denunciante/querellante/acusacion_*/
+ * perjudicado). También aplica a categorías de Hito/Org/Doc.
+ *
+ * Vocabulario: contenedor con border-left 4px del color de la función,
+ * fondo neutro --color-surface-muted, glyph monocromo a la izquierda.
+ * El contenedor distinto evita colisión con F-estado aunque los colores
+ * coincidan parcialmente.
+ * ------------------------------------------------------------------------ */
+.badge--fn {
+  border-color: var(--color-border);
+  border-left-width: 4px;
+  padding-left: 9px;
+  background: var(--color-surface-muted);
+  font-weight: 600;
+}
+.badge--fn .glyph { color: currentColor; margin-right: 2px; font-size: 11px; }
+.badge--fn-aparato {
+  color: var(--color-rol-aparato);
+  border-left-color: var(--color-rol-aparato);
+}
+.badge--fn-civil {
+  color: var(--color-rol-acusacion-civil);
+  border-left-color: var(--color-rol-acusacion-civil);
+}
+
+/* Aliases por rol concreto → familia y subtipo. Permite escribir solo
+ * `badge--rol-${rol}` desde Astro y que el rol sepa solo a qué grupo va. */
+.badge--rol-juez_instructor,
+.badge--rol-juez_ponente,
+.badge--rol-fiscal,
+.badge--rol-magistrado,
+.badge--rol-abogado_defensa,
+.badge--rol-abogado_acusacion,
+.badge--rol-perito_judicial,
+.badge--rol-perito_parte,
+.badge--rol-secretario_judicial {
+  border-color: var(--color-border);
+  border-left: 4px solid var(--color-rol-aparato);
+  padding-left: 9px;
+  background: var(--color-surface-muted);
+  color: var(--color-rol-aparato);
+  font-weight: 600;
+}
+.badge--rol-denunciante,
+.badge--rol-querellante,
+.badge--rol-acusacion_particular,
+.badge--rol-acusacion_popular,
+.badge--rol-perjudicado {
+  border-color: var(--color-border);
+  border-left: 4px solid var(--color-rol-acusacion-civil);
+  padding-left: 9px;
+  background: var(--color-surface-muted);
+  color: var(--color-rol-acusacion-civil);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------------ *
+ * F4 — Fase del caso. Micro-barra de progreso en la base del badge,
+ * 4 segmentos representando la secuencia procesal:
+ *   1. Instrucción → 2. Fase intermedia → 3. Juicio oral → 4. Sentencia firme
+ *
+ * Archivado tiene su propia variante (todos los segmentos vacíos), peso
+ * normal y color desaturado para leer "cerrado sin condena" frente al
+ * firme (sentencia firme, peso pleno).
+ *
+ * La barra se pinta con linear-gradient en ::after sobre 3px de alto.
+ * ------------------------------------------------------------------------ */
+.badge[class*="badge--phase-"] {
+  padding-bottom: 4px;
+}
+.badge[class*="badge--phase-"]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  /* Segmentos no completados: --color-surface (blanco) para destacar el
+   * segmento navy completado contra el fondo del badge --color-accent-soft.
+   * El gris --color-border perdía contraste y no se distinguían los tramos. */
+  background:
+    linear-gradient(
+      to right,
+      var(--seg-1, var(--color-surface)) 0 25%,
+      transparent 25% 26%,
+      var(--seg-2, var(--color-surface)) 26% 50%,
+      transparent 50% 51%,
+      var(--seg-3, var(--color-surface)) 51% 75%,
+      transparent 75% 76%,
+      var(--seg-4, var(--color-surface)) 76% 100%
+    );
+}
+.badge--phase-instr {
+  color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft);
+  --seg-1: var(--color-accent);
+}
+.badge--phase-intermedia {
+  color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft);
+  --seg-1: var(--color-accent); --seg-2: var(--color-accent);
+}
+.badge--phase-juicio {
+  color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft);
+  --seg-1: var(--color-accent); --seg-2: var(--color-accent); --seg-3: var(--color-accent);
+}
+.badge--phase-firme {
+  color: #fff; border-color: var(--color-accent); background: var(--color-accent);
+  --seg-1: #fff; --seg-2: #fff; --seg-3: #fff; --seg-4: #fff;
+}
+.badge--phase-archivo {
+  color: var(--color-fg-muted); border-color: var(--color-border); background: var(--color-bg-muted); font-weight: 500;
+  /* todos los segmentos quedan en --color-border por defecto */
+}
+
+/* ------------------------------------------------------------------------ *
+ * Categoría / tipo (sub-variante de F-función).
+ * Mismo contenedor que F-función (border-left 4px + fondo neutro + glyph)
+ * pero con tonos por subfamilia. Aplica a tipo de hito, tipo de organización
+ * y tipo de documento.
+ *   - hito jurisdiccional → ⚖ navy
+ *   - hito político       → ◆ mostaza
+ *   - hito mediático      → ¶ gris fg-muted
+ * ------------------------------------------------------------------------ */
+.badge--cat {
+  border-color: var(--color-border);
+  border-left-width: 4px;
+  padding-left: 9px;
+  background: var(--color-surface-muted);
+  color: var(--color-fg);
+  font-weight: 600;
+}
+.badge--cat .glyph { color: currentColor; margin-right: 2px; font-size: 11px; }
+.badge--cat-jurisdiccional { color: var(--color-accent); border-left-color: var(--color-accent); }
+.badge--cat-politico       { color: #6b4d00; border-left-color: var(--color-accent-secondary); }
+.badge--cat-mediatico      { color: var(--color-fg-muted); border-left-color: var(--color-border-strong); }
+
+/* Variante "ghost" — para badges secundarios (rol terminado, dato muted). */
+.badge--ghost { opacity: 0.65; }
+
+/* =========================================================================
+ * Utilitarias de color de rol (F-estado) — para subheadings, prosa, etc.
+ * Reusan los tokens de --color-rol-* para mantener coherencia con los badges.
+ * ========================================================================= */
+.rol-color-investigado        { color: var(--color-rol-investigado); }
+.rol-color-procesado          { color: var(--color-rol-procesado-text); }
+.rol-color-acusado            { color: var(--color-rol-acusado-text); }
+.rol-color-condenado_no_firme { color: var(--color-rol-condenado-no-firme); }
+.rol-color-condenado_firme    { color: var(--color-rol-condenado-firme); }
+.rol-color-absuelto           { color: var(--color-rol-absuelto); }
+.rol-color-desimputado        { color: var(--color-rol-desimputado); }
+.rol-color-testigo            { color: var(--color-rol-testigo); }
 
 /* =========================================================================
  * Botones

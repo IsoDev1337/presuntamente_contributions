@@ -1,0 +1,57 @@
+---
+// RolBadge — badge único para cualquier rol de RolEnCaso.
+//
+// La elección de familia visual es responsabilidad de este componente, no del
+// caller. Caller pasa `rol` (slug del enum) y opcionalmente `label`; el badge
+// decide:
+//   - F-estado (rol del lado acusado): dot + color, contenedor fino. Cubre
+//     investigado, procesado, acusado, condenado_no_firme, condenado_firme,
+//     absuelto, desimputado, testigo.
+//   - F-función aparato judicial: border-left navy + glyph ⚖ + fondo neutro.
+//     Cubre juez_*, fiscal, magistrado, abogado_*, perito_*, secretario_judicial.
+//   - F-función acusación civil + parte civil: border-left azul-suave + glyph ⚑
+//     + fondo neutro. Cubre denunciante, querellante, acusacion_*, perjudicado.
+//
+// La regla CSS de cada `.badge--rol-${rol}` ya está en global.css. Aquí solo
+// añadimos el adorno correcto (dot vs glyph) según familia.
+
+import { rolLabel, rolFamilia, type Lang } from '@/lib/labels';
+
+interface Props {
+  rol: string;
+  label?: string;
+  ghost?: boolean;
+  lang?: Lang;
+}
+const { rol, label, ghost = false, lang = 'es' } = Astro.props;
+const text = label ?? rolLabel(rol, lang);
+const familia = rolFamilia(rol);
+
+// Glyphs como SVG inline monocromos de 12×12 currentColor. Reemplazan los
+// caracteres Unicode `§` y `‡` que daban problemas de reconocibilidad a 12px
+// y dependían de la fuente activa. SVG asegura render consistente cross-
+// platform, monocromo siempre, currentColor heredado del badge.
+//   balance → balanza (aparato judicial)
+//   flag    → banderín de parte (acusación civil + parte civil)
+---
+<span class:list={['badge', `badge--rol-${rol}`, ghost && 'badge--ghost']}>
+  {familia === 'estado' && (
+    <span class="dot" aria-hidden="true"></span>
+  )}
+  {familia === 'funcion-aparato' && (
+    <svg class="glyph-svg" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="8" y1="2" x2="8" y2="14"/>
+      <line x1="3" y1="14" x2="13" y2="14"/>
+      <line x1="3" y1="4" x2="13" y2="4"/>
+      <path d="M3 4 L1 9 A2.2 2.2 0 0 0 5 9 Z"/>
+      <path d="M13 4 L11 9 A2.2 2.2 0 0 0 15 9 Z"/>
+    </svg>
+  )}
+  {familia === 'funcion-civil' && (
+    <svg class="glyph-svg" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="4" y1="2" x2="4" y2="15"/>
+      <path d="M4 3 L13 3 L11 6 L13 9 L4 9 Z" fill="currentColor" stroke="none"/>
+    </svg>
+  )}
+  {text}
+</span>

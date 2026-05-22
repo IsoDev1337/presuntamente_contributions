@@ -2,6 +2,11 @@
 // Hito — fila de la timeline cronológica de la ficha de caso.
 // Markup canónico en preview/comp_hito.html. Estructura:
 //   [date-cell con CalGlyph]  [hito: badge tipo + ind hechos · título · desc]
+//
+// El badge de familia (jurisdiccional / político / mediático) usa la
+// familia F5 del sistema de badges (DESIGN.md §"Sistema de badges"):
+// fondo neutro + glyph monocromo. No comparte paleta con la fase (F4)
+// para evitar la colisión visual previa.
 
 import CalGlyph from './CalGlyph.astro';
 import RichProse from './RichProse.astro';
@@ -30,6 +35,15 @@ const {
   documentoHref,
   documentoNivel,
 } = Astro.props;
+
+// Glyph rendering por subfamilia:
+//   - jurisdiccional → SVG balanza inline (mismo que aparato judicial)
+//   - politico       → ◆ U+25C6 (diamond) — bien cubierto en fuentes humanistas
+//   - mediatico      → ¶ U+00B6 (pilcrow) — idem
+const FAMILIA_GLYPH_CHAR: Record<Exclude<Props['tipoFamilia'], 'jurisdiccional'>, string> = {
+  politico:  '◆',
+  mediatico: '¶',
+};
 ---
 <div class="hito-item">
   <div class="hito-item__date">
@@ -37,7 +51,18 @@ const {
   </div>
   <div class="hito-item__body">
     <div class="hito-item__head">
-      <span class:list={['badge', `badge--hito-${tipoFamilia}`]}>
+      <span class:list={['badge', 'badge--cat', `badge--cat-${tipoFamilia}`]}>
+        {tipoFamilia === 'jurisdiccional' ? (
+          <svg class="glyph-svg" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="2" x2="8" y2="14"/>
+            <line x1="3" y1="14" x2="13" y2="14"/>
+            <line x1="3" y1="4" x2="13" y2="4"/>
+            <path d="M3 4 L1 9 A2.2 2.2 0 0 0 5 9 Z"/>
+            <path d="M13 4 L11 9 A2.2 2.2 0 0 0 15 9 Z"/>
+          </svg>
+        ) : (
+          <span class="glyph" aria-hidden="true">{FAMILIA_GLYPH_CHAR[tipoFamilia]}</span>
+        )}
         {tipoLabel}
       </span>
       {documentoTitulo && documentoNivel && (
@@ -105,10 +130,4 @@ const {
     text-decoration: underline;
     text-underline-offset: 2px;
   }
-  /* Badges de familia de hito; reusan la regla .badge del global.css y
-     sólo afinan el color por familia para que el lector distinga de un
-     vistazo qué tipo de evento es. */
-  .badge--hito-jurisdiccional { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
-  .badge--hito-politico       { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
-  .badge--hito-mediatico      { color: var(--color-fg); border-color: var(--color-border-strong); background: var(--color-surface-muted); }
 </style>

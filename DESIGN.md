@@ -2,7 +2,7 @@
 
 Lenguaje visual canónico de presuntamente.org. Este fichero es la fuente de verdad de la identidad visual del proyecto. Cualquier agente (Claude Design, Claude Code, otros) que vaya a generar diseño, código o cualquier output visual debe leerlo antes de empezar.
 
-**Última actualización:** 2026-05-21.
+**Última actualización:** 2026-05-22 — sistema de badges redefinido a 4 familias finales (F1 Nivel · F-estado · F4 Fase · F-función). Decisiones editoriales clave incorporadas: el rol procesal `investigado` queda fuera de los rojos (cautelar, no acusatorio); el rol `condenado` se separa en `condenado_no_firme` (rojo apagado outline) y `condenado_firme` (rojo chillón fill), porque la presunción de inocencia formal cae solo con firmeza. El sistema F-estado y F-función comparten colores parcialmente pero usan **contenedores distintos** (rectángulo fino vs rectángulo + border-left grueso + glyph) para evitar colisión. Pendiente sincronizar con Claude Design (prompt entregado al maintainer).
 
 ---
 
@@ -84,6 +84,8 @@ Cuatro colores apagados, **nunca asociables a partidos políticos**, para difere
 2. **Desmentido en rojo invierte el mensaje**: "desmentido" significa que la afirmación es falsa, lo que **EXCULPA** a la persona afectada. Pintar de rojo (=malo) un hecho que de hecho exonera al sujeto invierte el significado.
 3. **Investigado en rojo viola presunción de inocencia**: rojo pre-juzga culpabilidad antes de sentencia firme. Es exactamente lo que el modelo evita en datos y en lenguaje (doc 04 §3).
 
+> **Excepción documentada**: el rojo institucional muted SÍ aparece en una dimensión muy concreta, los sub-roles `condenado_no_firme` (`#c44545` outline) y `condenado_firme` (`#c92e2e` fill) de F-estado (rol procesal). Nunca rojo PSOE/IU saturado. Los roles `investigado`, `procesado` y `acusado` quedan explícitamente fuera del rojo — la progresión visual va navy → mostaza → rojo, no "rojo desde el primer escalón". Ver §2bis para el detalle del gradiente y la razón editorial.
+
 > **Sobre asociaciones partidarias de los colores:** en política española casi todo color tiene asociación con algún partido (rojo PSOE/IU/Sumar, azul PP, verde Vox flúor, naranja Cs/Sumar, morado Podemos, amarillo ERC/Junts, etc.). El proyecto **no** evita colores por su asociación política — sería imposible — sino que usa **siempre tonos muted / institucionales / desaturados**, jamás los tonos saturados de campaña. El verde acreditado es un verde sobrio (no el flúor de Vox). El ámbar investigado es un ocre apagado (no el amarillo brillante de Junts). El navy del accent es navy institucional (no el azul claro del PP). Esta es la regla unificadora real del sistema cromático.
 
 ### Slots visuales para niveles de fuente (N1-N4)
@@ -100,6 +102,115 @@ Misma forma (rectángulo) en los cuatro. La forma comunica categoría; el llenad
 ### Dark mode
 
 Estrategia: **luminosidad invertida manteniendo identidad**. Mismos roles, mismos contrastes relativos, sin cambiar la paleta institucional. Activado por `prefers-color-scheme: dark` o vía `light-dark()`.
+
+---
+
+## 2bis. Sistema de badges
+
+Los badges del proyecto representan **cuatro dimensiones distintas** de información: nivel de fuente del Documento, estado de algo (Hecho epistémico + Persona rol procesal), fase del Caso, función en el procedimiento (aparato judicial / acusación civil / categoría de Hito/Org/Doc). Si todas comparten la misma plantilla y se distinguen sólo por color, el lector pierde la pista de qué tipo de información está leyendo.
+
+### Principio guía
+
+Mismo "rectángulo institucional" base (borde 1px, radius 0, padding 1px 6px, caps 10px bold). Cada familia añade un **vocabulario propio**: un adorno + un tipo de contenedor. Las familias son no superponibles — cada badge pertenece a una sola.
+
+| Familia | Adorno | Contenedor | Cuándo aplica |
+|---|---|---|---|
+| **F1 Nivel** | `font-mono` + gradiente navy (sólido→outline) | rectángulo fino | Documento N1-N4 |
+| **F-estado** | `•` dot 6px a la izquierda + color | rectángulo fino | Hecho (estado epistémico) y Persona (rol procesal del lado acusado) |
+| **F4 Fase** | `▆▆▆░` micro-barra de progreso en la base | rectángulo fino + bar 3px | Caso fase actual |
+| **F-función** | glyph monocromo + color | rectángulo + **`▌` border-left 4px** + fondo neutro | Aparato judicial, acusación civil / parte civil, categorías de Hito/Organización/Documento |
+
+Aunque **F-estado** y **F-función** comparten parcialmente colores (p.ej. navy aparece en `investigado` y en aparato judicial), el contenedor manda: F-estado es rectángulo fino normal, F-función añade border-left grueso + fondo neutro + glyph. Visualmente no se confunden.
+
+### F1 — Nivel de fuente (N1–N4)
+
+Cuatro variantes del **mismo navy institucional**, NUNCA colores distintos por nivel (introduciría semántica accidental tipo "verde=bueno"). El "peso de llenado" comunica oficialidad:
+
+- **N1** (sentencia, auto firme, BOE) → fill navy sólido + texto blanco. Peso visual máximo.
+- **N2** (informe UDEF/UCO, escrito Fiscalía) → fill azul medio + texto blanco.
+- **N3** (Tribunal de Cuentas, nota organismo público, medio con cita) → fill claro + texto navy.
+- **N4** (cobertura periodística cruzada) → outline navy sin fill. El más "ligero".
+
+### F-estado — Estado epistémico (Hecho) + Rol procesal (Persona)
+
+El `•` dot a la izquierda y el contenedor rectangular fino son comunes a ambas dimensiones porque **ambas comunican un estado**: estado de un hecho (¿está acreditado?) o estado de una persona frente al caso (¿está investigada, procesada, condenada?). El contexto (Hecho card vs PersonaCard) desambigua. La coincidencia conceptual no es accidental: un Hecho `investigado` y un rol procesal `investigado` comparten color (ámbar) y semántica ("atribución no acreditada").
+
+**Estado epistémico del Hecho** (6 valores, 4 colores). Borde sólido para tipo principal, borde dashed para sub-tipo:
+
+- **Acreditado** → verde sobrio, sólido.
+- **Investigado** → ámbar, sólido.
+- **Atribuido** → ámbar, **dashed**.
+- **Exculpatorio** → gris azulado, sólido.
+- **Desmentido** → gris neutro, sólido.
+- **No concluyente** → gris neutro, **dashed**.
+
+**Nunca rojo en estado epistémico** (ver §2 — convención UI, presunción de inocencia).
+
+**Rol procesal del lado acusado** (8 valores). Dos ejes cruzados:
+
+- Eje matiz: **navy → mostaza → rojo** según gravedad procesal acumulada.
+- Eje saturación: **outline → fill** dentro de cada matiz, marcando el "siguiente escalón".
+
+| Rol | Dot/borde | Fondo | Razón editorial |
+|---|---|---|---|
+| `investigado` | navy `#1f3a68` | blanco | Estado cautelar; ser investigado **no implica** valoración judicial — una persona puede ser investigada y ser inocente. Por eso va en navy outline (caso base, no acusatorio), no en mostaza ni rojo |
+| `procesado` | mostaza `#c89b00` | blanco | Auto de procesamiento: un juez ha dicho que hay indicios racionales |
+| `acusado` | mostaza `#c89b00` | mostaza soft `#f7ecc5` (fill) | Escrito de acusación formal; misma familia que procesado, "siguiente escalón" |
+| `condenado_no_firme` | rojo apagado `#c44545` | blanco | Sentencia condenatoria recurrible; presunción de inocencia formal **sigue viva** mientras quepa recurso |
+| `condenado_firme` | blanco | rojo chillón `#c92e2e` (fill) | Sentencia ejecutiva sin recurso pendiente; **único momento jurídico** en que cae la presunción de inocencia |
+| `absuelto` | verde sobrio `#2f6a3a` | blanco | Cierre favorable (mismo verde que estado epistémico `acreditado`) |
+| `desimputado` | gris azulado `#5b6878` | blanco | Sobreseimiento individual (mismo color que `exculpatorio`) |
+| `testigo` | gris neutro | blanco | No es parte |
+
+> El rol **`condenado` se separa en dos sub-roles** en el schema (`condenado_no_firme` y `condenado_firme`) precisamente porque la distinción tiene peso editorial y legal: la presunción de inocencia formal sólo cae con la firmeza. Mantener ambos como un único `condenado` sería editorialmente menos honesto.
+
+El **rojo se reserva exclusivamente a `condenado_no_firme` y `condenado_firme`**. Tonos institucionales muted (`#c44545`, `#c92e2e`), nunca el rojo PSOE/IU saturado de campaña. La progresión expresa **gravedad procesal**, no juicio moral.
+
+### F4 — Fase del Caso
+
+La fase es una secuencia ordenada: instrucción → fase intermedia → juicio oral → sentencia firme. Cuatro buckets activos + uno especial (archivado). Cada badge incluye una **micro-barra de progreso de 4 segmentos** en su base (3px de alto, pintada con `linear-gradient` sobre `::after`):
+
+- Instrucción → `[█░░░]` (1/4)
+- Fase intermedia → `[██░░]` (2/4)
+- Juicio oral → `[███░]` (3/4)
+- Sentencia firme → `[████]` (4/4) — fill navy completo, texto blanco
+- Archivado → `[░░░░]` (0/4, segmentos en gris) — peso normal, color desaturado, distinto del firme
+
+La barra comunica "dónde estamos en el procedimiento" de un vistazo, sin que el lector tenga que recordar el orden de las fases procesales españolas.
+
+### F-función — Roles de función en el procedimiento + categorías
+
+Cubre todo lo que **no es estado** del lado acusado: actores con función formal en el procedimiento (aparato judicial, acusación civil) y categorías de objeto (tipo de Hito, tipo de Organización, tipo de Documento). Contenedor único: rectángulo fino + `▌` border-left 4px del color de la subfamilia + fondo neutro `--color-surface-muted` + glyph monocromo a la izquierda.
+
+Glyphs y tonos:
+
+| Subfamilia | Roles / categorías | Glyph | Color border-left + texto |
+|---|---|---|---|
+| Aparato judicial | `juez_instructor`, `juez_ponente`, `fiscal`, `magistrado`, `abogado_defensa`, `abogado_acusacion`, `perito_*`, `secretario_judicial` | `§` (signo de sección, símbolo jurídico clásico) | navy fuerte `#1f3a68` |
+| Acusación civil + parte civil | `denunciante`, `querellante`, `acusacion_particular`, `acusacion_popular`, `perjudicado` | `‡` (doble daga, "cita / parte distinguida") | azul suave `#4a6694` |
+| Hito jurisdiccional | tipo de Hito | `§` | navy |
+| Hito político | tipo de Hito | `◆` | mostaza |
+| Hito mediático | tipo de Hito | `¶` | gris fg-muted |
+| Tipo de Organización (listado) | tipo organización | (sin glyph propio en listado tabular) | gris border |
+
+**Glyphs en caracteres del bloque Latín-Suplemento / Misc. Punctuation** (`§`, `¶`, `‡`, `◆`) que SÍ están en fuentes humanistas (Lato, Gill Sans, Source Sans). Evitamos `⚖` y `⚑` aunque semánticamente cuadrarían: muchas fuentes humanistas no los cubren y caen a fallback que renderiza irreconocible a 11-12px.
+
+### Restricciones operativas
+
+1. **No combinar adornos de familias distintas.** Un badge pertenece a una sola familia.
+2. **No introducir colores nuevos.** El sistema está cerrado. Si parece que un caso pide un color nuevo, casi siempre es señal de que la dimensión está mal asignada.
+3. **Tres canales simultáneos siempre.** Estado se comunica por color + label + adorno. Nunca solo color (ver §7 "Do").
+4. **Densidad administrativa.** Adornos sobrios (border-left 4px, bar 3px, dot 6px, glyph 12px). No más sprite que el sistema actual.
+
+### Implementación
+
+CSS canónico en `src/styles/global.css` (sección "Badges"). Componentes Astro:
+
+- `LevelBadge.astro` — F1
+- `EpistemicBadge.astro` — F-estado (Hecho)
+- `RolBadge.astro` — F-estado (Persona, lado acusado) + F-función (aparato + acusación civil). Centraliza el routing: el caller pasa `rol` y el componente decide la familia/adorno con `rolFamilia()` de `lib/labels.ts`.
+- `PhaseBadge.astro` — F4
+- `Hito.astro` — usa `.badge--cat-*` con border-left + glyph propio
 
 ---
 

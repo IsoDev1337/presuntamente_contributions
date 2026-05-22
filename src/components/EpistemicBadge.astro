@@ -1,16 +1,15 @@
 ---
-// EpistemicBadge — badge de estado epistémico de un Hecho.
-// 6 valores en el modelo (doc 01 §2.6), 4 con clase propia + 2 que reutilizan
-// la más cercana semánticamente:
-//   - acreditado    → verde sobrio
-//   - investigado   → ámbar
-//   - atribuido     → mismo amarillo apagado que investigado (atribución sin
-//                     acreditación; visualmente equivalentes para el lector)
-//   - exculpatorio  → gris azulado
-//   - desmentido    → gris neutro
-//   - no_concluyente→ gris neutro (mismo que desmentido)
+// EpistemicBadge — badge de estado epistémico de un Hecho (familia F2).
+// 6 valores en el modelo (doc 01 §2.6), 4 colores con sub-tipo por borde:
+//   - acreditado     → verde sobrio, borde sólido
+//   - investigado    → ámbar, borde sólido
+//   - atribuido      → ámbar, borde DASHED (sub-tipo de investigado)
+//   - exculpatorio   → gris azulado, borde sólido
+//   - desmentido     → gris neutro, borde sólido
+//   - no_concluyente → gris neutro, borde DASHED (sub-tipo de desmentido)
 // El estado se transmite por TRES canales: color + label + dot. Nunca solo
-// color (DESIGN.md §7 "Do").
+// color (DESIGN.md §7 "Do"). El borde dashed distingue sub-tipos sin
+// introducir colores nuevos. Nunca rojo (DESIGN.md §2).
 
 interface Props {
   tipo: 'acreditado' | 'investigado' | 'atribuido' | 'exculpatorio' | 'desmentido' | 'no_concluyente';
@@ -18,12 +17,12 @@ interface Props {
 const { tipo } = Astro.props;
 
 const VARIANT = {
-  acreditado:     { cls: 'acreditado',   label: 'Acreditado' },
-  investigado:    { cls: 'investigado',  label: 'Investigado' },
-  atribuido:      { cls: 'investigado',  label: 'Atribuido' },
-  exculpatorio:   { cls: 'exculpatorio', label: 'Exculpatorio' },
-  desmentido:     { cls: 'desmentido',   label: 'Desmentido' },
-  no_concluyente: { cls: 'desmentido',   label: 'No concluyente' },
+  acreditado:     { cls: 'acreditado',     label: 'Acreditado' },
+  investigado:    { cls: 'investigado',    label: 'Investigado' },
+  atribuido:      { cls: 'atribuido',      label: 'Atribuido' },
+  exculpatorio:   { cls: 'exculpatorio',   label: 'Exculpatorio' },
+  desmentido:     { cls: 'desmentido',     label: 'Desmentido' },
+  no_concluyente: { cls: 'no-concluyente', label: 'No concluyente' },
 } as const;
 
 const { cls, label } = VARIANT[tipo];
