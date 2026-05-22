@@ -116,7 +116,8 @@ const brandSub = 'Inventario público de casos de corrupción en España';
         class="site-menu-panel"
         role="dialog"
         aria-label="Menú de navegación"
-        hidden
+        data-open="false"
+        aria-hidden="true"
       >
         <nav class="site-menu-panel__nav" aria-label="Principal (menú móvil)">
           {tabs.map((t) => (
@@ -169,14 +170,18 @@ const brandSub = 'Inventario público de casos de corrupción en España';
         if (__menuListenersAttached) return;
         __menuListenersAttached = true;
 
+        const setOpen = (btn: Element, open: boolean) => {
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+          const panel = document.getElementById(btn.getAttribute('aria-controls') ?? '');
+          if (panel) {
+            panel.dataset.open = open ? 'true' : 'false';
+            panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+          }
+          document.body?.classList.toggle('has-menu-open', open);
+        };
         const closeAny = () => {
-          document.querySelectorAll('.site-menu-btn[aria-expanded="true"]').forEach((btn) => {
-            btn.setAttribute('aria-expanded', 'false');
-            btn.setAttribute('aria-label', 'Abrir menú');
-            const panel = document.getElementById(btn.getAttribute('aria-controls') ?? '');
-            panel?.setAttribute('hidden', '');
-          });
-          document.body?.classList.remove('has-menu-open');
+          document.querySelectorAll('.site-menu-btn[aria-expanded="true"]').forEach((btn) => setOpen(btn, false));
         };
 
         document.addEventListener('click', (e) => {
@@ -184,19 +189,7 @@ const brandSub = 'Inventario público de casos de corrupción en España';
           if (!(target instanceof Element)) return;
           const btn = target.closest('.site-menu-btn');
           if (btn) {
-            const expanded = btn.getAttribute('aria-expanded') === 'true';
-            const panel = document.getElementById(btn.getAttribute('aria-controls') ?? '');
-            if (expanded) {
-              btn.setAttribute('aria-expanded', 'false');
-              btn.setAttribute('aria-label', 'Abrir menú');
-              panel?.setAttribute('hidden', '');
-              document.body?.classList.remove('has-menu-open');
-            } else {
-              btn.setAttribute('aria-expanded', 'true');
-              btn.setAttribute('aria-label', 'Cerrar menú');
-              panel?.removeAttribute('hidden');
-              document.body?.classList.add('has-menu-open');
-            }
+            setOpen(btn, btn.getAttribute('aria-expanded') !== 'true');
             return;
           }
           // Click en un link del panel: dejar que navegue + cerrar inmediatamente

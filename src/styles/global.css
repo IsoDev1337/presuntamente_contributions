@@ -709,13 +709,14 @@ li { margin: var(--space-1) 0; }
   }
   .site-nav a {
     /* Sin height fija — el padding vertical define la altura natural del
-     * link (texto 13px + padding 28px ≈ 41px), igual que el desktop. Antes
-     * `height: 40px; font-size: 12px` daba un nav-bar comprimido y poco
-     * legible. Aumentado en sesión 5e (2026-05-22) por feedback maintainer.
-     * `flex-shrink: 0` se mantiene por si flex-wrap intentara comprimir
-     * antes de hacer wrap. */
-    padding: 14px var(--space-3);
-    font-size: 13px;
+     * link (texto 14px + padding 36px ≈ 50px). Antes `height: 40px;
+     * font-size: 12px` daba un nav-bar comprimido; tras feedback del
+     * maintainer (sesión 5g) subimos a `padding: 18px; font-size: 14px`
+     * para que la fila inferior tenga peso visual equivalente al brand
+     * block. `flex-shrink: 0` se mantiene por si flex-wrap intentara
+     * comprimir antes de hacer wrap. */
+    padding: 18px var(--space-3);
+    font-size: 14px;
     flex-shrink: 0;
   }
 }
@@ -770,6 +771,38 @@ li { margin: var(--space-1) 0; }
   /* Trim tricolor inferior, mismo lenguaje que el header. */
   padding-bottom: 6px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  /* Animación slide-down + fade. El panel no usa `hidden`/display:none
+   * porque eso impediría animar; se controla con `data-open` y la combinación
+   * max-height + opacity + visibility. `visibility: hidden` saca el panel
+   * del orden de tab (a11y) cuando está cerrado. */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    max-height 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 200ms ease-out,
+    /* visibility se retrasa hasta el final del cierre para no cortar la
+     * animación; al abrir es instantánea. */
+    visibility 0s linear 280ms;
+}
+.site-menu-panel[data-open="true"] {
+  /* `max-height` arbitrariamente grande: el contenido real es ~320px en el
+   * estado actual con 6 links + lang. Si entra un 7º link y excede 600px,
+   * subir esta cota; mientras tanto, mantiene la animación corta. */
+  max-height: 600px;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    max-height 320ms cubic-bezier(0.2, 0, 0, 1),
+    opacity 200ms ease-out,
+    visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-menu-panel,
+  .site-menu-panel[data-open="true"] {
+    transition: none;
+  }
 }
 .site-menu-panel::after {
   content: '';
