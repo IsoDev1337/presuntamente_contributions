@@ -1,0 +1,17 @@
+id: mrpe-acusacion-popular-bg-2024-05
+caso_id: begona-gomez
+sujeto_tipo: organizacion
+sujeto_organizacion_id: movimiento-regeneracion-politica
+rol: acusacion_popular
+fecha_inicio: "2024-05-01"
+hito_origen_id: denuncia-manos-limpias-bg-2024-04-08
+notas: |
+  La asociación Movimiento de Regeneración Política de España se
+  persona como acusación popular en el procedimiento del Juzgado de
+  Instrucción nº 41 de Madrid en mayo de 2024, tras prestar la fianza
+  acordada por el instructor. Designa como letrado a Aitor Guisasola.
+  La fecha exacta del auto de admisión queda pendiente: la cobertura
+  periodística del 23 de mayo de 2024 documenta la personación como
+  "reciente", por lo que se adopta provisionalmente principios de
+  mayo como `fecha_inicio` con precisión de mes; se afinará en PR3
+  cuando se localice el auto del juzgado.

@@ -1,0 +1,22 @@
+id: ucm-perjudicada-bg-2025-10
+caso_id: begona-gomez
+sujeto_tipo: organizacion
+sujeto_organizacion_id: universidad-complutense-madrid
+rol: perjudicado
+fecha_inicio: "2025-10-06"
+hito_origen_id: denuncia-manos-limpias-bg-2024-04-08
+notas: |
+  La Universidad Complutense de Madrid se persona como perjudicada en
+  el procedimiento del Juzgado de Instrucción nº 41 de Madrid el 6 de
+  octubre de 2025, tras la vista celebrada ese día en la que el
+  instructor le ofreció la posibilidad de personación. La decisión se
+  asienta en el posible perjuicio económico que la propia universidad
+  habría sufrido como consecuencia de los hechos imputados a Begoña
+  Gómez en relación con la titularidad del software de la Cátedra
+  Extraordinaria de Transformación Social Competitiva; la universidad
+  cuantifica indiciariamente ese perjuicio en 113.509,32 euros
+  (escrito de enero de 2026). El auto específico del instructor que
+  ofrece la personación es del 3 de octubre de 2025; queda pendiente
+  de localizar con URL canónica para PR3. `hito_origen_id` apunta al
+  hito de origen del procedimiento conforme a la convención del caso
+  para roles sin hito específico modelado todavía.
