@@ -4,6 +4,7 @@
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionH from '@/components/SectionH.astro';
+import RolBadge from '@/components/RolBadge.astro';
 import type { Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; }
@@ -12,11 +13,11 @@ const { lang = 'es' } = Astro.props;
 const strings = {
   title: 'Sobre presuntamente',
   description:
-    'Misión, principios editoriales, niveles de fuente, cómo rectificar y licencias del inventario público presuntamente.org.',
+    'Misión, principios editoriales, niveles de fuente, roles procesales, tipos de hecho, lenguaje editorial, cómo rectificar y licencias del inventario público presuntamente.org.',
   eyebrow: 'Sección 5 · Sobre',
   sub:
     'Información institucional sobre el proyecto: misión, principios editoriales, escala de niveles de fuente, ' +
-    'protocolo de rectificación y licencias del código y del contenido.',
+    'glosario de roles procesales y tipos de hecho, lenguaje editorial, protocolo de rectificación y licencias.',
 };
 ---
 
@@ -125,7 +126,217 @@ const strings = {
     </li>
   </ul>
 
-  <SectionH num="4." title="Cómo proponer una corrección" id="rectificar" />
+  <SectionH num="4." title="Roles procesales" id="roles" />
+  <div class="prose">
+    <p>
+      Cada Persona u Organización está unida a un Caso mediante un <em>RolEnCaso</em> con periodo
+      temporal acotado. El rol nunca afirma culpabilidad fuera de lo que dictó el órgano judicial.
+      Cuando un rol se cierra (por sobreseimiento, absolución, condena firme, etc.) la trayectoria
+      queda registrada: un investigado que pasa a procesado y luego a absuelto conserva toda la
+      cadena.
+    </p>
+    <p>
+      Los roles se dividen en tres familias visuales: <strong>estado procesal</strong> del lado
+      acusado (badge con punto de color), <strong>acusación civil / parte civil</strong> (badge
+      con banderín) y <strong>función en el aparato judicial</strong> (badge con balanza). Los
+      tres grupos se renderizan distintos para que de un vistazo sepas si una persona está
+      acusada, está acusando, o trabaja en el procedimiento.
+    </p>
+  </div>
+
+  <h3 class="roles-fam">Estado procesal (lado acusado)</h3>
+  <ul class="niveles niveles--badges">
+    <li>
+      <RolBadge rol="investigado" />
+      <div>
+        Cautelar. Existe un auto que dirige el procedimiento contra esta persona u organización,
+        sin acusación formal todavía. La presunción de inocencia es plena.
+      </div>
+    </li>
+    <li>
+      <RolBadge rol="procesado" />
+      <div>
+        Existe auto de procesamiento (sumario ordinario) o auto de transformación a procedimiento
+        abreviado. El instructor considera indicios racionales de criminalidad. Sigue regida la
+        presunción de inocencia.
+      </div>
+    </li>
+    <li>
+      <RolBadge rol="acusado" />
+      <div>
+        Existe escrito de acusación de Fiscalía, acusación particular o popular pidiendo apertura
+        de juicio oral. La causa está lista para sentarse en el banquillo.
+      </div>
+    </li>
+    <li>
+      <RolBadge rol="condenado_no_firme" />
+      <div>
+        Sentencia condenatoria recurrible (instancia o apelación con casación pendiente). La
+        presunción de inocencia formal se mantiene hasta firmeza — por eso el rol se separa
+        editorialmente de la condena firme.
+      </div>
+    </li>
+    <li>
+      <RolBadge rol="condenado_firme" />
+      <div>
+        Sentencia condenatoria sin recurso pendiente. Es el único estado en el que el lenguaje
+        editorial puede afirmar la conducta delictiva en activa.
+      </div>
+    </li>
+    <li>
+      <RolBadge rol="absuelto" />
+      <div>Sentencia absolutoria firme. Cierre favorable del procedimiento.</div>
+    </li>
+    <li>
+      <RolBadge rol="desimputado" />
+      <div>
+        Sobreseimiento individual o archivo respecto de esta persona. Quedan, si las hubiere,
+        otras personas investigadas/procesadas en la misma causa.
+      </div>
+    </li>
+    <li>
+      <RolBadge rol="testigo" />
+      <div>
+        Comparece en el procedimiento sin ser parte ni estar investigada. Aparece sólo si tiene
+        relevancia documental para hechos del caso.
+      </div>
+    </li>
+  </ul>
+
+  <h3 class="roles-fam">Acusación civil y parte civil</h3>
+  <ul class="niveles niveles--badges">
+    <li>
+      <RolBadge rol="denunciante" />
+      <div>Presenta denuncia ante la autoridad. No es parte hasta personarse.</div>
+    </li>
+    <li>
+      <RolBadge rol="querellante" />
+      <div>Presenta querella, escrito de iniciación que sí constituye parte desde su admisión.</div>
+    </li>
+    <li>
+      <RolBadge rol="acusacion_particular" />
+      <div>Persona o entidad ofendida personada como parte acusadora en el proceso.</div>
+    </li>
+    <li>
+      <RolBadge rol="acusacion_popular" />
+      <div>
+        Persona o entidad no directamente ofendida que ejerce la acción penal pública prevista en
+        el art. 125 CE.
+      </div>
+    </li>
+    <li>
+      <RolBadge rol="perjudicado" />
+      <div>
+        Persona u organización que ha sufrido el daño, esté o no personada como acusación. Permite
+        documentar el perjuicio sin presumir actividad procesal activa.
+      </div>
+    </li>
+  </ul>
+
+  <h3 class="roles-fam">Función en el aparato judicial</h3>
+  <ul class="niveles niveles--badges">
+    <li><RolBadge rol="juez_instructor" /><div>Instruye la causa.</div></li>
+    <li><RolBadge rol="juez_ponente" /><div>Magistrado redactor de la resolución en órganos colegiados.</div></li>
+    <li><RolBadge rol="fiscal" /><div>Representa al Ministerio Fiscal en la causa.</div></li>
+    <li><RolBadge rol="abogado_defensa" /><div>Defensa letrada del investigado/procesado/acusado.</div></li>
+    <li><RolBadge rol="abogado_acusacion" /><div>Letrado de la acusación particular o popular.</div></li>
+    <li><RolBadge rol="perito_judicial" /><div>Perito designado por el tribunal.</div></li>
+    <li><RolBadge rol="perito_parte" /><div>Perito aportado por una de las partes.</div></li>
+    <li><RolBadge rol="secretario_judicial" /><div>Letrado de la Administración de Justicia: fe pública procesal y dirección de la oficina judicial.</div></li>
+  </ul>
+
+  <SectionH num="5." title="Tipos de hecho" id="tipos-hecho" />
+  <div class="prose">
+    <p>
+      Cada <em>Hecho</em> del inventario lleva un tipo que comunica su estado epistémico — qué
+      sabemos del hecho, con qué fuerza, y con respaldo de qué fuente. Esto, combinado con el
+      nivel del documento de respaldo (N1–N4) y la regla V-13, es lo que garantiza que ninguna
+      afirmación se publique como acreditada sin trazabilidad documental suficiente.
+    </p>
+  </div>
+  <ul class="niveles niveles--badges">
+    <li>
+      <span class="badge badge--acreditado">acreditado</span>
+      <div>
+        Probado por documento N1–N3 o sentencia firme. Es el único estado epistémico que admite
+        verbos afirmativos en activa ("cobró", "se apropió") en la redacción.
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--investigado">investigado</span>
+      <div>
+        Hipótesis principal del instructor, respaldada por documento N1–N2 (auto judicial,
+        informe UCO/UDEF, escrito de Fiscalía). El hecho está siendo activamente investigado
+        pero no acreditado todavía.
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--atribuido">atribuido</span>
+      <div>
+        Atribución hecha por un tercero (acusación particular o popular, denuncia, medio
+        periodístico) no acreditada por documento N1–N2. El borde dashed indica que es
+        sub-tipo de <em>investigado</em>: tratamiento equivalente en lenguaje pero
+        traceability distinta.
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--exculpatorio">exculpatorio</span>
+      <div>
+        Hecho que refuta o matiza una atribución previa. Tan importante como las imputaciones:
+        el inventario incorpora los exculpatorios documentados con la misma trazabilidad y los
+        usa para corregir hechos anteriores (campo <code>corregido_por</code>).
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--desmentido">desmentido</span>
+      <div>
+        Hecho cuya falsedad ha quedado documentalmente acreditada. Caso distinto del
+        exculpatorio: aquí no se mitiga una imputación, se prueba que un hecho que circulaba
+        era falso.
+      </div>
+    </li>
+    <li>
+      <span class="badge badge--no-concluyente">no_concluyente</span>
+      <div>
+        Hecho investigado sin material probatorio suficiente para sostenerlo ni descartarlo.
+        Borde dashed: sub-tipo de <em>desmentido</em> en cuanto al tratamiento (no debe
+        afirmarse), pero sin documento que pruebe la falsedad.
+      </div>
+    </li>
+  </ul>
+
+  <SectionH num="6." title="Lenguaje editorial" id="lenguaje" />
+  <div class="prose">
+    <p>
+      Para preservar la presunción de inocencia (principio §4 de AGENTS.md, regla P de doc 02),
+      el inventario sigue una convención léxica fija al redactar resúmenes, fichas y descripciones
+      de hechos. La regla es simple: el verbo afirmativo en activa sólo se permite cuando hay un
+      Hecho <span class="badge badge--acreditado">acreditado</span> que lo respalde, o un Rol
+      <RolBadge rol="condenado_firme" /> en sentencia firme.
+    </p>
+    <p><strong>Verbos preferidos</strong> (compatibles con cualquier nivel de fuente y con la presunción de inocencia):</p>
+    <ul class="lex-list lex-list--ok">
+      <li>"se investiga", "se le investiga por…"</li>
+      <li>"se atribuye", "se le atribuye haber…"</li>
+      <li>"consta en el informe X que…", "según el auto Y…"</li>
+      <li>"el auto considera indicios racionales de…"</li>
+      <li>"según la denuncia / la querella / la acusación particular de Z…"</li>
+    </ul>
+    <p><strong>Verbos prohibidos</strong> salvo Hecho acreditado o condena firme:</p>
+    <ul class="lex-list lex-list--ko">
+      <li>"robó", "estafó", "se apropió"</li>
+      <li>"cobró comisiones", "amañó", "ordenó pagar"</li>
+      <li>cualquier afirmativa en activa que presuponga autoría no acreditada</li>
+    </ul>
+    <p>
+      Esta convención no es estética: es el mecanismo que evita que el inventario funcione como
+      tribunal paralelo. Cuando una sentencia firme acredite la autoría, los Hechos pasan a
+      <span class="badge badge--acreditado">acreditado</span> y la redacción se actualiza en
+      consecuencia.
+    </p>
+  </div>
+
+  <SectionH num="7." title="Cómo proponer una corrección" id="rectificar" />
   <div class="prose">
     <p>
       El derecho a rectificación está garantizado. Si detectas un error en una ficha (un nombre mal
@@ -146,7 +357,7 @@ const strings = {
     </p>
   </div>
 
-  <SectionH num="5." title="Licencias y código" id="licencias" />
+  <SectionH num="8." title="Licencias y código" id="licencias" />
   <div class="prose">
     <ul class="meta-list">
       <li>
@@ -194,8 +405,60 @@ const strings = {
   .niveles li:last-child { border-bottom: 0; }
   .niveles li > div { font: 400 13px/1.55 var(--font-sans); }
 
+  /* Variante para listas cuyo badge no es N1-N4 (mono 2 chars) sino un
+   * badge de rol o de tipo de hecho, que llega a ser bastante ancho
+   * ("CONDENADO (FIRME)", "ACUSACIÓN PARTICULAR", "LETRADO DE LA
+   * ADMINISTRACIÓN DE JUSTICIA"). Si dejáramos los 60px fijos los badges
+   * desbordarían y solaparían el texto. Aquí la columna izquierda crece
+   * a contenido con un mínimo razonable. */
+  .niveles--badges li {
+    grid-template-columns: minmax(160px, max-content) 1fr;
+  }
+
   .meta-list { margin: 0; padding-left: 18px; }
   .meta-list li { margin: 4px 0; }
+
+  /* Sub-encabezado dentro de la sección de Roles para separar las tres
+   * familias visuales (estado / civil / aparato). No usa SectionH para no
+   * inflar la numeración administrativa de la página. */
+  .roles-fam {
+    margin: var(--space-3) 0 8px;
+    font: 600 12px/1.4 var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  /* La lista de niveles asume contenido estrecho a la izquierda (N1 mono).
+   * Los badges de rol son más anchos: se alinean igual pero respiran mejor
+   * con auto-width en la columna izquierda. */
+  .niveles li :global(.badge),
+  .niveles li :global(.badge--ghost) {
+    align-self: start;
+    justify-self: start;
+  }
+
+  /* Lista léxica (verbos preferidos / prohibidos) — bullets pequeñas y un
+   * borde de color a la izquierda que comunica intent sin necesidad de
+   * emoji ni semáforo (DESIGN.md: nada de rojo chillón). */
+  .lex-list {
+    list-style: none;
+    padding: 8px 12px;
+    margin: 4px 0 var(--space-3);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-left-width: 4px;
+  }
+  .lex-list li {
+    margin: 4px 0;
+    font: 400 13px/1.55 var(--font-sans);
+  }
+  .lex-list li::before {
+    content: '· ';
+    color: var(--color-text-muted);
+  }
+  .lex-list--ok { border-left-color: var(--color-acreditado, #2f6a3a); }
+  .lex-list--ko { border-left-color: var(--color-exculpatorio, #5b6878); }
 
   .prose code {
     font-family: var(--font-mono);
