@@ -132,6 +132,31 @@ Razón: en fase MVP el repo tiene un solo maintainer y los ciclos de feedback se
 
 Si una sesión va a tocar algo arriesgado (migración, refactor amplio, cambio que rompe convenciones), aún en política directa el agente debe **proponer crear una rama puntual y preguntar** antes de meter el cambio en main.
 
+### Repositorio multiagéntico en paralelo
+
+**Asume siempre que otro agente o el maintainer puede estar editando otros archivos en paralelo sobre la misma working copy.** Norma incorporada el 2026-05-22 tras un incidente real: un `git commit` arrastró al staging todos los archivos modificados/untracked del working directory de una sesión paralela del maintainer (PR3 del caso Begoña Gómez mientras se trabajaba PR1 del caso González Amador). El commit se deshizo con `git reset HEAD~1` no destructivo y se rehizo con archivos explícitos, sin pérdida de trabajo. Para que no se repita:
+
+1. **Antes de cualquier `git add`**, lanza `git status -s` y clasifica visualmente cada línea: ¿es mío o de la otra sesión? Los archivos `M` (modified) y `??` (untracked) que no formen parte del cambio que estás haciendo son trabajo paralelo de otro: NO los toques.
+2. **Stagea siempre por ruta explícita**. Nunca uses `git add .`, `git add -A`, `git add -u` ni patrones genéricos (`git add content/`). Lista las rutas concretas una por una. Si son muchas, agrúpalas en bloques temáticos y haz varios `git add ARCHIVO1 ARCHIVO2 ...` distintos, pero siempre con rutas concretas.
+3. **Justo después de `git add` y antes del `git commit`**, vuelve a lanzar `git status -s` y confirma que sólo aparecen como `A` (added) los archivos que querías stagear, y que los `M` / `??` ajenos siguen fuera del staging.
+4. **Si dependes de un archivo creado por la sesión paralela** (p. ej. una organización nueva referenciada por uno de tus documentos), no lo incluyas en tu commit. Sustituye la referencia por otra org ya commiteada en main, o duplica el nombre si choca y resuelve cuando ambos commits hayan aterrizado. Lo último que quieres es introducir una dependencia cruzada con un archivo que aún no está en el árbol git.
+5. **Las herramientas que afectan al working directory global** (cambios de schema, ediciones a `src/lib/*`, edición de `ROADMAP.md`) son especialmente delicadas si la otra sesión también las toca. Para `ROADMAP.md` en particular, lee primero la versión actual del fichero (puede haber cambiado mientras trabajabas), añade tu sección sin pisar la suya, y commitea de forma independiente al cambio de datos.
+
+Si detectas que la sesión paralela ya ha commiteado algo entremedias (`git log` muestra un commit que no es tuyo intercalado), no es un problema: tus commits posteriores se aplican normalmente sobre la nueva HEAD.
+
+### Granularidad de commits
+
+**Un commit por sesión de trabajo / objetivo coherente, no por bloque interno arbitrario.** Norma incorporada el 2026-05-22 por feedback del maintainer ("no nos paramos a revisar todos los commits uno por uno"). La política actual de **no push** significa que el log local no es un changelog público todavía; lo lee el maintainer al revisar la sesión, no la comunidad.
+
+Como guía operativa:
+
+- **PR1 del caso X** ⇒ idealmente **un único commit** que arranque caso + personas + organizaciones + documentos + hitos + hechos + roles. Mensaje extenso en el cuerpo describiendo el bloque.
+- **PR2/PR3+ del caso X** ⇒ un commit por PR (no por sub-bloque interno).
+- **Cambios mixtos que combinen naturalezas distintas** (p. ej. cambio de schema + datos del caso, o cambio de componente UI + datos) sí merecen commits separados: la trazabilidad ahí compensa.
+- **Cambios mecánicos masivos** (rename de slugs en muchos ficheros, p. ej.) se mantienen como un único commit por la legibilidad.
+
+Excepción legítima al "uno por sesión": si la sesión incluye un cambio editorialmente delicado del que el maintainer podría querer revertir aisladamente (cambiar un nombre propio, modificar la calificación de un hecho de `acreditado` a `atribuido`, retirar una persona), aislar esa decisión en su propio commit ayuda al rollback selectivo. En el resto de los casos, un commit grande con un mensaje claro es preferible a cinco commits pequeños del mismo bloque.
+
 ## Skills locales (`.claude/skills/`)
 
 Skills planeadas para usar con Claude Code en este repo:
