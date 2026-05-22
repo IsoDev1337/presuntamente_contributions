@@ -2,7 +2,7 @@
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md` § *NOTES.md por caso*.
 
-Última actualización: 2026-05-22 (PR1 — primer caso de arranque con la skill `/investigar-caso` v0).
+Última actualización: 2026-05-22 (PR2 — completa acusaciones populares, hito de imputación de Goyache, anulación AP Madrid, recurso Fiscalía y UCM perjudicada).
 
 ---
 
@@ -15,29 +15,39 @@ Decidido en el cierre de la sesión 2026-05-22 (ver `ROADMAP.md`): el caso teste
 
 Ambos cierres dejan en pie la presunción de inocencia y las trayectorias procesales se exhiben con los slots existentes del modelo.
 
-## Estado editorial — PR1
+## Estado editorial — PR1 + PR2 acumulado
 
-- **caso.yaml** raíz creado.
-- **5 personas** con rol procesal formal: Begoña Gómez, Juan Carlos Peinado (juez instructor), Cristina Álvarez (asesora Moncloa), Juan Carlos Barrabés (empresario), Joaquín Goyache (rector UCM, desimputado).
-- **8 organizaciones**: 5 nuevas (JI nº 41 Madrid, Audiencia Provincial de Madrid, Universidad Complutense de Madrid, Hazte Oír, Fiscalía Provincial de Madrid) + 1 reutilizada (Manos Limpias del caso Plus Ultra) + 5 medios (Maldita.es, El Español, Moncloa.com, TheObjective, Noticias de Navarra) — `infobae` ya existía.
-- **2 delitos nuevos del catálogo**: corrupción en los negocios, apropiación indebida. Reutilizados: tráfico de influencias y malversación de caudales públicos.
-- **8 documentos**: 2 autos judiciales (auto procesamiento JI 41 del 13-abr-2026; auto AP Madrid desimputación Goyache del 16-may-2025; ambos N4 por ausencia de URL oficial localizable, citados vía cobertura cruzada V-13), 6 artículos N4 en líneas editoriales distintas (Maldita.es, Infobae apertura, Infobae procesamiento, El Español procesamiento, TheObjective Fiscalía archivo, Moncloa.com desimputación-perjudicada UCM, Noticias de Navarra coste software).
-- **5 hitos**: denuncia Manos Limpias (08-abr-2024), imputación Barrabés (19-jul-2024), desimputación Goyache (16-may-2025), imputación Cristina Álvarez (18-ago-2025), auto procesamiento Peinado (13-abr-2026).
-- **6 hechos**: 4 `atribuido` (cátedra TSC en UCM; carta de recomendación a Barrabés en 2020; coste software 113.509€ — factual UCM; posición de la Fiscalía a favor del archivo a lo largo del procedimiento) + 2 `exculpatorio` (archivo del intrusismo profesional; desimputación del rector Goyache).
-- **11 roles**: 4 pares investigada→procesada (Begoña, Cristina, Barrabés todos cerrados como investigado por el procesamiento del 13-abr-2026); 1 par investigado→desimputado (Goyache); juez instructor Peinado; denunciante Manos Limpias; acusación popular Hazte Oír.
+- **caso.yaml** raíz creado en PR1.
+- **5 personas** con rol procesal formal (sin cambios en PR2): Begoña Gómez, Juan Carlos Peinado (juez instructor), Cristina Álvarez (asesora Moncloa), Juan Carlos Barrabés (empresario), Joaquín Goyache (rector UCM, desimputado).
+- **14 organizaciones**: 8 del aparato procesal/medios PR1 + 6 nuevas PR2 (Vox como partido_politico ejerciendo acusación popular, Iustitia Europa, Movimiento de Regeneración Política de España, elDiario.es, Newtral, Confilegal). Más Manos Limpias reutilizada del caso Plus Ultra.
+- **2 delitos nuevos del catálogo** (PR1): corrupción en los negocios, apropiación indebida. Reutilizados: tráfico de influencias y malversación de caudales públicos.
+- **16 documentos**: 8 de PR1 + 8 de PR2 (auto AP Madrid 23-feb-2026 + cobertura Infobae/TheObjective; cobertura imputación Goyache elDiario + perfil Newtral; cobertura UCM perjudicada Confilegal + Moncloa.com cuantificación; escrito Fiscalía recurso 21-abr-2026 marcado nivel 2 — fuente oficial secundaria/instructora).
+- **8 hitos**: 5 de PR1 + 3 de PR2 (imputación Goyache 22-jul-2024; anulación AP Madrid jurado popular 23-feb-2026; recurso Fiscalía ante AP Madrid 21-abr-2026).
+- **8 hechos**: 6 de PR1 + 2 de PR2 (AP Madrid considera que los autos previos carecen de motivación — exculpatorio; UCM cuantifica en 113.509,32 € el perjuicio — atribuido).
+- **15 roles**: 11 de PR1 (con correcciones — ver §"Correcciones en PR2") + 4 nuevos PR2 (Vox acusación popular 29-abr-2024; Iustitia Europa acusación popular 29-abr-2024; MRPE acusación popular mayo 2024; UCM perjudicada 6-oct-2025).
 
-## Pendiente para PR2 y siguientes
+## Correcciones aplicadas en PR2
 
-- **Archive.org / archive.ph mirrors** para los 6 documentos N4 nuevos. WebFetch no puede llamar a archive.org desde el entorno del agente; el maintainer debe lanzar el archivado y completar `url_archivo`. Mirror obligatorio para fuentes N4 según doc 01 §3.
-- **Localización de nota CGPJ del auto del 13-abr-2026** en `poderjudicial.es`. Cuando aparezca, sustituir `documento_principal_id` del hito por el documento oficial y subir `nivel_fuente` a 1.
-- **Texto íntegro del auto procesamiento** en CENDOJ (39 páginas según El Independiente). Cuando se publique, citar pasajes concretos en los hechos derivados con `pasaje`.
-- **Auto de incoación del 16-abr-2024** del JI nº 41 de Madrid. La cobertura periodística describe su contenido pero el texto no está accesible públicamente. Pendiente.
-- **Denuncia íntegra de Manos Limpias** (08-abr-2024). Maldita.es publica una explicación detallada con citas literales; el escrito íntegro no se ha localizado publicado en un repositorio fiable. Si aparece publicado íntegro en un medio identificable, podría subirse el `nivel_fuente` a 3 (filtrado_verificado).
-- **Hito específico de imputación de Joaquín Goyache** (anterior a la desimputación de 2025-05-16). La fecha exacta del auto que lo elevó a investigado pendiente de localizar. El rol `goyache-investigado` apunta provisionalmente al hito de la denuncia inicial (origen del procedimiento) en lugar de a un hito propio, hasta que se localice fuente.
-- **Acusaciones populares adicionales**: además de Manos Limpias (denunciante) y Hazte Oír (modelada en PR1), se han personado Vox, Iustitia Europa y el Movimiento de Regeneración Política de España. Modelarlas en PR2 con sus respectivos roles y, si procede, organizaciones nuevas.
-- **Recurso de la Fiscalía** ante la Audiencia Provincial contra el auto del 13-abr-2026: hito propio en PR2 (`recurso_apelacion`) cuando se confirme fecha y vía de presentación.
-- **Resoluciones de la Audiencia Provincial de Madrid** del 23 de febrero de 2026 (anulación de los autos previos que abrían vía a jurado popular): hito propio en PR2 cuando se localice el auto o nota institucional.
-- **UCM personada como perjudicada (06-oct-2025)**: rol propio `perjudicada` (sujeto_tipo=organizacion) — pendiente de verificar que V-11 admita el rol "perjudicada" como rol de parte; si no, dejarlo como hito y mencionar en el caso. **Comprobación previa al PR2.**
+- **`goyache-investigado.yaml`**: delitos corregidos de `[malversacion-caudales-publicos]` a `[trafico-de-influencias, corrupcion-en-los-negocios]`. La malversación se introdujo en la causa en agosto de 2025 (imputación específica de Cristina Álvarez), pero Goyache fue citado en julio de 2024 antes de esa ampliación. `fecha_inicio` se ajusta a `2024-07-22` (la fecha del auto que documentan elDiario.es y Newtral.es el 22-jul-2024) y `hito_origen_id` ya apunta al hito específico `imputacion-goyache-bg-2024-07-22`.
+- **`hazte-oir-acusacion-popular.yaml`**: `fecha_inicio` corregida de `2024-04-24` (mejor aproximación inicial) a `2024-04-29` (cruzada con la fecha confirmada de Vox; las personaciones de Hazte Oír, Vox e Iustitia Europa son coetáneas según la cobertura).
+
+## Pendiente para PR3 y siguientes
+
+- **Archive.org / archive.ph mirrors** para los 14 documentos N4 (6 de PR1 + 7 de PR2; el escrito de la Fiscalía es N2 y no requiere mirror obligatorio aunque conviene). WebFetch no puede llamar a archive.org desde el entorno del agente; el maintainer debe lanzar el archivado y completar `url_archivo`. Mirror obligatorio para fuentes N4 según doc 01 §3.
+- **Localización de fuentes oficiales** (sustituir N4 por N1 cuando aparezcan):
+  - Nota CGPJ del auto del JI nº 41 de Madrid del 13 de abril de 2026 (auto de procesamiento) en `poderjudicial.es`.
+  - Nota institucional del auto de la Audiencia Provincial de Madrid del 23 de febrero de 2026 (anulación jurado popular).
+  - Auto del JI nº 41 que cita a Joaquín Goyache como investigado (julio 2024).
+  - Auto de la AP Madrid del 16 de mayo de 2025 (desimputación Goyache / Güemes).
+  - Auto del JI nº 41 que ofrece personación a la UCM (3 de octubre de 2025).
+  - Texto íntegro de los autos en CENDOJ cuando se publiquen.
+  - Escrito de la Fiscalía del 21 de abril de 2026 en `fiscal.es` (el doc actual está marcado nivel 2 con texto sin URL canónica).
+- **Texto íntegro de la denuncia de Manos Limpias** (08-abr-2024). Si aparece publicada en un medio identificable, podría subirse el `nivel_fuente` a 3 (filtrado_verificado).
+- **Auto de incoación del 16-abr-2024** del JI nº 41 de Madrid.
+- **Hito específico del auto del JI nº 41 que ofrece personación a la UCM** (03-oct-2025). El rol `ucm-perjudicada-bg-2025-10` apunta provisionalmente al hito de origen del procedimiento; idealmente debería apuntar a un hito propio del auto.
+- **Juan José Güemes** (ex consejero de la Comunidad de Madrid, mencionado como desimputado junto con Goyache el 16-may-2025 según Moncloa.com). NO modelado en PR1/PR2 por ausencia de cobertura suficiente del auto específico que lo imputó. Pendiente para PR3 cuando se localice fuente sólida.
+- **Recursos posteriores al 21-abr-2026**: la causa está abierta y vivirá nuevos hitos. Posibles próximos: resolución de la AP Madrid sobre el recurso de la Fiscalía; defensas alegando ante AP Madrid (escritos del 18-may-2026 ya en cobertura); listado de testigos pedido por la defensa (más de 30, según El Español del 18-may-2026); apertura del juicio oral si la AP confirma el procesamiento.
+- **Número exacto del procedimiento ("DP 1146/2024" según una fuente)**: requiere segunda fuente cruzada o auto/nota oficial.
 
 ## Discrepancia de fecha de apertura
 
@@ -46,7 +56,11 @@ Wikipedia indica como fecha de inicio **24-abr-2024** (presumiblemente la fecha 
 - `Caso.fecha_apertura = 2024-04-16` (incoación formal del procedimiento por el juez).
 - `Hito(denuncia_presentada) = 2024-04-08` (presentación de la denuncia por Manos Limpias).
 
-## Personas con rol procesal NO modeladas en PR1
+## Cambio del schema en PR2
+
+Durante el PR2 fue necesario añadir el valor `perjudicado` al enum de roles válidos para organizaciones en `schemas/rol-en-caso.schema.json` (regla V-11). La versión previa del schema admitía sólo `acusacion_popular / acusacion_particular / querellante / denunciante` para `sujeto_tipo=organizacion`, lo que dejaba fuera el caso real de la UCM personada como perjudicada — una persona jurídica que ejerce la acción civil derivada del delito en proceso penal español. El cambio es mínimo (un valor adicional en el enum interno del bloque if/then de V-11) y defendible: el "perjudicado" es legítimamente un rol de parte en el procedimiento penal español. Documentado en el propio schema y en `ROADMAP.md` como aprendizaje de modelado.
+
+## Personas con rol procesal NO modeladas en PR1 ni PR2
 
 Decisiones editoriales aplicadas:
 

@@ -153,6 +153,88 @@ Tras cada caso real arrancado con esta skill, añadir aquí una entrada en `## H
 
 ## Histórico
 
+### Begoña Gómez PR2 (2026-05-22) — segundo PR del primer caso real
+
+PR2 del caso Begoña Gómez. Cierra los pendientes anotados en NOTES tras
+PR1 que sí estaban accesibles públicamente, y añade un descubrimiento
+de modelado: la regla V-11 del schema `rol-en-caso` necesitaba admitir
+`perjudicado` como rol de organización (la UCM no podía modelarse
+como perjudicada con el schema original).
+
+Resultado: 6 organizaciones nuevas (Vox como `partido_politico`
+ejerciendo acusación popular + 2 asociaciones nuevas como acusación
+popular + 3 medios nuevos), 8 documentos nuevos (incluido el primer
+N2 del inventario: escrito de la Fiscalía), 3 hitos nuevos (imputación
+Goyache, anulación AP Madrid jurado popular, recurso de la Fiscalía
+ante la AP Madrid), 2 hechos nuevos, 4 roles nuevos. 2 correcciones a
+roles de PR1.
+
+Lecciones:
+
+- **V-11 estaba mal calibrada para organizaciones perjudicadas.** El
+  enum original limitaba a organizaciones a `acusacion_popular /
+  acusacion_particular / querellante / denunciante`. La UCM como
+  perjudicada en proceso penal español (responsable de la acción
+  civil derivada del delito) es un caso legítimo y el modelo lo
+  rechazaba. Cambio mínimo aplicado al schema: añadir `perjudicado`
+  al enum del bloque if/then de V-11. **Patrón futuro**: si la
+  validación del schema choca con un dato real verificable y
+  procesalmente legítimo, revisar la validación. La V-11 sigue
+  cumpliendo su propósito (no permitir roles "imputador" sobre
+  organizaciones, que en Derecho penal español es problemático),
+  sólo amplía la lista permitida.
+- **El nivel 2 del modelo de fuentes ya tiene su primer ejemplo.**
+  Escrito de la Fiscalía Provincial de Madrid del 21-abr-2026:
+  `tipo: escrito_fiscalia, nivel_fuente: 2`, justificación que
+  explicita por qué no es N1 (no está en `fiscal.es`) ni N4 (no es
+  cobertura periodística). Patrón reusable para informes UDEF/UCO
+  filtrados, escritos de Fiscalía fuera de `fiscal.es`, notas de
+  órganos oficiales fuera de la lista blanca. En PR1 todo era N3 o
+  N4; PR2 cubre por fin la franja intermedia del modelo.
+- **Las acusaciones populares se modelan como bloque coetáneo.** En
+  Begoña Gómez, Hazte Oír / Vox / Iustitia Europa se personaron "días
+  después" del 24-abr-2024 (24-29 abril). Se modelan con la misma
+  `fecha_inicio: 2024-04-29` y las notas del rol explicitan que el
+  auto específico de admisión queda pendiente. MRPE quedó al margen
+  porque tuvo que prestar fianza y se personó más tarde. **Patrón**:
+  cuando varias acusaciones populares se personan en bloque tras la
+  apertura, sincronizar fechas con la mejor estimación cruzada y
+  documentar la convención en las notas del rol.
+- **Los partidos políticos se modelan como `Organizacion(tipo=partido_politico)`
+  con rol `acusacion_popular` igual que cualquier asociación.** Vox
+  ejerce la acusación popular en este caso. No requiere ningún
+  wrapper especial: el schema lo admite directamente. Lo único
+  particular es la `tipo` del partido (no `asociacion_acusacion_popular`).
+  Patrón previsible: cuando Vox aparezca en futuros casos (Fiscal
+  General, Koldo), su ficha ya existe y sólo hay que crear el rol.
+- **Corregir delitos atribuidos de un rol de PR1 sin destruir
+  trazabilidad.** En PR1 puse erróneamente `malversacion-caudales-publicos`
+  como delito atribuido a Goyache; la malversación entró en la causa
+  en agosto de 2025, mientras Goyache estuvo investigado de julio de
+  2024 a mayo de 2025. PR2 lo corrige a `[trafico-de-influencias,
+  corrupcion-en-los-negocios]`. Como el rol no se había publicado
+  (todo el caso está en `estado_publicacion: borrador`), no procede
+  V-08 ni `corregido_por`: se modifica directamente y se documenta
+  la corrección en NOTES del caso. Si el caso estuviera publicado,
+  habría que emitir un Hecho `corregido_por` que sustituye al previo
+  manteniendo el original con `vigencia: superado`.
+- **Los `hito_origen_id` provisionales se sustituyen cuando aparece
+  el hito específico.** En PR1 el rol `goyache-investigado` apuntaba
+  al hito de origen del procedimiento (denuncia Manos Limpias) por
+  falta del hito específico. PR2 crea el hito `imputacion-goyache-bg-2024-07-22`
+  y actualiza el rol. Patrón reusable: el `hito_origen_id`
+  provisional es una bandera para PR posterior; en cuanto aparezca
+  fuente para crear el hito específico, sustituir.
+- **Los autos del juez instructor no se publican fácilmente.** Tras
+  buscar exhaustivamente en `poderjudicial.es`, CENDOJ y notas
+  institucionales, los autos del JI nº 41 de Madrid del caso Begoña
+  Gómez NO están localizables con URL canónica. Esto es lo
+  esperable: el JI es un órgano cotidiano del partido judicial de
+  Madrid, no un órgano-noticia del CGPJ como la Audiencia Nacional.
+  Las notas CGPJ se reservan para resoluciones de alta visibilidad
+  pública. Confirmación de la lección de Plus Ultra PR2: muchos
+  hitos jurisdiccionales legítimos viven sólo en N4 cruzado.
+
 ### Begoña Gómez (2026-05-22) — primer arranque real con la skill
 
 Primer caso arrancado de cero con la skill `/investigar-caso` v0 desde
