@@ -247,6 +247,120 @@ Tras cada caso real arrancado con esta skill, añadir aquí una entrada en `## H
 
 ## Histórico
 
+### Fiscal General del Estado PR1 (2026-05-22) — primera sentencia firme del inventario y primera RelacionEntreCasos
+
+Tercer caso real arrancado con la skill (cuarto si contamos Plus
+Ultra retrospectivo). Causa Especial nº 20557/2024 ante la Sala
+Segunda del Tribunal Supremo contra Álvaro García Ortiz por
+revelación de datos reservados, conectada factualmente al caso ya
+fichado `gonzalez-amador` mediante la primera entrada del
+inventario en `content/relaciones-entre-casos/` (tipo `derivado_de`).
+PR1 estrena la cadena completa de cuatro roles consecutivos del
+mismo sujeto `investigado → procesado → condenado_no_firme →
+condenado_firme` con cuatro hitos jurisdiccionales encadenados, y
+abre la collection `relaciones` en `src/content.config.ts`.
+
+5 personas + 8 orgs nuevas + 1 delito + 14 docs (7 N1 + 1 N3 + 6
+N4) + 9 hitos + 6 hechos + 15 roles + 1 RelacionEntreCasos.
+Validación: 264 YAML OK, build 95 páginas, `astro check` 0/0/0.
+
+Lecciones operativas:
+
+- **El primer caso firme NO se modela con `acreditado` por defecto.**
+  El guardarraíl 3 de la skill se aplica con literalidad incluso
+  cuando hay sentencia firme: en PR1 todos los hechos derivados del
+  fallo dispositivo se modelan como `atribuido` con cita literal,
+  dejando para revisión humana explícita del maintainer (PR2) la
+  promoción a `acreditado`. Razón adicional reaprovechable en
+  futuras condenas firmes con amparo en trámite: la presentación
+  del recurso ante el TC, aunque no suspensiva, deja abierto un
+  canal hipotético de revisión. El modelo es expresivo: el cambio
+  `atribuido → acreditado` es trivial cuando llega la luz verde
+  humana, y conserva trazabilidad porque el hecho ya está cableado
+  a la sentencia firme vía documento de respaldo.
+- **La cadena `investigado → procesado → condenado_no_firme →
+  condenado_firme` funciona como secuencia de cuatro roles
+  consecutivos del mismo sujeto, con `fecha_fin` + `hito_fin_id` en
+  los tres primeros tramos y `hito_origen_id` apuntando a la
+  sentencia correspondiente en los dos condenado_*.** Validado en
+  García Ortiz. La card de Persona renderiza correctamente los
+  cuatro roles en su micro-tabla cronológica y la sección
+  "Personas implicadas" del caso agrupa al sujeto bajo "Condenados"
+  con el rol vigente (`condenado_firme`). V-10 se cumple
+  naturalmente apuntando `hito_origen_id` al
+  `sentencia_primera_instancia` en el primer condenado_no_firme y
+  al `sentencia_firme` en el condenado_firme. **Patrón reusable**
+  cuando lleguen condenas firmes en otros casos (Koldo, Cerdán,
+  etc.).
+- **El rol procesal de un letrado depende de a qué parte representa,
+  no de su nombre o trayectoria.** Carlos Neira es `abogado_defensa`
+  en `gonzalez-amador` (defiende al investigado) y `abogado_acusacion`
+  en `fiscal-general-del-estado` (representa a la acusación
+  particular ejercida por el mismo cliente). La NOTES anterior de
+  González Amador anotaba erróneamente "abogado_defensa en ambos
+  casos"; corregido en PR1 del FGE tras cobertura del 30-ene-2026
+  confirmando que Neira firma escritos como acusación particular.
+  **Patrón reusable**: al fichar a un letrado en un segundo caso,
+  reconfirmar siempre cuál es su rol procesal real en ese
+  procedimiento concreto.
+- **La collection `relaciones-entre-casos` se crea cuando se
+  introduce la primera entrada.** El script `pnpm validate` ya
+  estaba preparado para validar `content/relaciones-entre-casos/`
+  contra el schema correspondiente; sólo había que crear la carpeta
+  y cablear la collection en `src/content.config.ts` para que
+  Astro la cargue. El cambio de `content.config.ts` es config, no
+  schema, por lo que cae dentro del PR1 conforme a la norma de
+  granularidad (los cambios mixtos schema + datos sí requieren
+  commits separados; config + datos no). **Patrón reusable**: la
+  segunda entrada `RelacionEntreCasos` ya no necesita tocar
+  `content.config.ts`; sólo añadir el YAML.
+- **Notas oficiales del CGPJ (`poderjudicial.es`) son N1 fiables
+  para todas las fases jurisdiccionales clave de causas mediáticas
+  ante el TS.** A diferencia de los autos de instrucción ordinaria
+  (que no se publican: lección reiterada en Plus Ultra, Begoña
+  Gómez y González Amador), las notas oficiales del CGPJ cubren las
+  causas con tribunal aforado y notoriedad pública con detalle
+  procesal suficiente para servir de `documento_principal_id` en
+  todos los hitos jurisdiccionales (V-14). En el caso FGE se han
+  podido modelar 6 hitos consecutivos con nota oficial N1 directa.
+  **Patrón reusable**: para causas especiales ante el TS, buscar
+  primero la nota CGPJ específica por nombre del documento.
+- **Sentencias del TS con sentencia íntegra no en CENDOJ se modelan
+  como N3 `filtrado_verificado` con justificación por triangulación
+  entre dos o más mirrors públicos estables.** La Sentencia 1000/2025
+  no aparece en CENDOJ a fecha de PR1 (pese a ser de tribunal
+  aforado), pero sí está disponible en `publico.es` con
+  transcripción íntegra, en `okdiario.com` como PDF y en
+  `civil-mercantil.com` como base documental, todas coincidentes en
+  contenido literal. La triangulación entre fuentes editorialmente
+  dispares funciona como prueba de fidelidad. **Patrón reusable**:
+  cuando aparezca el documento en CENDOJ, se eleva el `nivel_fuente`
+  a 1 manteniendo el mismo `id` del documento, sin romper hechos
+  derivados.
+- **Recurso de amparo ante el TC no encaja en el enum del schema
+  `hito` y se documenta como pendiente.** El enum actual no tiene
+  `recurso_amparo`; la opción procesalmente más cercana es
+  `recurso_casacion` pero semánticamente es incorrecta (el amparo
+  no es casación). La decisión se difiere a PR2 cuando aparezca el
+  primer auto del TC sobre admisión: si el patrón se repite (Koldo,
+  ERE, etc. pueden llegar a amparo) merece ampliar el enum con
+  `recurso_amparo`. **Patrón reusable**: si una omisión del schema
+  bloquea un hito puntual y no hay urgencia, registrar la decisión
+  en NOTES y diferir; si bloquea contenido editorial necesario,
+  ampliar enum siguiendo el patrón de `escrito_conclusiones_provisionales`
+  (Begoña PR3) o de V-11 ampliada (GA PR3).
+- **El hook pre-commit de archive.org reduce drásticamente la
+  carga editorial.** El hook archive.org (commit 64d92a8) procesa
+  cada documento N4 nuevo del staging y añade `url_archivo`
+  automáticamente antes de cerrar el commit, con timeout suave (si
+  archive.org tarda o devuelve HTTP 520, se salta sin bloquear).
+  En PR1 del FGE, de los 6 documentos N4 nuevos, todos quedan
+  archivados antes del commit o quedan en backlog para
+  `pnpm archive:catchup` posterior. Buena disciplina V-13 sin
+  esfuerzo manual. **Patrón reusable**: el agente no tiene que
+  preocuparse de `url_archivo` al fichar un caso nuevo; basta
+  asegurar URL canónica accesible al `git commit`.
+
 ### González Amador PR1 + PR2 + PR3 (2026-05-22) — segundo caso real arrancado con la skill, en sesión paralela
 
 Primer caso del inventario arrancado por un segundo agente trabajando
