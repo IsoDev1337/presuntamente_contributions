@@ -79,6 +79,36 @@ Producir los YAMLs en disco bajo:
 
 Y propone commits coherentes (una idea por commit, en español imperativo presente, ver `AGENTS.md` §"Commits").
 
+### 5. Alimentar el diccionario de citaciones inline
+
+El sitio renderiza acrónimos institucionales y cifras monetarias como
+micro-componentes inline (`RichProse`, `src/lib/richProse.ts`). La
+auto-detección usa dos fuentes:
+
+1. Una **lista blanca base** de acrónimos institucionales (UDEF, AN,
+   JCI, CGPJ, SEPI…) hardcoded en `richProse.ts`.
+2. **Cualquier sigla corta** (2-12 caracteres, mayúsculas) presente en
+   `nombres_alternativos` o `siglas` de las organizaciones del
+   inventario.
+
+**Al crear una `Organizacion` nueva**, añadir SIEMPRE los alias/siglas
+con los que la prensa o los autos la citan en `nombres_alternativos`.
+Ejemplos del caso Plus Ultra:
+
+- `juzgado-central-instruccion-4.yaml` → `nombres_alternativos: ["JCI nº 4", "JCI 4 AN"]`.
+- `sepi.yaml` → `siglas: "SEPI"` (la sigla SEPI también sale en la lista blanca base, pero el campo `siglas` es la fuente canónica).
+
+Sin esos alias, una mención en prosa como "según consta en el auto del
+JCI nº 4" se quedará como texto plano en vez de enlazar a la ficha.
+
+**Al crear una `Persona` o un nombre completo de organización que vaya
+a citarse repetidamente en prosa** (p.ej. "Plus Ultra Líneas Aéreas",
+"Audiencia Nacional", "José Luis Rodríguez Zapatero"), anotarlo en
+`NOTES.md` del caso bajo una sección "## Citaciones inline pendientes"
+para que en el próximo refinamiento de `richProse` v1 se extienda la
+detección a esos nombres largos. (La v0 actual sólo cubre siglas y
+money; la v1 cubrirá nombres completos cuando se diseñe.)
+
 ## Guardarraíles obligatorios
 
 1. **Tensión brief vs realidad procesal en casos vivos.** Cuando el brief del usuario está desactualizado respecto a la realidad procesal (nuevo auto publicado, cambio de órgano reciente, persona imputada después del brief), respetar el brief, documentar la discrepancia en `NOTES.md` del caso + `ROADMAP.md → Decisiones pendientes`, y deferir al maintainer. NO improvisar ni asumir luz verde sobre incorporar la novedad.

@@ -4,7 +4,7 @@
 >
 > El roadmap **conceptual** — razonamiento de las fases, criterios de salida, esfuerzo estimado — vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión **operativa**: dónde estamos, qué hay encima de la mesa, qué se ha aprendido.
 
-**Última actualización:** 2026-05-22 (sesión 2) — Caso Begoña Gómez PR1 ✅, primer caso arrancado con la skill `/investigar-caso` v0. Caso valida trayectoria con desimputación (rector UCM Goyache, 2025-05-16) y archivo parcial de delito (intrusismo profesional, 2026-04-13). Sin push.
+**Última actualización:** 2026-05-22 (sesión 3 — noche) — Pulido visual y de UX: bundle design v2 (CustomSelect), interconexión clic-a-ficha en encabezado/estado/personas/orgs/productor, anchos textos arreglados, ClientRouter + micro-animaciones, landing rediseñada (hero serif + sello cifras + caso destacado), header con filete tricolor inferior (simetría con footer), scrollbar-gutter stable (evita layout shift entre páginas), RichProse v0 auto-detecta acrónimos institucionales y money. Sin push: 26 commits locales esperando al maintainer.
 
 ---
 
@@ -68,6 +68,19 @@ Trabajando en rama `fase-1/integrar-design-system` ([PR #2](https://github.com/d
 - [ ] Swimlane gráfico de trayectoria por persona en `PgPersonaDetalle` (hoy se renderiza como tabla cronológica; la versión SVG queda para Fase 2 según doc 02 §3.1).
 - [x] Componente `Contraposicion` preparado (dos columnas equivalentes con actor + enunciado + fuentes, sin tratamiento visual que sugiera ganador). Mobile: las columnas apilan vertical con separador horizontal. Disponible para usarse en `PgCasoDetalle` cuando entre un primer hecho con `contraposicion_a`.
 - [x] `Money` (chip 1px navy, mono, surface-muted) y `Acronym` (con lookup automático contra collection `organizaciones`, link interno si existe el slug; tooltip sin link si no — nunca link a Wikipedia) preparados. Disponibles para reescribir enunciados de hechos con citación inline.
+- [x] `RichProse` v0 (lib + Astro component) auto-detecta acrónimos institucionales (UDEF, AN, JCI, CGPJ, SEPI…) y cifras monetarias en formato español (53 M€, 53,5 millones de euros, 5.000.000 €) sin necesidad de tocar los YAML. Aplicado en Hecho.enunciado, Hito.descripcion, descripcion_corta + resumen_cifras del caso, biografia_corta de Persona, descripcion_corta de Organización.
+
+**Sistema de citaciones inline — pendientes para v1 / v2**
+
+`RichProse` v0 cubre el 80% del valor con un esfuerzo mínimo: enlaza acrónimos institucionales y formatea money. Lo que falta para que las fichas se sientan "vivamente conectadas":
+
+- [ ] **Acortar money largo**. Hoy "53 millones de euros" se renderiza igual de largo en el chip, lo que rompe la línea visual. Convertir formas largas a forma corta canónica: "53 millones de euros" → chip `53 M€`, "1 millón de euros" → `1 M€`, "5.000.000 €" → `5 M€`. Mantener el data-attribute con la forma original para tooltip.
+- [ ] **Diccionario de citaciones extensible** (no solo acrónimos): nombres completos como "Plus Ultra Líneas Aéreas", "Audiencia Nacional", "Sociedad Estatal de Participaciones Industriales" también deberían linkar a la ficha de su organización cuando aparecen en prosa. Hoy `richProse.ts` solo detecta siglas cortas — extender para usar también `nombre` (con regex case-sensitive y word boundary, evitando falsos positivos en headers / títulos).
+- [ ] **Diccionario de personas**: cuando "José Luis Rodríguez Zapatero", "Julio Martínez Sola" o similar aparezcan en prosa de un Hecho/Hito que NO sea su propia ficha, linkar a `/personas/<slug>`. Mismo patrón que organizaciones: lookup por `nombre_completo` + `nombres_alternativos`.
+- [ ] **Diccionario de delitos**: "tráfico de influencias", "blanqueo de capitales" → link a `/delitos/<slug>` cuando exista la página de delitos (Fase 2). Hoy `/delitos/` no se renderiza como ruta web; los delitos solo son metadata.
+- [ ] **Diccionario de "cosas de interés" no jerárquico**: programa o fondo público citado (Fondo de Apoyo a la Solvencia de Empresas Estratégicas), operación policial nombrada (Operación Kitchen, Operación Centauro), trama citada por sobrenombre (Gürtel, Lezo, Púnica) — cuando una entidad se cite por primera vez, debería poderse anotar como entrada del diccionario sin convertirla en `Organizacion` formal. Idea: nuevo schema `Glosario` ligero o campo `glosario.yaml` simple `slug → { label, descripcion_breve, href_opcional }`.
+- [ ] **Marcado explícito opcional** (escape hatch): cuando la auto-detección falle o queramos forzar un comportamiento, permitir sintaxis en el YAML del tipo `[[org:plus-ultra-lineas-aereas|Plus Ultra]]` o `[[€:53,5 M€]]`. Solo se aplica si lo escribe el autor del YAML; la auto-detección sigue siendo el camino normal.
+- [ ] **Marcador en la skill `investigar-caso`**: actualizar SKILL.md para que al crear una nueva organización, persona o "cosa de interés" recordatorio explícito de añadirla al diccionario (nombres_alternativos / siglas en la Organización, o entrada en Glosario si aplica) — así la auto-detección las captura desde el siguiente caso. *(Ya añadido el 2026-05-22 sesión 3.)*
 
 ### Fase 1 — MVP Plus Ultra
 - [x] Completar schemas con todas las propiedades: `hito`, `hecho`, `documento`, `rol-en-caso`, `organizacion`, `relacion-entre-casos`. Cerrados con `additionalProperties: false` + reglas if/then para V-09, V-10, V-11, V-14, V-15 (rama `fase-1/plus-ultra-content`).
