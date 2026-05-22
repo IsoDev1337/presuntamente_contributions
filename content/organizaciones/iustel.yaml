@@ -1,0 +1,15 @@
+id: iustel
+nombre: "Iustel"
+nombres_alternativos:
+  - "Diario del Derecho"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Editorial jurídica española y plataforma de información especializada
+  en derecho, conocida por el "Diario del Derecho". En el inventario
+  figura como productor de cobertura especializada sobre resoluciones
+  de la Audiencia Provincial de Madrid en el caso González Amador.
+ambito_territorial: nacional
+sector: "Información jurídica"
+url_canonica: "https://www.iustel.com/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

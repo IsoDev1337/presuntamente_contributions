@@ -1,0 +1,18 @@
+id: abogacia-del-estado
+nombre: "Abogacía General del Estado"
+nombres_alternativos:
+  - "Abogacía del Estado"
+tipo: organismo_publico
+descripcion_corta: |
+  Servicio Jurídico del Estado integrado en el Ministerio de Justicia
+  encargado del asesoramiento jurídico y de la representación y defensa
+  en juicio de la Administración General del Estado, sus organismos
+  autónomos y entidades públicas. En el caso González Amador ejerce la
+  acusación particular en representación de la Hacienda Pública estatal
+  como perjudicada, solicitando 3 años y 9 meses de prisión para el
+  investigado principal por dos delitos contra la Hacienda Pública en
+  concurso medial con falsedad en documento mercantil.
+ambito_territorial: nacional
+url_canonica: "https://www.mjusticia.gob.es/es/ministerio/organismos-entidades/abogacia-general-estado"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

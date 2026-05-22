@@ -1,0 +1,21 @@
+id: aeat
+nombre: "Agencia Estatal de Administración Tributaria"
+nombres_alternativos:
+  - "AEAT"
+  - "Agencia Tributaria"
+  - "Hacienda"
+tipo: organismo_publico
+descripcion_corta: |
+  Entidad de Derecho público dependiente del Ministerio de Hacienda
+  responsable, en nombre y por cuenta del Estado, de la aplicación
+  efectiva del sistema tributario estatal y aduanero. En el caso
+  González Amador remitió a la Fiscalía Provincial de Madrid el 22 de
+  enero de 2024 el expediente de inspección del Impuesto sobre
+  Sociedades de los ejercicios 2020 y 2021 de la mercantil Maxwell
+  Cremona Ingeniería y Procesos S.L., con cuantificación de un perjuicio
+  a la Hacienda Pública de 350.951 euros, dando origen al procedimiento
+  penal seguido ante el Juzgado de Instrucción nº 19 de Madrid.
+ambito_territorial: nacional
+url_canonica: "https://sede.agenciatributaria.gob.es/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

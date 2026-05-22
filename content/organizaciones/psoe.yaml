@@ -1,0 +1,19 @@
+id: psoe
+nombre: "Partido Socialista Obrero Español"
+nombres_alternativos:
+  - "PSOE"
+tipo: partido_politico
+descripcion_corta: |
+  Partido político español de orientación socialdemócrata, fundado en
+  1879. Ejerce la acusación popular en el procedimiento penal seguido
+  ante el Juzgado de Instrucción nº 19 de Madrid contra Alberto
+  González Amador, en el que solicita 5 años de prisión y multa por
+  presuntos delitos contra la Hacienda Pública en concurso medial con
+  falsedad en documento mercantil, delito contable continuado y
+  pertenencia a grupo criminal.
+siglas: "PSOE"
+ambito_territorial: nacional
+fundacion: "1879-05-02"
+url_canonica: "https://www.psoe.es/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

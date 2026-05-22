@@ -1,0 +1,15 @@
+id: el-plural
+nombre: "El Plural"
+nombres_alternativos:
+  - "elplural.com"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Medio digital español fundado en 2005, con sede en Madrid, dedicado
+  fundamentalmente a información política y de actualidad. En el
+  inventario figura como productor de cobertura sobre la rama sevillana
+  del procedimiento contra Alberto González Amador y sobre la
+  identificación de los co-investigados.
+ambito_territorial: nacional
+url_canonica: "https://www.elplural.com/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

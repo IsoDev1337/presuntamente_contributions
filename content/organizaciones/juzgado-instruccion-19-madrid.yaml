@@ -1,0 +1,23 @@
+id: juzgado-instruccion-19-madrid
+nombre: "Juzgado de Instrucción nº 19 de Madrid"
+nombres_alternativos:
+  - "JI 19 Madrid"
+  - "JI nº 19 de Madrid"
+  - "Juzgado de Instrucción 19 de Madrid"
+  - "Juzgado de Instrucción nº 19 de Plaza de Castilla"
+tipo: juzgado
+descripcion_corta: |
+  Juzgado unipersonal de instrucción del partido judicial de Madrid con
+  sede en el complejo de Plaza de Castilla. Instruye el procedimiento
+  por presunto fraude fiscal y falsedad documental contra Alberto
+  González Amador y otros cuatro procesados. Inicialmente bajo la
+  titularidad de la magistrada Inmaculada Iglesias, jubilada en agosto
+  de 2025, y desde octubre de 2025 bajo la titularidad del magistrado
+  Antonio Viejo por designación de la Comisión Permanente del CGPJ.
+jurisdiccion: penal
+ambito_territorial: local
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

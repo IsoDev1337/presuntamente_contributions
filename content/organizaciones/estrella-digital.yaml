@@ -1,0 +1,15 @@
+id: estrella-digital
+nombre: "Estrella Digital"
+nombres_alternativos:
+  - "estrelladigital.es"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Medio digital español fundado en 1998, considerado uno de los
+  pioneros del periodismo digital en castellano. En el inventario
+  figura como productor de cobertura sobre el auto del Juzgado de
+  Instrucción nº 19 de Madrid del 29 de mayo de 2025 en el caso
+  González Amador.
+ambito_territorial: nacional
+url_canonica: "https://www.estrelladigital.es/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

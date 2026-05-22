@@ -1,0 +1,19 @@
+id: heraldo-de-leon
+nombre: "Heraldo de León"
+nombres_alternativos:
+  - "Heraldo Diario de León"
+  - "heraldodeleon.es"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Medio digital español con sede en León, dedicado a información local
+  y regional con cobertura puntual nacional. En el inventario figura
+  como productor de cobertura sobre la imputación del asesor fiscal
+  leonés Javier Gómez Fidalgo en el procedimiento del caso González
+  Amador.
+ambito_territorial: provincial
+localidad: "León"
+provincia: "León"
+comunidad_autonoma: "Castilla y León"
+url_canonica: "https://www.heraldodeleon.es/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"

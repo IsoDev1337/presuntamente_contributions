@@ -1,0 +1,20 @@
+id: mas-madrid
+nombre: "Más Madrid"
+nombres_alternativos:
+  - "Más Madrid"
+tipo: partido_politico
+descripcion_corta: |
+  Partido político español de orientación progresista y municipalista,
+  con implantación principal en la Comunidad de Madrid, fundado en
+  2019. Ejerce la acusación popular en el procedimiento penal seguido
+  ante el Juzgado de Instrucción nº 19 de Madrid contra Alberto
+  González Amador, en el que solicita 5 años de prisión y multa por
+  presuntos delitos contra la Hacienda Pública en concurso medial con
+  falsedad en documento mercantil, delito contable continuado y
+  pertenencia a grupo criminal.
+siglas: "MM"
+ambito_territorial: autonomico
+fundacion: "2019-01-25"
+url_canonica: "https://masmadrid.org/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-22"
