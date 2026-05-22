@@ -31,7 +31,7 @@ import { parse as parseYaml } from 'yaml';
 
 const SAVE_ENDPOINT = 'https://web.archive.org/save/';
 const WAIT_MS = 8_000;
-const REQUEST_TIMEOUT_MS = 90_000;
+const REQUEST_TIMEOUT_MS = 180_000;
 const MAX_ATTEMPTS = 2;
 const RATE_LIMIT_BACKOFF_MS = 60_000;
 const UA = 'presuntamente.org/archivar-n4 (https://github.com/davidchicano/presuntamente)';
@@ -114,14 +114,17 @@ async function saveOne(url, attempt = 1) {
       return { ok: false, error: `rate limit (HTTP ${resp.status}) tras ${attempt} intentos` };
     }
 
-    const path =
-      resp.headers.get('content-location') ||
-      (resp.headers.get('location') && resp.headers.get('location').startsWith('/web/')
-        ? resp.headers.get('location')
-        : null);
+    const location = resp.headers.get('location');
+    const contentLocation = resp.headers.get('content-location');
 
-    if (path && path.startsWith('/web/')) {
-      return { ok: true, archiveUrl: 'https://web.archive.org' + path };
+    if (location && location.startsWith('https://web.archive.org/web/')) {
+      return { ok: true, archiveUrl: location };
+    }
+    if (contentLocation && contentLocation.startsWith('/web/')) {
+      return { ok: true, archiveUrl: 'https://web.archive.org' + contentLocation };
+    }
+    if (location && location.startsWith('/web/')) {
+      return { ok: true, archiveUrl: 'https://web.archive.org' + location };
     }
 
     return { ok: false, error: `respuesta sin Location utilizable (HTTP ${resp.status})` };
