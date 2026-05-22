@@ -22,6 +22,8 @@ interface Props {
   documentoTitulo?: string;
   documentoHref?: string;
   documentoNivel?: 1 | 2 | 3 | 4;
+  excludeOrgIds?: string[];
+  excludePersonaIds?: string[];
 }
 
 const {
@@ -34,6 +36,8 @@ const {
   documentoTitulo,
   documentoHref,
   documentoNivel,
+  excludeOrgIds,
+  excludePersonaIds,
 } = Astro.props;
 
 // Glyph rendering por subfamilia:
@@ -77,7 +81,14 @@ const FAMILIA_GLYPH_CHAR: Record<Exclude<Props['tipoFamilia'], 'jurisdiccional'>
       )}
     </div>
     <h4 class="hito-item__title">{titulo}</h4>
-    {descripcion && <RichProse text={descripcion} class="hito-item__desc" />}
+    {descripcion && (
+      <RichProse
+        text={descripcion}
+        class="hito-item__desc"
+        excludeOrgIds={excludeOrgIds}
+        excludePersonaIds={excludePersonaIds}
+      />
+    )}
   </div>
 </div>
 

@@ -477,6 +477,8 @@ const breadcrumb = [
           documentoTitulo={h.doc?.titulo}
           documentoHref={h.doc ? `#doc-${h.doc.id}` : undefined}
           documentoNivel={h.doc?.nivel_fuente as 1 | 2 | 3 | 4 | undefined}
+          excludePersonaIds={[data.id]}
+          excludeOrgIds={[data.id]}
         />
       ))}
     </div>

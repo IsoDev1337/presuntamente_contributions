@@ -160,10 +160,8 @@ detectes que un alias falta, no salpicar el YAML de `[[...]]`.
 - En `/organizaciones/<slug>`, igual con la descripción.
 - En `/casos/<slug>`, las menciones de la persona/organización cuyo
   `id` coincide con el slug del caso (típico: el caso Begoña Gómez)
-  no se autoenlazan en el resumen ejecutivo, resumen_cifras ni en
-  los enunciados de Hecho. *(Hito.descripcion no aplica todavía la
-  exclusión — pendiente de plumbing cuando se cierre la sesión
-  paralela de badges.)*
+  no se autoenlazan en el resumen ejecutivo, resumen_cifras, los
+  enunciados de Hecho ni las descripciones de Hito.
 
 Titulares, breadcrumbs, nombres oficiales del caso y cabeceras de
 tabla NUNCA se enrutan por `RichProse` (son texto plano en el
