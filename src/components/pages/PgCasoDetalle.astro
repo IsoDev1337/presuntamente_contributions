@@ -14,6 +14,7 @@ import OrgCard from '@/components/OrgCard.astro';
 import Hito from '@/components/Hito.astro';
 import Hecho from '@/components/Hecho.astro';
 import DocumentoCard from '@/components/DocumentoCard.astro';
+import RichProse from '@/components/RichProse.astro';
 import {
   rolLabel,
   rolGrupo,
@@ -324,8 +325,10 @@ const breadcrumb = [
   <!-- §2.2 — Resumen ejecutivo -->
   <SectionH num="1." title="Resumen ejecutivo" id="resumen" />
   <div class="prose">
-    {data.descripcion_corta && <p>{data.descripcion_corta}</p>}
-    {data.resumen_cifras && <p><strong>Cifras de referencia.</strong> {data.resumen_cifras}</p>}
+    {data.descripcion_corta && <RichProse text={data.descripcion_corta} />}
+    {data.resumen_cifras && (
+      <p><strong>Cifras de referencia.</strong> <RichProse text={data.resumen_cifras} as="span" /></p>
+    )}
   </div>
 
   <!-- §2.3 — Estado procesal actual -->

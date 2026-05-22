@@ -7,6 +7,7 @@
 
 import EpistemicBadge from './EpistemicBadge.astro';
 import LevelBadge from './LevelBadge.astro';
+import RichProse from './RichProse.astro';
 
 interface Fuente {
   nivel: 1 | 2 | 3 | 4;
@@ -29,7 +30,7 @@ const { tipo, enunciado, fechaTexto, fuentes } = Astro.props;
     <EpistemicBadge tipo={tipo} />
     {fechaTexto && <span class="hecho__date">{fechaTexto}</span>}
   </header>
-  <p class="hecho__text">{enunciado}</p>
+  <RichProse text={enunciado} class="hecho__text" />
   <ul class="hecho__sources">
     {fuentes.map((f) => (
       <li class="hecho__source">

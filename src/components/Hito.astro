@@ -4,6 +4,7 @@
 //   [date-cell con CalGlyph]  [hito: badge tipo + ind hechos · título · desc]
 
 import CalGlyph from './CalGlyph.astro';
+import RichProse from './RichProse.astro';
 
 interface Props {
   fecha: string;
@@ -51,7 +52,7 @@ const {
       )}
     </div>
     <h4 class="hito-item__title">{titulo}</h4>
-    {descripcion && <p class="hito-item__desc">{descripcion}</p>}
+    {descripcion && <RichProse text={descripcion} class="hito-item__desc" />}
   </div>
 </div>
 

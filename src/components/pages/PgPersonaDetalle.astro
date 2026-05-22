@@ -6,6 +6,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionH from '@/components/SectionH.astro';
+import RichProse from '@/components/RichProse.astro';
 import { rolLabel, iniciales, type Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; persona: CollectionEntry<'personas'>; }
@@ -81,7 +82,7 @@ const strings = {
     <>
       <SectionH num="1." title="Biografía" id="biografia" />
       <div class="prose">
-        <p>{data.biografia_corta}</p>
+        <RichProse text={data.biografia_corta} lang={lang} />
       </div>
     </>
   )}

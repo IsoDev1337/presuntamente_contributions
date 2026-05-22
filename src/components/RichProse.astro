@@ -1,0 +1,37 @@
+---
+// RichProse — renderiza texto plano enriqueciendo acrónimos institucionales
+// (UDEF, AN, JCI…) y cifras monetarias (53,5 M€) con los micro-componentes
+// inline del DESIGN §4. Carga la collection de organizaciones una vez por
+// invocación para que los acrónimos se enlacen a las fichas existentes
+// (Astro 5 cachea la collection entre invocaciones del mismo build).
+//
+// Uso:
+//   <RichProse text={hecho.enunciado} as="p" />
+//   <RichProse text={hito.descripcion} />          (default: <p>)
+//   <RichProse text={persona.biografia_corta} as="div" />
+
+import { getCollection } from 'astro:content';
+import { richProse } from '@/lib/richProse';
+
+interface Props {
+  text: string;
+  /** Etiqueta envolvente. Default 'p'. Usar 'span' para inline, 'div' para
+   *  contenido sin estilos de párrafo. */
+  as?: 'p' | 'div' | 'span';
+  lang?: 'es' | 'ca';
+  class?: string;
+}
+
+const { text, as: Tag = 'p', lang = 'es', class: className } = Astro.props as Props;
+
+const orgsCol = await getCollection('organizaciones');
+const orgs = orgsCol.map((o) => ({
+  id: o.data.id,
+  nombre: o.data.nombre,
+  nombres_alternativos: (o.data as { nombres_alternativos?: string[] }).nombres_alternativos,
+  siglas: (o.data as { siglas?: string }).siglas,
+}));
+
+const html = richProse(text, { orgs, lang });
+---
+<Tag class={className} set:html={html} />
