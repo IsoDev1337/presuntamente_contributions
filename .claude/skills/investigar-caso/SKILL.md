@@ -130,6 +130,10 @@ money; la v1 cubrirá nombres completos cuando se diseñe.)
 
 8. **NUNCA `git push`.** El agente acumula commits locales; el push lo decide el maintainer (`AGENTS.md` §"Workflow de rama y PRs", norma reforzada el 2026-05-21).
 
+9. **Traducción terminológica `imputado → investigado`.** La LO 13/2015 sustituyó "imputado" por "investigado" como término procesal vigente. Mucha cobertura periodística (especialmente antes de 2015, pero también después por inercia) sigue usando "imputado". **El modelo de datos del proyecto usa `investigado`**, nunca `imputado`. Cuando una fuente diga "imputado" o "imputación de X" en un texto de Hecho/Hito, traducir mentalmente a `investigado` para el rol y mantener "imputación" sólo si se refiere al **acto** (auto de imputación, hito de imputación). Verbos preferidos en prosa: "se le investiga", "queda como investigada", "el juez la cita como investigada". Evitar "imputada" como adjetivo de persona — usar "investigada".
+
+10. **`condenado` se separa en `condenado_no_firme` y `condenado_firme`.** El rol genérico `condenado` ya no existe en el schema (cambio del 2026-05-22). Si una fuente confirma una condena, posicionarse: si la sentencia es **recurrible** (apelación, casación), usar `condenado_no_firme`; si ya no cabe recurso, usar `condenado_firme`. La presunción de inocencia formal cae solo con firmeza, así que el badge UI cambia (rojo apagado outline vs rojo chillón fill) y el lenguaje editorial también: "condenado en sentencia no firme, pendiente de recurso" vs "condenado por sentencia firme". Si la firmeza no está clara en las fuentes, optar conservadoramente por `condenado_no_firme` y documentar la incertidumbre en `NOTES.md`.
+
 ## Output esperado
 
 Mensaje final al usuario con:

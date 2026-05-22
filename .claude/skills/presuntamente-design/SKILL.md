@@ -69,3 +69,33 @@ Then act as an expert designer and produce HTML artifacts (or production-code pa
 - Does not invent new colors, gradients or animation primitives.
 - Does not draw illustrations or photographic content.
 - Does not assert guilt of anybody mentioned in a case. The brand IS this constraint.
+
+## Cuando hay cambios sustanciales de diseño en el repo
+
+Esta skill es **una copia local** del design system. La fuente original vive en la plataforma **Claude Design** de Anthropic (separada de Claude Code), conectada al GitHub del proyecto. Cuando el maintainer aplica cambios sustanciales de diseño desde Claude Code — nuevas reglas en `DESIGN.md`, cambios de tokens en `/src/styles/global.css`, nuevos componentes visuales canónicos, ajustes a familias de badges, etc. — **el bundle local de esta skill queda desactualizado respecto a Claude Design**.
+
+**Regla operativa para el agente:** después de cerrar un cambio sustancial de diseño en el repo, recordar explícitamente al maintainer:
+
+> "Acabo de cambiar el sistema de [badges / tokens / componente X / etc.] en `DESIGN.md` y `global.css`. Si quieres mantener Claude Design sincronizado, te pego abajo un prompt para que se lo pases a la plataforma y regenere el bundle. Cuando Claude Design devuelva el bundle actualizado, dímelo y lo importo aquí (`/.claude/skills/presuntamente-design/`) con un `git diff` para revisar."
+
+Y entregar al maintainer un prompt autocontenido (siguiendo el formato del que está en `/.claude/skills/presuntamente-design/sync-prompt-template.md` cuando exista, o redactando uno ad-hoc). El prompt debe:
+
+1. Pedirle a Claude Design que **lea el repo actualizado** (DESIGN.md + global.css + componentes).
+2. Resumir qué subsistema ha cambiado y qué hay que regenerar (tokens, previews, UI kit, assets).
+3. Pedir que produzca un bundle alineado con la nueva fuente de verdad.
+
+**Qué NO hacer:** intentar regenerar previews o assets desde Claude Code (no tenemos la herramienta de diseño nativa de Claude Design). El agente solo escribe el código + el prompt; Claude Design hace el bundle.
+
+**Qué considerar cambio sustancial** (dispara la convención):
+
+- Cambios en `DESIGN.md` que afecten a un componente o familia de componentes.
+- Cambios en tokens de `/src/styles/global.css` (colores semánticos, fuentes, escala, espaciado).
+- Nuevas reglas de comportamiento visual (familias de badges, vocabularios visuales, restricciones cromáticas).
+- Cambios en `OrgGlyph`, `PersonaCard`, `OrgCard`, badges, layout chrome.
+
+**Qué NO se considera sustancial** (no necesita sync):
+
+- Ajustes de copy.
+- Bugs CSS aislados.
+- Cambios de contenido (nuevos casos, nuevos hitos).
+- Cambios en componentes `Pg*` que no introducen vocabulario visual nuevo.
