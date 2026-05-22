@@ -4,6 +4,7 @@
 // ascendente (más oficiales primero) y fecha descendente.
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CustomSelect from '@/components/CustomSelect.astro';
 import { getCollection } from 'astro:content';
 import { tipoDocLabel, type Lang } from '@/lib/labels';
 
@@ -98,20 +99,32 @@ const tiposPresentes = Array.from(new Set(documentos.map((d) => d.tipo)))
     </div>
     <div class="field">
       <label for="nivel">Nivel de fuente</label>
-      <select id="nivel" name="nivel">
-        <option value="all">Todos</option>
-        <option value="1">N1 — Oficial primaria</option>
-        <option value="2">N2 — Oficial secundaria</option>
-        <option value="3">N3 — Institucional / pericial</option>
-        <option value="4">N4 — Cobertura periodística</option>
-      </select>
+      <CustomSelect
+        id="nivel"
+        name="nivel"
+        value="all"
+        ariaLabel="Filtrar por nivel de fuente"
+        options={[
+          { value: 'all', label: 'Todos' },
+          { value: '1',   label: 'N1 — Oficial primaria' },
+          { value: '2',   label: 'N2 — Oficial secundaria' },
+          { value: '3',   label: 'N3 — Institucional / pericial' },
+          { value: '4',   label: 'N4 — Cobertura periodística' },
+        ]}
+      />
     </div>
     <div class="field">
       <label for="tipo">Tipo</label>
-      <select id="tipo" name="tipo">
-        <option value="all">Todos</option>
-        {tiposPresentes.map((t) => <option value={t.valor}>{t.label}</option>)}
-      </select>
+      <CustomSelect
+        id="tipo"
+        name="tipo"
+        value="all"
+        ariaLabel="Filtrar por tipo de documento"
+        options={[
+          { value: 'all', label: 'Todos' },
+          ...tiposPresentes.map((t) => ({ value: t.valor, label: t.label })),
+        ]}
+      />
     </div>
     <button class="btn" type="reset">Limpiar</button>
   </form>
@@ -160,8 +173,20 @@ const tiposPresentes = Array.from(new Set(documentos.map((d) => d.tipo)))
     const shown = document.querySelector('[data-shown]');
     const empty = document.querySelector('[data-empty]');
     const qInput = form.querySelector('#q');
-    const nivelSel = form.querySelector('#nivel');
-    const tipoSel = form.querySelector('#tipo');
+    const nivelSel = form.querySelector('input[name="nivel"]');
+    const tipoSel = form.querySelector('input[name="tipo"]');
+    function resyncCustomSelects() {
+      form.querySelectorAll('[data-csel]').forEach((csel) => {
+        const hidden = csel.querySelector('[data-csel-value]');
+        const label = csel.querySelector('[data-csel-label]');
+        if (!hidden || !label) return;
+        const opt = csel.querySelector(`[data-csel-opt][data-value="${hidden.value}"]`);
+        if (opt) {
+          label.textContent = opt.textContent.trim();
+          csel.querySelectorAll('[data-csel-opt]').forEach((o) => o.setAttribute('aria-selected', o === opt ? 'true' : 'false'));
+        }
+      });
+    }
     function apply() {
       const q = (qInput.value || '').trim().toLowerCase();
       const nivel = nivelSel.value;
@@ -181,7 +206,7 @@ const tiposPresentes = Array.from(new Set(documentos.map((d) => d.tipo)))
     form.addEventListener('input', apply);
     form.addEventListener('change', apply);
     form.addEventListener('submit', (e) => { e.preventDefault(); apply(); });
-    form.addEventListener('reset', () => setTimeout(apply, 0));
+    form.addEventListener('reset', () => setTimeout(() => { resyncCustomSelects(); apply(); }, 0));
   })();
 </script>
 

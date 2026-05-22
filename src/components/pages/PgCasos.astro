@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CustomSelect from '@/components/CustomSelect.astro';
 import { getCollection } from 'astro:content';
 
 interface Props {
@@ -166,20 +167,32 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
     </div>
     <div class="field">
       <label for="phase">Fase procesal</label>
-      <select id="phase" name="phase">
-        <option value="all">Todas</option>
-        <option value="instr">Instrucción</option>
-        <option value="juicio">Juicio oral</option>
-        <option value="firme">Sentencia firme</option>
-        <option value="archivo">Archivado</option>
-      </select>
+      <CustomSelect
+        id="phase"
+        name="phase"
+        value="all"
+        ariaLabel="Filtrar por fase procesal"
+        options={[
+          { value: 'all',     label: 'Todas' },
+          { value: 'instr',   label: 'Instrucción' },
+          { value: 'juicio',  label: 'Juicio oral' },
+          { value: 'firme',   label: 'Sentencia firme' },
+          { value: 'archivo', label: 'Archivado' },
+        ]}
+      />
     </div>
     <div class="field">
       <label for="order">Ordenar por</label>
-      <select id="order" name="order">
-        <option value="hito">Último hito ↓</option>
-        <option value="implicados">Implicados ↓</option>
-      </select>
+      <CustomSelect
+        id="order"
+        name="order"
+        value="hito"
+        ariaLabel="Ordenar listado"
+        options={[
+          { value: 'hito',       label: 'Último hito ↓' },
+          { value: 'implicados', label: 'Implicados ↓' },
+        ]}
+      />
     </div>
     <button class="btn" type="reset">Limpiar</button>
   </form>
@@ -261,8 +274,11 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
     const meta = document.querySelector('[data-listado-meta]');
 
     const qInput = form.querySelector('#q');
-    const phaseSel = form.querySelector('#phase');
-    const orderSel = form.querySelector('#order');
+    // Los selects ahora son <CustomSelect> que guardan el valor en un
+    // <input type="hidden"> dentro del CSel; los leemos por name del
+    // formulario.
+    const phaseSel = form.querySelector('input[name="phase"]');
+    const orderSel = form.querySelector('input[name="order"]');
 
     const ORDER_LABEL = {
       hito: 'último hito',
@@ -305,6 +321,26 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
       }
     }
 
+    function resyncCustomSelects() {
+      // Tras un form.reset() los <input type="hidden"> recuperan su
+      // value="..." inicial, pero el label visible del trigger del
+      // CustomSelect no se entera. Recorremos cada CSel del form y
+      // resincronizamos su label al option cuyo data-value coincida con
+      // el hidden actual.
+      form.querySelectorAll('[data-csel]').forEach((csel) => {
+        const hidden = csel.querySelector('[data-csel-value]');
+        const label = csel.querySelector('[data-csel-label]');
+        if (!hidden || !label) return;
+        const opt = csel.querySelector(`[data-csel-opt][data-value="${hidden.value}"]`);
+        if (opt) {
+          label.textContent = opt.textContent.trim();
+          csel.querySelectorAll('[data-csel-opt]').forEach((o) => {
+            o.setAttribute('aria-selected', o === opt ? 'true' : 'false');
+          });
+        }
+      });
+    }
+
     form.addEventListener('input', apply);
     form.addEventListener('change', apply);
     form.addEventListener('submit', (e) => {
@@ -312,8 +348,7 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
       apply();
     });
     form.addEventListener('reset', () => {
-      // Diferir al siguiente tick para que los valores ya estén reset.
-      setTimeout(apply, 0);
+      setTimeout(() => { resyncCustomSelects(); apply(); }, 0);
     });
   })();
 </script>

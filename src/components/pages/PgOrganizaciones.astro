@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CustomSelect from '@/components/CustomSelect.astro';
 import { getCollection } from 'astro:content';
 import { tipoOrgLabel, type Lang } from '@/lib/labels';
 
@@ -94,10 +95,16 @@ const tiposPresentes = Array.from(new Set(orgs.map((o) => o.tipo)))
     </div>
     <div class="field">
       <label for="tipo">Tipo</label>
-      <select id="tipo" name="tipo">
-        <option value="all">Todos</option>
-        {tiposPresentes.map((t) => <option value={t.valor}>{t.label}</option>)}
-      </select>
+      <CustomSelect
+        id="tipo"
+        name="tipo"
+        value="all"
+        ariaLabel="Filtrar por tipo de organización"
+        options={[
+          { value: 'all', label: 'Todos' },
+          ...tiposPresentes.map((t) => ({ value: t.valor, label: t.label })),
+        ]}
+      />
     </div>
     <button class="btn" type="reset">Limpiar</button>
   </form>
@@ -145,7 +152,19 @@ const tiposPresentes = Array.from(new Set(orgs.map((o) => o.tipo)))
     const shown = document.querySelector('[data-shown]');
     const empty = document.querySelector('[data-empty]');
     const qInput = form.querySelector('#q');
-    const tipoSel = form.querySelector('#tipo');
+    const tipoSel = form.querySelector('input[name="tipo"]');
+    function resyncCustomSelects() {
+      form.querySelectorAll('[data-csel]').forEach((csel) => {
+        const hidden = csel.querySelector('[data-csel-value]');
+        const label = csel.querySelector('[data-csel-label]');
+        if (!hidden || !label) return;
+        const opt = csel.querySelector(`[data-csel-opt][data-value="${hidden.value}"]`);
+        if (opt) {
+          label.textContent = opt.textContent.trim();
+          csel.querySelectorAll('[data-csel-opt]').forEach((o) => o.setAttribute('aria-selected', o === opt ? 'true' : 'false'));
+        }
+      });
+    }
     function apply() {
       const q = (qInput.value || '').trim().toLowerCase();
       const tipo = tipoSel.value;
@@ -163,7 +182,7 @@ const tiposPresentes = Array.from(new Set(orgs.map((o) => o.tipo)))
     form.addEventListener('input', apply);
     form.addEventListener('change', apply);
     form.addEventListener('submit', (e) => { e.preventDefault(); apply(); });
-    form.addEventListener('reset', () => setTimeout(apply, 0));
+    form.addEventListener('reset', () => setTimeout(() => { resyncCustomSelects(); apply(); }, 0));
   })();
 </script>
 

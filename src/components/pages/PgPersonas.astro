@@ -4,6 +4,7 @@
 // administrativa que PgCasos.
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CustomSelect from '@/components/CustomSelect.astro';
 import { getCollection } from 'astro:content';
 import { rolLabel, rolGrupo, type Lang } from '@/lib/labels';
 
@@ -93,11 +94,17 @@ function searchBlob(p: (typeof personas)[number]): string {
     </div>
     <div class="field">
       <label for="figura">Figura pública</label>
-      <select id="figura" name="figura">
-        <option value="all">Todas</option>
-        <option value="publica">Sí, figura pública</option>
-        <option value="privada">No, persona privada</option>
-      </select>
+      <CustomSelect
+        id="figura"
+        name="figura"
+        value="all"
+        ariaLabel="Filtrar por condición de figura pública"
+        options={[
+          { value: 'all',     label: 'Todas' },
+          { value: 'publica', label: 'Sí, figura pública' },
+          { value: 'privada', label: 'No, persona privada' },
+        ]}
+      />
     </div>
     <button class="btn" type="reset">Limpiar</button>
   </form>
@@ -157,7 +164,19 @@ function searchBlob(p: (typeof personas)[number]): string {
     const shown = document.querySelector('[data-shown]');
     const empty = document.querySelector('[data-empty]');
     const qInput = form.querySelector('#q');
-    const figura = form.querySelector('#figura');
+    const figura = form.querySelector('input[name="figura"]');
+    function resyncCustomSelects() {
+      form.querySelectorAll('[data-csel]').forEach((csel) => {
+        const hidden = csel.querySelector('[data-csel-value]');
+        const label = csel.querySelector('[data-csel-label]');
+        if (!hidden || !label) return;
+        const opt = csel.querySelector(`[data-csel-opt][data-value="${hidden.value}"]`);
+        if (opt) {
+          label.textContent = opt.textContent.trim();
+          csel.querySelectorAll('[data-csel-opt]').forEach((o) => o.setAttribute('aria-selected', o === opt ? 'true' : 'false'));
+        }
+      });
+    }
     function apply() {
       const q = (qInput.value || '').trim().toLowerCase();
       const fig = figura.value;
@@ -175,7 +194,7 @@ function searchBlob(p: (typeof personas)[number]): string {
     form.addEventListener('input', apply);
     form.addEventListener('change', apply);
     form.addEventListener('submit', (e) => { e.preventDefault(); apply(); });
-    form.addEventListener('reset', () => setTimeout(apply, 0));
+    form.addEventListener('reset', () => setTimeout(() => { resyncCustomSelects(); apply(); }, 0));
   })();
 </script>
 

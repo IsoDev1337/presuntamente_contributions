@@ -1,0 +1,240 @@
+---
+// CustomSelect — dropdown propio que sustituye al <select> nativo.
+// Markup canónico en el bundle de design (ui_kits/web/Components.jsx).
+// Mantiene la estética administrativa (rectangular, sin radius, borde fino)
+// y añade animación de chevron + slide-down del menú. Accesible por teclado
+// (ArrowUp/Down, Enter, Escape) y compatible con prefers-reduced-motion.
+//
+// Astro renderiza el markup estático; un script inline maneja la
+// interactividad. Cada instancia es independiente y se inicializa con
+// data-csel-init.
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  id: string;
+  name: string;
+  value?: string;
+  options: Option[];
+  ariaLabel?: string;
+}
+
+const { id, name, value, options, ariaLabel } = Astro.props;
+const current = options.find((o) => o.value === value) ?? options[0];
+---
+<div class="csel" data-csel data-csel-name={name}>
+  <input type="hidden" name={name} value={current?.value ?? ''} data-csel-value />
+  <button
+    type="button"
+    class="csel__trigger"
+    id={id}
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-label={ariaLabel}
+    data-csel-trigger
+  >
+    <span data-csel-label>{current?.label}</span>
+    <svg class="csel__caret" viewBox="0 0 24 24" aria-hidden="true">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </button>
+  <ul class="csel__menu" role="listbox" data-csel-menu hidden>
+    {options.map((o) => (
+      <li>
+        <button
+          type="button"
+          class="csel__opt"
+          role="option"
+          aria-selected={o.value === current?.value ? 'true' : 'false'}
+          data-csel-opt
+          data-value={o.value}
+        >
+          {o.label}
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<script is:inline>
+  (() => {
+    if (window.__cselInited) return;
+    window.__cselInited = true;
+
+    document.addEventListener('click', (e) => {
+      // Cierra los selects abiertos cuando se hace click fuera.
+      document.querySelectorAll('[data-csel].csel--open').forEach((csel) => {
+        if (!csel.contains(e.target)) close(csel);
+      });
+    });
+
+    function close(csel) {
+      csel.classList.remove('csel--open');
+      const trigger = csel.querySelector('[data-csel-trigger]');
+      const menu = csel.querySelector('[data-csel-menu]');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      if (menu) menu.hidden = true;
+    }
+    function open(csel) {
+      // Cierra otros primero.
+      document.querySelectorAll('[data-csel].csel--open').forEach((other) => {
+        if (other !== csel) close(other);
+      });
+      csel.classList.add('csel--open');
+      const trigger = csel.querySelector('[data-csel-trigger]');
+      const menu = csel.querySelector('[data-csel-menu]');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      if (menu) menu.hidden = false;
+    }
+
+    function commit(csel, value, label) {
+      const hidden = csel.querySelector('[data-csel-value]');
+      const triggerLabel = csel.querySelector('[data-csel-label]');
+      if (hidden) hidden.value = value;
+      if (triggerLabel) triggerLabel.textContent = label;
+      csel.querySelectorAll('[data-csel-opt]').forEach((opt) => {
+        opt.setAttribute('aria-selected', opt.dataset.value === value ? 'true' : 'false');
+      });
+      // Dispara un evento 'change' en el input oculto para que los
+      // listeners de filtros (input/change en el <form>) se enteren.
+      if (hidden) hidden.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    document.querySelectorAll('[data-csel]').forEach((csel) => {
+      const trigger = csel.querySelector('[data-csel-trigger]');
+      const opts = Array.from(csel.querySelectorAll('[data-csel-opt]'));
+
+      trigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        csel.classList.contains('csel--open') ? close(csel) : open(csel);
+      });
+      trigger?.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open(csel);
+          opts[0]?.focus();
+        } else if (e.key === 'Escape') {
+          close(csel);
+        }
+      });
+      opts.forEach((opt, i) => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          commit(csel, opt.dataset.value, opt.textContent.trim());
+          close(csel);
+          trigger?.focus();
+        });
+        opt.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            opts[(i + 1) % opts.length].focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            opts[(i - 1 + opts.length) % opts.length].focus();
+          } else if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            commit(csel, opt.dataset.value, opt.textContent.trim());
+            close(csel);
+            trigger?.focus();
+          } else if (e.key === 'Escape') {
+            close(csel);
+            trigger?.focus();
+          }
+        });
+      });
+    });
+  })();
+</script>
+
+<style>
+  .csel { position: relative; }
+  .csel__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+    border-radius: 0;
+    font: 400 14px/1.4 var(--font-sans);
+    color: var(--color-fg);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 140ms ease-out;
+  }
+  .csel__trigger:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+    border-color: var(--color-accent);
+  }
+  .csel--open .csel__trigger {
+    border-color: var(--color-accent);
+    position: relative;
+    z-index: 2;
+  }
+  .csel__caret {
+    width: 10px;
+    height: 10px;
+    stroke: var(--color-fg-muted);
+    fill: none;
+    stroke-width: 1.8;
+    flex-shrink: 0;
+    margin-left: 8px;
+    transition: transform 140ms ease-out;
+  }
+  .csel--open .csel__caret {
+    transform: rotate(180deg);
+    stroke: var(--color-accent);
+  }
+  .csel__menu {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-accent);
+    border-radius: 0;
+    z-index: 10;
+    max-height: 260px;
+    overflow-y: auto;
+    transform-origin: top;
+    animation: csel-in 160ms ease-out both;
+  }
+  @keyframes csel-in {
+    from { opacity: 0; transform: scaleY(0.94) translateY(-2px); }
+    to   { opacity: 1; transform: scaleY(1) translateY(0); }
+  }
+  .csel__menu li { margin: 0; }
+  .csel__opt {
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    font: 400 14px/1.4 var(--font-sans);
+    color: var(--color-fg);
+    cursor: pointer;
+  }
+  .csel__opt:hover,
+  .csel__opt:focus-visible {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    outline: none;
+  }
+  .csel__opt[aria-selected="true"] {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .csel__caret,
+    .csel__menu { transition: none; animation: none; }
+  }
+</style>
