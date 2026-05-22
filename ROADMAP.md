@@ -4,7 +4,7 @@
 >
 > El roadmap **conceptual** — razonamiento de las fases, criterios de salida, esfuerzo estimado — vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión **operativa**: dónde estamos, qué hay encima de la mesa, qué se ha aprendido.
 
-**Última actualización:** 2026-05-22 (sesión 4 — madrugada) — Begoña Gómez PR2 en main: completa acusaciones populares (Vox + Iustitia Europa + MRPE), añade hito de imputación específica de Goyache, anulación AP Madrid jurado popular del 23-feb-2026, recurso de la Fiscalía ante AP Madrid del 21-abr-2026 y UCM personada como perjudicada. Ampliado el schema `rol-en-caso` para admitir `perjudicado` como rol de organización (V-11 reformulada). Sin push: ~31 commits locales esperando al maintainer.
+**Última actualización:** 2026-05-22 (sesión 4 — madrugada) — Begoña Gómez PR1 + PR2 en main: arranque completo + acusaciones populares (Vox + Iustitia Europa + MRPE), hito de imputación específica de Goyache, anulación AP Madrid jurado popular del 23-feb-2026, recurso de la Fiscalía ante AP Madrid del 21-abr-2026, UCM personada como perjudicada. Ampliado el schema `rol-en-caso` para admitir `perjudicado` como rol de organización (V-11 reformulada, doc 01 §2.4 sincronizado). Sin push: 33 commits locales en `main` esperando al maintainer.
 
 ---
 
