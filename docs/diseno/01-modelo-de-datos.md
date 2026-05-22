@@ -555,7 +555,7 @@ Las reglas que CI ejecuta sobre los YAML antes de mergear cualquier PR. Cada una
 | V-08 | Una `Persona` con `es_figura_publica = false` no aparece en `Hecho` tipo `acreditado` ni `investigado` sin un `RolEnCaso` activo en el periodo del Hecho | bloqueante |
 | V-09 | Un `RolEnCaso` con `delitos_atribuidos` no vacío sólo es válido si `rol ∈ {investigado, procesado, acusado, condenado}` | bloqueante |
 | V-10 | Un `RolEnCaso` con `rol = condenado` requiere `hito_origen_id` de tipo sentencia | bloqueante |
-| V-11 | Un `RolEnCaso` con `sujeto_tipo = organizacion` sólo permite `rol ∈ {acusacion_popular, acusacion_particular, querellante, denunciante}` | bloqueante |
+| V-11 | Un `RolEnCaso` con `sujeto_tipo = organizacion` sólo permite `rol ∈ {acusacion_popular, acusacion_particular, querellante, denunciante, perjudicado}`. El valor `perjudicado` se añadió en mayo de 2026 al fichar la UCM como perjudicada en el caso Begoña Gómez (responsabilidad civil derivada del delito; persona jurídica como parte civil del procedimiento penal). | bloqueante |
 | V-12 | Un `Documento` de `nivel_fuente = 1` tiene `url_canonica` en lista blanca `DominiosOficiales` o `ruta_local` con hash en repo | bloqueante |
 | V-13 | Un `Documento` de tipo `articulo_prensa` no es el único soporte de un `Hecho` tipo `acreditado` ni `investigado` | bloqueante |
 | V-14 | Un `Hito` jurisdiccional (imputación, procesamiento, sentencia, archivo, desimputación) tiene `documento_principal_id` informado | bloqueante |
