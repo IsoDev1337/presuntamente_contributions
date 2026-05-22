@@ -249,6 +249,13 @@ html {
   line-height: var(--lh-body);
   text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+  /* Reserva siempre el ancho de la barra de scroll vertical, esté o no
+     presente. Sin esto, al navegar entre páginas largas y cortas el
+     contenido se desplazaba ~17px horizontalmente (la página corta no
+     pintaba scrollbar y aprovechaba el espacio; la larga sí, y todo el
+     layout saltaba). Reportado por el maintainer al ir de /casos
+     (corto) a otras páginas. */
+  scrollbar-gutter: stable;
 }
 
 body { min-height: 100vh; }
@@ -288,13 +295,10 @@ p {
   line-height: var(--lh-body);
   text-wrap: pretty;
 }
-/* Solo limitamos el ancho de los párrafos dentro de prosa larga
-   deliberada (.prose). En cards, listas, tablas y bloques estructurados
-   el contenedor padre ya marca el ancho — limitarlos a 70ch los dejaba
-   "a la mitad" del card. */
-.prose p {
-  max-width: var(--content-max-width);
-}
+/* Sin max-width global en p: el contenedor padre (card, sección, prose)
+   marca el ancho. La medida de legibilidad la limitamos sólo cuando el
+   contenedor sería demasiado ancho — actualmente sólo /sobre y
+   /aviso-legal podrían beneficiarse, y allí se hace localmente. */
 
 small, .text-meta {
   font-size: var(--font-size-0);
@@ -388,17 +392,22 @@ li { margin: var(--space-1) 0; }
   color: #fff;
   position: relative;
 }
-/* Doble trim inferior: línea navy oscura + mostaza institucional. */
+/* Filete tricolor inferior — misma bandera institucional muted que el
+   footer (rojo BOE apagado + mostaza + rojo BOE apagado). Simetría
+   visual entre el top y el bottom del documento, da "marco" institucional
+   completo. Reemplaza el doble trim navy+mostaza anterior por petición
+   del maintainer. */
 .site-header::after {
   content: '';
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  height: 3px;
-  background:
-    linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.25) 0 1px,
-      transparent 1px 1px,
-      var(--color-accent-secondary) 1px 3px);
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    #8e2424 0 25%,
+    var(--color-accent-secondary) 25% 75%,
+    #8e2424 75% 100%
+  );
   pointer-events: none;
 }
 .site-header__inner {
@@ -642,11 +651,16 @@ li { margin: var(--space-1) 0; }
  * ========================================================================= */
 .site-footer {
   position: relative;
-  background: var(--color-surface-muted);
+  background: var(--color-bg-muted);
   border-top: 1px solid var(--color-border);
-  padding: var(--space-6) var(--space-5) var(--space-5);
+  padding: calc(var(--space-6) + 6px) var(--space-5) var(--space-5);
   overflow: hidden;
 }
+/* Filete tricolor superior (6px) — bandera institucional apagada. El
+   #8e2424 es rojo BOE muted (autorizado en DESIGN.md §"Sobre asociaciones
+   partidarias" porque es tono institucional, no rojo de campaña). El eco
+   tricolor de fondo se eliminó por feedback del maintainer: era apenas
+   visible (4-5%) y daba sensación de "fondo perdido". Fondo plano ahora. */
 .site-footer::before {
   content: '';
   position: absolute;
@@ -658,18 +672,6 @@ li { margin: var(--space-1) 0; }
     var(--color-accent-secondary) 25% 75%,
     #8e2424 75% 100%
   );
-}
-.site-footer::after {
-  content: '';
-  position: absolute;
-  top: 6px; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(142, 36, 36, 0.04) 0 25%,
-    rgba(200, 155, 0, 0.05) 25% 75%,
-    rgba(142, 36, 36, 0.04) 75% 100%
-  );
-  pointer-events: none;
 }
 .site-footer > * { position: relative; z-index: 1; }
 .site-footer__inner {
@@ -1064,8 +1066,11 @@ li { margin: var(--space-1) 0; }
 /* =========================================================================
  * Prosa + citación inline (Money + Acronym + Cite)
  * ========================================================================= */
-.prose { max-width: 76ch; }
+/* .prose deja de tener max-width propio: el contenedor padre marca el
+   ancho. Las páginas que necesiten medida de legibilidad larga (/sobre,
+   /aviso-legal) lo aplican localmente con .prose--narrow si hace falta. */
 .prose p { font-size: var(--font-size-2); line-height: 1.6; margin: 0 0 var(--space-3); text-wrap: pretty; max-width: none; }
+.prose--narrow { max-width: 76ch; }
 .prose .lede {
   font-size: var(--font-size-2);
   line-height: 1.55;
