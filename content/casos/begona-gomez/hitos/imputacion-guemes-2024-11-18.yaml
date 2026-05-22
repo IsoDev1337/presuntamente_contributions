@@ -1,0 +1,33 @@
+id: imputacion-guemes-bg-2024-11-18
+caso_id: begona-gomez
+tipo: imputacion
+fecha: "2024-11-18"
+fecha_precision: dia
+titulo: "El Juzgado de Instrucción nº 41 de Madrid imputa al directivo del IE Business School y ex consejero de la Comunidad de Madrid, Juan José Güemes"
+descripcion: |
+  El Juzgado de Instrucción nº 41 de Madrid, instruido por el
+  magistrado Juan Carlos Peinado, cita como investigado el 18 de
+  noviembre de 2024 a Juan José Güemes, presidente del Centro
+  Internacional de Gestión Emprendedora (Center for Entrepreneurship
+  & Innovation) de IE Business School y ex consejero de la
+  Comunidad de Madrid en los gobiernos de Esperanza Aguirre. Güemes
+  comparece previamente como testigo y, según la cobertura
+  periodística cruzada, el instructor aprecia indiciariamente
+  contradicciones entre su declaración y la prestada con anterioridad
+  por la responsable de recursos humanos del IE, Sonsoles Blanca Gil
+  de Antuñano, en relación con la contratación de Begoña Gómez en
+  2018 como directora del Africa Center del IE. Tras ofrecer a
+  Güemes un careo con la otra testigo, que rechaza, el juez
+  suspende la declaración y le cita nuevamente como investigado. La
+  fecha exacta del auto específico de imputación queda pendiente de
+  localización en CENDOJ o nota institucional; `2024-11-18` es la
+  fecha de la cobertura periodística cruzada que documenta la
+  citación. La condición de investigado no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia
+  mientras no recaiga resolución firme en contrario.
+personas_afectadas:
+  - juan-jose-guemes
+organizaciones_afectadas:
+  - juzgado-instruccion-41-madrid
+documento_principal_id: newtral-imputacion-guemes-bg-2024-11-18
+fase_resultante: instruccion

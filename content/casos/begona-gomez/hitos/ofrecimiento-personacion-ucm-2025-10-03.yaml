@@ -1,0 +1,34 @@
+id: ofrecimiento-personacion-ucm-bg-2025-10-03
+caso_id: begona-gomez
+tipo: informe_organismo_publico
+fecha: "2025-10-03"
+fecha_precision: dia
+titulo: "El Juzgado de Instrucción nº 41 de Madrid ofrece a la Universidad Complutense la posibilidad de personarse como perjudicada en la causa"
+descripcion: |
+  El Juzgado de Instrucción nº 41 de Madrid, instruido por el
+  magistrado Juan Carlos Peinado, dicta auto el 3 de octubre de
+  2025 por el que ofrece a la Universidad Complutense de Madrid la
+  posibilidad de personarse en el procedimiento en calidad de
+  perjudicada, al considerar que la universidad podría haber sufrido
+  un perjuicio patrimonial derivado de los hechos imputados a Begoña
+  Gómez en relación con la titularidad del software desarrollado en
+  el marco de la Cátedra Extraordinaria de Transformación Social
+  Competitiva. La UCM se persona formalmente como perjudicada en la
+  vista del 6 de octubre de 2025. Tres meses más tarde, en escrito
+  presentado el 27 de enero de 2026, la universidad cuantifica
+  indiciariamente el perjuicio en 113.509,32 euros. La fecha exacta
+  del auto del 3 de octubre queda pendiente de localización con URL
+  canónica en CENDOJ o nota institucional del CGPJ; `2025-10-03` se
+  documenta a partir de la cobertura periodística cruzada y del
+  propio escrito de cuantificación de la UCM. Conforme al principio
+  de presunción de inocencia, rige la inocencia mientras no recaiga
+  resolución firme en contrario.
+personas_afectadas:
+  - begona-gomez
+organizaciones_afectadas:
+  - juzgado-instruccion-41-madrid
+  - universidad-complutense-madrid
+documento_principal_id: moncloacom-desimputa-goyache-2025-10-13
+documentos_relacionados:
+  - confilegal-ucm-perjudicada-bg-2025-10-08
+fase_resultante: instruccion

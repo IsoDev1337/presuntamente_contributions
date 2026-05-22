@@ -1,27 +1,36 @@
 id: bg-desimputacion-goyache-2025-05-16
 caso_id: begona-gomez
 enunciado: |
-  Consta en el auto de la Audiencia Provincial de Madrid del 16 de mayo
-  de 2025 que el tribunal estima el recurso de apelación interpuesto
-  por la defensa del rector de la Universidad Complutense de Madrid,
-  Joaquín Goyache, y revoca su condición de investigado en el
-  procedimiento, al considerar que no concurren indicios racionales de
-  criminalidad. La resolución cierra el rol procesal de imputación del
-  rector y deja sin efecto las diligencias dirigidas personalmente
-  contra él. Conforme al principio de presunción de inocencia, rige
-  la inocencia mientras no recaiga resolución firme en contrario.
+  Consta en el auto de la Audiencia Provincial de Madrid de 13 de
+  mayo de 2025 (conocido públicamente el 16 de mayo) que el tribunal
+  estima los recursos de apelación interpuestos por las defensas del
+  rector de la Universidad Complutense de Madrid, Joaquín Goyache,
+  y del presidente del Centro Internacional de Gestión Emprendedora
+  del IE Business School, Juan José Güemes, y revoca su condición
+  de investigados en el procedimiento al considerar que no concurren
+  indicios racionales de criminalidad. La resolución, además,
+  excluye del procedimiento los hechos relativos a la contratación
+  de Begoña Gómez por el IE en 2018 como directora del Africa
+  Center al considerar que "esta diligencia resulta innecesaria
+  porque excede de lo que es objeto de esta investigación". Cierra
+  el rol procesal de imputación de ambos y deja sin efecto las
+  diligencias dirigidas personalmente contra ellos. Conforme al
+  principio de presunción de inocencia, rige la inocencia mientras
+  no recaiga resolución firme en contrario.
 tipo: exculpatorio
 fecha_o_periodo:
-  desde: "2025-05-16"
+  desde: "2025-05-13"
   precision: dia
 personas_implicadas:
   - joaquin-goyache
+  - juan-jose-guemes
 organizaciones_implicadas:
   - audiencia-provincial-madrid
   - universidad-complutense-madrid
 documentos_respaldo:
   - documento_id: auto-audiencia-desimputa-goyache-2025-05-16
-    pasaje: "Fundamentos jurídicos — falta de indicios racionales de criminalidad"
+    pasaje: "Fundamentos jurídicos — falta de indicios racionales de criminalidad; exclusión de la contratación de Begoña Gómez por el IE en 2018 por exceder del objeto de la instrucción"
+  - documento_id: elindependiente-desimputacion-guemes-goyache-bg-2025-05-16
   - documento_id: moncloacom-desimputa-goyache-2025-10-13
 nivel_fuente_efectivo: 4
 vigencia: vigente

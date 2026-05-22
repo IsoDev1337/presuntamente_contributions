@@ -2,7 +2,7 @@
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md` § *NOTES.md por caso*.
 
-Última actualización: 2026-05-22 (PR2 — completa acusaciones populares, hito de imputación de Goyache, anulación AP Madrid, recurso Fiscalía y UCM perjudicada).
+Última actualización: 2026-05-22 (PR3 — incorpora Juan José Güemes como persona desimputada, hitos posteriores al 21-abr-2026 hasta hoy, hito propio del ofrecimiento de personación a la UCM, y nuevo tipo de hito `escrito_conclusiones_provisionales` en el schema).
 
 ---
 
@@ -15,39 +15,61 @@ Decidido en el cierre de la sesión 2026-05-22 (ver `ROADMAP.md`): el caso teste
 
 Ambos cierres dejan en pie la presunción de inocencia y las trayectorias procesales se exhiben con los slots existentes del modelo.
 
-## Estado editorial — PR1 + PR2 acumulado
+## Estado editorial — PR1 + PR2 + PR3 acumulado
 
 - **caso.yaml** raíz creado en PR1.
-- **5 personas** con rol procesal formal (sin cambios en PR2): Begoña Gómez, Juan Carlos Peinado (juez instructor), Cristina Álvarez (asesora Moncloa), Juan Carlos Barrabés (empresario), Joaquín Goyache (rector UCM, desimputado).
-- **14 organizaciones**: 8 del aparato procesal/medios PR1 + 6 nuevas PR2 (Vox como partido_politico ejerciendo acusación popular, Iustitia Europa, Movimiento de Regeneración Política de España, elDiario.es, Newtral, Confilegal). Más Manos Limpias reutilizada del caso Plus Ultra.
+- **6 personas** con rol procesal formal: 5 de PR1/PR2 (Begoña Gómez, Juan Carlos Peinado, Cristina Álvarez, Juan Carlos Barrabés, Joaquín Goyache) + 1 nueva PR3: **Juan José Güemes Barrios** (presidente del Centro Internacional de Gestión Emprendedora de IE Business School, ex consejero Comunidad de Madrid bajo Esperanza Aguirre).
+- **15 organizaciones**: 14 de PR1/PR2 + 1 nueva PR3 (**El Independiente**, diario digital). Manos Limpias reutilizada del caso Plus Ultra.
 - **2 delitos nuevos del catálogo** (PR1): corrupción en los negocios, apropiación indebida. Reutilizados: tráfico de influencias y malversación de caudales públicos.
-- **16 documentos**: 8 de PR1 + 8 de PR2 (auto AP Madrid 23-feb-2026 + cobertura Infobae/TheObjective; cobertura imputación Goyache elDiario + perfil Newtral; cobertura UCM perjudicada Confilegal + Moncloa.com cuantificación; escrito Fiscalía recurso 21-abr-2026 marcado nivel 2 — fuente oficial secundaria/instructora).
-- **8 hitos**: 5 de PR1 + 3 de PR2 (imputación Goyache 22-jul-2024; anulación AP Madrid jurado popular 23-feb-2026; recurso Fiscalía ante AP Madrid 21-abr-2026).
-- **8 hechos**: 6 de PR1 + 2 de PR2 (AP Madrid considera que los autos previos carecen de motivación — exculpatorio; UCM cuantifica en 113.509,32 € el perjuicio — atribuido).
-- **15 roles**: 11 de PR1 (con correcciones — ver §"Correcciones en PR2") + 4 nuevos PR2 (Vox acusación popular 29-abr-2024; Iustitia Europa acusación popular 29-abr-2024; MRPE acusación popular mayo 2024; UCM perjudicada 6-oct-2025).
+- **21 documentos**: 16 de PR1/PR2 + 5 nuevos PR3 (Newtral imputación Güemes 18-nov-2024; TheObjective recurso Fiscalía contra imputación Güemes 03-dic-2024; El Independiente desimputación Güemes+Goyache 16-may-2025; Infobae escrito conclusiones defensa 18-may-2026; El Español lista 30+ testigos 18-may-2026; Libertad Digital desestimación recurso defensa 22-may-2026). Total real: **22 documentos** contando la actualización del auto AP Madrid desimputación (fecha de documento corregida a 2025-05-13 y referencia a Güemes añadida).
+- **13 hitos**: 8 de PR1/PR2 + 5 nuevos PR3 (imputación Güemes 18-nov-2024; recurso Fiscalía contra imputación Güemes 03-dic-2024; ofrecimiento de personación a la UCM por el JI 41 el 03-oct-2025; escrito de conclusiones provisionales de la defensa 18-may-2026; desestimación del recurso de reforma de la defensa por el JI 41 el 22-may-2026). El hito de desimputación de Goyache se amplía a Güemes (mismo auto AP Madrid 13-may-2025).
+- **8 hechos**: sin cambios numéricos respecto a PR2; el hecho `bg-desimputacion-goyache-2025-05-16` se actualiza para mencionar a Güemes y reflejar la exclusión del procedimiento de la contratación de Begoña Gómez por el IE en 2018.
+- **17 roles**: 15 de PR1/PR2 + 2 nuevos PR3 (Güemes investigado 18-nov-2024 → 16-may-2025; Güemes desimputado 16-may-2025 → vigente). El rol UCM-perjudicada se actualiza para apuntar a su hito propio (ofrecimiento de personación) en vez del hito de origen del procedimiento.
+
+## Correcciones aplicadas en PR3
+
+- **`auto-audiencia-desimputa-goyache-2025-05-16.yaml`**: el documento del auto de la AP Madrid se corrige editorialmente. Título y `fecha_documento` actualizados a **13 de mayo de 2025** (fecha real del auto, según cita literal de El Independiente del 16-may-2025: "una resolución de 24 páginas, fechada el 13 de mayo de 2025"). `fecha_publicacion` se mantiene en `2025-05-16` (fecha en que la cobertura mediática hace público el contenido del auto). El `id` del documento se conserva (`...-2025-05-16`) por estabilidad — convención: el slug es identificador interno, el contenido es lo que se corrige. Justificación N4 reescrita para reflejar la cobertura cruzada que ahora respalda el documento (Moncloa.com, El Independiente, El Español).
+- **`desimputacion-goyache-2025-05-16.yaml` (hito)**: título reescrito a "La Audiencia Provincial de Madrid revoca la condición de investigado del rector de la UCM Joaquín Goyache **y del directivo del IE Juan José Güemes**". `personas_afectadas` extendido para incluir a `juan-jose-guemes`. Descripción reescrita incluyendo el motivo específico de la desimputación de Güemes (cita literal: "sin que existan indicios de que su contratación estuviera relacionada con su condición de esposa del presidente") y la exclusión de los hechos relativos a la contratación de Gómez por el IE en 2018 ("esta diligencia resulta innecesaria porque excede de lo que es objeto de esta investigación"). `documentos_relacionados` añade el nuevo documento de El Independiente.
+- **`bg-desimputacion-goyache-2025-05-16.yaml` (hecho)**: `personas_implicadas` extendido a `juan-jose-guemes`. Enunciado reescrito para reflejar el contenido pleno del auto (desimputación de ambos + exclusión de la contratación 2018). `fecha_o_periodo.desde` ajustada a `2025-05-13` (fecha del auto). `documentos_respaldo` añade el nuevo documento de El Independiente como respaldo directo.
+- **`ucm-perjudicada.yaml` (rol)**: `hito_origen_id` actualizado de `denuncia-manos-limpias-bg-2024-04-08` (provisional) a su hito propio `ofrecimiento-personacion-ucm-bg-2025-10-03`. Notas reescritas: ya no menciona el TODO de "pendiente de localizar con URL canónica para PR3" — ese pendiente queda resuelto al crear el hito específico aunque la URL canónica del auto del 3-oct-2025 sigue sin localizarse.
+
+## Schema extendido en PR3
+
+- **`schemas/hito.schema.json`**: añadido un nuevo valor al enum de `tipo`: `escrito_conclusiones_provisionales`. Justificación editorial: en procedimiento abreviado, el escrito de conclusiones provisionales de defensa es un evento procesal puntual y reconocible (parte que cierra fase de instrucción y abre fase intermedia previa al juicio). El enum ya admite otros eventos de parte (`comparecencia_congreso`, `publicacion_investigacion_periodistica`), así que la adición es consistente con el patrón existente. V-14 (hitos jurisdiccionales requieren `documento_principal_id`) NO se aplica al nuevo tipo por defecto, pero al modelarlo siempre con `documento_principal_id` por convención no hay diferencia práctica. `src/lib/labels.ts` extendido con el label `Escrito de conclusiones provisionales` para el nuevo tipo. Pendiente menor: documentar el nuevo tipo en `docs/diseno/01-modelo-de-datos.md §2.5` cuando se haga un repaso editorial del doc.
 
 ## Correcciones aplicadas en PR2
 
 - **`goyache-investigado.yaml`**: delitos corregidos de `[malversacion-caudales-publicos]` a `[trafico-de-influencias, corrupcion-en-los-negocios]`. La malversación se introdujo en la causa en agosto de 2025 (imputación específica de Cristina Álvarez), pero Goyache fue citado en julio de 2024 antes de esa ampliación. `fecha_inicio` se ajusta a `2024-07-22` (la fecha del auto que documentan elDiario.es y Newtral.es el 22-jul-2024) y `hito_origen_id` ya apunta al hito específico `imputacion-goyache-bg-2024-07-22`.
 - **`hazte-oir-acusacion-popular.yaml`**: `fecha_inicio` corregida de `2024-04-24` (mejor aproximación inicial) a `2024-04-29` (cruzada con la fecha confirmada de Vox; las personaciones de Hazte Oír, Vox e Iustitia Europa son coetáneas según la cobertura).
 
-## Pendiente para PR3 y siguientes
+## Pendiente para PR4 y siguientes
 
-- **Archive.org / archive.ph mirrors** para los 14 documentos N4 (6 de PR1 + 7 de PR2; el escrito de la Fiscalía es N2 y no requiere mirror obligatorio aunque conviene). WebFetch no puede llamar a archive.org desde el entorno del agente; el maintainer debe lanzar el archivado y completar `url_archivo`. Mirror obligatorio para fuentes N4 según doc 01 §3.
-- **Localización de fuentes oficiales** (sustituir N4 por N1 cuando aparezcan):
-  - Nota CGPJ del auto del JI nº 41 de Madrid del 13 de abril de 2026 (auto de procesamiento) en `poderjudicial.es`.
+- **Archive.org / archive.ph mirrors** para los documentos N4 (ahora 19 tras PR3: 6 de PR1 + 7 de PR2 + 6 de PR3; el escrito de la Fiscalía es N2 y no requiere mirror obligatorio aunque conviene). WebFetch no puede llamar a archive.org desde el entorno del agente; el maintainer debe lanzar el archivado y completar `url_archivo`. Mirror obligatorio para fuentes N4 según doc 01 §3.
+- **Localización de fuentes oficiales** (sustituir N4 por N1 cuando aparezcan). PR3 ha confirmado, vía WebSearch + WebFetch, que ninguno de los siguientes está disponible aún con URL canónica oficial en `poderjudicial.es` ni en CENDOJ a 22-may-2026:
+  - Nota CGPJ del auto del JI nº 41 de Madrid del 13 de abril de 2026 (auto de procesamiento).
   - Nota institucional del auto de la Audiencia Provincial de Madrid del 23 de febrero de 2026 (anulación jurado popular).
-  - Auto del JI nº 41 que cita a Joaquín Goyache como investigado (julio 2024).
-  - Auto de la AP Madrid del 16 de mayo de 2025 (desimputación Goyache / Güemes).
-  - Auto del JI nº 41 que ofrece personación a la UCM (3 de octubre de 2025).
+  - Auto del JI nº 41 que cita a Joaquín Goyache como investigado (22-jul-2024).
+  - Auto del JI nº 41 que cita a Juan José Güemes como investigado (18-nov-2024).
+  - Auto de la AP Madrid de 13 de mayo de 2025 (desimputación Goyache + Güemes).
+  - Auto del JI nº 41 del 03-oct-2025 (ofrecimiento de personación a la UCM).
+  - Auto del JI nº 41 del 05-may-2026 (providencia abriendo plazo de conclusiones provisionales) y el del 22-may-2026 (desestimación recurso defensa).
   - Texto íntegro de los autos en CENDOJ cuando se publiquen.
   - Escrito de la Fiscalía del 21 de abril de 2026 en `fiscal.es` (el doc actual está marcado nivel 2 con texto sin URL canónica).
 - **Texto íntegro de la denuncia de Manos Limpias** (08-abr-2024). Si aparece publicada en un medio identificable, podría subirse el `nivel_fuente` a 3 (filtrado_verificado).
 - **Auto de incoación del 16-abr-2024** del JI nº 41 de Madrid.
-- **Hito específico del auto del JI nº 41 que ofrece personación a la UCM** (03-oct-2025). El rol `ucm-perjudicada-bg-2025-10` apunta provisionalmente al hito de origen del procedimiento; idealmente debería apuntar a un hito propio del auto.
-- **Juan José Güemes** (ex consejero de la Comunidad de Madrid, mencionado como desimputado junto con Goyache el 16-may-2025 según Moncloa.com). NO modelado en PR1/PR2 por ausencia de cobertura suficiente del auto específico que lo imputó. Pendiente para PR3 cuando se localice fuente sólida.
-- **Recursos posteriores al 21-abr-2026**: la causa está abierta y vivirá nuevos hitos. Posibles próximos: resolución de la AP Madrid sobre el recurso de la Fiscalía; defensas alegando ante AP Madrid (escritos del 18-may-2026 ya en cobertura); listado de testigos pedido por la defensa (más de 30, según El Español del 18-may-2026); apertura del juicio oral si la AP confirma el procesamiento.
+- **Hito del 05-may-2026** del JI nº 41: desestimación de recursos de reforma anteriores + providencia abriendo plazo de conclusiones. Modelado parcialmente en la descripción del hito de 22-may, pero podría merecer hito propio en PR4 si entra cobertura más detallada.
+- **Hito del 17-may-2026 del JI nº 41 elevando el valor del software a más de medio millón de euros**. Implica cambio en la cuantía indiciaria de malversación. Pendiente de modelar en PR4 con cobertura cruzada (Libertad Digital es la fuente disponible; necesita al menos otra línea editorial para V-13).
+- **Auto de la AP Madrid resolviendo el recurso de la Fiscalía del 21-abr-2026** (cuando se dicte).
+- **Resolución del recurso de reforma del 22-may-2026 si la defensa lo eleva a apelación ante la AP Madrid** (siguiente paso procesal natural).
 - **Número exacto del procedimiento ("DP 1146/2024" según una fuente)**: requiere segunda fuente cruzada o auto/nota oficial.
+- **Apertura del juicio oral** cuando se dicte el auto correspondiente.
+
+## Decisiones editoriales NO modeladas explícitamente en PR3
+
+- **Pedro Sánchez como testigo propuesto**: la cobertura de El Español del 18-may-2026 confirma que la defensa NO incluye al presidente del Gobierno en su lista de 30+ testigos. Se mantiene la decisión de PR1 de no crear ficha de Persona para Pedro Sánchez en este caso (su rol procesal como testigo es accesorio y declinó declarar en julio de 2024).
+- **Sonsoles Blanca Gil de Antuñano** (responsable de RR.HH. del IE que aporta el testimonio que motiva la imputación de Güemes): NO modelada como Persona en PR3. Su rol procesal es de testigo y el modelo (igual que con Pedro Sánchez, los vicerrectores UCM, etc.) sólo crea fichas de Persona para quienes tienen rol procesal distinto del de testigo. Mencionada en la descripción del hito de imputación de Güemes como contexto.
+- **Antonio Camacho** (ex ministro de Interior del segundo gobierno Zapatero, abogado de la defensa de Begoña Gómez): NO modelado como Persona en PR3. Su rol es de defensa (parte funcional del aparato procesal), no de investigado/procesado. Convención del modelo: las defensas se mencionan en descripciones, no se modelan como Persona individual.
+- **Testigos propuestos por la defensa** (Escassi, Rosauro Varo, directivos de Reale/La Caixa/Indra/Telefónica): mencionados en la descripción del hito del escrito de conclusiones del 18-may-2026 pero NO modelados como Persona — son testigos propuestos, no investigados.
 
 ## Discrepancia de fecha de apertura
 

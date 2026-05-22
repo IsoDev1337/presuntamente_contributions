@@ -130,6 +130,7 @@ const TIPO_HITO_LABEL_ES: Record<string, string> = {
   declaracion_imputado: 'Declaración del investigado',
   auto_procesamiento: 'Auto de procesamiento',
   auto_transformacion: 'Auto de transformación',
+  escrito_conclusiones_provisionales: 'Escrito de conclusiones provisionales',
   apertura_juicio_oral: 'Apertura de juicio oral',
   inicio_vista_oral: 'Inicio de vista oral',
   sentencia_primera_instancia: 'Sentencia de 1ª instancia',

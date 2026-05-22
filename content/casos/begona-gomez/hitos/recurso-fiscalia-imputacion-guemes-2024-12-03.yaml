@@ -1,0 +1,29 @@
+id: recurso-fiscalia-imputacion-guemes-bg-2024-12-03
+caso_id: begona-gomez
+tipo: recurso_apelacion
+fecha: "2024-12-03"
+fecha_precision: dia
+titulo: "La Fiscalía Provincial de Madrid recurre la imputación del directivo del IE Juan José Güemes acordada por el Juzgado de Instrucción nº 41"
+descripcion: |
+  La Fiscalía Provincial de Madrid presenta el 3 de diciembre de 2024
+  recurso contra el auto del Juzgado de Instrucción nº 41 de Madrid
+  por el que se imputa a Juan José Güemes, presidente del Centro
+  Internacional de Gestión Emprendedora del IE Business School. El
+  Ministerio Fiscal sostiene que no se ha especificado el delito
+  concreto atribuido al investigado ni se ha motivado mínimamente
+  su presunta participación, vulnerándose el derecho de defensa al
+  no poder articular oposición frente a una imputación
+  insuficientemente fundamentada. El recurso anticipa la posición
+  procesal que la Fiscalía mantendrá durante toda la instrucción
+  frente a las imputaciones del JI nº 41, y que será posteriormente
+  acogida por la Audiencia Provincial de Madrid en mayo de 2025.
+  Conforme al principio de presunción de inocencia, rige la
+  inocencia de Güemes mientras no recaiga resolución firme en
+  contrario.
+personas_afectadas:
+  - juan-jose-guemes
+organizaciones_afectadas:
+  - fiscalia-provincial-madrid
+  - juzgado-instruccion-41-madrid
+documento_principal_id: theobjective-recurso-fiscalia-guemes-bg-2024-12-03
+fase_resultante: instruccion

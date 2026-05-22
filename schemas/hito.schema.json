@@ -28,6 +28,7 @@
         "declaracion_imputado",
         "auto_procesamiento",
         "auto_transformacion",
+        "escrito_conclusiones_provisionales",
         "apertura_juicio_oral",
         "inicio_vista_oral",
         "sentencia_primera_instancia",
