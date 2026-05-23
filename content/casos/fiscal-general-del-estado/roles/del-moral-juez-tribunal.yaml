@@ -1,0 +1,15 @@
+id: del-moral-juez-tribunal-fge-2025-09
+caso_id: fiscal-general-del-estado
+sujeto_tipo: persona
+sujeto_persona_id: antonio-del-moral
+rol: juez_ponente
+fecha_inicio: "2025-09-25"
+hito_origen_id: apertura-juicio-oral-fge-2025-09-09
+notas: |
+  Magistrado de la Sala Segunda (de lo Penal) del Tribunal Supremo
+  desde 2012. Integrante del tribunal de siete magistrados que
+  enjuicia la Causa Especial nº 20557/2024 y firmante de la
+  Sentencia 1000/2025 con la mayoría condenatoria (cinco votos
+  frente a dos). Se modela como `juez_ponente` por ser firmante
+  de la sentencia, con la salvedad editorial de que la ponencia
+  formal recayó en Andrés Martínez Arrieta.

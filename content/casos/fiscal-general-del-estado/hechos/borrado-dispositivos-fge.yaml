@@ -1,0 +1,40 @@
+id: borrado-dispositivos-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  La Sentencia 1000/2025 declara probado que el 16 de octubre de
+  2024, el mismo día en que se le notificó la incoación de
+  diligencias previas en la Causa Especial nº 20557/2024 por la
+  Sala Segunda del Tribunal Supremo, Álvaro García Ortiz procedió
+  al borrado de los mensajes almacenados en sus dispositivos
+  oficiales, conducta reconocida por el propio acusado en sede
+  judicial y en el acto del juicio oral (FJ Primero §1 sobre
+  cuestiones previas y FJ Segundo §2.7 sobre valoración de la
+  prueba). La Sala valora este comportamiento como dato indiciario
+  relevante, aunque no decisivo: «no se neutraliza ese efecto
+  sanador manteniendo la petición de nulidad. (...) Acepta que
+  procedió a ese borrado y ofrece una explicación (lo hacía
+  periódicamente y los mensajes de las fechas críticas se habrían
+  eliminado antes: es posible según informe pericial ratificado en
+  el juicio)» (p. 35). La Sala rechaza expresamente que existiera
+  cobertura normativa que invitara al borrado, recordando que ni
+  el Reglamento UE 2016/679 ni la LO 3/2018 ni la Instrucción
+  2/2019 de la propia Fiscalía General del Estado contemplan un
+  deber ni un derecho a la destrucción regular de información
+  almacenada en dispositivos oficiales (FJ Segundo §2.7.2, p. 134).
+tipo: acreditado
+fecha_o_periodo:
+  desde: "2024-10-16"
+  precision: dia
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+  - fiscalia-general-del-estado
+documentos_respaldo:
+  - documento_id: ts-sentencia-1000-2025-fge
+    pasaje: "Hechos Probados sobre el borrado del 16-oct-2024; Fundamento de Derecho Primero §1.b (p. 35: el acusado acepta el borrado); Fundamento de Derecho Segundo §2.7 y §2.7.2 (pp. 133-135: la Sala razona la ausencia de cobertura normativa para la destrucción de mensajes en dispositivos oficiales)."
+nivel_fuente_efectivo: 1
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

@@ -1,0 +1,34 @@
+id: ana-maria-ferrer
+nombre_completo: "Ana María Ferrer García"
+nombres_alternativos:
+  - "Ana María Ferrer"
+  - "Ana Ferrer"
+  - "Ferrer García"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Magistrada de la Sala Segunda (de lo Penal) del Tribunal Supremo"
+    organizacion_id: tribunal-supremo
+    desde: "2014-04-07"
+fecha_nacimiento: "1959-01-25"
+nacionalidad: "española"
+biografia_corta: |
+  Ana María Ferrer García es magistrada española, nacida en
+  Madrid el 25 de enero de 1959. Licenciada en Derecho por la
+  Universidad Complutense de Madrid en 1982; ingresó en la
+  carrera judicial por oposición en 1983. Primeros destinos en
+  Valdepeñas y Linares; en 1996 se incorporó como magistrada a
+  la Audiencia Provincial de Madrid, presidida por ella desde
+  2008 hasta su nombramiento por el Consejo General del Poder
+  Judicial el 27 de febrero de 2014 como magistrada de la Sala
+  Segunda (de lo Penal) del Tribunal Supremo, cargo del que tomó
+  posesión el 7 de abril de 2014. Es la primera mujer de la
+  historia que ocupa plaza de magistrada en la Sala Segunda del
+  Tribunal Supremo en sus más de doscientos años de existencia.
+  Integra el tribunal de siete magistrados que enjuicia la Causa
+  Especial nº 20557/2024 contra el entonces Fiscal General del
+  Estado Álvaro García Ortiz y formula, junto a la magistrada
+  Susana Polo García, voto particular conjunto disidente
+  defendiendo la libre absolución del condenado.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

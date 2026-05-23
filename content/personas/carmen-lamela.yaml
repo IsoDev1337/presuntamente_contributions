@@ -1,0 +1,28 @@
+id: carmen-lamela
+nombre_completo: "Carmen Lamela Díaz"
+nombres_alternativos:
+  - "Carmen Lamela"
+  - "Lamela"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Magistrada de la Sala Segunda (de lo Penal) del Tribunal Supremo"
+    organizacion_id: tribunal-supremo
+    desde: "2018-09-01"
+nacionalidad: "española"
+biografia_corta: |
+  Carmen Lamela Díaz es magistrada española. Ingresó en la
+  Carrera Judicial por oposición en 1986; su primer destino fue
+  el Juzgado de Primera Instancia e Instrucción nº 1 de Orihuela,
+  y posteriormente sirvió en juzgados mixtos en Manzanares y
+  Badalona, donde fue decana. En 1991 se incorporó como
+  magistrada a la Audiencia Provincial de Barcelona y, dos años
+  después, como titular del Juzgado de Instrucción nº 25 de
+  Madrid, donde permaneció hasta 1997. Tras un destino en la
+  Audiencia Provincial de Madrid, en 2018 fue promovida a la
+  Sala Segunda (de lo Penal) del Tribunal Supremo. Integra el
+  tribunal de siete magistrados que enjuicia la Causa Especial
+  nº 20557/2024 contra el entonces Fiscal General del Estado
+  Álvaro García Ortiz, votando con la mayoría condenatoria.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

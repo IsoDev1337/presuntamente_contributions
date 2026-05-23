@@ -1,0 +1,42 @@
+id: presion-whatsapp-lastra-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  La Sentencia 1000/2025 declara probado que el 14 de marzo de 2024,
+  desde las 09:25 horas, Álvaro García Ortiz envió a la Fiscal
+  Superior de Madrid, Almudena Lastra de Inés, una secuencia de
+  mensajes de WhatsApp instándole a publicar la nota informativa
+  redactada por la directora de comunicación de la Fiscalía General
+  bajo dictado del propio Fiscal General. La sentencia transcribe
+  literalmente cuatro mensajes (Hechos Probados, p. 21):
+  «Almudena, la nota está correcta en fechas y contenido. Hay que
+  sacarla, si tardamos se impone un relato que no es cierto y parece
+  que los compañeros no han hecho bien su trabajo» (09:25),
+  «Es imperativo sacarla» (09:25), «Nos están dejando como
+  mentirosos» (09:28) y «Almudena, no me coges el teléfono. Si
+  dejamos pasar el momento nos van a ganar el relato. La actuación
+  de los compañeros y de la Fiscalía es impecable y hay que
+  defenderla» (09:37). En la llamada telefónica previa, ante la
+  pregunta directa de Lastra de si había filtrado la nota, el
+  Fiscal General respondió: «eso ahora no importa». La Fiscalía de
+  la Comunidad de Madrid se negó a publicar la nota al considerar
+  que su contenido «no respondía a los criterios habituales de una
+  comunicación pública del Ministerio Fiscal»; la publicación
+  acabó realizándose por la Fiscalía Provincial de Madrid.
+tipo: acreditado
+fecha_o_periodo:
+  desde: "2024-03-14"
+  precision: dia
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+  - fiscalia-general-del-estado
+  - fiscalia-provincial-madrid
+documentos_respaldo:
+  - documento_id: ts-sentencia-1000-2025-fge
+    pasaje: "Hechos Probados, p. 21, transcripción literal de la conversación telefónica y de los cuatro mensajes de WhatsApp del 14-mar-2024 dirigidos por el Fiscal General a la Fiscal Superior de Madrid."
+nivel_fuente_efectivo: 1
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

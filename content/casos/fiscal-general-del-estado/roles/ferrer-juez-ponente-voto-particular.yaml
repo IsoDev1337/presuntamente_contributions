@@ -1,0 +1,21 @@
+id: ferrer-juez-ponente-voto-particular-fge-2025-09
+caso_id: fiscal-general-del-estado
+sujeto_tipo: persona
+sujeto_persona_id: ana-maria-ferrer
+rol: juez_ponente
+fecha_inicio: "2025-09-25"
+hito_origen_id: apertura-juicio-oral-fge-2025-09-09
+notas: |
+  Magistrada de la Sala Segunda (de lo Penal) del Tribunal Supremo
+  integrante del tribunal de siete magistrados que enjuicia la
+  Causa Especial nº 20557/2024. Formula, junto a la magistrada
+  Susana Polo García, voto particular conjunto disidente a la
+  Sentencia 1000/2025, defendiendo que "no ha quedado probado que
+  el Fiscal General del Estado filtrara a la prensa el correo del
+  día 2 de febrero de 2024" y proponiendo "la libre absolución del
+  Fiscal General del Estado del delito por el que se le condena"
+  (voto particular, conclusión V, p. 237). Se modela como
+  `juez_ponente` por ser autora-ponente del voto particular, en
+  coherencia con el modelo: el voto particular es un texto firmado
+  y argumentado del que ella es responsable directa, paralelo al
+  fallo mayoritario.

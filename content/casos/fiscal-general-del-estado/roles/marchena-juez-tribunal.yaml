@@ -1,0 +1,20 @@
+id: marchena-juez-tribunal-fge-2025-09
+caso_id: fiscal-general-del-estado
+sujeto_tipo: persona
+sujeto_persona_id: manuel-marchena
+rol: juez_ponente
+fecha_inicio: "2025-09-25"
+hito_origen_id: apertura-juicio-oral-fge-2025-09-09
+notas: |
+  Magistrado de la Sala Segunda (de lo Penal) del Tribunal Supremo
+  integrante del tribunal de siete magistrados que enjuicia la
+  Causa Especial nº 20557/2024. Vota con la mayoría condenatoria
+  (cinco votos frente a dos) en la Sentencia 1000/2025. Es
+  expresidente de la propia Sala Segunda hasta la expiración de
+  su mandato el 6 de diciembre de 2024, fecha posterior a su
+  primera intervención en este procedimiento como instructor en
+  funciones; integrante del tribunal de enjuiciamiento como
+  magistrado ordinario tras su sucesor. Se modela como
+  `juez_ponente` por ser firmante de la sentencia integrante del
+  tribunal de enjuiciamiento, con la salvedad editorial de que la
+  ponencia formal recayó en Andrés Martínez Arrieta.

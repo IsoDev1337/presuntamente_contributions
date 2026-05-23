@@ -1,0 +1,37 @@
+id: adelanto-nota-elpais-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  La Sentencia 1000/2025 declara probado que la nota informativa
+  oficial de la Fiscalía Provincial de Madrid sobre el caso
+  González Amador, redactada por la directora de comunicación de
+  la Fiscalía General del Estado bajo dictado del propio Fiscal
+  General y prevista para su difusión a las 10:00 horas del 14 de
+  marzo de 2024, fue publicada por el diario EL PAÍS «adelantándose
+  tres horas a su difusión oficial» tras haber sido obtenida
+  «proporcionada con autorización del Fiscal General del Estado»
+  (Hechos Probados, p. 21). La sentencia subraya que esta
+  publicación anticipada en un medio concreto, sin que las propias
+  fiscalías hubieran difundido aún la nota, integra junto con la
+  filtración del correo electrónico del 2 de febrero la unidad de
+  acción típica del delito de revelación de datos reservados del
+  art. 417.1 del Código Penal por el que el Tribunal Supremo
+  condena al acusado (FJ Tercero §3.1, p. 147: «La nota consolida
+  la filtración iniciada por el correo, en realidad la
+  «oficializa»»).
+tipo: acreditado
+fecha_o_periodo:
+  desde: "2024-03-14"
+  precision: dia
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+  - fiscalia-general-del-estado
+documentos_respaldo:
+  - documento_id: ts-sentencia-1000-2025-fge
+    pasaje: "Hechos Probados, p. 21, sobre la difusión anticipada de la nota al diario EL PAÍS con autorización del Fiscal General. Y Fundamento de Derecho Tercero §3.1, p. 147, sobre la subsunción típica de la unidad de acción (correo + nota)."
+nivel_fuente_efectivo: 1
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

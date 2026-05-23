@@ -5,22 +5,33 @@ nombres_alternativos:
   - "presidente Martínez Arrieta"
 es_figura_publica: true
 cargos_publicos_historicos:
+  - cargo: "Magistrado de la Sala Segunda (de lo Penal) del Tribunal Supremo"
+    organizacion_id: tribunal-supremo
+    desde: "1998-01-01"
   - cargo: "Presidente de la Sala Segunda (de lo Penal) del Tribunal Supremo"
     organizacion_id: tribunal-supremo
-    desde: "2022-04-01"
+    desde: "2025-08-25"
+fecha_nacimiento: "1955-04-13"
 nacionalidad: "española"
 biografia_corta: |
-  Andrés Martínez Arrieta es magistrado español, presidente de la
-  Sala Segunda (de lo Penal) del Tribunal Supremo. Como presidente
-  de la Sala que enjuició la Causa Especial nº 20557/2024 contra el
-  entonces Fiscal General del Estado Álvaro García Ortiz, fue
-  ponente final de la Sentencia 1000/2025 de 9 de diciembre de 2025,
-  asumiendo la ponencia tras los votos particulares presentados por
-  dos magistradas en deliberación. La sentencia, adoptada por
-  mayoría de cinco votos frente a dos, declara probado que García
-  Ortiz, o persona de su entorno con su conocimiento, filtró el
-  correo electrónico remitido el 2 de febrero de 2024 por el abogado
+  Andrés Martínez Arrieta es magistrado español, nacido en Logroño
+  el 13 de abril de 1955. Magistrado del Tribunal Supremo desde
+  1998. Tras la expiración del mandato de Manuel Marchena Gómez,
+  ejerció en funciones la presidencia de la Sala Segunda desde el 6
+  de diciembre de 2024 y, tras su elección por el Consejo General
+  del Poder Judicial el 23 de julio de 2025, fue nombrado
+  formalmente presidente por Real Decreto 708/2025, de 25 de
+  agosto, publicado en el BOE el 26 de agosto de 2025
+  (BOE-A-2025-17263). Como presidente de la Sala que enjuició la
+  Causa Especial nº 20557/2024 contra el entonces Fiscal General
+  del Estado Álvaro García Ortiz, fue ponente final de la
+  Sentencia 1000/2025 de 9 de diciembre de 2025, asumiendo la
+  ponencia tras los votos particulares presentados por dos
+  magistradas en deliberación. La sentencia, adoptada por mayoría
+  de cinco votos frente a dos, declara probado que García Ortiz,
+  o persona de su entorno con su conocimiento, filtró el correo
+  electrónico remitido el 2 de febrero de 2024 por el abogado
   Carlos Neira a la Fiscalía Provincial de Madrid.
 fallecido: false
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-22"
+ultima_revision_editorial: "2026-05-23"

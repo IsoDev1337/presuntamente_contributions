@@ -1,0 +1,40 @@
+id: relato-falso-mar-fge
+caso_id: fiscal-general-del-estado
+enunciado: |
+  La Sentencia 1000/2025 declara probado que la noche del 13 de
+  marzo de 2024, tras la noticia publicada por el diario El Mundo
+  a las 21:29 horas sobre la oferta de conformidad de la Fiscalía
+  a Alberto González Amador, Miguel Ángel Rodríguez, jefe de
+  Gabinete de la Presidencia de la Comunidad de Madrid, difundió
+  en redes sociales mensajes según los cuales «la Fiscalía habría
+  retirado el pacto ofrecido», afirmación calificada literalmente
+  por la Sala como «circunstancia no recogida en la noticia de El
+  Mundo y sin otro fundamento que una especulación gratuita del
+  citado» (Hechos Probados, p. 17). La sentencia identifica este
+  episodio como el detonante que llevó al Fiscal General del
+  Estado a iniciar «de forma inmediata una actuación para conocer
+  lo ocurrido», cadena de actuaciones que culminó pocas horas
+  después con la filtración del correo electrónico del 2 de
+  febrero a la Cadena SER y, al día siguiente, con la nota
+  informativa de la Fiscalía. El voto particular conjunto de las
+  magistradas Polo y Ferrer (p. 237) reinterpreta este mismo hecho
+  como justificación de la actuación informativa del Fiscal
+  General: «se desmintió una acusación falsa de actuación ilícita
+  de la Fiscalía (...) impulsada desde el aparato de un poder
+  público».
+tipo: acreditado
+fecha_o_periodo:
+  desde: "2024-03-13"
+  precision: dia
+personas_implicadas:
+  - alvaro-garcia-ortiz
+organizaciones_implicadas:
+  - tribunal-supremo
+documentos_respaldo:
+  - documento_id: ts-sentencia-1000-2025-fge
+    pasaje: "Hechos Probados, p. 17, sobre la difusión en redes sociales por parte del jefe de Gabinete de la Presidencia de la Comunidad de Madrid del relato sobre una supuesta retirada del pacto por parte de la Fiscalía, identificado por la Sala como detonante de la actuación posterior del Fiscal General; voto particular, p. 237, contraste interpretativo de la misma secuencia."
+nivel_fuente_efectivo: 1
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

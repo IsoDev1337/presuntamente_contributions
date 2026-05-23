@@ -9,7 +9,7 @@ es_figura_publica: true
 cargos_publicos_historicos:
   - cargo: "Fiscal Jefa Provincial de Madrid"
     organizacion_id: fiscalia-provincial-madrid
-    desde: "2019-09-01"
+    desde: "2018-10-12"
     hasta: "2025-08-31"
 nacionalidad: "española"
 biografia_corta: |

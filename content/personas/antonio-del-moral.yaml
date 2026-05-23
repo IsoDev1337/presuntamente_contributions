@@ -1,0 +1,23 @@
+id: antonio-del-moral
+nombre_completo: "Antonio del Moral García"
+nombres_alternativos:
+  - "Antonio del Moral"
+  - "del Moral"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Magistrado de la Sala Segunda (de lo Penal) del Tribunal Supremo"
+    organizacion_id: tribunal-supremo
+    desde: "2012-01-01"
+nacionalidad: "española"
+biografia_corta: |
+  Antonio del Moral García es magistrado español, procedente del
+  Ministerio Fiscal, incorporado a la Sala Segunda (de lo Penal)
+  del Tribunal Supremo en 2012 durante la presidencia del CGPJ
+  por Carlos Dívar, en plaza del turno de juristas de reconocida
+  competencia. Integra el tribunal de siete magistrados que
+  enjuicia la Causa Especial nº 20557/2024 contra el entonces
+  Fiscal General del Estado Álvaro García Ortiz, votando con la
+  mayoría condenatoria.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

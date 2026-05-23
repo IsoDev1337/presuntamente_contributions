@@ -1,0 +1,23 @@
+id: juan-ramon-berdugo
+nombre_completo: "Juan Ramón Berdugo Gómez de la Torre"
+nombres_alternativos:
+  - "Juan Ramón Berdugo"
+  - "Berdugo"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Magistrado de la Sala Segunda (de lo Penal) del Tribunal Supremo"
+    organizacion_id: tribunal-supremo
+    desde: "2004-01-01"
+nacionalidad: "española"
+biografia_corta: |
+  Juan Ramón Berdugo Gómez de la Torre es magistrado español,
+  nacido en 1959, licenciado en Derecho por la Universidad de
+  Valladolid. Carrera judicial desde 1979, magistrado desde 1983.
+  Integrante de la Sala Segunda (de lo Penal) del Tribunal Supremo
+  desde 2004. Integra el tribunal de siete magistrados que enjuicia
+  la Causa Especial nº 20557/2024 contra el entonces Fiscal General
+  del Estado Álvaro García Ortiz, votando con la mayoría
+  condenatoria.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"
