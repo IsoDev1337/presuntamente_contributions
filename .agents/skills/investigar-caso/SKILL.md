@@ -265,6 +265,141 @@ Tras cada caso real arrancado con esta skill, añadir aquí una entrada en `## H
 
 ## Histórico
 
+### Fiscal General del Estado PR2 + PR3 (2026-05-22 / 2026-05-23) — descarga de primarios + acreditados con cita literal + tribunal completo
+
+Continúa el caso FGE arrancado en PR1. Tres lotes de cambios en
+dos sesiones consecutivas:
+
+- **PR2 (2026-05-22)** — Descarga al árbol del proyecto de tres
+  documentos primarios: Sentencia 1000/2025 íntegra del TS (238 pp.,
+  voto particular incluido) y los dos Reales Decretos del BOE
+  relacionados (RD 1138/2025 cese García Ortiz y RD 1140/2025
+  nombramiento Peramato), con `ruta_local` + `hash_sha256` y
+  metadatos PDF reflejados en `nivel_fuente_justificacion`. Promoción
+  a `acreditado` de los cuatro hechos derivados directamente del
+  fallo dispositivo y de los Hechos Probados (filtración del correo,
+  quebrantamiento del deber de reserva, penas impuestas,
+  indemnización), con citas literales con localización exacta tras
+  revisión humana explícita del maintainer. Incorporación de los
+  cuatro hitos previos de la fase TSJ Madrid (marzo-julio de 2024)
+  que faltaban en PR1.
+- **PR3 (2026-05-23)** — Composición completa del tribunal de
+  enjuiciamiento con seis magistrados nuevos del TS Sala 2ª
+  (Marchena, Berdugo, del Moral, Lamela en mayoría; Ferrer y Polo
+  en voto particular) y seis roles `juez_ponente`. Cuatro hechos
+  adicionales acreditados con cita literal extraídos del texto
+  íntegro de la sentencia (presión WhatsApp a Lastra, adelanto nota
+  EL PAÍS, borrado dispositivos, papel de Miguel Ángel Rodríguez).
+  Correcciones de fechas inciertas de PR1 contra fuentes N1 BOE.
+
+Lecciones operativas:
+
+- **La descarga local de documentos primarios es transformadora
+  editorialmente.** Pasamos de citar "nota CGPJ que resume el fallo"
+  a citar "FALLO, p. 180" con el PDF servido desde la propia web del
+  proyecto y trazabilidad por `hash_sha256`. El esfuerzo de
+  descargar + procesar es del orden de minutos por documento
+  (incluida instalación una vez por máquina de `poppler-utils` vía
+  `brew install poppler`). El beneficio compone: una vez la
+  sentencia está procesada, todos los hechos derivados pueden citar
+  pasajes literales con número de página, y futuras consultas
+  cruzadas (¿qué dice exactamente la sentencia sobre X?) se
+  resuelven con `grep` o `sed` sobre el texto extraído sin
+  reabrir el PDF. Convención añadida a `AGENTS.md`
+  §"Documentos primarios descargados a `/public/documentos/`" y al
+  flujo de la skill en §3.bis. **Patrón reusable** en todos los
+  casos del inventario; pendiente aplicarlo retroactivamente a
+  Plus Ultra, Begoña Gómez y González Amador (ver ROADMAP §"Trabajo
+  paralelizable a otro agente").
+- **El sandbox classifier bloquea fetches a fuentes externas no
+  pre-autorizadas.** Bloquea descargas de okdiario.com, brew install
+  de paquetes del sistema, etc. Patrón operativo: pedir
+  autorización explícita al maintainer (con `AskUserQuestion`
+  proponiendo opciones de mirror) antes de descargar de fuentes
+  fuera de lista blanca DominiosOficiales. Las URLs del BOE
+  (boe.es) no requieren consulta (es lista blanca). Cuando hay
+  varios mirrors editoriales posibles para un mismo documento
+  jurisdiccional, dar al maintainer la decisión con razonamiento
+  editorial (neutralidad, completitud, autoría) — en FGE el
+  maintainer eligió "descargar de dos fuentes y cruzar hash",
+  patrón aplicable a otras sentencias mediáticas con coberturas
+  divididas en líneas editoriales.
+- **Cruce de mirrors revela diferencias estructurales del
+  documento, no falsificaciones.** En FGE el PDF de
+  civil-mercantil.com tiene 182 páginas y el de okdiario.com tiene
+  238: la diferencia son las 56 páginas del voto particular,
+  presentes sólo en el segundo mirror. Decisión: quedarse con el
+  más completo, dejando el otro mencionado como mirror secundario
+  en la justificación del nivel de fuente. Verificación de
+  autoría editorial vía metadatos PDF (`pdfinfo`): autor
+  `g.tejedor` en el mirror más completo, lo que evidencia origen
+  en el propio sistema ofimático del Tribunal Supremo. **Patrón
+  reusable**: cuando dos mirrors de la misma sentencia tienen
+  hashes distintos, comparar páginas y metadatos antes de descartar
+  uno — la diferencia suele explicarse por inclusión / exclusión
+  del voto particular o por OCR/re-compresión, no por falsificación.
+- **Mapeo de la estructura de una sentencia larga.** `pdftotext`
+  sin layout produce flujo de texto secuencial limpio (formato
+  preferible para grepping). `grep -nE
+  "^(HECHOS PROBADOS|FUNDAMENTOS|FALLO|VOTO PARTICULAR|PRIMERO|
+  SEGUNDO|TERCERO|CUARTO|QUINTO|SEXTO)"` identifica líneas de
+  cabecera de sección con números de línea. Luego
+  `sed -n '<inicio>,<fin>p'` lee cada bloque en aislamiento. En
+  238 páginas y ~10.000 líneas de texto, esto reduce el coste de
+  navegación a segundos. Para citas literales en
+  `Hecho.documentos_respaldo[].pasaje` conviene anotar tanto el FJ
+  ("FJ Tercero §3.1") como la página (`p. 147`) — la página es
+  estable entre versiones de la sentencia, los `§` internos son
+  más volátiles.
+- **`juez_ponente` se usa para todos los magistrados firmantes del
+  tribunal de enjuiciamiento, no sólo para el ponente formal.**
+  Decisión adoptada en PR3 del caso FGE. El enum del schema
+  `rol-en-caso` no tiene `juez_integrante`, y crear `juez_ponente`
+  sólo para Martínez Arrieta dejaba a los otros 6 magistrados
+  huérfanos de la ficha y sin aparecer en la sección "Funcionales".
+  Solución editorial: `juez_ponente` para los 7, distinguiendo en
+  el campo `notas` su posición (mayoría / voto particular /
+  presidente y ponente formal). Las dos magistradas autoras del
+  voto particular se modelan como ponentes "del voto particular"
+  (el voto particular es un texto firmado y argumentado del que
+  ellas son responsables directas). **Patrón reusable** para
+  futuros casos con tribunal de varios magistrados (causas
+  especiales TS, sentencias importantes de la AN). Alternativa
+  futura: ampliar el enum del schema con `juez_integrante` si la
+  distinción editorial se vuelve crítica.
+- **Magistrados como personas reusables del inventario.** Aunque
+  un magistrado no sea protagonista editorial de un caso concreto,
+  fichar su Persona con biografía verificada (CGPJ, BOE) en un caso
+  capitaliza para futuros casos donde aparezca. Los 7 magistrados
+  de la Sala 2ª del TS aparecerán en casi cualquier causa especial
+  futura del inventario (Koldo, Cerdán). PR3 FGE fichó a los 6 que
+  faltaban; ya están disponibles para enlazado vía RichProse en el
+  resto del inventario.
+- **Confirmar fechas estimadas contra fuentes N1 BOE/CGPJ**.
+  Patrón reaplicado de González Amador PR3 (que subió a N1 del BOE
+  el cambio de juez Iglesias → Viejo). En FGE PR3 se confirmaron
+  fechas de cargo de Pilar Rodríguez Fernández (RD 1288/2018
+  BOE-A-2018-14014) y de Martínez Arrieta como presidente Sala 2ª
+  (RD 708/2025 BOE-A-2025-17263, con sucesión Marchena → Martínez
+  Arrieta documentada por nota oficial CGPJ del 23-jul-2025). Las
+  fechas de PR1 eran estimaciones razonables; las corregidas son
+  confirmadas. **Patrón operativo**: cuando se ficha una persona
+  con cargo público, anotar fechas estimadas si no hay tiempo de
+  verificar pero marcar como pendiente; una sesión posterior puede
+  cerrar con BOE/CGPJ. El sistema RichProse autoenlaza
+  correctamente con o sin la fecha exacta.
+- **El brief paralelizable a otro agente vive en el ROADMAP, no
+  en NOTES del caso.** Cuando una tarea es lo bastante grande y
+  lineal para delegarla a una segunda sesión de Claude Code,
+  redactar en el ROADMAP, en sección §"Trabajo paralelizable a
+  otro agente", como brief autónomo: objetivo, candidatos
+  prioritarios, qué hacer y qué no hacer, pasos por unidad,
+  output esperado, convivencia multiagéntico. La sesión paralela
+  debe poder arrancarla sin más contexto que el ROADMAP + el
+  AGENTS.md vigentes. **Patrón estrenado** en este PR3 con la
+  tarea de aplicar la convención de primarios descargados
+  retrospectivamente a los otros 3 casos.
+
 ### Fiscal General del Estado PR1 (2026-05-22) — primera sentencia firme del inventario y primera RelacionEntreCasos
 
 Tercer caso real arrancado con la skill (cuarto si contamos Plus

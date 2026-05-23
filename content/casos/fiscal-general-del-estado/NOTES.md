@@ -4,9 +4,11 @@ Anotaciones internas. **No se publica.** Vive en el repo para humanos
 y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md`
 § *NOTES.md por caso*.
 
-Última actualización: 2026-05-22 (PR1 — esqueleto inicial del caso con
-sentencia firme + dos votos particulares + recurso amparo TC en
-trámite).
+Última actualización: 2026-05-23 (PR3 — composición completa del
+tribunal de enjuiciamiento + cuatro hechos adicionales acreditados
+con cita literal extraídos del texto íntegro de la Sentencia
+1000/2025; tras PR2 que descargó la sentencia + dos BOE y promovió
+los primeros cuatro hechos a `acreditado`).
 
 ---
 
@@ -186,57 +188,141 @@ cobertura cruzada entre derecha, centro e izquierda mediática.
 
 URLs específicas en cada `Documento` que las cita.
 
-## Pendiente para PR2 y siguientes
+## Cambios y correcciones aplicados en PR2 (2026-05-22)
+
+### Descarga al árbol del proyecto de tres documentos primarios
+
+Estrenando la convención editorial documentada en `AGENTS.md`
+§"Documentos primarios descargados a `/public/documentos/`" y en
+`.claude/skills/investigar-caso/SKILL.md` §3.bis:
+
+- `/public/documentos/fiscal-general-del-estado/ts-sentencia-1000-2025-fge.pdf`
+  — Sentencia 1000/2025 íntegra (238 páginas; voto particular
+  conjunto de las magistradas Polo y Ferrer incluido, pp. 184-238).
+  Autor PDF `g.tejedor` del propio Tribunal Supremo, creado
+  9-dic-2025 10:48. SHA256
+  `f671449be85b80e77c0088defa7a26b2dd8324117f836efb8b301453abfbeea1`.
+  Verificada por triangulación con segundo mirror (civil-mercantil.com,
+  182 páginas, sin voto particular). Mantenida como `nivel_fuente: 3`
+  (filtrado_verificado) hasta que aparezca en CENDOJ.
+- `/public/documentos/fiscal-general-del-estado/boe-cese-garcia-ortiz-fge-2025-12-10.{pdf,xml}`
+  — Real Decreto 1138/2025 (BOE-A-2025-25142), PDF + XML
+  estructurado.
+- `/public/documentos/fiscal-general-del-estado/boe-nombramiento-peramato-fge-2025-12-10.{pdf,xml}`
+  — Real Decreto 1140/2025 (BOE-A-2025-25144), PDF + XML
+  estructurado.
+
+### Cuatro hechos promovidos a `acreditado` con cita literal con localización exacta
+
+Tras revisión humana explícita del maintainer (guardarraíl 3 de
+`/investigar-caso`):
+
+- `filtracion-correo-2feb-fge` ⇒ Hechos Probados pp. 18-21 + FJ
+  Tercero pp. 146-148.
+- `quebrantamiento-deber-reserva-fge` ⇒ FJ Tercero §3.1-§3.2,
+  pp. 146-149.
+- `penas-impuestas-fge` ⇒ FALLO, p. 180.
+- `indemnizacion-gonzalez-amador-fge` ⇒ FALLO, p. 180.
+
+El de `votos-particulares-fge` se mantiene como `atribuido` (es
+opinión de las disidentes, no del fallo) pero con cita literal del
+voto particular p. 237.
+
+### Cuatro hitos previos de la fase TSJ Madrid añadidos
+
+- `denuncia-icam-fge-2024-03-20` (`denuncia_presentada`). Estrena
+  el nivel N2 con corporación de derecho público (ICAM) cuyo dominio
+  está fuera de la lista blanca DominiosOficiales.
+- `querella-gonzalez-amador-tsjm-fge-2024-04-03`
+  (`querella_presentada`).
+- `tsjm-admite-querella-fge-2024-05-07` (`querella_admitida`).
+- `exposicion-razonada-tsjm-ts-fge-2024-07-15` (`cambio_organo`).
+
+## Cambios y correcciones aplicados en PR3 (2026-05-23)
+
+### Composición completa del tribunal de enjuiciamiento
+
+Seis magistrados nuevos del TS Sala 2ª, con biografía verificada
+contra CGPJ y BOE. Cada uno con rol `juez_ponente` en la causa
+(notas editoriales aclaran posición en mayoría o disidencia y que
+la ponencia formal recae en Martínez Arrieta):
+
+- Mayoría condenatoria: Manuel Marchena Gómez (RD 891/2014
+  presidente Sala 2ª 10-oct-2014 a 6-dic-2024), Juan Ramón Berdugo
+  Gómez de la Torre (Sala 2ª desde 2004), Antonio del Moral García
+  (Sala 2ª desde 2012), Carmen Lamela Díaz (Sala 2ª desde sept-2018).
+- Voto particular conjunto: Ana María Ferrer García (primera mujer
+  Sala 2ª, juramento 7-abr-2014) y Susana Polo García (Sala 2ª
+  desde sept-2018, RD 1079/2018 BOE-A-2018-12414).
+
+### Cuatro hechos adicionales acreditados con cita literal
+
+Extraídos del texto íntegro de la Sentencia 1000/2025:
+
+- `presion-whatsapp-lastra-fge`: transcripción literal de los cuatro
+  mensajes de WhatsApp del Fiscal General a la Fiscal Superior de
+  Madrid el 14-mar-2024 (Hechos Probados, p. 21).
+- `adelanto-nota-elpais-fge`: adelanto de tres horas de la nota
+  informativa al diario EL PAÍS «con autorización del Fiscal
+  General del Estado» (Hechos Probados, p. 21).
+- `borrado-dispositivos-fge`: borrado de mensajes el 16-oct-2024,
+  mismo día de la notificación de la incoación de diligencias
+  previas, aceptado por el propio acusado en juicio (FJ Primero
+  §1.b, p. 35 y FJ Segundo §2.7.2, p. 134).
+- `relato-falso-mar-fge`: rol de Miguel Ángel Rodríguez (jefe de
+  Gabinete de la Presidencia de la Comunidad de Madrid) en la
+  difusión nocturna del 13-mar-2024 del relato sobre una supuesta
+  retirada del pacto, identificado por la Sala como detonante de
+  la actuación posterior del Fiscal General (Hechos Probados,
+  p. 17; voto particular, p. 237, con reinterpretación opuesta de
+  la misma secuencia).
+
+### Correcciones a PR1 con fuentes N1 del BOE
+
+- **Pilar Rodríguez Fernández**: fecha de cargo como Fiscal Jefa
+  Provincial de Madrid corregida a `2018-10-12` (Real Decreto
+  1288/2018, BOE-A-2018-14014), antes estimada en 2019-09-01.
+- **Andrés Martínez Arrieta**: añadida fecha de nacimiento
+  (13-abr-1955, Logroño); separados dos cargos públicos históricos
+  (magistrado Sala 2ª desde 1998; presidente Sala 2ª desde
+  2025-08-25 por Real Decreto 708/2025, BOE-A-2025-17263); biografía
+  ampliada con sucesión Marchena → Martínez Arrieta documentada
+  (presidía en funciones desde el 6-dic-2024 tras expiración del
+  mandato de Marchena; nombramiento formal CGPJ el 23-jul-2025).
+
+## Pendiente para PR4 y siguientes
 
 - **Archive.org / archive.ph mirrors** para los documentos N4.
   Maintainer está automatizándolo vía hook pre-commit (commit
   `64d92a8`).
 - **Localización del texto íntegro de la Sentencia 1000/2025 en
-  CENDOJ**. Si aparece, sustituir el documento N3 por N1 manteniendo
-  el mismo `id` del documento.
-- **Revisión humana explícita del maintainer** para promover a
-  `acreditado` los hechos directamente derivados del fallo dispositivo
-  de la sentencia firme (V-04 + guardarraíl 3 de la skill). Hechos
-  candidatos: filtración del correo del 2-feb-2024 acreditada por
-  sentencia firme, penas impuestas, indemnización, identidad del
-  perjudicado.
-- **Apertura de hitos pendientes**:
-  - Denuncia ICAM al TSJM (20-mar-2024) — `denuncia_presentada`.
-  - Querella González Amador al TSJM (3-abr-2024) —
-    `querella_presentada`.
-  - TSJM admite causa, designa instructor Goyena (7-may-2024) —
-    `querella_admitida`.
-  - TSJM eleva exposición razonada al TS (15-jul-2024) —
-    `cambio_organo` (de TSJ Madrid a Sala Penal TS).
-  - Registros UCO en despacho de García Ortiz y en Fiscalía
-    Provincial de Madrid (29-oct-2024) — al no encajar en ningún
-    tipo del enum del schema, modelarlos como contexto del hito
-    `imputacion` o crear tipo nuevo en revisión schema.
-  - Designación del tribunal de siete magistrados (25-sept-2025) —
-    contexto del hito de `apertura_juicio_oral`.
-- **Recurso de amparo ante el Tribunal Constitucional**. A fecha de
-  PR1 (mayo de 2026) hay dos recursos presentados (Fiscalía el
-  10-abr-2026; García Ortiz el 13-abr-2026), pendientes de admisión
-  a trámite. El tipo de Hito `recurso_amparo` no existe en el enum
-  del schema; cuando entre el primer auto del TC sobre admisión,
-  decidir si se amplía el enum (paralelo a la adición de
+  CENDOJ**. Si aparece, sustituir `nivel_fuente: 3` por `1`
+  manteniendo el mismo `id` del documento y el mismo `hash_sha256`
+  (que sirve como prueba de fidelidad histórica).
+- **Recurso de amparo ante el Tribunal Constitucional**. A fecha
+  de PR3 (mayo de 2026) hay dos recursos presentados (Fiscalía
+  el 10-abr-2026; García Ortiz el 13-abr-2026), pendientes de
+  admisión a trámite. El tipo de Hito `recurso_amparo` no existe
+  en el enum del schema; cuando entre el primer auto del TC sobre
+  admisión, decidir si se amplía el enum (paralelo a la adición de
   `escrito_conclusiones_provisionales` en Begoña Gómez PR3) o se
-  modela como `recurso_casacion` (operativamente cercano, aunque no
-  sea casación stricto sensu) con explicación editorial.
-- **Cinco magistrados del tribunal de enjuiciamiento sin Persona
-  propia** (Marchena, Lamela, Berdugo, Del Moral; Ferrer y Polo si
-  el maintainer quiere modelar la disidencia con cards propias).
-- **Personas del entorno del condenado citadas en la sentencia** pero
-  sin rol procesal formal: Almudena Lastra (fiscal superior de
-  Madrid), directora de comunicación de la Fiscalía. No se modelan en
-  PR1 conforme al principio editorial de incluir sólo a personas con
-  rol procesal formal; quedan como contexto en la prosa.
-- **Cadena SER** (medio al que se filtró el correo el 13-mar-2024) no
-  se ficha como `Organizacion` en PR1 porque no es parte procesal y
-  sólo se cita en prosa como contexto del hecho de filtración. Si en
-  PR2 se modelan los hitos previos al TS (en particular el
-  20-mar-2024 ICAM denuncia, o el 13-mar-2024 filtración misma como
-  hito propio), añadir Cadena SER y revisar.
+  modela como `recurso_casacion` (operativamente cercano, aunque
+  no sea casación stricto sensu) con explicación editorial.
+- **Registros UCO** del 29-oct-2024 en el despacho del Fiscal
+  General y en la Fiscalía Provincial de Madrid. Notas oficiales
+  del CGPJ ya disponibles en `poderjudicial.es`; el enum del
+  schema no tiene un tipo limpio para "auto de entrada y registro",
+  así que se modelaría como contexto del hito `imputacion` o se
+  ampliaría el enum.
+- **Personas del entorno del condenado citadas en la sentencia
+  pero sin rol procesal formal**: Almudena Lastra de Inés (fiscal
+  superior de Madrid), directora de comunicación de la Fiscalía
+  (no identificada nominalmente en los hechos probados aquí
+  modelados), Miguel Ángel Rodríguez (jefe de Gabinete de la
+  Presidencia de la Comunidad de Madrid, citado como detonante
+  del relato falso). No se modelan como Persona conforme al
+  principio editorial de incluir sólo a personas con rol procesal
+  formal; quedan citadas en la prosa de los hechos.
 
 ## Avisos para el LLM en futuras incorporaciones
 
