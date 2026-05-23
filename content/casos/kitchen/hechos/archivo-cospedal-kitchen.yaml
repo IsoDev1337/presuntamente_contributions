@@ -1,0 +1,34 @@
+id: archivo-cospedal-kitchen
+caso_id: kitchen
+enunciado: |
+  Por auto del Juzgado Central de Instrucción nº 6 de la Audiencia
+  Nacional del 7 de diciembre de 2022, confirmando el sobreseimiento
+  provisional acordado el 29 de julio de 2021, se acordó el archivo
+  respecto de María Dolores de Cospedal García y de Ignacio López
+  del Hierro en la pieza separada nº 7 de las Diligencias Previas
+  96/2017 (Operación Kitchen), desestimándose los recursos planteados
+  contra el archivo por la Fiscalía Anticorrupción y las acusaciones
+  populares personadas en la causa. Este hecho exculpatorio fue
+  posteriormente revocado por la Sala de Apelaciones de la Audiencia
+  Nacional en julio de 2023.
+tipo: exculpatorio
+fecha_o_periodo:
+  desde: "2022-12-07"
+  precision: dia
+personas_implicadas:
+  - maria-dolores-cospedal
+organizaciones_implicadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: eldiario-archivo-cospedal-2022-12-07
+    pasaje: "Cobertura periodística del auto del 7 de diciembre de 2022 que confirma el archivo respecto de Cospedal y López del Hierro."
+  - documento_id: infobae-archivo-cospedal-2022-12-07
+    pasaje: "Cobertura cruzada en línea editorial distinta sobre el mismo auto."
+nivel_fuente_efectivo: 4
+corregido_por: revocacion-archivo-cospedal-kitchen
+vigencia: superado
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

@@ -1,0 +1,23 @@
+id: fernandez-diaz-procesado-kitchen
+caso_id: kitchen
+sujeto_tipo: persona
+sujeto_persona_id: jorge-fernandez-diaz
+rol: procesado
+delitos_atribuidos:
+  - organizacion-criminal
+  - malversacion-caudales-publicos
+  - cohecho
+  - prevaricacion
+  - revelacion-de-secretos
+fecha_inicio: "2021-07-29"
+hito_origen_id: auto-procesamiento-kitchen-2021-07-29
+notas: |
+  Por auto del magistrado instructor del Juzgado Central de Instrucción
+  nº 6 de la Audiencia Nacional del 29 de julio de 2021 se transforma
+  el procedimiento a abreviado y se procesa a Jorge Fernández Díaz
+  por su presunta participación en la operación parapolicial conocida
+  mediáticamente como Operación Kitchen. La condición de procesado no
+  implica valoración de culpabilidad: rige el principio de presunción
+  de inocencia mientras no recaiga sentencia firme en contrario. El
+  rol permanece vigente a la espera del señalamiento y celebración
+  del juicio oral.

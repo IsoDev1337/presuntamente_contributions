@@ -1,0 +1,32 @@
+id: jose-manuel-villarejo
+nombre_completo: "José Manuel Villarejo Pérez"
+nombres_alternativos:
+  - "José Manuel Villarejo"
+  - "Villarejo"
+  - "el comisario jubilado"
+  - "el comisario Villarejo"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Comisario del Cuerpo Nacional de Policía"
+    organizacion_id: direccion-general-policia
+    desde: "1972-01-01"
+    hasta: "2016-01-01"
+fecha_nacimiento: "1951-04-15"
+nacionalidad: "española"
+biografia_corta: |
+  José Manuel Villarejo Pérez es un comisario jubilado del Cuerpo
+  Nacional de Policía, en torno a cuya actividad profesional y privada
+  se incoaron, tras su detención el 3 de noviembre de 2017, las
+  Diligencias Previas 96/2017 del Juzgado Central de Instrucción nº 6
+  de la Audiencia Nacional, conocidas como Caso Tándem y desplegadas
+  en más de treinta piezas separadas. Por auto del magistrado
+  instructor del mismo órgano fue investigado y, por auto posterior,
+  procesado en la pieza séptima de aquellas diligencias previas,
+  conocida mediáticamente como Operación Kitchen, por su presunta
+  participación en la coordinación operativa de la actuación
+  parapolicial atribuida al Ministerio del Interior entre 2013 y 2015.
+  Rige el principio de presunción de inocencia mientras no recaiga
+  sentencia firme en contrario en esta pieza separada.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

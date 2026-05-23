@@ -1,0 +1,23 @@
+id: juzgado-central-instruccion-6
+nombre: "Juzgado Central de Instrucción nº 6"
+nombres_alternativos:
+  - "JCI nº 6"
+  - "JCI 6 AN"
+  - "Juzgado Central de Instrucción nº 6 de la Audiencia Nacional"
+tipo: juzgado
+descripcion_corta: |
+  Juzgado Central de Instrucción nº 6 de la Audiencia Nacional. Tramita
+  diligencias previas en materia penal con ámbito nacional. Es el
+  órgano instructor de las Diligencias Previas 96/2017 conocidas como
+  Caso Tándem (caso Villarejo) y de sus piezas separadas, entre las
+  que figura la pieza séptima conocida mediáticamente como Operación
+  Kitchen. Desde 2016 está titular el magistrado Manuel García-Castellón
+  García-Lomas.
+jurisdiccion: penal
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+organo_superior_id: audiencia-nacional
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

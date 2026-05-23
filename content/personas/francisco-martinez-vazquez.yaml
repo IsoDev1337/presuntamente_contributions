@@ -1,0 +1,32 @@
+id: francisco-martinez-vazquez
+nombre_completo: "Francisco Martínez Vázquez"
+nombres_alternativos:
+  - "Francisco Martínez"
+  - "Martínez Vázquez"
+  - "el ex secretario de Estado de Seguridad"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Secretario de Estado de Seguridad"
+    desde: "2012-01-04"
+    hasta: "2016-11-04"
+  - cargo: "Diputado en el Congreso de los Diputados"
+    desde: "2008-04-01"
+    hasta: "2011-12-22"
+fecha_nacimiento: "1971-12-17"
+nacionalidad: "española"
+biografia_corta: |
+  Francisco Martínez Vázquez es un jurista y político español del
+  Partido Popular, secretario de Estado de Seguridad del Ministerio
+  del Interior entre el 4 de enero de 2012 y el 4 de noviembre de
+  2016 bajo el mandato del ministro Jorge Fernández Díaz, y diputado
+  en el Congreso por Soria en la IX legislatura. Por auto del
+  magistrado instructor del Juzgado Central de Instrucción nº 6 de
+  la Audiencia Nacional fue investigado y, por auto posterior del
+  mismo órgano, procesado en la pieza separada conocida mediáticamente
+  como Operación Kitchen por su presunta participación en la operación
+  parapolicial atribuida al Ministerio del Interior durante su gestión.
+  Rige el principio de presunción de inocencia mientras no recaiga
+  sentencia firme en contrario.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

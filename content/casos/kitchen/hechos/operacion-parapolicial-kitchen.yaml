@@ -1,0 +1,42 @@
+id: operacion-parapolicial-kitchen
+caso_id: kitchen
+enunciado: |
+  Según el auto del magistrado instructor del Juzgado Central de
+  Instrucción nº 6 de la Audiencia Nacional del 29 de julio de 2021 y
+  la cobertura cruzada de elDiario.es e Infobae sobre dicho auto, se
+  atribuye al Ministerio del Interior del Reino de España la presunta
+  organización, entre 2013 y 2015, de un dispositivo parapolicial
+  conocido mediáticamente como Operación Kitchen y dirigido —según el
+  instructor— a obtener documentación sensible en poder del entonces
+  ex tesorero del Partido Popular Luis Bárcenas, en un contexto en
+  que se sustanciaban paralelamente diligencias judiciales sobre la
+  financiación irregular de la formación. La atribución corresponde
+  al instructor en el auto de procesamiento y no constituye
+  declaración de hechos probados; rige el principio de presunción de
+  inocencia respecto de todos los procesados mientras no recaiga
+  sentencia firme en contrario.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2013-01-01"
+  hasta: "2015-12-31"
+  precision: rango
+personas_implicadas:
+  - luis-barcenas
+  - jorge-fernandez-diaz
+  - francisco-martinez-vazquez
+  - eugenio-pino-sanchez
+  - jose-manuel-villarejo
+organizaciones_implicadas:
+  - ministerio-del-interior
+  - direccion-general-policia
+  - partido-popular
+documentos_respaldo:
+  - documento_id: eldiario-procesamiento-kitchen-2021-07-29
+    pasaje: "Cobertura periodística del auto del 29 de julio de 2021, en la que se atribuye al dispositivo policial la presunta operación parapolicial contra Luis Bárcenas durante el mandato del ministro Jorge Fernández Díaz."
+  - documento_id: infobae-procesamiento-kitchen-2021-07-29
+    pasaje: "Cobertura cruzada del mismo auto en línea editorial distinta, con detalle del procesamiento de Fernández Díaz, Martínez, Pino y Villarejo."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

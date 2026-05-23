@@ -1,0 +1,35 @@
+id: revocacion-archivo-cospedal-kitchen
+caso_id: kitchen
+enunciado: |
+  Por auto de la Sala de Apelaciones de la Audiencia Nacional dictado
+  en julio de 2023 se estimaron los recursos planteados por la
+  Fiscalía Especial contra la Corrupción y la Criminalidad Organizada
+  y por las acusaciones populares personadas en la causa y se acordó
+  revocar el sobreseimiento provisional confirmado el 7 de diciembre
+  de 2022 por el Juzgado Central de Instrucción nº 6 respecto de
+  María Dolores de Cospedal García y de Ignacio López del Hierro,
+  ordenando la reincorporación de la causa contra ambos en la pieza
+  separada nº 7 de las Diligencias Previas 96/2017 (Operación
+  Kitchen). La reincorporación a la causa no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia mientras
+  no recaiga sentencia firme en contrario.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2023-07-25"
+  precision: mes
+personas_implicadas:
+  - maria-dolores-cospedal
+organizaciones_implicadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: eldiario-revocacion-archivo-cospedal-2023-07
+    pasaje: "Cobertura periodística del auto de la Sala de Apelaciones de la AN que revoca el archivo y reincorpora la causa contra Cospedal y López del Hierro."
+  - documento_id: elpais-revocacion-archivo-cospedal-2023-07
+    pasaje: "Cobertura cruzada en línea editorial distinta sobre el mismo auto."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

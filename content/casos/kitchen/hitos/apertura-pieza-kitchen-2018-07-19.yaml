@@ -1,0 +1,31 @@
+id: apertura-pieza-kitchen-2018-07-19
+caso_id: kitchen
+tipo: separacion_pieza
+fecha: "2018-07-19"
+fecha_precision: dia
+titulo: "El Juzgado Central de Instrucción nº 6 de la Audiencia Nacional abre la pieza separada nº 7 de las Diligencias Previas 96/2017 para investigar la presunta operación parapolicial contra Luis Bárcenas conocida mediáticamente como Operación Kitchen"
+descripcion: |
+  El 19 de julio de 2018 el magistrado titular del Juzgado Central de
+  Instrucción nº 6 de la Audiencia Nacional, Manuel García-Castellón
+  García-Lomas, acuerda separar de las Diligencias Previas 96/2017
+  del Caso Tándem una nueva pieza, registrada con el número séptimo,
+  dirigida a investigar la presunta existencia de una operación
+  parapolicial atribuida al Ministerio del Interior del Reino de
+  España entre 2013 y 2015, durante el gobierno presidido por
+  Mariano Rajoy y bajo la titularidad del ministro Jorge Fernández
+  Díaz, presuntamente orientada —según el instructor— a obtener
+  documentación sensible en poder del entonces ex tesorero del Partido
+  Popular Luis Bárcenas. La pieza pasa a conocerse mediáticamente
+  como Operación Kitchen. Rige el principio de presunción de
+  inocencia respecto de los investigados.
+personas_afectadas:
+  - luis-barcenas
+  - manuel-garcia-castellon
+organizaciones_afectadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+  - ministerio-del-interior
+documento_principal_id: eldiario-apertura-pieza-kitchen-2018-07-19
+documentos_relacionados:
+  - infobae-apertura-pieza-kitchen-2018-07-19
+fase_resultante: instruccion

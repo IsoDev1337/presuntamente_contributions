@@ -1,0 +1,25 @@
+id: partido-popular
+nombre: "Partido Popular"
+nombres_alternativos:
+  - "PP"
+  - "Partido Popular Español"
+tipo: partido_politico
+siglas: "PP"
+descripcion_corta: |
+  Formación política española de centro-derecha refundada en 1989 como
+  sucesora de Alianza Popular. Ha ocupado el gobierno del Reino de
+  España en cuatro etapas (1996-2004 bajo José María Aznar y 2011-2018
+  bajo Mariano Rajoy, entre otras). En el contexto de la pieza
+  separada nº 7 de las Diligencias Previas 96/2017 del JCI nº 6 de la
+  Audiencia Nacional, conocida mediáticamente como Operación Kitchen,
+  varios ex altos cargos del Ministerio del Interior del gobierno
+  presidido por Mariano Rajoy y la entonces secretaria general del
+  partido figuran como investigados o procesados; el ex tesorero de
+  la formación, Luis Bárcenas, figura como presunto perjudicado.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://www.pp.es"
+fundacion: "1989-01-22"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

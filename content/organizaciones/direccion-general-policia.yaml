@@ -1,0 +1,21 @@
+id: direccion-general-policia
+nombre: "Dirección General de la Policía"
+nombres_alternativos:
+  - "DGP"
+  - "Policía Nacional"
+  - "Cuerpo Nacional de Policía"
+  - "CNP"
+tipo: organismo_publico
+descripcion_corta: |
+  Organismo público del Ministerio del Interior del Reino de España
+  encargado de la dirección, coordinación y ejecución de las funciones
+  encomendadas al Cuerpo Nacional de Policía, instituto armado de
+  naturaleza civil dependiente del Gobierno de la Nación. En el
+  organigrama del periodo 2012-2016 figuraba la Dirección Adjunta
+  Operativa (DAO) como segunda autoridad ejecutiva del cuerpo.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://www.policia.es"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

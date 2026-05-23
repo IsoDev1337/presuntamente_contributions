@@ -1,0 +1,38 @@
+id: procesamiento-multipartito-kitchen
+caso_id: kitchen
+enunciado: |
+  Por auto del magistrado instructor del Juzgado Central de Instrucción
+  nº 6 de la Audiencia Nacional del 29 de julio de 2021 se transformó
+  el procedimiento a abreviado en la pieza separada nº 7 de las
+  Diligencias Previas 96/2017 (Operación Kitchen) y se acordó el
+  procesamiento de Jorge Fernández Díaz, Francisco Martínez Vázquez,
+  Eugenio Pino Sánchez, José Manuel Villarejo Pérez y otros agentes
+  del Cuerpo Nacional de Policía por su presunta participación en la
+  operación parapolicial contra el ex tesorero del Partido Popular
+  Luis Bárcenas. El auto refiere indiciariamente los presuntos
+  delitos de organización criminal, malversación de caudales públicos,
+  cohecho, prevaricación y revelación de secretos. La condición de
+  procesados no implica valoración de culpabilidad: rige el principio
+  de presunción de inocencia.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2021-07-29"
+  precision: dia
+personas_implicadas:
+  - jorge-fernandez-diaz
+  - francisco-martinez-vazquez
+  - eugenio-pino-sanchez
+  - jose-manuel-villarejo
+organizaciones_implicadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+documentos_respaldo:
+  - documento_id: eldiario-procesamiento-kitchen-2021-07-29
+    pasaje: "Cobertura periodística del auto del 29 de julio de 2021 con detalle del procesamiento y de los presuntos tipos penales referidos."
+  - documento_id: infobae-procesamiento-kitchen-2021-07-29
+    pasaje: "Cobertura cruzada en línea editorial distinta sobre el mismo auto."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

@@ -1,0 +1,41 @@
+id: seguimientos-barcenas-kitchen
+caso_id: kitchen
+enunciado: |
+  Se investiga, conforme al auto de procesamiento del Juzgado Central
+  de Instrucción nº 6 de la Audiencia Nacional del 29 de julio de
+  2021 y al informe de la Unidad de Asuntos Internos remitido a dicho
+  órgano, la presunta realización por parte del dispositivo policial
+  coordinado por Eugenio Pino Sánchez de seguimientos, accesos y
+  actuaciones de obtención de información sobre el entorno familiar y
+  los movimientos personales del ex tesorero del Partido Popular
+  Luis Bárcenas durante el periodo 2013-2015, presuntamente al margen
+  del control jurisdiccional ordinario y por cauces ajenos a una
+  investigación policial reglada. El instructor encuadra estas
+  conductas indiciariamente en los tipos de organización criminal,
+  prevaricación y revelación de secretos. Rige el principio de
+  presunción de inocencia mientras no recaiga sentencia firme en
+  contrario.
+tipo: investigado
+fecha_o_periodo:
+  desde: "2013-01-01"
+  hasta: "2015-12-31"
+  precision: rango
+personas_implicadas:
+  - eugenio-pino-sanchez
+  - jose-manuel-villarejo
+  - luis-barcenas
+organizaciones_implicadas:
+  - direccion-general-policia
+  - ministerio-del-interior
+documentos_respaldo:
+  - documento_id: eldiario-informe-asuntos-internos-kitchen-2020-07
+    pasaje: "Cobertura del informe policial de Asuntos Internos sobre los presuntos seguimientos y obtención de información del entorno de Bárcenas."
+  - documento_id: infobae-informe-asuntos-internos-kitchen-2020-07
+    pasaje: "Cobertura cruzada en línea editorial distinta sobre el mismo informe."
+  - documento_id: eldiario-procesamiento-kitchen-2021-07-29
+    pasaje: "Cobertura del auto del 29 de julio de 2021 que recoge la atribución indiciaria de los seguimientos en el procesamiento."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

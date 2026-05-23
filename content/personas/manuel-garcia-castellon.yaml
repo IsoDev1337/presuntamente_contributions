@@ -1,0 +1,26 @@
+id: manuel-garcia-castellon
+nombre_completo: "Manuel García-Castellón García-Lomas"
+nombres_alternativos:
+  - "Manuel García Castellón"
+  - "García Castellón"
+  - "García-Castellón"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Magistrado titular del Juzgado Central de Instrucción nº 6 de la Audiencia Nacional"
+    organizacion_id: juzgado-central-instruccion-6
+    desde: "2016-09-01"
+nacionalidad: "española"
+biografia_corta: |
+  Manuel García-Castellón García-Lomas es un magistrado español
+  miembro de la Carrera Judicial titular del Juzgado Central de
+  Instrucción nº 6 de la Audiencia Nacional desde 2016. Anteriormente
+  desempeñó funciones jurisdiccionales como magistrado de enlace en
+  París y en otras plazas. Es el magistrado instructor de las
+  Diligencias Previas 96/2017, conocidas como Caso Tándem, abiertas
+  tras la detención del comisario jubilado José Manuel Villarejo
+  Pérez el 3 de noviembre de 2017, y de la pieza separada nº 7 de
+  aquellas diligencias, conocida mediáticamente como Operación
+  Kitchen.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

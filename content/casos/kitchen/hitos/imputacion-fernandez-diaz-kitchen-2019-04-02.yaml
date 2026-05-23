@@ -1,0 +1,28 @@
+id: imputacion-fernandez-diaz-kitchen-2019-04-02
+caso_id: kitchen
+tipo: imputacion
+fecha: "2019-04-02"
+fecha_precision: dia
+titulo: "El magistrado instructor del Juzgado Central de Instrucción nº 6 de la Audiencia Nacional acuerda la imputación del ex ministro del Interior Jorge Fernández Díaz como investigado en la pieza Kitchen"
+descripcion: |
+  Por auto del magistrado instructor del Juzgado Central de Instrucción
+  nº 6 de la Audiencia Nacional, dictado el 2 de abril de 2019, se
+  acuerda la imputación de Jorge Fernández Díaz, ministro del Interior
+  del Reino de España entre el 22 de diciembre de 2011 y el 4 de
+  noviembre de 2016, como investigado en la pieza separada nº 7 de
+  las Diligencias Previas 96/2017 (Operación Kitchen) por su presunta
+  participación en la operación parapolicial atribuida al Ministerio
+  del Interior contra el ex tesorero del Partido Popular Luis
+  Bárcenas. La condición de investigado no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia mientras
+  no recaiga sentencia firme en contrario.
+personas_afectadas:
+  - jorge-fernandez-diaz
+organizaciones_afectadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+  - ministerio-del-interior
+documento_principal_id: eldiario-imputacion-fernandez-diaz-2019-04-02
+documentos_relacionados:
+  - infobae-imputacion-fernandez-diaz-2019-04-02
+fase_resultante: instruccion

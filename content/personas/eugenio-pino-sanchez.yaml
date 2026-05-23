@@ -1,0 +1,27 @@
+id: eugenio-pino-sanchez
+nombre_completo: "Eugenio Pino Sánchez"
+nombres_alternativos:
+  - "Eugenio Pino"
+  - "el ex DAO"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Director Adjunto Operativo de la Policía Nacional"
+    organizacion_id: direccion-general-policia
+    desde: "2012-01-01"
+    hasta: "2016-12-01"
+nacionalidad: "española"
+biografia_corta: |
+  Eugenio Pino Sánchez es un alto cargo policial español que se
+  desempeñó como Director Adjunto Operativo (DAO) de la Dirección
+  General de la Policía durante el mandato del ministro del Interior
+  Jorge Fernández Díaz. Por auto del magistrado instructor del
+  Juzgado Central de Instrucción nº 6 de la Audiencia Nacional fue
+  investigado y, por auto posterior del mismo órgano, procesado en
+  la pieza separada conocida mediáticamente como Operación Kitchen
+  por su presunta participación en la coordinación operativa del
+  dispositivo policial atribuido al Ministerio del Interior. Rige el
+  principio de presunción de inocencia mientras no recaiga sentencia
+  firme en contrario.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

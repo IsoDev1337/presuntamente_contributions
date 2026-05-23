@@ -1,0 +1,29 @@
+id: imputacion-villarejo-kitchen-2018-12
+caso_id: kitchen
+tipo: imputacion
+fecha: "2018-12-01"
+fecha_precision: mes
+titulo: "El magistrado instructor del Juzgado Central de Instrucción nº 6 declara investigado al comisario jubilado José Manuel Villarejo en la pieza Kitchen del Caso Tándem"
+descripcion: |
+  Tras la apertura de la pieza séptima de las Diligencias Previas
+  96/2017 del Caso Tándem, el magistrado instructor del Juzgado
+  Central de Instrucción nº 6 de la Audiencia Nacional formaliza la
+  condición de investigado del comisario jubilado del Cuerpo Nacional
+  de Policía José Manuel Villarejo Pérez en la pieza separada nº 7
+  conocida mediáticamente como Operación Kitchen, por su presunta
+  participación en la coordinación operativa del dispositivo
+  policial atribuido al Ministerio del Interior contra el ex
+  tesorero del Partido Popular Luis Bárcenas. La fecha se modela con
+  precisión de mes mientras no se localice fuente con el día concreto
+  del auto. La condición de investigado no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia mientras
+  no recaiga sentencia firme en contrario.
+personas_afectadas:
+  - jose-manuel-villarejo
+organizaciones_afectadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+documento_principal_id: eldiario-apertura-pieza-kitchen-2018-07-19
+documentos_relacionados:
+  - infobae-apertura-pieza-kitchen-2018-07-19
+fase_resultante: instruccion

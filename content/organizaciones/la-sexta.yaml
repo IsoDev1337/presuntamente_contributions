@@ -1,0 +1,19 @@
+id: la-sexta
+nombre: "La Sexta"
+nombres_alternativos:
+  - "laSexta"
+  - "Sexta TV"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Cadena de televisión española de cobertura nacional integrada en
+  Atresmedia Corporación. Sus programas informativos y de actualidad
+  política y judicial («Al Rojo Vivo», «La Sexta Noche», entre otros)
+  han desarrollado cobertura sostenida de las diligencias previas
+  96/2017 del Juzgado Central de Instrucción nº 6 de la Audiencia
+  Nacional y de sus piezas separadas.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://www.lasexta.com"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

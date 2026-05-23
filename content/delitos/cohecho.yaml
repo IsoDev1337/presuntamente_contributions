@@ -1,0 +1,22 @@
+id: cohecho
+nombre_tipico: "Cohecho"
+articulos_cp:
+  - "art. 419 CP"
+  - "art. 420 CP"
+  - "art. 421 CP"
+  - "art. 422 CP"
+  - "art. 423 CP"
+  - "art. 424 CP"
+  - "art. 425 CP"
+  - "art. 426 CP"
+familia: cohecho_y_trafico_influencias
+descripcion_breve: |
+  Tipo penal que sanciona a la autoridad o funcionario público que, en
+  el ejercicio de su cargo, recibe, solicita o acepta dádiva, favor o
+  retribución para realizar u omitir un acto contrario a los deberes
+  inherentes a su función, así como a quien ofrece, da o promete tal
+  dádiva. Las penas oscilan entre prisión, multa e inhabilitación
+  especial según la modalidad. Está regulado en los artículos 419 a
+  426 del Código Penal en su versión vigente tras la reforma operada
+  por la Ley Orgánica 5/2010 y modificaciones sucesivas.
+enlace_boe: "https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444&tn=1&p=20240419#a419"

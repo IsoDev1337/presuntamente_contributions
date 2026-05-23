@@ -1,0 +1,37 @@
+id: luis-barcenas
+nombre_completo: "Luis Bárcenas Gutiérrez"
+nombres_alternativos:
+  - "Luis Bárcenas"
+  - "Bárcenas"
+  - "ex tesorero del PP"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Gerente del Partido Popular"
+    organizacion_id: partido-popular
+    desde: "1990-01-01"
+    hasta: "2008-07-01"
+  - cargo: "Tesorero del Partido Popular"
+    organizacion_id: partido-popular
+    desde: "2008-07-01"
+    hasta: "2009-07-22"
+  - cargo: "Senador por Cantabria"
+    desde: "2004-04-01"
+    hasta: "2010-04-19"
+fecha_nacimiento: "1957-04-30"
+nacionalidad: "española"
+biografia_corta: |
+  Luis Bárcenas Gutiérrez es un político y ex tesorero del Partido
+  Popular. Ingresó en la formación a comienzos de los años ochenta y
+  ocupó la gerencia del partido desde 1990 y la tesorería desde julio
+  de 2008. Fue senador por Cantabria entre 2004 y 2010. Es la persona
+  física en cuyo contexto se sitúa, en condición de presunto
+  perjudicado, la operación parapolicial conocida mediáticamente como
+  Operación Kitchen, atribuida al Ministerio del Interior bajo el
+  gobierno presidido por Mariano Rajoy y dirigida indiciariamente,
+  según el instructor, a sustraer información sensible en su poder.
+  Ha sido condenado en otros procedimientos por delitos relacionados
+  con la financiación del Partido Popular y con la trama Gürtel, en
+  causas distintas de la presente pieza.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

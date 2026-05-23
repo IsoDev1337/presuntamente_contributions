@@ -1,0 +1,42 @@
+id: fondos-reservados-rios-kitchen
+caso_id: kitchen
+enunciado: |
+  El instructor del Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional atribuye a la cúpula del Ministerio del Interior
+  y al dispositivo policial coordinado por Eugenio Pino Sánchez, según
+  consta en la cobertura cruzada del informe de la Unidad de Asuntos
+  Internos de la Dirección General de la Policía y del auto de
+  procesamiento del 29 de julio de 2021, el presunto uso de fondos
+  reservados del propio Ministerio para la contratación, como
+  confidente policial, de Sergio Ríos Esgueva, chófer del ex tesorero
+  del Partido Popular Luis Bárcenas. Conforme a la cobertura citada,
+  el confidente habría sido presuntamente retribuido con cargo a esos
+  fondos a cambio de información sobre el entorno familiar y los
+  movimientos del presunto perjudicado. La atribución corresponde al
+  instructor en sede de instrucción y no constituye declaración de
+  hechos probados; rige el principio de presunción de inocencia.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2013-07-01"
+  hasta: "2015-12-31"
+  precision: rango
+personas_implicadas:
+  - jorge-fernandez-diaz
+  - francisco-martinez-vazquez
+  - eugenio-pino-sanchez
+  - luis-barcenas
+organizaciones_implicadas:
+  - ministerio-del-interior
+  - direccion-general-policia
+documentos_respaldo:
+  - documento_id: eldiario-informe-asuntos-internos-kitchen-2020-07
+    pasaje: "Cobertura del informe de la Unidad de Asuntos Internos remitido al JCI nº 6 sobre el presunto pago de fondos reservados a Sergio Ríos Esgueva como confidente policial."
+  - documento_id: infobae-informe-asuntos-internos-kitchen-2020-07
+    pasaje: "Cobertura cruzada en línea editorial distinta sobre el mismo informe policial."
+  - documento_id: eldiario-procesamiento-kitchen-2021-07-29
+    pasaje: "Auto de procesamiento del 29 de julio de 2021, recogido por la cobertura, que atribuye indiciariamente el uso de fondos reservados como una de las bases típicas del presunto delito de malversación."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

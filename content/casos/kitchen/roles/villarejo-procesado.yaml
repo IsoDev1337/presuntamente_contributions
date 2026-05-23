@@ -1,0 +1,22 @@
+id: villarejo-procesado-kitchen
+caso_id: kitchen
+sujeto_tipo: persona
+sujeto_persona_id: jose-manuel-villarejo
+rol: procesado
+delitos_atribuidos:
+  - organizacion-criminal
+  - malversacion-caudales-publicos
+  - cohecho
+  - prevaricacion
+  - revelacion-de-secretos
+fecha_inicio: "2021-07-29"
+hito_origen_id: auto-procesamiento-kitchen-2021-07-29
+notas: |
+  Por auto del 29 de julio de 2021 del Juzgado Central de Instrucción
+  nº 6 de la Audiencia Nacional se procesa a José Manuel Villarejo
+  Pérez por su presunta participación en el dispositivo policial
+  atribuido al Ministerio del Interior contra el ex tesorero del
+  Partido Popular Luis Bárcenas. La condición de procesado en esta
+  pieza separada no implica valoración de culpabilidad: rige el
+  principio de presunción de inocencia mientras no recaiga sentencia
+  firme en contrario.

@@ -1,0 +1,22 @@
+id: ministerio-del-interior
+nombre: "Ministerio del Interior del Reino de España"
+nombres_alternativos:
+  - "Ministerio del Interior"
+  - "Interior"
+tipo: organismo_publico
+descripcion_corta: |
+  Departamento ministerial del Gobierno del Reino de España competente,
+  entre otras materias, en seguridad pública, dirección política de las
+  Fuerzas y Cuerpos de Seguridad del Estado, régimen general de
+  extranjería, instituciones penitenciarias y procesos electorales.
+  Bajo cuyo titular y secretaría de Estado de Seguridad durante el
+  gobierno presidido por Mariano Rajoy (2011-2018) se enmarca, según
+  el instructor de la pieza separada nº 7 de las Diligencias Previas
+  96/2017 del JCI nº 6 de la Audiencia Nacional, la operación
+  parapolicial conocida mediáticamente como Operación Kitchen.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://www.interior.gob.es"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

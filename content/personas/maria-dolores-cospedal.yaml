@@ -1,0 +1,41 @@
+id: maria-dolores-cospedal
+nombre_completo: "María Dolores de Cospedal García"
+nombres_alternativos:
+  - "Dolores de Cospedal"
+  - "Cospedal"
+  - "la ex secretaria general del PP"
+  - "la ex ministra de Defensa"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Secretaria General del Partido Popular"
+    organizacion_id: partido-popular
+    desde: "2008-06-21"
+    hasta: "2018-07-21"
+  - cargo: "Presidenta de la Junta de Comunidades de Castilla-La Mancha"
+    desde: "2011-06-22"
+    hasta: "2015-07-03"
+  - cargo: "Ministra de Defensa del Reino de España"
+    desde: "2016-11-04"
+    hasta: "2018-06-07"
+  - cargo: "Diputada en el Congreso de los Diputados"
+    desde: "2000-04-05"
+    hasta: "2019-05-21"
+fecha_nacimiento: "1965-12-13"
+nacionalidad: "española"
+biografia_corta: |
+  María Dolores de Cospedal García es una política española del Partido
+  Popular, secretaria general de la formación entre 2008 y 2018,
+  presidenta de la Junta de Comunidades de Castilla-La Mancha entre
+  2011 y 2015 y ministra de Defensa del Reino de España entre el 4 de
+  noviembre de 2016 y el 7 de junio de 2018. Por auto del magistrado
+  instructor del Juzgado Central de Instrucción nº 6 de la Audiencia
+  Nacional fue investigada en la pieza separada conocida mediáticamente
+  como Operación Kitchen. Por auto del mismo órgano de 7 de diciembre
+  de 2022 se acordó el sobreseimiento provisional respecto de
+  Cospedal, decisión revocada por auto de la Sala de Apelaciones de
+  la Audiencia Nacional dictado en 2023 que ordenó la reincorporación
+  de la causa contra ella. Rige el principio de presunción de
+  inocencia mientras no recaiga sentencia firme en contrario.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

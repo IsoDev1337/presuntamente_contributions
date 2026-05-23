@@ -1,0 +1,32 @@
+id: informe-asuntos-internos-kitchen-2020-07-29
+caso_id: kitchen
+tipo: informe_organismo_publico
+fecha: "2020-07-29"
+fecha_precision: mes
+titulo: "La Unidad de Asuntos Internos de la Dirección General de la Policía remite al Juzgado Central de Instrucción nº 6 un informe sobre la presunta operación parapolicial contra Luis Bárcenas"
+descripcion: |
+  En el verano de 2020 la Unidad de Asuntos Internos de la Dirección
+  General de la Policía remite al Juzgado Central de Instrucción nº 6
+  de la Audiencia Nacional un informe encuadrado en la pieza separada
+  nº 7 de las Diligencias Previas 96/2017 (Operación Kitchen) en el
+  que, según la cobertura cruzada de elDiario.es e Infobae, se atribuye
+  la dirección operativa de la presunta operación parapolicial a altos
+  cargos del Ministerio del Interior y de la cúpula policial durante
+  el mandato del ministro Jorge Fernández Díaz. El informe policial
+  primario no consta publicado íntegramente con URL canónica en lista
+  blanca DominiosOficiales, por lo que la cobertura periodística
+  cruzada cumple V-13 como respaldo. La fecha se modela con precisión
+  de mes mientras no se localice fuente con día exacto.
+personas_afectadas:
+  - jorge-fernandez-diaz
+  - francisco-martinez-vazquez
+  - eugenio-pino-sanchez
+organizaciones_afectadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+  - direccion-general-policia
+  - ministerio-del-interior
+documento_principal_id: eldiario-informe-asuntos-internos-kitchen-2020-07
+documentos_relacionados:
+  - infobae-informe-asuntos-internos-kitchen-2020-07
+fase_resultante: instruccion

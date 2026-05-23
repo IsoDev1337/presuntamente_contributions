@@ -1,0 +1,16 @@
+id: operacion-kitchen
+label: "Operación Kitchen"
+nombres_alternativos:
+  - "Caso Kitchen"
+  - "Kitchen"
+categoria: operacion_policial
+descripcion_breve: |
+  Nombre con el que se conoce mediáticamente a la operación parapolicial
+  atribuida al Ministerio del Interior del Reino de España entre 2013
+  y 2015, instruida ante el Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional como pieza separada nº 7 de las Diligencias
+  Previas 96/2017 del Caso Tándem, dirigida indiciariamente, según el
+  instructor, a obtener documentación sensible en poder del entonces
+  ex tesorero del Partido Popular Luis Bárcenas.
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

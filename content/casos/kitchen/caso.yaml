@@ -1,0 +1,93 @@
+# Caso Kitchen — esqueleto inicial (PR1).
+#
+# Pieza separada nº 7 de las Diligencias Previas 96/2017 del Juzgado
+# Central de Instrucción nº 6 de la Audiencia Nacional, conocidas como
+# Caso Tándem, instruidas por el magistrado Manuel García-Castellón
+# García-Lomas tras la detención del comisario jubilado José Manuel
+# Villarejo Pérez el 3 de noviembre de 2017. La pieza séptima, conocida
+# mediáticamente como Operación Kitchen, se incoa por la presunta
+# existencia de una operación parapolicial atribuida al Ministerio del
+# Interior del Reino de España entre 2013 y 2015, durante el gobierno
+# presidido por Mariano Rajoy y bajo la titularidad del ministro Jorge
+# Fernández Díaz, presuntamente dirigida —según el instructor— a obtener
+# documentación sensible en poder del entonces ex tesorero del Partido
+# Popular Luis Bárcenas. Por auto del Juzgado Central de Instrucción nº
+# 6 de la Audiencia Nacional de 29 de julio de 2021 se dictó procesamiento
+# contra Jorge Fernández Díaz, Francisco Martínez Vázquez, Eugenio Pino
+# Sánchez, José Manuel Villarejo Pérez y otros agentes y se acordó el
+# sobreseimiento provisional respecto de María Dolores de Cospedal
+# García y de Ignacio López del Hierro; este último archivo fue
+# confirmado por auto del mismo órgano el 7 de diciembre de 2022 y
+# posteriormente revocado en 2023 por la Sala de Apelaciones de la
+# Audiencia Nacional, que ordenó la reincorporación de la causa contra
+# Cospedal y López del Hierro. La causa se encuentra en fase
+# intermedia, pendiente de la celebración del juicio oral.
+
+id: kitchen
+nombre_oficial: "Diligencias Previas 96/2017, pieza separada nº 7 (Kitchen) — Juzgado Central de Instrucción nº 6 de la Audiencia Nacional"
+nombre_mediatico: "Caso Kitchen"
+nombres_alternativos:
+  - "Operación Kitchen"
+  - "Caso del espionaje a Bárcenas"
+  - "Pieza Kitchen"
+  - "Pieza séptima del Caso Tándem"
+
+descripcion_corta: |
+  Pieza separada nº 7 de las Diligencias Previas 96/2017 del Juzgado
+  Central de Instrucción nº 6 de la Audiencia Nacional, instruidas por
+  el magistrado Manuel García-Castellón. La pieza séptima, conocida
+  mediáticamente como Operación Kitchen, se incoó por la presunta
+  existencia de una operación parapolicial atribuida al Ministerio del
+  Interior del Reino de España entre 2013 y 2015, durante el gobierno
+  presidido por Mariano Rajoy y bajo la titularidad del ministro Jorge
+  Fernández Díaz, presuntamente dirigida —según el instructor— a
+  obtener documentación sensible en poder del entonces ex tesorero del
+  Partido Popular Luis Bárcenas. Por auto del Juzgado Central de
+  Instrucción nº 6 de 29 de julio de 2021 se transformó el
+  procedimiento a abreviado y se procesó a Jorge Fernández Díaz,
+  Francisco Martínez Vázquez, Eugenio Pino Sánchez, José Manuel
+  Villarejo Pérez y otros agentes, acordándose simultáneamente el
+  sobreseimiento provisional respecto de María Dolores de Cospedal
+  García y de Ignacio López del Hierro. El sobreseimiento de Cospedal
+  y López del Hierro fue confirmado por auto del mismo órgano de 7 de
+  diciembre de 2022 y posteriormente revocado en 2023 por la Sala de
+  Apelaciones de la Audiencia Nacional, que ordenó reincorporar la
+  causa contra ambos. La causa se encuentra en fase intermedia y
+  pendiente de juicio oral. Rige el principio de presunción de
+  inocencia respecto de los procesados mientras no recaiga sentencia
+  firme en contrario.
+
+organo_judicial_id: juzgado-central-instruccion-6
+numero_procedimiento: "Diligencias Previas 96/2017, pieza separada nº 7"
+tipo_procedimiento: procedimiento_abreviado
+ponente_actual_id: manuel-garcia-castellon
+
+fase_actual: fase_intermedia
+fecha_apertura: "2018-07-19"
+
+origen_denuncia: oficio_judicial
+
+delitos_atribuidos_en_la_causa:
+  - organizacion-criminal
+  - malversacion-caudales-publicos
+  - cohecho
+  - prevaricacion
+  - revelacion-de-secretos
+
+resumen_cifras: |
+  El instructor atribuye al dispositivo policial el uso indiciario de
+  fondos reservados del Ministerio del Interior para la presunta
+  contratación, como confidente, de Sergio Ríos Esgueva, chófer del ex
+  tesorero del Partido Popular Luis Bárcenas, así como la realización
+  de seguimientos, accesos y obtención de información sensible sobre el
+  entorno familiar del presunto perjudicado. Por auto del Juzgado
+  Central de Instrucción nº 6 de 29 de julio de 2021 se procesó a
+  Jorge Fernández Díaz, Francisco Martínez Vázquez, Eugenio Pino
+  Sánchez, José Manuel Villarejo Pérez y otros agentes del Cuerpo
+  Nacional de Policía. Las cifras exactas de fondos reservados
+  presuntamente desviados quedan pendientes de cuantificación
+  jurisdiccional firme.
+
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"
+nivel_relevancia_editorial: capital

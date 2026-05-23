@@ -1,0 +1,35 @@
+id: jorge-fernandez-diaz
+nombre_completo: "Jorge Fernández Díaz"
+nombres_alternativos:
+  - "Fernández Díaz"
+  - "Jorge Fernández"
+  - "el ex ministro del Interior"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Ministro del Interior del Reino de España"
+    desde: "2011-12-22"
+    hasta: "2016-11-04"
+  - cargo: "Diputado en el Congreso de los Diputados"
+    desde: "2000-04-05"
+    hasta: "2019-05-21"
+fecha_nacimiento: "1950-04-06"
+nacionalidad: "española"
+biografia_corta: |
+  Jorge Fernández Díaz es un político español del Partido Popular,
+  ministro del Interior del Reino de España entre el 22 de diciembre
+  de 2011 y el 4 de noviembre de 2016 bajo la presidencia de Mariano
+  Rajoy, y diputado en el Congreso por la circunscripción de Barcelona
+  durante seis legislaturas. Por auto del magistrado instructor del
+  Juzgado Central de Instrucción nº 6 de la Audiencia Nacional fue
+  investigado en la pieza separada conocida mediáticamente como
+  Operación Kitchen, encuadrada en las diligencias previas 96/2017
+  del caso Tándem, y por auto posterior del mismo órgano fue procesado
+  por su presunta participación en la operación parapolicial atribuida
+  al Ministerio del Interior durante su mandato y dirigida
+  indiciariamente, según el instructor, a obtener información en poder
+  de Luis Bárcenas, ex tesorero del Partido Popular. Rige el principio
+  de presunción de inocencia mientras no recaiga sentencia firme en
+  contrario.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

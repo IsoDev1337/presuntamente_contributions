@@ -1,0 +1,21 @@
+id: pino-procesado-kitchen
+caso_id: kitchen
+sujeto_tipo: persona
+sujeto_persona_id: eugenio-pino-sanchez
+rol: procesado
+delitos_atribuidos:
+  - organizacion-criminal
+  - malversacion-caudales-publicos
+  - cohecho
+  - prevaricacion
+  - revelacion-de-secretos
+fecha_inicio: "2021-07-29"
+hito_origen_id: auto-procesamiento-kitchen-2021-07-29
+notas: |
+  Por auto del 29 de julio de 2021 del Juzgado Central de Instrucción
+  nº 6 de la Audiencia Nacional se procesa a Eugenio Pino Sánchez por
+  su presunta participación en la coordinación operativa del
+  dispositivo policial atribuido al Ministerio del Interior durante
+  su mandato como Director Adjunto Operativo de la Dirección General
+  de la Policía. La condición de procesado no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia.

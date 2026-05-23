@@ -1,0 +1,21 @@
+id: el-pais
+nombre: "El País"
+nombres_alternativos:
+  - "Diario El País"
+  - "elpais.com"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Diario español de información general fundado en Madrid en 1976 y
+  editado por Prisa Noticias. Es uno de los periódicos de referencia
+  del país en cobertura de tribunales y asuntos políticos.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://elpais.com"
+linea_editorial_declarada: |
+  Según su propia declaración corporativa, El País se define como un
+  diario «independiente, nacional, de información general y con clara
+  vocación europea, defensor de la democracia pluralista según los
+  principios liberales y sociales».
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"
