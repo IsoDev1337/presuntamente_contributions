@@ -2,7 +2,7 @@
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md` § *NOTES.md por caso*.
 
-Última actualización: 2026-05-22 (PR3 — N1 BOE para cambio de juez + pieza separada UCO/Quirón + Maxwell Cremona persona jurídica procesada).
+Última actualización: 2026-05-23 (PR4 — primarios descargados: PDF + XML de los dos BOE N1 ya catalogados, con `ruta_local` + `hash_sha256` cumplimentados).
 
 ---
 
@@ -68,6 +68,25 @@ Se adopta **José Miguel Carrillo Saborido** por aparecer en la cobertura del pr
 - **2 hechos nuevos**: comisión encubierta de 500.000 € vinculada a la presidencia de Quirón Prevención (investigado); informe UCO pendiente (atribuido).
 - **1 rol nuevo**: Maxwell Cremona como persona jurídica procesada al amparo de la LO 5/2010.
 - **Caso actualizado**: ampliados los delitos atribuidos en la causa con corrupción en los negocios y administración desleal (de la pieza separada).
+
+## Cambios aplicados en PR4 (primarios descargados retrospectivamente)
+
+Aplicación de la convención editorial "Documentos primarios descargados a `/public/documentos/`" (AGENTS.md, incorporada el 2026-05-22 tras el PR2 del caso FGE) al inventario ya existente del caso. Decidida por el maintainer en el ROADMAP §"Próximo paso comprometido" (2026-05-22).
+
+### Documentos N1 descargados al árbol del proyecto
+
+- **`boe-rd838-nombramiento-viejo-ga-2025-09-22`** — RD 838/2025, de 22 de septiembre (`BOE-A-2025-19789`), publicado en BOE núm. 240 de 6 de octubre de 2025. Descargados desde `boe.es` el PDF oficial (10 páginas, 243.380 bytes, sha256 `08d6f012…f6102`) y el XML estructurado (sha256 `bc9d5af6…16f0`). Metadatos PDF confirman autoría institucional CGPJ y productor `eBOE` con Antenna House. Corregida la `fecha_publicacion` del YAML: el RD se firma el 2025-09-22 (fecha del documento) pero se publica en el BOE el 2025-10-06; antes estaba erróneamente fijada en 2025-09-22.
+- **`boe-jubilacion-iglesias-ga-2025-05-13`** — Acuerdo de 13 de mayo de 2025 de la Comisión Permanente del CGPJ (`BOE-A-2025-16497`), publicado en BOE núm. 191 de 9 de agosto de 2025. Descargados desde `boe.es` el PDF oficial (1 página, 192.177 bytes, sha256 `9fbd2228…018a2c`) y el XML estructurado (sha256 `dcead7da…b882`). Metadatos PDF confirman autoría CGPJ. Corregida `fecha_publicacion` (2025-08-08 → 2025-08-09 conforme al campo `<fecha_publicacion>` del XML oficial del BOE).
+
+Ambos YAML actualizados con `ruta_local` + `hash_sha256` y reescrito `nivel_fuente_justificacion` para reflejar metadatos reales del PDF (autor, productor, fecha de creación). `productor_organizacion_id` no se cumplimenta para no introducir una dependencia con `Organizacion(consejo-general-poder-judicial)` que no existe todavía en el catálogo (riesgo de colisión con sesiones paralelas que sí tocan CGPJ, p. ej. caso Kitchen).
+
+### Pendientes (no descargados en PR4)
+
+- **Auto AP Madrid Sección 3ª del 7 de noviembre de 2025** ratificando el procesamiento — buscado en CENDOJ por nombre del investigado y por fecha; el buscador público de `poderjudicial.es` no devuelve el documento al filtrar por la cobertura periodística reseñada en `iustel-ratifica-procesamiento-ga-2025-11-07` y `infobae-ratifica-procesamiento-ga-2025-11-07`. Queda como `pendiente_primario`: cuando el auto aparezca con ROJ asignado en CENDOJ, descargar a `/public/documentos/gonzalez-amador/auto-ap-madrid-seccion-3-ratifica-procesamiento-ga-2025-11-07.pdf` y dar de alta el `Documento` correspondiente (sería el primer auto N1 del caso, hoy modelado únicamente con cobertura N4 cruzada por Iustel + Infobae).
+- **Autos del JI nº 19 de Madrid** (29-may-2025 de procesamiento, 22-sept-2025 de apertura de juicio oral, 14-abr-2025 de imputación de Gómez Fidalgo, 29-may-2025 de archivo provisional de Gómez Fidalgo, 27-jun-2025 de encomienda a la UCO): lección reiterada de Plus Ultra y Begoña Gómez — CENDOJ no publica autos de instrucción de Juzgados ordinarios; sólo lo que sube a la AP o al TS. Permanecen como N4 hasta que algún recurso los suba a la AP.
+- **Informe UCO** cuando se entregue (a fecha 2026-05-10 sigue pendiente). N1 si está accesible.
+
+Convención de procesamiento de PDFs no aplicada todavía a este caso: las citas literales con localización exacta en `Hecho.documentos_respaldo[].pasaje` quedan para una pasada futura del maintainer cuando aparezca el primer documento procesal sustantivo (no las dos disposiciones del BOE, que son administrativas y no aportan citas relevantes a los hechos del caso).
 
 ## Estado editorial — PR1 + PR2 + PR3 acumulado
 

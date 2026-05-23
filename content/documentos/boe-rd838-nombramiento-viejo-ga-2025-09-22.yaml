@@ -1,22 +1,32 @@
 id: boe-rd838-nombramiento-viejo-ga-2025-09-22
-titulo: "BOE — Real Decreto 838/2025, de 22 de septiembre, destina al magistrado Antonio Viejo Llorente al Juzgado de Instrucción nº 19 de Madrid"
+titulo: "BOE-A-2025-19789 — Real Decreto 838/2025, de 22 de septiembre, por el que se destina al magistrado Antonio Viejo Llorente al Juzgado de Instrucción nº 19 de Madrid (publicado en BOE núm. 240 de 6 de octubre de 2025)"
 tipo: boletin_oficial
 nivel_fuente: 1
 nivel_fuente_justificacion: |
   Fuente oficial primaria publicada en el Boletín Oficial del Estado
-  (boe.es, dominio en lista blanca). El Real Decreto 838/2025, de 22
-  de septiembre, recoge en su apartado Sexto el destino del magistrado
-  don Antonio Viejo Llorente a la plaza del Juzgado de Instrucción nº
-  19 de Madrid (Instrucción y Control de los Centros de Internamiento
-  de Extranjeros y de las Salas de Inadmisión de fronteras), como
-  consecuencia del concurso resuelto por Acuerdo de la Comisión
-  Permanente del Consejo General del Poder Judicial de 16 de
-  septiembre de 2025.
+  el 6 de octubre de 2025 con el código BOE-A-2025-19789. El Real
+  Decreto 838/2025, de 22 de septiembre, recoge en su apartado Sexto
+  el destino del magistrado don Antonio Viejo Llorente, con destino
+  previo en la Audiencia Provincial de Madrid (orden penal), a la
+  plaza del Juzgado de Instrucción número 19 de Madrid (Instrucción
+  y Control de los Centros de Internamiento de Extranjeros y de las
+  Salas de Inadmisión de fronteras), como consecuencia del concurso
+  resuelto por Acuerdo de la Comisión Permanente del Consejo General
+  del Poder Judicial de 16 de septiembre de 2025. Copia íntegra
+  descargada del propio BOE (`boe.es`, dominio en lista blanca
+  DominiosOficiales): PDF de 10 páginas (243.380 bytes) cuyos
+  metadatos confirman autoría institucional (`Author: CONSEJO GENERAL
+  DEL PODER JUDICIAL`, `Creator: eBOE`, `Producer: Antenna House PDF
+  Output Library 6.6.1477 (Linux64); modified using OpenPDF 1.3.39`,
+  `CreationDate: Fri Oct 3 18:07:29 2025 CEST`) y XML estructurado
+  oficial. Cumple V-12.
 fecha_documento: "2025-09-22"
-fecha_publicacion: "2025-09-22"
+fecha_publicacion: "2025-10-06"
 url_canonica: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-19789"
+ruta_local: "/documentos/gonzalez-amador/boe-rd838-nombramiento-viejo-ga-2025-09-22.pdf"
+hash_sha256: "08d6f012dbc2eed532ac1cd076fa7eea800a116b74d865374c5e787b279f6102"
 estado_acceso: publico
 idioma: es
 caso_principal_id: gonzalez-amador
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-22"
+ultima_revision_editorial: "2026-05-23"
