@@ -361,6 +361,16 @@ Dentro del cuerpo de un Hecho, descripción de Hito o resumen ejecutivo, ciertos
 - **Separadores horizontales**: líneas 1px en `--color-border`, no espacios solos.
 - **Numeración explícita** de secciones donde aporte (1., 1.1.), siguiendo la tradición administrativa.
 
+### Navegación interna en fichas largas
+
+Las fichas (Caso, Persona, Organización, Documento, Delito) y las páginas largas (Sobre, Aviso legal) usan tres mecanismos coordinados para que el lector no se pierda al hacer scroll. Todos están conectados al componente `<SectionH id="..." />` y funcionan automáticamente en cualquier página que lo use; no hay que añadir nada en cada Pg.
+
+**(a) Índice lateral (`PageToc`)** — cápsula a la derecha del contenido, 220px, con la lista numerada de secciones y scrollspy automático. Implementación en grid de 2 columnas dentro del `<main>` con `position: sticky; top: var(--space-4)`: arranca en flow alineada con el título de la ficha y se ancla al top del viewport solo cuando el scroll la alcanza. La sección visible se resalta con border-left navy + bold. En anchos `<1280px` se colapsa a un botón flotante (FAB) abajo a la derecha que abre el mismo índice como overlay. El componente se auto-oculta si la página no tiene al menos 2 `SectionH` (listados, `/buscar`).
+
+**(b) Sec-h sticky** — cada `<SectionH>` lleva `position: sticky; top: 0` en CSS, pero el JS de `BaseLayout` envuelve runtime cada header con su contenido en un `<section data-toc-section>` para darle scope: solo un encabezado está pegado al top del viewport a la vez, no se apilan. El borde superior navy 2px + fondo `--color-surface-muted` aseguran que el texto que pasa por debajo no se mezcla.
+
+**(c) Highlight `:target`** — cuando una navegación interna aterriza en `#id` (clic en una fuente del Hecho que apunta a un documento, link cruzado entre secciones), el elemento objetivo recibe un flash mostaza (`--color-accent-secondary-soft` + sombra `--color-accent-secondary-border`) durante 2.6s y se desvanece solo. Aplica a documentos, hitos, hechos, roles — cualquier elemento con `id`. Excepción explícita: los `.sec-h:target` no se iluminan (el TOC ya marca la sección activa, sería ruido visual redundante). `scroll-margin-top: 80px` global asegura que el destino no quede tapado bajo el sec-h sticky. Respeta `prefers-reduced-motion`.
+
 ---
 
 ## 6. Depth & Elevation

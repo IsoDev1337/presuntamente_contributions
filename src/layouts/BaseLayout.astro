@@ -3,6 +3,7 @@ import '@/styles/global.css';
 import 'open-props/style';
 import { ClientRouter } from 'astro:transitions';
 import PresuntamenteLogo from '@/components/PresuntamenteLogo.astro';
+import PageToc from '@/components/PageToc.astro';
 
 type NavKey = 'casos' | 'personas' | 'organizaciones' | 'delitos' | 'biblioteca' | 'sobre';
 
@@ -156,6 +157,7 @@ const brandSub = 'Inventario público de casos de corrupción en España';
     )}
 
     <main id="main" class="main" data-pagefind-body>
+      <PageToc />
       <slot />
     </main>
 
@@ -261,6 +263,236 @@ const brandSub = 'Inventario público de casos de corrupción en España';
       }
       __ensureRowLinkListener();
       document.addEventListener('astro:page-load', __ensureRowLinkListener);
+
+      // Índice de página (PageToc) — escanea los .sec-h[id] del <main>,
+      // construye la lista, activa el scrollspy con IntersectionObserver y
+      // gestiona el FAB en móvil. Se reejecuta en cada navegación porque
+      // ClientRouter cambia el <main> sin remontar el layout.
+      let __pageTocObserver: IntersectionObserver | null = null;
+      let __pageTocClickAttached = false;
+
+      // Agrupa cada .sec-h con sus siblings hasta el siguiente .sec-h en un
+      // <section data-toc-section="ID">. Sin este scope, varios .sec-h
+      // position:sticky se apilan a top:0 a la vez (uno por cada padre que
+      // alcanza el viewport top). Con sections separadas, cada .sec-h solo
+      // está sticky mientras su section es visible.
+      function __wrapPageSections() {
+        const main = document.querySelector('main');
+        if (!main) return;
+        const headers = Array.from(main.querySelectorAll<HTMLElement>('.sec-h[id]'));
+        for (const h of headers) {
+          // Si ya está dentro de un wrapper nuestro, saltar.
+          if (h.parentElement?.dataset?.tocSection) continue;
+          // Solo procesar headers que sean hijos directos del <main> (los
+          // que vienen de <SectionH /> top-level en las páginas Pg*). Los
+          // .sec-h anidados en sub-bloques mantienen su comportamiento.
+          if (h.parentElement !== main) continue;
+
+          const section = document.createElement('section');
+          section.dataset.tocSection = h.id;
+          // Reunir el header + siblings hasta el próximo .sec-h o el fin.
+          const toMove: Element[] = [h];
+          let n: Element | null = h.nextElementSibling;
+          while (n && !n.classList.contains('sec-h')) {
+            const next: Element | null = n.nextElementSibling;
+            toMove.push(n);
+            n = next;
+          }
+          h.parentNode?.insertBefore(section, h);
+          for (const node of toMove) section.appendChild(node);
+        }
+      }
+
+      function __buildPageToc() {
+        const aside = document.querySelector<HTMLElement>('.page-toc');
+        if (!aside) return;
+        const list = aside.querySelector<HTMLOListElement>('.page-toc__list');
+        if (!list) return;
+
+        // Reset visual + observer al rebuild.
+        if (__pageTocObserver) {
+          __pageTocObserver.disconnect();
+          __pageTocObserver = null;
+        }
+        list.innerHTML = '';
+
+        __wrapPageSections();
+
+        const headers = Array.from(
+          document.querySelectorAll<HTMLElement>('main .sec-h[id]')
+        );
+
+        if (headers.length < 2) {
+          aside.dataset.state = 'empty';
+          aside.setAttribute('aria-hidden', 'true');
+          // Cierra el panel si quedaba abierto al cambiar de página.
+          aside.dataset.open = 'false';
+          const fab = aside.querySelector('.page-toc__fab');
+          fab?.setAttribute('aria-expanded', 'false');
+          document.body?.classList.remove('has-toc-open');
+          document.body?.classList.remove('has-page-toc');
+          return;
+        }
+
+        aside.dataset.state = 'ready';
+        aside.setAttribute('aria-hidden', 'false');
+        document.body?.classList.add('has-page-toc');
+
+        const linkById = new Map<string, HTMLAnchorElement>();
+        for (const h of headers) {
+          const id = h.id;
+          if (!id) continue;
+          const numEl = h.querySelector('.num');
+          const titleEl = h.querySelector('h2');
+          const num = numEl?.textContent?.trim() ?? '';
+          const title = titleEl?.textContent?.trim() ?? id;
+          const li = document.createElement('li');
+          li.className = 'page-toc__item';
+          const a = document.createElement('a');
+          a.className = 'page-toc__link';
+          a.href = '#' + id;
+          a.dataset.tocTarget = id;
+          if (num) {
+            const numSpan = document.createElement('span');
+            numSpan.className = 'page-toc__num';
+            numSpan.textContent = num;
+            a.appendChild(numSpan);
+          }
+          const titleSpan = document.createElement('span');
+          titleSpan.className = 'page-toc__title';
+          titleSpan.textContent = title;
+          a.appendChild(titleSpan);
+          li.appendChild(a);
+          list.appendChild(li);
+          linkById.set(id, a);
+        }
+
+        // Scrollspy: el último .sec-h cuya top haya cruzado un offset
+        // (~120px desde el top del viewport) es la sección activa. Usamos
+        // IntersectionObserver con un rootMargin que define esa franja.
+        const setActive = (id: string | null) => {
+          for (const a of linkById.values()) a.classList.remove('is-active');
+          if (id) linkById.get(id)?.classList.add('is-active');
+        };
+
+        const visible = new Set<string>();
+        __pageTocObserver = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              const id = (e.target as HTMLElement).id;
+              if (e.isIntersecting) visible.add(id);
+              else visible.delete(id);
+            }
+            // De los visibles, el primero en orden de aparición es el activo.
+            const ordered = headers
+              .map((h) => h.id)
+              .filter((id) => visible.has(id));
+            if (ordered.length > 0) {
+              setActive(ordered[0]);
+              return;
+            }
+            // Si ninguno está dentro de la franja, marca el más cercano
+            // por encima del viewport (estamos a media sección).
+            let lastAbove: string | null = null;
+            for (const h of headers) {
+              const top = h.getBoundingClientRect().top;
+              if (top < 140) lastAbove = h.id;
+              else break;
+            }
+            setActive(lastAbove);
+          },
+          {
+            // Franja activa: entre 80px desde el top (debajo del header)
+            // y un punto a 60% del viewport. Una sección entra/sale de
+            // esta franja conforme se hace scroll.
+            rootMargin: '-80px 0px -60% 0px',
+            threshold: 0,
+          }
+        );
+        for (const h of headers) __pageTocObserver.observe(h);
+
+        // Estado inicial: forzar evaluación tras el primer paint.
+        requestAnimationFrame(() => {
+          let lastAbove: string | null = null;
+          for (const h of headers) {
+            const top = h.getBoundingClientRect().top;
+            if (top < 140) lastAbove = h.id;
+            else break;
+          }
+          if (lastAbove) setActive(lastAbove);
+          else setActive(headers[0].id);
+        });
+      }
+
+      function __ensurePageTocClickHandler() {
+        if (__pageTocClickAttached) return;
+        __pageTocClickAttached = true;
+
+        const setOpen = (open: boolean) => {
+          const aside = document.querySelector<HTMLElement>('.page-toc');
+          if (!aside) return;
+          aside.dataset.open = open ? 'true' : 'false';
+          const fab = aside.querySelector('.page-toc__fab');
+          fab?.setAttribute('aria-expanded', open ? 'true' : 'false');
+          document.body?.classList.toggle('has-toc-open', open);
+        };
+
+        document.addEventListener('click', (e) => {
+          const target = e.target;
+          if (!(target instanceof Element)) return;
+
+          // FAB → toggle.
+          const fab = target.closest('.page-toc__fab');
+          if (fab) {
+            const open = fab.getAttribute('aria-expanded') !== 'true';
+            setOpen(open);
+            return;
+          }
+          // Botón de cerrar dentro del panel.
+          if (target.closest('.page-toc__close')) {
+            setOpen(false);
+            return;
+          }
+          // Click en un link del índice → smooth scroll + cerrar panel
+          // (en móvil) y dejar que el hash se actualice para activar :target.
+          const link = target.closest<HTMLAnchorElement>('a.page-toc__link');
+          if (link) {
+            const id = link.dataset.tocTarget;
+            const el = id ? document.getElementById(id) : null;
+            if (el) {
+              e.preventDefault();
+              const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+              // Actualiza hash sin saltar (replaceState para no inundar history).
+              if (id) history.replaceState(null, '', '#' + id);
+              setOpen(false);
+            }
+            return;
+          }
+          // Click fuera del panel mientras está abierto → cerrar.
+          const aside = document.querySelector<HTMLElement>('.page-toc[data-open="true"]');
+          if (!aside) return;
+          const panel = aside.querySelector('.page-toc__panel');
+          if (panel && !panel.contains(target) && !target.closest('.page-toc__fab')) {
+            setOpen(false);
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key !== 'Escape') return;
+          const aside = document.querySelector<HTMLElement>('.page-toc[data-open="true"]');
+          if (aside) setOpen(false);
+        });
+
+        document.addEventListener('astro:before-preparation', () => setOpen(false));
+      }
+
+      __ensurePageTocClickHandler();
+      __buildPageToc();
+      document.addEventListener('astro:page-load', () => {
+        __ensurePageTocClickHandler();
+        __buildPageToc();
+      });
     </script>
 
     <footer class="site-footer">
