@@ -1,0 +1,29 @@
+id: boe-cgpj-jubilacion-castellon-lezo-2024-09-02
+titulo: "Acuerdo de 20 de junio de 2024 de la Comisión Permanente del CGPJ por el que se declara la jubilación forzosa por edad del magistrado Manuel María García-Castellón García-Lomas, titular del Juzgado Central de Instrucción nº 6"
+tipo: boletin_oficial
+nivel_fuente: 1
+nivel_fuente_justificacion: |
+  Publicación oficial en el «Boletín Oficial del Estado» del lunes
+  2 de septiembre de 2024 (núm. 212, Sec. II.A, p. 110133), código
+  de verificación CVE BOE-A-2024-17653. Acuerdo emanado de la
+  Comisión Permanente del Consejo General del Poder Judicial.
+  Dominio oficial en lista blanca (`boe.es`). Copia íntegra
+  descargada del endpoint estable
+  `https://www.boe.es/boe/dias/2024/09/02/pdfs/BOE-A-2024-17653.pdf`
+  y servida desde el árbol del proyecto en
+  `/documentos/lezo/boe-cgpj-jubilacion-castellon.pdf` con hash
+  SHA-256 verificable. Metadatos del PDF reflejan autoría del
+  Consejo General del Poder Judicial (campo Author = "CONSEJO
+  GENERAL DEL PODER JUDICIAL"), producción mediante Antenna House
+  PDF Output Library 6.6.1477, fecha de creación 30 de agosto de
+  2024. XML estructurado del propio BOE descargado adicionalmente.
+fecha_documento: "2024-06-20"
+fecha_publicacion: "2024-09-02"
+url_canonica: "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-17653"
+ruta_local: "/documentos/lezo/boe-cgpj-jubilacion-castellon.pdf"
+hash_sha256: "9e134c14856e173c1644c90b5438a46377e403d5348e8032096bc86b9db21ca0"
+estado_acceso: publico
+idioma: es
+caso_principal_id: lezo
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

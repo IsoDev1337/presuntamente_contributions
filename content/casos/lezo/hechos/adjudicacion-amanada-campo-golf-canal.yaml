@@ -1,0 +1,46 @@
+id: adjudicacion-amanada-campo-golf-canal
+caso_id: lezo
+enunciado: |
+  La Fiscalía Anticorrupción atribuye en su escrito de acusación
+  que en 2003 el Canal de Isabel II adjudicó originalmente a
+  ACS-Dragados un contrato de obras vinculado a la construcción
+  del campo de golf ubicado en terrenos de la empresa pública y
+  que durante 2004 el entonces vicepresidente de la Comunidad de
+  Madrid Ignacio González González, conjuntamente con el director
+  gerente del Canal Ildefonso de Miguel Rodríguez, habría
+  modificado sustancialmente las condiciones del proyecto para
+  beneficiar a familiares del primero mediante una subcontrata con
+  la sociedad Tecnoconcret Proyectos de Ingeniería (TCT) — en la
+  que figuran como socios el hermano del ex presidente Pablo
+  Manuel González González, su cuñado Juan José Caballero
+  Escudier y José Antonio Clemente Marín —. La participación de
+  los familiares en TCT, según el relato de la acusación, se
+  habría ocultado deliberadamente para evitar cualquier veto
+  derivado de los vínculos familiares. La condición de procesados
+  no implica valoración de culpabilidad: rige el principio de
+  presunción de inocencia mientras no recaiga resolución firme.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2003-01-01"
+  hasta: "2004-12-31"
+  precision: rango
+personas_implicadas:
+  - ignacio-gonzalez
+  - ildefonso-de-miguel
+  - pablo-manuel-gonzalez
+  - juan-jose-caballero
+  - jose-antonio-clemente
+organizaciones_implicadas:
+  - canal-isabel-ii
+  - tct-sociedad
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: eldiario-juicio-canal-golf-lezo-2025-12-22
+    pasaje: "Síntesis del relato de hechos del escrito de acusación: adjudicación original 2003 a ACS-Dragados; modificación 2004 para beneficiar a familiares mediante subcontrata con TCT."
+  - documento_id: confilegal-juicio-sept-2027-lezo-2025-12-23
+    pasaje: "Detalle de los cinco procesados y peticiones de pena de la Fiscalía Anticorrupción y de la Comunidad de Madrid."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

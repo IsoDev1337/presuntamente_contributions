@@ -1,0 +1,27 @@
+id: gonzalez-procesado-pieza-golf
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: ignacio-gonzalez
+rol: procesado
+delitos_atribuidos:
+  - cohecho
+delitos_codigo_penal:
+  - "art. 419 y ss. CP (cohecho — dos delitos según escrito de acusación de la Fiscalía Anticorrupción)"
+fecha_inicio: "2019-11-18"
+hito_origen_id: auto-procesamiento-pieza-emissao-lezo-2019-11-18
+notas: |
+  La Fiscalía Anticorrupción mantiene como acusación principal
+  contra Ignacio González en la pieza del campo de golf del
+  Canal de Isabel II — cuyo auto de apertura de juicio oral
+  dictó el magistrado Manuel García-Castellón en agosto de 2021
+  — dos delitos de cohecho con petición de pena de seis años de
+  prisión y multa de 550.000 euros. La Comunidad de Madrid,
+  personada como acusación particular, eleva la petición de pena
+  a dieciséis años. El juicio oral está señalado por la Sección
+  Segunda de la Sala de lo Penal de la Audiencia Nacional para
+  los días 13 al 30 de septiembre de 2027. Ignacio González
+  figura igualmente procesado en otras piezas separadas del
+  caso Lezo, entre ellas la pieza Emissao desde el auto del 18
+  de noviembre de 2019. La condición de procesado no implica
+  valoración de culpabilidad: rige el principio de presunción de
+  inocencia mientras no recaiga resolución firme.

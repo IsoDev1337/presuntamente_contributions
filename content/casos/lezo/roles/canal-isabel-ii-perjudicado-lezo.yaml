@@ -1,0 +1,16 @@
+id: canal-isabel-ii-perjudicado-lezo
+caso_id: lezo
+sujeto_tipo: organizacion
+sujeto_organizacion_id: canal-isabel-ii
+rol: perjudicado
+fecha_inicio: "2017-04-19"
+hito_origen_id: operacion-uco-detenciones-lezo-2017-04-19
+notas: |
+  El Canal de Isabel II figura en el procedimiento Lezo como
+  empresa pública perjudicada por las adjudicaciones presuntamente
+  amañadas, los sobreprecios pagados en operaciones de compra en
+  el extranjero (Emissao, Inassa) y el desvío de fondos públicos
+  atribuido por la Fiscalía Anticorrupción. La condición de
+  perjudicado se modela aquí conforme a la ampliación de V-11
+  introducida en mayo de 2026 al fichar la UCM como perjudicada
+  en el caso Begoña Gómez (aplicable a las organizaciones).

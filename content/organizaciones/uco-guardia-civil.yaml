@@ -1,0 +1,22 @@
+id: uco-guardia-civil
+nombre: "Unidad Central Operativa de la Guardia Civil"
+nombres_alternativos:
+  - "UCO"
+  - "UCO Guardia Civil"
+  - "Unidad Central Operativa"
+tipo: policia_judicial_unidad
+descripcion_corta: |
+  Unidad de policía judicial española integrada en la Guardia
+  Civil, especializada en la investigación de delitos económicos,
+  corrupción política y criminalidad organizada. Auxilia a los
+  órganos jurisdiccionales y a la Fiscalía Anticorrupción en
+  macrocausas de corrupción. En el caso Lezo coordinó la operación
+  policial del 19 de abril de 2017 que desembocó en la detención
+  del ex presidente de la Comunidad de Madrid Ignacio González y
+  de una docena de personas más.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

@@ -1,0 +1,25 @@
+id: canal-isabel-ii
+nombre: "Canal de Isabel II"
+nombres_alternativos:
+  - "CYII"
+  - "Canal"
+tipo: empresa
+descripcion_corta: |
+  Empresa pública española dependiente de la Comunidad de Madrid
+  responsable del ciclo integral del agua en la región (captación,
+  potabilización, distribución, alcantarillado y depuración). Fue
+  constituida en 1851 y opera actualmente como sociedad mercantil
+  cuya titularidad es íntegramente pública (Comunidad de Madrid y
+  ayuntamientos madrileños). Su gestión durante los gobiernos del
+  Partido Popular en la Comunidad de Madrid (mandatos de Esperanza
+  Aguirre, Ignacio González y Cristina Cifuentes) está siendo
+  investigada como presunta empresa instrumental de un esquema de
+  desvío de fondos públicos en el procedimiento penal Lezo seguido
+  ante el Juzgado Central de Instrucción nº 6 de la Audiencia
+  Nacional. En el procedimiento se ha personado como acusación
+  particular por su condición de perjudicada por las adjudicaciones
+  controvertidas.
+sector: "Gestión integral del agua"
+url_canonica: "https://www.canaldeisabelsegunda.es"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

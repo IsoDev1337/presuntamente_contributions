@@ -1,0 +1,43 @@
+id: comisiones-sobres-efectivo-tct
+caso_id: lezo
+enunciado: |
+  La Fiscalía Anticorrupción atribuye que como resultado de la
+  modificación contractual descrita la sociedad TCT habría
+  ingresado del Canal de Isabel II más de tres millones de euros
+  por las obras del proyecto modificado y, adicionalmente,
+  504.780 euros por la gestión y explotación del campo de golf,
+  distribuidos según el escrito de acusación en cuarenta y nueve
+  entregas en sobres de efectivo. La acusación particular ejercida
+  por la Comunidad de Madrid eleva la valoración del perjuicio
+  patrimonial a la empresa pública y solicita por estos hechos
+  dieciséis años de prisión para Ignacio González frente a los
+  seis años solicitados por la Fiscalía Anticorrupción para cada
+  uno de los cinco procesados. La condición de procesados no
+  implica valoración de culpabilidad: rige el principio de
+  presunción de inocencia mientras no recaiga resolución firme.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2004-01-01"
+  hasta: "2009-12-31"
+  precision: rango
+personas_implicadas:
+  - ignacio-gonzalez
+  - pablo-manuel-gonzalez
+  - juan-jose-caballero
+  - jose-antonio-clemente
+  - ildefonso-de-miguel
+organizaciones_implicadas:
+  - canal-isabel-ii
+  - tct-sociedad
+  - comunidad-de-madrid
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: eldiario-juicio-canal-golf-lezo-2025-12-22
+    pasaje: "Detalle de las cuantías presuntamente percibidas por TCT: más de tres millones de euros por modificación contractual + 504.780 euros distribuidos en cuarenta y nueve entregas en sobres de efectivo."
+  - documento_id: confilegal-juicio-sept-2027-lezo-2025-12-23
+    pasaje: "Síntesis de peticiones de pena de la Fiscalía Anticorrupción (6 años + 550.000 € multa cada uno) y de la Comunidad de Madrid (16 años para Ignacio González)."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

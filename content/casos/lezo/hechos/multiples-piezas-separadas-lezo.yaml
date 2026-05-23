@@ -1,0 +1,51 @@
+id: multiples-piezas-separadas-lezo
+caso_id: lezo
+enunciado: |
+  El procedimiento Lezo se ramifica en varias piezas separadas
+  que se encuentran en distintas fases procesales. La pieza
+  relativa a las adjudicaciones del campo de golf del Canal de
+  Isabel II tiene auto de apertura de juicio oral dictado por el
+  Juzgado Central de Instrucción nº 6 en agosto de 2021 y juicio
+  oral señalado entre el 13 y el 30 de septiembre de 2027 ante
+  la Sección Segunda de la Sala de lo Penal de la Audiencia
+  Nacional. La pieza Emissao, relativa a la compra en 2013 por el
+  Canal de Isabel II de la sociedad brasileña del mismo nombre
+  por unos treinta millones de dólares, tiene auto de
+  procesamiento de 18 de noviembre de 2019 que sienta en el
+  banquillo a Ignacio González, Edmundo Rodríguez Sobrino y
+  otros cinco investigados, con peticiones de pena por la
+  Fiscalía Anticorrupción de hasta ocho años de prisión y
+  diecinueve años de inhabilitación para el ex presidente. La
+  pieza Inassa, sobre la compra en 2001 de la sociedad colombiana
+  Inassa por el Canal de Isabel II por presunto sobreprecio,
+  sigue en fase intermedia con veintidós investigados procesados
+  según cobertura periodística. Otras piezas (ático Estepona,
+  Ruiz-Gallardón) fueron archivadas judicialmente. La regla de
+  presunción de inocencia rige en todas las piezas no firmes.
+tipo: investigado
+fecha_o_periodo:
+  desde: "2017-04-19"
+  precision: dia
+personas_implicadas:
+  - ignacio-gonzalez
+  - ildefonso-de-miguel
+  - pablo-manuel-gonzalez
+  - juan-jose-caballero
+  - jose-antonio-clemente
+organizaciones_implicadas:
+  - juzgado-central-instruccion-6
+  - audiencia-nacional
+  - canal-isabel-ii
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: elindependiente-procesamiento-pieza-golf-lezo-2019-11-18
+    pasaje: "Resumen del auto de procesamiento de la pieza Emissao por el JCI nº 6."
+  - documento_id: confilegal-juicio-sept-2027-lezo-2025-12-23
+    pasaje: "Señalamiento del juicio oral de la pieza del campo de golf para septiembre de 2027."
+  - documento_id: eldiario-juicio-canal-golf-lezo-2025-12-22
+    pasaje: "Detalle de la pieza del campo de golf y referencia a las restantes piezas en distintas fases."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

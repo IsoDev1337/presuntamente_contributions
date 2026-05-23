@@ -1,0 +1,34 @@
+id: auto-procesamiento-pieza-emissao-lezo-2019-11-18
+caso_id: lezo
+tipo: auto_procesamiento
+fecha: "2019-11-18"
+fecha_precision: dia
+titulo: "El magistrado instructor Manuel García-Castellón dicta auto de procesamiento contra Ignacio González y otros seis investigados por la compra de Emissao por el Canal de Isabel II"
+descripcion: |
+  El magistrado titular del Juzgado Central de Instrucción nº 6 de
+  la Audiencia Nacional Manuel María García-Castellón García-Lomas
+  dicta el 18 de noviembre de 2019 auto por el que se propone
+  sentar en el banquillo al ex presidente de la Comunidad de
+  Madrid Ignacio González González y a otros seis investigados —
+  Edmundo Rodríguez Sobrino, Diego Fernando García Arias, Luis
+  Vicente Moro Díaz, Ramón Navarro Pereira y otros — por presuntos
+  delitos de malversación de caudales públicos, fraude a las
+  administraciones, falsedad documental y blanqueo de capitales
+  relacionados con la compra en 2013 por el Canal de Isabel II de
+  la sociedad brasileña Emissao por aproximadamente treinta
+  millones de dólares. La Fiscalía Anticorrupción ha venido
+  solicitando hasta ocho años de prisión y diecinueve años de
+  inhabilitación para Ignacio González por esta pieza separada.
+  El auto archiva la causa frente a otros catorce investigados.
+  Conforme a la legislación procesal española, el procesamiento
+  no implica valoración de culpabilidad: rige la presunción de
+  inocencia mientras no recaiga resolución firme.
+personas_afectadas:
+  - ignacio-gonzalez
+organizaciones_afectadas:
+  - juzgado-central-instruccion-6
+  - audiencia-nacional
+  - canal-isabel-ii
+  - fiscalia-anticorrupcion
+documento_principal_id: elindependiente-procesamiento-pieza-golf-lezo-2019-11-18
+fase_resultante: fase_intermedia

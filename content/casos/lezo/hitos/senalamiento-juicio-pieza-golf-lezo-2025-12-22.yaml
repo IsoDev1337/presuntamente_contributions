@@ -1,0 +1,41 @@
+id: senalamiento-juicio-pieza-golf-lezo-2025-12-22
+caso_id: lezo
+tipo: apertura_juicio_oral
+fecha: "2025-12-22"
+fecha_precision: dia
+titulo: "La Sección Segunda de la Sala de lo Penal de la Audiencia Nacional señala el juicio oral de la pieza del campo de golf del Canal de Isabel II para del 13 al 30 de septiembre de 2027"
+descripcion: |
+  La Sección Segunda de la Sala de lo Penal de la Audiencia
+  Nacional, de la que es ponente el magistrado Fernando Andreu,
+  señala el juicio oral de la pieza relativa a las adjudicaciones
+  del campo de golf del Canal de Isabel II del caso Lezo para
+  los días 13 al 30 de septiembre de 2027. Los cinco procesados
+  por el auto de apertura de juicio oral dictado por el JCI nº 6
+  en agosto de 2021 son el ex presidente de la Comunidad de
+  Madrid Ignacio González, su hermano Pablo Manuel González
+  González, su cuñado Juan José Caballero Escudier, el socio
+  José Antonio Clemente Marín y el ex director gerente del Canal
+  de Isabel II Ildefonso de Miguel Rodríguez. La Fiscalía
+  Anticorrupción solicita seis años de prisión y multa de
+  550.000 euros para cada uno por presuntos delitos de cohecho.
+  La Comunidad de Madrid, personada como acusación particular,
+  eleva la petición de pena para Ignacio González a dieciséis
+  años. Conforme a la legislación procesal española, la
+  apertura del juicio oral no implica valoración de
+  culpabilidad: rige la presunción de inocencia.
+personas_afectadas:
+  - ignacio-gonzalez
+  - pablo-manuel-gonzalez
+  - juan-jose-caballero
+  - jose-antonio-clemente
+  - ildefonso-de-miguel
+organizaciones_afectadas:
+  - audiencia-nacional
+  - canal-isabel-ii
+  - comunidad-de-madrid
+  - tct-sociedad
+  - fiscalia-anticorrupcion
+documento_principal_id: eldiario-juicio-canal-golf-lezo-2025-12-22
+documentos_relacionados:
+  - confilegal-juicio-sept-2027-lezo-2025-12-23
+fase_resultante: fase_intermedia

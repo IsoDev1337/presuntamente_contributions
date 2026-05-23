@@ -1,0 +1,23 @@
+id: clemente-procesado-pieza-golf
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: jose-antonio-clemente
+rol: procesado
+delitos_atribuidos:
+  - cohecho
+delitos_codigo_penal:
+  - "art. 419 y ss. CP (cohecho)"
+fecha_inicio: "2021-08-01"
+hito_origen_id: auto-procesamiento-pieza-emissao-lezo-2019-11-18
+notas: |
+  Procesado en la pieza del campo de golf del Canal de Isabel II
+  por su condición de socio de la sociedad Tecnoconcret
+  Proyectos de Ingeniería (TCT). La Fiscalía Anticorrupción
+  solicita seis años de prisión y multa de 550.000 euros. La
+  fecha exacta del auto de apertura de juicio oral por el JCI
+  nº 6 que abre formalmente la fase intermedia para esta pieza
+  se ha estimado conservadoramente en agosto de 2021 conforme a
+  la cobertura periodística disponible. La condición de
+  procesado no implica valoración de culpabilidad: rige el
+  principio de presunción de inocencia mientras no recaiga
+  resolución firme.

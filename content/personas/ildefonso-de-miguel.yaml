@@ -1,0 +1,30 @@
+id: ildefonso-de-miguel
+nombre_completo: "Ildefonso de Miguel Rodríguez"
+nombres_alternativos:
+  - "Ildefonso de Miguel"
+  - "De Miguel"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Director gerente del Canal de Isabel II"
+    organizacion_id: canal-isabel-ii
+    desde: "2003-01-01"
+    hasta: "2009-12-31"
+nacionalidad: "española"
+biografia_corta: |
+  Directivo público español. Fue director gerente de la empresa
+  pública Canal de Isabel II entre 2003 y 2009, durante los
+  gobiernos del Partido Popular en la Comunidad de Madrid.
+  Detenido el 19 de abril de 2017 en el marco de la Operación
+  Lezo coordinada por la Unidad Central Operativa de la Guardia
+  Civil; el titular del Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional Eloy Velasco acordó su prisión provisional
+  eludible con fianza de 100.000 euros. Figura como procesado en
+  la pieza del campo de golf del caso Lezo seguida ante la Sección
+  Segunda de la Sala de lo Penal de la Audiencia Nacional, cuyo
+  juicio oral está señalado entre el 13 y el 30 de septiembre de
+  2027. La Fiscalía Anticorrupción solicita seis años de prisión y
+  multa de 550.000 euros para él en su escrito de acusación. Le es
+  de aplicación la presunción de inocencia.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

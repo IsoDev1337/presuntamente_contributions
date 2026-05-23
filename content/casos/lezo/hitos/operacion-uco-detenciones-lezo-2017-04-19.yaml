@@ -1,0 +1,32 @@
+id: operacion-uco-detenciones-lezo-2017-04-19
+caso_id: lezo
+tipo: imputacion
+fecha: "2017-04-19"
+fecha_precision: dia
+titulo: "La Unidad Central Operativa de la Guardia Civil ejecuta la operación Lezo y detiene al ex presidente Ignacio González y a una docena de personas más"
+descripcion: |
+  Agentes de la Unidad Central Operativa de la Guardia Civil bajo
+  el mando del coronel Manuel Sánchez Corbí ejecutan la operación
+  policial coordinada con el Juzgado Central de Instrucción nº 6
+  de la Audiencia Nacional, cuyo titular es el magistrado Eloy
+  Velasco. En la operación quedan detenidos el ex presidente y
+  entonces senador por designación autonómica Ignacio González
+  González (Jaime Ignacio González González en su forma oficial),
+  el ex director gerente del Canal de Isabel II Ildefonso de
+  Miguel Rodríguez y una decena larga de personas más. La
+  investigación se atribuye a presuntos delitos de organización
+  criminal, prevaricación, malversación de caudales públicos,
+  cohecho, blanqueo de capitales, fraude a las administraciones
+  públicas, falsedad documental y corrupción en los negocios. La
+  detención no implica valoración de culpabilidad: rige la
+  presunción de inocencia.
+personas_afectadas:
+  - ignacio-gonzalez
+  - ildefonso-de-miguel
+organizaciones_afectadas:
+  - juzgado-central-instruccion-6
+  - audiencia-nacional
+  - uco-guardia-civil
+  - canal-isabel-ii
+documento_principal_id: elespanol-detencion-gonzalez-lezo-2017-04-19
+fase_resultante: instruccion

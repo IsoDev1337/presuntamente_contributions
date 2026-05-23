@@ -1,0 +1,23 @@
+id: comunidad-de-madrid
+nombre: "Comunidad de Madrid"
+nombres_alternativos:
+  - "Gobierno de la Comunidad de Madrid"
+  - "Comunidad Autónoma de Madrid"
+tipo: organismo_publico
+descripcion_corta: |
+  Administración autonómica española correspondiente a la Comunidad
+  de Madrid, con sede en la capital del Reino. Titular indirecta de
+  la empresa pública Canal de Isabel II. En el procedimiento penal
+  Lezo seguido ante el Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional figura personada como acusación particular por
+  los presuntos perjuicios patrimoniales derivados de las
+  adjudicaciones controvertidas durante los gobiernos del Partido
+  Popular bajo los mandatos de Esperanza Aguirre, Ignacio González
+  y Cristina Cifuentes.
+ambito_territorial: autonomico
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+url_canonica: "https://www.comunidad.madrid"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

@@ -1,0 +1,32 @@
+id: antonio-pina
+nombre_completo: "Antonio Piña Alonso"
+nombres_alternativos:
+  - "Antonio Piña"
+  - "Piña Alonso"
+  - "magistrado Piña"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Presidente de la Audiencia Provincial de Ourense"
+    desde: "2014-01-01"
+    hasta: "2024-10-29"
+  - cargo: "Magistrado titular del Juzgado Central de Instrucción nº 6 de la Audiencia Nacional"
+    organizacion_id: juzgado-central-instruccion-6
+    desde: "2025-01-08"
+nacionalidad: "española"
+biografia_corta: |
+  Magistrado español, miembro de la Carrera Judicial con número de
+  escalafón 2046. Fue presidente de la Audiencia Provincial de
+  Ourense desde 2014 hasta el 29 de octubre de 2024, fecha en la
+  que renunció a esa presidencia para concursar al destino del
+  Juzgado Central de Instrucción nº 6 de la Audiencia Nacional. Por
+  Real Decreto 1271/2024, de 10 de diciembre, publicado en el
+  «Boletín Oficial del Estado» del 8 de enero de 2025
+  (BOE-A-2025-350), pasó a ocupar la plaza del JCI nº 6 con
+  preferencia sobre los magistrados con mejor número de escalafón
+  (art. 340 LOPJ), sucediendo en la instrucción de las macrocausas
+  Lezo, Púnica, Tsunami Democràtic y Villarejo al magistrado Manuel
+  María García-Castellón García-Lomas, jubilado forzosamente por
+  edad el 2 de septiembre de 2024.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-23"

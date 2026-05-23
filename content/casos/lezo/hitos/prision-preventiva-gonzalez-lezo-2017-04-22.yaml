@@ -1,0 +1,28 @@
+id: prision-preventiva-gonzalez-lezo-2017-04-22
+caso_id: lezo
+tipo: declaracion_imputado
+fecha: "2017-04-22"
+fecha_precision: dia
+titulo: "El titular del Juzgado Central de Instrucción nº 6 Eloy Velasco acuerda prisión provisional incondicional sin fianza para Ignacio González tras tomarle declaración como investigado"
+descripcion: |
+  Tras tomar declaración como investigados a los detenidos en la
+  operación Lezo, el magistrado titular del Juzgado Central de
+  Instrucción nº 6 de la Audiencia Nacional Eloy Velasco acuerda
+  el 22 de abril de 2017 prisión provisional incondicional sin
+  fianza para el ex presidente de la Comunidad de Madrid Ignacio
+  González González, al considerar acreditado indiciariamente su
+  papel directivo en la trama investigada y apreciar riesgo de
+  destrucción de pruebas y de reiteración delictiva. El mismo
+  auto acuerda prisión provisional eludible con fianza de cien
+  mil euros para el ex director gerente del Canal de Isabel II
+  Ildefonso de Miguel Rodríguez. La adopción de la medida
+  cautelar no implica valoración de culpabilidad: rige la
+  presunción de inocencia mientras no recaiga resolución firme.
+personas_afectadas:
+  - ignacio-gonzalez
+  - ildefonso-de-miguel
+organizaciones_afectadas:
+  - juzgado-central-instruccion-6
+  - audiencia-nacional
+documento_principal_id: publico-prision-preventiva-gonzalez-lezo-2017-04-22
+fase_resultante: instruccion
