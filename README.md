@@ -15,7 +15,7 @@ Ofrecer una **referencia objetiva, trazable y sin cuota política** sobre los pr
 
 Fase 1.0 (integración del design system) ✅ — el sitio se construye estático con Astro 5 sobre los YAML del propio repo. Primer caso fichado: **Plus Ultra**. Inventario actual: 1 caso · 5 personas · 9 organizaciones · 6 documentos · 4 hitos · 5 hechos · 6 roles.
 
-Todavía **no hay versión pública desplegada**: el dominio `presuntamente.org` está reservado pero no comprado, y el aviso legal requiere revisión con abogado antes de publicar (ver [`LEGAL.md`](LEGAL.md)). Mientras tanto el sitio funciona localmente con `pnpm dev` y el catálogo evoluciona en este repositorio.
+Todavía **no hay versión pública desplegada**: el dominio `presuntamente.org` está registrado en Cloudflare Registrar (alta del 23 de mayo de 2026) y los canales `contacto@presuntamente.org` y `rectificacion@presuntamente.org` operan vía Cloudflare Email Routing, pero la publicación está pendiente de (a) apertura del apartado de correos del responsable a efectos LSSI y (b) revisión del aviso legal con abogado especializado (ver [`LEGAL.md`](LEGAL.md)). Mientras tanto el sitio funciona localmente con `pnpm dev` y el catálogo evoluciona en este repositorio.
 
 Estado vivo y backlog detallado en [`ROADMAP.md`](ROADMAP.md).
 

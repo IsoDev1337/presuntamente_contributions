@@ -1,9 +1,11 @@
 ---
 // PgAvisoLegal — texto institucional del sitio.
 // Estructura derivada del borrador en docs/diseno/04-riesgos-legales-y-eticos.md
-// §8 y del placeholder vigente en LEGAL.md. Mientras el sitio no esté
-// publicado con dominio propio, la identificación LSSI completa queda
-// pendiente; el aviso lo deja explícito al lector.
+// §8. Dominio presuntamente.org registrado en Cloudflare Registrar el
+// 2026-05-23; canales contacto@ y rectificacion@ operativos vía Cloudflare
+// Email Routing. La identificación postal completa del responsable a
+// efectos LSSI se activa cuando el sitio entre en operación bajo el
+// dominio propio (requiere apartado de correos + revisión legal previa).
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionH from '@/components/SectionH.astro';
@@ -15,12 +17,12 @@ const { lang = 'es' } = Astro.props;
 const strings = {
   title: 'Aviso legal',
   description:
-    'Aviso legal y editorial de presuntamente.org: presunción de inocencia, categorización de afirmaciones, mecanismo de rectificación, responsable y licencias.',
+    'Aviso legal y editorial de presuntamente.org: presunción de inocencia, categorización de afirmaciones, cómo se construye el inventario, mecanismo de rectificación, responsable, limitación de responsabilidad y licencias.',
   eyebrow: 'Marco legal',
   sub:
     'Aviso legal y editorial. Borrador alineado con docs/diseno/04-riesgos-legales-y-eticos.md §8; ' +
-    'la identificación LSSI completa del responsable se activa cuando el sitio se publique con ' +
-    'dominio propio.',
+    'la identificación postal del responsable a efectos LSSI se publica cuando el sitio entre en ' +
+    'operación bajo presuntamente.org.',
 };
 ---
 
@@ -81,30 +83,77 @@ const strings = {
     </p>
   </div>
 
-  <SectionH num="4." title="Rectificación" id="rectificacion" />
+  <SectionH num="4." title="Cómo se construye este sitio" id="construccion" />
+  <div class="prose">
+    <p>
+      El inventario se construye combinando trabajo editorial humano con apoyo de
+      <strong>modelos de lenguaje</strong> (LLM). Los modelos asisten en la extracción de información
+      de documentos jurisdiccionales (sentencias, autos, BOE, informes UCO/UDEF), en la redacción de
+      borradores de fichas y en la detección de inconsistencias internas; <strong>no toman decisiones
+      editoriales</strong>. Toda inclusión en el inventario, toda calificación de un Hecho como
+      acreditado, investigado, atribuido, exculpatorio o desmentido, y toda promoción de un Documento
+      a Nivel 1 pasa por revisión humana del responsable editorial.
+    </p>
+    <p>
+      Los guardarraíles del proceso están documentados en
+      <code>docs/diseno/03-estrategia-de-mantenimiento.md</code> §4 y en las skills locales del
+      repositorio (<code>.agents/skills/</code>). Los chequeos mecánicos (21 reglas V-01 a V-21,
+      lista blanca de dominios oficiales para nivel de fuente N1, integridad por hash SHA-256 de los
+      documentos primarios descargados) se ejecutan en CI sobre cada cambio, antes y al margen de
+      cualquier LLM. El código y las skills son públicos bajo AGPL-3.0: cualquier lector puede
+      auditar cómo se construye una ficha.
+    </p>
+  </div>
+
+  <SectionH num="5." title="Rectificación" id="rectificacion" />
   <div class="prose">
     <p>
       Cualquier persona que se considere afectada por una información publicada puede solicitar
       rectificación. Las vías habilitadas y el procedimiento operativo están en
       <a href={lang === 'ca' ? '/cat/rectificar' : '/rectificar'}>la página de rectificación</a>.
-      Plazos comprometidos: acuse de recibo en 48 horas hábiles, resolución provisional en 7 días
-      hábiles, publicación de rectificación si procede dentro del plazo legal (LO 2/1984).
+      El canal de correo es <code>rectificacion@presuntamente.org</code>. Plazos comprometidos: acuse
+      de recibo en 48 horas hábiles, resolución provisional en 7 días hábiles, publicación de
+      rectificación si procede dentro del plazo legal (LO 2/1984).
     </p>
   </div>
 
-  <SectionH num="5." title="Responsable a efectos de LSSI" id="responsable" />
+  <SectionH num="6." title="Responsable a efectos de LSSI" id="responsable" />
   <div class="aviso aviso--accent">
     <p>
-      <strong>Identificación pendiente.</strong> Mientras el sitio opera como repositorio público sin
-      dominio comprado, la identificación completa a efectos de la Ley de Servicios de la Sociedad de
-      la Información (Ley 34/2002) queda pendiente. Se activará en cuanto el dominio
-      <code>presuntamente.org</code> esté operativo. El mantenimiento del repositorio se hace público
-      vía GitHub (<a href="https://github.com/davidchicano/presuntamente" target="_blank" rel="noopener">davidchicano/presuntamente</a>);
-      cualquier comunicación formal puede dirigirse por esa vía mientras tanto.
+      <strong>Identificación postal pendiente.</strong> El dominio
+      <code>presuntamente.org</code> está registrado en Cloudflare Registrar (alta del 23 de mayo de
+      2026) y los canales de contacto formal <code>contacto@presuntamente.org</code> y
+      <code>rectificacion@presuntamente.org</code> operan vía Cloudflare Email Routing. La
+      identificación completa del responsable a efectos de la Ley de Servicios de la Sociedad de la
+      Información (Ley 34/2002), incluida la dirección postal, se publica cuando el sitio entre en
+      operación bajo el dominio propio — momento que requiere (a) apertura del apartado de correos
+      del responsable, y (b) revisión del aviso legal con abogado especializado. Mientras tanto el
+      repositorio público en GitHub
+      (<a href="https://github.com/davidchicano/presuntamente" target="_blank" rel="noopener">davidchicano/presuntamente</a>)
+      es el canal principal de trazabilidad y cualquier comunicación formal puede dirigirse por esa
+      vía o a los correos institucionales del dominio.
     </p>
   </div>
 
-  <SectionH num="6." title="Tratamiento de datos personales" id="datos" />
+  <SectionH num="7." title="Limitación de responsabilidad" id="limitacion" />
+  <div class="prose">
+    <p>
+      Este sitio <strong>organiza información ya pública</strong> para facilitar su consulta y
+      verificación. No es asesoramiento jurídico, periodístico ni profesional, ni sustituye la
+      consulta del documento original. Cuando una afirmación del inventario contradiga una fuente
+      oficial primaria (sentencia, auto, BOE, acuerdo CGPJ), <strong>prevalece la fuente oficial</strong>;
+      el procedimiento adecuado es solicitar rectificación por las vías de la sección 5 para
+      corregir el inventario.
+    </p>
+    <p>
+      Las decisiones que cualquier tercero adopte basándose en lo publicado son responsabilidad
+      exclusiva de quien las toma. La reutilización del contenido bajo CC BY-SA 4.0 (sección 9)
+      exige citar la fuente y mantener la licencia; los usos descontextualizados o tergiversados
+      que distorsionen el sentido editorial original quedan fuera del amparo de esta licencia.
+    </p>
+  </div>
+
+  <SectionH num="8." title="Tratamiento de datos personales" id="datos" />
   <div class="prose">
     <p>
       Este sitio menciona personas <strong>únicamente en su condición de sujeto procesal</strong> de un
@@ -118,11 +167,11 @@ const strings = {
       Las personas privadas (sin condición de figura pública) que pierden su rol activo en un
       procedimiento se someten al protocolo de anonimización V-17 documentado en
       <code>docs/diseno/01-modelo-de-datos.md</code>. Los derechos de acceso, rectificación, supresión
-      y oposición (art. 15-22 RGPD) se atienden por las vías de la sección 4.
+      y oposición (art. 15-22 RGPD) se atienden por las vías de la sección 5.
     </p>
   </div>
 
-  <SectionH num="7." title="Licencias" id="licencias" />
+  <SectionH num="9." title="Licencias" id="licencias" />
   <div class="prose">
     <ul class="meta-list">
       <li>

@@ -6,7 +6,7 @@ Guía para cualquier agente LLM (Claude Code, Codex, Cursor, etc.) que trabaje e
 
 **presuntamente** es un inventario interactivo, público y open source de los casos de corrupción más relevantes en España. La misión es **reducir desinformación** ofreciendo una referencia objetiva, trazable y sin cuota política de los procedimientos judiciales relevantes.
 
-- Sitio: `presuntamente.org` (dominio reservado, no comprado todavía).
+- Sitio: `presuntamente.org` (dominio registrado en Cloudflare Registrar el 2026-05-23; canales `contacto@` y `rectificacion@` operativos vía Cloudflare Email Routing. DNS apex y publicación del sitio pendientes de apartado de correos del responsable + revisión legal).
 - Licencia código: AGPL-3.0.
 - Licencia contenido editorial: CC BY-SA 4.0.
 

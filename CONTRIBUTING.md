@@ -15,13 +15,13 @@ Lee [`AGENTS.md`](AGENTS.md) y los principios del proyecto. Toda contribución d
 
 Abre un issue con la etiqueta `sugerencia-fuente` y aporta:
 
-- **Caso al que pertenece** (URL en presuntamente.org cuando esté operativo, o slug del caso).
+- **Caso al que pertenece** (URL en presuntamente.org cuando el sitio esté publicado, o slug del caso mientras tanto).
 - **Documento o evento** que aportas: URL canónica, enlace de archivo (archive.org / archive.ph), o PDF.
 - **Por qué es relevante**: qué Hito o Hecho introduce o modifica.
 
 ## Proponer una rectificación
 
-Ver [`LEGAL.md`](LEGAL.md). Resumen: issue con etiqueta `rectificacion` o correo a `rectificacion@presuntamente.org` (operativo cuando se compre el dominio).
+Ver [`LEGAL.md`](LEGAL.md). Resumen: issue con etiqueta `rectificacion` o correo a `rectificacion@presuntamente.org` (operativo vía Cloudflare Email Routing desde el 2026-05-23, reenviado al maintainer).
 
 ## Para colaboradores con permisos (futuro)
 
