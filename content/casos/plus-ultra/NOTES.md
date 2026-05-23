@@ -2,7 +2,7 @@
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md` § *NOTES.md por caso*.
 
-Última actualización: 2026-05-21 (noche tardía — PR2 incorporado).
+Última actualización: 2026-05-23 (primarios descargados retrospectivamente).
 
 ---
 
@@ -11,7 +11,23 @@ Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes 
 - **PR1 (entregado en main):** schemas cerrados, caso, 2 personas (juez Calama + Zapatero), 7 organizaciones, 5 delitos del catálogo aplicables, 3 documentos (querella Manos Limpias, nota SEPI, auto JCI 4 del 19-may), 2 hitos (querella 23-dic-2025, auto imputación 19-may-2026), 3 hechos, 3 roles.
 - **PR2 (entregado en main):** 3 personas nuevas (Julio Martínez Sola, Roberto Roselli, Javier Martínez Martínez), 2 organizaciones nuevas (Infobae, Libertad Digital como medios de comunicación), 3 documentos nuevos (Infobae operación UDEF, Libertad Digital detención, Infobae cambio_organo — todos N4), 2 hitos nuevos (operación UDEF detenciones 11-dic-2025, cambio_organo a JCI 4 marzo 2026), 2 hechos nuevos (detenciones atribuido por cobertura cruzada, trama organizada investigado conforme al auto), 3 roles nuevos (los 3 detenidos como investigados por blanqueo de capitales).
 
+- **Sesión retrospectiva (2026-05-23):** aplicación de la convención "Documentos primarios descargados a `/public/documentos/`" (AGENTS.md). Único documento N1 descargable identificado y procesado: la nota oficial del CGPJ del 19-may-2026 (auto JCI nº 4), conservada como HTML en `/public/documentos/plus-ultra/auto-jci4-plus-ultra-2026-05-19.html` (109 322 bytes, sha256 `c0189d82…f6c416aa`). Sin candidatos N1 adicionales descargables en esta pasada (ver §"Pendientes de primario descargado" más abajo).
+
 Total tras PR2: 5 personas · 9 organizaciones · 6 documentos · 4 hitos · 5 hechos · 6 roles.
+
+## Pendientes de primario descargado
+
+Documentos candidatos a aplicar la convención de `ruta_local` + `hash_sha256` que **no han podido completarse** en la pasada retrospectiva del 2026-05-23 y quedan abiertos para futuras sesiones:
+
+- **`nota-sepi-aprobacion-plus-ultra-2021-03`** — el YAML actual apunta a `https://www.sepi.es/es/sala-de-prensa/notas-prensa` (índice general de notas), no a la URL canónica específica del comunicado del 9-mar-2021. El buscador interno de SEPI (`/es/sala-de-prensa/busqueda-de-noticias`) no devuelve resultados para "Plus Ultra" en 2026-05-23. Posibles vías para una pasada futura: (a) localizar la URL específica histórica vía Wayback Machine (`https://web.archive.org/web/2021/https://www.sepi.es/...`) si aparece archivada; (b) sustituir la nota institucional por el comunicado del Consejo de Ministros del 9-mar-2021 en `lamoncloa.gob.es` si está disponible con URL estable; (c) descargar el Real Decreto-ley 25/2020 (Fondo de Apoyo a la Solvencia) desde `boe.es` como base normativa y modelarlo como documento N1 adicional propio, no como sustituto del comunicado SEPI específico.
+
+- **BOE Real Decreto-ley 25/2020 de 3 jul 2020** (creación del Fondo de Apoyo a la Solvencia de Empresas Estratégicas) — referenciado en esta NOTES como base normativa del préstamo SEPI pero **no catalogado todavía** como `Documento` propio. Candidato natural a documento N1 descargable (boe.es es lista blanca). Decisión editorial pendiente del maintainer: ¿se modela como documento del caso Plus Ultra (su base normativa) o como contexto suficientemente cubierto por el glosario `fondo-apoyo-solvencia-empresas-estrategicas`? Si se incorpora, el slug propuesto sería `boe-rdl-25-2020-fondo-solvencia` y la URL canónica `https://www.boe.es/buscar/doc.php?id=BOE-A-2020-7311`.
+
+- **Auto íntegro del JCI nº 4 del 19-may-2026 en CENDOJ** — el documento `auto-jci4-plus-ultra-2026-05-19` referencia hoy la nota CGPJ (descargada en HTML). Cuando aparezca el auto íntegro firmado por el magistrado Calama en CENDOJ, descargarlo como PDF anexo conservando el `id` del documento existente y añadiendo un segundo `ruta_local` o creando un documento complementario `auto-jci4-plus-ultra-2026-05-19-integro` con el texto íntegro. Es la pasada que permitiría citar `Hechos Probados` o fundamentos jurídicos con localización exacta tipo "FJ Tercero §3.1, p. 14".
+
+- **Documentos N4 (cobertura periodística) del caso** — fuera de scope de la convención de primarios descargados (AGENTS.md §"Cuándo NO descargar"). El mirror permanente está cubierto por el hook `pre-commit` + `archive.org`; los cinco documentos N4 del caso ya tienen `url_archivo` cumplimentado desde la sesión 6 del 2026-05-22.
+
+---
 
 ## Pendiente para PR3 y siguientes
 

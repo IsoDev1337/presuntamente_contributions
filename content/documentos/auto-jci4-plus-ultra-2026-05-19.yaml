@@ -4,17 +4,35 @@ tipo: auto_judicial
 nivel_fuente: 1
 nivel_fuente_justificacion: |
   Auto del Juzgado Central de Instrucción nº 4 de la Audiencia Nacional
-  cuya existencia, fecha, autor y contenido sustancial constan en la nota
-  oficial del CGPJ publicada en poderjudicial.es, dominio incluido en
-  la lista blanca DominiosOficiales del doc 01 §3. El texto íntegro del
-  auto no se ha localizado todavía publicado en CENDOJ; la cita se hace
-  a partir del extracto institucional del CGPJ.
+  cuya existencia, fecha, autor y contenido sustancial constan en la
+  nota oficial del CGPJ publicada en poderjudicial.es (Oficina de
+  Comunicación del Poder Judicial · Audiencia Nacional · Noticias
+  Judiciales), dominio incluido en la lista blanca DominiosOficiales
+  del doc 01 §3. El texto íntegro del auto no se ha localizado
+  todavía publicado en CENDOJ; la cita se hace a partir del extracto
+  institucional del CGPJ, que recoge los fundamentos del juez
+  Calama sobre el indicio de tráfico de influencias, la decisión de
+  no acordar el registro domiciliario por desproporcionado y la
+  citación del investigado para el 2 de junio.
+  Se conserva en el árbol del proyecto una copia íntegra del HTML
+  de la nota CGPJ en
+  `/public/documentos/plus-ultra/auto-jci4-plus-ultra-2026-05-19.html`
+  (109 322 bytes, codificación UTF-8, plantilla institucional CGPJ
+  con encabezados Oficina de Comunicación / Audiencia Nacional /
+  Noticias Judiciales). El `hash_sha256` registrado abajo permite
+  verificar la fidelidad de esa copia en el futuro, incluso si la
+  URL canónica del CGPJ rota su slug o cambia de plantilla.
+  Cuando aparezca el auto íntegro firmado en CENDOJ se descargará
+  como documento adicional conservando el `id` de este registro
+  como referencia a la nota institucional original.
 productor_organizacion_id: juzgado-central-instruccion-4
 fecha_documento: "2026-05-19"
 fecha_publicacion: "2026-05-19"
 url_canonica: "https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Audiencia-Nacional/Noticias-Judiciales/----La-Audiencia-Nacional-cita-al-expresidente-Jose-Luis-Rodriguez-Zapatero-como-investigado-por-delitos-de-trafico-de-influencias-y-otros-conexos"
+ruta_local: "/documentos/plus-ultra/auto-jci4-plus-ultra-2026-05-19.html"
+hash_sha256: "c0189d8240a07135103af7d81b99980bf1629f1eba8f246bdafc2766d3c416aa"
 estado_acceso: acceso_restringido_pero_citable
 idioma: es
 caso_principal_id: plus-ultra
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-21"
+ultima_revision_editorial: "2026-05-23"
