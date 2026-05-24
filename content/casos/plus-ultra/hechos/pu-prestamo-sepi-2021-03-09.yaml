@@ -16,8 +16,16 @@ organizaciones_implicadas:
   - plus-ultra-lineas-aereas
 documentos_respaldo:
   - documento_id: nota-sepi-aprobacion-plus-ultra-2021-03
+  - documento_id: boe-rdl25-2020-fondo-solvencia-fasee
+    pasaje: |
+      "se crea el Fondo de apoyo a la solvencia de empresas estratégicas,
+      fondo carente de personalidad jurídica (en adelante el «Fondo»),
+      adscrito a la Administración General del Estado, a través del
+      Ministerio de Hacienda" (Art. 2.1, p. 47688) — y "gestionado, a
+      través de la Sociedad Estatal de Participaciones Industriales (SEPI)"
+      (Art. 2.1)
 nivel_fuente_efectivo: 1
 vigencia: vigente
 redaccion_neutra_revisada: false
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-21"
+ultima_revision_editorial: "2026-05-24"
