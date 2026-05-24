@@ -3,25 +3,39 @@ caso_id: kitchen
 tipo: imputacion
 fecha: "2019-05-01"
 fecha_precision: mes
-titulo: "El magistrado instructor del Juzgado Central de Instrucción nº 6 amplía la imputación en la pieza Kitchen al ex secretario de Estado de Seguridad Francisco Martínez y al ex Director Adjunto Operativo de la Policía Eugenio Pino"
+titulo: "El magistrado instructor del Juzgado Central de Instrucción nº 6 amplía la imputación en la pieza Kitchen al ex secretario de Estado de Seguridad Francisco Martínez, al ex Director Adjunto Operativo Eugenio Pino y a varios mandos del Cuerpo Nacional de Policía"
 descripcion: |
-  En el mes de mayo de 2019, en sucesivos autos derivados del avance
-  de la instrucción de la pieza separada nº 7 de las Diligencias
-  Previas 96/2017 (Operación Kitchen), el magistrado instructor del
-  Juzgado Central de Instrucción nº 6 de la Audiencia Nacional
-  acuerda la imputación como investigados de Francisco Martínez
-  Vázquez, ex secretario de Estado de Seguridad, y de Eugenio Pino
-  Sánchez, ex Director Adjunto Operativo de la Dirección General de
-  la Policía, ambos en el organigrama del Ministerio del Interior
-  durante el periodo de la presunta operación parapolicial atribuida
-  contra el ex tesorero del Partido Popular Luis Bárcenas. La fecha
-  se modela con precisión de mes mientras no se localice fuente con
-  el día concreto de cada auto. La condición de investigados no
-  implica valoración de culpabilidad: rige el principio de presunción
-  de inocencia mientras no recaiga sentencia firme en contrario.
+  Entre la primavera de 2019 y el cierre de la instrucción en julio de
+  2021, en sucesivos autos derivados del avance de la pieza separada
+  nº 7 de las Diligencias Previas 96/2017 (Operación Kitchen), el
+  magistrado instructor del Juzgado Central de Instrucción nº 6 de
+  la Audiencia Nacional acuerda la imputación como investigados de
+  Francisco Martínez Vázquez (ex secretario de Estado de Seguridad),
+  Eugenio Pino Sánchez (ex Director Adjunto Operativo de la Dirección
+  General de la Policía), José Luis Olivera Serrano (ex jefe de la
+  UDEF y posteriormente director del CITCO), Marcelino Martín-Blas
+  Aritio (ex jefe de la Unidad de Asuntos Internos), Enrique García
+  Castaño (ex jefe de la Unidad Central de Apoyo Operativo, UCAO),
+  Andrés Manuel Gómez Gordo (inspector jefe del Cuerpo Nacional de
+  Policía), José Ángel Fuentes Gago (inspector del Cuerpo Nacional
+  de Policía) y Bonifacio Díez Sevillano (inspector del Cuerpo
+  Nacional de Policía). Las fechas exactas de los autos individuales
+  de imputación no se han localizado uniformemente con día concreto
+  en fuentes públicas; el hito agrupa con precisión de mes la fase
+  de imputación de los policías del organigrama del Ministerio del
+  Interior durante el periodo de la presunta operación parapolicial.
+  La condición de investigados no implica valoración de culpabilidad:
+  rige el principio de presunción de inocencia mientras no recaiga
+  sentencia firme en contrario.
 personas_afectadas:
   - francisco-martinez-vazquez
   - eugenio-pino-sanchez
+  - jose-luis-olivera-serrano
+  - marcelino-martin-blas
+  - enrique-garcia-castano
+  - andres-gomez-gordo
+  - jose-angel-fuentes-gago
+  - bonifacio-diez-sevillano
 organizaciones_afectadas:
   - audiencia-nacional
   - juzgado-central-instruccion-6
@@ -30,4 +44,5 @@ organizaciones_afectadas:
 documento_principal_id: eldiario-imputacion-fernandez-diaz-2019-04-02
 documentos_relacionados:
   - infobae-imputacion-fernandez-diaz-2019-04-02
+  - elespanol-procesamiento-policias-kitchen-2021-07-30
 fase_resultante: instruccion

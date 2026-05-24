@@ -1,0 +1,17 @@
+id: ramis-juez-tribunal-kitchen
+caso_id: kitchen
+sujeto_tipo: persona
+sujeto_persona_id: francisca-maria-ramis
+rol: juez_ponente
+fecha_inicio: "2026-04-06"
+hito_origen_id: inicio-vista-oral-kitchen-2026-04-06
+notas: |
+  Francisca María Ramis Rosselló integra el tribunal de enjuiciamiento
+  de la pieza séptima de las Diligencias Previas 96/2017 (Operación
+  Kitchen) como magistrada de la Sección Cuarta de la Sala de lo
+  Penal de la Audiencia Nacional. Aunque el rol se etiqueta como
+  `juez_ponente` por convención del enum del schema (que no contempla
+  el rol de magistrada integrante del tribunal sin función ponente),
+  la posición editorial es la de magistrada del tribunal de
+  enjuiciamiento, no la ponente formal. Su intervención en el
+  procedimiento es estrictamente jurisdiccional.

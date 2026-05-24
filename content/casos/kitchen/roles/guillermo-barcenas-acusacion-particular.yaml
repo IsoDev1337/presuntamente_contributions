@@ -1,0 +1,17 @@
+id: guillermo-barcenas-acusacion-particular-kitchen
+caso_id: kitchen
+sujeto_tipo: persona
+sujeto_persona_id: guillermo-barcenas
+rol: acusacion_particular
+fecha_inicio: "2018-07-19"
+hito_origen_id: apertura-pieza-kitchen-2018-07-19
+notas: |
+  Guillermo Bárcenas Iglesias ejerce la acusación particular en la
+  pieza separada nº 7 de las Diligencias Previas 96/2017 (Operación
+  Kitchen), junto a sus padres Luis Bárcenas Gutiérrez y Rosalía
+  Iglesias Villar, en relación con la presunta operación parapolicial
+  atribuida al Ministerio del Interior contra el entorno familiar
+  del ex tesorero del Partido Popular. La fecha exacta de personación
+  inicial se modela apuntando al hito de apertura de la pieza,
+  mientras no se localice fuente con día concreto del auto de
+  admisión específico.

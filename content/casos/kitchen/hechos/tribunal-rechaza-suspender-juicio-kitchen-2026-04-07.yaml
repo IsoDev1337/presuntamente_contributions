@@ -1,0 +1,39 @@
+id: tribunal-rechaza-suspender-juicio-kitchen-2026-04-07
+caso_id: kitchen
+enunciado: |
+  Por auto de la Sección Cuarta de la Sala de lo Penal de la
+  Audiencia Nacional dictado el 7 de abril de 2026, la magistrada
+  presidenta Teresa Palacios Criado rechazó la petición del Partido
+  Socialista Obrero Español, personado en la causa como acusación
+  popular, de suspender la vista oral iniciada el día anterior y de
+  reabrir la investigación contra María Dolores de Cospedal García y
+  el Partido Popular. Conforme a la cobertura cruzada, el tribunal
+  razonó que el sobreseimiento provisional respecto de Cospedal había
+  devenido firme en la fase de instrucción por el auto de la Sección
+  Tercera de la Sala de lo Penal de la Audiencia Nacional de 24 de
+  febrero de 2023, y que no procedía suspender el enjuiciamiento ya
+  iniciado. La Fiscalía Especial contra la Corrupción y la
+  Criminalidad Organizada se opuso también a la petición de
+  suspensión.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2026-04-07"
+  precision: dia
+personas_implicadas:
+  - maria-dolores-cospedal
+  - teresa-palacios
+organizaciones_implicadas:
+  - audiencia-nacional
+  - fiscalia-anticorrupcion
+  - psoe
+  - partido-popular
+documentos_respaldo:
+  - documento_id: elespanol-tribunal-rechaza-cospedal-2026-04-07
+    pasaje: "Cobertura del auto de la magistrada Teresa Palacios del 7 de abril de 2026 rechazando la petición del PSOE de suspender el juicio y reinvestigar a Cospedal."
+  - documento_id: estrelladigital-fiscalia-rechaza-suspender-2026-04-07
+    pasaje: "Cobertura cruzada en línea editorial distinta sobre el rechazo de la Fiscalía Anticorrupción y del tribunal a la petición de suspensión."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

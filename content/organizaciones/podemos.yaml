@@ -1,0 +1,23 @@
+id: podemos
+nombre: "Podemos"
+nombres_alternativos:
+  - "Unidas Podemos"
+  - "Unidos Podemos"
+tipo: partido_politico
+siglas: "Podemos"
+descripcion_corta: |
+  Formación política española de izquierdas constituida formalmente
+  como partido en 2014. Ha integrado coaliciones electorales bajo
+  denominaciones diversas (Unidos Podemos, Unidas Podemos, Sumar) y
+  ha participado en el Gobierno de coalición presidido por Pedro
+  Sánchez entre 2020 y 2023. En la pieza separada nº 7 de las
+  Diligencias Previas 96/2017 del Juzgado Central de Instrucción nº 6
+  de la Audiencia Nacional, conocida mediáticamente como Operación
+  Kitchen, ejerce la acusación popular.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://podemos.info"
+fundacion: "2014-01-17"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

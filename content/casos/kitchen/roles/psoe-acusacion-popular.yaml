@@ -1,0 +1,20 @@
+id: psoe-acusacion-popular-kitchen
+caso_id: kitchen
+sujeto_tipo: organizacion
+sujeto_organizacion_id: psoe
+rol: acusacion_popular
+fecha_inicio: "2018-07-19"
+hito_origen_id: apertura-pieza-kitchen-2018-07-19
+notas: |
+  El Partido Socialista Obrero Español ejerce la acusación popular en
+  la pieza separada nº 7 de las Diligencias Previas 96/2017
+  (Operación Kitchen). La fecha exacta de la personación inicial se
+  modela apuntando al hito de apertura de la pieza, mientras no se
+  localice fuente con día concreto del auto de admisión específico.
+  El partido planteó recurso de apelación contra el sobreseimiento
+  provisional de Cospedal y López del Hierro (desestimado por la
+  Sección Tercera el 24 de febrero de 2023) y solicitó la suspensión
+  del juicio oral al inicio de la vista del 6 de abril de 2026 con
+  pretensión de reabrir la investigación contra Cospedal y contra el
+  Partido Popular (rechazada por la Sección Cuarta el 7 de abril de
+  2026).

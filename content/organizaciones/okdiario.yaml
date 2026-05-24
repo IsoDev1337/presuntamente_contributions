@@ -1,0 +1,18 @@
+id: okdiario
+nombre: "OKDIARIO"
+nombres_alternativos:
+  - "ok diario"
+  - "okdiario.com"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Diario digital español de información general fundado en 2015 por
+  Eduardo Inda. Su cobertura ha sido especialmente extensa en los
+  hitos clave de las Diligencias Previas 96/2017 del Caso Tándem y
+  sus piezas separadas, incluida la pieza séptima conocida
+  mediáticamente como Operación Kitchen.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://okdiario.com"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

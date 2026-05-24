@@ -1,4 +1,4 @@
-# Caso Kitchen — esqueleto inicial (PR1).
+# Caso Kitchen — actualizado en PR3 (2026-05-24).
 #
 # Pieza separada nº 7 de las Diligencias Previas 96/2017 del Juzgado
 # Central de Instrucción nº 6 de la Audiencia Nacional, conocidas como
@@ -12,16 +12,25 @@
 # Fernández Díaz, presuntamente dirigida —según el instructor— a obtener
 # documentación sensible en poder del entonces ex tesorero del Partido
 # Popular Luis Bárcenas. Por auto del Juzgado Central de Instrucción nº
-# 6 de la Audiencia Nacional de 29 de julio de 2021 se dictó procesamiento
-# contra Jorge Fernández Díaz, Francisco Martínez Vázquez, Eugenio Pino
-# Sánchez, José Manuel Villarejo Pérez y otros agentes y se acordó el
-# sobreseimiento provisional respecto de María Dolores de Cospedal
-# García y de Ignacio López del Hierro; este último archivo fue
-# confirmado por auto del mismo órgano el 7 de diciembre de 2022 y
-# posteriormente revocado en 2023 por la Sala de Apelaciones de la
-# Audiencia Nacional, que ordenó la reincorporación de la causa contra
-# Cospedal y López del Hierro. La causa se encuentra en fase
-# intermedia, pendiente de la celebración del juicio oral.
+# 6 de 29 de julio de 2021 se dictó procesamiento contra once personas
+# (Jorge Fernández Díaz, Francisco Martínez Vázquez, Eugenio Pino
+# Sánchez, José Manuel Villarejo Pérez, José Luis Olivera Serrano,
+# Marcelino Martín-Blas Aritio, Enrique García Castaño, Andrés Manuel
+# Gómez Gordo, José Ángel Fuentes Gago, Bonifacio Díez Sevillano y
+# Sergio Ríos Esgueva) y se acordó el sobreseimiento provisional
+# respecto de María Dolores de Cospedal García y de Ignacio López del
+# Hierro; este sobreseimiento fue confirmado por auto del mismo órgano
+# el 7 de diciembre de 2022 y devino firme en la fase de instrucción
+# por auto de la Sección Tercera de la Sala de lo Penal de la Audiencia
+# Nacional de 24 de febrero de 2023. La fase intermedia se cerró con
+# el auto de apertura del juicio oral del 13 de octubre de 2023 (con
+# auto rectificador del 23 de enero de 2024 que excluyó los delitos de
+# secuestro y de pertenencia a organización criminal por superar el
+# límite de pena del procedimiento abreviado). El juicio oral comenzó
+# el 6 de abril de 2026 ante la Sección Cuarta de la Sala de lo Penal
+# de la Audiencia Nacional presidida por la magistrada Teresa Palacios
+# Criado, sin Enrique García Castaño en el banquillo por incapacidad
+# mental sobrevenida tras un ictus de 2022.
 
 id: kitchen
 nombre_oficial: "Diligencias Previas 96/2017, pieza separada nº 7 (Kitchen) — Juzgado Central de Instrucción nº 6 de la Audiencia Nacional"
@@ -44,31 +53,42 @@ descripcion_corta: |
   obtener documentación sensible en poder del entonces ex tesorero del
   Partido Popular Luis Bárcenas. Por auto del Juzgado Central de
   Instrucción nº 6 de 29 de julio de 2021 se transformó el
-  procedimiento a abreviado y se procesó a Jorge Fernández Díaz,
-  Francisco Martínez Vázquez, Eugenio Pino Sánchez, José Manuel
-  Villarejo Pérez y otros agentes, acordándose simultáneamente el
-  sobreseimiento provisional respecto de María Dolores de Cospedal
-  García y de Ignacio López del Hierro. El sobreseimiento de Cospedal
-  y López del Hierro fue confirmado por auto del mismo órgano de 7 de
-  diciembre de 2022 y posteriormente revocado en 2023 por la Sala de
-  Apelaciones de la Audiencia Nacional, que ordenó reincorporar la
-  causa contra ambos. La causa se encuentra en fase intermedia y
-  pendiente de juicio oral. Rige el principio de presunción de
-  inocencia respecto de los procesados mientras no recaiga sentencia
-  firme en contrario.
+  procedimiento a abreviado y se procesó a once personas: Jorge
+  Fernández Díaz, Francisco Martínez Vázquez, Eugenio Pino Sánchez,
+  José Manuel Villarejo Pérez, José Luis Olivera Serrano, Marcelino
+  Martín-Blas Aritio, Enrique García Castaño, Andrés Manuel Gómez
+  Gordo, José Ángel Fuentes Gago, Bonifacio Díez Sevillano y Sergio
+  Ríos Esgueva, acordándose simultáneamente el sobreseimiento
+  provisional respecto de María Dolores de Cospedal García y de
+  Ignacio López del Hierro Bravo. El sobreseimiento de Cospedal y
+  López del Hierro fue confirmado por auto del mismo órgano de 7 de
+  diciembre de 2022 y devino firme en la fase de instrucción por auto
+  de la Sección Tercera de la Sala de lo Penal de la Audiencia
+  Nacional de 24 de febrero de 2023, que desestimó los recursos de
+  apelación de la Fiscalía Anticorrupción, de Unidas Podemos y del
+  PSOE. El auto de apertura del juicio oral fue dictado por el
+  instructor el 13 de octubre de 2023 y rectificado el 23 de enero
+  de 2024 para excluir los delitos de secuestro y de pertenencia a
+  organización criminal por superar éstos el límite de pena del
+  procedimiento abreviado. El juicio oral comenzó el 6 de abril de
+  2026 ante la Sección Cuarta de la Sala de lo Penal de la Audiencia
+  Nacional, presidida y ponente la magistrada Teresa Palacios Criado.
+  Enrique García Castaño no se sienta en el banquillo por incapacidad
+  mental sobrevenida tras un ictus sufrido en 2022. Rige el principio
+  de presunción de inocencia respecto de los procesados mientras no
+  recaiga sentencia firme en contrario.
 
-organo_judicial_id: juzgado-central-instruccion-6
-numero_procedimiento: "Diligencias Previas 96/2017, pieza separada nº 7"
+organo_judicial_id: audiencia-nacional
+numero_procedimiento: "Diligencias Previas 96/2017, pieza separada nº 7; rollo de Sala 13/2024 (Sección Cuarta Sala de lo Penal AN)"
 tipo_procedimiento: procedimiento_abreviado
-ponente_actual_id: manuel-garcia-castellon
+ponente_actual_id: teresa-palacios
 
-fase_actual: fase_intermedia
+fase_actual: juicio_oral
 fecha_apertura: "2018-07-19"
 
 origen_denuncia: oficio_judicial
 
 delitos_atribuidos_en_la_causa:
-  - organizacion-criminal
   - malversacion-caudales-publicos
   - cohecho
   - prevaricacion
@@ -81,13 +101,26 @@ resumen_cifras: |
   tesorero del Partido Popular Luis Bárcenas, así como la realización
   de seguimientos, accesos y obtención de información sensible sobre el
   entorno familiar del presunto perjudicado. Por auto del Juzgado
-  Central de Instrucción nº 6 de 29 de julio de 2021 se procesó a
-  Jorge Fernández Díaz, Francisco Martínez Vázquez, Eugenio Pino
-  Sánchez, José Manuel Villarejo Pérez y otros agentes del Cuerpo
-  Nacional de Policía. Las cifras exactas de fondos reservados
+  Central de Instrucción nº 6 de 29 de julio de 2021 se procesó a once
+  personas: el ex ministro del Interior Jorge Fernández Díaz, el ex
+  secretario de Estado de Seguridad Francisco Martínez Vázquez, el ex
+  Director Adjunto Operativo de la Policía Eugenio Pino Sánchez, el
+  comisario jubilado José Manuel Villarejo Pérez, los comisarios José
+  Luis Olivera Serrano, Marcelino Martín-Blas Aritio, Enrique García
+  Castaño y Andrés Manuel Gómez Gordo, los inspectores José Ángel
+  Fuentes Gago y Bonifacio Díez Sevillano y el chófer Sergio Ríos
+  Esgueva. La Fiscalía Especial contra la Corrupción y la Criminalidad
+  Organizada solicitó en su escrito de acusación de febrero de 2023
+  penas indiciariamente comprendidas entre dos años y medio y
+  diecinueve años de prisión, con inhabilitación, según la persona;
+  retiró su acusación respecto de Olivera, Fuentes Gago y Díez
+  Sevillano por no apreciar indicios suficientes, manteniendo las
+  acusaciones populares (PSOE, Unidas Podemos) y particulares (Luis
+  Bárcenas, Rosalía Iglesias y Guillermo Bárcenas) sus reproches
+  penales sobre ellos. Las cifras exactas de fondos reservados
   presuntamente desviados quedan pendientes de cuantificación
   jurisdiccional firme.
 
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-23"
+ultima_revision_editorial: "2026-05-24"
 nivel_relevancia_editorial: capital

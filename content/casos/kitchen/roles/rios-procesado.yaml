@@ -4,7 +4,6 @@ sujeto_tipo: persona
 sujeto_persona_id: sergio-rios-esgueva
 rol: procesado
 delitos_atribuidos:
-  - organizacion-criminal
   - malversacion-caudales-publicos
   - cohecho
   - revelacion-de-secretos

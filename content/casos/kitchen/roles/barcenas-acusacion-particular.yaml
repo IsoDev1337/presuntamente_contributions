@@ -1,0 +1,19 @@
+id: barcenas-acusacion-particular-kitchen
+caso_id: kitchen
+sujeto_tipo: persona
+sujeto_persona_id: luis-barcenas
+rol: acusacion_particular
+fecha_inicio: "2018-07-19"
+hito_origen_id: apertura-pieza-kitchen-2018-07-19
+notas: |
+  Luis Bárcenas Gutiérrez ejerce la acusación particular en la pieza
+  separada nº 7 de las Diligencias Previas 96/2017 (Operación
+  Kitchen) en su condición de presunto perjudicado por la operación
+  parapolicial. El rol coexiste con el de `perjudicado`, que también
+  consta a su favor en la pieza. La fecha exacta de personación
+  inicial se modela apuntando al hito de apertura de la pieza,
+  mientras no se localice fuente con día concreto del auto de
+  admisión específico. En la fase de apertura del juicio oral
+  pretendió incluir el delito de secuestro, que fue excluido por el
+  auto rectificador del 23 de enero de 2024 por superar el límite
+  de pena establecido para el procedimiento abreviado.

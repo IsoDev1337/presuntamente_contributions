@@ -4,9 +4,12 @@ Anotaciones internas. **No se publica.** Vive en el repo para humanos
 y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md`
 § *NOTES.md por caso*.
 
-Última actualización: 2026-05-24 (PR2 — Ignacio López del Hierro como
-cadena triple paralela a Cospedal + Sergio Ríos Esgueva como
-investigado → procesado).
+Última actualización: 2026-05-24 (PR3 — corrección sustantiva del
+modelado erróneo de PR1+PR2 sobre Cospedal/LdH + 6 procesados
+restantes + tribunal Sec 4ª + acusaciones populares y particulares +
+hitos de apertura juicio oral y de inicio de vista oral + auto
+rectificador 23-ene-2024 que excluye organización criminal y
+secuestro).
 
 ---
 
@@ -18,197 +21,207 @@ gobierno PSOE-derivado (Plus Ultra · Begoña Gómez · FGE García Ortiz)
 y un único caso PP (González Amador). Para evitar lectura sesgada
 "anti-PSOE" del inventario antes del lanzamiento, el Bloque A
 incorpora dos casos del PP/derechas, de los cuales Kitchen es uno
-(el otro es Lezo, trabajado en sesión paralela). Pros de Kitchen
-sobre otras opciones: causa viva ante la AN con procesados confirmados
-(Fernández Díaz · Francisco Martínez · Pino · Villarejo), autos
-jurisdiccionales públicamente cubiertos, conexión directa con la
-cúpula del Ministerio del Interior bajo gobierno PP de Mariano Rajoy
-y con la entonces secretaria general del PP, María Dolores de
-Cospedal. Contras asumidos: procedimiento lento y largo (instrucción
-abierta en julio de 2018, fase intermedia desde julio de 2021,
-todavía pendiente de juicio oral); abundante cobertura periodística
-pero ausencia de autos íntegros publicados con URL canónica en lista
-blanca DominiosOficiales (el JCI nº 6 y la AN no publican sus autos
-de instrucción ordinaria, lección reiterada de Plus Ultra, Begoña
-Gómez y González Amador).
+(el otro es Lezo, trabajado en sesión paralela).
 
-## Decisiones editoriales aplicadas en PR1
+## Corrección sustantiva de PR1+PR2 aplicada en PR3 (2026-05-24)
 
-### Pieza separada del Caso Tándem como caso autónomo
+PR1 y PR2 modelaron erróneamente la trayectoria de **María Dolores de
+Cospedal e Ignacio López del Hierro** como cadena triple
+`investigada → desimputada → investigada tras revocación AN`,
+asumiendo que un auto de la "Sala de Apelaciones de la AN" de julio
+de 2023 había revocado el archivo dictado por el JCI nº 6 el 7 de
+diciembre de 2022.
 
-Kitchen es formalmente la pieza separada nº 7 de las Diligencias
-Previas 96/2017 del JCI nº 6 (Caso Tándem). El modelo del proyecto
-admite modelar piezas separadas como casos hijos vía `caso_padre_id`
-y `tipo_pieza: pieza_separada`, pero en PR1 se opta por modelar
-Kitchen como caso raíz autónomo sin `caso_padre_id`, por dos motivos:
-(a) el Caso Tándem matriz no está fichado todavía en el inventario y
-crear el caso padre sólo para colgar la pieza supone trabajo
-desproporcionado; (b) la pieza Kitchen tiene relevancia editorial y
-mediática autónoma equivalente a la de un caso completo. Cuando en
-un PR futuro se decida fichar el Caso Tándem matriz, se podrá añadir
-`caso_padre_id: tandem` y `tipo_pieza: pieza_separada` a este YAML
-sin destruir trazabilidad ni romper referencias cruzadas, conforme
-al patrón documentado en doc 01.
+**Esa afirmación es incorrecta.** La realidad confirmada por
+cobertura cruzada (The Objective, OKDIARIO, El Español, Estrella
+Digital, El Plural) es:
 
-### Ningún Hecho `acreditado` en PR1 conforme al guardarraíl 3
+- El sobreseimiento provisional respecto de Cospedal y López del
+  Hierro fue acordado por el JCI nº 6 el 29 de julio de 2021 y
+  confirmado por el mismo órgano el 7 de diciembre de 2022.
+- La **Sección Tercera de la Sala de lo Penal de la Audiencia
+  Nacional** dictó auto el **24 de febrero de 2023** **desestimando**
+  los recursos de apelación de la Fiscalía Anticorrupción, de Unidas
+  Podemos y del PSOE contra ese archivo. Es decir, **dejó firme el
+  sobreseimiento en la fase de instrucción**, no lo revocó.
+- Posteriores intentos de reapertura (en abril de 2026 a petición del
+  PSOE al inicio de la vista oral) han sido **rechazados** por la
+  Sección Cuarta de la Sala de lo Penal de la Audiencia Nacional
+  presidida por la magistrada Teresa Palacios Criado.
 
-La pieza está en fase intermedia. No hay sentencia firme. Aplicando
-estrictamente el guardarraíl 3 de la skill `/investigar-caso`, todos
-los hechos del PR1 se modelan como `atribuido` o `investigado`, con
-la única excepción del `exculpatorio` correspondiente al sobreseimiento
-provisional respecto de Cospedal y López del Hierro confirmado el 7
-de diciembre de 2022 (el cual queda `vigencia: superado` tras la
-revocación de la Sala de Apelaciones de la AN en julio de 2023,
-encadenado vía `corregido_por`).
+Por tanto Cospedal y López del Hierro NO están reincorporados al
+procedimiento; su trayectoria correcta es
+`investigado → desimputado` con `desimputado` vigente desde
+2021-07-29. PR3 aplica las siguientes correcciones:
 
-### Ignacio López del Hierro y Sergio Ríos Esgueva — entregados en PR2
+- Elimina los roles `cospedal-investigada-2.yaml` y
+  `lopez-del-hierro-investigado-2.yaml` (no existen tales roles
+  vigentes).
+- Elimina el hito `revocacion-archivo-cospedal-kitchen-2023-07.yaml`
+  (no existe tal revocación).
+- Crea el hito `confirmacion-archivo-cospedal-kitchen-2023-02-24.yaml`
+  con la fecha y descripción reales (Sección 3ª desestima los
+  recursos de apelación).
+- Elimina el hecho `revocacion-archivo-cospedal-kitchen.yaml`.
+- Modifica el hecho `archivo-cospedal-kitchen.yaml` para reflejar
+  firmeza (sin `corregido_por` ni `vigencia: superado`).
+- Modifica `cospedal-desimputada.yaml` y
+  `lopez-del-hierro-desimputado.yaml` para que sean roles vigentes
+  (sin `fecha_fin` ni `hito_fin_id`).
+- Reescribe las biografías de `maria-dolores-cospedal.yaml` y de
+  `ignacio-lopez-del-hierro.yaml`.
+- Reescribe la descripción de `caso.yaml`.
 
-**López del Hierro** entró en PR2 con la misma cadena triple
-`investigado → desimputado → investigado tras revocación AN` que
-Cospedal, apuntando a los mismos hitos compartidos (imputación
-sept-2019, auto procesamiento 29-jul-2021 que archiva, revocación
-Sala AN jul-2023). El hito `imputacion-cospedal-kitchen-2019-09-09`,
-el `archivo-cospedal-kitchen-2022-12-07`, el
-`revocacion-archivo-cospedal-kitchen-2023-07` y el auto de
-procesamiento se ampliaron en PR2 para listar a López del Hierro en
-`personas_afectadas`; los Hechos `archivo-cospedal-kitchen` y
-`revocacion-archivo-cospedal-kitchen` se ampliaron simétricamente
-en `personas_implicadas`. Patrón: cuando un mismo auto judicial
-afecta a varias personas con el mismo `tipo`, se mantiene un único
-hito con `personas_afectadas: [...]` y se crean pares de
-`RolEnCaso` por persona apuntando al mismo `hito_origen_id` /
-`hito_fin_id` (consistente con la lección aprendida en Begoña Gómez
-PR3 con el auto AP Madrid que desimputó a Goyache y Güemes).
+**Lección operativa**: el guardarraíl 2 de `/investigar-caso`
+(`NUNCA inventes datos`) se quedó corto en PR1 porque interpreté un
+patrón sin confirmar la cobertura cruzada de cada hito. Para futuros
+casos con cadenas procesales largas (archivo → recurso →
+revocación), confirmar cada eslabón con al menos dos fuentes en
+líneas editoriales distintas antes de modelar la cadena entera. Para
+el inventario actual queda registrado como aprendizaje en
+ROADMAP §"Aprendizajes y notas (vivo)".
 
-**Sergio Ríos Esgueva** entró en PR2 con la cadena
-`investigado → procesado` y un hito nuevo propio
-(`imputacion-rios-kitchen-2018-12`) por su perfil distinto (agente
-del CNP que actuaba simultáneamente como chófer del presunto
-perjudicado, según el instructor). La fecha de su imputación se
-sitúa en torno a diciembre de 2018, próxima a la del comisario
-Villarejo, con precisión de mes mientras no se localice fuente
-directa con día concreto. El hito del auto de procesamiento, el Hecho
-`procesamiento-multipartito-kitchen` y los Hechos
-`fondos-reservados-rios-kitchen` y `seguimientos-barcenas-kitchen`
-se ampliaron en PR2 para listar a Ríos en `personas_afectadas` /
-`personas_implicadas`.
+## Corrección sobre delitos atribuidos a procesados
 
-### Otros policías procesados — quedan para PR3+
+PR1 y PR2 atribuían a los roles `procesado` el delito de
+`organizacion-criminal`. Esa atribución se basaba en la cobertura
+inicial sobre el auto del JCI nº 6 de julio de 2021, pero el **auto
+rectificador del 23 de enero de 2024** (nota CGPJ del mismo día) del
+mismo instructor **excluyó del auto de apertura del juicio oral los
+delitos de secuestro y de pertenencia a organización criminal** por
+superar éstos el límite de pena de nueve años establecido para el
+procedimiento abreviado. PR3 elimina `organizacion-criminal` de los
+roles `procesado` (Fernández Díaz, Martínez, Pino, Villarejo, Ríos)
+y refleja el delito sólo a nivel de instrucción mediante la
+descripción de los hitos. Los roles `investigado` mantienen los
+delitos atribuidos durante la fase de instrucción sin cambios.
 
-El auto del 29-jul-2021 procesó a varios agentes y altos cargos del
-Cuerpo Nacional de Policía adicionales a los cinco fichados ya en el
-caso (Fernández Díaz, Francisco Martínez, Pino, Villarejo, Ríos).
-Entre ellos suenan mediáticamente Enrique García Castaño, José Luis
-Olivera Serrano, Bonifacio Díez Sevillano, Marcelino Martín Blas y
-Andrés Manuel Gómez Gordo. Pendientes para PR3 conforme se localice
-cobertura verificable persona a persona.
+## Contenido nuevo en PR3
 
-### Otros policías procesados quedan para PR2
+### Personas (11)
 
-El auto del 29-jul-2021 procesó a varios agentes y altos cargos del
-Cuerpo Nacional de Policía adicionales a los cuatro fichados en PR1
-(Fernández Díaz, Francisco Martínez, Pino, Villarejo). Entre ellos
-suenan mediáticamente Enrique García Castaño, José Luis Olivera
-Serrano, Bonifacio Díez Sevillano, Marcelino Martín Blas y Andrés
-Manuel Gómez Gordo. PR1 se acota a los cuatro procesados con
-relevancia política y mando (ministro · secretario de Estado de
-Seguridad · DAO · comisario que coordina la operación), dejando los
-restantes agentes para PR2/PR3 conforme se localice cobertura
-verificable por persona.
+- **Procesados restantes** (6): José Luis Olivera Serrano (ex jefe
+  UDEF y director CITCO), Marcelino Martín-Blas Aritio (ex jefe
+  UAI), Enrique García Castaño (ex jefe UCAO, con incapacidad mental
+  sobrevenida apreciada tras ictus de 2022 — no se sienta en el
+  banquillo), Andrés Manuel Gómez Gordo (inspector jefe próximo a
+  Cospedal en Castilla-La Mancha), José Ángel Fuentes Gago (inspector
+  CNP), Bonifacio Díez Sevillano (inspector CNP).
+- **Tribunal de enjuiciamiento Sección 4ª Sala de lo Penal AN** (3):
+  Teresa Palacios Criado (presidenta y ponente), Francisca María
+  Ramis Rosselló (magistrada), Francisco Ballesteros (magistrado,
+  nombre completo pendiente de verificación contra fuente CGPJ).
+- **Acusaciones particulares** (2): Rosalía Iglesias Villar (esposa
+  de Luis Bárcenas), Guillermo Bárcenas Iglesias (hijo).
 
-### Posición de Cospedal post-revocación AN modelada como `investigado`, no `procesado`
+### Organizaciones (3)
 
-El auto de la Sala de Apelaciones de la AN de julio de 2023 revoca
-el archivo y ordena reincorporar la causa contra Cospedal y López
-del Hierro a la pieza, pero no es por sí mismo un auto de
-procesamiento (procesar es competencia del instructor del JCI nº 6,
-no de la Sala AN; lo que la Sala AN hace es estimar el recurso de la
-Fiscalía Anticorrupción y de las acusaciones populares contra el
-archivo y devolver al instructor con orden de continuar la
-investigación contra ella). En consecuencia, el rol procesal post
-2023-07-25 de Cospedal se modela como `investigado`, no como
-`procesado`. La posición definitiva de Cospedal en la fase intermedia
-queda pendiente de la resolución del instructor. Anotación pendiente
-para PR2/PR3: si el JCI nº 6 dictara nuevo auto de procedimiento
-abreviado respecto de Cospedal posterior a 2023-07-25, abrir nuevo
-rol `procesado` con el correspondiente `hito_origen_id`. Modelado
-similar al patrón aplicado en otros casos con desimputación seguida
-de reapertura.
+- Podemos (partido_politico, acusación popular).
+- OKDIARIO (medio_comunicacion).
+- El Debate (medio_comunicacion).
 
-### Tipo de hito para la revocación del archivo: `recurso_apelacion`
+### Hitos (3 nuevos + 2 modificados + 1 eliminado + 1 sustituido)
 
-El enum del schema `Hito.tipo` no incluye un tipo específico para
-"auto de la Sala de Apelaciones que revoca un sobreseimiento" (el
-enum tiene `sentencia_apelacion`, pero la revocación del archivo en
-fase intermedia es un auto, no una sentencia). Se opta por modelar
-el hito como `recurso_apelacion`, entendido como el evento procesal
-puntual de resolución del recurso de apelación interpuesto contra el
-archivo. El tipo no exige `documento_principal_id` por V-14 pero se
-incluye documento de cobertura cruzada por la importancia editorial
-del hito. Si en el futuro el enum se amplía con `auto_apelacion`
-(análogo a la ampliación con `escrito_conclusiones_provisionales` de
-Begoña Gómez PR3), revisar este hito.
+- `apertura-juicio-oral-kitchen-2023-10-13` (nuevo).
+- `inicio-vista-oral-kitchen-2026-04-06` (nuevo).
+- `confirmacion-archivo-cospedal-kitchen-2023-02-24` (sustituye al
+  erróneo `revocacion-archivo-cospedal-kitchen-2023-07`).
+- `auto-procesamiento-kitchen-2021-07-29` (modificado para listar a
+  los 6 procesados restantes en `personas_afectadas`).
+- `imputacion-policias-kitchen-2019-05` (modificado para listar a
+  los 6 nuevos investigados en `personas_afectadas`).
 
-### Origen de denuncia: `oficio_judicial`
+### Hechos (3 nuevos + 1 modificado + 1 eliminado)
 
-La pieza Kitchen no se incoa por una querella o denuncia externa
-sino por la separación del Caso Tándem matriz, que se abrió a su vez
-por el sumario incoado tras la detención de Villarejo por la propia
-Policía y por las diligencias previas del JCI nº 6. La opción más
-cercana del enum es `oficio_judicial`.
+- `peticion-penas-anticorrupcion-kitchen` (nuevo, atribuido).
+- `incapacidad-garcia-castano-kitchen` (nuevo, exculpatorio).
+- `tribunal-rechaza-suspender-juicio-kitchen-2026-04-07` (nuevo,
+  atribuido).
+- `archivo-cospedal-kitchen` (modificado: ahora `vigencia: vigente`
+  sin `corregido_por`).
+- `revocacion-archivo-cospedal-kitchen` (eliminado por incorrección
+  factual).
 
-## Pendientes para PR2+
+### Documentos (10 N4 + 1 N1)
 
-- ~~**Ignacio López del Hierro**: persona + tres roles (investigado →
-  desimputado → investigado tras revocación). Patrón paralelo a
-  Cospedal.~~ **Entregado en PR2 (2026-05-24).**
-- ~~**Sergio Ríos Esgueva**: persona + dos roles (investigado →
-  procesado).~~ **Entregado en PR2 (2026-05-24).**
-- **Otros policías procesados** (García Castaño, Olivera Serrano,
-  Díez Sevillano, Martín Blas, Gómez Gordo): personas + dos roles
-  cada uno conforme se localice cobertura verificable persona a
-  persona. **Pendiente para PR3+.**
-- **Manos Limpias** ya está fichada como organización en el inventario.
-  Si se confirma su personación como acusación popular en la pieza
-  Kitchen, crear rol `acusacion_popular` correspondiente.
-- **Hito de apertura del juicio oral** cuando se dicte. La fecha
-  exacta y el auto de apertura quedan pendientes; cuando se publique
-  ficharlo como `apertura_juicio_oral` con el `documento_principal_id`
-  correspondiente.
-- **Caso Tándem matriz** como caso padre cuando se decida ficharlo;
-  añadir `caso_padre_id: tandem` y `tipo_pieza: pieza_separada` a
-  este YAML.
-- **Cospedal post-revocación como `procesada`**: si el JCI nº 6
-  dicta nuevo auto de procedimiento abreviado respecto de ella
-  después del 2023-07-25, abrir rol `procesado` paralelo a la
-  cadena ya modelada.
+- N1: `cgpj-rectifica-auto-kitchen-2024-01-23` (nota oficial CGPJ).
+- N4: `theobjective-rechazo-reapertura-cospedal-2023-02-24`,
+  `okdiario-rechazo-reapertura-cospedal-2023-02-24`,
+  `eldiario-apertura-juicio-oral-kitchen-2023-10`,
+  `elplural-apertura-juicio-oral-kitchen-2023-10`,
+  `elindependiente-rectifica-auto-kitchen-2024-01-23`,
+  `eldebate-juicio-kitchen-2026-04-06`,
+  `elplural-juicio-kitchen-2026-04-06`,
+  `elespanol-tribunal-rechaza-cospedal-2026-04-07`,
+  `estrelladigital-fiscalia-rechaza-suspender-2026-04-07`,
+  `elespanol-procesamiento-policias-kitchen-2021-07-30`,
+  `iustel-incapacidad-garcia-castano-kitchen-2025`.
+
+### Roles (17 nuevos + 2 modificados + 2 eliminados + 5 corregidos)
+
+- 12 nuevos: cadenas `investigado → procesado` para Olivera,
+  Martín-Blas, García Castaño, Gómez Gordo, Fuentes Gago, Díez
+  Sevillano.
+- 3 nuevos del tribunal: Palacios (juez_ponente), Ramis
+  (juez_ponente con nota), Ballesteros (juez_ponente con nota).
+- 5 nuevos de acusaciones: PSOE acusación popular, Podemos acusación
+  popular, Bárcenas acusación particular (paralelo a perjudicado),
+  Rosalía Iglesias acusación particular, Guillermo Bárcenas
+  acusación particular.
+- 2 modificados: `cospedal-desimputada.yaml` y
+  `lopez-del-hierro-desimputado.yaml` (rol vigente sin `fecha_fin`).
+- 2 eliminados: `cospedal-investigada-2.yaml`,
+  `lopez-del-hierro-investigado-2.yaml`.
+- 5 corregidos: `fernandez-diaz-procesado.yaml`,
+  `martinez-procesado.yaml`, `pino-procesado.yaml`,
+  `villarejo-procesado.yaml`, `rios-procesado.yaml` (quitado
+  `organizacion-criminal` por exclusión del auto rectificador
+  23-ene-2024).
+
+## Pendientes para PR4+
+
+- **Cadena cronológica completa de instructores**. Wikipedia y otras
+  fuentes mencionan que tras García-Castellón pasaron por la
+  instrucción otros magistrados (Diego de Egea, José de la Mata) en
+  momentos puntuales. Pendiente investigar fechas exactas y
+  modelar hitos `cambio_juez` correspondientes.
+- **Sentencias del juicio cuando se dicten** (previsto cierre del
+  juicio entre finales de mayo y junio de 2026; sentencia en plazo
+  habitual posterior).
+- **Caso Tándem matriz**. Cuando se decida fichar Tándem como caso
+  raíz, modificar este `caso.yaml` añadiendo `caso_padre_id: tandem`
+  y `tipo_pieza: pieza_separada`.
 - **Cobertura local archive.org**: pendiente del hook pre-commit en
-  el commit del PR1 (12 documentos N4 nuevos, todos elegibles para
-  archivado en archive.org).
-- **Autos íntegros del JCI nº 6 publicados en mirror**: la cobertura
-  ocasional incluye fragmentos literales. Si un mirror periodístico
-  publica el auto íntegro del 29-jul-2021 o del 7-dic-2022, considerar
-  descarga local conforme a la convención de primarios descargados
-  (AGENTS.md §"Documentos primarios descargados").
+  el commit del PR3 (10+ documentos N4 nuevos con `url_canonica` —
+  esta vez sí tienen URL verificable, así que el hook archive.org
+  los procesará automáticamente).
+- **Auto íntegro del 24-feb-2023 de la Sección 3ª** si se localiza
+  publicado con URL canónica (descarga local + N1).
+- **Auto íntegro del 13-oct-2023 y rectificador del 23-ene-2024** si
+  se localizan publicados (descarga local + elevación a N1).
+- **Verificar nombre completo del magistrado Francisco Ballesteros**
+  contra el directorio oficial del CGPJ.
+- **Otros procesados archivados durante la instrucción** (si los
+  hubo): comprobar si hubo más nombres barajados en la causa que
+  fueran archivados antes del auto del 29-jul-2021.
 
-## Fuentes consultadas
+## Fuentes consultadas en PR3
 
-- elDiario.es: serie de coberturas 2018-2023 sobre la pieza Kitchen
-  (apertura, imputaciones, procesamiento, archivo Cospedal,
-  revocación).
-- Infobae: coberturas paralelas 2018-2023 sobre los mismos hitos.
-- El País: cobertura del Caso Tándem matriz desde noviembre de 2017
-  y de la revocación del archivo de Cospedal en 2023.
-- laSexta: cobertura televisiva del Caso Tándem y de la pieza Kitchen.
-- Informes públicos de la Unidad de Asuntos Internos del Cuerpo
-  Nacional de Policía remitidos al JCI nº 6 (citados por la cobertura
-  cruzada de elDiario.es e Infobae en 2020).
-
-URLs canónicas específicas de cada artículo NO se han incluido en
-los YAML del PR1 por el guardarraíl 2 de la skill (`NUNCA inventes
-datos`): cuando no se localiza con alta confianza la URL exacta del
-artículo, se omite el campo `url_canonica` (opcional en el schema).
-El hook pre-commit archive.org sólo procesa documentos N4 con
-`url_canonica`; los del PR1 quedarán como backlog pendiente que el
-maintainer puede completar en PR2 una vez localizadas las URLs
-exactas.
+- The Objective (24-feb-2023): rechazo reapertura Cospedal.
+- OKDIARIO (24-feb-2023): rechazo reapertura Cospedal y "Quién es
+  quién" del juicio (6-abr-2026).
+- El Diario (13-oct-2023): apertura juicio oral.
+- El Plural (13-oct-2023 y 6-abr-2026): apertura y "Quién es quién".
+- El Independiente (23-ene-2024): auto rectificador.
+- El Debate (6-abr-2026): "Quién es quién" del juicio con peticiones
+  de pena por persona y acusaciones personadas.
+- El Español (30-jul-2021 y 7-abr-2026): procesamiento de los seis
+  ex comisarios y rechazo de suspensión.
+- Estrella Digital (7-abr-2026): rechazo de la Fiscalía a suspender.
+- Iustel (2025): incapacidad de García Castaño.
+- Fuentes Informadas (2026): composición del tribunal con Palacios
+  ponente y los magistrados Ramis y Ballesteros.
+- CGPJ poderjudicial.es (23-ene-2024): nota oficial sobre la
+  rectificación del auto de apertura.
+- Wikipedia "Caso Kitchen" (consultada como índice general; los
+  datos verificables se cruzaron con fuentes primarias).

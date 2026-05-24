@@ -1,0 +1,37 @@
+id: confirmacion-archivo-cospedal-kitchen-2023-02-24
+caso_id: kitchen
+tipo: desimputacion
+fecha: "2023-02-24"
+fecha_precision: dia
+titulo: "La Sección Tercera de la Sala de lo Penal de la Audiencia Nacional rechaza reabrir la investigación contra María Dolores de Cospedal e Ignacio López del Hierro en la pieza Kitchen y deja firme el sobreseimiento provisional respecto de ambos"
+descripcion: |
+  Por auto de la Sección Tercera de la Sala de lo Penal de la
+  Audiencia Nacional, dictado el 24 de febrero de 2023, se desestiman
+  los recursos de apelación interpuestos por la Fiscalía Especial
+  contra la Corrupción y la Criminalidad Organizada, el partido
+  político Unidas Podemos en su condición de acusación popular, y el
+  Partido Socialista Obrero Español, también como acusación popular,
+  contra el sobreseimiento provisional confirmado el 7 de diciembre
+  de 2022 por el Juzgado Central de Instrucción nº 6 respecto de
+  María Dolores de Cospedal García y de su esposo Ignacio López del
+  Hierro Bravo. La Sala razona que las anotaciones y mensajes
+  aportados no constituyen «suficientes indicios de participación»,
+  que respecto de los audios publicados en mayo de 2022 «se desconoce
+  si las conversaciones están completas» y falta contexto esencial, y
+  que existe «duda razonable» sobre interpretaciones alternativas de
+  esas pruebas. Con esta resolución el sobreseimiento provisional
+  respecto de ambos deviene firme en la fase de instrucción. Rige el
+  principio de presunción de inocencia.
+personas_afectadas:
+  - maria-dolores-cospedal
+  - ignacio-lopez-del-hierro
+organizaciones_afectadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+  - fiscalia-anticorrupcion
+  - psoe
+  - podemos
+documento_principal_id: theobjective-rechazo-reapertura-cospedal-2023-02-24
+documentos_relacionados:
+  - okdiario-rechazo-reapertura-cospedal-2023-02-24
+fase_resultante: fase_intermedia

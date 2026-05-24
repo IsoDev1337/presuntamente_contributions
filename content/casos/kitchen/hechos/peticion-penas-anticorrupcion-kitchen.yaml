@@ -1,0 +1,55 @@
+id: peticion-penas-anticorrupcion-kitchen
+caso_id: kitchen
+enunciado: |
+  En su escrito de acusación formulado en febrero de 2023 ante la
+  Audiencia Nacional, la Fiscalía Especial contra la Corrupción y la
+  Criminalidad Organizada solicitó penas de prisión y de
+  inhabilitación para los procesados en la pieza séptima de las
+  Diligencias Previas 96/2017 (Operación Kitchen) por presuntos
+  delitos de encubrimiento, malversación de caudales públicos,
+  cohecho, prevaricación, descubrimiento y revelación de secretos.
+  Conforme a la cobertura cruzada de la prensa especializada, la
+  Fiscalía solicitó indiciariamente: para Jorge Fernández Díaz quince
+  años de prisión y treinta y tres años de inhabilitación; para
+  Francisco Martínez Vázquez quince años de prisión; para Eugenio
+  Pino Sánchez quince años de prisión; para José Manuel Villarejo
+  Pérez diecinueve años de prisión; para Andrés Manuel Gómez Gordo
+  quince años de prisión y cuarenta y ocho años de inhabilitación
+  absoluta; para Marcelino Martín-Blas Aritio dos años y seis meses
+  de prisión; para Sergio Ríos Esgueva doce años y cinco meses de
+  prisión. Respecto de José Luis Olivera Serrano, José Ángel Fuentes
+  Gago y Bonifacio Díez Sevillano, la Fiscalía Anticorrupción retiró
+  la imputación al no apreciar indicios suficientes; las acusaciones
+  populares y particulares personadas en la causa han mantenido sus
+  reproches penales sobre ellos. La petición de pena es una
+  pretensión de parte y no constituye declaración de culpabilidad;
+  rige el principio de presunción de inocencia mientras no recaiga
+  sentencia firme en contrario.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2023-02-01"
+  precision: mes
+personas_implicadas:
+  - jorge-fernandez-diaz
+  - francisco-martinez-vazquez
+  - eugenio-pino-sanchez
+  - jose-manuel-villarejo
+  - andres-gomez-gordo
+  - marcelino-martin-blas
+  - sergio-rios-esgueva
+  - jose-luis-olivera-serrano
+  - jose-angel-fuentes-gago
+  - bonifacio-diez-sevillano
+organizaciones_implicadas:
+  - fiscalia-anticorrupcion
+  - audiencia-nacional
+documentos_respaldo:
+  - documento_id: eldebate-juicio-kitchen-2026-04-06
+    pasaje: "Resumen de las peticiones de pena de la Fiscalía Anticorrupción por persona en el escrito de acusación de febrero de 2023, recapituladas con motivo del inicio del juicio oral."
+  - documento_id: elplural-juicio-kitchen-2026-04-06
+    pasaje: "Cobertura cruzada en línea editorial distinta sobre las mismas peticiones de pena."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

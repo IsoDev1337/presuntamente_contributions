@@ -206,6 +206,9 @@ Y en el YAML del `Documento` se cumplimentan obligatoriamente los campos:
 - Calcular el hash sha256 del archivo final (`shasum -a 256 archivo`) y registrarlo en `hash_sha256` del YAML.
 - En el campo `nivel_fuente_justificacion` documentar: metadatos clave del PDF (autor, fecha de creación, productor), el mirror del que se descarga, el segundo mirror usado para cruce de fidelidad si aplica, y la razón del `nivel_fuente` asignado.
 - Si el documento debería ser N1 pero la URL oficial no existe todavía (caso típico: sentencia íntegra del TS antes de aparecer en CENDOJ), se modela como N3 `filtrado_verificado` con triangulación documentada; cuando aparezca en CENDOJ se eleva a N1 conservando el mismo `id` y el mismo `hash_sha256` (que sirve como prueba de fidelidad histórica).
+- **Mirrors no auditables (Wuolah, Scribd, repositorios universitarios anónimos, copias colgadas en blogs personales)** NO son fuente válida aunque el documento parezca íntegro: el `hash_sha256` sólo acredita fidelidad si la procedencia es verificable (órgano emisor, mirror periodístico con autoría firmada, repositorio institucional). Si la única vía pública es un mirror no auditable, **NO descargar**: anotar el documento como `pendiente_primario` en `content/casos/<caso>/NOTES.md` con la URL candidata y esperar a fuente oficial. Aprendizaje incorporado el 2026-05-24 tras el barrido retrospectivo del caso Begoña Gómez (2026-05-23), que descartó un mirror Wuolah del auto AP Madrid 13-may-2025 por imposibilidad de auditar la cadena de custodia.
+- **HTML nativo del órgano emisor es formato válido para `ruta_local`** (precedente: nota CGPJ del auto JCI nº 4 del 19-may-2026 sobre Plus Ultra, incorporada el 2026-05-23). Cuando el órgano emisor publica el documento en HTML nativo (notas CGPJ, comunicados Fiscalía, BOE en formato XML) y no hay PDF anexo, se descarga el HTML/XML íntegro a `/public/documentos/<caso>/<id>.html` (o `.xml`) con `hash_sha256` calculado igual que un PDF. El schema de `Documento.ruta_local` no restringe la extensión; el principio operativo es "archivo fiel al órgano emisor en el formato en que lo publica nativamente".
+- **Verificar `fecha_publicacion` contra metadatos reales del BOE al descargar**: en el barrido retrospectivo del caso González Amador (2026-05-23) se detectó que dos `Documento` BOE ya catalogados tenían la fecha del acto administrativo (RD/Acuerdo) en lugar de la fecha del BOE. El XML estructurado del BOE (`boe.es/diario_boe/xml.php?id=BOE-A-YYYY-XXXXX`) trae el campo `<fecha_publicacion>` autoritativo. Al cumplimentar `ruta_local` + `hash_sha256` de un BOE preexistente, **verifica también `fecha_publicacion`** y corrige si está desfasada; las dos fechas suelen diferir 1-15 días (el BOE publica con retraso variable respecto al RD).
 
 **Citas literales en `Hecho.documentos_respaldo[].pasaje`**: una vez el PDF está descargado, las citas en `pasaje` deben ser **precisas con localización** ("FALLO, p. 180", "Fundamento de Derecho Tercero §3.1, p. 147", "Hechos Probados pp. 18-21"), no genéricas. Esto permite al lector verificar la cita abriendo el PDF en la página exacta y eleva el rigor editorial al nivel de citación académica.
 
@@ -248,6 +251,41 @@ En Fase 0 son placeholders; se implementan según se necesiten.
 **Convención clave**: las skills se moldean con la experiencia, **no se fijan upfront**. Cada caso investigado refina la skill correspondiente. La primera versión es la mínima útil; cada uso aporta mejoras. No esperar a "diseñar la skill perfecta" antes de usarla.
 
 **Ubicación canónica:** las skills viven en `/.agents/skills/`. Para mantener compatibilidad con Claude Code, cada entrada de `/.claude/skills/` debe ser un symlink relativo a su equivalente en `/.agents/skills/`.
+
+## División de trabajo: maintainer ↔ agente
+
+**Norma fundacional, incorporada el 2026-05-24 por feedback explícito del maintainer.** El reparto de roles entre la persona que mantiene el proyecto (de aquí en adelante "el maintainer") y el agente LLM (Claude Code u otro) es:
+
+**El maintainer es**:
+
+1. **Reviewer editorial**: lee diffs, detecta hallazgos, aprueba commits y pushes, vetar contenido.
+2. **Mente pensante**: toma decisiones de diseño y prioridad (qué casos entran, en qué orden, qué features se cierran antes del lanzamiento, qué normas se aplican).
+3. **Mano operativa para lo que el agente no puede hacer técnicamente**: descargar PDFs bloqueados por el sandbox classifier, navegar a URLs fuera de la lista blanca, ejecutar `git push`, operaciones que requieran credenciales o autenticación, abrir cuentas externas (apartado de correos, dominios, etc.).
+
+**El maintainer NO aporta conocimiento editorial del caso.** El maintainer **no sabe** quiénes están procesados, qué fuentes existen, cuándo se dictaron los autos, qué cobertura periodística cruza qué hecho. Esa investigación es **íntegramente trabajo del agente**.
+
+**El agente es**:
+
+1. **Investigador autónomo**: usa `WebSearch` y `WebFetch` para localizar fuentes (notas CGPJ, BOE, sentencias en CENDOJ, cobertura periodística en líneas editoriales distintas). Cruza fuentes, verifica datos, aplica el lenguaje del doc 04 §3 y los guardarraíles de las skills de investigación.
+2. **Modelador**: genera los YAML conforme a los schemas (Caso · Persona · Organizacion · Documento · Hito · Hecho · RolEnCaso · Glosario · RelacionEntreCasos), aplica las 21 reglas V del modelo, respeta principios irrenunciables.
+3. **Auditor cualitativo** (skill `/revisar-caso`): aplica las 10 reglas P del doc 02 y los principios irrenunciables sobre lo ya modelado, clasifica hallazgos en `BLOQUEANTE` / `SUGERENCIA` / `OK`.
+
+**Qué el agente NUNCA pide al maintainer**:
+
+- "¿Quién está procesado en este caso?" → lo investiga el agente.
+- "¿Cuál es la URL canónica del auto X?" → la busca el agente.
+- "¿Sabes si Y persona aparece en la cobertura?" → cobertura cruzada vía WebSearch.
+- "¿Cuándo fue dictado el auto Z?" → busca en `poderjudicial.es`, CENDOJ, prensa N4 cruzada.
+- "¿Qué delitos se atribuyen a esta persona?" → lo extrae el agente del auto / nota oficial / cobertura.
+
+**Qué el agente SÍ pide al maintainer**, con propuesta operativa concreta y opciones cuando corresponda:
+
+- Descarga de un PDF que el sandbox classifier bloquea (con la URL exacta y la justificación).
+- Decisión editorial vinculante (prioridad entre alternativas, alcance de un PR, si se acepta una regla nueva del schema).
+- Operaciones git que requieran credenciales o que sean editoriales del lado público (push, force-push, tags, releases).
+- Aprobación para descargar de fuentes fuera de lista blanca DominiosOficiales cuando aplica la norma de §"Documentos primarios descargados".
+
+**Regla compacta**: el maintainer aporta **operaciones**, no **conocimiento**. Si el agente se ve necesitando saber un dato del caso, lo investiga; si se ve necesitando hacer una operación que el entorno le impide, lo pide.
 
 ## Workflow para agentes
 

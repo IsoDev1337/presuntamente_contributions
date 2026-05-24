@@ -3,7 +3,7 @@ caso_id: kitchen
 tipo: auto_procesamiento
 fecha: "2021-07-29"
 fecha_precision: dia
-titulo: "El magistrado instructor del Juzgado Central de Instrucción nº 6 dicta auto de procedimiento abreviado y procesa al ex ministro Jorge Fernández Díaz, al ex secretario de Estado Francisco Martínez, al ex DAO Eugenio Pino, al comisario jubilado José Manuel Villarejo, al ex chófer del ex tesorero del PP Sergio Ríos y a otros agentes, acordando simultáneamente el sobreseimiento provisional respecto de María Dolores de Cospedal e Ignacio López del Hierro"
+titulo: "El magistrado instructor del Juzgado Central de Instrucción nº 6 dicta auto de procedimiento abreviado y procesa al ex ministro Jorge Fernández Díaz, al ex secretario de Estado Francisco Martínez, al ex DAO Eugenio Pino, al comisario jubilado José Manuel Villarejo, a los comisarios Olivera, Martín-Blas, García Castaño y Gómez Gordo, a los inspectores Fuentes Gago y Díez Sevillano y al ex chófer del ex tesorero del PP Sergio Ríos, acordando simultáneamente el sobreseimiento provisional respecto de María Dolores de Cospedal e Ignacio López del Hierro"
 descripcion: |
   El 29 de julio de 2021 el magistrado instructor del Juzgado Central
   de Instrucción nº 6 de la Audiencia Nacional dicta auto de
@@ -27,6 +27,12 @@ personas_afectadas:
   - francisco-martinez-vazquez
   - eugenio-pino-sanchez
   - jose-manuel-villarejo
+  - jose-luis-olivera-serrano
+  - marcelino-martin-blas
+  - enrique-garcia-castano
+  - andres-gomez-gordo
+  - jose-angel-fuentes-gago
+  - bonifacio-diez-sevillano
   - sergio-rios-esgueva
   - maria-dolores-cospedal
   - ignacio-lopez-del-hierro
@@ -38,4 +44,5 @@ organizaciones_afectadas:
 documento_principal_id: eldiario-procesamiento-kitchen-2021-07-29
 documentos_relacionados:
   - infobae-procesamiento-kitchen-2021-07-29
+  - elespanol-procesamiento-policias-kitchen-2021-07-30
 fase_resultante: fase_intermedia

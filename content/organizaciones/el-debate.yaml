@@ -1,0 +1,18 @@
+id: el-debate
+nombre: "El Debate"
+nombres_alternativos:
+  - "El Debate de hoy"
+  - "eldebate.com"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Diario digital español de información general editado por Edatalia
+  Soluciones Singulares. Vinculado profesionalmente a la cobertura de
+  tribunales y actualidad parlamentaria, ha desarrollado seguimiento
+  del juicio oral de la pieza séptima de las Diligencias Previas
+  96/2017 (Operación Kitchen) iniciado el 6 de abril de 2026.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+url_canonica: "https://www.eldebate.com"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

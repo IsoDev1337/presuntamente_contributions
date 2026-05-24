@@ -1,0 +1,48 @@
+id: inicio-vista-oral-kitchen-2026-04-06
+caso_id: kitchen
+tipo: inicio_vista_oral
+fecha: "2026-04-06"
+fecha_precision: dia
+titulo: "Comienza ante la Sección Cuarta de la Sala de lo Penal de la Audiencia Nacional la vista oral de la pieza Kitchen, presidida por la magistrada Teresa Palacios, contra el ex ministro del Interior Jorge Fernández Díaz, el comisario jubilado José Manuel Villarejo y otros ocho procesados"
+descripcion: |
+  El 6 de abril de 2026 se inicia ante la Sección Cuarta de la Sala
+  de lo Penal de la Audiencia Nacional (rollo de sala 13/2024) la
+  vista oral del juicio de la pieza separada nº 7 de las Diligencias
+  Previas 96/2017 (Operación Kitchen), presidida por la magistrada
+  Teresa Palacios Criado, ponente, e integrada también por las
+  magistradas Francisca María Ramis Rosselló y el magistrado
+  Francisco Ballesteros. El juicio se prolonga, según el calendario
+  inicialmente acordado por la Sala, hasta finales de mayo o junio
+  de 2026, con sesiones en la sede principal de la Audiencia
+  Nacional y en la de San Fernando de Henares. Se sientan en el
+  banquillo diez de los once procesados: Jorge Fernández Díaz,
+  Francisco Martínez Vázquez, Eugenio Pino Sánchez, José Manuel
+  Villarejo Pérez, José Luis Olivera Serrano, Marcelino Martín-Blas
+  Aritio, Andrés Manuel Gómez Gordo, José Ángel Fuentes Gago,
+  Bonifacio Díez Sevillano y Sergio Ríos Esgueva. El comisario
+  Enrique García Castaño no se sienta en el banquillo al haberse
+  apreciado en él incapacidad mental sobrevenida tras un ictus
+  sufrido en 2022. Rige el principio de presunción de inocencia
+  respecto de todos los procesados mientras no recaiga sentencia
+  firme en contrario.
+personas_afectadas:
+  - jorge-fernandez-diaz
+  - francisco-martinez-vazquez
+  - eugenio-pino-sanchez
+  - jose-manuel-villarejo
+  - jose-luis-olivera-serrano
+  - marcelino-martin-blas
+  - andres-gomez-gordo
+  - jose-angel-fuentes-gago
+  - bonifacio-diez-sevillano
+  - sergio-rios-esgueva
+  - enrique-garcia-castano
+  - teresa-palacios
+  - francisca-maria-ramis
+  - francisco-ballesteros
+organizaciones_afectadas:
+  - audiencia-nacional
+documento_principal_id: eldebate-juicio-kitchen-2026-04-06
+documentos_relacionados:
+  - elplural-juicio-kitchen-2026-04-06
+fase_resultante: juicio_oral

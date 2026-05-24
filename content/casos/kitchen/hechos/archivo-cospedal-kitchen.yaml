@@ -5,16 +5,24 @@ enunciado: |
   Nacional del 7 de diciembre de 2022, confirmando el sobreseimiento
   provisional acordado el 29 de julio de 2021, se acordó el archivo
   respecto de María Dolores de Cospedal García y de Ignacio López
-  del Hierro en la pieza separada nº 7 de las Diligencias Previas
-  96/2017 (Operación Kitchen), desestimándose los recursos planteados
-  contra el archivo por la Fiscalía Anticorrupción y las acusaciones
-  populares personadas en la causa. Este hecho exculpatorio fue
-  posteriormente revocado por la Sala de Apelaciones de la Audiencia
-  Nacional en julio de 2023.
+  del Hierro Bravo en la pieza separada nº 7 de las Diligencias
+  Previas 96/2017 (Operación Kitchen), desestimándose los recursos
+  planteados contra el archivo por la Fiscalía Anticorrupción y las
+  acusaciones populares personadas. Este sobreseimiento devino firme
+  en la fase de instrucción por auto de la Sección Tercera de la
+  Sala de lo Penal de la Audiencia Nacional del 24 de febrero de
+  2023, que desestimó los recursos de apelación de la Fiscalía
+  Especial contra la Corrupción y la Criminalidad Organizada, de
+  Unidas Podemos y del Partido Socialista Obrero Español. Posteriores
+  intentos de reapertura han sido también rechazados (auto de la
+  Sección Cuarta del 7 de abril de 2026 al inicio de la vista oral
+  rechazando la petición del PSOE de suspender el juicio para
+  reinvestigar a Cospedal).
 tipo: exculpatorio
 fecha_o_periodo:
   desde: "2022-12-07"
-  precision: dia
+  hasta: "2023-02-24"
+  precision: rango
 personas_implicadas:
   - maria-dolores-cospedal
   - ignacio-lopez-del-hierro
@@ -22,14 +30,19 @@ organizaciones_implicadas:
   - audiencia-nacional
   - juzgado-central-instruccion-6
   - fiscalia-anticorrupcion
+  - psoe
+  - podemos
 documentos_respaldo:
   - documento_id: eldiario-archivo-cospedal-2022-12-07
     pasaje: "Cobertura periodística del auto del 7 de diciembre de 2022 que confirma el archivo respecto de Cospedal y López del Hierro."
   - documento_id: infobae-archivo-cospedal-2022-12-07
     pasaje: "Cobertura cruzada en línea editorial distinta sobre el mismo auto."
+  - documento_id: theobjective-rechazo-reapertura-cospedal-2023-02-24
+    pasaje: "Cobertura del auto de la Sección Tercera de la Sala de lo Penal de la Audiencia Nacional del 24 de febrero de 2023 que deja firme el sobreseimiento al desestimar los recursos de apelación."
+  - documento_id: okdiario-rechazo-reapertura-cospedal-2023-02-24
+    pasaje: "Cobertura cruzada del mismo auto del 24 de febrero de 2023 en línea editorial distinta."
 nivel_fuente_efectivo: 4
-corregido_por: revocacion-archivo-cospedal-kitchen
-vigencia: superado
+vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-23"
+ultima_revision_editorial: "2026-05-24"

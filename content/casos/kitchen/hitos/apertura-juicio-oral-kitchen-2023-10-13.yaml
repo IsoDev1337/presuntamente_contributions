@@ -1,0 +1,47 @@
+id: apertura-juicio-oral-kitchen-2023-10-13
+caso_id: kitchen
+tipo: apertura_juicio_oral
+fecha: "2023-10-13"
+fecha_precision: dia
+titulo: "El magistrado instructor del Juzgado Central de Instrucción nº 6 de la Audiencia Nacional dicta auto de apertura del juicio oral contra Jorge Fernández Díaz, Francisco Martínez Vázquez, Eugenio Pino Sánchez, José Manuel Villarejo Pérez, Sergio Ríos Esgueva y otros seis ex agentes en la pieza Kitchen"
+descripcion: |
+  El 13 de octubre de 2023 el magistrado instructor del Juzgado
+  Central de Instrucción nº 6 de la Audiencia Nacional, Manuel
+  García-Castellón García-Lomas, dicta auto de apertura del juicio
+  oral en la pieza separada nº 7 de las Diligencias Previas 96/2017
+  (Operación Kitchen) contra los once procesados restantes tras el
+  sobreseimiento provisional respecto de María Dolores de Cospedal
+  García e Ignacio López del Hierro Bravo: Jorge Fernández Díaz,
+  Francisco Martínez Vázquez, Eugenio Pino Sánchez, José Manuel
+  Villarejo Pérez, José Luis Olivera Serrano, Marcelino Martín-Blas
+  Aritio, Enrique García Castaño, Andrés Manuel Gómez Gordo, José
+  Ángel Fuentes Gago, Bonifacio Díez Sevillano y Sergio Ríos
+  Esgueva. Por auto rectificador del mismo órgano de 23 de enero de
+  2024 se excluyen del auto los delitos de secuestro y de pertenencia
+  a organización criminal por superar éstos el límite de pena de
+  nueve años establecido para el procedimiento abreviado, conforme
+  consta en la nota oficial del Consejo General del Poder Judicial
+  de la misma fecha. La apertura del juicio oral no implica
+  valoración de culpabilidad: rige el principio de presunción de
+  inocencia respecto de todos los procesados.
+personas_afectadas:
+  - jorge-fernandez-diaz
+  - francisco-martinez-vazquez
+  - eugenio-pino-sanchez
+  - jose-manuel-villarejo
+  - jose-luis-olivera-serrano
+  - marcelino-martin-blas
+  - enrique-garcia-castano
+  - andres-gomez-gordo
+  - jose-angel-fuentes-gago
+  - bonifacio-diez-sevillano
+  - sergio-rios-esgueva
+organizaciones_afectadas:
+  - audiencia-nacional
+  - juzgado-central-instruccion-6
+documento_principal_id: eldiario-apertura-juicio-oral-kitchen-2023-10
+documentos_relacionados:
+  - elplural-apertura-juicio-oral-kitchen-2023-10
+  - cgpj-rectifica-auto-kitchen-2024-01-23
+  - elindependiente-rectifica-auto-kitchen-2024-01-23
+fase_resultante: juicio_oral

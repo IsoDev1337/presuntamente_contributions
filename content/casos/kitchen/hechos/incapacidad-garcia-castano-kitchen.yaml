@@ -1,0 +1,36 @@
+id: incapacidad-garcia-castano-kitchen
+caso_id: kitchen
+enunciado: |
+  El comisario procesado Enrique García Castaño, ex jefe de la Unidad
+  Central de Apoyo Operativo (UCAO) de la Dirección General de la
+  Policía, sufrió un ictus en 2022 que derivó en incapacidad mental
+  sobrevenida apreciada por la Sección Cuarta de la Sala de lo Penal
+  de la Audiencia Nacional en la fase de enjuiciamiento de la pieza
+  separada nº 7 de las Diligencias Previas 96/2017 (Operación
+  Kitchen). El tribunal acordó no incluirlo en el banquillo del
+  juicio oral iniciado el 6 de abril de 2026, sin perjuicio del
+  procedimiento principal frente al resto de procesados. Conforme a
+  la cobertura cruzada de la prensa especializada, la Sala de lo
+  Penal de la Audiencia Nacional ha rechazado intentos previos del
+  propio procesado de librarse del enjuiciamiento por otros motivos,
+  confirmando que la condición procesal sobreviniente es la
+  incapacidad mental apreciada con posterioridad al ictus.
+tipo: exculpatorio
+fecha_o_periodo:
+  desde: "2022-01-01"
+  hasta: "2026-04-06"
+  precision: rango
+personas_implicadas:
+  - enrique-garcia-castano
+organizaciones_implicadas:
+  - audiencia-nacional
+documentos_respaldo:
+  - documento_id: iustel-incapacidad-garcia-castano-kitchen-2025
+    pasaje: "Cobertura sobre la resolución de la Audiencia Nacional respecto al estado del comisario procesado y los intentos previos de exclusión del enjuiciamiento."
+  - documento_id: eldebate-juicio-kitchen-2026-04-06
+    pasaje: "Cobertura del inicio del juicio oral del 6 de abril de 2026 confirmando que García Castaño no se sienta en el banquillo por incapacidad mental sobrevenida tras el ictus de 2022."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"
