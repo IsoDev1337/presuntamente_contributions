@@ -5,7 +5,7 @@ import { ClientRouter } from 'astro:transitions';
 import PresuntamenteLogo from '@/components/PresuntamenteLogo.astro';
 import PageToc from '@/components/PageToc.astro';
 
-type NavKey = 'casos' | 'personas' | 'organizaciones' | 'delitos' | 'biblioteca' | 'sobre';
+type NavKey = 'casos' | 'personas' | 'organizaciones' | 'delitos' | 'biblioteca' | 'cifras' | 'sobre';
 
 interface BreadcrumbItem {
   label: string;
@@ -42,6 +42,7 @@ const tabs: { key: NavKey; label: string; href: string }[] = [
   { key: 'organizaciones', label: 'Organizaciones', href: lang === 'ca' ? '/cat/organizaciones' : '/organizaciones' },
   { key: 'delitos',        label: 'Delitos',        href: lang === 'ca' ? '/cat/delitos'        : '/delitos' },
   { key: 'biblioteca',     label: 'Biblioteca',     href: lang === 'ca' ? '/cat/biblioteca'     : '/biblioteca' },
+  { key: 'cifras',         label: 'Cifras',         href: lang === 'ca' ? '/cat/cifras'         : '/cifras' },
   { key: 'sobre',          label: 'Sobre',          href: lang === 'ca' ? '/cat/sobre'          : '/sobre' },
 ];
 

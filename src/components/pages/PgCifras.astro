@@ -1,0 +1,925 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionH from '@/components/SectionH.astro';
+import PhaseBadge from '@/components/PhaseBadge.astro';
+import LevelBadge from '@/components/LevelBadge.astro';
+import RolBadge from '@/components/RolBadge.astro';
+import EpistemicBadge from '@/components/EpistemicBadge.astro';
+import {
+  faseLabel,
+  tipoHitoLabel,
+  tipoHitoFamilia,
+  tipoOrgLabel,
+  tipoDocLabel,
+  familiaDelitoLabel,
+} from '@/lib/labels';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang?: 'es' | 'ca';
+}
+const { lang = 'es' } = Astro.props;
+
+// TODO i18n: cuando se active el catalán, traducir strings.
+
+const [
+  casosCol,
+  personasCol,
+  organizacionesCol,
+  documentosCol,
+  delitosCol,
+  glosarioCol,
+  hitosCol,
+  hechosCol,
+  rolesCol,
+  relacionesCol,
+] = await Promise.all([
+  getCollection('casos'),
+  getCollection('personas'),
+  getCollection('organizaciones'),
+  getCollection('documentos'),
+  getCollection('delitos'),
+  getCollection('glosario'),
+  getCollection('hitos'),
+  getCollection('hechos'),
+  getCollection('roles'),
+  getCollection('relaciones'),
+]);
+
+// ---------------------------------------------------------------------------
+// Helpers de agregación
+// ---------------------------------------------------------------------------
+
+type Counter = Map<string, number>;
+function bump(map: Counter, key: string, by = 1) {
+  map.set(key, (map.get(key) ?? 0) + by);
+}
+function entries(map: Counter): Array<[string, number]> {
+  return Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+}
+
+// Roles "del lado acusado" (familia F-estado en RolBadge).
+const ROLES_LADO_ACUSADO = new Set([
+  'investigado',
+  'procesado',
+  'acusado',
+  'condenado_no_firme',
+  'condenado_firme',
+  'absuelto',
+  'desimputado',
+]);
+const ROLES_IMPUTACION_ACTIVA = new Set(['investigado', 'procesado', 'acusado']);
+const ROLES_CONDENA = new Set(['condenado_no_firme', 'condenado_firme']);
+
+// Un rol está "vigente" si no tiene fecha_fin.
+const rolVigente = (r: { data: { fecha_fin?: string } }) => !r.data.fecha_fin;
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 1 — Volumen del inventario
+// ---------------------------------------------------------------------------
+
+const totalCasos = casosCol.length;
+const totalPersonas = personasCol.length;
+const totalOrganizaciones = organizacionesCol.length;
+const totalDocumentos = documentosCol.length;
+const totalHitos = hitosCol.length;
+const totalHechos = hechosCol.length;
+const totalRoles = rolesCol.length;
+const totalDelitos = delitosCol.length;
+const totalGlosario = glosarioCol.length;
+const totalRelaciones = relacionesCol.length;
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 2 — Estado procesal del inventario (personas)
+// ---------------------------------------------------------------------------
+
+// Personas únicas con CUALQUIER rol del lado acusado en CUALQUIER momento.
+const personasConRolAcusado = new Set<string>();
+// Personas con rol de imputación ACTIVO (sin fecha_fin) en algún caso.
+const personasImputadasActivas = new Set<string>();
+// Condena firme activa.
+const personasCondenadasFirme = new Set<string>();
+// Desimputación vigente.
+const personasDesimputadas = new Set<string>();
+
+for (const r of rolesCol) {
+  if (r.data.sujeto_tipo !== 'persona' || !r.data.sujeto_persona_id) continue;
+  if (ROLES_LADO_ACUSADO.has(r.data.rol)) {
+    personasConRolAcusado.add(r.data.sujeto_persona_id);
+  }
+  if (ROLES_IMPUTACION_ACTIVA.has(r.data.rol) && rolVigente(r)) {
+    personasImputadasActivas.add(r.data.sujeto_persona_id);
+  }
+  if (r.data.rol === 'condenado_firme' && rolVigente(r)) {
+    personasCondenadasFirme.add(r.data.sujeto_persona_id);
+  }
+  if (r.data.rol === 'desimputado' && rolVigente(r)) {
+    personasDesimputadas.add(r.data.sujeto_persona_id);
+  }
+}
+
+// Distribución por rol — sólo familia F-estado (lado acusado).
+const distribRolAcusado: Counter = new Map();
+for (const r of rolesCol) {
+  if (r.data.sujeto_tipo !== 'persona') continue;
+  if (!ROLES_LADO_ACUSADO.has(r.data.rol)) continue;
+  bump(distribRolAcusado, r.data.rol);
+}
+
+// ¿Cuántas personas aparecen en >1 caso?
+const casosPorPersona = new Map<string, Set<string>>();
+for (const r of rolesCol) {
+  if (r.data.sujeto_tipo !== 'persona' || !r.data.sujeto_persona_id) continue;
+  if (!ROLES_LADO_ACUSADO.has(r.data.rol)) continue;
+  const set = casosPorPersona.get(r.data.sujeto_persona_id) ?? new Set();
+  set.add(r.data.caso_id);
+  casosPorPersona.set(r.data.sujeto_persona_id, set);
+}
+const personasMultiCaso = Array.from(casosPorPersona.values()).filter((s) => s.size > 1).length;
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 3 — Distribución de casos
+// ---------------------------------------------------------------------------
+
+const distribFaseCasos: Counter = new Map();
+for (const c of casosCol) bump(distribFaseCasos, c.data.fase_actual);
+
+// Ranking: por hitos, por implicados activos, por documentos.
+const hitosPorCaso = new Map<string, number>();
+for (const h of hitosCol) bump(hitosPorCaso, h.data.caso_id);
+
+const implicadosActivosPorCaso = new Map<string, number>();
+for (const r of rolesCol) {
+  if (r.data.sujeto_tipo !== 'persona') continue;
+  if (!ROLES_IMPUTACION_ACTIVA.has(r.data.rol)) continue;
+  if (!rolVigente(r)) continue;
+  bump(implicadosActivosPorCaso, r.data.caso_id);
+}
+
+const documentosPorCaso = new Map<string, number>();
+for (const d of documentosCol) {
+  if (d.data.caso_principal_id) bump(documentosPorCaso, d.data.caso_principal_id);
+}
+
+type RankRow = {
+  slug: string;
+  mediatico: string;
+  fase: string;
+  hitos: number;
+  implicados: number;
+  documentos: number;
+};
+const ranking: RankRow[] = casosCol.map((c) => ({
+  slug: c.data.id,
+  mediatico: c.data.nombre_mediatico,
+  fase: c.data.fase_actual,
+  hitos: hitosPorCaso.get(c.data.id) ?? 0,
+  implicados: implicadosActivosPorCaso.get(c.data.id) ?? 0,
+  documentos: documentosPorCaso.get(c.data.id) ?? 0,
+}));
+
+const rankingPorHitos = [...ranking].sort((a, b) => b.hitos - a.hitos);
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 4 — Documentos y fuentes
+// ---------------------------------------------------------------------------
+
+const distribNivel: Counter = new Map();
+const distribTipoDoc: Counter = new Map();
+let docsPrimariosDescargados = 0;
+let docsConUrlArchivo = 0;
+let docsConCanonica = 0;
+
+for (const d of documentosCol) {
+  bump(distribNivel, String(d.data.nivel_fuente));
+  bump(distribTipoDoc, d.data.tipo);
+  const raw = d.data as Record<string, unknown>;
+  if (typeof raw.ruta_local === 'string' && raw.ruta_local.length > 0) docsPrimariosDescargados++;
+  if (typeof raw.url_archivo === 'string' && raw.url_archivo.length > 0) docsConUrlArchivo++;
+  if (typeof d.data.url_canonica === 'string' && d.data.url_canonica.length > 0) docsConCanonica++;
+}
+
+const docsN4 = distribNivel.get('4') ?? 0;
+const cobertura_archive = docsN4 > 0 ? Math.round((docsConUrlArchivo / docsN4) * 100) : 0;
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 5 — Hechos
+// ---------------------------------------------------------------------------
+
+const distribHechoTipo: Counter = new Map();
+const distribHechoVigencia: Counter = new Map();
+let hechosCorregidos = 0;
+for (const h of hechosCol) {
+  bump(distribHechoTipo, h.data.tipo);
+  bump(distribHechoVigencia, h.data.vigencia);
+  const raw = h.data as Record<string, unknown>;
+  if (typeof raw.corregido_por === 'string' && raw.corregido_por.length > 0) hechosCorregidos++;
+}
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 6 — Hitos
+// ---------------------------------------------------------------------------
+
+const distribHitoTipo: Counter = new Map();
+const distribHitoFamilia: Counter = new Map();
+for (const h of hitosCol) {
+  bump(distribHitoTipo, h.data.tipo);
+  bump(distribHitoFamilia, tipoHitoFamilia(h.data.tipo));
+}
+
+// Hitos en los últimos 365 días (a fecha de build).
+const ahora = new Date();
+const haceAnio = new Date(ahora.getTime() - 365 * 24 * 3600 * 1000);
+const hitosUltimoAnio = hitosCol.filter((h) => {
+  const f = new Date(h.data.fecha);
+  return !isNaN(f.getTime()) && f >= haceAnio;
+}).length;
+
+// Hito más reciente del inventario (cualquier caso).
+const hitoMasReciente = [...hitosCol]
+  .sort((a, b) => b.data.fecha.localeCompare(a.data.fecha))[0];
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 7 — Organizaciones
+// ---------------------------------------------------------------------------
+
+const distribOrgTipo: Counter = new Map();
+for (const o of organizacionesCol) bump(distribOrgTipo, o.data.tipo);
+
+// ---------------------------------------------------------------------------
+// SECCIÓN 8 — Delitos
+// ---------------------------------------------------------------------------
+
+const distribFamiliaDelito: Counter = new Map();
+for (const d of delitosCol) bump(distribFamiliaDelito, d.data.familia);
+
+// Frecuencia de cada delito en roles (atribuciones reales en el inventario).
+const distribAtribucionDelito: Counter = new Map();
+for (const r of rolesCol) {
+  for (const slug of r.data.delitos_atribuidos ?? []) {
+    bump(distribAtribucionDelito, slug);
+  }
+}
+const delitosLookup = new Map(delitosCol.map((d) => [d.data.id, d.data.nombre_tipico]));
+const topDelitosAtribuidos = entries(distribAtribucionDelito)
+  .map(([slug, n]) => ({ slug, nombre: delitosLookup.get(slug) ?? slug, n }))
+  .slice(0, 8);
+
+// ---------------------------------------------------------------------------
+// Strings
+// ---------------------------------------------------------------------------
+
+const strings = {
+  title: 'Cifras del inventario',
+  description:
+    'Dashboard agregado del estado del inventario presuntamente.org. Cifras derivadas en tiempo de build de los YAML canónicos de /content/.',
+  eyebrow: 'Sección · Cifras',
+  sub:
+    'Visión panorámica del estado del inventario: volumen, estado procesal, distribución por fase y por nivel de fuente, ' +
+    'carga editorial. Cifras recalculadas en cada build a partir de los YAML de /content/, sin agregación intermedia ni cacheo.',
+  buildDate: new Date().toISOString().slice(0, 10),
+};
+
+// Cifras del sello.
+const sello = [
+  { val: totalCasos, lbl: 'Casos catalogados' },
+  { val: totalPersonas, lbl: 'Personas fichadas' },
+  { val: totalOrganizaciones, lbl: 'Organizaciones' },
+  { val: totalDocumentos, lbl: 'Documentos' },
+  { val: totalHitos, lbl: 'Hitos registrados' },
+  { val: totalHechos, lbl: 'Hechos clasificados' },
+  { val: totalRoles, lbl: 'Roles procesales' },
+  { val: totalDelitos, lbl: 'Delitos catalogados' },
+];
+
+// Tarjetas estado procesal (sección 2).
+const kpis = [
+  { val: personasImputadasActivas.size, lbl: 'Investigados / procesados / acusados activos', tone: 'imputacion' },
+  { val: personasCondenadasFirme.size, lbl: 'Condenados con sentencia firme', tone: 'firme' },
+  { val: personasDesimputadas.size, lbl: 'Desimputados vigentes', tone: 'exculpado' },
+  { val: personasMultiCaso, lbl: 'Personas con rol en más de un caso', tone: 'neutro' },
+];
+
+const breadcrumb = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Cifras' },
+];
+---
+
+<BaseLayout title={strings.title} lang={lang} description={strings.description} breadcrumb={breadcrumb} activeNav="cifras">
+  <div class="cifras-head">
+    <header class="page-id">
+      <div>
+        <p class="page-id__eyebrow">{strings.eyebrow}</p>
+        <h1 class="page-id__title">{strings.title}</h1>
+        <p class="page-id__sub">{strings.sub}</p>
+      </div>
+      <div class="page-id__meta">
+        <span>build {strings.buildDate}</span>
+        <span>{totalCasos} casos</span>
+      </div>
+    </header>
+
+    <!-- Sello institucional con las cifras agregadas grandes -->
+    <section class="sello" aria-label="Volumen del inventario">
+    <div class="sello__head">
+      <span class="sello__eye">Volumen del inventario</span>
+      <span class="sello__date">datos a {strings.buildDate}</span>
+    </div>
+    <ul class="sello__grid">
+      {sello.map((c) => (
+        <li>
+          <span class="sello__val">{c.val}</span>
+          <span class="sello__lbl">{c.lbl}</span>
+        </li>
+      ))}
+    </ul>
+    </section>
+  </div>
+
+  <!-- 1. Estado procesal de las personas -->
+  <SectionH num="1." id="estado-procesal" title="Estado procesal de las personas" />
+  <p class="lead">
+    Una misma persona puede acumular roles consecutivos en distintas fases procesales del mismo caso
+    (p. ej. <em>investigada → procesada → condenada</em>). Los conteos siguientes cuentan personas únicas,
+    no roles individuales. Un rol se considera vigente si no tiene fecha de fin.
+  </p>
+
+  <ul class="kpis">
+    {kpis.map((k) => (
+      <li class={`kpi kpi--${k.tone}`}>
+        <span class="kpi__val">{k.val}</span>
+        <span class="kpi__lbl">{k.lbl}</span>
+      </li>
+    ))}
+  </ul>
+
+  <h3 class="sub-h">Distribución de roles del lado acusado</h3>
+  <p class="lead">
+    Suma todos los roles registrados a lo largo de la trayectoria procesal (no sólo los activos).
+    Las cifras de la columna derecha cuentan asignaciones de rol, no personas únicas.
+  </p>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Rol procesal</th>
+          <th class="c-num">Asignaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries(distribRolAcusado).map(([rol, n]) => (
+          <tr>
+            <td><RolBadge rol={rol} /></td>
+            <td class="c-num">{n}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="disclaimer">
+    Investigado y procesado son fases de instrucción; ninguna implica condena. La presunción de inocencia
+    rige mientras no recaiga sentencia firme.
+  </p>
+
+  <!-- 2. Casos -->
+  <SectionH num="2." id="casos" title="Distribución de casos" />
+
+  <h3 class="sub-h">Por fase procesal</h3>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Fase</th>
+          <th class="c-num">Casos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries(distribFaseCasos).map(([fase, n]) => (
+          <tr>
+            <td><PhaseBadge fase={fase} /></td>
+            <td class="c-num">{n}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">Ranking de casos por carga editorial</h3>
+  <p class="lead">
+    Combina volumen de hitos registrados, implicados con imputación activa y documentos de respaldo
+    asociados como caso principal. No es un ranking de gravedad, sólo de densidad documental.
+  </p>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 32%;">Caso</th>
+          <th style="width: 18%;">Fase</th>
+          <th class="c-num">Hitos</th>
+          <th class="c-num">Implicados activos</th>
+          <th class="c-num">Documentos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rankingPorHitos.map((c) => (
+          <tr class="is-link">
+            <td><a href={`/casos/${c.slug}`}>{c.mediatico}</a></td>
+            <td><PhaseBadge fase={c.fase} /></td>
+            <td class="c-num">{c.hitos}</td>
+            <td class="c-num">{c.implicados}</td>
+            <td class="c-num">{c.documentos}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3. Documentos -->
+  <SectionH num="3." id="documentos" title="Documentos y fuentes" />
+
+  <ul class="kpis">
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{totalDocumentos}</span>
+      <span class="kpi__lbl">Documentos en biblioteca</span>
+    </li>
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{docsPrimariosDescargados}</span>
+      <span class="kpi__lbl">Primarios descargados con hash SHA-256</span>
+    </li>
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{docsConUrlArchivo}</span>
+      <span class="kpi__lbl">Con copia en archive.org</span>
+    </li>
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{cobertura_archive}%</span>
+      <span class="kpi__lbl">Cobertura archive.org de fuentes N4</span>
+    </li>
+  </ul>
+
+  <h3 class="sub-h">Por nivel de fuente</h3>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Nivel</th>
+          <th class="c-num">Documentos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {[1, 2, 3, 4].map((n) => (
+          <tr>
+            <td>
+              <LevelBadge nivel={n as 1 | 2 | 3 | 4} />
+              <span class="nivel-name">
+                {n === 1 && 'Fuente primaria oficial'}
+                {n === 2 && 'Fuente primaria fuera de lista blanca'}
+                {n === 3 && 'Filtrado verificado'}
+                {n === 4 && 'Cobertura periodística'}
+              </span>
+            </td>
+            <td class="c-num">{distribNivel.get(String(n)) ?? 0}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">Por tipo de documento</h3>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Tipo</th>
+          <th class="c-num">Documentos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries(distribTipoDoc).map(([tipo, n]) => (
+          <tr>
+            <td>{tipoDocLabel(tipo)}</td>
+            <td class="c-num">{n}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 4. Hechos -->
+  <SectionH num="4." id="hechos" title="Hechos y carga editorial" />
+  <p class="lead">
+    Cada Hecho del inventario se clasifica por estado epistémico (qué grado de prueba lo respalda) y
+    por vigencia (si sigue en pie o ha sido superado por otro Hecho posterior).
+  </p>
+
+  <div class="grid-2">
+    <div>
+      <h3 class="sub-h">Por estado epistémico</h3>
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <thead>
+            <tr><th>Estado</th><th class="c-num">Hechos</th></tr>
+          </thead>
+          <tbody>
+            {(['acreditado', 'investigado', 'atribuido', 'exculpatorio', 'desmentido', 'no_concluyente'] as const).map((t) => (
+              <tr>
+                <td><EpistemicBadge tipo={t} /></td>
+                <td class="c-num">{distribHechoTipo.get(t) ?? 0}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub-h">Por vigencia</h3>
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <thead>
+            <tr><th>Vigencia</th><th class="c-num">Hechos</th></tr>
+          </thead>
+          <tbody>
+            {['vigente', 'superado', 'retirado'].map((v) => (
+              <tr>
+                <td>{v}</td>
+                <td class="c-num">{distribHechoVigencia.get(v) ?? 0}</td>
+              </tr>
+            ))}
+            <tr>
+              <td>Con <code>corregido_por</code></td>
+              <td class="c-num">{hechosCorregidos}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Hitos -->
+  <SectionH num="5." id="hitos" title="Hitos del inventario" />
+
+  <ul class="kpis">
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{totalHitos}</span>
+      <span class="kpi__lbl">Hitos registrados</span>
+    </li>
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{hitosUltimoAnio}</span>
+      <span class="kpi__lbl">Hitos en los últimos 12 meses</span>
+    </li>
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{distribHitoFamilia.get('jurisdiccional') ?? 0}</span>
+      <span class="kpi__lbl">Jurisdiccionales</span>
+    </li>
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{(distribHitoFamilia.get('politico') ?? 0) + (distribHitoFamilia.get('mediatico') ?? 0)}</span>
+      <span class="kpi__lbl">Políticos / mediáticos</span>
+    </li>
+  </ul>
+
+  {hitoMasReciente && (
+    <p class="latest">
+      <span class="latest__eye">Último hito registrado</span>
+      <span class="latest__date">{hitoMasReciente.data.fecha}</span>
+      <a href={`/casos/${hitoMasReciente.data.caso_id}#${hitoMasReciente.data.id}`}>
+        {hitoMasReciente.data.titulo}
+      </a>
+    </p>
+  )}
+
+  <h3 class="sub-h">Top tipos de hito</h3>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr><th style="width: 50%;">Tipo</th><th class="c-num">Hitos</th></tr>
+      </thead>
+      <tbody>
+        {entries(distribHitoTipo).slice(0, 10).map(([tipo, n]) => (
+          <tr>
+            <td>{tipoHitoLabel(tipo)}</td>
+            <td class="c-num">{n}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6. Organizaciones -->
+  <SectionH num="6." id="organizaciones" title="Organizaciones citadas" />
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Tipo</th>
+          <th class="c-num">Organizaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries(distribOrgTipo).map(([tipo, n]) => (
+          <tr>
+            <td>{tipoOrgLabel(tipo)}</td>
+            <td class="c-num">{n}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 7. Delitos -->
+  <SectionH num="7." id="delitos" title="Delitos catalogados y atribuidos" />
+
+  <h3 class="sub-h">Catálogo por familia</h3>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 70%;">Familia</th>
+          <th class="c-num">Delitos</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries(distribFamiliaDelito).map(([fam, n]) => (
+          <tr>
+            <td>{familiaDelitoLabel(fam)}</td>
+            <td class="c-num">{n}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sub-h">Top delitos atribuidos en roles</h3>
+  <p class="lead">
+    Cuenta cuántas veces aparece cada delito como atribuido en un Rol del inventario. La misma persona
+    investigada por cuatro delitos suma cuatro atribuciones.
+  </p>
+  <div class="tbl-scroll">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 70%;">Delito</th>
+          <th class="c-num">Atribuciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {topDelitosAtribuidos.map((d) => (
+          <tr class="is-link">
+            <td><a href={`/delitos/${d.slug}`}>{d.nombre}</a></td>
+            <td class="c-num">{d.n}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 8. Conexiones y glosario -->
+  <SectionH num="8." id="conexiones" title="Conexiones y referencias auxiliares" />
+  <ul class="kpis">
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{totalRelaciones}</span>
+      <span class="kpi__lbl">Relaciones entre casos modeladas</span>
+    </li>
+    <li class="kpi kpi--neutro">
+      <span class="kpi__val">{totalGlosario}</span>
+      <span class="kpi__lbl">Entradas de glosario</span>
+    </li>
+  </ul>
+
+  <!-- 9. Notas metodológicas -->
+  <SectionH num="9." id="metodologia" title="Notas metodológicas" />
+  <ol class="notas">
+    <li>
+      Todas las cifras se recalculan en cada build a partir de los YAML de
+      <code>/content/</code>. No hay caché ni agregación intermedia.
+    </li>
+    <li>
+      <em>Persona con rol activo</em> = persona con al menos un Rol cuyo campo
+      <code>fecha_fin</code> está vacío. Un mismo nombre puede tener roles activos en varios casos
+      simultáneamente y se cuenta una sola vez.
+    </li>
+    <li>
+      Los conteos de <em>investigados activos</em>, <em>procesados activos</em> y
+      <em>acusados activos</em> se agrupan bajo un único KPI porque comparten la lógica de
+      imputación abierta sin sentencia firme.
+    </li>
+    <li>
+      Una imputación nunca equivale a una condena. Investigado, procesado, acusado y condenado son
+      fases distintas. Ver <a href="/sobre#roles-procesales">/sobre §4 — Roles procesales</a>.
+    </li>
+    <li>
+      Los hitos clasificados como <em>políticos</em> o <em>mediáticos</em> son hitos no
+      jurisdiccionales relevantes para la cronología (dimisiones, ceses, comparecencias,
+      investigaciones periodísticas). Ver
+      <a href="/sobre#tipos-de-hecho">/sobre §5</a>.
+    </li>
+    <li>
+      La cobertura archive.org se calcula sólo sobre fuentes de nivel <LevelBadge nivel={4} />
+      (cobertura periodística), que son las que el hook <code>pre-commit</code> archiva
+      automáticamente. Los documentos N1-N3 no se archivan por esa vía (los N1 oficiales no
+      desaparecen; los N2-N3 viven en mirrors estables o se descargan como primarios al árbol).
+    </li>
+  </ol>
+
+  <p class="bottom-note">
+    Esta página es un dashboard derivado. La fuente de verdad de cada cifra son los YAML del repositorio:
+    <a href="https://github.com/davidchicano/presuntamente" rel="noopener">davidchicano/presuntamente</a>.
+  </p>
+</BaseLayout>
+
+<style>
+  /* Wrapper que combina page-id + sello en un único bloque de grid.
+     Sin esto, en desktop con PageToc (grid-row: 1 / -1), el reparto de
+     altura del TOC sobre la fila 1 deja un hueco vertical grande entre
+     ambos. Tratarlos como un único item de grid lo elimina. */
+  .cifras-head {
+    margin-bottom: var(--space-6);
+  }
+  .cifras-head .page-id { margin-bottom: var(--space-4); }
+
+  /* Sello institucional de cifras (sección de visión general) */
+  .sello {
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface);
+    position: relative;
+  }
+  .sello::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(
+      to right,
+      var(--color-accent) 0 50%,
+      var(--color-accent-secondary) 50% 100%
+    );
+  }
+  .sello__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .sello__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .sello__grid li {
+    padding: 18px 16px;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .sello__grid li:nth-child(4n) { border-right: 0; }
+  .sello__grid li:nth-last-child(-n+4) { border-bottom: 0; }
+  .sello__val {
+    font: 700 clamp(1.8rem, 1.4rem + 1.4vw, 2.6rem)/1 var(--font-sans);
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .sello__lbl {
+    font: 600 11px/1.3 var(--font-sans);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  @media (max-width: 900px) {
+    .sello__grid { grid-template-columns: repeat(2, 1fr); }
+    .sello__grid li:nth-child(4n) { border-right: 1px solid var(--color-border); }
+    .sello__grid li:nth-child(2n) { border-right: 0; }
+    .sello__grid li:nth-last-child(-n+4) { border-bottom: 1px solid var(--color-border); }
+    .sello__grid li:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+
+  /* KPIs — tarjetas con valor grande + label, más respiradas que el sello */
+  .kpis {
+    list-style: none;
+    margin: 0 0 var(--space-5);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+  .kpi {
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 3px solid var(--color-accent-secondary-border);
+  }
+  .kpi--imputacion { border-top-color: var(--color-accent); }
+  .kpi--firme { border-top-color: var(--color-fg); }
+  .kpi--exculpado { border-top-color: var(--color-accent-secondary); }
+  .kpi__val {
+    font: 700 clamp(1.6rem, 1.2rem + 1vw, 2.2rem)/1 var(--font-sans);
+    color: var(--color-fg);
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi__lbl {
+    font: 600 11px/1.4 var(--font-sans);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  @media (max-width: 900px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .kpis { grid-template-columns: 1fr; } }
+
+  /* Distribuciones lado a lado (hechos: epistémico + vigencia) */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .lead {
+    max-width: 76ch;
+    font: 400 14px/1.55 var(--font-sans);
+    color: var(--color-fg-muted);
+    margin: 0 0 var(--space-3);
+  }
+
+  .nivel-name {
+    margin-left: 10px;
+    font: 400 13px/1.4 var(--font-sans);
+    color: var(--color-fg-muted);
+  }
+
+  .disclaimer {
+    font: 400 12px/1.55 var(--font-sans);
+    color: var(--color-fg-subtle);
+    border-left: 3px solid var(--color-accent-secondary-border);
+    background: var(--color-surface-muted);
+    padding: 10px 14px;
+    margin: var(--space-4) 0 var(--space-5);
+    max-width: 76ch;
+  }
+
+  .latest {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-surface);
+    padding: 12px 16px;
+    margin: var(--space-4) 0;
+  }
+  .latest__eye {
+    font: 700 11px/1 var(--font-sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent-secondary-hover);
+  }
+  .latest__date {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-fg-muted);
+  }
+  .latest a {
+    color: var(--color-fg);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .latest a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .notas {
+    margin: 0 0 var(--space-5);
+    padding-left: 1.4em;
+    font: 400 14px/1.6 var(--font-sans);
+    color: var(--color-fg);
+    max-width: 76ch;
+  }
+  .notas li { margin-bottom: 8px; }
+  .notas code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    padding: 1px 6px;
+  }
+
+  .bottom-note {
+    text-align: center;
+    font: 400 12px/1.55 var(--font-sans);
+    color: var(--color-fg-subtle);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+    margin: var(--space-6) auto 0;
+    max-width: 64ch;
+  }
+</style>

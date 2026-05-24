@@ -47,6 +47,7 @@ Si vas a tocar algo no trivial, consulta primero el doc correspondiente.
 /LICENSE-CONTENT.md         ← CC BY-SA 4.0 (contenido editorial)
 /LEGAL.md                   ← aviso legal (placeholder hasta publicación con dominio)
 /docs/diseno/               ← documentos de diseño
+/docs/web/pages/            ← backlog y notas por página visible del sitio (uno por ruta)
 /content/                   ← contenido canónico (YAML)
   casos/<slug>/
     caso.yaml
@@ -106,6 +107,14 @@ Estructura ES + CAT desde día 1 (carpetas `/src/pages/cat/` listas). MVP castel
 ### NOTES.md por caso
 
 Cada `/content/casos/<slug>/NOTES.md` contiene anotaciones internas: contexto, "ojo con esta fuente porque…", decisiones tomadas, recordatorios para el LLM. **Excluido del build del sitio público.** Vive sólo en el repo para humanos y agentes.
+
+### Backlog por página en `docs/web/pages/`
+
+Cada página visible del sitio tiene (o puede tener) su propia ficha en `docs/web/pages/<ruta>.md` con estado actual, ideas futuras, aprendizajes editoriales y pendientes operativos. Norma incorporada el 2026-05-24 al cerrar la página `/cifras` por feedback del maintainer ("podríamos hacer algo en docs/web/pages, en un fichero por página, para ir anotando ideas").
+
+Sirve para descargar el `ROADMAP.md` global: lo específico de una página vive ahí, el roadmap solo lleva hitos transversales y estado del proyecto. Cuando se te ocurra una idea futura para una página concreta (una iteración v1.x, una variante visual, un dataset distinto), **escríbela en la ficha de esa página**, no en el ROADMAP. Cuando se cierra un cambio importante en una página, actualizar también la ficha (estado actual + aprendizajes).
+
+Convención de nombres: `<ruta-sin-barra-inicial>.md`. Para la home, `inicio.md`. La plantilla mínima vive en [`docs/web/pages/README.md`](docs/web/pages/README.md).
 
 ### Privacidad
 

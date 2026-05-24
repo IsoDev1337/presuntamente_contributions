@@ -163,6 +163,9 @@ const strings = {
           </li>
         ))}
       </ul>
+      <a class="hero__cifras-more" href="/cifras">
+        Ver todas las cifras →
+      </a>
     </aside>
   </section>
 
@@ -390,6 +393,24 @@ const strings = {
   }
   .hero__cifras li:nth-child(2n) { border-right: 0; }
   .hero__cifras li:nth-last-child(-n+2) { border-bottom: 0; }
+  .hero__cifras-more {
+    display: block;
+    padding: 10px 14px;
+    border-top: 1px solid var(--color-border);
+    font: 600 12px/1 var(--font-sans);
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    text-decoration: none;
+    background: var(--color-surface);
+    text-align: right;
+    transition: background 140ms ease-out, color 140ms ease-out;
+  }
+  .hero__cifras-more:hover {
+    background: var(--color-bg-muted);
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
   .hero__cifra-val {
     font: 700 clamp(1.6rem, 1.2rem + 1vw, 2.2rem)/1 var(--font-sans);
     color: var(--color-accent);
