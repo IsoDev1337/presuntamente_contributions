@@ -12,6 +12,9 @@ import CalGlyph from './CalGlyph.astro';
 import RichProse from './RichProse.astro';
 
 interface Props {
+  /** Slug del Hito. Si se pasa, se renderiza como id del bloque para
+   *  deep-linking estable (feed RSS/Atom, citas externas). */
+  id?: string;
   fecha: string;
   precision: 'dia' | 'mes' | 'anio';
   tipo: string;
@@ -27,6 +30,7 @@ interface Props {
 }
 
 const {
+  id,
   fecha,
   precision,
   tipoLabel,
@@ -49,7 +53,7 @@ const FAMILIA_GLYPH_CHAR: Record<Exclude<Props['tipoFamilia'], 'jurisdiccional'>
   mediatico: '¶',
 };
 ---
-<div class="hito-item">
+<div class="hito-item" id={id ? `hito-${id}` : undefined}>
   <div class="hito-item__date">
     <CalGlyph fecha={fecha} precision={precision} />
   </div>

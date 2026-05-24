@@ -48,6 +48,7 @@ Si vas a tocar algo no trivial, consulta primero el doc correspondiente.
 /LEGAL.md                   ← aviso legal (placeholder hasta publicación con dominio)
 /docs/diseno/               ← documentos de diseño
 /docs/web/pages/            ← backlog y notas por página visible del sitio (uno por ruta)
+/docs/web/features/         ← ficha por feature transversal (feed, búsqueda, RichProse, archive.org, …)
 /content/                   ← contenido canónico (YAML)
   casos/<slug>/
     caso.yaml
@@ -115,6 +116,22 @@ Cada página visible del sitio tiene (o puede tener) su propia ficha en `docs/we
 Sirve para descargar el `ROADMAP.md` global: lo específico de una página vive ahí, el roadmap solo lleva hitos transversales y estado del proyecto. Cuando se te ocurra una idea futura para una página concreta (una iteración v1.x, una variante visual, un dataset distinto), **escríbela en la ficha de esa página**, no en el ROADMAP. Cuando se cierra un cambio importante en una página, actualizar también la ficha (estado actual + aprendizajes).
 
 Convención de nombres: `<ruta-sin-barra-inicial>.md`. Para la home, `inicio.md`. La plantilla mínima vive en [`docs/web/pages/README.md`](docs/web/pages/README.md).
+
+### Ficha por feature transversal en `docs/web/features/`
+
+Convención hermana de la anterior, **obligatoria para toda feature transversal**. Norma incorporada el 2026-05-24 al cerrar el feed RSS/Atom de hitos por feedback del maintainer ("cada vez que hacemos algún cambio a una feature habría que actualizar el de la propia feature [...] cada feature independiente debe de ponerse un fichero .md reflejado").
+
+Una **página** corresponde a una ruta del sitio (`/cifras`, `/casos`); una **feature transversal** corresponde a una capacidad que cruza varias páginas o sirve a un caso de uso completo (`feed-rss-atom`, `pagefind-busqueda`, `richprose-citaciones`, `archive-org-pre-commit`, `og-images-auto`, etc.). Si la cosa cabe en una sola página, va en `docs/web/pages/`; si no, va en `docs/web/features/`.
+
+Cada ficha recoge: qué hace · para qué sirve · cómo funciona (piezas técnicas) · estado actual · decisiones editoriales y aprendizajes · ideas futuras · pendientes operativos. La plantilla mínima vive en [`docs/web/features/README.md`](docs/web/features/README.md).
+
+**Norma operativa, sin excepciones**:
+
+1. **Al entregar una feature nueva**, crear su ficha en el mismo commit. Es parte del cierre de sesión, no opcional.
+2. **Al modificar una feature ya entregada**, actualizar su ficha en el mismo commit que toca el código. Especialmente: "Estado actual", "Decisiones editoriales y aprendizajes" (si la modificación enseña algo nuevo) y "Pendientes operativos" (tachando lo cerrado, abriendo lo que aparezca).
+3. **Las ideas futuras de la feature van en su ficha, no en el ROADMAP.** El ROADMAP sólo lleva el bullet de alto nivel ("Feed RSS/Atom de hitos `[x]`"); cualquier matiz, mejora propuesta o boceto de v1.x vive en la ficha.
+
+Convención de nombres: `<slug-kebab-case>.md` describiendo la capacidad (no el nombre del fichero de código). Ejemplos: `feed-rss-atom.md`, `archive-org-pre-commit.md`, `richprose-citaciones.md`.
 
 ### Privacidad
 

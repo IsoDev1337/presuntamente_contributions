@@ -187,6 +187,7 @@ const orgsImplicadas = Array.from(orgsMap.values());
 const cronologia = hitos.map((h) => {
   const doc = h.data.documento_principal_id ? docIndex.get(h.data.documento_principal_id) : undefined;
   return {
+    id: h.data.id,
     fecha: h.data.fecha,
     precision: h.data.fecha_precision,
     tipo: h.data.tipo,
@@ -467,6 +468,7 @@ const breadcrumb = [
     <div class="timeline">
       {cronologia.map((h) => (
         <Hito
+          id={h.id}
           fecha={h.fecha}
           precision={h.precision}
           tipo={h.tipo}
