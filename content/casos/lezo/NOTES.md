@@ -1,56 +1,76 @@
-# NOTES — caso Lezo (tras PR1-PR4)
+# NOTES — caso Lezo (tras PR1-PR7)
 
 Anotaciones internas. Excluido del build público.
 
-## Estado consolidado tras los cuatro PRs de la sesión 2026-05-23 / 2026-05-24
+## Estado consolidado tras PR1-PR7 (pieza Navalcarnero al completo + refino caso.yaml)
 
-Acumulado tras PR1 + PR2 + PR3 + PR4:
+Acumulado tras PR1 + PR2 + PR3 + PR4 + PR5 + PR6 + PR7:
 
-- **11 personas fichadas**: Jaime Ignacio González González (procesado
-  golf + Emissao + investigado→desimputado Inassa), su hermano Pablo
-  Manuel González González (procesado golf), su cuñado Juan José
-  Caballero Escudier (procesado golf), el socio José Antonio
+- **15 personas fichadas**: Jaime Ignacio González González (procesado
+  golf + Emissao + Navalcarnero + investigado→desimputado Inassa), su
+  hermano Pablo Manuel González González (procesado golf), su cuñado
+  Juan José Caballero Escudier (procesado golf), el socio José Antonio
   Clemente Marín (procesado golf), el ex director gerente del Canal
-  Ildefonso de Miguel Rodríguez (procesado golf), Edmundo Rodríguez
-  Sobrino (procesado Emissao + Inassa), Pedro Luis Calvo Poch
-  (procesado Inassa), Juan Bravo Rivera (procesado Inassa), Alberto
-  Ruiz-Gallardón Jiménez (investigado→desimputado Inassa) más los
-  cuatro magistrados (Velasco, García-Castellón, Tardón, Piña) y
-  Fernando Andreu como ponente del tribunal.
+  Ildefonso de Miguel Rodríguez (procesado golf + Navalcarnero), el
+  consejero de OHL Francisco Javier López Madrid (investigado →
+  procesado pieza Navalcarnero), **el empresario Adrián de la Joya
+  Ruiz de Velasco (procesado Navalcarnero, PR7)**, **el ex consejero
+  ejecutivo de OHL Rafael Martín de Nicolás Martín (procesado
+  Navalcarnero, PR7)**, **el ex director de Control de Gestión de
+  OHL Felicísimo Damián Ramos Ramos (procesado Navalcarnero, PR7)**,
+  Edmundo Rodríguez Sobrino (procesado Emissao + Inassa), Pedro
+  Luis Calvo Poch (procesado Inassa), Juan Bravo Rivera (procesado
+  Inassa), Alberto Ruiz-Gallardón Jiménez (investigado→desimputado
+  Inassa) más los cuatro magistrados (Velasco, García-Castellón,
+  Tardón, Piña) y Fernando Andreu como ponente del tribunal.
 - **5 organizaciones nuevas**: Canal de Isabel II, Comunidad de
   Madrid, Ayuntamiento de Madrid, Tecnoconcret Proyectos de
   Ingeniería (TCT), Unidad Central Operativa de la Guardia Civil
   (UCO). Tribunal Supremo, Audiencia Nacional y JCI nº 6 fichados
   previamente por otras sesiones; Fiscalía Anticorrupción ya
   existía en main.
-- **7 hitos**: operación UCO 19-abr-2017 (imputación) → prisión
+- **8 hitos**: operación UCO 19-abr-2017 (imputación) → prisión
   preventiva Velasco 22-abr-2017 (declaracion_imputado) → cambio
   juez Velasco→Castellón jul-2017 (cambio_juez) → auto procesamiento
   pieza Emissao 18-nov-2019 (auto_procesamiento) → archivo pieza
   Inassa para Ruiz-Gallardón y otros 14 desimputados 30-may-2019
-  (archivo_provisional) → inicio vista oral pieza Inassa
-  24-may-2023 (inicio_vista_oral) → cambio juez Castellón→Piña
+  (archivo_provisional) → **apertura juicio oral pieza Navalcarnero
+  4-jun-2021 (apertura_juicio_oral, PR6)** → inicio vista oral pieza
+  Inassa 24-may-2023 (inicio_vista_oral) → cambio juez Castellón→Piña
   8-ene-2025 (cambio_juez) → señalamiento juicio pieza golf
   22-dic-2025 (apertura_juicio_oral).
-- **7 hechos**: adjudicación amañada campo golf 2003-2004 (atribuido),
+- **8 hechos**: adjudicación amañada campo golf 2003-2004 (atribuido),
   comisiones sobres efectivo TCT (atribuido), prisión preventiva
   Ignacio González abril 2017 (atribuido), múltiples piezas
   separadas activas (investigado), compra Inassa sobreprecio 2001
   (atribuido), compra Emissao desvío 2013 (atribuido), archivo
-  Ruiz-Gallardón pieza Inassa 2019 (exculpatorio).
-- **14 roles**: 5 procesados en pieza golf + 3 procesados en
+  Ruiz-Gallardón pieza Inassa 2019 (exculpatorio), **adjudicación
+  amañada tren ligero Móstoles-Navalcarnero 2007 (atribuido, PR6)**.
+- **21 roles**: 5 procesados en pieza golf + 3 procesados en
   Inassa + Rodríguez Sobrino procesado Emissao+Inassa + Ignacio
-  González investigado→procesado-golf + Ruiz-Gallardón
+  González investigado→procesado-golf→**procesado-Navalcarnero (PR6)** +
+  Ildefonso de Miguel **procesado-Navalcarnero (PR6)** sumado a su
+  procesado-golf existente + **López Madrid investigado→procesado
+  pieza Navalcarnero (PR6)** + **De la Joya, Martín de Nicolás y Ramos
+  procesados pieza Navalcarnero (PR7)** + Ruiz-Gallardón
   investigado→desimputado + 4 jueces instructores en cadena
   Velasco/Castellón/Tardón/Piña + Andreu juez_ponente Sec 2ª +
-  Comunidad de Madrid acusación_particular + Ayuntamiento de
-  Madrid acusación_particular + Canal de Isabel II perjudicado.
-- **11 documentos**: dos N1 BOE descargados al árbol
+  Comunidad de Madrid acusación_particular + Ayuntamiento de Madrid
+  acusación_particular + Canal de Isabel II perjudicado.
+- **14 documentos**: dos N1 BOE descargados al árbol
   (BOE-A-2024-17653 jubilación García-Castellón + BOE-A-2025-350
   RD destino Piña, ambos con `ruta_local` + `hash_sha256` y XMLs
-  estructurados); nueve N4 de cobertura cruzada en seis líneas
+  estructurados); doce N4 de cobertura cruzada en siete líneas
   editoriales distintas (El Español, Público, El Independiente,
-  eldiario.es, Confilegal, The Objective).
+  eldiario.es, Confilegal, The Objective, **infoLibre — alta en
+  PR6**).
+- **1 delito nuevo catalogado en PR6**: `fraude-administraciones-publicas`
+  (art. 436 CP), familia `contra_administracion_publica`. Atribuido
+  en la pieza Navalcarnero a López Madrid, Martín de Nicolás, Ramos,
+  Ignacio González, Ildefonso de Miguel y De la Joya. Reutilizable
+  en futuras causas.
+- **1 organización nueva catalogada en PR6**: `infolibre` (medio de
+  comunicación, ámbito nacional). Reutilizable.
 
 ## Tensión brief vs realidad procesal (guardarrail 1 de `/investigar-caso`)
 
@@ -130,21 +150,49 @@ estado `atribuido` / `investigado` / `exculpatorio`, sin
   procesarán por el hook pre-commit cuando entren al staging.
   Sin verificación específica en NOTES.
 
-## Pendientes PR6+
+## Pendientes PR8+
 
-Actualizado tras el cierre de PR5 (sesión 24-may-2026, commit
-`efc331c`), que fichó a Manuel Cobo Vega como desimputado de la
-pieza Inassa y modeló el caso del ático de Estepona como `Caso`
-propio con `RelacionEntreCasos conexion_factual` apuntando a
-Lezo.
+Actualizado tras el cierre de PR7 (sesión 24-may-2026), que cerró
+al 100% la composición de la pieza separada nº 3 (Navalcarnero):
+fichó como Personas a Adrián de la Joya Ruiz de Velasco, Rafael
+Martín de Nicolás Martín y Felicísimo Damián Ramos Ramos, y añadió
+los tres roles `procesado-pieza-navalcarnero` correspondientes
+junto al hito de apertura JO ya ampliado en `personas_afectadas` con
+los seis procesados. Corrección de nombre incorporada: el segundo
+apellido de Felicísimo Damián Ramos es **Ramos** (no «Sánchez» como
+anotaba la NOTES de PR6 con cobertura más débil). El refino del
+`caso.yaml` reescribe el comentario de cabecera para listar las seis
+piezas documentadas (golf, Inassa, Emissao, Navalcarnero,
+Ruiz-Gallardón y conexión `atico-estepona`) y amplía la
+`descripcion_corta` para citar también Inassa, Navalcarnero y la
+conexión ático-Estepona. Sin nuevos catalogados.
 
-- **Javier López Madrid** como Persona y rol procesado pieza
-  Emissao. Empresario español conocido, figura pública por
-  cobertura mediática (caso tarjetas «black» de Caja Madrid y
-  causas asociadas). Sentado en el banquillo junto a Ignacio
-  González por presuntos delitos de tráfico de influencias,
-  cohecho, falsedad documental y fraude a las administraciones.
-  De los procesados pendientes es el más relevante editorialmente.
+**Investigaciones sin hallazgo positivo en la misma sesión** (anotadas
+para PR8+):
+
+- **Sentencia primera instancia pieza Inassa**: búsqueda intensiva
+  en 2026-05-24 (eldiario.es, Confilegal, Público, The Objective,
+  iAgua, El Plural, El Independiente, Wikipedia ES) no localizó
+  sentencia accesible públicamente para los 22 procesados de la
+  pieza Inassa cuya vista oral arrancó el 24-may-2023 con 18
+  sesiones previstas hasta el 27-jun-2023. Sin cobertura sólida
+  posterior al cierre del juicio. Aplazar el rastreo a CENDOJ y a
+  poderjudicial.es; si recae, modelar hito `sentencia_primera_instancia`
+  + transformar los 22 roles `procesado` en `condenado_no_firme` o
+  `absuelto` según el fallo. Patrón de cuatro roles consecutivos
+  del mismo sujeto ya validado en FGE.
+- **Estado actual pieza Navalcarnero a 2026**: sin señalamiento de
+  fecha de juicio oral localizable a la misma fecha; sin sentencia.
+  Cobertura editorial más reciente identificada en la sesión:
+  informe definitivo de la UCO (eldiario.es 22-jun-2022) que
+  confirma comisiones superiores a 1 M€ y 2,5 M$ desde cuenta OHL
+  en Banco Santander. Sin novedad procesal pública relevante entre
+  2022 y 2026. Pendiente cruzar con la agenda de señalamientos
+  oficial del CGPJ
+  (`poderjudicial.es/cgpj/es/Poder-Judicial/Audiencia-Nacional/Portal-de-Transparencia/Te-puede-interesar---/Agenda-de-senalamientos/`).
+
+**Refinamientos no críticos** (heredados de PR6 con ajustes):
+
 - **Diego Fernando García Arias, Luis Vicente Moro Díaz y
   Ramón Navarro Pereira** como procesados Emissao/Inassa.
   Figuras menores (director de nuevos negocios de Inassa,
@@ -180,17 +228,24 @@ Lezo.
   entonces, todos los hechos conservados en `atribuido` /
   `investigado` / `exculpatorio` conforme al guardarrail 3 de
   `/investigar-caso`.
+- ~~Adrián de la Joya, Rafael Martín de Nicolás Martín y
+  Felicísimo Ramos Sánchez~~ → **Cerrado en PR7** como De la Joya,
+  Martín de Nicolás Martín y Ramos Ramos (segundo apellido
+  corregido tras cobertura más fiable: Público + eldiario.es +
+  vanguardia.com.mx para Felicísimo Damián Ramos Ramos como
+  director de Control de Gestión OHL hasta su jubilación en 2013).
 
 ## Lo que NO está bloqueante
 
 Ninguno de los pendientes anteriores impide que el caso Lezo se
 considere publicable en la primera oleada de lanzamiento del sitio:
-los 5 PRs ya cubren la columna vertebral procesal (5 piezas
-documentadas, 4 instructores en cadena, tribunal de enjuiciamiento
-con ponente, dos acusaciones particulares, dos N1 BOE descargados,
-9 N4 cruzados en 6 líneas editoriales, 7 hitos jurisdiccionales,
-14 roles, primera RelacionEntreCasos con caso conexo). Los
-refinamientos PR6+ son acumulativos, no críticos.
+los 7 PRs ya cubren la columna vertebral procesal (6 piezas
+documentadas con Navalcarnero al 100% en sus seis procesados, 4
+instructores en cadena, tribunal de enjuiciamiento con ponente, dos
+acusaciones particulares, dos N1 BOE descargados, 12 N4 cruzados en
+7 líneas editoriales, 8 hitos jurisdiccionales, 21 roles, primera
+RelacionEntreCasos con caso conexo). Los refinamientos PR8+ son
+acumulativos, no críticos.
 
 ## Incidencia multiagéntico documentada
 

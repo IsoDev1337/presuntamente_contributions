@@ -1,0 +1,55 @@
+id: apertura-juicio-oral-pieza-navalcarnero-lezo-2021-06-04
+caso_id: lezo
+tipo: apertura_juicio_oral
+fecha: "2021-06-04"
+fecha_precision: dia
+titulo: "El magistrado instructor Manuel García-Castellón acuerda la apertura del juicio oral de la pieza separada nº 3 del caso Lezo (tren ligero Móstoles-Navalcarnero) contra Ignacio González, Javier López Madrid y otros cuatro procesados"
+descripcion: |
+  El titular del Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional Manuel María García-Castellón García-Lomas
+  dicta el 4 de junio de 2021 auto por el que acuerda la apertura
+  del juicio oral en la pieza separada nº 3 de las Diligencias
+  Previas del caso Lezo, relativa a la presunta adjudicación
+  irregular en 2007 por el Consorcio Regional de Transportes de
+  Madrid de las obras del tren ligero entre Móstoles Central y
+  Navalcarnero a la unión temporal de empresas liderada por OHL.
+  El auto sienta en el banquillo a seis procesados: el ex
+  presidente de la Comunidad de Madrid Ignacio González González,
+  el consejero de OHL Francisco Javier López Madrid, el
+  empresario Adrián de la Joya, los ex directivos de OHL Rafael
+  Martín de Nicolás Martín y Felicísimo Damián Ramos Ramos, y el
+  ex director gerente del Canal de Isabel II Ildefonso de Miguel
+  Rodríguez. La Fiscalía Anticorrupción solicita seis años y
+  medio de prisión para Javier López Madrid, Rafael Martín de
+  Nicolás y Felicísimo Ramos; cuatro años de prisión para
+  Ignacio González; cuatro años para Ildefonso de Miguel; y tres
+  años y medio para Adrián de la Joya, por presuntos delitos de
+  tráfico de influencias, cohecho, falsedad en documento
+  mercantil y fraude a las administraciones públicas. Según el
+  escrito de acusación, López Madrid habría ideado junto con
+  Martín de Nicolás un plan para asegurar la adjudicación
+  mediante la presentación de una oferta económica artificialmente
+  baja, completada con modificados contractuales posteriores y
+  el pago de aproximadamente 1,4 millones de euros en comisiones
+  ilícitas a Ignacio González e Ildefonso de Miguel. Conforme a
+  la legislación procesal española, la apertura del juicio oral
+  no implica valoración de culpabilidad: rige la presunción de
+  inocencia mientras no recaiga resolución firme.
+personas_afectadas:
+  - ignacio-gonzalez
+  - javier-lopez-madrid
+  - ildefonso-de-miguel
+  - adrian-de-la-joya
+  - rafael-martin-de-nicolas
+  - felicisimo-ramos
+organizaciones_afectadas:
+  - juzgado-central-instruccion-6
+  - audiencia-nacional
+  - canal-isabel-ii
+  - comunidad-de-madrid
+  - fiscalia-anticorrupcion
+documento_principal_id: infolibre-juicio-navalcarnero-lopez-madrid-lezo-2021-06-07
+documentos_relacionados:
+  - elespanol-juicio-navalcarnero-lezo-2021-06-07
+  - eldiario-juicio-navalcarnero-lezo-2021-06-07
+fase_resultante: fase_intermedia

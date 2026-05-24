@@ -1,0 +1,39 @@
+id: ramos-procesado-pieza-navalcarnero
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: felicisimo-ramos
+rol: procesado
+delitos_atribuidos:
+  - trafico-de-influencias
+  - cohecho
+  - falsedad-documental
+  - fraude-administraciones-publicas
+delitos_codigo_penal:
+  - "art. 428 y ss. CP (tráfico de influencias)"
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 392 CP (falsedad en documento mercantil)"
+  - "art. 436 CP (fraude a las administraciones públicas)"
+fecha_inicio: "2021-06-04"
+hito_origen_id: apertura-juicio-oral-pieza-navalcarnero-lezo-2021-06-04
+notas: |
+  Felicísimo Damián Ramos Ramos figura procesado en la pieza
+  separada nº 3 del caso Lezo por el auto del 4 de junio de
+  2021 del titular del Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional Manuel María García-Castellón
+  García-Lomas que acuerda la apertura del juicio oral. La
+  Fiscalía Anticorrupción solicita para él seis años y medio de
+  prisión, petición coincidente con la formulada contra el
+  consejero Francisco Javier López Madrid y el consejero
+  ejecutivo Rafael Martín de Nicolás. Según el escrito de
+  acusación, en su condición de director de Control de Gestión
+  del grupo OHL habría ordenado por instrucción de su superior
+  jerárquico la transferencia desde cuentas de OHL en Banco
+  Santander de aproximadamente 2,5 millones de dólares a
+  cuentas abiertas en México bajo concepto presunto de
+  devolución de un préstamo ficticio y habría intervenido en la
+  emisión, en concierto con el consejero López Madrid y con
+  Martín de Nicolás, de dos facturas mercantiles presuntamente
+  falsas por servicios ficticios a nombre de la sociedad
+  panameña Lauryn Group Inc. La condición de procesado no
+  implica valoración de culpabilidad: rige el principio de
+  presunción de inocencia mientras no recaiga resolución firme.

@@ -1,0 +1,37 @@
+id: de-la-joya-procesado-pieza-navalcarnero
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: adrian-de-la-joya
+rol: procesado
+delitos_atribuidos:
+  - trafico-de-influencias
+  - cohecho
+  - falsedad-documental
+  - fraude-administraciones-publicas
+delitos_codigo_penal:
+  - "art. 428 y ss. CP (tráfico de influencias)"
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 392 CP (falsedad en documento mercantil)"
+  - "art. 436 CP (fraude a las administraciones públicas)"
+fecha_inicio: "2021-06-04"
+hito_origen_id: apertura-juicio-oral-pieza-navalcarnero-lezo-2021-06-04
+notas: |
+  Adrián de la Joya Ruiz de Velasco figura procesado en la pieza
+  separada nº 3 del caso Lezo por el auto del 4 de junio de
+  2021 del titular del Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional Manuel María García-Castellón
+  García-Lomas que acuerda la apertura del juicio oral. La
+  Fiscalía Anticorrupción solicita para él tres años y medio de
+  prisión, la petición más baja entre los seis procesados de
+  esta pieza. Según el escrito de acusación, presuntamente
+  habría participado en el circuito financiero a través del cual
+  habrían transitado aproximadamente 1,4 millones de euros
+  destinados al pago de comisiones ilícitas, incluida la
+  utilización de la sociedad panameña Lauryn Group Inc. de la
+  que la cobertura periodística cruzada le atribuye la
+  titularidad. En declaración prestada ante el instructor,
+  según la misma cobertura, sostuvo que la cantidad recibida
+  correspondía a un cobro de deuda previa de OHL por gestiones
+  comerciales anteriores en África. La condición de procesado
+  no implica valoración de culpabilidad: rige el principio de
+  presunción de inocencia mientras no recaiga resolución firme.

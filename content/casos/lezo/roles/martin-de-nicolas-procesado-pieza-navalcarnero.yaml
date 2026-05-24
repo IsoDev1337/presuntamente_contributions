@@ -1,0 +1,40 @@
+id: martin-de-nicolas-procesado-pieza-navalcarnero
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: rafael-martin-de-nicolas
+rol: procesado
+delitos_atribuidos:
+  - trafico-de-influencias
+  - cohecho
+  - falsedad-documental
+  - fraude-administraciones-publicas
+delitos_codigo_penal:
+  - "art. 428 y ss. CP (tráfico de influencias)"
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 392 CP (falsedad en documento mercantil)"
+  - "art. 436 CP (fraude a las administraciones públicas)"
+fecha_inicio: "2021-06-04"
+hito_origen_id: apertura-juicio-oral-pieza-navalcarnero-lezo-2021-06-04
+notas: |
+  Rafael Martín de Nicolás Martín figura procesado en la pieza
+  separada nº 3 del caso Lezo por el auto del 4 de junio de
+  2021 del titular del Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional Manuel María García-Castellón
+  García-Lomas que acuerda la apertura del juicio oral. La
+  Fiscalía Anticorrupción solicita para él seis años y medio de
+  prisión, petición coincidente con la formulada contra
+  Francisco Javier López Madrid y Felicísimo Damián Ramos
+  Ramos. Según el escrito de acusación, en su condición de
+  consejero ejecutivo del grupo OHL y director general de
+  Construcción Nacional habría ideado, junto con el consejero
+  López Madrid, un plan para asegurar la adjudicación irregular
+  en 2007 por el Consorcio Regional de Transportes de Madrid de
+  las obras del tren ligero Móstoles Central-Navalcarnero a la
+  unión temporal de empresas liderada por OHL; presuntamente
+  habría impartido instrucciones a la dirección de Control de
+  Gestión de la compañía para la emisión de facturas mercantiles
+  presuntamente falsas y la transferencia de aproximadamente
+  2,5 millones de dólares a través de cuentas en México y
+  Suiza. La condición de procesado no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia
+  mientras no recaiga resolución firme.

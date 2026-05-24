@@ -1,0 +1,34 @@
+id: miguel-procesado-pieza-navalcarnero
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: ildefonso-de-miguel
+rol: procesado
+delitos_atribuidos:
+  - cohecho
+  - trafico-de-influencias
+  - fraude-administraciones-publicas
+delitos_codigo_penal:
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 428 y ss. CP (tráfico de influencias)"
+  - "art. 436 CP (fraude a las administraciones públicas)"
+fecha_inicio: "2021-06-04"
+hito_origen_id: apertura-juicio-oral-pieza-navalcarnero-lezo-2021-06-04
+notas: |
+  Procesado en la pieza separada nº 3 del caso Lezo en su
+  condición de ex director gerente de la empresa pública Canal
+  de Isabel II por el auto del 4 de junio de 2021 del titular
+  del Juzgado Central de Instrucción nº 6 de la Audiencia
+  Nacional Manuel María García-Castellón García-Lomas que
+  acuerda la apertura del juicio oral. La Fiscalía
+  Anticorrupción solicita para él cuatro años de prisión. Según
+  el escrito de acusación, su papel presuntamente consistió en
+  facilitar desde la dirección gerencial del Canal de Isabel II
+  la adjudicación irregular en 2007 por el Consorcio Regional
+  de Transportes de Madrid de las obras del tren ligero
+  Móstoles Central-Navalcarnero a la unión temporal de empresas
+  liderada por OHL, a cambio del reparto de comisiones ilícitas
+  presuntamente compartido con Ignacio González. Procesado
+  simultáneamente en la pieza del campo de golf del Canal de
+  Isabel II. La condición de procesado no implica valoración de
+  culpabilidad: rige el principio de presunción de inocencia
+  mientras no recaiga resolución firme.

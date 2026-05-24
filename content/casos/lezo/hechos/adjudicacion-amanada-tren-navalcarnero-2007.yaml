@@ -1,0 +1,59 @@
+id: adjudicacion-amanada-tren-navalcarnero-2007
+caso_id: lezo
+enunciado: |
+  La Fiscalía Anticorrupción atribuye en el escrito de acusación
+  formulado en la pieza separada nº 3 del caso Lezo y recogido
+  en el auto de apertura del juicio oral del 4 de junio de 2021
+  dictado por el titular del Juzgado Central de Instrucción nº 6
+  de la Audiencia Nacional Manuel María García-Castellón
+  García-Lomas que en el año 2007 el Consorcio Regional de
+  Transportes de Madrid adjudicó las obras del tren ligero
+  Móstoles Central-Navalcarnero a la unión temporal de empresas
+  liderada por el grupo OHL (Obrascón Huarte Lain). Según la
+  acusación, el consejero de OHL Francisco Javier López Madrid
+  habría ideado, junto con el entonces directivo del grupo
+  Rafael Martín de Nicolás Martín, un plan presuntamente
+  concertado con el entonces presidente del Consejo de
+  Administración del Canal de Isabel II e ex presidente de la
+  Comunidad de Madrid Ignacio González González y con el ex
+  director gerente del Canal Ildefonso de Miguel Rodríguez,
+  consistente en la presentación de una oferta económica
+  artificialmente baja, sucesivas modificaciones contractuales
+  al alza y el pago de aproximadamente 1,8 millones de euros en
+  comisiones ilícitas (cifra alternativa próxima a 2,5 millones
+  de dólares según otra línea editorial coetánea). La Fiscalía
+  Anticorrupción solicita seis años y medio de prisión para
+  López Madrid, Martín de Nicolás y Felicísimo Ramos; cuatro
+  años para Ignacio González y para Ildefonso de Miguel; tres
+  años y medio para Adrián de la Joya, por presuntos delitos de
+  tráfico de influencias, cohecho, falsedad en documento
+  mercantil y fraude a las administraciones públicas. El
+  proyecto del tren ligero no llegó a entrar en explotación
+  comercial. La condición de procesados no implica valoración
+  de culpabilidad: rige el principio de presunción de inocencia
+  mientras no recaiga resolución firme.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2007-01-01"
+  hasta: "2007-12-31"
+  precision: rango
+personas_implicadas:
+  - javier-lopez-madrid
+  - ignacio-gonzalez
+  - ildefonso-de-miguel
+organizaciones_implicadas:
+  - comunidad-de-madrid
+  - canal-isabel-ii
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: infolibre-juicio-navalcarnero-lopez-madrid-lezo-2021-06-07
+    pasaje: "Cobertura del auto de apertura del juicio oral del 4 de junio de 2021 con detalle de los seis procesados, los delitos atribuidos y las peticiones de pena de la Fiscalía Anticorrupción para la pieza Navalcarnero."
+  - documento_id: elespanol-juicio-navalcarnero-lezo-2021-06-07
+    pasaje: "Detalle del papel atribuido en el escrito de acusación a Javier López Madrid como ideador del plan junto con Rafael Martín de Nicolás y cifra de comisiones próxima a 2,5 millones de dólares."
+  - documento_id: eldiario-juicio-navalcarnero-lezo-2021-06-07
+    pasaje: "Cobertura cruzada del auto de apertura del juicio oral y reparto presunto de aproximadamente 1,8 millones de euros entre los procesados."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

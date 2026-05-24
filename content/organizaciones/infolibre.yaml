@@ -1,0 +1,20 @@
+id: infolibre
+nombre: "infoLibre"
+nombres_alternativos:
+  - "infolibre.es"
+  - "Info Libre"
+tipo: medio_comunicacion
+descripcion_corta: |
+  Medio digital español fundado en 2013, perteneciente a Ediciones
+  Prensa Libre S.L. y en parte propiedad de la sociedad francesa
+  Mediapart. En el inventario figura como productor de cobertura
+  periodística del caso Lezo, en particular del auto de apertura
+  del juicio oral del 4 de junio de 2021 dictado por el titular
+  del Juzgado Central de Instrucción nº 6 de la Audiencia Nacional
+  Manuel García-Castellón en la pieza separada nº 3 relativa a la
+  presunta adjudicación irregular del tren ligero entre Móstoles
+  Central y Navalcarnero.
+ambito_territorial: nacional
+url_canonica: "https://www.infolibre.es/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

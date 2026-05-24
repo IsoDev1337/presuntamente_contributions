@@ -1,0 +1,34 @@
+id: gonzalez-procesado-pieza-navalcarnero
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: ignacio-gonzalez
+rol: procesado
+delitos_atribuidos:
+  - cohecho
+  - trafico-de-influencias
+delitos_codigo_penal:
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 428 y ss. CP (tráfico de influencias)"
+fecha_inicio: "2021-06-04"
+hito_origen_id: apertura-juicio-oral-pieza-navalcarnero-lezo-2021-06-04
+notas: |
+  Cuarto rol procesal de Jaime Ignacio González González en el
+  caso Lezo, sumado a los de investigado en la apertura del
+  procedimiento, procesado en la pieza del campo de golf del
+  Canal de Isabel II y desimputado en la pieza Inassa. La
+  condición de procesado en la pieza separada nº 3 (presunta
+  adjudicación irregular del tren ligero Móstoles
+  Central-Navalcarnero) deriva del auto del 4 de junio de 2021
+  del titular del Juzgado Central de Instrucción nº 6 de la
+  Audiencia Nacional Manuel María García-Castellón García-Lomas
+  que acuerda la apertura del juicio oral en esta pieza. La
+  Fiscalía Anticorrupción solicita para él cuatro años de
+  prisión por presuntos delitos de cohecho y tráfico de
+  influencias. Según el escrito de acusación, su papel
+  presuntamente consistió en facilitar la adjudicación a la
+  unión temporal de empresas liderada por OHL a cambio de un
+  reparto de comisiones ilícitas con el entonces director
+  gerente del Canal de Isabel II Ildefonso de Miguel
+  Rodríguez. La condición de procesado no implica valoración
+  de culpabilidad: rige el principio de presunción de inocencia
+  mientras no recaiga resolución firme.

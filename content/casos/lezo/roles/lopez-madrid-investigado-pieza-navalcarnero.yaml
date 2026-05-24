@@ -1,0 +1,42 @@
+id: lopez-madrid-investigado-pieza-navalcarnero
+caso_id: lezo
+sujeto_tipo: persona
+sujeto_persona_id: javier-lopez-madrid
+rol: investigado
+delitos_atribuidos:
+  - trafico-de-influencias
+  - cohecho
+  - falsedad-documental
+  - fraude-administraciones-publicas
+delitos_codigo_penal:
+  - "art. 428 y ss. CP (tráfico de influencias)"
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 392 CP (falsedad documental)"
+  - "art. 436 CP (fraude a las administraciones públicas)"
+fecha_inicio: "2020-10-22"
+fecha_fin: "2021-06-03"
+hito_origen_id: operacion-uco-detenciones-lezo-2017-04-19
+hito_fin_id: apertura-juicio-oral-pieza-navalcarnero-lezo-2021-06-04
+notas: |
+  Francisco Javier López Madrid figura como investigado en la
+  pieza separada nº 3 del caso Lezo (presunta adjudicación
+  irregular en 2007 del tren ligero Móstoles Central-Navalcarnero
+  por el Consorcio Regional de Transportes de Madrid a la unión
+  temporal de empresas liderada por OHL). La cobertura indica
+  citación formal por el titular del Juzgado Central de
+  Instrucción nº 6 de la Audiencia Nacional Manuel María
+  García-Castellón García-Lomas el 22 de octubre de 2020 en
+  condición de investigado en la pieza específica de
+  Navalcarnero. La fecha de imputación originaria en el caso
+  Lezo puede ser anterior (la cobertura sitúa una declaración
+  judicial suya en febrero de 2018 sobre los pagos a Granados),
+  pero el hito específico de imputación en la pieza Navalcarnero
+  no se ha localizado públicamente; conservadoramente, se ancla
+  la apertura del rol a la fecha de citación formal documentada
+  y el hito de origen a la operación UCO del 19 de abril de 2017
+  como aproximación. El rol se cierra el 3 de junio de 2021,
+  víspera del auto de apertura del juicio oral que lo transforma
+  en procesado por sucesión del rol
+  `lopez-madrid-procesado-pieza-navalcarnero`. La condición de
+  investigado no implica valoración de culpabilidad: rige el
+  principio de presunción de inocencia.
