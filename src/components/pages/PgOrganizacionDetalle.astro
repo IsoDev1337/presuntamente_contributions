@@ -62,6 +62,8 @@ const breadcrumb = [
   description={data.descripcion_corta ?? data.nombre}
   activeNav="organizaciones"
   breadcrumb={breadcrumb}
+  ogImage={`/og/organizaciones/${data.id}.png`}
+  ogType="article"
 >
   <section class="entity-mast">
     <OrgGlyph tipo={data.tipo} size={64} />

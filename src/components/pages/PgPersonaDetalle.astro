@@ -61,6 +61,8 @@ const strings = {
   description={data.biografia_corta ?? data.nombre_completo}
   activeNav="personas"
   breadcrumb={breadcrumb}
+  ogImage={`/og/personas/${data.id}.png`}
+  ogType="article"
 >
   <section class="entity-mast">
     <div class="entity-mast__init" aria-hidden="true">{iniciales(data.nombre_completo)}</div>

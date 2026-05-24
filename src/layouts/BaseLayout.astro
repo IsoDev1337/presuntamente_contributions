@@ -22,6 +22,16 @@ interface Props {
   breadcrumb?: BreadcrumbItem[];
   /** Permite ocultar la sub-banda en páginas que ya tienen su propio breadcrumb (p.ej. ficha). */
   hideSubstrip?: boolean;
+  /**
+   * Path absoluto (con `/` inicial) del PNG OG a usar como og:image. Por
+   * defecto `/og/default.png` (cifras agregadas del inventario). Las fichas
+   * (Pg*Detalle) lo sobreescriben con su PNG propio en `/og/casos/<slug>.png`,
+   * `/og/personas/<slug>.png`, `/og/organizaciones/<slug>.png`.
+   * Ver `docs/web/features/og-images.md`.
+   */
+  ogImage?: string;
+  /** `website` por defecto; las fichas usan `article`. */
+  ogType?: 'website' | 'article';
 }
 
 const {
@@ -31,7 +41,28 @@ const {
   activeNav,
   breadcrumb = [{ label: 'Inicio', href: lang === 'ca' ? '/cat' : '/' }],
   hideSubstrip = false,
+  ogImage = '/og/default.png',
+  ogType = 'website',
 } = Astro.props;
+
+// URLs absolutas para los meta tags Open Graph / Twitter Card. Los
+// scrapers (X, Facebook, WhatsApp, Telegram, LinkedIn, Slack, Discord)
+// requieren URL absoluta para `og:image` — no leen rutas relativas.
+// `Astro.site` se configura en astro.config.mjs como 'https://presuntamente.org'.
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+const ogTitle = `${title} · presuntamente`;
+
+// La `description` puede venir de un block scalar YAML (`|`) con saltos de
+// línea internos. X corta `og:description` en el primer `\n` y Facebook
+// los renderiza como espacios extra. La aplanamos a un párrafo y la
+// truncamos a 220 caracteres (margen razonable bajo el límite suave de
+// X / Twitter Card ~200 y por debajo del corte habitual de WhatsApp).
+const ogDescription = (() => {
+  const flat = (description ?? '').replace(/\s+/g, ' ').trim();
+  if (flat.length <= 220) return flat;
+  return flat.slice(0, 219).trimEnd() + '…';
+})();
 
 // TODO i18n: cuando se active el catalán, traducir nav y subtítulo institucional.
 // Convención ministerial: el brand block del header es el ancla a "/"
@@ -58,10 +89,30 @@ const brandSub = 'Inventario público de casos de corrupción en España';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · presuntamente</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={ogDescription} />
 
     <link rel="icon" type="image/png" href="/branding/logo.png" />
     <link rel="apple-touch-icon" href="/branding/logo.png" />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph (X, Facebook, WhatsApp, LinkedIn, Telegram, Slack, Discord) -->
+    <meta property="og:site_name" content="presuntamente.org" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:locale" content={lang === 'ca' ? 'ca_ES' : 'es_ES'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <link rel="alternate" type="application/atom+xml" title="presuntamente · Hitos recientes (Atom)" href="/feed.xml" />
     <link rel="alternate" type="application/rss+xml" title="presuntamente · Hitos recientes (RSS)" href="/rss.xml" />
