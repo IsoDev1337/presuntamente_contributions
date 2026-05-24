@@ -34,3 +34,7 @@ yarn-error.log*
 
 # Local-only (no se publica)
 /local/
+
+# Claude Code per-user
+.claude/settings.local.json
+.claude/worktrees/
