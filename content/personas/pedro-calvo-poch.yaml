@@ -1,0 +1,38 @@
+id: pedro-calvo-poch
+nombre_completo: "Pedro Luis Calvo Poch"
+nombres_alternativos:
+  - "Pedro Calvo"
+  - "Pedro L. Calvo"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Presidente de Nuevas Generaciones del Partido Popular"
+    desde: "1993-01-01"
+    hasta: "1997-12-31"
+  - cargo: "Consejero de Medio Ambiente de la Comunidad de Madrid"
+    organizacion_id: comunidad-de-madrid
+    desde: "2000-01-01"
+    hasta: "2003-12-31"
+  - cargo: "Concejal del Ayuntamiento de Madrid"
+    desde: "2003-06-14"
+    hasta: "2012-11-13"
+fecha_nacimiento: "1968-03-24"
+nacionalidad: "española"
+biografia_corta: |
+  Político español del Partido Popular nacido en Ponferrada
+  (provincia de León). Fue presidente de Nuevas Generaciones del
+  PP (1993-1997), diputado en la Asamblea de Madrid en varias
+  legislaturas y consejero de Medio Ambiente del gobierno de la
+  Comunidad de Madrid presidido por Alberto Ruiz-Gallardón entre
+  2000 y 2003. Fue concejal del Ayuntamiento de Madrid hasta su
+  dimisión en noviembre de 2012 tras su imputación en el caso
+  Madrid Arena. Figura como procesado en la pieza Inassa del
+  caso Lezo, cuya vista oral se inició ante la Sección Segunda
+  de la Sala de lo Penal de la Audiencia Nacional el 24 de mayo
+  de 2023. La Fiscalía Anticorrupción solicita para él siete
+  años de prisión y quince años de inhabilitación absoluta por
+  presuntos delitos de malversación de caudales públicos en
+  concurso con prevaricación. Le es de aplicación la presunción
+  de inocencia.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

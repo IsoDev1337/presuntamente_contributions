@@ -1,0 +1,40 @@
+id: inicio-juicio-pieza-inassa-lezo-2023-05-24
+caso_id: lezo
+tipo: inicio_vista_oral
+fecha: "2023-05-24"
+fecha_precision: dia
+titulo: "Se inicia ante la Sección Segunda de la Sala de lo Penal de la Audiencia Nacional la vista oral de la pieza Inassa del caso Lezo, primera del procedimiento en llegar a juicio"
+descripcion: |
+  La Sección Segunda de la Sala de lo Penal de la Audiencia
+  Nacional inicia el 24 de mayo de 2023 la vista oral de la pieza
+  Inassa del caso Lezo, primera pieza del procedimiento en llegar
+  a juicio oral. Comparecen como acusados un total de veintidós
+  procesados por presuntos delitos de malversación de caudales
+  públicos en concurso con prevaricación relacionados con la
+  compra en 2001 por Canal de Isabel II de la sociedad colombiana
+  Inassa (Interamericana de Aguas y Servicios S.A.) por unos
+  setenta y tres millones de dólares a través de la sociedad
+  panameña Aguas de América (SAA). Entre los acusados destacan
+  los ex consejeros del gobierno de Alberto Ruiz-Gallardón Pedro
+  Luis Calvo Poch y Juan Bravo Rivera. La Fiscalía Anticorrupción
+  mantiene una petición de pena de siete años de prisión y
+  quince años de inhabilitación absoluta para Calvo y Bravo,
+  entre seis y siete años para los restantes veinte procesados
+  y una responsabilidad civil conjunta y solidaria próxima a los
+  diecinueve millones de euros por sobreprecio pagado al adquirir
+  la filial colombiana. La condición de procesados no implica
+  valoración de culpabilidad: rige el principio de presunción de
+  inocencia mientras no recaiga resolución firme.
+personas_afectadas:
+  - pedro-calvo-poch
+  - juan-bravo-rivera
+  - edmundo-rodriguez-sobrino
+organizaciones_afectadas:
+  - audiencia-nacional
+  - canal-isabel-ii
+  - comunidad-de-madrid
+  - fiscalia-anticorrupcion
+documento_principal_id: theobjective-juicio-inassa-lezo-2022-10-11
+documentos_relacionados:
+  - confilegal-bravo-calvo-7-anos-lezo-2019-06-28
+fase_resultante: juicio_oral

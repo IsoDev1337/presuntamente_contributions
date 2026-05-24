@@ -1,0 +1,33 @@
+id: juan-bravo-rivera
+nombre_completo: "Juan Bravo Rivera"
+nombres_alternativos:
+  - "Juan Bravo"
+  - "Bravo Rivera"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Concejal del Ayuntamiento de Madrid"
+    desde: "2003-06-14"
+    hasta: "2011-12-21"
+  - cargo: "Asesor del Ministro de Justicia Alberto Ruiz-Gallardón"
+    desde: "2011-12-22"
+    hasta: "2014-09-29"
+fecha_nacimiento: "1963-07-07"
+nacionalidad: "española"
+biografia_corta: |
+  Político español y funcionario público nacido en Londres.
+  Licenciado en Derecho por la Universidad Complutense de Madrid e
+  integrante del Cuerpo Técnico de Administración General de la
+  Comunidad de Madrid. Concejal del Ayuntamiento de Madrid en los
+  equipos de gobierno de Alberto Ruiz-Gallardón y Ana Botella; fue
+  el único concejal madrileño que acompañó a Ruiz-Gallardón al
+  Ministerio de Justicia cuando éste fue nombrado ministro en
+  diciembre de 2011. Figura como procesado en la pieza Inassa del
+  caso Lezo, cuya vista oral se inició ante la Sección Segunda de
+  la Sala de lo Penal de la Audiencia Nacional el 24 de mayo de
+  2023. La Fiscalía Anticorrupción solicita para él siete años de
+  prisión y quince años de inhabilitación absoluta por presuntos
+  delitos de malversación de caudales públicos en concurso con
+  prevaricación. Le es de aplicación la presunción de inocencia.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

@@ -1,0 +1,44 @@
+id: compra-emissao-desvio-2013
+caso_id: lezo
+enunciado: |
+  La Fiscalía Anticorrupción atribuye en el auto de procesamiento
+  de 18 de noviembre de 2019 dictado por el magistrado Manuel
+  María García-Castellón García-Lomas que en el ejercicio de 2013
+  la sociedad Inassa, filial latinoamericana de Canal de Isabel
+  II presidida por Edmundo Rodríguez Sobrino, adquirió la
+  sociedad brasileña Emissao por aproximadamente treinta
+  millones de dólares, cuantía considerada notablemente superior
+  al valor real de la operación. La acusación atribuye al ex
+  presidente de la Comunidad de Madrid Ignacio González González
+  la organización de la compraventa con la finalidad de desviar
+  fondos públicos del Canal a cuentas privadas, cuantificando
+  ese desvío en hasta nueve millones seiscientos mil euros, y
+  solicita por estos hechos ocho años de prisión y diecinueve
+  años de inhabilitación. Un ex directivo de Inassa declaró ante
+  el magistrado instructor haber participado en un reparto
+  próximo a los cinco millones y medio de euros con el ex
+  presidente madrileño en relación con esta operación. La
+  condición de procesados no implica valoración de culpabilidad:
+  rige el principio de presunción de inocencia mientras no
+  recaiga resolución firme.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2013-01-01"
+  hasta: "2013-12-31"
+  precision: rango
+personas_implicadas:
+  - ignacio-gonzalez
+  - edmundo-rodriguez-sobrino
+organizaciones_implicadas:
+  - canal-isabel-ii
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: elindependiente-procesamiento-pieza-golf-lezo-2019-11-18
+    pasaje: "Cobertura del auto de procesamiento del JCI nº 6 del 18 de noviembre de 2019 por la pieza Emissao."
+  - documento_id: publico-emissao-reparto-comisiones-lezo-2019
+    pasaje: "Testimonio del ex directivo de Inassa sobre el reparto próximo a 5,5 millones de euros con Ignacio González."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

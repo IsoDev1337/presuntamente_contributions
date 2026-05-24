@@ -1,0 +1,43 @@
+id: compra-inassa-sobreprecio-2001
+caso_id: lezo
+enunciado: |
+  La Fiscalía Anticorrupción atribuye en su escrito de calificación
+  provisional de la pieza Inassa que en el año 2001, en el marco
+  de la denominada «expansión internacional» del Canal de Isabel
+  II promovida por el entonces gobierno de la Comunidad de Madrid
+  presidido por Alberto Ruiz-Gallardón, se adquirió el setenta y
+  cinco por ciento de la sociedad colombiana Inassa
+  (Interamericana de Aguas y Servicios S.A.) por un total
+  próximo a setenta y tres millones de dólares articulados a
+  través de la sociedad panameña Aguas de América (SAA). La
+  Fiscalía considera que la operación incurrió en sobreprecio y
+  en la inclusión de activos no autorizados ni valorados que no
+  reportaron beneficio al erario público madrileño, y cuantifica
+  el perjuicio patrimonial cuya responsabilidad civil reclama
+  conjunta y solidariamente a los veintidós procesados en torno
+  a diecinueve millones de euros. La condición de procesados no
+  implica valoración de culpabilidad: rige el principio de
+  presunción de inocencia mientras no recaiga resolución firme.
+tipo: atribuido
+fecha_o_periodo:
+  desde: "2001-01-01"
+  hasta: "2001-12-31"
+  precision: rango
+personas_implicadas:
+  - pedro-calvo-poch
+  - juan-bravo-rivera
+  - edmundo-rodriguez-sobrino
+organizaciones_implicadas:
+  - canal-isabel-ii
+  - comunidad-de-madrid
+  - fiscalia-anticorrupcion
+documentos_respaldo:
+  - documento_id: theobjective-juicio-inassa-lezo-2022-10-11
+    pasaje: "Cuantificación de la responsabilidad civil reclamada por la Fiscalía Anticorrupción (próxima a 19 millones de euros) y operación de compra del 75% de Inassa por 73 millones de dólares vía la sociedad panameña Aguas de América (SAA)."
+  - documento_id: confilegal-bravo-calvo-7-anos-lezo-2019-06-28
+    pasaje: "Petición de pena de la Fiscalía Anticorrupción de 7 años de prisión y 15 años de inhabilitación absoluta para Calvo y Bravo y entre 6 y 7 años para los restantes 20 procesados."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"
