@@ -1,0 +1,30 @@
+id: enrique-cerezo
+nombre_completo: "Enrique Cerezo Torres"
+nombres_alternativos:
+  - "Enrique Cerezo"
+  - "Cerezo Torres"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Presidente del Club Atlético de Madrid"
+    desde: "2003-05-26"
+fecha_nacimiento: "1948-08-22"
+nacionalidad: "española"
+biografia_corta: |
+  Empresario español del sector audiovisual y dirigente
+  deportivo. Es presidente del Club Atlético de Madrid desde
+  el 26 de mayo de 2003. Fue citado como investigado por el
+  Juzgado de Primera Instancia e Instrucción nº 5 de Estepona
+  (Málaga) en el procedimiento sobre la presunta donación
+  encubierta o adquisición a precio inferior al de mercado del
+  ático de lujo ubicado en Estepona y atribuido al ex
+  presidente de la Comunidad de Madrid Ignacio González
+  González y a su esposa Lourdes Cavero, en el que se
+  investigaba si Cerezo habría «regalado» el inmueble a la
+  pareja. Por auto del 14 de julio de 2020 el juzgado acordó
+  el sobreseimiento provisional al no apreciarse indicios
+  sobre el origen del dinero empleado en la operación. El
+  sobreseimiento provisional no implica condena ni absolución:
+  rige el principio de presunción de inocencia.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

@@ -1,0 +1,24 @@
+id: juzgado-primera-instancia-instruccion-5-estepona
+nombre: "Juzgado de Primera Instancia e Instrucción nº 5 de Estepona"
+nombres_alternativos:
+  - "JPI nº 5 Estepona"
+  - "JPI e Instrucción nº 5 de Estepona"
+tipo: juzgado
+descripcion_corta: |
+  Juzgado de Primera Instancia e Instrucción nº 5 con sede en la
+  localidad de Estepona (Málaga), perteneciente al partido
+  judicial homónimo. Tramita procedimientos civiles y de
+  instrucción penal en su ámbito territorial. Instructor del
+  procedimiento sobre la presunta donación encubierta o
+  adquisición a precio inferior al de mercado del ático de lujo
+  ubicado en Estepona y atribuido al ex presidente de la
+  Comunidad de Madrid Ignacio González González y a su esposa
+  Lourdes Cavero, sobreseído provisionalmente por auto del 14
+  de julio de 2020.
+jurisdiccion: penal
+ambito_territorial: local
+localidad: "Estepona"
+provincia: "Málaga"
+comunidad_autonoma: "Andalucía"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

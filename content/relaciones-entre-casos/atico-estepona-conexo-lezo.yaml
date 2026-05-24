@@ -1,0 +1,31 @@
+id: atico-estepona-conexo-lezo
+caso_a_id: atico-estepona
+caso_b_id: lezo
+tipo: conexion_factual
+descripcion: |
+  El procedimiento sobre el ático de Estepona, abierto en 2013 en
+  el Juzgado de Primera Instancia e Instrucción nº 5 de Estepona
+  (Málaga) sobre la presunta donación encubierta del inmueble
+  por el empresario Enrique Cerezo Torres al ex presidente de la
+  Comunidad de Madrid Ignacio González González y a su esposa
+  Lourdes Cavero, comparte con el caso Lezo (instruido por el
+  Juzgado Central de Instrucción nº 6 de la Audiencia Nacional
+  a partir de la operación policial de 19 de abril de 2017) al
+  principal investigado y el contexto temporal de los presuntos
+  movimientos patrimoniales investigados en ambos procedimientos.
+  No constituye sin embargo pieza separada de Lezo en sentido
+  procesal: lo instruyó un juzgado ordinario del partido
+  judicial de Estepona en sede de Audiencia Provincial de
+  Málaga, no la Audiencia Nacional que tramita las piezas
+  Lezo (Emissao, Inassa, campo de golf, Navalcarnero, etc.).
+  Por auto del JPI e Instrucción nº 5 de Estepona del 14 de
+  julio de 2020 se acordó el sobreseimiento provisional al no
+  haberse obtenido indicios sobre el origen del dinero
+  empleado en la operación.
+documentos_respaldo:
+  - elespanol-archivo-atico-estepona-2020-07-14
+  - elespanol-detencion-gonzalez-lezo-2017-04-19
+fecha_inicio: "2013-01-01"
+fecha_fin: "2020-07-14"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

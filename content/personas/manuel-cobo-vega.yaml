@@ -1,0 +1,55 @@
+id: manuel-cobo-vega
+nombre_completo: "Manuel Cobo Vega"
+nombres_alternativos:
+  - "Manuel Cobo"
+  - "Cobo Vega"
+es_figura_publica: true
+cargos_publicos_historicos:
+  - cargo: "Diputado de la Asamblea de Madrid"
+    organizacion_id: comunidad-de-madrid
+    desde: "1991-06-26"
+    hasta: "2003-06-13"
+  - cargo: "Concejal del Ayuntamiento de Madrid"
+    organizacion_id: ayuntamiento-de-madrid
+    desde: "2003-06-14"
+    hasta: "2012-12-31"
+  - cargo: "Primer Teniente de Alcalde del Ayuntamiento de Madrid"
+    organizacion_id: ayuntamiento-de-madrid
+    desde: "2003-06-14"
+    hasta: "2011-12-22"
+  - cargo: "Alcalde en funciones del Ayuntamiento de Madrid (interinidad entre la dimisión de Ruiz-Gallardón y la toma de posesión de Ana Botella)"
+    organizacion_id: ayuntamiento-de-madrid
+    desde: "2011-12-22"
+    hasta: "2011-12-27"
+  - cargo: "Diputado del Congreso de los Diputados"
+    desde: "2023-08-17"
+fecha_nacimiento: "1956-06-18"
+nacionalidad: "española"
+biografia_corta: |
+  Político español del Partido Popular nacido en Ponferrada
+  (provincia de León). Licenciado en Derecho por la Universidad
+  Complutense de Madrid (1978) y Máster en Administración de
+  Empresas por ICADE (1986). Fue diputado de la Asamblea de
+  Madrid entre 1991 y 2003, primero como secretario general del
+  Grupo Parlamentario Popular y después como portavoz del
+  grupo. Acompañó a Alberto Ruiz-Gallardón al Ayuntamiento de
+  Madrid en 2003, donde fue concejal hasta 2012 y primer
+  teniente de alcalde durante todo el mandato de Ruiz-Gallardón;
+  ejerció como alcalde en funciones durante los cinco días
+  comprendidos entre la dimisión del primero el 22 de diciembre
+  de 2011 (para asumir la cartera de Justicia en el gobierno de
+  Mariano Rajoy) y la toma de posesión de Ana Botella el 27 de
+  diciembre del mismo año. Tras una crisis de salud que requirió
+  trasplante doble de pulmón, regresó a la política activa en
+  2023 como diputado del Congreso de los Diputados por la lista
+  del Partido Popular por Madrid. Fue citado como investigado en
+  la pieza Inassa del caso Lezo y sobreseído provisionalmente
+  por auto del titular del Juzgado Central de Instrucción nº 6
+  de la Audiencia Nacional Manuel María García-Castellón
+  García-Lomas de 30 de mayo de 2019 a petición del Ministerio
+  Fiscal, junto con Alberto Ruiz-Gallardón y otros trece
+  investigados. El sobreseimiento provisional no implica condena
+  ni absolución: rige el principio de presunción de inocencia.
+fallecido: false
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

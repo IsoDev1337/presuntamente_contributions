@@ -1,0 +1,39 @@
+id: atico-investigacion-fondos-2013-2020
+caso_id: atico-estepona
+enunciado: |
+  El procedimiento abierto en 2013 ante el Juzgado de Primera
+  Instancia e Instrucción nº 5 de Estepona tras denuncia del
+  sindicato unificado de Policía y de dirigentes del PSOE
+  madrileño investigó si la sociedad estadounidense Coast
+  Investors, que alquiló en 2008 el ático ubicado en esa
+  localidad andaluza al ex presidente de la Comunidad de
+  Madrid Ignacio González González y a su esposa Lourdes
+  Cavero en condiciones económicas favorables y se lo vendió
+  finalmente en 2011 por 770.000 euros, había recibido los
+  fondos de la operación del empresario y presidente del Club
+  Atlético de Madrid Enrique Cerezo Torres a modo de
+  donación encubierta. Tras siete años de instrucción, el
+  juez concluyó por auto del 14 de julio de 2020 que no se
+  habían obtenido indicios sobre el origen del dinero ni
+  sobre la procedencia de los fondos en relación con
+  Cerezo, acordando el sobreseimiento provisional. La
+  resolución no implica condena ni absolución de los
+  investigados.
+tipo: exculpatorio
+fecha_o_periodo:
+  desde: "2013-01-01"
+  hasta: "2020-07-14"
+  precision: rango
+personas_implicadas:
+  - ignacio-gonzalez
+  - enrique-cerezo
+organizaciones_implicadas:
+  - juzgado-primera-instancia-instruccion-5-estepona
+documentos_respaldo:
+  - documento_id: elespanol-archivo-atico-estepona-2020-07-14
+    pasaje: "Cobertura del auto del JPI nº 5 de Estepona del 14 de julio de 2020 que acuerda el sobreseimiento provisional al no apreciarse indicios sobre el origen del dinero utilizado por Coast Investors."
+nivel_fuente_efectivo: 4
+vigencia: vigente
+redaccion_neutra_revisada: true
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"

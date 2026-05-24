@@ -1,0 +1,74 @@
+# Caso ático de Estepona — esqueleto inicial.
+#
+# Procedimiento penal seguido ante el Juzgado de Primera Instancia
+# e Instrucción nº 5 de Estepona (Málaga) sobre la adquisición de
+# un ático de lujo en esa localidad por el ex presidente de la
+# Comunidad de Madrid Ignacio González González y su esposa
+# Lourdes Cavero. Conexo factualmente con el caso Lezo por
+# compartir el principal investigado (ver
+# `content/relaciones-entre-casos/atico-estepona-conexo-lezo.yaml`)
+# pero técnicamente NO pieza separada de Lezo: lo instruyó un
+# juzgado ordinario del partido judicial de Estepona, no la
+# Audiencia Nacional. Archivado por sobreseimiento provisional
+# el 14 de julio de 2020 al no apreciarse indicios sobre el
+# origen del dinero empleado en la operación.
+
+id: atico-estepona
+nombre_oficial: "Diligencias Previas — JPI e Instrucción nº 5 de Estepona"
+nombre_mediatico: "Caso del ático de Estepona"
+nombres_alternativos:
+  - "Caso Ático"
+  - "Ático de Estepona de Ignacio González"
+
+descripcion_corta: |
+  Procedimiento penal instruido por el Juzgado de Primera
+  Instancia e Instrucción nº 5 de Estepona (Málaga) sobre la
+  presunta donación encubierta o adquisición a precio inferior
+  al de mercado del ático de lujo ubicado en esa localidad
+  malagueña por parte del ex presidente de la Comunidad de
+  Madrid Ignacio González González y su esposa Lourdes Cavero.
+  La causa investigaba si el inmueble había sido «regalado» por
+  el empresario y presidente del Club Atlético de Madrid
+  Enrique Cerezo Torres, tras alquilarlo en 2008 a la sociedad
+  estadounidense Coast Investors en condiciones económicas
+  favorables y adquirirlo finalmente en 2011 por 770.000 euros,
+  presuntamente por debajo del valor de mercado. La denuncia
+  procedía del sindicato unificado de Policía y de dirigentes
+  del PSOE madrileño. Tras siete años de instrucción, el juez
+  acordó por auto del 14 de julio de 2020 el sobreseimiento
+  provisional al no haberse obtenido pruebas sobre el origen
+  del dinero utilizado por Coast Investors para la adquisición
+  ni indicios suficientes que apuntaran a que ese dinero
+  procediera del empresario madrileño. El procedimiento es
+  conexo factualmente con el caso Lezo por compartir el
+  principal investigado, pero técnicamente no constituye pieza
+  separada de aquél: lo instruyó un juzgado ordinario del
+  partido judicial de Estepona en sede de Audiencia Provincial
+  de Málaga, no la Sección Segunda de la Sala de lo Penal de la
+  Audiencia Nacional que conoce de las piezas Lezo.
+
+organo_judicial_id: juzgado-primera-instancia-instruccion-5-estepona
+numero_procedimiento: "Diligencias Previas (nº exacto pendiente de confirmación pública)"
+tipo_procedimiento: diligencias_previas
+
+fase_actual: archivo_provisional
+fecha_apertura: "2013-01-01"
+fecha_cierre: "2020-07-14"
+
+origen_denuncia: otro
+
+delitos_atribuidos_en_la_causa:
+  - cohecho
+  - blanqueo-de-capitales
+
+resumen_cifras: |
+  La operación investigada consistió en el alquiler en 2008 por
+  la sociedad estadounidense Coast Investors del ático ubicado
+  en Estepona y su adquisición posterior en 2011 por una
+  cuantía de 770.000 euros, presuntamente inferior al valor de
+  mercado de un inmueble de las características del
+  investigado.
+
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-24"
+nivel_relevancia_editorial: media

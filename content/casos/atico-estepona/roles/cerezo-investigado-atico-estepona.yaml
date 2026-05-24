@@ -1,0 +1,29 @@
+id: cerezo-investigado-atico-estepona
+caso_id: atico-estepona
+sujeto_tipo: persona
+sujeto_persona_id: enrique-cerezo
+rol: investigado
+delitos_atribuidos:
+  - cohecho
+  - blanqueo-de-capitales
+delitos_codigo_penal:
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 301 CP (blanqueo de capitales)"
+fecha_inicio: "2013-01-01"
+fecha_fin: "2020-07-14"
+hito_fin_id: archivo-atico-estepona-2020-07-14
+notas: |
+  Enrique Cerezo Torres figura como investigado en el
+  procedimiento del Juzgado de Primera Instancia e Instrucción
+  nº 5 de Estepona en su condición de presunto donante
+  encubierto de los fondos empleados por la sociedad
+  estadounidense Coast Investors para adquirir el ático de
+  lujo en esa localidad atribuido a Ignacio González González
+  y a su esposa Lourdes Cavero. La fecha de inicio del rol es
+  aproximada al año de apertura del procedimiento. El rol se
+  cierra el 14 de julio de 2020 con el sobreseimiento
+  provisional acordado por el juzgado al no apreciarse
+  indicios sobre el origen del dinero ni sobre su procedencia
+  en relación con Cerezo. La condición de investigado no
+  implica valoración de culpabilidad: rige el principio de
+  presunción de inocencia.

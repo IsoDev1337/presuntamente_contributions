@@ -1,0 +1,26 @@
+id: gonzalez-investigado-atico-estepona
+caso_id: atico-estepona
+sujeto_tipo: persona
+sujeto_persona_id: ignacio-gonzalez
+rol: investigado
+delitos_atribuidos:
+  - cohecho
+  - blanqueo-de-capitales
+delitos_codigo_penal:
+  - "art. 419 y ss. CP (cohecho)"
+  - "art. 301 CP (blanqueo de capitales)"
+fecha_inicio: "2013-01-01"
+fecha_fin: "2020-07-14"
+hito_fin_id: archivo-atico-estepona-2020-07-14
+notas: |
+  Ignacio González González figura como investigado en el
+  procedimiento del Juzgado de Primera Instancia e Instrucción
+  nº 5 de Estepona sobre la presunta donación encubierta del
+  ático de lujo en esa localidad malagueña, desde la apertura
+  de las diligencias en 2013 hasta el sobreseimiento provisional
+  acordado por auto del 14 de julio de 2020. La fecha de inicio
+  del rol es aproximada al año de apertura del procedimiento;
+  el hito específico de imputación no se ha localizado con
+  fecha precisa. La condición de investigado no implica
+  valoración de culpabilidad: rige el principio de presunción
+  de inocencia.

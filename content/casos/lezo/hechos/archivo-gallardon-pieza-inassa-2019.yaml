@@ -26,6 +26,7 @@ fecha_o_periodo:
   precision: dia
 personas_implicadas:
   - alberto-ruiz-gallardon
+  - manuel-cobo-vega
   - ignacio-gonzalez
 organizaciones_implicadas:
   - juzgado-central-instruccion-6
