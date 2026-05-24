@@ -130,42 +130,49 @@ estado `atribuido` / `investigado` / `exculpatorio`, sin
   procesarán por el hook pre-commit cuando entren al staging.
   Sin verificación específica en NOTES.
 
-## Pendientes PR5+
+## Pendientes PR6+
 
-- **Manuel Cobo Vega** como Persona y rol desimputado pieza
-  Inassa (ex teniente de alcalde de Madrid bajo Ruiz-Gallardón,
-  figura pública). Mismo patrón que Ruiz-Gallardón en PR4.
+Actualizado tras el cierre de PR5 (sesión 24-may-2026, commit
+`efc331c`), que fichó a Manuel Cobo Vega como desimputado de la
+pieza Inassa y modeló el caso del ático de Estepona como `Caso`
+propio con `RelacionEntreCasos conexion_factual` apuntando a
+Lezo.
+
+- **Javier López Madrid** como Persona y rol procesado pieza
+  Emissao. Empresario español conocido, figura pública por
+  cobertura mediática (caso tarjetas «black» de Caja Madrid y
+  causas asociadas). Sentado en el banquillo junto a Ignacio
+  González por presuntos delitos de tráfico de influencias,
+  cohecho, falsedad documental y fraude a las administraciones.
+  De los procesados pendientes es el más relevante editorialmente.
+- **Diego Fernando García Arias, Luis Vicente Moro Díaz y
+  Ramón Navarro Pereira** como procesados Emissao/Inassa.
+  Figuras menores (director de nuevos negocios de Inassa,
+  vinculado a Essentium, director gerente de Triple A). Evaluación
+  caso a caso conforme a V-17 / doc 04 §11. La opción
+  conservadora es dejarlos como mención en la descripción del
+  hito sin Persona propia.
 - **Resto de desimputados de la pieza Inassa** (12 personas
-  más sobreseídas el 30-may-2019). Modelar sólo las que sean
+  más sobreseídas el 30-may-2019, ya tienen Cobo y Ruiz-Gallardón
+  fichados de los principales). Modelar sólo las que sean
   figuras públicas relevantes; el resto puede quedar como
-  mención en descripción del hito de archivo.
-- **Otros procesados activos en piezas Emissao e Inassa que
-  no son figuras públicas mayores**: Diego Fernando García
-  Arias, Luis Vicente Moro Díaz, Ramón Navarro Pereira,
-  Javier López Madrid. Evaluación caso a caso conforme a
-  V-17 / doc 04 §11.
+  mención en descripción del hito de archivo
+  `archivo-pieza-inassa-gallardon-lezo-2019-05-30`.
 - **Esperanza Aguirre** como Persona si se documenta
   formalmente su comparecencia como testigo o cualquier rol
   procesal en alguna pieza. La cobertura indica que fue
   requerida a testificar; pendiente de verificar si se llegó
   a celebrar la diligencia y en qué pieza.
-- **Caso ático Estepona como `Caso` separado**: lo instruyó el
-  Juzgado de Primera Instancia e Instrucción nº 5 de Estepona
-  (Málaga), no la Audiencia Nacional, por lo que técnicamente
-  no es pieza de Lezo. Modelar como `Caso` propio con
-  `RelacionEntreCasos` apuntando a Lezo (tipo `conexo` o
-  `derivado_de` — decidir editorialmente). Archivado por
-  sobreseimiento provisional el 14-jul-2020 (JPI e
-  Instrucción nº 5 de Estepona) por no apreciarse indicios
-  del origen del dinero de Coast Investors. Investigados:
-  Ignacio González, su esposa Lourdes Cavero y el empresario
-  Enrique Cerezo.
 - **Auto íntegro de la providencia de la Sec 2ª de la AN
   señalando juicio oral pieza golf para sept-2027** si aparece
-  en CENDOJ o nota CGPJ específica.
+  en CENDOJ o nota CGPJ específica. Probable que sea
+  providencia interna no publicable.
 - **Sentencia de primera instancia de la pieza Inassa** si ya
   ha recaído tras la vista oral del 24-may-2023; pendiente de
-  rastrear.
+  rastrear. Si recae, modelar como hito `sentencia_primera_instancia`
+  + roles consecutivos (`procesado` → `condenado_no_firme` o
+  `absuelto`) para los 22 acusados. Patrón de cuatro roles
+  consecutivos en cadena ya validado en FGE.
 - **Promoción a `acreditado`** de los hechos respaldados por
   resolución firme: aplazada al juicio oral de septiembre de
   2027 y eventual casación posterior para la pieza golf, y a
@@ -173,6 +180,17 @@ estado `atribuido` / `investigado` / `exculpatorio`, sin
   entonces, todos los hechos conservados en `atribuido` /
   `investigado` / `exculpatorio` conforme al guardarrail 3 de
   `/investigar-caso`.
+
+## Lo que NO está bloqueante
+
+Ninguno de los pendientes anteriores impide que el caso Lezo se
+considere publicable en la primera oleada de lanzamiento del sitio:
+los 5 PRs ya cubren la columna vertebral procesal (5 piezas
+documentadas, 4 instructores en cadena, tribunal de enjuiciamiento
+con ponente, dos acusaciones particulares, dos N1 BOE descargados,
+9 N4 cruzados en 6 líneas editoriales, 7 hitos jurisdiccionales,
+14 roles, primera RelacionEntreCasos con caso conexo). Los
+refinamientos PR6+ son acumulativos, no críticos.
 
 ## Incidencia multiagéntico documentada
 
