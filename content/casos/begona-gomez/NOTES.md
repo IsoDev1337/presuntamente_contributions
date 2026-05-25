@@ -2,7 +2,45 @@
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en [AGENTS.md → "NOTES.md por caso"](AGENTS.md#notesmd-por-caso).
 
-Última actualización: 2026-05-23 (barrido retrospectivo de la convención "Documentos primarios descargados a `/public/documentos/`" sobre los 24 documentos catalogados del caso; ver sección "Barrido primarios descargados — 2026-05-23"). Antes: 2026-05-22 (PR3 — incorpora Juan José Güemes como persona desimputada, hitos posteriores al 21-abr-2026 hasta hoy, hito propio del ofrecimiento de personación a la UCM, y nuevo tipo de hito `escrito_conclusiones_provisionales` en el schema).
+Última actualización: 2026-05-25 (sesión `vinculos-bg` — skill `documentar-vinculos` v0, primera pasada de vínculos institucionales; 16 vínculos creados, 1 pendiente estructural (BOE Cristina Álvarez); ver sección "Vínculos institucionales — pasada 2026-05-25"). Antes: 2026-05-23 (barrido retrospectivo de la convención "Documentos primarios descargados a `/public/documentos/`" sobre los 24 documentos catalogados del caso; ver sección "Barrido primarios descargados — 2026-05-23"). Antes: 2026-05-22 (PR3 — incorpora Juan José Güemes como persona desimputada, hitos posteriores al 21-abr-2026 hasta hoy, hito propio del ofrecimiento de personación a la UCM, y nuevo tipo de hito `escrito_conclusiones_provisionales` en el schema).
+
+---
+
+## Vínculos institucionales — pasada 2026-05-25
+
+Ejecutada con la skill `documentar-vinculos` v0 en sesión paralela `vinculos-bg` (worktree `.claude/worktrees/vinculos-bg`, rama `session/vinculos-bg`).
+
+### Vínculos creados (16)
+
+**Personas con rol procesal (10):**
+- `begona-gomez-codirectora-catedra-ucm` — cargo_academico_publico (UCM desde 2020-11-01, vigente)
+- `begona-gomez-directora-africa-center-ie` — cargo_directivo_organizacion_privada (IE Business School 2018-2022; AP Madrid excluyó estos hechos del objeto de instrucción en mayo 2025)
+- `begona-gomez-esposa-pedro-sanchez` — vinculo_familiar_publico (desde 2006-05-05; Pedro Sánchez testificó 2024-07-22 art. 416 LECrim)
+- `barrabes-codirector-catedra-ucm` — cargo_academico_publico (UCM desde 2020-11-01, vigente)
+- `cristina-alvarez-asesora-presidencia-gobierno` — cargo_publico_designado (Presidencia desde 2018-07-16, vigente; fecha corregida por informe UCO vía Libertad Digital 2025-10-01)
+- `goyache-rector-ucm` — cargo_academico_publico (UCM desde 2019-05-31, vigente; respaldo N4 cruzado Newtral+elDiario)
+- `guemes-consejero-sanidad-cm` — cargo_publico_designado (CM 2007-2010; gobierno Aguirre II)
+- `guemes-consejero-empleo-cm` — cargo_publico_designado (CM 2003-2007; gobierno Aguirre I)
+- `guemes-partido-popular` — cargo_organico_partido (PP 2000-2010; respaldo N4 cruzado Newtral+ElIndependiente)
+- `guemes-presidente-ie-center` — cargo_directivo_organizacion_privada (IE Business School, presidente del Centro Internacional de Gestión Emprendedora desde 2010, vigente)
+
+**Organizaciones (6):**
+- `manos-limpias-acusacion-bg` — acusacion_institucional_en_caso (desde 2024-04-08)
+- `hazte-oir-acusacion-bg` — acusacion_institucional_en_caso (desde 2024-04-29)
+- `vox-acusacion-bg` — acusacion_institucional_en_caso (desde 2024-04-29)
+- `iustitia-europa-acusacion-bg` — acusacion_institucional_en_caso (desde 2024-04-29)
+- `mrpe-acusacion-bg` — acusacion_institucional_en_caso (movimiento-regeneracion-politica; desde 2024-05-01)
+- `ucm-perjudicada-bg` — perjudicado_institucional_en_caso (desde 2025-10-03; respaldo Confilegal+Moncloa.com)
+
+### Pendiente estructural (1)
+
+**`cristina-alvarez-nombramiento-gobierno-sanchez`** (`nombramiento_por_gobierno`): la skill distingue entre el cargo en sí y el acto de nombramiento por un gobierno concreto. Para Cristina Álvarez, el nombramiento como asesora del Gabinete bajo el Gobierno Sánchez I (julio 2018) es el vínculo político relevante, pero no se ha localizado BOE de nombramiento con URL canónica. Se buscó explícitamente en boe.es (2026-05-25) y se confirmó que los asesoramientos de personal eventual en el Gabinete de Presidencia no se publican nominalmente en BOE — solo los nombramientos de rango Secretario de Estado hacia arriba tienen BOE propio.
+
+**Recomendación editorial (2026-05-25):** este vínculo probablemente no sea necesario. El vínculo `cristina-alvarez-asesora-presidencia-gobierno` (`cargo_publico_designado`) ya lleva `gobierno_o_legislatura: "Gobierno Sánchez I / Sánchez II / Sánchez III"`, lo que captura exactamente la misma información. La naturaleza `nombramiento_por_gobierno` tiene más sentido cuando el acto de nombramiento es en sí mismo un hecho editorialmente relevante (p. ej. el gobierno designa a alguien en el TC). Para Cristina Álvarez el hecho relevante es el cargo, no el acto de nombramiento. Valorar si cerrar este pendiente y dar por completo el bloque de vínculos.
+
+### Nota de merge para el maintainer
+
+El `estado_ficha.vinculos_institucionales` en `caso.yaml` ha sido añadido en este worktree con valor `parcial`. El campo también ha sido añadido por la sesión paralela `bloque-d-base` en el working tree principal (con valor `pendiente`). Al hacer merge, conservar el bloque `estado_ficha` de `bloque-d-base` y cambiar sólo `vinculos_institucionales: pendiente` → `vinculos_institucionales: parcial`.
 
 ---
 
@@ -69,22 +107,6 @@ Ambos cierres dejan en pie la presunción de inocencia y las trayectorias proces
 **Cuándo revisar de nuevo.** Trimestralmente, o cuando un hito procesal posterior dispare la publicación oficial de los autos íntegros (firmeza de la sentencia, llegada a TS por casación, indultos publicados en BOE, etc.). Mientras tanto, el modelo del caso ya cumple V-13 mediante cobertura cruzada N4 multimedio para cada hito.
 
 **No se hace ninguna mutación de YAML en este barrido.** No se añaden `ruta_local`, no se calcula `hash_sha256`, no se reescribe `nivel_fuente_justificacion`. Sólo se actualiza esta NOTES.md.
-
----
-
-## Hallazgos del rastreo de cobertura mediática — 2026-05-25
-
-Sesión `rastrear-cobertura` v0 sobre el corpus `content/cobertura-mediatica/begona-gomez.yaml`
-(29 piezas, 14 medios, 5 ventanas temporales). Hallazgos para PR4 que no estaban en la ficha:
-
-1. **Francisco Martín Aguirre (delegado del Gobierno en Madrid) fue investigado e imputado
-   en este caso.** Confirmado por múltiples piezas de cobertura (2025-09-24 eldiario.es, 2025-11-26 publico.es, 2025-05-19 infobae). A noviembre de 2025, la Fiscalía pidió archivar su causa junto a la de Begoña Gómez. Precisa modelar: nueva Persona `francisco-martin-aguirre`, roles `investigado`→`procesado`(?) + trayectoria procesal, hitos correspondientes. Antes de modelarlo, contrastar si la causa fue finalmente archivada o si siguió adelante hasta el auto de procesamiento de abr 2026.
-
-2. **Air Europa / rescate SEPI como línea de investigación archivada.** El auto de la AP
-   Madrid de mayo 2025 descartó la línea sobre el rescate a Air Europa (Barrabés ↔ SEPI ↔ Begoña Gómez). No está modelado como Hecho en la ficha. Podría merecer un Hecho de tipo `exculpatorio` con `vigencia: superado`, similar al del intrusismo archivado en el auto de procesamiento. Fuente: infobae 2025-05-19.
-
-3. **Judit González** (alto cargo de Moncloa cuya causa fue archivada por Peinado) aparece
-   mencionada en la cobertura como precedente usado por la Fiscalía para pedir el archivo de la causa de Cristina Álvarez. Verificar si merece modelar su trayectoria como persona con rol `investigado → desimputado`.
 
 ---
 

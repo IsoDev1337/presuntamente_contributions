@@ -1,0 +1,17 @@
+id: goyache-rector-ucm
+naturaleza: cargo_academico_publico
+descripcion: "Rector de la Universidad Complutense de Madrid desde mayo de 2019."
+sujeto_persona_id: joaquin-goyache
+objeto_organizacion_id: universidad-complutense-madrid
+cargo_o_rol: "Rector de la Universidad Complutense de Madrid"
+desde: "2019-05-31"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: newtral-perfil-goyache-bg-2024-07-22
+    pasaje: "Joaquín Goyache es rector de la Universidad Complutense de Madrid desde 2019, cargo desde el que fue citado como investigado en el caso Begoña Gómez por el Juzgado de Instrucción nº 41 de Madrid."
+  - documento_id: eldiario-imputacion-goyache-bg-2024-07-22
+    pasaje: "El rector de la UCM Joaquín Goyache es citado como investigado en el caso Begoña Gómez."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

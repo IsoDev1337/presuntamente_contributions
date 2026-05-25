@@ -1,0 +1,17 @@
+id: begona-gomez-codirectora-catedra-ucm
+naturaleza: cargo_academico_publico
+descripcion: "Codirectora de la Cátedra Extraordinaria de Transformación Social Competitiva de la Universidad Complutense de Madrid."
+sujeto_persona_id: begona-gomez
+objeto_organizacion_id: universidad-complutense-madrid
+cargo_o_rol: "Codirectora de la Cátedra Extraordinaria de Transformación Social Competitiva"
+desde: "2020-11-01"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "La investigación gira en torno a la presunta utilización de su posición como codirectora de la Cátedra de Transformación Social Competitiva de la UCM."
+  - documento_id: maldita-explica-denuncia-bg-2024-04-25
+    pasaje: "Begoña Gómez codirige junto a Juan Carlos Barrabés la Cátedra de Transformación Social Competitiva de la UCM desde noviembre de 2020."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

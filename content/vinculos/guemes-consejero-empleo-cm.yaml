@@ -1,0 +1,20 @@
+id: guemes-consejero-empleo-cm
+naturaleza: cargo_publico_designado
+descripcion: "Consejero de Empleo y Mujer de la Comunidad de Madrid durante el primer mandato de Esperanza Aguirre (2003-2007)."
+sujeto_persona_id: juan-jose-guemes
+objeto_organizacion_id: comunidad-de-madrid
+cargo_o_rol: "Consejero de Empleo y Mujer de la Comunidad de Madrid"
+gobierno_o_legislatura: "Comunidad de Madrid - Gobierno Aguirre I (VI Legislatura, 2003-2007)"
+desde: "2003-11-21"
+precision_desde: dia
+hasta: "2007-06-22"
+precision_hasta: dia
+vigente: false
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: newtral-imputacion-guemes-bg-2024-11-18
+    pasaje: "Juan José Güemes, exconsejero de Esperanza Aguirre, es imputado en el caso Begoña Gómez."
+  - documento_id: elindependiente-desimputacion-guemes-goyache-bg-2025-05-16
+    pasaje: "Güemes, exconsejero de la Comunidad de Madrid."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

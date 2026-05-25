@@ -1,0 +1,16 @@
+id: manos-limpias-acusacion-bg
+naturaleza: acusacion_institucional_en_caso
+descripcion: "Manos Limpias ejerce la acusación popular en el caso Begoña Gómez ante el Juzgado de Instrucción nº 41 de Madrid, como denunciante originario del procedimiento y acusación popular personada."
+sujeto_organizacion_id: manos-limpias
+objeto_organizacion_id: juzgado-instruccion-41-madrid
+desde: "2024-04-08"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "La asociación Manos Limpias presentó el 8 de abril de 2024 la denuncia que abrió las diligencias previas en el Juzgado de Instrucción nº 41 de Madrid."
+  - documento_id: maldita-explica-denuncia-bg-2024-04-25
+    pasaje: "Manos Limpias es la asociación que presentó la denuncia contra Begoña Gómez ante el juzgado el 8 de abril de 2024."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

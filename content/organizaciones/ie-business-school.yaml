@@ -1,0 +1,32 @@
+id: ie-business-school
+nombre: "IE Business School"
+nombres_alternativos:
+  - "Instituto de Empresa"
+  - "IE"
+  - "IE University"
+  - "IE Universidad"
+tipo: otra
+descripcion_corta: |
+  Escuela de negocios privada española con sede en Madrid, fundada en
+  1973 como Instituto de Empresa por un grupo de empresarios encabezado
+  por Manuel Soto. Integrada hoy en IE Universidad, institución privada
+  reconocida con capacidad de otorgar títulos universitarios oficiales
+  por la Comunidad de Madrid. Estructura postgrado (IE Business School)
+  y grado/doctorado (IE University). En el procedimiento del Juzgado de
+  Instrucción nº 41 de Madrid relativo a la Cátedra de Transformación
+  Social Competitiva aparece como empleadora de Begoña Gómez entre 2018
+  y 2022 (directora del Africa Center) y como sede del Centro
+  Internacional de Gestión Emprendedora presidido por Juan José Güemes
+  desde 2010. La Audiencia Provincial de Madrid excluyó en mayo de 2025
+  los hechos relativos a la contratación de 2018 del objeto de la
+  instrucción.
+ambito_territorial: nacional
+localidad: "Madrid"
+provincia: "Madrid"
+comunidad_autonoma: "Comunidad de Madrid"
+siglas: "IE"
+fundacion: "1973-01-01"
+sector: "Educación superior privada — escuela de negocios"
+url_canonica: "https://www.ie.edu/"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

@@ -1,0 +1,20 @@
+id: guemes-partido-popular
+naturaleza: cargo_organico_partido
+descripcion: "Miembro del Partido Popular durante su etapa como cargo público en el Gobierno de Aznar y en los gobiernos de Esperanza Aguirre en la Comunidad de Madrid."
+sujeto_persona_id: juan-jose-guemes
+objeto_organizacion_id: partido-popular
+cargo_o_rol: "Militante del Partido Popular (etapa de cargos públicos 2000-2010)"
+desde: "2000-05-01"
+precision_desde: mes
+hasta: "2010-02-09"
+precision_hasta: dia
+vigente: false
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: newtral-imputacion-guemes-bg-2024-11-18
+    pasaje: "Juan José Güemes, exconsejero de Esperanza Aguirre (PP), presidente del Centro de Gestión Emprendedora del IE Business School."
+  - documento_id: elindependiente-desimputacion-guemes-goyache-bg-2025-05-16
+    pasaje: "La Audiencia de Madrid corrige al juez Peinado y levanta la imputación a Güemes, exconsejero del PP en la Comunidad de Madrid."
+notas: "La afiliación de Güemes al PP es relevante para el caso porque aporta el contexto de un directivo académico con pasado político opuesto al partido del gobierno que designó a Begoña Gómez como codirectora de la cátedra UCM, lo que ilustra que la causa no se circunscribe a un único entorno político. La militancia se documenta por cobertura N4 cruzada (Newtral + El Independiente) que lo identifica como 'exconsejero de Esperanza Aguirre (PP)'. La fecha `hasta` corresponde al cese en la Consejería de Sanidad CM; se desconoce si continúa afiliado al partido tras su etapa académica."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

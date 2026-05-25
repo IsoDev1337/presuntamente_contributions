@@ -1,0 +1,19 @@
+id: cristina-alvarez-asesora-presidencia-gobierno
+naturaleza: cargo_publico_designado
+descripcion: "Asesora en el Gabinete de la Presidencia del Gobierno, con funciones de asesoría a Begoña Gómez, desde el 16 de julio de 2018 (Gobierno Sánchez I)."
+sujeto_persona_id: cristina-alvarez-fernandez
+objeto_organizacion_id: presidencia-del-gobierno
+cargo_o_rol: "Asesora en el Gabinete de la Presidencia del Gobierno"
+gobierno_o_legislatura: "Gobierno Sánchez I / Sánchez II / Sánchez III (desde julio 2018)"
+desde: "2018-07-16"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: libertaddigital-uco-cristina-alvarez-bg-2025-10-01
+    pasaje: "La UCO certifica que Cristina Álvarez era empleada pública nivel 26 adscrita al Gabinete de la Presidencia desde el 16 de julio de 2018."
+  - documento_id: infobae-procesamiento-bg-2026-04-13
+    pasaje: "Cristina Álvarez, asesora de Begoña Gómez en el Complejo de la Moncloa, es procesada por presunta malversación al haberse utilizado indiciariamente medios públicos vinculados a su puesto de asesora para tareas de la actividad privada de Gómez."
+notas: "El cargo de asesora en el Gabinete de la Presidencia del Gobierno es la pieza central del delito de malversación atribuido a Cristina Álvarez: el instructor considera indiciariamente que empleó medios públicos adscritos a ese cargo para actividades vinculadas a la Cátedra UCM de Begoña Gómez. Sin BOE de nombramiento nominal localizado (el personal eventual de Gabinete no siempre se publica nominalmente en BOE). La UCO certifica la fecha de incorporación como 2018-07-16 y el nivel 26 en el Gabinete de la Presidencia (fuente: informe UCO referenciado en Libertad Digital 2025-10-01)."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

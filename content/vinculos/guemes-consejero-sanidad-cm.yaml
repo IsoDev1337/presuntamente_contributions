@@ -1,0 +1,21 @@
+id: guemes-consejero-sanidad-cm
+naturaleza: cargo_publico_designado
+descripcion: "Consejero de Sanidad de la Comunidad de Madrid durante el segundo mandato de Esperanza Aguirre (2007-2010)."
+sujeto_persona_id: juan-jose-guemes
+objeto_organizacion_id: comunidad-de-madrid
+cargo_o_rol: "Consejero de Sanidad de la Comunidad de Madrid"
+gobierno_o_legislatura: "Comunidad de Madrid - Gobierno Aguirre II (VII Legislatura, 2007-2011)"
+desde: "2007-06-22"
+precision_desde: dia
+hasta: "2010-02-09"
+precision_hasta: dia
+vigente: false
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: newtral-imputacion-guemes-bg-2024-11-18
+    pasaje: "Juan José Güemes, exconsejero de Esperanza Aguirre, es imputado en el caso Begoña Gómez. Güemes fue consejero de Sanidad de la Comunidad de Madrid."
+  - documento_id: elindependiente-desimputacion-guemes-goyache-bg-2025-05-16
+    pasaje: "Varapalo al juez Peinado: desimputa al rector de la Complutense y a Güemes, exconsejero de la Comunidad de Madrid."
+notas: "El cargo de consejero de la CM bajo Aguirre es relevante para el caso en tanto que Güemes proviene de una trayectoria pública ligada al PP, lo que aporta el contexto institucional de una persona que luego ostentó un cargo directivo en IE Business School (institución que contrató a Begoña Gómez en 2018 como directora del Africa Center). La AP Madrid desimputó a Güemes en mayo de 2025 al considerar que la contratación de Gómez por el IE excedía del objeto de la instrucción."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

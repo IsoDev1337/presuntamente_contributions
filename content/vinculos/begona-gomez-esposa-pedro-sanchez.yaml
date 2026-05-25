@@ -1,0 +1,17 @@
+id: begona-gomez-esposa-pedro-sanchez
+naturaleza: vinculo_familiar_publico
+descripcion: "Esposa del presidente del Gobierno Pedro Sánchez desde 2006. Este vínculo es la razón por la que el procedimiento del Juzgado de Instrucción nº 41 tuvo cobertura institucional y mediática de alcance nacional desde su apertura en abril de 2024."
+sujeto_persona_id: begona-gomez
+objeto_persona_id: pedro-sanchez
+desde: "2006-05-05"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "Begoña Gómez, esposa del presidente del Gobierno Pedro Sánchez, es investigada por el Juzgado de Instrucción nº 41 de Madrid tras la denuncia presentada por Manos Limpias."
+  - documento_id: maldita-explica-denuncia-bg-2024-04-25
+    pasaje: "Maldita.es explica el caso contra Begoña Gómez, esposa del presidente Pedro Sánchez, describiendo el contexto del cargo de su marido como relevante para la dimensión pública del procedimiento."
+notas: "Vínculo familiar público documentado en todas las fuentes de cobertura del caso. Se modela porque la condición de cónyuge del presidente del Gobierno es el factor que determina la relevancia institucional del procedimiento y aparece explícitamente en la motivación del instructor (auto de procesamiento abril 2026) y en los recursos de defensa. Pedro Sánchez compareció como testigo el 22 de julio de 2024 y se acogió a su derecho a no declarar contra parientes (art. 416 LECrim). No tiene rol procesal de ningún tipo en esta causa."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

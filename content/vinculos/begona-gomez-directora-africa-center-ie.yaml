@@ -1,0 +1,20 @@
+id: begona-gomez-directora-africa-center-ie
+naturaleza: cargo_directivo_organizacion_privada
+descripcion: "Directora del Africa Center del IE Business School desde 2018. El contrato entre IE y la empresa Quirón Prevención para esta posición es uno de los hechos cuya instrucción fue excluida del objeto de la causa por auto de la Audiencia Provincial de Madrid de mayo de 2025."
+sujeto_persona_id: begona-gomez
+objeto_organizacion_id: ie-business-school
+cargo_o_rol: "Directora del Africa Center del IE Business School"
+desde: "2018-01-01"
+precision_desde: anio
+hasta: "2022-01-01"
+precision_hasta: anio
+vigente: false
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: elindependiente-desimputacion-guemes-goyache-bg-2025-05-16
+    pasaje: "La Audiencia excluye los hechos relativos a esa contratación por exceder del objeto de la instrucción, al no existir indicios de que su vinculación con IE estuviera relacionada con su condición de esposa del presidente del Gobierno."
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "La denuncia de Manos Limpias hace referencia al contrato de 2018 entre IE Business School y la empresa Quirón Prevención para la contratación de Begoña Gómez como directora del Africa Center."
+notas: "La posición en el Africa Center del IE Business School figura en la denunciacia de Manos Limpias como antecedente del posterior vínculo con la Cátedra UCM. La Audiencia Provincial de Madrid, por auto de 13 de mayo de 2025, excluyó los hechos relativos a este contrato del objeto de la instrucción. La fecha de inicio (2018) es la que consta en la causa; el año exacto de cese se estima en 2022 con precisión anual."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

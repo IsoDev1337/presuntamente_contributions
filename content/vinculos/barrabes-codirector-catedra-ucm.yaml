@@ -1,0 +1,17 @@
+id: barrabes-codirector-catedra-ucm
+naturaleza: cargo_academico_publico
+descripcion: "Codirector de la Cátedra Extraordinaria de Transformación Social Competitiva de la Universidad Complutense de Madrid."
+sujeto_persona_id: juan-carlos-barrabes
+objeto_organizacion_id: universidad-complutense-madrid
+cargo_o_rol: "Codirector de la Cátedra Extraordinaria de Transformación Social Competitiva"
+desde: "2020-11-01"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "Juan Carlos Barrabés codirige la Cátedra de Transformación Social Competitiva de la UCM junto a la investigada y es una de las personas a las que el procedimiento atribuye la obtención de contratos públicos vinculados a la cátedra."
+  - documento_id: maldita-explica-denuncia-bg-2024-04-25
+    pasaje: "Begoña Gómez codirige junto a Juan Carlos Barrabés la Cátedra de Transformación Social Competitiva de la UCM."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

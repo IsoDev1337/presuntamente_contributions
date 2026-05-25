@@ -1,0 +1,16 @@
+id: mrpe-acusacion-bg
+naturaleza: acusacion_institucional_en_caso
+descripcion: "El Movimiento de Regeneración Política de España (MRPE) ejerce la acusación popular en el caso Begoña Gómez ante el Juzgado de Instrucción nº 41 de Madrid, personado en mayo de 2024."
+sujeto_organizacion_id: movimiento-regeneracion-politica
+objeto_organizacion_id: juzgado-instruccion-41-madrid
+desde: "2024-05-01"
+precision_desde: mes
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "El procedimiento contó con varias acusaciones populares personadas, entre ellas el Movimiento de Regeneración Política de España."
+  - documento_id: maldita-explica-denuncia-bg-2024-04-25
+    pasaje: "Varias organizaciones se personaron como acusación popular en el caso Begoña Gómez tras la apertura de diligencias."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

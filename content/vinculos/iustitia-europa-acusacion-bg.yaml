@@ -1,0 +1,16 @@
+id: iustitia-europa-acusacion-bg
+naturaleza: acusacion_institucional_en_caso
+descripcion: "La asociación Iustitia Europa ejerce la acusación popular en el caso Begoña Gómez ante el Juzgado de Instrucción nº 41 de Madrid, personada desde finales de abril de 2024."
+sujeto_organizacion_id: iustitia-europa
+objeto_organizacion_id: juzgado-instruccion-41-madrid
+desde: "2024-04-29"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "La asociación Iustitia Europa se personó como acusación popular en el caso Begoña Gómez."
+  - documento_id: maldita-explica-denuncia-bg-2024-04-25
+    pasaje: "A la denuncia de Manos Limpias se sumaron como acusaciones populares HazteOír, Vox e Iustitia Europa en los días siguientes a la apertura del caso."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

@@ -1,0 +1,16 @@
+id: ucm-perjudicada-bg
+naturaleza: perjudicado_institucional_en_caso
+descripcion: "La Universidad Complutense de Madrid se persona como perjudicada en el caso Begoña Gómez ante el Juzgado de Instrucción nº 41 de Madrid, tras el ofrecimiento de personación del instructor el 3 de octubre de 2025."
+sujeto_organizacion_id: universidad-complutense-madrid
+objeto_organizacion_id: juzgado-instruccion-41-madrid
+desde: "2025-10-03"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: confilegal-ucm-perjudicada-bg-2025-10-08
+    pasaje: "La UCM se persona como perjudicada en el caso Begoña Gómez por un posible perjuicio económico derivado del gasto en el software de la Cátedra, cifrado en 113.509,32 euros."
+  - documento_id: moncloacom-ucm-perjuicio-bg-2026-01-27
+    pasaje: "La UCM ejercita la acción como perjudicada en el procedimiento."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

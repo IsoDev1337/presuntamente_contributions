@@ -1,0 +1,17 @@
+id: guemes-presidente-ie-center
+naturaleza: cargo_directivo_organizacion_privada
+descripcion: "Presidente del Centro Internacional de Gestión Emprendedora del IE Business School desde 2010. En noviembre de 2024 el instructor le citó como investigado en el caso Begoña Gómez; la Audiencia Provincial de Madrid revocó esa decisión en mayo de 2025."
+sujeto_persona_id: juan-jose-guemes
+objeto_organizacion_id: ie-business-school
+cargo_o_rol: "Presidente del Centro Internacional de Gestión Emprendedora del IE Business School"
+desde: "2010-01-01"
+precision_desde: anio
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: newtral-imputacion-guemes-bg-2024-11-18
+    pasaje: "Juan José Güemes, presidente del Centro Internacional de Gestión Emprendedora del IE Business School, es citado como investigado por el Juzgado de Instrucción nº 41 de Madrid en el caso Begoña Gómez."
+  - documento_id: elindependiente-desimputacion-guemes-goyache-bg-2025-05-16
+    pasaje: "La Audiencia Provincial de Madrid revoca la condición de investigado del directivo del IE Juan José Güemes, estimando parcialmente su recurso."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"

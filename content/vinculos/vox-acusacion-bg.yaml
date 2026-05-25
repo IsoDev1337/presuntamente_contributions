@@ -1,0 +1,16 @@
+id: vox-acusacion-bg
+naturaleza: acusacion_institucional_en_caso
+descripcion: "El partido político Vox ejerce la acusación popular en el caso Begoña Gómez ante el Juzgado de Instrucción nº 41 de Madrid, personado desde el 29 de abril de 2024."
+sujeto_organizacion_id: vox
+objeto_organizacion_id: juzgado-instruccion-41-madrid
+desde: "2024-04-29"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [begona-gomez]
+documentos_respaldo:
+  - documento_id: infobae-apertura-diligencias-bg-2024-04-24
+    pasaje: "Vox se personó como acusación popular en el caso Begoña Gómez."
+  - documento_id: maldita-explica-denuncia-bg-2024-04-25
+    pasaje: "A la denuncia de Manos Limpias se sumaron como acusaciones populares HazteOír, Vox e Iustitia Europa en los días siguientes a la apertura del caso."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-25"
