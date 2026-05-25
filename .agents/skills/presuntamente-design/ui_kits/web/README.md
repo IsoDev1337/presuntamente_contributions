@@ -38,7 +38,7 @@ App.jsx                · router simple
 ## Lo que NO está implementado (a propósito)
 
 - Persistencia, búsqueda full-text real, i18n, routing real (Astro lo hace).
-- Visualización de grafo de conexiones (§3.4 doc 02). Necesita datos reales.
+- Visualización de grafo de conexiones (doc 02, sección 3.4). Necesita datos reales.
 - Catalán (carpetas `/cat/` upstream están vacías).
 - Subida de PDFs, watcher pipeline, validación de schemas.
 

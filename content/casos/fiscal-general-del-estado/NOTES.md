@@ -1,8 +1,7 @@
 # NOTES — Caso del Fiscal General del Estado
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos
-y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md`
-§ *NOTES.md por caso*.
+y agentes LLM que iteren sobre este caso. Convención en [AGENTS.md → "NOTES.md por caso"](AGENTS.md#notesmd-por-caso).
 
 Última actualización: 2026-05-23 (PR3 — composición completa del
 tribunal de enjuiciamiento + cuatro hechos adicionales acreditados
@@ -150,7 +149,7 @@ constituido el 25-sept-2025):
 
 Mayoría condenatoria: 5 votos a 2.
 
-## Verbos del doc 04 §3 aplicados
+## Verbos de [doc 04 — "Presunción de inocencia: reglas de redacción"](docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción) aplicados
 
 - "La Sala Segunda del Tribunal Supremo declara probado…", "consta
   en la sentencia firme que…", "el fallo dispositivo impone…", "los
@@ -192,9 +191,8 @@ URLs específicas en cada `Documento` que las cita.
 
 ### Descarga al árbol del proyecto de tres documentos primarios
 
-Estrenando la convención editorial documentada en `AGENTS.md`
-§"Documentos primarios descargados a `/public/documentos/`" y en
-`.claude/skills/investigar-caso/SKILL.md` §3.bis:
+Estrenando la convención editorial documentada en [AGENTS.md → "Documentos primarios descargados"](AGENTS.md#documentos-primarios-descargados-a-publicdocumentos) y en
+[investigar-caso SKILL.md](../../../../../.agents/skills/investigar-caso/SKILL.md) apartado 3.bis:
 
 - `/public/documentos/fiscal-general-del-estado/ts-sentencia-1000-2025-fge.pdf`
   — Sentencia 1000/2025 íntegra (238 páginas; voto particular
@@ -219,7 +217,7 @@ Tras revisión humana explícita del maintainer (guardarraíl 3 de
 
 - `filtracion-correo-2feb-fge` ⇒ Hechos Probados pp. 18-21 + FJ
   Tercero pp. 146-148.
-- `quebrantamiento-deber-reserva-fge` ⇒ FJ Tercero §3.1-§3.2,
+- `quebrantamiento-deber-reserva-fge` ⇒ FJ Tercero, apartados 3.1-3.2,
   pp. 146-149.
 - `penas-impuestas-fge` ⇒ FALLO, p. 180.
 - `indemnizacion-gonzalez-amador-fge` ⇒ FALLO, p. 180.
@@ -267,8 +265,8 @@ Extraídos del texto íntegro de la Sentencia 1000/2025:
   General del Estado» (Hechos Probados, p. 21).
 - `borrado-dispositivos-fge`: borrado de mensajes el 16-oct-2024,
   mismo día de la notificación de la incoación de diligencias
-  previas, aceptado por el propio acusado en juicio (FJ Primero
-  §1.b, p. 35 y FJ Segundo §2.7.2, p. 134).
+  previas, aceptado por el propio acusado en juicio (FJ Primero,
+  apartado 1.b, p. 35 y FJ Segundo, apartado 2.7.2, p. 134).
 - `relato-falso-mar-fge`: rol de Miguel Ángel Rodríguez (jefe de
   Gabinete de la Presidencia de la Comunidad de Madrid) en la
   difusión nocturna del 13-mar-2024 del relato sobre una supuesta
@@ -337,7 +335,7 @@ Extraídos del texto íntegro de la Sentencia 1000/2025:
 - **Pilar Rodríguez Fernández es DESIMPUTADA.** Por auto del
   29-jul-2025 la Sala Penal archivó el procedimiento respecto de
   ella. Cualquier redacción que la mencione como investigada sin
-  matiz temporal es incorrecta.
+  matiz temporal es incorrecta (ver [AGENTS.md → "Documentos primarios descargados"](AGENTS.md#documentos-primarios-descargados-a-publicdocumentos) para normas de anonimización en cierre de roles).
 - **Alberto González Amador NO está acusado en este procedimiento.**
   Es el perjudicado y ejerció la acusación particular. La
   presunción de inocencia que rige en el caso González Amador (caso
@@ -352,7 +350,7 @@ Extraídos del texto íntegro de la Sentencia 1000/2025:
   factual; el contenido editorial respeta la separación.
 - **Tratamiento sin cuota política.** El caso involucra al máximo
   responsable del Ministerio Fiscal, nombrado a propuesta del
-  Gobierno. La P-10 obliga a aplicar exactamente la misma estructura,
+  Gobierno. La P-10 de [doc 02 — "Reglas anti-desinformación en presentación"](docs/diseno/02-ficha-de-caso.md#4-reglas-anti-desinformación-en-presentación) obliga a aplicar exactamente la misma estructura,
   badges y tono que a cualquier otro caso del inventario.
 - **La controversia política y mediática alrededor del caso es
   intensa.** El propio Gobierno ha manifestado intención de

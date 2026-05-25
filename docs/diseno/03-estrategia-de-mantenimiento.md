@@ -30,7 +30,7 @@ Tipos de cambio que puede sufrir un caso:
 | Cambio de fase | Auto judicial | esperable según estado |
 | Sentencia | Publicada en CENDOJ | conocida con antelación |
 | Cobertura de prensa con efecto procesal | Multi-medio | continua, ruido alto |
-| **Aporte humano externo** (periodista, jurista, funcionario, ciudadano informado) | Email entrante a `aportar@presuntamente.org` con pista a fuente, corrección fáctica o idea (ver doc 04 §6bis) | irregular, depende del lanzamiento público y de la tracción |
+| **Aporte humano externo** (periodista, jurista, funcionario, ciudadano informado) | Email entrante a `aportar@presuntamente.org` con pista a fuente, corrección fáctica o idea (ver doc 04 "Mecanismo de aportación editorial") | irregular, depende del lanzamiento público y de la tracción |
 
 Fuentes a vigilar, en orden de fiabilidad:
 
@@ -55,7 +55,7 @@ Propuesta concreta, ejecutable con cron diario y poco código:
 2. **Watcher por persona pública** con roles activos: alertas Google News + RSS de medios principales.
 3. **Watcher por órgano judicial**: si un caso está en JCI 41, monitorizar publicaciones del juzgado.
 4. Cada watcher genera **señales** (no cambios). Una señal: `(caso_id, url_o_documento_candidato, snippet)`.
-5. **Aporte humano externo**: segunda boca al mismo embudo. Los aportes que entran por `aportar@presuntamente.org` (ver doc 04 §6bis) producen señales del mismo tipo, simplemente con el productor distinto — una persona en vez de un cron. El maintainer las vuelca a `content/aportes/YYYY-MM-DD-<slug>.md` y el agente las procesa con la skill `/incorporar-aporte` siguiendo el pipeline de incorporación de §3.
+5. **Aporte humano externo**: segunda boca al mismo embudo. Los aportes que entran por `aportar@presuntamente.org` (ver [doc 04 — "Mecanismo de aportación editorial"](04-riesgos-legales-y-eticos.md#6bis-mecanismo-de-aportación-editorial)) producen señales del mismo tipo, simplemente con el productor distinto — una persona en vez de un cron. El maintainer las vuelca a `content/aportes/YYYY-MM-DD-<slug>.md` y el agente las procesa con la skill `/incorporar-aporte` siguiendo el pipeline de incorporación de la sección 3.
 
 Las señales se escriben en una **bandeja de entrada** (issue tagged `signal`, o fichero `signals.yaml` en una rama de trabajo). Una vez al día, el maintainer abre la bandeja, descarta ruido, y para las señales reales prepara incorporaciones.
 
@@ -80,7 +80,7 @@ Cuando una señal sobrevive al filtro:
 
 ---
 
-## 4. Uso de LLM para diffs revisables
+## 4. Uso de LLM para diffs revisables {#4-uso-de-llm-para-diffs-revisables}
 
 Aquí está la palanca para mantener el ritmo. El maintainer NO escribe los YAML desde cero. Un LLM puede:
 
@@ -135,7 +135,7 @@ Página interna estática del propio sitio, generada en build, protegida por bas
 
 | Incidente | Respuesta |
 |-----------|-----------|
-| Querella o requerimiento legal al maintainer | Procedimiento legal específico (doc 04 §10) |
+| Querella o requerimiento legal al maintainer | Procedimiento legal específico (ver [doc 04 — "Protocolo de actuación frente a querella"](04-riesgos-legales-y-eticos.md#10-protocolo-de-actuación-frente-a-querella)) |
 | Rectificación legítima vía issue | Atender en plazo definido (7 días para casos vivos, 21 para firmes) |
 | Cambio en sentencia firme (revisión TC, recurso amparo) | Crear Hito, marcar Hechos como superados con `corregido_por`, NO borrar |
 | Archivo o sentencia absolutoria | Marcar fase, marcar Hechos investigados como `superado` corregidos por exculpatorios, cerrar `RolEnCaso` investigado con `hito_fin` apuntando al archivo |

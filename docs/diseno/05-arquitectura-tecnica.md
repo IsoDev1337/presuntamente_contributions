@@ -13,17 +13,17 @@ De los documentos anteriores, lo que la arquitectura debe satisfacer:
 1. **Contenido canónico en Git, validado por CI** (decisión editorial).
 2. **Modelo de datos estructurado** (doc 01) — YAML por entidad con validación.
 3. **Sitio público estático** o semi-estático, SEO óptimo, mobile-first (doc 02).
-4. **Visualizaciones**: cronología, swimlane de roles, mini-grafo de conexiones (doc 02 §3).
-5. **Búsqueda full-text** (doc 02 §5).
+4. **Visualizaciones**: cronología, swimlane de roles, mini-grafo de conexiones ([doc 02 — "Patrones de UI específicos"](02-ficha-de-caso.md#3-patrones-de-ui-específicos)).
+5. **Búsqueda full-text** ([doc 02 — "Listados y búsqueda"](02-ficha-de-caso.md#5-listados-y-búsqueda-adyacente-a-la-ficha)).
 6. **Sin backend complejo en MVP** — un static site con search-client es suficiente.
-7. **Mecanismo de rectificación** vía issue/formulario (doc 04 §6).
-8. **Watcher pipeline** para detección de cambios (doc 03 §2).
-9. **Panel de admin** protegido (doc 03 §6).
+7. **Mecanismo de rectificación** vía issue/formulario ([doc 04 — "Mecanismo de rectificación"](04-riesgos-legales-y-eticos.md#6-mecanismo-de-rectificación)).
+8. **Watcher pipeline** para detección de cambios ([doc 03 — "Pipeline de detección"](03-estrategia-de-mantenimiento.md#2-pipeline-de-detección)).
+9. **Panel de admin** protegido ([doc 03 — "Panel de admin / dashboard"](03-estrategia-de-mantenimiento.md#6-panel-de-admin--dashboard)).
 10. **Hosting de coste razonable y self-hostable** si hace falta.
 
 ---
 
-## 1. Componentes y stack propuesto
+## 1. Componentes y stack propuesto {#1-componentes-y-stack-propuesto}
 
 ### 1.1 Repositorio canónico y modelo
 
@@ -80,7 +80,7 @@ Tres opciones razonables. Recomendación primero.
 ### 1.6 Panel de admin
 
 - Página estática `/admin/` generada en build, accesible sólo con basic auth a nivel CDN (Cloudflare Pages access rules o equivalente).
-- Datos que muestra: lo descrito en doc 03 §6, todo computable desde los YAML.
+- Datos que muestra: lo descrito en [doc 03 — "Panel de admin / dashboard"](03-estrategia-de-mantenimiento.md#6-panel-de-admin--dashboard), todo computable desde los YAML.
 - Sin login complejo, sin backend.
 
 ### 1.7 Hosting
@@ -123,7 +123,7 @@ Tres opciones razonables:
 
 ---
 
-## 2. Licencias
+## 2. Licencias {#2-licencias}
 
 - **Código del sitio**: AGPL-3.0 (ya elegida).
 - **Contenido editorial**: propuesta **CC BY-SA 4.0** — permite reutilización con cita y compartir-igual; alinea con la apertura del proyecto.
@@ -131,7 +131,7 @@ Tres opciones razonables:
 
 ---
 
-## 3. Diagrama de alto nivel
+## 3. Diagrama de alto nivel {#3-diagrama-de-alto-nivel}
 
 ```
                     ┌─────────────────────────────────┐
@@ -167,7 +167,7 @@ Tres opciones razonables:
 
 ---
 
-## 4. Alternativas consideradas y descartadas
+## 4. Alternativas consideradas y descartadas {#4-alternativas-consideradas-y-descartadas}
 
 - **WordPress / Drupal / CMS PHP**: no se considera. Modelo de datos rígido para fichas estructuradas, riesgo de plugin-hell, hosting más caro, performance peor, anti-línea de "contenido en git".
 - **Wiki software (MediaWiki, BookStack)**: ya descartado (decisión editorial doc-conversación).
@@ -178,7 +178,7 @@ Tres opciones razonables:
 
 ---
 
-## 5. Cuestiones abiertas
+## 5. Cuestiones abiertas {#5-cuestiones-abiertas}
 
 1. **CDN provider final**: Cloudflare Pages vs Netlify. Recomendación CFP por privacidad e infraestructura. A confirmar antes de Fase 0.
 2. **Anti-spam del formulario de rectificación**: si usamos Cloudflare Workers, hCaptcha o Turnstile son la elección lógica.
@@ -189,6 +189,6 @@ Tres opciones razonables:
 
 ---
 
-## 6. Siguiente paso
+## 6. Siguiente paso {#6-siguiente-paso}
 
 Doc 06 — Roadmap por fases.

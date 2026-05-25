@@ -1,10 +1,10 @@
 # Skills locales del proyecto presuntamente
 
-Skills para usar con Claude Code en este repositorio. Se construyen iterativamente con cada uso real (`AGENTS.md` §"Skills locales"); cada SKILL.md tiene una sección `## Histórico` con lecciones de cada caso real.
+Skills para usar con Claude Code en este repositorio. Se construyen iterativamente con cada uso real ([AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills)); cada SKILL.md tiene una sección `## Histórico` con lecciones de cada caso real.
 
 ## Skills implementadas
 
-- **`investigar-caso`** v0 — arrancar un caso nuevo desde URL/nombre/brief. Localiza órgano titular, implicados con rol formal y hitos clave; genera el esqueleto YAML inicial (Caso + 1-2 Hitos + Documentos + 1-3 Roles + Hechos). Aplica los guardarraíles del doc 03 §4 + tensión brief/realidad procesal aprendida con Plus Ultra.
+- **`investigar-caso`** v0 — arrancar un caso nuevo desde URL/nombre/brief. Localiza órgano titular, implicados con rol formal y hitos clave; genera el esqueleto YAML inicial (Caso + 1-2 Hitos + Documentos + 1-3 Roles + Hechos). Aplica los guardarraíles de [doc 03 — "Uso de LLM para diffs revisables"](../../../docs/diseno/03-estrategia-de-mantenimiento.md#4-uso-de-llm-para-diffs-revisables) + tensión brief/realidad procesal aprendida con Plus Ultra.
 - **`incorporar-hito`** v1 — añadir Hito + Hechos + Documento a un caso existente desde un PDF de auto, una nota CGPJ o cobertura cruzada. Nunca asigna `tipo = acreditado` automáticamente; nunca inventa. Histórico de uso real: Plus Ultra PR1 y PR2.
 - **`revisar-caso`** v0 — auditoría editorial cualitativa por LLM de un caso ya fichado. Cubre la capa B del diseño en cuatro capas (las reglas P-01..P-10 del doc 02 y los principios irrenunciables de AGENTS.md que no son chequeables con AJV). Output clasificado en `BLOQUEANTE` / `SUGERENCIA` / `OK`; sin auto-fix. User-invocable con `/revisar-caso <slug>`. Capa A queda cubierta por `pnpm validate`; capas C y D quedan diferidas a v2+.
 - **`presuntamente-design`** — diseño visual canónico del sitio. Tokens, componentes, lenguaje gov-retro. User-invocable con `/presuntamente-design`.
@@ -14,7 +14,7 @@ Skills para usar con Claude Code en este repositorio. Se construyen iterativamen
 
 - **`revisar-señales`** — procesar `content/signals.yaml`, descartar ruido, proponer PRs por las señales reales.
 - **`validar-repo`** — ejecutar `pnpm validate` con output agrupado por entidad y resumen.
-- **`rectificar`** — gestionar una solicitud de rectificación entrante (issue con etiqueta `rectificacion`). Aplica el procedimiento del doc 04 §6.
+- **`rectificar`** — gestionar una solicitud de rectificación entrante (issue con etiqueta `rectificacion`). Aplica el procedimiento de [doc 04 — "Mecanismo de rectificación"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#6-mecanismo-de-rectificación).
 - **`anonimizar`** — V-17: cuando una persona privada cierra todos sus `RolEnCaso`, gestionar revisión de anonimización o retirada de ficha.
 
 ## Convención de implementación
@@ -41,4 +41,4 @@ Desde Claude Code en este repo: `/<skill-name>` con argumentos opcionales según
 
 - Procedimiento operativo: `docs/diseno/03-estrategia-de-mantenimiento.md`.
 - Guardarraíles legales: `docs/diseno/04-riesgos-legales-y-eticos.md`.
-- Reglas anti-desinformación que toda skill debe respetar: `docs/diseno/02-ficha-de-caso.md` §4.
+- Reglas anti-desinformación que toda skill debe respetar: [doc 02 — "Reglas anti-desinformación en presentación"](../../../docs/diseno/02-ficha-de-caso.md#4-reglas-anti-desinformación-en-presentación).

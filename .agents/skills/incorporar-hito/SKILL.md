@@ -1,6 +1,6 @@
 ---
 name: incorporar-hito
-description: Incorpora un nuevo Hito a un Caso existente a partir de un PDF de auto judicial, sentencia, informe UCO/UDEF o documento procesal equivalente. Genera borrador YAML de Hito + Documento + Hechos derivados + cambios en RolEnCaso, listo para PR. Aplica los guardarraíles del doc 03 §4. Trigger cuando el usuario pide "incorporar este auto", "añade este hito a", "procesa este PDF de Calama", o referencia un documento procesal nuevo en un caso existente.
+description: Incorpora un nuevo Hito a un Caso existente a partir de un PDF de auto judicial, sentencia, informe UCO/UDEF o documento procesal equivalente. Genera borrador YAML de Hito + Documento + Hechos derivados + cambios en RolEnCaso, listo para PR. Aplica los guardarraíles del doc 03, apartado "Uso de LLM para diffs revisables". Trigger cuando el usuario pide "incorporar este auto", "añade este hito a", "procesa este PDF de Calama", o referencia un documento procesal nuevo en un caso existente.
 ---
 
 # Skill `incorporar-hito` — v1
@@ -14,12 +14,12 @@ Tomar un documento procesal (PDF de auto, sentencia, informe UCO/UDEF, atestado,
 3. Los `Hecho`s que el hito introduce o modifica, con sus `documentos_respaldo`.
 4. Los cambios en `RolEnCaso` que el hito provoca (apertura, cierre, sucesor).
 
-Versión `v0`: deliberadamente mínima. La skill se moldea con cada uso (`AGENTS.md` § Skills).
+Versión `v0`: deliberadamente mínima. La skill se moldea con cada uso ([AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills)).
 
 ## Inputs aceptados
 
 - Ruta a un PDF en `/public/documentos/` o ubicación local.
-- URL canónica al documento (preferido para `nivel_fuente=1` si está en `DominiosOficiales`, doc 01 §3).
+- URL canónica al documento (preferido para `nivel_fuente=1` si está en `DominiosOficiales`, [doc 01 — "Enums catalogados"](../../../docs/diseno/01-modelo-de-datos.md#3-enums-catalogados)).
 - Texto pegado del documento si el PDF no es procesable directamente.
 
 Acompañado del slug del Caso destino (`caso_id`). Si no se proporciona, pregunta antes de actuar.
@@ -56,7 +56,7 @@ Y abre PR con cuerpo:
 - Cita del párrafo del documento que justifica cada hecho introducido (página + pasaje).
 - Validaciones del modelo (V-04, V-05, V-08, V-12, V-13, V-14) marcadas como verificadas o pendientes.
 
-## Guardarraíles obligatorios (doc 03 §4)
+## Guardarraíles obligatorios
 
 1. **NUNCA asignes `Hecho.tipo = acreditado` automáticamente.** Sólo `investigado`, `atribuido` o `no_concluyente`. Marcar `acreditado` requiere review humano explícito tras sentencia firme.
 
@@ -84,7 +84,7 @@ Y abre PR con cuerpo:
    - Cualquier mención a familiares directos no formalmente investigados.
    - Cualquier persona cuyo rol cierra (V-17: revisión obligatoria de anonimización).
 
-6. **Lenguaje** (doc 04 §3):
+6. **Lenguaje** ([doc 04 — "Presunción de inocencia: reglas de redacción"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción)):
    - Verbos prohibidos en enunciados de hechos no acreditados: "robó", "estafó", "se apropió", "es culpable", "ha cometido".
    - Verbos preferidos: "se investiga", "se atribuye", "consta en el auto X que…", "la acusación sostiene que…", "el instructor considera indiciariamente que…".
    - Para sentencias no firmes: "ha sido condenado en primera instancia, pendiente de recurso".
@@ -98,7 +98,7 @@ Mensaje final al usuario:
 - Validaciones del modelo: cuáles pasan, cuáles bloquean.
 - Recordatorios de revisión editorial pendientes (V-08, V-14, V-17 si aplican).
 
-Si el LLM detecta que la incorporación puede violar un principio del proyecto (`AGENTS.md` § Principios irrenunciables), **se detiene y pregunta** antes de tocar nada.
+Si el LLM detecta que la incorporación puede violar un principio del proyecto ([AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables)), **se detiene y pregunta** antes de tocar nada.
 
 ## Iteración
 
@@ -127,7 +127,7 @@ Lecciones:
   publicado después de redactar el brief), respetar el brief, documentar
   la discrepancia en `NOTES.md` del caso + `ROADMAP.md → Decisiones
   pendientes`, y deferir al maintainer. NO improvisar ni asumir luz verde.
-- **Verbos del doc 04 §3 obligatorios** en todos los enunciados: "consta
+- **Verbos del [doc 04 — "Presunción de inocencia: reglas de redacción"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción) obligatorios** en todos los enunciados: "consta
   en el auto…", "se atribuye indiciariamente", "el instructor considera
   que…". Final explícito de presunción de inocencia ("rige el principio
   de presunción de inocencia mientras no recaiga resolución firme").
@@ -166,7 +166,7 @@ Lecciones:
   periodística NO autoriza desanonimizar.
 - **Familiares no implicados quedan FUERA del inventario** aunque la UDEF
   haya registrado su empresa o domicilio, salvo que un auto les atribuya
-  rol procesal formal. Doc 04 §11. Si el registro es relevante para
+  rol procesal formal. [Doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética). Si el registro es relevante para
   describir un hito, se menciona dentro de la descripción del hito sin
   crear `Persona`.
 - **Procedimientos secundarios derivados (denuncia X contra UDEF por

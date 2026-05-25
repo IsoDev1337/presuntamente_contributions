@@ -7,4 +7,4 @@ Estos TTFs los consume `src/lib/og.ts` (build time) para renderizar las OG image
 - `Lato-Black.ttf` (900) — display, identificador grande de la entidad.
 - `OFL.txt` — SIL Open Font License 1.1 (Copyright 2010-2014 tyPoland Lukasz Dziedzic).
 
-Lato sustituye a la Gill Sans institucional canónica del proyecto (DESIGN.md §3) porque Gill Sans es comercial y no podemos redistribuirla. Es el primer fallback humanista declarado en el stack `font-sans` del sitio, así que las OG images mantienen continuidad tipográfica con lo que el visitante ve en pantalla.
+Lato sustituye a la Gill Sans institucional canónica del proyecto ([DESIGN.md → "Typography Rules"](../../../DESIGN.md#3-typography-rules)) porque Gill Sans es comercial y no podemos redistribuirla. Es el primer fallback humanista declarado en el stack `font-sans` del sitio, así que las OG images mantienen continuidad tipográfica con lo que el visitante ve en pantalla.

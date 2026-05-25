@@ -3,7 +3,8 @@
 // Layout: [rail+dot] [CalGlyph] [body].
 // El rail es una línea vertical 2px que conecta todos los dots de la
 // cronología; cada dot se colorea por `tipoFamilia` (navy jurisdiccional /
-// mostaza político / gris mediático) y se alinea con el badge de categoría.
+// mostaza político / gris mediático). El badge de categoría usa color +
+// label de texto, sin glyph decorativo.
 // El rail visual lo pinta el contenedor `.timeline` en PgCasoDetalle.astro
 // como `::before` absoluto; aquí cada item solo dibuja su dot.
 
@@ -42,11 +43,6 @@ const {
   excludeOrgIds,
   excludePersonaIds,
 } = Astro.props;
-
-const FAMILIA_GLYPH_CHAR: Record<Exclude<Props['tipoFamilia'], 'jurisdiccional'>, string> = {
-  politico:  '◆',
-  mediatico: '¶',
-};
 ---
 <div class:list={['hito-item', `hito-item--${tipoFamilia}`]} id={id ? `hito-${id}` : undefined}>
   <div class="hito-item__rail" aria-hidden="true">
@@ -58,17 +54,6 @@ const FAMILIA_GLYPH_CHAR: Record<Exclude<Props['tipoFamilia'], 'jurisdiccional'>
   <div class="hito-item__body">
     <div class="hito-item__head">
       <span class:list={['badge', 'badge--cat', `badge--cat-${tipoFamilia}`]}>
-        {tipoFamilia === 'jurisdiccional' ? (
-          <svg class="glyph-svg" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="8" y1="2" x2="8" y2="14"/>
-            <line x1="3" y1="14" x2="13" y2="14"/>
-            <line x1="3" y1="4" x2="13" y2="4"/>
-            <path d="M3 4 L1 9 A2.2 2.2 0 0 0 5 9 Z"/>
-            <path d="M13 4 L11 9 A2.2 2.2 0 0 0 15 9 Z"/>
-          </svg>
-        ) : (
-          <span class="glyph" aria-hidden="true">{FAMILIA_GLYPH_CHAR[tipoFamilia]}</span>
-        )}
         {tipoLabel}
       </span>
       {documentoTitulo && documentoNivel && (

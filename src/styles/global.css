@@ -103,7 +103,7 @@
    * `investigado` queda explícitamente fuera de mostaza/rojo. Ser investigado
    * no implica valoración judicial de implicación — una persona puede ser
    * investigada y resultar totalmente inocente. Va en navy outline, como base
-   * neutra del procedimiento. (Ver feedback memoria + DESIGN.md §2.)
+   * neutra del procedimiento. (Ver feedback memoria + DESIGN.md — "Color Palette & Roles".)
    *
    * `condenado` se separa en dos sub-roles: no_firme (sentencia recurrible,
    * presunción de inocencia formal sigue viva) en rojo apagado outline, y
@@ -115,7 +115,7 @@
    * moral.
    *
    * Restricción dura mantenida: estos rojos NUNCA aparecen en estados
-   * epistémicos del Hecho (acreditado/investigado/desmentido) — ver §2.
+   * epistémicos del Hecho (acreditado/investigado/desmentido) — ver "Color Palette & Roles".
    * ====================================================================== */
   --color-rol-investigado:        #1f3a68;  /* navy = caso base, no acusatorio */
   --color-rol-procesado:          #c89b00;  /* mostaza outline */
@@ -147,7 +147,7 @@
   --font-mono:  "JetBrains Mono", ui-monospace, "Cascadia Code", "Roboto Mono",
                 Consolas, monospace;
 
-  /* Escala fluida — clamp(min, fluido, max). Slots según DESIGN.md §3. */
+  /* Escala fluida — clamp(min, fluido, max). Slots según DESIGN.md — "Typography Rules". */
   --font-size-0: clamp(0.75rem, 0.72rem + 0.13vw, 0.81rem);
   --font-size-1: clamp(0.875rem, 0.85rem + 0.13vw, 0.94rem);
   --font-size-2: clamp(1rem, 0.97rem + 0.16vw, 1.0625rem);
@@ -305,7 +305,7 @@
  * inyectado. Si en algún punto se quiere usar los componentes directos
  * (no via richProse), las reglas siguen funcionando.
  *
- * Spec en DESIGN.md §4 "Micro-componentes de citación inline" y en
+ * Spec en DESIGN.md — "Micro-componentes de citación inline" y en
  * preview/comp_money_acronym.html + preview/comp_citacion.html del bundle.
  * ========================================================================= */
 .money {
@@ -515,16 +515,20 @@ li { margin: var(--space-1) 0; }
 }
 .site-header__inner {
   display: grid;
-  /* 5 columnas: brand · nav · search · lang-wrap · aportar. El último slot
-   * (.site-aportar) se introdujo con la activación del cauce editorial §6bis
-   * el 2026-05-25; previamente el grid era de 4 columnas (sin aportar). Las
-   * media queries de abajo redefinen este grid en breakpoints 720/1080. */
-  grid-template-columns: auto 1fr auto auto auto;
+  /* brand · nav · [espaciador 1fr] · search · lang · aportar. El nav ocupa
+   * su ancho natural (max-content) y el 1fr empuja las utilidades a la
+   * derecha — sin encoger tipografía. Breakpoints 720/1180 en media queries. */
+  grid-template-columns: auto auto 1fr auto auto auto;
   align-items: stretch;
   gap: 0;
   max-width: var(--container-max);
   margin: 0 auto;
 }
+.site-brand { grid-column: 1; }
+.site-nav { grid-column: 2; }
+.site-search { grid-column: 4; }
+.site-lang-wrap { grid-column: 5; }
+.site-aportar { grid-column: 6; }
 
 .site-brand {
   display: flex;
@@ -577,23 +581,61 @@ li { margin: var(--space-1) 0; }
    * desktop). Resultado: el hover background ocupa TODA la columna del nav,
    * coherente con el lenguaje ministerial. El subrayado se pinta dentro de
    * un span interno (.site-nav__label) para que quede pegado al texto sin
-   * importar la altura del <a>. */
+   * importar la altura del <a>.
+   *
+   * Los items se agrupan en .site-nav__group (Casos · entidades · referencia ·
+   * Sobre) con padding horizontal más compacto dentro de cada grupo y un tick
+   * mostaza corto entre clusters — ver navegacion-principal.md. */
   display: flex;
   align-items: stretch;
+  flex-wrap: nowrap;
   gap: 0;
   padding-left: var(--space-3);
+  width: max-content;
+  flex-shrink: 0;
+}
+.site-nav__group {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+.site-nav__group:not(:first-child) {
+  position: relative;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+/* Tick mostaza corto y centrado — distinto del border-left a altura completa
+ * de las utilidades (Buscar · idioma · Aportar). Agrupa secciones, no
+ * particiona columnas del header. */
+.site-nav__group:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 16px;
+  background: var(--color-accent-secondary);
+  opacity: 0.65;
+  pointer-events: none;
 }
 .site-nav a {
   display: flex;
   align-items: center;
-  padding: 0 var(--space-4);
+  padding: 0 10px;
   color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
   font: 600 13px/1 var(--font-sans);
   letter-spacing: 0.01em;
   position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: color var(--motion-duration) var(--motion-ease),
               background var(--motion-duration) var(--motion-ease);
+}
+.site-nav__group[data-nav-group="core"] a:first-child {
+  padding-left: var(--space-3);
 }
 .site-nav a:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
 .site-nav a.is-active { color: #fff; background: rgba(255, 255, 255, 0.10); }
@@ -777,10 +819,11 @@ li { margin: var(--space-1) 0; }
   color: var(--color-fg);
   text-decoration: none;
   font-family: var(--font-sans);
-  border-bottom: 1px solid var(--color-border);
   transition: background var(--motion-duration) var(--motion-ease);
 }
-.site-lang-panel a:last-child { border-bottom: 0; }
+.site-lang-panel a + a {
+  padding-top: 6px;
+}
 .site-lang-panel a:hover,
 .site-lang-panel a:focus-visible {
   background: var(--color-surface-muted);
@@ -788,7 +831,8 @@ li { margin: var(--space-1) 0; }
 }
 .site-lang-panel a.is-on {
   background: var(--color-surface-muted);
-  box-shadow: inset 3px 0 0 var(--color-accent-secondary);
+  color: var(--color-accent);
+  font-weight: 600;
 }
 .site-lang-panel__code {
   font: 700 11px/1 var(--font-sans);
@@ -812,9 +856,8 @@ li { margin: var(--space-1) 0; }
  * tipográfico que el resto de los items del header (700 11px), para que lea
  * como "un item más con color distinto", no como anuncio.
  *
- * El CTA dentro del panel móvil (.site-menu-panel__aportar) sí mantiene
- * fondo mostaza prominente: ahí el panel es navy oscuro y el botón es el
- * primer item del menú, queremos que destaque al abrirse.
+ * El CTA del panel móvil (.site-menu-panel__aportar) replica el ghost del
+ * header: texto mostaza, peso 600, sin bloque macizo.
  * ========================================================================= */
 .site-aportar {
   display: inline-flex;
@@ -844,21 +887,11 @@ li { margin: var(--space-1) 0; }
   outline-offset: -2px;
 }
 
-@media (max-width: 1080px) {
-  /* Colapso a 2 filas. El umbral 1080 corresponde al ancho mínimo en el que
-   * el grid `auto 1fr auto auto` del desktop sigue cabiendo: brand 347 +
-   * nav 513 + search 98 + lang 103 ≈ 1061. Por debajo de eso, el nav (con
-   * 6 items) empuja a search/lang fuera del viewport y rompe el documento
-   * con scroll horizontal. La reorganización es:
-   *   fila 1 → brand block (blanco) + buscar + ES/CAT a la derecha
-   *   fila 2 → nav horizontal a todo el ancho sobre la banda navy, con
-   *            flex-wrap a 2 líneas si los 6 items no caben.
-   * Mantiene la estética ministerial: bandas horizontales visibles, nada
-   * oculto detrás de hamburger. */
+@media (max-width: 1180px) {
+  /* Colapso a 2 filas: brand + utilidades arriba, nav abajo a ancho completo.
+   * El nav sigue visible (hamburguesa sólo <720), tamaño fijo — empuja en
+   * desktop ancho, aquí ocupa toda la fila 2. */
   .site-header__inner {
-    /* minmax(0, 1fr) en lugar de 1fr evita que el grid item se expanda al
-     * min-content de su hijo (escudo + wordmark del brand) y fuerce un
-     * ancho total que desborda el viewport. */
     grid-template-columns: minmax(0, 1fr) auto auto auto;
     grid-template-rows: auto auto;
   }
@@ -882,43 +915,31 @@ li { margin: var(--space-1) 0; }
   .site-aportar {
     grid-column: 4;
     grid-row: 1;
-    /* Compacta padding en 720-1080 manteniendo legibilidad. */
     padding: 0 10px;
   }
   .site-nav {
     grid-column: 1 / -1;
     grid-row: 2;
+    width: auto;
     padding: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
-    /* flex-wrap permite que los items pasen a una segunda línea si no caben
-     * en una sola, en lugar de generar scroll horizontal dentro del nav.
-     * Decisión tomada en sesión 5d (2026-05-22) — el scroll era confuso
-     * visualmente y poco descubrible. min-width:0 evita que el grid item
-     * se expanda al tamaño natural de sus hijos y desborde el viewport. */
-    flex-wrap: wrap;
-    min-width: 0;
+    flex-wrap: nowrap;
+  }
+  .site-nav__group:not(:first-child) {
+    margin-left: 8px;
+    padding-left: 8px;
   }
   .site-nav a {
-    /* Sin height fija — el padding vertical define la altura natural del
-     * link (texto 14px + padding 36px ≈ 50px). Antes `height: 40px;
-     * font-size: 12px` daba un nav-bar comprimido; tras feedback del
-     * maintainer (sesión 5g) subimos a `padding: 18px; font-size: 14px`
-     * para que la fila inferior tenga peso visual equivalente al brand
-     * block. `flex-shrink: 0` se mantiene por si flex-wrap intentara
-     * comprimir antes de hacer wrap. */
-    padding: 18px var(--space-3);
+    padding: 18px 10px;
     font-size: 14px;
-    flex-shrink: 0;
   }
 }
 /* =========================================================================
  * Botón hamburguesa + panel desplegable (mobile <720px)
  *
  * En mobile real ocultamos el nav horizontal y el selector de idioma del
- * header, y ofrecemos un botón ☰ al lado del buscador que despliega un panel
- * navy bajo el header con todas las secciones (vertical, items grandes) y el
- * selector de idioma al final. Cumple el patrón usual de menú móvil sin caer
- * en hamburguesa en desktop. Activado en sesión 5f (2026-05-22).
+ * header; las secciones viven en el panel. Entre 721px y 1180px el nav sigue
+ * visible en la segunda fila del header (ver media query de arriba).
  * ========================================================================= */
 .site-menu-btn {
   /* Oculto por defecto: solo aparece en <720px. */
@@ -1012,16 +1033,35 @@ li { margin: var(--space-1) 0; }
   display: flex;
   flex-direction: column;
 }
+.site-menu-panel__group {
+  display: flex;
+  flex-direction: column;
+}
+.site-menu-panel__group:not(:first-child) {
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+.site-menu-panel__heading {
+  margin: 0;
+  padding: 12px var(--space-5) 4px;
+  font: 700 10px/1 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.40);
+}
 .site-menu-panel__link {
   display: block;
-  padding: 14px var(--space-5);
+  padding: 12px var(--space-5);
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font: 600 15px/1 var(--font-sans);
   letter-spacing: 0.01em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: background var(--motion-duration) var(--motion-ease),
               color var(--motion-duration) var(--motion-ease);
+}
+/* Sin border-bottom entre enlaces del mismo grupo — el separador lateral
+ * a lo ancho solo vive entre clusters (.site-menu-panel__group). */
+.site-menu-panel__group .site-menu-panel__link:last-child {
+  padding-bottom: 14px;
 }
 .site-menu-panel__link:hover,
 .site-menu-panel__link:focus-visible {
@@ -1030,32 +1070,36 @@ li { margin: var(--space-1) 0; }
   outline: 0;
 }
 .site-menu-panel__link.is-active {
-  background: rgba(255, 255, 255, 0.10);
   color: #fff;
-  /* Filete mostaza a la izquierda — análogo al subrayado del nav desktop. */
-  box-shadow: inset 3px 0 0 var(--color-accent-secondary);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-secondary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
 }
 .site-menu-panel__aportar {
-  /* CTA destacado dentro del panel móvil: mostaza claro sobre fondo navy del
-   * panel, equivalente al .site-aportar del header desktop. */
+  /* Misma voz que el CTA ghost del header: texto mostaza, sin bloque macizo
+   * ni uppercase 800 — el panel ya es navy y no necesita banner. */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   padding: 14px var(--space-5);
-  background: var(--color-accent-secondary);
-  color: var(--color-accent);
+  background: transparent;
+  color: var(--color-accent-secondary);
   text-decoration: none;
-  font: 800 13px/1 var(--font-sans);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
+  font: 600 15px/1 var(--font-sans);
+  letter-spacing: 0.01em;
+  text-transform: none;
   border-top: 1px solid rgba(255, 255, 255, 0.10);
-  transition: background var(--motion-duration) var(--motion-ease);
+  transition: background var(--motion-duration) var(--motion-ease),
+              color var(--motion-duration) var(--motion-ease);
 }
 .site-menu-panel__aportar:hover,
 .site-menu-panel__aportar:focus-visible {
-  background: #f0c450;
-  color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
   outline: 0;
 }
 .site-menu-panel__aportar svg {
@@ -1096,12 +1140,8 @@ li { margin: var(--space-1) 0; }
 body.has-menu-open { overflow: hidden; }
 
 @media (max-width: 720px) {
-  /* En mobile real (<720px) el header colapsa de las 2 filas que tenía a
-   * 1 sola fila: brand + buscador + aportar + hamburguesa. El nav horizontal
-   * y el selector de idioma del header se ocultan; ambos viven dentro del
-   * panel desplegable. El CTA Aportar se MANTIENE visible en el header
-   * (compacto, sin icono) porque es CTA editorial primario; el panel
-   * desplegable lleva además una versión completa más prominente. */
+  /* Mobile estrecho: nav horizontal oculto, hamburguesa + panel. Idioma pasa
+   * al panel; header en una fila brand · buscar · aportar · ☰. */
   .site-header__inner {
     grid-template-columns: minmax(0, 1fr) auto auto auto;
     grid-template-rows: auto;
@@ -1153,7 +1193,7 @@ body.has-menu-open { overflow: hidden; }
  *     + mostaza institucional (#c89b00) 50% + rojo BOE apagado 25%. Tonos
  *     muted del sistema institucional, NO la bandera saturada. Es la
  *     interpretación administrativa de los colores de España permitida por
- *     DESIGN.md §"Sobre asociaciones partidarias" (muted > saturado de
+ *     DESIGN.md — "Sobre asociaciones partidarias" (muted > saturado de
  *     campaña). El "no rojo" de DESIGN.md aplica sólo a estados epistémicos
  *     (acreditado/investigado/desmentido), no a decoración institucional.
  *   · Eco MUY desaturado del filete (4-5% opacidad) detrás del contenido.
@@ -1167,7 +1207,7 @@ body.has-menu-open { overflow: hidden; }
   overflow: hidden;
 }
 /* Filete tricolor superior (6px) — bandera institucional apagada. El
-   #8e2424 es rojo BOE muted (autorizado en DESIGN.md §"Sobre asociaciones
+   #8e2424 es rojo BOE muted (autorizado en DESIGN.md — "Sobre asociaciones
    partidarias" porque es tono institucional, no rojo de campaña). El eco
    tricolor de fondo se eliminó por feedback del maintainer: era apenas
    visible (4-5%) y daba sensación de "fondo perdido". Fondo plano ahora. */
@@ -1499,7 +1539,7 @@ body.has-menu-open { overflow: hidden; }
 /* =========================================================================
  * Badges — rectangulares, borde fino, NUNCA píldoras
  *
- * Sistema de 4 familias por dimensión (DESIGN.md §"Sistema de badges"):
+ * Sistema de 4 familias por dimensión (DESIGN.md — "Sistema de badges"):
  *   F1 Nivel (N1-N4)    → font-mono + gradiente navy sólido→outline
  *   F-estado            → · dot a la izquierda + color (rectángulo fino)
  *                          - Estado epistémico del Hecho (acreditado/inv/...)
@@ -1535,30 +1575,8 @@ body.has-menu-open { overflow: hidden; }
 /* F2 vocabulario: dot circular a la izquierda. Estado epistémico (Hecho). */
 .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
-/* F-función vocabulario: glyph monocromo a la izquierda.
- *
- * Para aparato judicial y acusación civil usamos SVG inline (currentColor)
- * embebidos en RolBadge.astro, que aseguran reconocibilidad y monocromía
- * cross-platform a 13px.
- *
- * Para subfamilias de Hito (jurisdiccional/político/mediático) y otros
- * categóricos usamos caracteres del bloque Latin-1 Supplement / Misc
- * Punctuation (◆, ¶), que sí están en fuentes humanistas. La balanza de
- * "hito jurisdiccional" reusa el mismo SVG de aparato judicial. */
-.badge .glyph-svg {
-  display: inline-block;
-  margin-right: 2px;
-  flex-shrink: 0;
-  vertical-align: -2px;
-}
-.badge .glyph {
-  display: inline-block;
-  line-height: 1;
-  font-size: 12px;
-  color: currentColor;
-  font-family: var(--font-sans);
-  font-weight: 700;
-}
+/* F-función y categorías de hito: sin glyph decorativo. La distinción
+ * visual se obtiene del color del border-left + label de texto. */
 
 .badge--accent           { color: var(--color-accent); border-color: var(--color-accent); background: var(--color-accent-soft); }
 .badge--accent-secondary { color: #6b4d00; border-color: var(--color-accent-secondary-border); background: var(--color-accent-secondary-soft); }
@@ -1576,7 +1594,7 @@ body.has-menu-open { overflow: hidden; }
 /* ------------------------------------------------------------------------ *
  * F2 — Estado epistémico (Hecho). Borde sólido para tipo principal,
  * borde dashed para sub-tipo semánticamente cercano (atribuido ⊂
- * investigado; no_concluyente ⊂ desmentido). Nunca rojo (DESIGN.md §2).
+ * investigado; no_concluyente ⊂ desmentido). Nunca rojo (DESIGN.md — "Color Palette & Roles").
  * ------------------------------------------------------------------------ */
 .badge--acreditado    { color: var(--color-acreditado);   border-color: var(--color-acreditado-border);   background: var(--color-acreditado-bg); }
 .badge--investigado   { color: var(--color-investigado);  border-color: var(--color-investigado-border);  background: var(--color-investigado-bg); }
@@ -1635,7 +1653,6 @@ body.has-menu-open { overflow: hidden; }
   background: var(--color-surface-muted);
   font-weight: 600;
 }
-.badge--fn .glyph { color: currentColor; margin-right: 2px; font-size: 11px; }
 .badge--fn-aparato {
   color: var(--color-rol-aparato);
   border-left-color: var(--color-rol-aparato);
@@ -1767,12 +1784,13 @@ body.has-menu-open { overflow: hidden; }
 
 /* ------------------------------------------------------------------------ *
  * Categoría / tipo (sub-variante de F-función).
- * Mismo contenedor que F-función (border-left 4px + fondo neutro + glyph)
+ * Mismo contenedor que F-función (border-left 4px + fondo neutro + label)
  * pero con tonos por subfamilia. Aplica a tipo de hito, tipo de organización
- * y tipo de documento.
- *   - hito jurisdiccional → ⚖ navy
- *   - hito político       → ◆ mostaza
- *   - hito mediático      → ¶ gris fg-muted
+ * y tipo de documento. Sin glyph: la diferenciación viene del color del
+ * border-left + label de texto.
+ *   - hito jurisdiccional → navy
+ *   - hito político       → mostaza
+ *   - hito mediático      → gris fg-muted
  * ------------------------------------------------------------------------ */
 .badge--cat {
   border-color: var(--color-border);
@@ -1782,7 +1800,6 @@ body.has-menu-open { overflow: hidden; }
   color: var(--color-fg);
   font-weight: 600;
 }
-.badge--cat .glyph { color: currentColor; margin-right: 2px; font-size: 11px; }
 .badge--cat-jurisdiccional { color: var(--color-accent); border-left-color: var(--color-accent); }
 .badge--cat-politico       { color: #6b4d00; border-left-color: var(--color-accent-secondary); }
 .badge--cat-mediatico      { color: var(--color-fg-muted); border-left-color: var(--color-border-strong); }

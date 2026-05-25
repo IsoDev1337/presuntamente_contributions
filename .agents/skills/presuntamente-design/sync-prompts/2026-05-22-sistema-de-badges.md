@@ -10,39 +10,43 @@ Hola. He rediseñado por completo el sistema de badges de presuntamente.org desd
 
 ## Empieza leyendo
 
-1. `DESIGN.md` en raíz del repo, especialmente la **§2bis "Sistema de badges"** (es nueva entera) y la matización en §2 sobre la excepción del rojo.
+1. `DESIGN.md` en raíz del repo, especialmente la **"Sistema de badges"** y la matización en "Color Palette & Roles" sobre la excepción del rojo.
 2. `src/styles/global.css` — sección "Roles procesales — F-estado" y "Roles funcionales — F-función" para los tokens, y la sección "Badges" para las reglas CSS canónicas.
 3. `src/components/RolBadge.astro` — el componente que centraliza el routing rol→familia visual.
 4. `src/components/EpistemicBadge.astro`, `src/components/PhaseBadge.astro`, `src/components/LevelBadge.astro`, `src/components/Hito.astro` — los otros componentes que pintan badges.
 5. `src/lib/labels.ts` — la función `rolFamilia()` que dice a qué familia visual cae cada rol.
 6. `schemas/rol-en-caso.schema.json` — el enum actualizado de roles, ahora con `condenado_no_firme` y `condenado_firme` separados.
 
-## Qué cambió respecto al bundle anterior
+## Qué cambió respecto al bundle anterior y nota histórica sobre el set retirado
 
-- **De 5 familias visuales a 4**: F1 Nivel, F-estado (épistemico+rol procesal del lado acusado), F4 Fase, F-función (aparato judicial + acusación civil + categorías).
+**NOTA HISTÓRICA (2026-05-25)**: Este prompt fue escrito cuando el sistema de badges usaba glyphs decorativos (uno por familia: aparato judicial, acusación civil, hito político, hito mediático). Esos glyphs han sido retirados del proyecto por decisión del maintainer — se sentían germánicos/académicos, no convención castellana real. Ver `ROADMAP.md` apartado "Aprendizajes y notas" para el detalle. A continuación se describe cómo el sistema actual (sin glyphs) mejora la claridad manteniendo la estructura.
+
+**El sistema nuevo (sin glyphs, implementado 2026-05-25)**:
+
+- **De 5 familias visuales a 4**: F1 Nivel, F-estado (épistemico+rol procesal del lado acusado), F4 Fase, F-función (aparato judicial + acusación civil + categorías de hito).
 - **F-estado**: ahora reusa el `•` dot para Hecho epistémico Y rol procesal de Persona. Contexto desambigua. Mismo color para `investigado` epistémico y rol `investigado` procesal — eso es intencional y coherente.
-- **F-función**: nuevo contenedor unificado para todo lo "no estado": rectángulo + `▌` border-left 4px + glyph monocromo + fondo neutro. Glyphs en caracteres con cobertura humanista (`§` aparato judicial, `‡` acusación civil, `§/◆/¶` categorías de hito).
+- **F-función**: nuevo contenedor unificado para todo lo "no estado": rectángulo + `▌` border-left 4px + etiqueta textual + fondo neutro. **Sin glyphs especiales** — la claridad viene de la combinación color + posición + label, no de caracteres especiales. Esto hace el sistema más robusto en todas las fuentes y más accesible.
 - **Rol `condenado` separado en `condenado_no_firme` y `condenado_firme`**: la presunción de inocencia formal cae solo con firmeza, así que el badge UI los distingue (rojo apagado outline vs rojo chillón fill).
 - **Rol `investigado` queda fuera del rojo**. Va en navy outline, mismo color que el caso base. Razón editorial dura: ser investigado no implica gravedad procesal — una persona puede ser investigada y ser inocente. El rojo entra solo a partir de `condenado_no_firme`. La progresión es navy (investigado) → mostaza (procesado/acusado) → rojo (condenado).
 
 ## Qué quiero que regeneres del bundle
 
 1. **`colors_and_type.css`**: añadir los tokens nuevos (`--color-rol-investigado`, `--color-rol-procesado`, `--color-rol-procesado-text`, `--color-rol-acusado`, `--color-rol-acusado-text`, `--color-rol-acusado-bg`, `--color-rol-condenado-no-firme`, `--color-rol-condenado-firme`, `--color-rol-absuelto`, `--color-rol-desimputado`, `--color-rol-testigo`, `--color-rol-aparato`, `--color-rol-acusacion-civil`).
-2. **`preview/comp_badges.html`**: reescribir entero. Debe mostrar las 4 familias con todos sus valores reales:
+2. **`preview/comp_badges.html`**: reescribir entero. Debe mostrar las 4 familias con todos sus valores reales (sin glyphs):
    - F1 Nivel: N1 N2 N3 N4.
    - F-estado epistémico: acreditado, investigado, atribuido (dashed), exculpatorio, desmentido, no_concluyente (dashed).
    - F-estado rol procesal: investigado, procesado, acusado, condenado_no_firme, condenado_firme, absuelto, desimputado, testigo.
    - F4 Fase: instrucción, fase intermedia, juicio oral, sentencia firme, archivado (cada uno con su barra de progreso `[█░░░]` ... `[████]`).
-   - F-función: aparato judicial (§ + navy), acusación civil (‡ + azul suave), hito jurisdiccional (§ + navy), hito político (◆ + mostaza), hito mediático (¶ + gris).
-3. **`preview/comp_hito.html`**: si existe, actualizar para reflejar el badge de categoría con border-left + glyph (ya no es solo glyph con fondo neutro plano).
-4. **`preview/comp_persona_card.html`** y **`preview/comp_org_card.html`**: actualizar para que los badges de rol reflejen el nuevo sistema (dot para roles de F-estado, border-left+glyph para los demás).
-5. **`ui_kits/web/`**: revisar páginas Ficha de Caso y Ficha de Persona para que reflejen el nuevo render de badges.
-6. **`SKILL.md` y `README.md`**: actualizar las secciones que describan badges. Mantener la regla "nunca rojo" del bundle, pero añadir la excepción documentada: rojo solo en `condenado_no_firme` y `condenado_firme` de F-estado.
+   - F-función: aparato judicial (label + navy border-left), acusación civil (label + azul suave border-left), hito jurisdiccional (label + navy), hito político (label + mostaza), hito mediático (label + gris).
+3. **`preview/comp_hito.html`**: si existe, actualizar para reflejar el badge de categoría con border-left + label textual (ya no contiene glyphs).
+4. **`preview/comp_persona_card.html`** y **`preview/comp_org_card.html`**: actualizar para que los badges de rol reflejen el nuevo sistema (dot para roles de F-estado, border-left+label para los demás).
+5. **`ui_kits/web/`**: revisar páginas Ficha de Caso y Ficha de Persona para que reflejen el nuevo render de badges sin glyphs.
+6. **`SKILL.md` y `README.md`**: actualizar las secciones que describan badges. Mantener la regla "nunca rojo" del bundle, pero añadir la excepción documentada: rojo solo en `condenado_no_firme` y `condenado_firme` de F-estado. Documentar la retirada del set de glyphs como nota histórica.
 
 ## Restricciones a respetar (las mismas de siempre)
 
 - DESIGN.md prevalece sobre cualquier doc del bundle.
 - Stack institucional: Gill Sans / Lato, no introducir fuentes nuevas.
 - Sin Tailwind. CSS nativo + tokens del bundle.
-- Glyphs en caracteres con cobertura humanista (`§`, `‡`, `◆`, `¶`). NO usar `⚖` ni `⚑` — muchas fuentes no los cubren y se ven irreconocibles a 12px.
+- **No se usan glyphs decorativos en el sistema final** (el set anterior fue retirado el 2026-05-25 por decisión del maintainer; ver `ROADMAP.md` apartado "Aprendizajes y notas"). La claridad viene de color + label + posición.
 - Sin emoji a color. Si necesitas un símbolo nuevo, comprobar que está en Lato y Gill Sans.

@@ -1,8 +1,8 @@
 # NOTES — Caso Begoña Gómez
 
-Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md` § *NOTES.md por caso*.
+Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en [AGENTS.md → "NOTES.md por caso"](AGENTS.md#notesmd-por-caso).
 
-Última actualización: 2026-05-23 (barrido retrospectivo de la convención "Documentos primarios descargados a `/public/documentos/`" sobre los 24 documentos catalogados del caso; ver §"Barrido primarios descargados — 2026-05-23"). Antes: 2026-05-22 (PR3 — incorpora Juan José Güemes como persona desimputada, hitos posteriores al 21-abr-2026 hasta hoy, hito propio del ofrecimiento de personación a la UCM, y nuevo tipo de hito `escrito_conclusiones_provisionales` en el schema).
+Última actualización: 2026-05-23 (barrido retrospectivo de la convención "Documentos primarios descargados a `/public/documentos/`" sobre los 24 documentos catalogados del caso; ver sección "Barrido primarios descargados — 2026-05-23"). Antes: 2026-05-22 (PR3 — incorpora Juan José Güemes como persona desimputada, hitos posteriores al 21-abr-2026 hasta hoy, hito propio del ofrecimiento de personación a la UCM, y nuevo tipo de hito `escrito_conclusiones_provisionales` en el schema).
 
 ---
 
@@ -35,7 +35,7 @@ Ambos cierres dejan en pie la presunción de inocencia y las trayectorias proces
 
 ## Schema extendido en PR3
 
-- **`schemas/hito.schema.json`**: añadido un nuevo valor al enum de `tipo`: `escrito_conclusiones_provisionales`. Justificación editorial: en procedimiento abreviado, el escrito de conclusiones provisionales de defensa es un evento procesal puntual y reconocible (parte que cierra fase de instrucción y abre fase intermedia previa al juicio). El enum ya admite otros eventos de parte (`comparecencia_congreso`, `publicacion_investigacion_periodistica`), así que la adición es consistente con el patrón existente. V-14 (hitos jurisdiccionales requieren `documento_principal_id`) NO se aplica al nuevo tipo por defecto, pero al modelarlo siempre con `documento_principal_id` por convención no hay diferencia práctica. `src/lib/labels.ts` extendido con el label `Escrito de conclusiones provisionales` para el nuevo tipo. Pendiente menor: documentar el nuevo tipo en `docs/diseno/01-modelo-de-datos.md §2.5` cuando se haga un repaso editorial del doc.
+- **`schemas/hito.schema.json`**: añadido un nuevo valor al enum de `tipo`: `escrito_conclusiones_provisionales`. Justificación editorial: en procedimiento abreviado, el escrito de conclusiones provisionales de defensa es un evento procesal puntual y reconocible (parte que cierra fase de instrucción y abre fase intermedia previa al juicio). El enum ya admite otros eventos de parte (`comparecencia_congreso`, `publicacion_investigacion_periodistica`), así que la adición es consistente con el patrón existente. V-14 (hitos jurisdiccionales requieren `documento_principal_id`) NO se aplica al nuevo tipo por defecto, pero al modelarlo siempre con `documento_principal_id` por convención no hay diferencia práctica. `src/lib/labels.ts` extendido con el label `Escrito de conclusiones provisionales` para el nuevo tipo. Pendiente menor: documentar el nuevo tipo en [doc 01 — "Hito"](../../../docs/diseno/01-modelo-de-datos.md#25-hito) cuando se haga un repaso editorial del doc.
 
 ## Correcciones aplicadas en PR2
 
@@ -44,7 +44,7 @@ Ambos cierres dejan en pie la presunción de inocencia y las trayectorias proces
 
 ## Barrido primarios descargados — 2026-05-23
 
-**Contexto.** El 2026-05-22, tras el PR2 del Fiscal General del Estado, se incorporó al proyecto la convención "Documentos primarios descargados a `/public/documentos/<caso>/`" (`AGENTS.md` §correspondiente + `.agents/skills/investigar-caso/SKILL.md` §3.bis). El ROADMAP §"Trabajo paralelizable a otro agente" pide aplicar la convención retrospectivamente a los casos ya fichados antes de la norma. Este barrido cubre exclusivamente el caso `begona-gomez`.
+**Contexto.** El 2026-05-22, tras el PR2 del Fiscal General del Estado, se incorporó al proyecto la convención "Documentos primarios descargados a `/public/documentos/<caso>/`" ([AGENTS.md → "Documentos primarios descargados"](AGENTS.md#documentos-primarios-descargados-a-publicdocumentos) + `.agents/skills/investigar-caso/SKILL.md` sección 3.bis). El ROADMAP sección "Trabajo paralelizable a otro agente" pide aplicar la convención retrospectivamente a los casos ya fichados antes de la norma. Este barrido cubre exclusivamente el caso `begona-gomez`.
 
 **Universo.** 24 documentos catalogados en `content/documentos/*.yaml` con `caso_principal_id: begona-gomez`:
 
@@ -74,7 +74,7 @@ Ambos cierres dejan en pie la presunción de inocencia y las trayectorias proces
 
 ## Pendiente para PR4 y siguientes
 
-- **Archive.org / archive.ph mirrors** para los documentos N4 (ahora 19 tras PR3: 6 de PR1 + 7 de PR2 + 6 de PR3; el escrito de la Fiscalía es N2 y no requiere mirror obligatorio aunque conviene). WebFetch no puede llamar a archive.org desde el entorno del agente; el maintainer debe lanzar el archivado y completar `url_archivo`. Mirror obligatorio para fuentes N4 según doc 01 §3.
+- **Archive.org / archive.ph mirrors** para los documentos N4 (ahora 19 tras PR3: 6 de PR1 + 7 de PR2 + 6 de PR3; el escrito de la Fiscalía es N2 y no requiere mirror obligatorio aunque conviene). WebFetch no puede llamar a archive.org desde el entorno del agente; el maintainer debe lanzar el archivado y completar `url_archivo`. Mirror obligatorio para fuentes N4 según doc 01, "Enums catalogados".
 - **Localización de fuentes oficiales** (sustituir N4 por N1 cuando aparezcan). PR3 ha confirmado, vía WebSearch + WebFetch, que ninguno de los siguientes está disponible aún con URL canónica oficial en `poderjudicial.es` ni en CENDOJ — reconfirmado el 2026-05-23 durante el barrido de primarios descargados:
   - Nota CGPJ del auto del JI nº 41 de Madrid del 13 de abril de 2026 (auto de procesamiento).
   - Nota institucional del auto de la Audiencia Provincial de Madrid del 23 de febrero de 2026 (anulación jurado popular).
@@ -120,7 +120,7 @@ Decisiones editoriales aplicadas:
 - **Vicerrectores y exvicerrectores de la UCM** que han declarado como testigos (Juan Carlos Doadrio y otros): no se les crea ficha hasta que un auto les atribuya rol distinto de testigo.
 - **Víctor de Aldama** (mencionado en la denuncia inicial por su presencia en reuniones de Globalia): no es investigado en este procedimiento; su rol procesal pertenece a otra causa (caso Koldo). Fuera del inventario aquí.
 
-## Verbos del doc 04 §3 aplicados
+## Verbos de [doc 04 — "Presunción de inocencia: reglas de redacción"](docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción) aplicados
 
 - "Consta en el auto…", "el instructor considera indiciariamente que…", "se atribuye…", "según la Fiscalía…", "la Audiencia Provincial considera que no concurren indicios racionales de criminalidad…".
 - Final explícito de presunción de inocencia en cada rol activo de imputación/procesamiento ("rige el principio de presunción de inocencia mientras no recaiga resolución firme en contrario").
@@ -143,9 +143,9 @@ URLs específicas en cada `Documento` que las cita, conforme al modelo.
 
 ## Avisos para el LLM en futuras incorporaciones
 
-- **Nunca redactar a Begoña Gómez como culpable.** Verbos prohibidos del doc 04 §3. Hasta sentencia firme, sólo "se investiga", "se atribuye", "consta en el auto de Peinado que…", "el instructor considera indiciariamente que…".
+- **Nunca redactar a Begoña Gómez como culpable.** Verbos prohibidos de [doc 04 — "Presunción de inocencia: reglas de redacción"](docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción). Hasta sentencia firme, sólo "se investiga", "se atribuye", "consta en el auto de Peinado que…", "el instructor considera indiciariamente que…".
 - **El procedimiento NO está archivado.** El archivo del 13-abr-2026 sólo afecta al delito de intrusismo profesional. Por los otros cuatro delitos sigue adelante hacia Tribunal del Jurado.
 - **Pedro Sánchez NO es investigado** ni procesado en esta causa. Mencionarlo sólo como contexto (esposo de la investigada / presidente del Gobierno).
 - **Joaquín Goyache es DESIMPUTADO.** Su rol vigente es `desimputado` desde el 16-may-2025 por resolución de la Audiencia Provincial de Madrid. Cualquier redacción posterior debe respetarlo expresamente.
-- **Tratamiento sin cuota política.** El caso afecta a una familia cercana al gobierno actual. La P-10 del doc 02 obliga a aplicar exactamente la misma estructura, badges y tono que a cualquier otro caso del inventario.
-- **Familiares no implicados** (en particular cualquier referencia a otros miembros de la familia Sánchez-Gómez): fuera del inventario salvo que un auto les atribuya rol procesal formal. Doc 04 §11.
+- **Tratamiento sin cuota política.** El caso afecta a una familia cercana al gobierno actual. La P-10 de [doc 02 — "Reglas anti-desinformación en presentación"](docs/diseno/02-ficha-de-caso.md#4-reglas-anti-desinformación-en-presentación) obliga a aplicar exactamente la misma estructura, badges y tono que a cualquier otro caso del inventario.
+- **Familiares no implicados** (en particular cualquier referencia a otros miembros de la familia Sánchez-Gómez): fuera del inventario salvo que un auto les atribuya rol procesal formal. [Doc 04 — "Ética"](docs/diseno/04-riesgos-legales-y-eticos.md#11-ética).

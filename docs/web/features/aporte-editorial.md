@@ -1,6 +1,6 @@
 # Aportación editorial externa
 
-> Archivos clave: `docs/diseno/04-riesgos-legales-y-eticos.md` §6bis (marco editorial-legal canónico) · `docs/diseno/03-estrategia-de-mantenimiento.md` §1-§2 (señal humana en pipeline) · `src/components/pages/PgAportar.astro` + `src/pages/aportar.astro` (página `/aportar`) · `src/layouts/BaseLayout.astro` (CTA "Aportar" en header + dropdown de idioma + link en footer + entrada en panel móvil) · `src/styles/global.css` (estilos `.site-aportar`, `.site-lang-wrap`, `.site-lang-btn`, `.site-lang-panel`, `.site-menu-panel__aportar`) · `.github/ISSUE_TEMPLATE/sugerencia-fuente.yml` (cauce GitHub interno) · `content/aportes/YYYY-MM-DD-<slug>.md` (bandeja de aportes, se creará al recibir el primero) · `.agents/skills/incorporar-aporte/` (skill placeholder hasta primer aporte real)
+> Archivos clave: [doc 04 — "Mecanismo de aportación editorial"](docs/diseno/04-riesgos-legales-y-eticos.md#6bis-mecanismo-de-aportación-editorial) (marco editorial-legal canónico) · [doc 03 — secciones 1-2](docs/diseno/03-estrategia-de-mantenimiento.md#1-marco-del-problema) (señal humana en pipeline) · `src/components/pages/PgAportar.astro` + `src/pages/aportar.astro` (página `/aportar`) · `src/layouts/BaseLayout.astro` (CTA "Aportar" en header + dropdown de idioma + link en footer + entrada en panel móvil) · `src/styles/global.css` (estilos `.site-aportar`, `.site-lang-wrap`, `.site-lang-btn`, `.site-lang-panel`, `.site-menu-panel__aportar`) · `.github/ISSUE_TEMPLATE/sugerencia-fuente.yml` (cauce GitHub interno) · `content/aportes/YYYY-MM-DD-<slug>.md` (bandeja de aportes, se creará al recibir el primero) · `.agents/skills/incorporar-aporte/` (skill placeholder hasta primer aporte real)
 
 ## Qué hace
 
@@ -12,11 +12,11 @@ Abre un canal editorial para que terceros con conocimiento útil del caso (perio
 
 **Caso de uso**: tres carriles bajo una sola puerta editorial. (1) Aportante señala una sentencia / auto / BOE / informe institucional / cobertura cruzada que el inventario no recoge. (2) Aportante detecta un error fáctico menor (errata, fecha, órgano, segundo apellido, link roto) que no es rectificación legal porque no hay aludido defendiéndose. (3) Aportante propone una idea sobre el sitio (feature, mejora UX, observación editorial).
 
-Cierra un riesgo asumido por el modelo de mantenimiento, recogido en `AGENTS.md` §"División de trabajo: maintainer ↔ agente": el maintainer no es periodista ni jurista, delega la investigación íntegramente en LLM, lo que da escala y trazabilidad pero pierde la red de fuentes humanas que tendría un medio tradicional. Este canal abre formalmente esa red.
+Cierra un riesgo asumido por el modelo de mantenimiento, recogido en [AGENTS.md → "División de trabajo"](AGENTS.md#división-de-trabajo-maintainer--agente): el maintainer no es periodista ni jurista, delega la investigación íntegramente en LLM, lo que da escala y trazabilidad pero pierde la red de fuentes humanas que tendría un medio tradicional. Este canal abre formalmente esa red.
 
 ## Cómo funciona
 
-Pipeline de cinco pasos coherente con `doc 03 §1-§2` (señales) y `AGENTS.md` §"División de trabajo":
+Pipeline de cinco pasos coherente con el doc 03 (señales) y [AGENTS.md → "División de trabajo"](AGENTS.md#división-de-trabajo-maintainer--agente):
 
 1. **Recepción**: email entrante en `aportar@presuntamente.org` (Cloudflare Email Routing, alias del Proton del maintainer; mismo mecanismo que `contacto@` y `rectificacion@`). Operativo desde el 25 de mayo de 2026.
 2. **Volcado** (maintainer, manual): contenido editorial del email a `content/aportes/YYYY-MM-DD-<slug>.md`, sin headers identificativos del aportante salvo opt-in expreso. Fichero excluido del build público, mismo tratamiento que `content/casos/<slug>/NOTES.md`.
@@ -24,7 +24,7 @@ Pipeline de cinco pasos coherente con `doc 03 §1-§2` (señales) y `AGENTS.md` 
    - Pista a fuente o hito → investigación con `/investigar-caso` y guardarraíles + modelado `Documento` + `Hito` + `Hecho` + diff propuesto.
    - Corrección fáctica → verificación contra fuente pública + diff puntual.
    - Idea → archivo razonado en `docs/web/pages/<página>.md` o `docs/web/features/<feature>.md`, sin diff sobre `content/`.
-4. **Revisión y commit** (maintainer, workflow normal de `AGENTS.md` §"Workflow de rama y PRs"). Trailer convencional `Aporte-externo: <nombre o medio>` si el aportante autorizó acreditación; default anónimo.
+4. **Revisión y commit** (maintainer, workflow normal de [AGENTS.md → "Workflow de rama y PRs"](AGENTS.md#workflow-de-rama-y-prs)). Trailer convencional `Aporte-externo: <nombre o medio>` si el aportante autorizó acreditación; default anónimo.
 5. **Respuesta al aportante** (maintainer, borrador preparado por la skill): qué se incorporó, qué no y por qué, link al commit. Cierra el bucle editorial.
 
 **Cauces de entrada al pipeline**:
@@ -39,19 +39,19 @@ Pipeline de cinco pasos coherente con `doc 03 §1-§2` (señales) y `AGENTS.md` 
 - **Botón CTA "Aportar" en el header**, mostaza claro institucional, visible siempre (compactado en mobile, con icono en desktop). Va a la derecha del selector de idioma (que se ha convertido en dropdown desplegable `.site-lang-wrap` + `.site-lang-btn` + `.site-lang-panel`, sustituyendo al par horizontal ES | CAT anterior). Decisión del maintainer del 2026-05-25: "un boton diferenciador de aportar en el header navbar".
 - Link permanente en el footer en la columna "Aportar y rectificar" (renombrada de la antigua "Rectificación") junto al CTA de rectificar.
 - Entrada `site-menu-panel__aportar` al inicio del panel móvil hamburguesa: CTA mostaza visible en cuanto se abre el menú, antes del selector de idioma.
-- Mención en aviso legal §5bis "Aportación editorial" + §6 "Responsable" (tres canales mencionados en lugar de dos).
+- Mención en aviso legal apartado 5bis "Aportación editorial" + apartado 6 "Responsable" (tres canales mencionados en lugar de dos).
 
-**Pendiente**: módulo institucional en el hero de la home (`PgInicio.astro`) y CTA dual "Rectificar | Aportar" en la §2.11 "Cómo se ha redactado esta ficha" de la ficha de caso (`PgCasoDetalle.astro`). Ambos quedan como pendientes operativos abajo.
+**Pendiente**: módulo institucional en el hero de la home (`PgInicio.astro`) y CTA dual "Rectificar | Aportar" en la sección 2.11 "Cómo se ha redactado esta ficha" de la ficha de caso (`PgCasoDetalle.astro`). Ambos quedan como pendientes operativos abajo.
 
 ## Estado actual
 
 **Implementado** (commits encadenados en main):
 
-- Marco editorial-legal completo en `docs/diseno/04-riesgos-legales-y-eticos.md` §6bis (acuse 5 días hábiles, resolución 30 días, RGPD art. 6.1.f, default anónimo + opt-in con trailer convencional, qué se acepta y qué no, caso excepcional N3 `filtrado_verificado`).
-- Reconocido como segunda fuente de señales en `docs/diseno/03-estrategia-de-mantenimiento.md` §1-§2 (junto a los watchers automáticos previstos en Fase 3).
-- Mencionado en `AGENTS.md` §"Skills locales" como skill `incorporar-aporte`.
-- Propagación a `README.md` §"Estado" y §"Contribuir", `CONTRIBUTING.md` (sección "Aportar fuentes, correcciones o ideas") y `LEGAL.md` (bullet en "Resumen mínimo" + entrada en "Detalle completo").
-- Mención en aviso legal §5bis "Aportación editorial" y §6 "Responsable".
+- Marco editorial-legal completo en [doc 04 — "Mecanismo de aportación editorial"](docs/diseno/04-riesgos-legales-y-eticos.md#6bis-mecanismo-de-aportación-editorial) (acuse 5 días hábiles, resolución 30 días, RGPD art. 6.1.f, default anónimo + opt-in con trailer convencional, qué se acepta y qué no, caso excepcional N3 `filtrado_verificado`).
+- Reconocido como segunda fuente de señales en doc 03 (junto a los watchers automáticos previstos en Fase 3).
+- Mencionado en [AGENTS.md → "Skills locales"](AGENTS.md#skills-locales-agentsskills) como skill `incorporar-aporte`.
+- Propagación a `README.md` (secciones "Estado" y "Contribuir"), `CONTRIBUTING.md` (sección "Aportar fuentes, correcciones o ideas") y `LEGAL.md` (bullet en "Resumen mínimo" + entrada en "Detalle completo").
+- Mención en aviso legal (secciones "Aportación editorial" y "Responsable").
 - **Activación de `aportar@presuntamente.org`** en Cloudflare Email Routing (2026-05-25, maintainer).
 - **Página `/aportar`** (`PgAportar.astro` + wrapper `aportar.astro`) con las seis secciones del cauce editorial.
 - **Botón CTA "Aportar" en el header** del `BaseLayout.astro` (clase `.site-aportar`, mostaza claro institucional sobre el navy del header).
@@ -61,9 +61,9 @@ Pipeline de cinco pasos coherente con `doc 03 §1-§2` (señales) y `AGENTS.md` 
 
 **Pendiente** (siguiente bloque de UI):
 
-- Módulo institucional en el hero de la home (`PgInicio.astro`) invitando explícitamente al aporte. Coherente con el tono honesto del aviso legal §4. Diseño visual del módulo aún por definir, debe encajar con el gov-retro de `DESIGN.md` sin convertirse en banner ruidoso.
-- CTA dual "Rectificar · Aportar" en la §2.11 "Cómo se ha redactado esta ficha" de cada caso (`PgCasoDetalle.astro`).
-- Skill `/incorporar-aporte` real (placeholder hasta que llegue el primer aporte; la skill se moldea con la experiencia, ver `AGENTS.md` §"Skills locales").
+- Módulo institucional en el hero de la home (`PgInicio.astro`) invitando explícitamente al aporte. Coherente con el tono honesto del aviso legal. Diseño visual del módulo aún por definir, debe encajar con el gov-retro de `DESIGN.md` sin convertirse en banner ruidoso.
+- CTA dual "Rectificar · Aportar" en la sección "Cómo se ha redactado esta ficha" de cada caso (`PgCasoDetalle.astro`).
+- Skill `/incorporar-aporte` real (placeholder hasta que llegue el primer aporte; la skill se moldea con la experiencia, ver [AGENTS.md → "Skills locales"](AGENTS.md#skills-locales-agentsskills)).
 - Directorio `content/aportes/` (se crea al recibir el primer aporte; no se versiona vacío).
 
 ## Decisiones editoriales y aprendizajes
@@ -81,8 +81,8 @@ Pipeline de cinco pasos coherente con `doc 03 §1-§2` (señales) y `AGENTS.md` 
 
 ### v1.x — comprometido
 
-- **Módulo institucional en el hero de la home** con CTA al cauce de aporte. Sigue siendo deseable como refuerzo del CTA del header para visitantes que aterricen directamente en la home y aún no estén leyendo una ficha; coherente con el tono honesto del aviso §4.
-- **CTA dual "Rectificar · Aportar" en la §2.11 de la ficha de caso** ("Cómo se ha redactado esta ficha"), al lado del CTA actual de rectificar.
+- **Módulo institucional en el hero de la home** con CTA al cauce de aporte. Sigue siendo deseable como refuerzo del CTA del header para visitantes que aterricen directamente en la home y aún no estén leyendo una ficha; coherente con el tono honesto del aviso apartado 4 ("Cómo se construye este sitio").
+- **CTA dual "Rectificar · Aportar" en la sección 2.11 de la ficha de caso** ("Cómo se ha redactado esta ficha"), al lado del CTA actual de rectificar.
 - **Skill `/incorporar-aporte` v0** cuando llegue el primer aporte real.
 
 ### Sin compromiso
@@ -104,7 +104,7 @@ Pipeline de cinco pasos coherente con `doc 03 §1-§2` (señales) y `AGENTS.md` 
 - [x] Añadir CTA "Aportar al inventario" al panel móvil hamburguesa.
 - [x] Añadir link a `/aportar` al footer en la columna renombrada "Aportar y rectificar".
 - [ ] Construir módulo institucional en hero de `PgInicio.astro` con CTA a `/aportar`.
-- [ ] Añadir CTA dual "Rectificar · Aportar" en la §2.11 de `PgCasoDetalle.astro` al lado del CTA actual de rectificar.
+- [ ] Añadir CTA dual "Rectificar · Aportar" en la sección 2.11 de `PgCasoDetalle.astro` al lado del CTA actual de rectificar.
 - [ ] Crear placeholder `.agents/skills/incorporar-aporte/SKILL.md` (mínimo viable, se moldeará con uso).
 - [ ] Decidir si se añade `content/aportes/` al index del `content.config.ts` como collection o se mantiene como puro fichero anotativo fuera de Astro (recomendado: fuera de Astro, igual que `NOTES.md`).
 - [ ] Verificar que `pnpm validate` no rompe al introducir un fichero markdown en `content/aportes/` (probable: no rompe porque el script de validate sólo lee schemas YAML).

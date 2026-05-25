@@ -1,11 +1,11 @@
 ---
 // PgAvisoLegal — texto institucional del sitio.
-// Estructura derivada del borrador en docs/diseno/04-riesgos-legales-y-eticos.md
-// §8. Dominio presuntamente.org registrado en Cloudflare Registrar el
-// 2026-05-23; canales contacto@ y rectificacion@ operativos vía Cloudflare
-// Email Routing. La identificación postal completa del responsable a
-// efectos LSSI se activa cuando el sitio entre en operación bajo el
-// dominio propio (requiere apartado de correos + revisión legal previa).
+// Estructura derivada del borrador en docs/diseno/04-riesgos-legales-y-eticos.md,
+// sección "Disclaimer recomendado". Dominio presuntamente.org registrado en
+// Cloudflare Registrar el 2026-05-23; canales contacto@ y rectificacion@
+// operativos vía Cloudflare Email Routing. La identificación postal completa
+// del responsable a efectos LSSI se activa cuando el sitio entre en operación
+// bajo el dominio propio (requiere apartado de correos + revisión legal previa).
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SectionH from '@/components/SectionH.astro';
@@ -20,9 +20,9 @@ const strings = {
     'Aviso legal y editorial de presuntamente.org: presunción de inocencia, categorización de afirmaciones, cómo se construye el inventario, mecanismo de rectificación, responsable, limitación de responsabilidad y licencias.',
   eyebrow: 'Marco legal',
   sub:
-    'Aviso legal y editorial. Borrador alineado con docs/diseno/04-riesgos-legales-y-eticos.md §8; ' +
-    'la identificación postal del responsable a efectos LSSI se publica cuando el sitio entre en ' +
-    'operación bajo presuntamente.org.',
+    'Aviso legal y editorial. Borrador alineado con docs/diseno/04-riesgos-legales-y-eticos.md, ' +
+    'sección "Disclaimer recomendado"; la identificación postal del responsable a efectos LSSI ' +
+    'se publica cuando el sitio entre en operación bajo presuntamente.org.',
 };
 ---
 
@@ -96,8 +96,9 @@ const strings = {
     </p>
     <p>
       Los guardarraíles del proceso están documentados en
-      <code>docs/diseno/03-estrategia-de-mantenimiento.md</code> §4 y en las skills locales del
-      repositorio (<code>.agents/skills/</code>). Los chequeos mecánicos (21 reglas V-01 a V-21,
+      <code>docs/diseno/03-estrategia-de-mantenimiento.md</code>, sección "Uso de LLM para diffs revisables",
+      y en las skills locales del repositorio (<code>.agents/skills/</code>). Los chequeos mecánicos
+      (21 reglas V-01 a V-21,
       lista blanca de dominios oficiales para nivel de fuente N1, integridad por hash SHA-256 de los
       documentos primarios descargados) se ejecutan en CI sobre cada cambio, antes y al margen de
       cualquier LLM. El código y las skills son públicos bajo AGPL-3.0: cualquier lector puede
@@ -132,7 +133,7 @@ const strings = {
       fuente verificada, no a ti. Plazos comprometidos: acuse en 5 días hábiles, resolución en 30
       días hábiles. Procedimiento, alcance (qué se acepta y qué no) y tratamiento RGPD en
       <a href={lang === 'ca' ? '/cat/aportar' : '/aportar'}>la página de aportar</a> y en
-      <code>docs/diseno/04-riesgos-legales-y-eticos.md</code> §6bis.
+      <code>docs/diseno/04-riesgos-legales-y-eticos.md</code> apartado 6bis.
     </p>
   </div>
 

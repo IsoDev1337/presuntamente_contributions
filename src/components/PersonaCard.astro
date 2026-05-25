@@ -1,7 +1,7 @@
 ---
 // PersonaCard — card de persona dentro de una ficha de caso.
 // Distinguible de OrgCard a primera vista: iniciales en cuadrado a la
-// izquierda (la marca visual de Persona, ver DESIGN.md §4).
+// izquierda (la marca visual de Persona, ver DESIGN.md — "Component Stylings").
 // El swimlane de trayectoria queda fuera del MVP de este lote (lo añade el
 // Lote 4 con la ficha individual de Persona); aquí mostramos rol activo +
 // metadata.
@@ -10,7 +10,7 @@
 // esta persona en el caso: activo (sin fecha_fin) si existe; si no, el de
 // fecha_inicio más reciente. Esto da una lectura inmediata del "estado
 // actual" de cada persona en la sección de implicados, alineada con los
-// tokens --color-rol-* del sistema de badges (DESIGN.md §2bis).
+// tokens --color-rol-* del sistema de badges (DESIGN.md — "Sistema de badges").
 
 import RolBadge from './RolBadge.astro';
 
@@ -92,7 +92,7 @@ const rolReciente = rolMasReciente(roles);
     background: var(--color-bg-muted);
   }
   /* Color del border-left por rol más reciente. Reusa los tokens del sistema
-   * de badges (DESIGN.md §2bis) para coherencia con los RolBadge dentro de
+   * de badges ([DESIGN.md → "Sistema de badges"](../../DESIGN.md#2bis-sistema-de-badges)) para coherencia con los RolBadge dentro de
    * la card. */
   .pcard--rol-investigado        { --pcard-rol: var(--color-rol-investigado); }
   .pcard--rol-procesado          { --pcard-rol: var(--color-rol-procesado); }

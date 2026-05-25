@@ -9,14 +9,14 @@ description: Auditoría editorial cualitativa por LLM de un caso ya fichado en e
 
 Pasar una auditoría editorial cualitativa sobre un caso ya fichado, leyendo todos los YAMLs del caso y produciendo un informe en markdown con los hallazgos clasificados en tres niveles. **No toca código ni datos**: sólo señala, el maintainer decide.
 
-La skill cubre exclusivamente la **capa B** del diseño de cuatro capas documentado en `ROADMAP.md` §"Después de Fase 1, antes de Fase 2":
+La skill cubre exclusivamente la **capa B** del diseño de cuatro capas documentado en [ROADMAP.md → "Después de Fase 1 — antes de Fase 2"](../../../ROADMAP.md#después-de-fase-1--antes-de-fase-2):
 
 - **Capa A — Schema / V-rules mecánicas** → ya cubierta por `pnpm validate`. Esta skill no la duplica; si la capa A falla, el caso no debería siquiera llegar a revisión editorial.
-- **Capa B — Auditoría editorial cualitativa (esta skill).** Reglas P-01..P-10 del doc 02 + principios §4 y §5 de `AGENTS.md` que no son chequeables con AJV porque requieren leer texto.
+- **Capa B — Auditoría editorial cualitativa (esta skill).** Reglas P-01..P-10 del doc 02 + principios de [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) que no son chequeables con AJV porque requieren leer texto.
 - **Capa C — Verificación externa de fuentes** → diferida a v2+.
 - **Capa D — Integración con PRs externas** → invocación manual con `gh pr checkout <num>` + `/revisar-caso <slug>` en local. Misma skill sirve para auto-revisión y para PR externa.
 
-Versión `v1` (2026-05-24): 10 chequeos tras la primera iteración real sobre los 6 casos publicables del Bloque A. La v0 original (8 chequeos) queda documentada en §"Histórico". La skill se moldea con la experiencia tras cada uso real (`AGENTS.md` §"Skills locales"), añadiendo guardarraíles a la sección Histórico cuando aparezcan falsos positivos o falsos negativos.
+Versión `v1` (2026-05-24): 10 chequeos tras la primera iteración real sobre los 6 casos publicables del Bloque A. La v0 original (8 chequeos) queda documentada en (ver "Histórico"). La skill se moldea con la experiencia tras cada uso real ([AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills)), añadiendo guardarraíles a la sección Histórico cuando aparezcan falsos positivos o falsos negativos.
 
 ## Inputs aceptados
 
@@ -51,7 +51,7 @@ Si una referencia no resuelve (`getEntry` devuelve null), anotar como hallazgo `
 
 ### 2. Aplicación de la checklist
 
-Aplicar los 10 chequeos de la §"Checklist" sobre el material cargado. Cada hallazgo se acumula con:
+Aplicar los 10 chequeos de la (ver "Checklist") sobre el material cargado. Cada hallazgo se acumula con:
 
 - `nivel`: `BLOQUEANTE` (debe arreglarse antes de publicar / mergear) · `SUGERENCIA` (mejora editorial recomendable, no bloquea) · `OK` (chequeo pasado limpiamente — se reporta sólo en el resumen final, no como entrada individual).
 - `chequeo`: nombre corto del chequeo (CH1..CH10).
@@ -114,7 +114,7 @@ Si el caso es grande y la lista de hallazgos amenaza con desbordar el contexto, 
 
 **Clasificación**: `BLOQUEANTE`.
 
-**Referencia**: doc 04 §3 + AGENTS.md §"Principios irrenunciables" §4 + doc 02 P-09.
+**Referencia**: [doc 04 — "Presunción de inocencia: reglas de redacción"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción) + [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) + doc 02 P-09.
 
 ### CH2 — Lenguaje activo afirmativo sobre personas sin condena firme
 
@@ -127,7 +127,7 @@ Si no se cumple ninguna, hallazgo. Típico falso positivo: descripciones de hito
 
 **Clasificación**: `BLOQUEANTE` cuando la afirmación atribuye conducta tipificada penalmente; `SUGERENCIA` cuando es genérica ("X mintió") sin tipificación.
 
-**Referencia**: doc 02 P-01 + AGENTS.md §"Principios irrenunciables" §1 y §4.
+**Referencia**: doc 02 P-01 + [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables).
 
 ### CH3 — Hechos con respaldo sólo N4 que no son `atribuido` ni `investigado`
 
@@ -147,11 +147,11 @@ Si no se cumple ninguna, hallazgo. Típico falso positivo: descripciones de hito
 - No tiene ningún `RolEnCaso` activo o pasado en el caso.
 - No es familiar imputado (cubierto por rol).
 
-Es hallazgo. La excepción de doc 04 §11 sólo cubre figuras públicas y personas con rol procesal formal.
+Es hallazgo. La excepción de [doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética) sólo cubre figuras públicas y personas con rol procesal formal.
 
 **Clasificación**: `BLOQUEANTE`.
 
-**Referencia**: AGENTS.md §"Principios irrenunciables" §5 + doc 02 P-07 + doc 04 §11 + V-17 + [`docs/diseno/01-modelo-de-datos.md` §2.2.1 "Test operativo para `es_figura_publica`"](../../../docs/diseno/01-modelo-de-datos.md#221-test-operativo-para-es_figura_publica) (test de doble carril A/B + lista de no-figuras públicas + aplicación a citas nominales en prosa sin ficha modelada).
+**Referencia**: [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) + doc 02 P-07 + [doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética) + V-17 + [`docs/diseno/01-modelo-de-datos.md` — "Test operativo para `es_figura_publica`"](../../../docs/diseno/01-modelo-de-datos.md#221-test-operativo-para-es_figura_publica) (test de doble carril A/B + lista de no-figuras públicas + aplicación a citas nominales en prosa sin ficha modelada).
 
 ### CH5 — Hitos sin Documento N1-N2 de respaldo
 
@@ -175,7 +175,7 @@ Si el `documento_principal_id` directamente no existe (Hito jurisdiccional sin d
 
 **Clasificación**: `SUGERENCIA` por defecto (las incoherencias suelen ser tipos legítimos de la propia realidad procesal, pero merece comprobación humana).
 
-**Referencia**: principio §1 de AGENTS.md (trazabilidad) y lección Begoña PR3 sobre `fecha_documento` vs `fecha_publicacion`.
+**Referencia**: [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) (trazabilidad) y lección Begoña PR3 sobre `fecha_documento` vs `fecha_publicacion`.
 
 ### CH7 — Ausencia de `corregido_por` cuando un Hecho posterior rebate uno anterior
 
@@ -189,7 +189,7 @@ Es hallazgo. La detección de "mismo nudo factual" es heurística: marcar como `
 
 **Clasificación**: `SUGERENCIA` (la heurística genera falsos positivos; nunca `BLOQUEANTE` en v1).
 
-**Referencia**: doc 01 V-04, V-05 + AGENTS.md §"Principios irrenunciables" §6 ("nunca borres información; corrige con `corregido_por`").
+**Referencia**: doc 01 V-04, V-05 + [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) ("nunca borres información; corrige con `corregido_por`").
 
 ### CH8 — Tono "cuota política" o sectario
 
@@ -204,7 +204,7 @@ Es hallazgo. La detección de "mismo nudo factual" es heurística: marcar como `
 
 **Clasificación**: `BLOQUEANTE` para adjetivos de la lista negra del P-09 fuera de cita literal en prosa publicable o en slugs renderizados al usuario; `SUGERENCIA` para los mismos términos en slugs internos no renderizados o para asimetría de tratamiento heurística.
 
-**Referencia**: doc 02 P-09 y P-10 + AGENTS.md §"Principios irrenunciables" §3 + lección Plus Ultra 2026-05-24 ("trama" en `RolEnCaso.notas` publicable detectado como BLOQUEANTE; mismos términos en `Hecho.id` como SUGERENCIA).
+**Referencia**: doc 02 P-09 y P-10 + [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) + lección Plus Ultra 2026-05-24 ("trama" en `RolEnCaso.notas` publicable detectado como BLOQUEANTE; mismos términos en `Hecho.id` como SUGERENCIA).
 
 ### CH9 — Documentos huérfanos del caso con afirmaciones publicables
 
@@ -223,10 +223,10 @@ Si el Documento es **huérfano** (no referenciado desde ningún Hito/Hecho/Rol d
 
 **Acción sugerida estándar**:
 
-- Si el huérfano contradice el modelo: borrar el fichero (preferible, coherente con el principio §6 — la corrección queda en `git log`, no es necesario conservar el Documento en disco), o marcar `[RETIRADO]` en `titulo` y reescribir `nivel_fuente_justificacion` documentando la retirada. La opción de borrado es la limpia.
+- Si el huérfano contradice el modelo: borrar el fichero (preferible, coherente con el principio 6 — la corrección queda en `git log`, no es necesario conservar el Documento en disco), o marcar `[RETIRADO]` en `titulo` y reescribir `nivel_fuente_justificacion` documentando la retirada. La opción de borrado es la limpia.
 - Si el huérfano es oversight inocuo: añadirlo a `documentos_relacionados` del Hito/Hecho correspondiente, o borrarlo si nunca fue útil.
 
-**Referencia**: AGENTS.md §"Principios irrenunciables" §6 ("nunca borres información; corrige con `corregido_por` y conserva el histórico") aplicado al modelo vivo — los huérfanos contradictorios no son "historia conservada" sino contenido publicable desactualizado + lección Kitchen 2026-05-24.
+**Referencia**: [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) ("nunca borres información; corrige con `corregido_por` y conserva el histórico") aplicado al modelo vivo — los huérfanos contradictorios no son "historia conservada" sino contenido publicable desactualizado + lección Kitchen 2026-05-24.
 
 ### CH10 — Afirmaciones de condena firme en biografías sin Documento N1-N2 modelado
 
@@ -240,7 +240,7 @@ Si no se cumple ninguna:
 - `BLOQUEANTE` si la afirmación está en activo afirmativo ("condenado por sentencia firme en X") sin atribución a fuente y sin Documento modelado.
 - `SUGERENCIA` si la mención está en pasiva atribuida ("según cobertura periodística citada, habría sido condenado...") pero sigue sin Documento N1-N2 modelado — es admisible editorialmente pero conviene reforzar trazabilidad.
 
-**Caso típico**: biografía de una persona que tiene rol en el caso revisado X y a quien la cobertura cita también como condenada firme en un caso Y ajeno no modelado en el inventario. Riesgo principal: presentar al lector una condena firme sin trazabilidad alguna en el repo, contraviniendo el principio §1 (cada afirmación con su fuente y nivel).
+**Caso típico**: biografía de una persona que tiene rol en el caso revisado X y a quien la cobertura cita también como condenada firme en un caso Y ajeno no modelado en el inventario. Riesgo principal: presentar al lector una condena firme sin trazabilidad alguna en el repo, contraviniendo el principio 1 (cada afirmación con su fuente y nivel).
 
 **Relación con CH2**: CH10 es un sub-caso explícito de CH2 (lenguaje activo afirmativo sobre conducta delictiva). Se separa como chequeo propio porque el patrón es específico de biografías cruzadas entre casos modelados y no modelados, y porque la primera pasada cualitativa (2026-05-24) demostró que el matiz se pierde si CH2 se ejecuta sólo pensando en hechos del caso revisado.
 
@@ -250,13 +250,13 @@ Si no se cumple ninguna:
 - Reformular en pasiva atribuida: «Según cobertura periodística citada en este inventario, ha sido también vinculado a otras causas ajenas al caso X —entre ellas Y y Z— procedimientos no modelados en este inventario».
 - A largo plazo, si el caso ajeno es relevante: fichar el `Caso` correspondiente con su Documento N1-N2 de sentencia firme; entonces CH10 pasa a OK por la primera vía.
 
-**Referencia**: AGENTS.md §"Principios irrenunciables" §1 y §4 + doc 02 P-01 + lección Lezo 2026-05-24 (biografía de Javier López Madrid afirmaba condena firme en tarjetas black sin Caso/Documento modelado en el repo).
+**Referencia**: [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) + doc 02 P-01 + lección Lezo 2026-05-24 (biografía de Javier López Madrid afirmaba condena firme en tarjetas black sin Caso/Documento modelado en el repo).
 
 ## Guardarraíles obligatorios
 
 1. **No auto-fix.** La skill **sólo señala**. Nunca edita YAMLs, nunca abre commits, nunca hace `git add`. Las acciones sugeridas se redactan en prosa para que el maintainer las aplique manualmente. Esto es una norma dura del diseño: el LLM no decide qué se publica.
 
-2. **No `git push`.** El agente que ejecuta la skill no debe hacer push aunque la auditoría salga limpia (`AGENTS.md` §"Workflow de rama y PRs", norma reforzada el 2026-05-21).
+2. **No `git push`.** El agente que ejecuta la skill no debe hacer push aunque la auditoría salga limpia ([AGENTS.md → "Workflow de rama y PRs"](../../../AGENTS.md#workflow-de-rama-y-prs), norma reforzada el 2026-05-21).
 
 3. **Falsos positivos son aceptables.** La capa B asume ruido; mejor sobre-marcar y dejar que el maintainer descarte, que pasar por alto. Si un hallazgo es dudoso, clasificar como `SUGERENCIA` y describir la duda.
 
@@ -268,16 +268,16 @@ Si no se cumple ninguna:
 
 7. **NOTES.md del caso es lectura, no escritura.** La skill puede leer `content/casos/<slug>/NOTES.md` para entender decisiones editoriales previas (por qué tal hecho está como `atribuido` y no `acreditado`, etc.), pero **no debe escribirlo**. Las notas las gestiona el maintainer o la skill `incorporar-hito`.
 
-8. **Carga del contexto antes de aplicar checks.** Antes de empezar a evaluar, leer en orden: `AGENTS.md` §"Principios irrenunciables" + §"Documentos primarios descargados a `/public/documentos/`", `docs/diseno/02-ficha-de-caso.md` §4 (reglas P), y el `NOTES.md` del caso si existe. No saltar este paso aunque parezca redundante con el frontmatter de la skill: las reglas P y los principios pueden haberse afinado desde la última versión de la skill.
+8. **Carga del contexto antes de aplicar checks.** Antes de empezar a evaluar, leer en orden: [AGENTS.md → "Principios irrenunciables"](../../../AGENTS.md#principios-irrenunciables) + [AGENTS.md → "Documentos primarios descargados"](../../../AGENTS.md#documentos-primarios-descargados-a-publicdocumentos), [doc 02 — "Reglas anti-desinformación en presentación"](../../../docs/diseno/02-ficha-de-caso.md#4-reglas-anti-desinformación-en-presentación) (reglas P), y el `NOTES.md` del caso si existe. No saltar este paso aunque parezca redundante con el frontmatter de la skill: las reglas P y los principios pueden haberse afinado desde la última versión de la skill.
 
 ## Output esperado
 
 Mensaje final al usuario con:
 
-1. El informe markdown completo (estructura de §"Proceso" §3).
+1. El informe markdown completo (estructura de "Proceso", apartado 3).
 2. Recordatorio explícito de que la skill **no ha tocado ningún archivo** y que las acciones sugeridas requieren intervención manual del maintainer.
 3. Si hay hallazgos `BLOQUEANTE`, una nota al final advirtiendo que el caso **no está listo para publicar / mergear** hasta que se resuelvan.
-4. Si la skill encontró cosas que no encajan en ninguno de los 10 chequeos pero le parecen relevantes editorialmente, una sección final `## Observaciones fuera de checklist` con esos hallazgos marcados explícitamente como heurísticos. Esta sección alimenta la iteración de la skill (ver §"Iteración").
+4. Si la skill encontró cosas que no encajan en ninguno de los 10 chequeos pero le parecen relevantes editorialmente, una sección final `## Observaciones fuera de checklist` con esos hallazgos marcados explícitamente como heurísticos. Esta sección alimenta la iteración de la skill (ver "Iteración").
 
 ## Iteración
 
@@ -290,20 +290,20 @@ Tras cada uso real de la skill, añadir una entrada en `## Histórico` con:
 - **Falsos negativos detectados**: cosas que el maintainer encontró mal en revisión humana posterior y que la skill no marcó. Si un patrón se repite, añadir un nuevo chequeo (CH11, CH12...) o ampliar uno existente.
 - **Heurísticas que merecen promocionarse**: si la sección `Observaciones fuera de checklist` revela un patrón reincidente, codificarlo como chequeo formal.
 
-La skill sigue el patrón de [`AGENTS.md` §"Skills locales"](../../../AGENTS.md): se moldea con la experiencia, no se diseña perfecta upfront. v0 fueron 8 chequeos; v1 son 10 (CH9 y CH10 añadidos el 2026-05-24); v2 puede incorporar CH11..CH14 candidatos (ver §"Histórico") cuando se confirme reincidencia, o la capa C (verificación externa de fuentes).
+La skill sigue el patrón de [AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills): se moldea con la experiencia, no se diseña perfecta upfront. v0 fueron 8 chequeos; v1 son 10 (CH9 y CH10 añadidos el 2026-05-24); v2 puede incorporar CH11..CH14 candidatos (ver "Histórico") cuando se confirme reincidencia, o la capa C (verificación externa de fuentes).
 
 ## Histórico
 
 ### 2026-05-24 — Primera pasada cualitativa sobre los 6 casos publicables del Bloque A
 
-- **Casos revisados**: plus-ultra · begona-gomez · gonzalez-amador · fiscal-general-del-estado · kitchen · lezo. Lanzados en paralelo en 6 sub-agentes `general-purpose` conforme al patrón de [`AGENTS.md` §"Repositorio multiagéntico en paralelo"](../../../AGENTS.md) para no contaminar el contexto principal con la lectura íntegra de los 6 casos.
+- **Casos revisados**: plus-ultra · begona-gomez · gonzalez-amador · fiscal-general-del-estado · kitchen · lezo. Lanzados en paralelo en 6 sub-agentes `general-purpose` conforme al patrón de [AGENTS.md → "Repositorio multiagéntico en paralelo"](../../../AGENTS.md#repositorio-multiagéntico-en-paralelo) para no contaminar el contexto principal con la lectura íntegra de los 6 casos.
 - **Volumen agregado revisado**: ~60 hitos, ~50 hechos, ~95 roles, ~50 personas, ~50 organizaciones, ~90 documentos.
 - **Hallazgos**: 3 BLOQUEANTES + 39 SUGERENCIAS + 25 observaciones fuera de checklist.
 - **Bloqueantes resueltos por el maintainer en la misma sesión**:
   1. `content/casos/plus-ultra/roles/julio-martinez-sola-investigado.yaml → notas`: «contra terceros de la trama» → «contra otros investigados de la presunta estructura» (CH8).
   2. `content/documentos/`: eliminados dos Documentos huérfanos sobre una revocación de archivo Cospedal/López del Hierro inexistente, que PR3 había eliminado del modelo por ser factualmente incorrecta. Patrón nuevo, motivó el chequeo CH9.
   3. `content/personas/javier-lopez-madrid.yaml → biografia_corta`: reformulación con atribución a cobertura periodística sobre causas ajenas (tarjetas black, Púnica) no modeladas en el inventario. Patrón nuevo, motivó el chequeo CH10.
-- **Falsos positivos detectados**: ninguno bloqueante. Hay ruido alto en CH5 y CH3 cuando los autos de instrucción no están en CENDOJ — la clasificación como SUGERENCIA es correcta (patrón estructural en España, ya aceptado en `NOTES.md` de los 6 casos). **Refinamiento operativo aplicado**: cuando `NOTES.md` ya documenta búsqueda activa del primario como `pendiente_primario`, agrupar los hallazgos del mismo CH bajo una única entrada `SUGERENCIA agregada` con sub-bullets por localización, en lugar de N entradas individuales. Documentado en §"Proceso §3 Output".
+- **Falsos positivos detectados**: ninguno bloqueante. Hay ruido alto en CH5 y CH3 cuando los autos de instrucción no están en CENDOJ — la clasificación como SUGERENCIA es correcta (patrón estructural en España, ya aceptado en `NOTES.md` de los 6 casos). **Refinamiento operativo aplicado**: cuando `NOTES.md` ya documenta búsqueda activa del primario como `pendiente_primario`, agrupar los hallazgos del mismo CH bajo una única entrada `SUGERENCIA agregada` con sub-bullets por localización, en lugar de N entradas individuales. Documentado en "Proceso", apartado 3 ("Output").
 - **Falsos negativos detectados que motivan chequeos nuevos** (promocionados a v1):
   - **CH9** — Documentos huérfanos del caso con afirmaciones publicables. Caso real: Kitchen (dos `Documento` sobre revocación inexistente quedaron en disco tras eliminar el Hito/Hecho asociados en PR3).
   - **CH10** — Afirmaciones de condena firme en biografías sin Documento N1-N2 modelado. Caso real: Lezo (biografía López Madrid afirma condena firme en tarjetas black, caso no modelado).

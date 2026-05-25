@@ -11,7 +11,7 @@ nivel_fuente_justificacion: |
   conservan copia local del PDF oficial (191 KB, una página, autor
   PRESIDENCIA DEL GOBIERNO) y del XML estructurado del BOE, con
   sus respectivos hashes sha256. `boe.es` está en la lista blanca
-  DominiosOficiales del doc 01 §3. Cumple V-12.
+  DominiosOficiales de [doc 01 — "Enums catalogados"](docs/diseno/01-modelo-de-datos.md#3-enums-catalogados). Cumple V-12.
 productor_organizacion_id: presidencia-del-gobierno
 fecha_documento: "2025-12-09"
 fecha_publicacion: "2025-12-10"

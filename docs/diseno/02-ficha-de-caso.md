@@ -17,7 +17,7 @@
 
 ---
 
-## 1. Arquitectura de la página
+## 1. Arquitectura de la página {#1-arquitectura-de-la-página}
 
 ```
 ┌─ Encabezado del caso ─────────────────────────────────┐
@@ -55,9 +55,9 @@ Cada sección navegable por ancla (`#cronologia`, `#hechos`, etc.).
 
 ---
 
-## 2. Detalle por sección
+## 2. Detalle por sección {#2-detalle-por-sección}
 
-### 2.1 Encabezado
+### 2.1 Encabezado {#21-encabezado}
 
 - **Nombre mediático** grande (lo que la gente busca).
 - **Nombre oficial** justo debajo, en grado menor (`numero_procedimiento` + `organo_judicial`).
@@ -73,7 +73,7 @@ NO en el encabezado:
 - Adjetivos editoriales ("escándalo", "trama").
 - Logos políticos o símbolos partidistas.
 
-### 2.2 Resumen ejecutivo
+### 2.2 Resumen ejecutivo {#22-resumen-ejecutivo}
 
 3-5 párrafos máximo, en castellano neutro:
 1. Qué es este caso (una frase): qué se investiga o ha juzgado y dónde.
@@ -84,7 +84,7 @@ NO en el encabezado:
 
 Cada afirmación del resumen referencia un Hecho del modelo. Si el resumen contiene afirmación sin Hecho de respaldo, review humano lo bloquea.
 
-### 2.3 Estado procesal actual
+### 2.3 Estado procesal actual {#23-estado-procesal-actual}
 
 Bloque compacto:
 - Fase actual (color)
@@ -97,7 +97,7 @@ Bloque compacto:
 
 Si es macrocausa, este bloque incluye mini-resumen de fases de las piezas hijas: "3 piezas en instrucción, 1 visto para sentencia, 1 archivada".
 
-### 2.4 Personas implicadas
+### 2.4 Personas implicadas {#24-personas-implicadas}
 
 Bloque principal. Personas agrupadas por **rol procesal actual** (no por trayectoria), en orden:
 
@@ -112,17 +112,17 @@ Cada persona como card:
 - Nombre completo.
 - Cargo (si público).
 - **Rol(es) actual(es) en este caso** con badge.
-- **Trayectoria completa en este caso**: micro-swimlane horizontal (ver §3.1).
+- **Trayectoria completa en este caso**: micro-swimlane horizontal (ver sección 3.1).
 - Delitos atribuidos vigentes (sólo si rol de tipo atribución activa).
 - Enlace a ficha de Persona (perfil con todos sus casos).
 
 Para personas privadas (no figuras públicas): card reducida, sin foto, nombre y rol; trayectoria visible pero más compacta. Si V-17 está pendiente o anonimizada, aparece como "Asesor jurídico externo" o "Anónimo-3" según política aplicada.
 
-### 2.5 Organizaciones implicadas
+### 2.5 Organizaciones implicadas {#25-organizaciones-implicadas}
 
 Lista de Organizaciones referenciadas en `RolEnCaso` del caso (acusación popular, partidos como querellantes, empresas investigadas, organismos públicos). Cada una con tipo, rol y enlace a su ficha.
 
-### 2.6 Cronología (Hitos)
+### 2.6 Cronología (Hitos) {#26-cronología-hitos}
 
 Eje vertebral. Línea de tiempo vertical en mobile, vertical o horizontal en desktop. Cada Hito como card:
 - Fecha (con `fecha_precision` clara — "junio 2024" si es preciso al mes).
@@ -140,44 +140,44 @@ Filtros:
 
 Para macrocausas, los Hitos de piezas hijas aparecen aquí también con indicador visual de a qué pieza pertenecen.
 
-### 2.7 Hechos (clasificados por estado epistémico)
+### 2.7 Hechos (clasificados por estado epistémico) {#27-hechos-clasificados-por-estado-epistémico}
 
 **LA sección más sensible.** Su estructura materializa el principio anti-desinformación.
 
 Subsecciones, en este orden fijo:
 
-#### 2.7.1 Hechos acreditados
+#### 2.7.1 Hechos acreditados {#271-hechos-acreditados}
 Verde, sólido. Cada Hecho como bloque:
 - Enunciado (texto neutro).
 - "Acreditado por:" + lista de `documentos_respaldo` con nivel visible (badge 1-4) y enlace.
 - Fecha o periodo.
 - Personas y organizaciones implicadas (chips enlazadas).
 
-#### 2.7.2 Hechos bajo investigación
+#### 2.7.2 Hechos bajo investigación {#272-hechos-bajo-investigación}
 Amarillo claro. Misma estructura, con aviso visible al inicio de la subsección:
 > Los hechos en esta sección están bajo investigación judicial pero **no han sido acreditados**. Pueden ser confirmados, descartados o archivados en el futuro.
 
-#### 2.7.3 Hechos en contraposición
+#### 2.7.3 Hechos en contraposición {#273-hechos-en-contraposición}
 Bloques con dos columnas: Hecho A (atribuido por X) vs Hecho B (sostenido por Y). El lector ve a la vez qué dice cada actor, con qué nivel de fuente, sin que la página decida cuál tiene razón.
 
 Ejemplo (Plus Ultra):
 - **Columna A** — La SEPI defendió que Plus Ultra cumplía los criterios técnicos. Fuente: nota de prensa SEPI 2021 (Nivel 4).
 - **Columna B** — El informe UDEF y la acusación popular sostienen que no los cumplía. Fuente: informe UDEF 2022 (Nivel 2), escrito Manos Limpias (Nivel 2).
 
-#### 2.7.4 Hechos exculpatorios
+#### 2.7.4 Hechos exculpatorios {#274-hechos-exculpatorios}
 Gris/azul claro. Hechos establecidos por sentencia absolutoria, auto de archivo, desimputación. Misma estructura.
 
-#### 2.7.5 Hechos desmentidos
+#### 2.7.5 Hechos desmentidos {#275-hechos-desmentidos}
 Gris claro. Hechos cuya valoración editorial los descarta con base en evidencia posterior. Cada uno enlaza al Hecho que desmiente.
 
-#### 2.7.6 Hechos superados (colapsado por defecto)
+#### 2.7.6 Hechos superados (colapsado por defecto) {#276-hechos-superados-colapsado-por-defecto}
 Hechos con `vigencia = superado` por corrección procesal. Accesibles, no borrados. Cada uno con enlace al Hecho corrector.
 
 ---
 
 Anti-patrón explícito: **NUNCA se mezclan tipos** dentro de una misma lista. Un Hecho acreditado nunca aparece al lado de uno atribuido sin distinción visual. El lector debe saber siempre en qué categoría está leyendo.
 
-### 2.8 Documentos / Biblioteca del caso
+### 2.8 Documentos / Biblioteca del caso {#28-documentos--biblioteca-del-caso}
 
 Lista filtrable de todos los `Documento` referenciados en el caso. Cada documento:
 - Título.
@@ -194,7 +194,7 @@ Filtros: por tipo, nivel, fecha, productor.
 
 Si tenemos copia local del documento: enlace al PDF en repo, con hash visible.
 
-### 2.9 Piezas (si Caso tiene hijos)
+### 2.9 Piezas (si Caso tiene hijos) {#29-piezas-si-caso-tiene-hijos}
 
 Si el caso es padre, esta sección muestra:
 - Árbol expandible del caso y sus piezas (con `tipo_pieza`).
@@ -203,7 +203,7 @@ Si el caso es padre, esta sección muestra:
 
 Visualización opcional: árbol/dendrograma o lista anidada. Textual canónica, gráfica complementaria.
 
-### 2.10 Conexiones con otros casos
+### 2.10 Conexiones con otros casos {#210-conexiones-con-otros-casos}
 
 Dos sub-bloques:
 
@@ -215,7 +215,7 @@ Dos sub-bloques:
 
 Visualización opcional: mini-grafo SVG con nodos (Casos) y aristas (relaciones). Versión textual obligatoria.
 
-### 2.11 Cómo se ha redactado esta ficha
+### 2.11 Cómo se ha redactado esta ficha {#211-cómo-se-ha-redactado-esta-ficha}
 
 Meta-sección. Parte de la ficha, no del footer. Contenido:
 
@@ -226,20 +226,20 @@ Meta-sección. Parte de la ficha, no del footer. Contenido:
 - **Niveles de fuente usados en esta ficha**: resumen ("5 hechos con Nivel 1, 8 con Nivel 2, 3 con Nivel 4 complementario"). Opcional, útil.
 - **Cómo proponer una corrección**: enlace al template de issue. Detalle de plazos.
 
-### 2.12 Pie
+### 2.12 Pie {#212-pie}
 
-- **Disclaimer estándar** (texto final en doc 04 §8): "Esta ficha presenta información pública sobre un procedimiento judicial. Las personas mencionadas como investigadas o procesadas se presumen inocentes hasta que recaiga sentencia firme..."
+- **Disclaimer estándar** (ver "Riesgos legales y éticos", sección "Disclaimer recomendado"): "Esta ficha presenta información pública sobre un procedimiento judicial. Las personas mencionadas como investigadas o procesadas se presumen inocentes hasta que recaiga sentencia firme..."
 - **Aviso de rectificación**: derecho garantizado vía issue, correo o formulario.
 - **Licencia del contenido**: propuesta CC BY-SA 4.0 (compatibilidad con AGPL del código se discute en doc 05).
 - **Última actualización** completa con timestamp.
 
 ---
 
-## 3. Patrones de UI específicos
+## 3. Patrones de UI específicos {#3-patrones-de-ui-específicos}
 
-### 3.1 Swimlane de trayectoria por persona
+### 3.1 Swimlane de trayectoria por persona {#31-swimlane-de-trayectoria-por-persona}
 
-Para cada persona en §2.4, un mini-swimlane horizontal:
+Para cada persona en "Personas implicadas", un mini-swimlane horizontal:
 
 ```
 [2024-04 ━━━━━━━━━━━ 2026-04 ━━━━━━━━ 2026-05 ━━━━━━ hoy]
@@ -257,15 +257,15 @@ Reglas:
 - Si la trayectoria incluye desimputación o absolución, ESA parte está SIEMPRE visible, no oculta. El lector ve que la persona ha sido exculpada en algo.
 - Si la persona privada está marcada para V-17 anonimización, swimlane sigue accesible pero el nombre se reemplaza.
 
-### 3.2 Hechos en contraposición lado a lado
+### 3.2 Hechos en contraposición lado a lado {#32-hechos-en-contraposición-lado-a-lado}
 
 Caja con borde, dos columnas. Etiqueta cada columna con el actor que sostiene el Hecho. Sin layout que sugiera ganador (ancho igual, mismo orden vertical, mismo tipo de cita).
 
-### 3.3 Cards de Hitos
+### 3.3 Cards de Hitos {#33-cards-de-hitos}
 
 Compactas. Tipo por icono (gavel, mic, news), nunca por color partidista.
 
-### 3.4 Visualización de grafo de conexiones
+### 3.4 Visualización de grafo de conexiones {#34-visualización-de-grafo-de-conexiones}
 
 Para Casos con muchas conexiones (típicamente macrocausas como Gürtel cuando llegue):
 - Nodos = Casos (etiqueta corta, fase como color).
@@ -274,7 +274,7 @@ Para Casos con muchas conexiones (típicamente macrocausas como Gürtel cuando l
 
 Versión textual lista alternativa siempre disponible.
 
-### 3.5 Citación inline
+### 3.5 Citación inline {#35-citación-inline}
 
 Dentro de prosa (resumen, descripción de hito, enunciado de hecho), los nombres y casos son links a sus fichas. Los documentos se citan como notas inline con badge de nivel:
 
@@ -284,7 +284,7 @@ Hover/tap expande detalles; el badge ya es visible.
 
 ---
 
-## 4. Reglas anti-desinformación en presentación
+## 4. Reglas anti-desinformación en presentación {#4-reglas-anti-desinformación-en-presentación}
 
 Obligatorias para cualquier ficha. CI valida lo automatizable; el resto es review editorial.
 
@@ -303,7 +303,7 @@ Obligatorias para cualquier ficha. CI valida lo automatizable; el resto es revie
 
 ---
 
-## 5. Listados y búsqueda (adyacente a la ficha)
+## 5. Listados y búsqueda (adyacente a la ficha) {#5-listados-y-búsqueda-adyacente-a-la-ficha}
 
 Listados en la página principal:
 - Filtros por fase, jurisdicción, familia de delitos, año de apertura.
@@ -318,7 +318,7 @@ Búsqueda:
 
 ---
 
-## 6. Mobile y accesibilidad
+## 6. Mobile y accesibilidad {#6-mobile-y-accesibilidad}
 
 - Toda visualización gráfica tiene fallback textual.
 - Texto con contraste suficiente (WCAG AA mínimo).
@@ -329,7 +329,7 @@ Búsqueda:
 
 ---
 
-## 7. Cuestiones abiertas
+## 7. Cuestiones abiertas {#7-cuestiones-abiertas}
 
 1. **Idioma de los enunciados.** MVP castellano. ¿Permitir versión en lengua cooficial cuando aplique al caso (3% en catalán, Pujol en catalán)? Aplazado.
 2. **Comentarios públicos al pie de ficha.** Recomendación: NO en MVP; sí mecanismo de rectificación vía issue.
@@ -342,4 +342,4 @@ Búsqueda:
 
 ## 8. Siguiente paso
 
-Doc 03 — Estrategia de mantenimiento.
+Doc 03 — Estrategia de mantenimiento. {#8-siguiente-paso}

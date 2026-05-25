@@ -1,6 +1,6 @@
 # NOTES — Caso González Amador
 
-Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md` § *NOTES.md por caso*.
+Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en [AGENTS.md → "NOTES.md por caso"](AGENTS.md#notesmd-por-caso).
 
 Última actualización: 2026-05-23 (PR4 — primarios descargados: PDF + XML de los dos BOE N1 ya catalogados, con `ruta_local` + `hash_sha256` cumplimentados).
 
@@ -8,13 +8,13 @@ Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes 
 
 ## Por qué este caso entra el tercero
 
-Decidido el 2026-05-22 por el maintainer: el caso González Amador entra antes que Koldo porque (a) ya tiene auto de procesamiento ratificado por la AP Madrid y apertura de juicio oral, lo que da una columna vertebral cronológica clara para la ficha, (b) balancea editorialmente el inventario tras Begoña Gómez (caso vivo del entorno PSOE), aplicando exactamente la misma estructura, tono y badges a un caso del entorno PP, conforme a la P-10 de tratamiento sin cuota política, y (c) Koldo se reserva para más tarde porque está conectado a Begoña Gómez por la mención periférica de Víctor de Aldama (NOTES de Begoña Gómez §"Personas con rol procesal NO modeladas en PR1 ni PR2") y conviene cerrar Begoña antes.
+Decidido el 2026-05-22 por el maintainer: el caso González Amador entra antes que Koldo porque (a) ya tiene auto de procesamiento ratificado por la AP Madrid y apertura de juicio oral, lo que da una columna vertebral cronológica clara para la ficha, (b) balancea editorialmente el inventario tras Begoña Gómez (caso vivo del entorno PSOE), aplicando exactamente la misma estructura, tono y badges a un caso del entorno PP, conforme a la P-10 de tratamiento sin cuota política, y (c) Koldo se reserva para más tarde porque está conectado a Begoña Gómez por la mención periférica de Víctor de Aldama (NOTES de Begoña Gómez, sección "Personas con rol procesal NO modeladas en PR1 ni PR2") y conviene cerrar Begoña antes.
 
 ## Decisiones editoriales aplicadas en PR1
 
 ### Cinco investigados procesados, no seis
 
-El procedimiento tuvo en algún momento seis investigados. El 14 de abril de 2025 la magistrada Inmaculada Iglesias citó como investigado al asesor fiscal **Javier Luis Gómez Fidalgo** (fiscalista leonés). El 29 de mayo de 2025, en el mismo auto por el que se cerró la instrucción contra los cinco principales, la jueza acordó el sobreseimiento provisional de la causa respecto a Gómez Fidalgo por considerar insuficientes los indicios de su participación. Se modela como `RolEnCaso(rol=investigado)` con `fecha_fin` + `hito_fin_id` + `RolEnCaso(rol=desimputado)` consecutivo, igual que el patrón Goyache del caso Begoña Gómez (NOTES §"Decisiones editoriales aplicadas").
+El procedimiento tuvo en algún momento seis investigados. El 14 de abril de 2025 la magistrada Inmaculada Iglesias citó como investigado al asesor fiscal **Javier Luis Gómez Fidalgo** (fiscalista leonés). El 29 de mayo de 2025, en el mismo auto por el que se cerró la instrucción contra los cinco principales, la jueza acordó el sobreseimiento provisional de la causa respecto a Gómez Fidalgo por considerar insuficientes los indicios de su participación. Se modela como `RolEnCaso(rol=investigado)` con `fecha_fin` + `hito_fin_id` + `RolEnCaso(rol=desimputado)` consecutivo, igual que el patrón Goyache del caso Begoña Gómez (NOTES, sección "Decisiones editoriales aplicadas").
 
 ### Maxwell Cremona S.L. modelada como procesada en PR3 tras ampliación de V-11
 
@@ -71,7 +71,7 @@ Se adopta **José Miguel Carrillo Saborido** por aparecer en la cobertura del pr
 
 ## Cambios aplicados en PR4 (primarios descargados retrospectivamente)
 
-Aplicación de la convención editorial "Documentos primarios descargados a `/public/documentos/`" (AGENTS.md, incorporada el 2026-05-22 tras el PR2 del caso FGE) al inventario ya existente del caso. Decidida por el maintainer en el ROADMAP §"Próximo paso comprometido" (2026-05-22).
+Aplicación de la convención editorial "Documentos primarios descargados a `/public/documentos/`" (AGENTS.md, incorporada el 2026-05-22 tras el PR2 del caso FGE) al inventario ya existente del caso. Decidida por el maintainer en el ROADMAP, sección "Próximo paso comprometido" (2026-05-22).
 
 ### Documentos N1 descargados al árbol del proyecto
 
@@ -118,11 +118,11 @@ Convención de procesamiento de PDFs no aplicada todavía a este caso: las citas
 - **Pieza separada "Quirón" / rama sevillana**: el 20 de enero de 2026 la Policía Nacional detuvo a David Herrera Lobato en Arahal (Sevilla) por presunta corrupción en gestiones con el grupo Quirón. Esta rama abre potencialmente una pieza separada del procedimiento principal. Pendiente de modelado en PR2 con su propia secuencia de hitos cuando se publique el auto.
 - **Informe UCO** encargado el 27 de junio de 2025 por Inmaculada Iglesias para análisis de documentación. A fecha de PR1 (mayo de 2026) sigue sin entregarse (cobertura Público.es). Cuando se entregue, modelar como `Documento(tipo=informe_uco)` + hito.
 - **Carlos Neira y caso del Fiscal General del Estado**: cuando se ficha el caso del FGE como caso autónomo del inventario, crear `Persona(carlos-neira)` + `RelacionEntreCasos(gonzalez-amador, fiscal-general-del-estado)` con tipo `derivada_factual` o `causa_conexa`. Ya hay sentencia firme/no firme contra Álvaro García Ortiz por revelación de secretos del email del 2-feb-2024.
-- **Cuantía 350.951 € vs 350.961 €**: cerrar discrepancia con el auto íntegro cuando esté disponible (ver §"Cuantía 350.951 €" en decisiones editoriales).
+- **Cuantía 350.951 € vs 350.961 €**: cerrar discrepancia con el auto íntegro cuando esté disponible (ver sección "Cuantía 350.951 €, no 350.961 €" en decisiones editoriales).
 - **Hermanos Carrillo Saborido**: confirmar que el segundo se llama "José Miguel" (criterio actual) y no "José Antonio" (atestado puntual de Confilegal). Cierra con el auto íntegro en CENDOJ.
 - **Babia Capital y ático compartido con Ayuso**: la sociedad Babia Capital es propietaria del ático en Chamberí en el que residen Ayuso y González Amador. Administrada por Gómez Fidalgo. Cobertura periférica; no aporta indicios procesales propios al procedimiento principal. Pendiente de revisar si una pieza autónoma o si entra como contexto en la ficha de la propia organización Maxwell Cremona.
 
-## Verbos del doc 04 §3 aplicados
+## Verbos de [doc 04 — "Presunción de inocencia: reglas de redacción"](docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción) aplicados
 
 - "Consta en el auto…", "el instructor considera indiciariamente que…", "se atribuye…", "según la Fiscalía…", "la Audiencia Provincial considera que…".
 - Final explícito de presunción de inocencia en cada rol activo de procesamiento ("rige el principio de presunción de inocencia mientras no recaiga resolución firme en contrario").
@@ -146,9 +146,9 @@ URLs específicas en cada `Documento` que las cita, conforme al modelo.
 
 ## Avisos para el LLM en futuras incorporaciones
 
-- **Nunca redactar a González Amador como culpable.** Verbos prohibidos del doc 04 §3. Hasta sentencia firme, sólo "se investiga", "se atribuye", "consta en el auto que…", "el instructor considera indiciariamente que…".
+- **Nunca redactar a González Amador como culpable.** Verbos prohibidos de [doc 04 — "Presunción de inocencia: reglas de redacción"](docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción). Hasta sentencia firme, sólo "se investiga", "se atribuye", "consta en el auto que…", "el instructor considera indiciariamente que…".
 - **El procedimiento NO está sentenciado.** El auto de apertura de juicio oral del 22-sept-2025 NO es una condena: es una decisión procesal de continuar la causa. La presunción de inocencia rige en toda la redacción.
-- **Isabel Díaz Ayuso NO es investigada** ni procesada en esta causa. Mencionarla sólo como contexto (pareja del investigado / presidenta de la Comunidad de Madrid). El propio caso es delicado por la cercanía política: aplicar exactamente los mismos verbos y la misma estructura que en cualquier otro caso del inventario (P-10).
+- **Isabel Díaz Ayuso NO es investigada** ni procesada en esta causa. Mencionarla sólo como contexto (pareja del investigado / presidenta de la Comunidad de Madrid). El propio caso es delicado por la cercanía política: aplicar exactamente los mismos verbos y la misma estructura que en cualquier otro caso del inventario (P-10 de [doc 02 — "Reglas anti-desinformación en presentación"](docs/diseno/02-ficha-de-caso.md#4-reglas-anti-desinformación-en-presentación)).
 - **Javier Gómez Fidalgo es DESIMPUTADO.** Su rol vigente es `desimputado` desde el 29-may-2025 por sobreseimiento provisional. Cualquier redacción posterior debe respetarlo expresamente.
 - **El caso del Fiscal General del Estado es un caso distinto.** Aunque relacionado factualmente (el email del 2-feb-2024 fue origen de aquella causa), no se mezcla aquí. Esta ficha se circunscribe al procedimiento por presunto fraude fiscal y falsedad documental contra González Amador y otros cuatro investigados.
 - **Tratamiento sin cuota política.** El caso afecta a una persona cercana al gobierno autonómico de Madrid. La P-10 obliga a aplicar exactamente la misma estructura, badges y tono que a cualquier otro caso del inventario.

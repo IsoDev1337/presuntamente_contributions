@@ -15,7 +15,7 @@ enunciado: |
   filtración del correo electrónico del 2 de febrero la unidad de
   acción típica del delito de revelación de datos reservados del
   art. 417.1 del Código Penal por el que el Tribunal Supremo
-  condena al acusado (FJ Tercero §3.1, p. 147: «La nota consolida
+  condena al acusado (FJ Tercero, apartado 3.1, p. 147: «La nota consolida
   la filtración iniciada por el correo, en realidad la
   «oficializa»»).
 tipo: acreditado
@@ -29,7 +29,7 @@ organizaciones_implicadas:
   - fiscalia-general-del-estado
 documentos_respaldo:
   - documento_id: ts-sentencia-1000-2025-fge
-    pasaje: "Hechos Probados, p. 21, sobre la difusión anticipada de la nota al diario EL PAÍS con autorización del Fiscal General. Y Fundamento de Derecho Tercero §3.1, p. 147, sobre la subsunción típica de la unidad de acción (correo + nota)."
+    pasaje: "Hechos Probados, p. 21, sobre la difusión anticipada de la nota al diario EL PAÍS con autorización del Fiscal General. Y Fundamento de Derecho Tercero, apartado 3.1, p. 147, sobre la subsunción típica de la unidad de acción (correo + nota)."
 nivel_fuente_efectivo: 1
 vigencia: vigente
 redaccion_neutra_revisada: true

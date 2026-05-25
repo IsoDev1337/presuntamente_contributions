@@ -104,8 +104,7 @@ estado `atribuido` / `investigado` / `exculpatorio`, sin
   Aplicado a Velasco, García-Castellón, Tardón, Piña, Andreu.
 - **Procesados privados con rol formal**: fichados como
   `es_figura_publica: false` con biografía corta neutra ceñida a
-  rol procesal sin datos personales innecesarios (V-17 y doc 04
-  §11). Aplicado a Pablo González, Caballero, Clemente. Revisión
+  rol procesal sin datos personales innecesarios (V-17 y [doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética)). Aplicado a Pablo González, Caballero, Clemente. Revisión
   obligatoria de anonimización si su rol se cierra con absolución
   o desimputación.
 - **Procesados privados que también son figuras públicas por
@@ -197,7 +196,7 @@ para PR8+):
   Ramón Navarro Pereira** como procesados Emissao/Inassa.
   Figuras menores (director de nuevos negocios de Inassa,
   vinculado a Essentium, director gerente de Triple A). Evaluación
-  caso a caso conforme a V-17 / doc 04 §11. La opción
+  caso a caso conforme a V-17 / [doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética). La opción
   conservadora es dejarlos como mención en la descripción del
   hito sin Persona propia.
 - **Resto de desimputados de la pieza Inassa** (12 personas
@@ -259,8 +258,7 @@ con mensajes Kitchen/ROADMAP/AGENTS.
 
 La sesión paralela detectó la incidencia, hizo `git reset HEAD~1`,
 documentó la lección en el commit `40de2b0` y consolidó dos
-normas nuevas en `AGENTS.md §"Repositorio multiagéntico en
-paralelo"` (puntos 6 y 7) mediante el commit `41f9642`:
+normas nuevas en [AGENTS.md → "Repositorio multiagéntico en paralelo"](../../../AGENTS.md#repositorio-multiagéntico-en-paralelo) (puntos 6 y 7) mediante el commit `41f9642`:
 
 - **Norma 6**: no encadenar `git add` y `git commit` con `&&`,
   separar siempre en llamadas discretas para inspeccionar el

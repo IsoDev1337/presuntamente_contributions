@@ -126,7 +126,7 @@
   --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "Roboto Mono",
                Consolas, monospace;
 
-  /* Escala fluida — clamp(min, fluido, max). Slots según DESIGN.md §3. */
+  /* Escala fluida — clamp(min, fluido, max). Slots según DESIGN.md — "Typography Rules". */
   --font-size-0: clamp(0.75rem, 0.72rem + 0.13vw, 0.81rem);   /* caption/meta */
   --font-size-1: clamp(0.875rem, 0.85rem + 0.13vw, 0.94rem);  /* body small */
   --font-size-2: clamp(1rem, 0.97rem + 0.16vw, 1.0625rem);    /* body */
@@ -171,7 +171,7 @@
 
   --radius-0: 0;
   --radius-1: 2px;
-  --radius-2: 4px;       /* máximo permitido por DESIGN.md §6 */
+  --radius-2: 4px;       /* máximo permitido por DESIGN.md — "Depth & Elevation" */
 
   /* ===== Sombras ==========================================================
    * Sin box-shadow por defecto. Si una sombra se justifica (popover, modal),
@@ -194,7 +194,7 @@
 }
 
 /* --- Dark mode: luminosidad invertida, identidad intacta -------------------
- * DESIGN.md §2 — "Mismos roles, mismos contrastes relativos, sin cambiar
+ * DESIGN.md — "Color Palette & Roles": "Mismos roles, mismos contrastes relativos, sin cambiar
  * la paleta institucional."
  * --------------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {

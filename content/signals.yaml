@@ -9,6 +9,6 @@
 #     fecha_deteccion: date
 #     estado: pending | descartada | incorporada
 #
-# Pipeline de watchers: docs/diseno/03-estrategia-de-mantenimiento.md §2
+# Pipeline de watchers: [docs/diseno/03-estrategia-de-mantenimiento.md — "Uso de LLM para diffs revisables"](docs/diseno/03-estrategia-de-mantenimiento.md#4-uso-de-llm-para-diffs-revisables)
 
 signals: []

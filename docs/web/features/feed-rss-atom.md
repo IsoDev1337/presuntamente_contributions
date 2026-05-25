@@ -19,7 +19,7 @@ Publica los hitos más recientes del inventario completo en dos formatos sindica
   - [`feed.xml.ts`](../../../src/pages/feed.xml.ts) — Atom 1.0 (`application/atom+xml`). Variante moderna preferida.
   - [`rss.xml.ts`](../../../src/pages/rss.xml.ts) — RSS 2.0 (`application/rss+xml`). Coexiste por compatibilidad con lectores antiguos y muchos clientes de mail/RSS que sólo entienden RSS.
   - Misma fuente de datos, distinta serialización XML.
-- El componente [`Hito.astro`](../../../src/components/Hito.astro) renderiza `id="hito-<slug>"` en el contenedor de cada item de la timeline (prop opcional `id`). Esto da ancla estable para el deep-link del feed (`/casos/<slug>#hito-<id>`) y activa el flash visual `:target` existente (DESIGN.md §5).
+- El componente [`Hito.astro`](../../../src/components/Hito.astro) renderiza `id="hito-<slug>"` en el contenedor de cada item de la timeline (prop opcional `id`). Esto da ancla estable para el deep-link del feed (`/casos/<slug>#hito-<id>`) y activa el flash visual `:target` existente (ver DESIGN.md — "Layout Principles").
 - En `<head>` de [`BaseLayout.astro`](../../../src/layouts/BaseLayout.astro): dos `<link rel="alternate">` para autodiscovery. Cualquier lector RSS que apunte a una página del sitio detecta ambos feeds automáticamente.
 - En el footer: nueva columna "Suscribirse" con los dos enlaces visibles. Grid del footer pasa de 4 → 5 columnas en desktop y a 3 cols en breakpoint intermedio (≤1080px), manteniendo 2 cols en mobile.
 
@@ -64,7 +64,7 @@ El resto del sitio (`PgCasos`, `PgCasoDetalle`, etc.) tampoco lo hace hoy, y tod
 
 ### Por qué hubo que añadir `id` al componente `Hito.astro`
 
-Antes del feed, la cronología de la ficha del caso no exponía anclas a hitos concretos (sólo a la sección §5 vía `SectionH`). Para que el feed pudiera deep-linkear, se añadió la prop opcional `id` que renderiza `id="hito-<slug>"` en el contenedor del item. Esto activa además el flash visual `:target` (DESIGN.md §5): el lector aterriza con el hito resaltado en mostaza claro durante ~2,6 s — feedback visual inmediato de "estás aquí".
+Antes del feed, la cronología de la ficha del caso no exponía anclas a hitos concretos (sólo a la sección de cronología vía `SectionH`). Para que el feed pudiera deep-linkear, se añadió la prop opcional `id` que renderiza `id="hito-<slug>"` en el contenedor del item. Esto activa además el flash visual `:target` (ver DESIGN.md — "Layout Principles"): el lector aterriza con el hito resaltado en mostaza claro durante ~2,6 s — feedback visual inmediato de "estás aquí".
 
 ## Ideas futuras
 

@@ -82,9 +82,9 @@ Cuatro colores apagados, **nunca asociables a partidos políticos**, para difere
 
 1. **Convención UI universal**: rojo en interfaces significa "error / peligro / destrucción". Usarlo para clasificar un estado epistémico (acreditado, investigado, exculpatorio, desmentido) viola la convención y confunde al lector.
 2. **Desmentido en rojo invierte el mensaje**: "desmentido" significa que la afirmación es falsa, lo que **EXCULPA** a la persona afectada. Pintar de rojo (=malo) un hecho que de hecho exonera al sujeto invierte el significado.
-3. **Investigado en rojo viola presunción de inocencia**: rojo pre-juzga culpabilidad antes de sentencia firme. Es exactamente lo que el modelo evita en datos y en lenguaje (doc 04 §3).
+3. **Investigado en rojo viola presunción de inocencia**: rojo pre-juzga culpabilidad antes de sentencia firme. Es exactamente lo que el modelo evita en datos y en lenguaje ([doc 04 — "Presunción de inocencia: reglas de redacción"](docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción)).
 
-> **Excepción documentada**: el rojo institucional muted SÍ aparece en una dimensión muy concreta, los sub-roles `condenado_no_firme` (`#c44545` outline) y `condenado_firme` (`#c92e2e` fill) de F-estado (rol procesal). Nunca rojo PSOE/IU saturado. Los roles `investigado`, `procesado` y `acusado` quedan explícitamente fuera del rojo — la progresión visual va navy → mostaza → rojo, no "rojo desde el primer escalón". Ver §2bis para el detalle del gradiente y la razón editorial.
+> **Excepción documentada**: el rojo institucional muted SÍ aparece en una dimensión muy concreta, los sub-roles `condenado_no_firme` (`#c44545` outline) y `condenado_firme` (`#c92e2e` fill) de F-estado (rol procesal). Nunca rojo PSOE/IU saturado. Los roles `investigado`, `procesado` y `acusado` quedan explícitamente fuera del rojo — la progresión visual va navy → mostaza → rojo, no "rojo desde el primer escalón". Ver "Sistema de badges" para el detalle del gradiente y la razón editorial.
 
 > **Sobre asociaciones partidarias de los colores:** en política española casi todo color tiene asociación con algún partido (rojo PSOE/IU/Sumar, azul PP, verde Vox flúor, naranja Cs/Sumar, morado Podemos, amarillo ERC/Junts, etc.). El proyecto **no** evita colores por su asociación política — sería imposible — sino que usa **siempre tonos muted / institucionales / desaturados**, jamás los tonos saturados de campaña. El verde acreditado es un verde sobrio (no el flúor de Vox). El ámbar investigado es un ocre apagado (no el amarillo brillante de Junts). El navy del accent es navy institucional (no el azul claro del PP). Esta es la regla unificadora real del sistema cromático.
 
@@ -144,7 +144,7 @@ El `•` dot a la izquierda y el contenedor rectangular fino son comunes a ambas
 - **Desmentido** → gris neutro, sólido.
 - **No concluyente** → gris neutro, **dashed**.
 
-**Nunca rojo en estado epistémico** (ver §2 — convención UI, presunción de inocencia).
+**Nunca rojo en estado epistémico** (ver "Color Palette & Roles" — convención UI, presunción de inocencia).
 
 **Rol procesal del lado acusado** (8 valores). Dos ejes cruzados:
 
@@ -188,27 +188,25 @@ La barra comunica "dónde estamos en el procedimiento" de un vistazo, sin que el
 
 ### F-función — Roles de función en el procedimiento + categorías
 
-Cubre todo lo que **no es estado** del lado acusado: actores con función formal en el procedimiento (aparato judicial, acusación civil) y categorías de objeto (tipo de Hito, tipo de Organización, tipo de Documento). Contenedor único: rectángulo fino + `▌` border-left 4px del color de la subfamilia + fondo neutro `--color-surface-muted` + glyph monocromo a la izquierda.
+Cubre todo lo que **no es estado** del lado acusado: actores con función formal en el procedimiento (aparato judicial, acusación civil) y categorías de objeto (tipo de Hito, tipo de Organización, tipo de Documento). Contenedor único: rectángulo fino + `▌` border-left 4px del color de la subfamilia + fondo neutro `--color-surface-muted` + label de texto. **Sin adornos decorativos**: la diferenciación viene del color del border-left + label.
 
-Glyphs y tonos:
+Colores por subfamilia:
 
-| Subfamilia | Roles / categorías | Glyph | Color border-left + texto |
-|---|---|---|---|
-| Aparato judicial | `juez_instructor`, `juez_ponente`, `fiscal`, `magistrado`, `abogado_defensa`, `abogado_acusacion`, `perito_*`, `secretario_judicial` | `§` (signo de sección, símbolo jurídico clásico) | navy fuerte `#1f3a68` |
-| Acusación civil + parte civil | `denunciante`, `querellante`, `acusacion_particular`, `acusacion_popular`, `perjudicado` | `‡` (doble daga, "cita / parte distinguida") | azul suave `#4a6694` |
-| Hito jurisdiccional | tipo de Hito | `§` | navy |
-| Hito político | tipo de Hito | `◆` | mostaza |
-| Hito mediático | tipo de Hito | `¶` | gris fg-muted |
-| Tipo de Organización (listado) | tipo organización | (sin glyph propio en listado tabular) | gris border |
-
-**Glyphs en caracteres del bloque Latín-Suplemento / Misc. Punctuation** (`§`, `¶`, `‡`, `◆`) que SÍ están en fuentes humanistas (Lato, Gill Sans, Source Sans). Evitamos `⚖` y `⚑` aunque semánticamente cuadrarían: muchas fuentes humanistas no los cubren y caen a fallback que renderiza irreconocible a 11-12px.
+| Subfamilia | Roles / categorías | Color border-left + texto |
+|---|---|---|
+| Aparato judicial | `juez_instructor`, `juez_ponente`, `fiscal`, `magistrado`, `abogado_defensa`, `abogado_acusacion`, `perito_*`, `secretario_judicial` | navy fuerte `#1f3a68` |
+| Acusación civil + parte civil | `denunciante`, `querellante`, `acusacion_particular`, `acusacion_popular`, `perjudicado` | azul suave `#4a6694` |
+| Hito jurisdiccional | tipo de Hito | navy |
+| Hito político | tipo de Hito | mostaza |
+| Hito mediático | tipo de Hito | gris fg-muted |
+| Tipo de Organización (listado) | tipo organización | gris border |
 
 ### Restricciones operativas
 
 1. **No combinar adornos de familias distintas.** Un badge pertenece a una sola familia.
 2. **No introducir colores nuevos.** El sistema está cerrado. Si parece que un caso pide un color nuevo, casi siempre es señal de que la dimensión está mal asignada.
-3. **Tres canales simultáneos siempre.** Estado se comunica por color + label + adorno. Nunca solo color (ver §7 "Do").
-4. **Densidad administrativa.** Adornos sobrios (border-left 4px, bar 3px, dot 6px, glyph 12px). No más sprite que el sistema actual.
+3. **Dos canales simultáneos siempre.** Estado se comunica por color + label. Nunca solo color (ver "Do's and Don'ts" → "Do").
+4. **Densidad administrativa.** Adornos sobrios (border-left 4px, bar 3px, dot 6px). No glyphs decorativos en el contenedor: la claridad viene del color + posición + texto.
 
 ### Implementación
 
@@ -302,7 +300,7 @@ Las Cards de Persona y Organización deben ser **visualmente distinguibles a pri
 - Glyph izquierdo: **iniciales en cuadrado con borde fino** (ej. "FC" para Francisco Correa). Tamaño mayor en el encabezado de ficha; compacto en listado.
 - Metadata-line: `<cargo público actual> · figura pública | privada`.
 - Badge derecho: **rol procesal actual** (CONDENADO, INVESTIGADO, PROCESADO, ABSUELTO, DESIMPUTADO, TESTIGO…).
-- Foto solo en ficha individual de Persona, nunca en cards. Reglas en §"Política de imágenes en fichas de Persona".
+- Foto solo en ficha individual de Persona, nunca en cards. Reglas en "Política de imágenes en fichas de Persona".
 
 **Card de Organización**:
 - Glyph izquierdo: **símbolo geométrico o mini-icono según `tipo`** (gavel para `juzgado` / `tribunal`, edificio para `empresa` / `organismo_publico`, asterisco/asociación para `asociacion_acusacion_popular`, columna para `partido_politico`, etc.). **Sin iniciales** — esa es la marca visual de Persona.
@@ -316,7 +314,7 @@ Las fotografías **sólo aparecen en la ficha individual de Persona**, NO en car
 
 - Sólo si `es_figura_publica = true`. Personas privadas: jamás.
 - Sólo imágenes con **licencia verificada libre**: Wikimedia Commons (CC), dominio público, retrato institucional oficial publicado por la propia institución (foto del Congreso, foto ministerial, foto del CGPJ).
-- **Nunca fotografías de detención, juicio dramático, paseíllo, o momentos humillantes**, ni siquiera si la licencia lo permite. Decisión editorial alineada con doc 04 §11.
+- **Nunca fotografías de detención, juicio dramático, paseíllo, o momentos humillantes**, ni siquiera si la licencia lo permite. Decisión editorial alineada con [doc 04 — "Ética"](docs/diseno/04-riesgos-legales-y-eticos.md#11-ética).
 - Si no hay imagen libre disponible, fallback a las **iniciales** (mismo glyph que en la card).
 - Pie de foto obligatorio: autor + licencia + año.
 
@@ -343,7 +341,7 @@ Dentro del cuerpo de un Hecho, descripción de Hito o resumen ejecutivo, ciertos
 
 - Ejemplo: "a través del [Fondo de Apoyo a la Solvencia de Empresas Estratégicas] gestionado por…".
 - Aplica a programas o fondos públicos citados por nombre comercial (Fondo de Apoyo a la Solvencia, PERTE Chip), operaciones policiales nombradas (Operación Kitchen, Operación Centauro) y sobrenombres mediáticos de tramas (Gürtel, Lezo, Púnica).
-- Lookup: el sistema busca `label` y `nombres_alternativos` en `/content/glosario/`. Si hay match, **span con tooltip** que muestra `descripcion_breve`. **Sin link** — ni interno (no son páginas del inventario) ni externo (DESIGN §4 prohíbe Wikipedia / fuentes no controladas).
+- Lookup: el sistema busca `label` y `nombres_alternativos` en `/content/glosario/`. Si hay match, **span con tooltip** que muestra `descripcion_breve`. **Sin link** — ni interno (no son páginas del inventario) ni externo (ver "Component Stylings" — prohíbe Wikipedia / fuentes no controladas).
 - Estilo: igual al `<Acronym>` cuando no enlaza — subrayado punteado, cursor `help` al hover.
 
 **Auto-detección + escape hatch.** La lógica está en `src/lib/richProse.ts` (componente `<RichProse>`). Detecta automáticamente los tres tipos sobre el texto plano de Hecho.enunciado, Hito.descripcion, descripcion_corta y resumen_cifras. Cuando la auto-detección falla, sintaxis explícita en el YAML: `[[org:<slug>|<label>]]`, `[[persona:<slug>|<label>]]`, `[[€:<texto>|<tooltip>]]`.
@@ -394,17 +392,17 @@ Las fichas (Caso, Persona, Organización, Documento, Delito) y las páginas larg
 
 ### Don't
 
-- Tailwind. El proyecto usa CSS nativo + Open Props (ver §9).
+- Tailwind. El proyecto usa CSS nativo + Open Props (ver "Agent Prompt Guide").
 - Gradientes, glassmorphism, neumorfismo, soft shadows.
 - Paletas saturadas, vibrantes, o que evoquen partido político.
-- **Rojo en estados epistémicos** (semánticamente erróneo: convención UI "rojo=error" + invierte el mensaje en "desmentido" + viola presunción de inocencia en "investigado"; ver §2). La razón es semántica, no política — las asociaciones partidarias del color son inevitables y se mitigan con saturación baja, no evitando colores concretos.
-- **Colores arbitrariamente distintos para niveles de fuente** (introduce semántica accidental; usar gradient de fill del mismo navy; ver §2).
+- **Rojo en estados epistémicos** (semánticamente erróneo: convención UI "rojo=error" + invierte el mensaje en "desmentido" + viola presunción de inocencia en "investigado"; ver "Color Palette & Roles"). La razón es semántica, no política — las asociaciones partidarias del color son inevitables y se mitigan con saturación baja, no evitando colores concretos.
+- **Colores arbitrariamente distintos para niveles de fuente** (introduce semántica accidental; usar gradient de fill del mismo navy; ver "Color Palette & Roles").
 - Iconografía decorativa, ilustraciones, fotografías sin función informativa.
 - Animaciones decorativas, parallax, scroll-jacking.
 - **Fotografías de personas en cards de listado** o en cards de Persona dentro de una ficha de Caso (sólo en ficha individual de Persona).
 - Fotografías humillantes (paseíllo, detención, momento dramático) aunque la licencia las permita.
-- **Links externos automáticos a Wikipedia** desde acrónimos. Preferir referencia interna al inventario propio (§4 "Micro-componentes").
-- **Card de Persona y Card de Organización con la misma estructura visual**. Deben distinguirse a primera vista (iniciales vs símbolo geométrico; ver §4).
+- **Links externos automáticos a Wikipedia** desde acrónimos. Preferir referencia interna al inventario propio (ver "Micro-componentes de citación inline").
+- **Card de Persona y Card de Organización con la misma estructura visual**. Deben distinguirse a primera vista (iniciales vs símbolo geométrico; ver "Component Stylings").
 
 ---
 

@@ -786,7 +786,7 @@ kbd.cite .n { font-weight: 700; }
 .doc__links a { color: var(--color-accent); text-decoration: underline; }
 
 /* ============================================================================
- * Persona card (used in ficha §2.4)
+ * Persona card (used in ficha, apartado 2.4 "Personas implicadas")
  * ========================================================================== */
 .persona {
   border: 1px solid var(--color-border);

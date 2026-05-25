@@ -154,7 +154,7 @@ Gradient de oficialidad sobre el **mismo navy institucional**, **nunca colores d
 
 ### Estados epistémicos — NO ROJO
 
-**Restricción dura**: el color rojo no se usa para estados epistémicos en ningún contexto. Razones (todas semánticas, no políticas; ver DESIGN.md §2):
+**Restricción dura**: el color rojo no se usa para estados epistémicos en ningún contexto. Razones (todas semánticas, no políticas; ver DESIGN.md — "Color Palette & Roles"):
 
 1. **Convención UI universal.** Rojo significa "error / peligro / destrucción". Usarlo para clasificar estado epistémico viola la convención y confunde.
 2. **Desmentido en rojo invierte el mensaje.** "Desmentido" significa que la afirmación es falsa, lo que EXCULPA a la persona afectada. Pintar rojo (=malo) un hecho que de hecho exonera al sujeto invierte el significado.
@@ -270,7 +270,7 @@ Decisión: **[Lucide](https://lucide.dev)** outline como sistema base, servido l
 ### Emoji y unicode
 
 - **Emoji: NO.** En ningún contexto del producto. Tampoco en commit messages del repo.
-- **Unicode como icono: NO** (salvo `·`, `—`, `…`, `↗` para enlaces externos, y `§` en numeración interna). El triángulo de advertencia, las check marks, las flechas de navegación son SVG.
+- **Unicode como icono: NO** (salvo `·`, `—`, `…`, `↗` para enlaces externos). El triángulo de advertencia, las check marks, las flechas de navegación son SVG.
 
 ### Logo / wordmark
 
@@ -298,4 +298,4 @@ Variantes en `assets/`:
 1. Pedir SVGs propios para los iconos de tipo de hito (gavel, landmark, newspaper) — coherentes con el wordmark.
 2. Integrar el isótipo/símbolo independiente cuando esté listo (favicon, header móvil compacto, social cards).
 3. Bajar los `.woff2` de Lato + Source Sans 3 + Source Serif 4 + JetBrains Mono para servir fuentes localmente.
-4. Definir el componente de **swimlane de trayectoria** (§3.1 de `02-ficha-de-caso.md`) con datos reales en lugar de fixtures.
+4. Definir el componente de **swimlane de trayectoria** (apartado 3.1 de `02-ficha-de-caso.md`) con datos reales en lugar de fixtures.

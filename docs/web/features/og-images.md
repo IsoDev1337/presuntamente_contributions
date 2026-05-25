@@ -14,10 +14,10 @@ Genera al hacer `pnpm build` una imagen PNG 1200×630 por cada caso, persona y o
 
 ## Cómo funciona
 
-- [`src/lib/og.ts`](../../../src/lib/og.ts) expone:
+- [`src/lib/og.ts`](../../../src/lib/og.ts) expone (ver DESIGN.md — "Color Palette & Roles" para la paleta de colores utilizada):
   - **`renderOgDefault({ title, subtitle, stats })`** — card del inventario.
   - **`renderOgCaso({ nombreMediatico, nombreOficial, fase, ultimoHito, stats })`** — card de un caso.
-  - **`renderOgPersona({ nombreCompleto, subtitulo, rolActualLabel, rolActualColor, stats })`** — card de una persona, con badge del rol procesal activo más reciente coloreado según F-estado.
+  - **`renderOgPersona({ nombreCompleto, subtitulo, rolActualLabel, rolActualColor, stats })`** — card de una persona, con badge del rol procesal activo más reciente coloreado según el sistema de badges (ver DESIGN.md — "Sistema de badges").
   - **`renderOgOrganizacion({ nombre, tipoLabel, descripcionCorta, stats })`** — card de una organización.
   - Todas devuelven `Buffer` con el PNG 1200×630 listo para servir.
 - Helper interno `chrome()` construye la composición compartida (banda navy 54px + filete mostaza 3px + bloque blanco con escudo + wordmark + tag de tipo + body + footer de cifras).
@@ -42,10 +42,10 @@ Genera al hacer `pnpm build` una imagen PNG 1200×630 por cada caso, persona y o
 
 - **Default**: `casos · personas · organizaciones · documentos` (totales del inventario).
 - **Caso**: `procesados · hitos · documentos`. La cifra "procesados" cuenta personas únicas con rol procesal del lado acusado (`imputacion_activa` o `condenado` según `rolGrupo()` de `lib/labels.ts`), no jueces / fiscales / acusación popular — la card vende el caso por su carga procesal contra personas físicas.
-- **Persona**: `casos · roles totales`. Badge del rol activo más reciente (o último cerrado si no hay activos) coloreado según F-estado (DESIGN.md §2bis).
+- **Persona**: `casos · roles totales`. Badge del rol activo más reciente (o último cerrado si no hay activos) coloreado según el sistema de badges (ver DESIGN.md — "Sistema de badges").
 - **Organización**: `casos · documentos producidos` (la segunda cifra se omite si es 0).
 
-**Tipografía embebida**: Lato Regular (400), Bold (700), Black (900) bajo licencia SIL OFL 1.1. Lato es el primer fallback humanista declarado en el `font-sans` del sitio (ver DESIGN.md §3), así que las OG cards mantienen continuidad tipográfica con lo que se ve en pantalla. Los TTFs viven en `src/lib/og-fonts/` con `OFL.txt` y se consumen sólo en build — no se sirven al navegador.
+**Tipografía embebida**: Lato Regular (400), Bold (700), Black (900) bajo licencia SIL OFL 1.1. Lato es el primer fallback humanista declarado en el `font-sans` del sitio (ver DESIGN.md — "Typography Rules"), así que las OG cards mantienen continuidad tipográfica con lo que se ve en pantalla. Los TTFs viven en `src/lib/og-fonts/` con `OFL.txt` y se consumen sólo en build — no se sirven al navegador.
 
 **Composición visual**:
 
@@ -67,7 +67,7 @@ Satori acepta cualquier árbol `{ type, props: { style, children } }` y no exige
 
 ### Por qué tipografía Lato y no la fuente del sitio (Gill Sans)
 
-Gill Sans es la tipografía institucional canónica del Gobierno de España (DESIGN.md §3) pero es comercial (Monotype / Adobe Fonts) y no se puede redistribuir embebida. Lato es el primer fallback humanista abierto declarado en el stack `font-sans`, así que un visitante con Lato instalada (o cargada de Google Fonts) ya ve el sitio en Lato. Las OG cards la usan también — continuidad visual perfecta para esos visitantes y aproximación humanista cercana para el resto.
+Gill Sans es la tipografía institucional canónica del Gobierno de España (ver DESIGN.md — "Typography Rules") pero es comercial (Monotype / Adobe Fonts) y no se puede redistribuir embebida. Lato es el primer fallback humanista abierto declarado en el stack `font-sans`, así que un visitante con Lato instalada (o cargada de Google Fonts) ya ve el sitio en Lato. Las OG cards la usan también — continuidad visual perfecta para esos visitantes y aproximación humanista cercana para el resto.
 
 ### Por qué cifras distintas en cada tipo (no las mismas en todas)
 

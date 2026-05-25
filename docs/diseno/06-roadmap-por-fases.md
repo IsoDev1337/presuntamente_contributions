@@ -20,7 +20,7 @@ Entregables:
 - `CONTRIBUTING.md` con guía editorial detallada.
 - `CODEOWNERS` con tu nombre como único maintainer.
 - Templates de issue: rectificación, sugerencia de fuente, sugerencia de hito.
-- Aviso legal borrador en `LEGAL.md` (texto del doc 04 §8).
+- Aviso legal borrador en `LEGAL.md` (texto del [doc 04 — "Disclaimer recomendado"](04-riesgos-legales-y-eticos.md#8-disclaimer-recomendado-borrador-revisar-con-abogado-antes-de-producción)).
 - Setup de CI: GitHub Actions ejecutando validaciones del modelo (V-01..V-21 automatizables).
 - Setup de Cloudflare Pages apuntando al repo, build vacío sirviendo "página en construcción".
 
@@ -102,7 +102,7 @@ Entregables:
   - Prensa multi-medio (RSS + filtros).
 - Bandeja de señales: issues automáticos cuando un watcher detecta algo.
 - Panel de admin básico (`/admin/`) con basic auth: bandeja de señales, casos por revisar, V-17 pendientes.
-- Pipeline LLM-assisted para extraer Hitos de autos PDF (doc 03 §4) — script local que prepara borradores de PR.
+- Pipeline LLM-assisted para extraer Hitos de autos PDF ([doc 03 — "Uso de LLM para diffs revisables"](03-estrategia-de-mantenimiento.md#4-uso-de-llm-para-diffs-revisables)) — script local que prepara borradores de PR.
 
 **Criterio de salida:** el maintainer tiene visibilidad de qué cambia sin leer prensa, y los watchers producen señales útiles. Backlog de señales gestionable.
 
@@ -139,7 +139,7 @@ Lista no priorizada, a evaluar en función de tracción:
 - **API pública** con queries sobre los datos (rate-limited, sin login).
 - **Newsletter** con resumen mensual de hitos en casos vivos.
 - **Versión PDF imprimible** de fichas y de cronologías.
-- **Asociación constituida** (opción C del doc 04 §7) como evolución del responsable legal.
+- **Asociación constituida** (opción C del [doc 04 — "Identificación del responsable"](04-riesgos-legales-y-eticos.md#7-identificación-del-responsable-anónimo-vs-identificado)) como evolución del responsable legal.
 - **Donaciones** vía Open Collective u Open Source Donations a la asociación.
 - **Versión móvil dedicada / PWA**.
 - **Casos históricos profundos** (Gürtel macrocausa completa, ERE en toda su extensión, Filesa como pieza histórica).
@@ -159,7 +159,7 @@ Antes de pasar de una fase a la siguiente, validar:
 
 ---
 
-## Esfuerzo total estimado (broad strokes)
+## Esfuerzo total estimado (broad strokes) {#esfuerzo-total-estimado-broad-strokes}
 
 | Fase | Duración | Esfuerzo aprox. |
 |------|----------|------------------|
@@ -173,19 +173,19 @@ Antes de pasar de una fase a la siguiente, validar:
 
 ---
 
-## Decisiones que conviene tomar antes de Fase 1
+## Decisiones que conviene tomar antes de Fase 1 {#decisiones-que-conviene-tomar-antes-de-fase-1}
 
 1. **Confirmar compra del dominio** y registrador.
 2. **Decidir stack final**: Astro confirmado (recomendado) o alternativa.
 3. **Decidir hosting**: Cloudflare Pages confirmado o alternativa.
 4. **Decidir licencia del contenido**: CC BY-SA 4.0 (recomendada) o alternativa.
 5. **Identificación del responsable**: opción A confirmada (tú, identificado) — ya alineado con doc 04.
-6. **Disclaimer y aviso legal**: borrador del doc 04 §8 revisado idealmente con un abogado antes de lanzar Fase 1.
+6. **Disclaimer y aviso legal**: borrador del [doc 04 — "Disclaimer recomendado"](04-riesgos-legales-y-eticos.md#8-disclaimer-recomendado-borrador-revisar-con-abogado-antes-de-producción) revisado idealmente con un abogado antes de lanzar Fase 1.
 7. **Branding visual gov-retro**: arrancar plan paralelo con skill design.
 
 ---
 
-## Cierre del análisis y diseño
+## Cierre del análisis y diseño {#cierre-del-análisis-y-diseño}
 
 Los 6 documentos de diseño cubren el ciclo completo:
 
@@ -198,7 +198,7 @@ Los 6 documentos de diseño cubren el ciclo completo:
 
 La siguiente acción operativa es:
 1. Revisar offline los 6 docs.
-2. Confirmar las decisiones listadas en §7 (Decisiones antes de Fase 1).
+2. Confirmar las decisiones listadas en "Decisiones que conviene tomar antes de Fase 1".
 3. Arrancar Fase 0 cuando estés listo.
 
 En paralelo, abrir plan de branding visual gov-retro con la skill de design.

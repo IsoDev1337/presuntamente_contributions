@@ -1,4 +1,4 @@
-// richProse — detecta micro-componentes inline (DESIGN.md §4) y los envuelve
+// richProse — detecta micro-componentes inline (DESIGN.md — "Component Stylings") y los envuelve
 // en HTML compatible con los estilos `.money` y `.acron` de global.css.
 //
 // Cobertura v1:
@@ -77,9 +77,9 @@ export interface EnrichOpts {
   lang?: Lang;
 }
 
-/** Lista blanca base de acrónimos institucionales (DESIGN.md §4). Si la
- *  organización existe en /content/organizaciones/ con un slug
- *  equivalente, se enlaza; si no, se renderiza con tooltip sin link. */
+/** Lista blanca base de acrónimos institucionales (DESIGN.md — "Component Stylings"). Si la
+ *  organización existe en /content/organizaciones/ con un slug equivalente, se enlaza;
+ *  si no, se renderiza con tooltip sin link. */
 const ACRONIMOS_BASE: Record<string, string> = {
   UDEF: 'Unidad de Delincuencia Económica y Fiscal',
   UCO: 'Unidad Central Operativa de la Guardia Civil',

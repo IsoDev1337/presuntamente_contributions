@@ -21,7 +21,7 @@ El doc 01 ya implementa muchas mitigaciones estructurales (separación acreditad
 
 ---
 
-## 1. Marco legal aplicable
+## 1. Marco legal aplicable {#1-marco-legal-aplicable}
 
 Resumen no exhaustivo, en castellano informativo:
 
@@ -37,7 +37,7 @@ Clave: **un investigado en procedimiento penal de relevancia pública es objeto 
 
 ---
 
-## 2. Análisis de riesgos por tipo de afirmación
+## 2. Análisis de riesgos por tipo de afirmación {#2-análisis-de-riesgos-por-tipo-de-afirmación}
 
 Mapeo `Hecho.tipo` → riesgo:
 
@@ -52,7 +52,7 @@ Mapeo `Hecho.tipo` → riesgo:
 
 ---
 
-## 3. Presunción de inocencia: reglas de redacción
+## 3. Presunción de inocencia: reglas de redacción {#3-presunción-de-inocencia-reglas-de-redacción}
 
 Parcialmente cubiertas por P-09 del doc 02. Consolidadas aquí:
 
@@ -66,7 +66,7 @@ CI puede ayudar con lista negra simple de verbos para hechos no acreditados (war
 
 ---
 
-## 4. Derecho al honor: análisis por sujeto
+## 4. Derecho al honor: análisis por sujeto {#4-derecho-al-honor-análisis-por-sujeto}
 
 **Figuras públicas con función pública vigente o reciente:**
 Soportan más exposición. Información veraz, contrastada, de interés público y sobre ejercicio de función es protegida.
@@ -90,7 +90,7 @@ Aparecen como rol funcional, sin que eso implique nada sobre su persona. Citable
 
 ---
 
-## 5. LOPD/RGPD
+## 5. LOPD/RGPD {#5-lopdrgpd}
 
 Bases jurídicas aplicables al tratamiento que hace presuntamente:
 
@@ -106,7 +106,7 @@ Principios:
 
 ---
 
-## 6. Mecanismo de rectificación
+## 6. Mecanismo de rectificación {#6-mecanismo-de-rectificación}
 
 Diseño:
 
@@ -135,15 +135,15 @@ Las rectificaciones se anotan visiblemente en la ficha ("Esta sección fue recti
 
 ---
 
-## 6bis. Mecanismo de aportación editorial
+## 6bis. Mecanismo de aportación editorial {#6bis-mecanismo-de-aportación-editorial}
 
-**Norma incorporada el 2026-05-24** para responder a un riesgo asumido por el modelo de mantenimiento: el maintainer no es periodista ni jurista, y la investigación de cada caso se delega íntegramente en LLM (ver `AGENTS.md` §"División de trabajo: maintainer ↔ agente"). El inventario gana así en escala y trazabilidad, pero pierde la red de fuentes humanas que tendría un medio tradicional. Este §6bis abre formalmente ese canal: personas con mejor acceso a fuentes o mejor conocimiento del caso (periodistas, juristas, funcionarios, académicos, ciudadanos informados) pueden aportar al inventario sin necesidad de saber git ni de exponerse en un issue público.
+**Norma incorporada el 2026-05-24** para responder a un riesgo asumido por el modelo de mantenimiento: el maintainer no es periodista ni jurista, y la investigación de cada caso se delega íntegramente en LLM (ver `AGENTS.md`, sección "División de trabajo: maintainer ↔ agente"). El inventario gana así en escala y trazabilidad, pero pierde la red de fuentes humanas que tendría un medio tradicional. Esta sección abre formalmente ese canal: personas con mejor acceso a fuentes o mejor conocimiento del caso (periodistas, juristas, funcionarios, académicos, ciudadanos informados) pueden aportar al inventario sin necesidad de saber git ni de exponerse en un issue público.
 
-§6 y §6bis son cauces **complementarios, no alternativos**.
+Las secciones 6 y 6bis son cauces **complementarios, no alternativos**.
 
-### 6bis.1 Diferencia con §6 (rectificación)
+### 6bis.1 Diferencia con sección 6 (rectificación)
 
-| Eje | §6 Rectificación | §6bis Aportación |
+| Eje | Sección 6 Rectificación | Sección 6bis Aportación |
 |---|---|---|
 | Marco legal | LO 2/1984 (derecho de rectificación) | Sin marco legal específico — relación editorial voluntaria |
 | Quién la usa | Persona u organización aludida, o representante con interés legítimo | Tercero externo con conocimiento útil del caso (no necesariamente aludido) |
@@ -153,15 +153,15 @@ Las rectificaciones se anotan visiblemente en la ficha ("Esta sección fue recti
 | Output editorial | Rectificación visible en la ficha si procede + respuesta motivada | Diff editorial (commit) o archivo razonado de la idea + respuesta al aportante con resultado |
 | Página pública | `/rectificar` | `/aportar` |
 
-Si una persona se considera aludida y discrepa de algo publicado, su vía natural es §6. Si la motivación es ampliar o corregir el inventario en general, su vía es §6bis. Las páginas `/aportar` y `/rectificar` reflejan esta separación claramente al lector y enlazan entre sí cuando el aportante llega a la puerta equivocada.
+Si una persona se considera aludida y discrepa de algo publicado, su vía natural es la sección 6. Si la motivación es ampliar o corregir el inventario en general, su vía es la sección 6bis. Las páginas `/aportar` y `/rectificar` reflejan esta separación claramente al lector y enlazan entre sí cuando el aportante llega a la puerta equivocada.
 
 ### 6bis.2 Qué se acepta y qué no
 
 **Tres carriles editoriales aceptados**, todos bajo la misma puerta:
 
-1. **Pista a fuente o hito.** URL canónica de un documento oficial que falta en el inventario (sentencia, auto, BOE, informe institucional, cobertura periodística cruzada de una línea editorial no representada todavía). El aportante apunta dónde mirar; el agente verifica, descarga el primario si procede (norma `AGENTS.md` §"Documentos primarios descargados a `/public/documentos/`"), modela el `Documento` + `Hito` + `Hecho` correspondientes.
-2. **Corrección fáctica menor.** Errata, fecha equivocada, órgano mal asignado, segundo apellido incorrecto, link roto a fuente, atribución de delito que no encaja con el auto. **No es rectificación legal §6**: no hay persona aludida defendiéndose; es un tercero que detecta un error neutro. Se procesa como diff puntual sobre el YAML afectado.
-3. **Idea o sugerencia sobre el sitio.** Feature deseada, mejora de UX, observación editorial general, fuente que vale la pena vigilar en el futuro. No genera diff sobre `content/`; se archiva razonadamente en `docs/web/pages/<página>.md` o `docs/web/features/<feature>.md` según corresponda (convenciones de `AGENTS.md` §"Backlog por página" y §"Ficha por feature transversal"), manteniendo trazabilidad de la sugerencia y de su trato editorial posterior.
+1. **Pista a fuente o hito.** URL canónica de un documento oficial que falta en el inventario (sentencia, auto, BOE, informe institucional, cobertura periodística cruzada de una línea editorial no representada todavía). El aportante apunta dónde mirar; el agente verifica, descarga el primario si procede (norma [AGENTS.md → "Documentos primarios descargados"](AGENTS.md#documentos-primarios-descargados-a-publicdocumentos)), modela el `Documento` + `Hito` + `Hecho` correspondientes.
+2. **Corrección fáctica menor.** Errata, fecha equivocada, órgano mal asignado, segundo apellido incorrecto, link roto a fuente, atribución de delito que no encaja con el auto. **No es rectificación legal (sección 6)**: no hay persona aludida defendiéndose; es un tercero que detecta un error neutro. Se procesa como diff puntual sobre el YAML afectado.
+3. **Idea o sugerencia sobre el sitio.** Feature deseada, mejora de UX, observación editorial general, fuente que vale la pena vigilar en el futuro. No genera diff sobre `content/`; se archiva razonadamente en `docs/web/pages/<página>.md` o `docs/web/features/<feature>.md` según corresponda (convenciones de [AGENTS.md → "Backlog por página"](AGENTS.md#backlog-por-página-en-docsweb-pages) y [AGENTS.md → "Ficha por feature transversal"](AGENTS.md#ficha-por-feature-transversal-en-docsweb-features)), manteniendo trazabilidad de la sugerencia y de su trato editorial posterior.
 
 **Qué NO se acepta depositar**:
 
@@ -169,26 +169,26 @@ Si una persona se considera aludida y discrepa de algo publicado, su vía natura
 - Escritos de parte no notificados a terceros (art. 234 LOPJ).
 - Información personal de terceros no investigados en el procedimiento (familiares, asesores externos sin rol formal, testigos no nombrados públicamente).
 - Documentos procedentes de mirrors no auditables (Wuolah, Scribd, blogs personales sin cadena de custodia firmada), alineado con el aprendizaje del 2026-05-24 ya recogido en `AGENTS.md`.
-- Material doxxing, denuncias falsas, contenido cuyo único propósito sea perjudicar a una persona o partido específicos sin valor procesal verificable. La lectura editorial es la habitual de §3: ¿hay procedimiento real con relevancia pública detrás, o solo intención de daño?
+- Material doxxing, denuncias falsas, contenido cuyo único propósito sea perjudicar a una persona o partido específicos sin valor procesal verificable. La lectura editorial es la habitual de "Presunción de inocencia: reglas de redacción": ¿hay procedimiento real con relevancia pública detrás, o solo intención de daño?
 
-**Caso excepcional N3 `filtrado_verificado`**: cuando el primario debería existir y no está accesible aún (típicamente sentencia íntegra del TS antes de aparecer en CENDOJ, auto de procesamiento citado en notas CGPJ pero no publicado en `poderjudicial.es`), una pista del aportante con copia que dice ser fiel **no se publica como PDF en `/public/documentos/`**, pero la pista entra como señal interna; el agente la trata como N3 `filtrado_verificado` con triangulación documentada en `nivel_fuente_justificacion`, y eleva a N1 cuando aparezca el primario público (conservando hash histórico como prueba de fidelidad). Mecanismo ya previsto en `AGENTS.md` §"Documentos primarios descargados"; §6bis lo conecta con el canal externo.
+**Caso excepcional N3 `filtrado_verificado`**: cuando el primario debería existir y no está accesible aún (típicamente sentencia íntegra del TS antes de aparecer en CENDOJ, auto de procesamiento citado en notas CGPJ pero no publicado en `poderjudicial.es`), una pista del aportante con copia que dice ser fiel **no se publica como PDF en `/public/documentos/`**, pero la pista entra como señal interna; el agente la trata como N3 `filtrado_verificado` con triangulación documentada en `nivel_fuente_justificacion`, y eleva a N1 cuando aparezca el primario público (conservando hash histórico como prueba de fidelidad). Mecanismo ya previsto en [AGENTS.md → "Documentos primarios descargados"](AGENTS.md#documentos-primarios-descargados-a-publicdocumentos); sección 6bis lo conecta con el canal externo.
 
-**Importante para el aportante**: el inventario **solo cita fuentes públicas verificables**. El aporte tiene valor editorial en tanto **ayuda a localizar y citar la fuente pública**, no como fuente en sí mismo. El aportante no figura como fuente de ningún `Hecho`; figura, si autoriza opt-in, como autor de la pista en el commit (ver §6bis.5). Esto desactiva el riesgo LSSI de convertirnos en depositarios de material restringido y mantiene el rigor de niveles de fuente del modelo.
+**Importante para el aportante**: el inventario **solo cita fuentes públicas verificables**. El aporte tiene valor editorial en tanto **ayuda a localizar y citar la fuente pública**, no como fuente en sí mismo. El aportante no figura como fuente de ningún `Hecho`; figura, si autoriza opt-in, como autor de la pista en el commit (ver apartado 6bis.5). Esto desactiva el riesgo LSSI de convertirnos en depositarios de material restringido y mantiene el rigor de niveles de fuente del modelo.
 
 ### 6bis.3 Canal y vías de entrada
 
 - **Vía principal**: email a `aportar@presuntamente.org`, operativo vía Cloudflare Email Routing con reenvío a la cuenta personal del maintainer, mismo mecanismo que `contacto@` y `rectificacion@`.
-- **Vía postal**: cuando esté operativo el apartado de correos del responsable (LSSI §6 del aviso legal), se incluirá la dirección postal como alternativa aceptable para aportes formales (sentencias en papel, copias certificadas, denuncias anónimas tradicionales).
+- **Vía postal**: cuando esté operativo el apartado de correos del responsable (LSSI "Identificación del responsable" del aviso legal), se incluirá la dirección postal como alternativa aceptable para aportes formales (sentencias en papel, copias certificadas, denuncias anónimas tradicionales).
 - **GitHub Issues** (`.github/ISSUE_TEMPLATE/sugerencia-fuente.yml`): se mantiene como cauce técnico interno para contribuyentes que ya operan en GitHub. **No se publicita en el sitio público**: la barrera de entrada (cuenta GitHub, exposición pública del aporte) es hostil para el perfil de aportante que queremos atraer (funcionarios, periodistas con fuentes, juristas que prefieren no firmar).
 
-El sitio público presenta el cauce con tres entradas visibles: página dedicada `/aportar` (hermana de `/rectificar`); CTA en la §2.11 "Cómo se ha redactado esta ficha" de cada caso, al lado del CTA de rectificar; link permanente en el footer; y un módulo institucional discreto en la home invitando al aporte. Detalle de implementación visual en `docs/web/pages/aportar.md` cuando se construya la página.
+El sitio público presenta el cauce con tres entradas visibles: página dedicada `/aportar` (hermana de `/rectificar`); CTA en "Cómo se ha redactado esta ficha" de cada caso, al lado del CTA de rectificar; link permanente en el footer; y un módulo institucional discreto en la home invitando al aporte. Detalle de implementación visual en `docs/web/pages/aportar.md` cuando se construya la página.
 
 ### 6bis.4 Tratamiento de datos del aportante (RGPD)
 
-Base jurídica para el tratamiento del email entrante del aportante: **interés legítimo (art. 6.1.f RGPD)**, equivalente al de §6. Principios aplicados:
+Base jurídica para el tratamiento del email entrante del aportante: **interés legítimo (art. 6.1.f RGPD)**, equivalente al de sección 6. Principios aplicados:
 
 - **Minimización**: el maintainer extrae del email el contenido editorial (pista, corrección, idea) y lo vuelca a un fichero interno `content/aportes/YYYY-MM-DD-<slug>.md` (excluido del build público, mismo tratamiento que `content/casos/<slug>/NOTES.md`). Los headers identificativos del email del aportante (`From`, `Reply-To`, IP, metadatos del cliente de correo) **no se versionan** en el repo; quedan únicamente en la bandeja personal del maintainer.
-- **Limitación del plazo**: el email entrante se conserva en la bandeja del maintainer hasta cerrar el aporte (commit + respuesta enviada). Salvo consentimiento expreso del aportante para archivo (ver §6bis.5), se elimina entonces.
+- **Limitación del plazo**: el email entrante se conserva en la bandeja del maintainer hasta cerrar el aporte (commit + respuesta enviada). Salvo consentimiento expreso del aportante para archivo (ver apartado 6bis.5), se elimina entonces.
 - **Derechos del afectado**: el aportante puede en cualquier momento solicitar supresión de los datos asociados a su aporte (art. 17 RGPD) sin afectar al diff editorial ya commiteado, que cita la fuente pública verificada, no al aportante (salvo opt-in).
 
 ### 6bis.5 Acreditación del aportante en el commit
@@ -210,17 +210,17 @@ Ejemplos posibles: `Aporte-externo: Periodista de medio X (autorizado)`, `Aporte
 1. **Recepción**: el email aterriza en `aportar@presuntamente.org` → reenviado al Proton del maintainer.
 2. **Volcado**: el maintainer crea `content/aportes/YYYY-MM-DD-<slug>.md` con el contenido editorial del email (sin headers identificativos salvo opt-in expreso). Esta es la única intervención manual obligatoria del maintainer; el fichero queda fuera del build público.
 3. **Procesado por agente** con la skill `/incorporar-aporte` (placeholder en `.agents/skills/` hasta su implementación, alineada con `/investigar-caso` y `/incorporar-hito` ya planeadas). La skill lee el fichero, clasifica el tipo y aplica el flujo correspondiente:
-   - **Fuente o hito** → investigación según `AGENTS.md` §"División de trabajo" y guardarraíles de `/investigar-caso` (cruce con fuentes públicas, lista blanca de dominios oficiales, niveles de fuente, V-12), modelado de `Documento` + `Hito` + `Hecho` derivados, diff propuesto en el working tree del worktree.
+   - **Fuente o hito** → investigación según [AGENTS.md → "División de trabajo"](AGENTS.md#división-de-trabajo-maintainer--agente) y guardarraíles de `/investigar-caso` (cruce con fuentes públicas, lista blanca de dominios oficiales, niveles de fuente, V-12), modelado de `Documento` + `Hito` + `Hecho` derivados, diff propuesto en el working tree del worktree.
    - **Corrección fáctica** → verificación del dato contra fuentes públicas, diff puntual sobre el YAML afectado, con corrección por `corregido_por` cuando el cambio sea editorialmente sustantivo (no para errata mecánica).
    - **Idea** → archivo razonado en `docs/web/pages/<página>.md` o `docs/web/features/<feature>.md` según corresponda, sin diff sobre `content/`. La idea queda documentada con su contexto y con valoración editorial inicial (encaja con principios, requiere reflexión, choca con regla X).
-4. **Revisión y commit por el maintainer** según workflow de `AGENTS.md` §"Workflow de rama y PRs". El commit lleva trailer `Aporte-externo:` si el aportante autorizó acreditación.
+4. **Revisión y commit por el maintainer** según workflow de [AGENTS.md → "Workflow de rama y PRs"](AGENTS.md#workflow-de-rama-y-prs). El commit lleva trailer `Aporte-externo:` si el aportante autorizó acreditación.
 5. **Respuesta al aportante** con borrador preparado por la skill: qué se incorporó, qué no y por qué, link al commit cuando aplique. Cierra el bucle editorial.
 
 El paso 3 es el único que requiere un agente activo; los pasos 1, 2, 4 y 5 son operaciones del maintainer (recepción, volcado, revisión y envío). Coherente con la división de trabajo "el maintainer aporta operaciones, no conocimiento".
 
 ### 6bis.7 Plazos comprometidos públicamente
 
-- **Acuse de recibo**: 5 días hábiles. Distinto de las 48 horas de §6 porque §6bis no tiene obligación legal LO 2/1984; lo que comprometemos es respeto al aportante, no plazo legal.
+- **Acuse de recibo**: 5 días hábiles. Distinto de las 48 horas de sección 6 porque sección 6bis no tiene obligación legal LO 2/1984; lo que comprometemos es respeto al aportante, no plazo legal.
 - **Resolución**: 30 días hábiles. Suficiente para que el agente investigue el aporte con calma y para que el maintainer revise sin presión. Si el aporte es trivial (corrección fáctica clara, link roto), suele resolverse en horas; si requiere triangulación o búsqueda profunda de cobertura cruzada puede acercarse al límite.
 - **Aportes que no resultan en cambio editorial**: se responden igual, motivadamente, citando por qué la pista no encaja con los criterios del inventario (fuente no auditable, no relevante a un caso vivo, ya recogida, fuera del alcance editorial del sitio, etc.). El aportante recibe respuesta siempre que haya facilitado contacto.
 
@@ -232,7 +232,7 @@ No se mantiene un "registro público de aportes" con estadísticas (cuántos apo
 
 ---
 
-## 7. Identificación del responsable: anónimo vs identificado
+## 7. Identificación del responsable: anónimo vs identificado {#7-identificación-del-responsable-anónimo-vs-identificado}
 
 Análisis claro:
 
@@ -262,7 +262,7 @@ Análisis claro:
 
 ---
 
-## 8. Disclaimer recomendado (borrador, revisar con abogado antes de producción)
+## 8. Disclaimer recomendado (borrador, revisar con abogado antes de producción) {#8-disclaimer-recomendado-borrador-revisar-con-abogado-antes-de-producción}
 
 Para el pie de cada ficha y para una sección `/aviso-legal`:
 
@@ -284,27 +284,27 @@ Revisar con abogado antes de publicar.
 
 ---
 
-## 9. Acciones técnicas y editoriales mitigadoras (consolidado)
+## 9. Acciones técnicas y editoriales mitigadoras (consolidado) {#9-acciones-técnicas-y-editoriales-mitigadoras-consolidado}
 
 Trazabilidad de mitigaciones del proyecto a sus riesgos legales:
 
 | Riesgo | Mitigación | Doc |
 |--------|------------|-----|
-| Imputación tratada como condena | Separar `tipo` de Hecho + `RolEnCaso` temporal | 01 §2.4, §2.6 |
-| Persona desimputada que sigue como "imputada" | `RolEnCaso` con `fecha_fin`; `Hecho` con `corregido_por` | 01 §2.4, §2.6 |
-| Persona privada expuesta innecesariamente | `es_figura_publica` flag + V-17 | 01 §2.2, V-17 |
-| Cita ambigua | Documentos con nivel obligatorio | 01 §2.7, V-04 a V-13 |
-| Afirmación sin fuente | V-04 a V-13 bloqueantes | 01 §4 |
-| Información obsoleta | `ultima_revision_editorial` + revisión periódica | 03 §5 |
-| Rectificación no atendida | Mecanismo documentado con plazos | 04 §6 |
+| Imputación tratada como condena | Separar `tipo` de Hecho + `RolEnCaso` temporal | 01 (apartados 2.4, 2.6) |
+| Persona desimputada que sigue como "imputada" | `RolEnCaso` con `fecha_fin`; `Hecho` con `corregido_por` | 01 (apartados 2.4, 2.6) |
+| Persona privada expuesta innecesariamente | `es_figura_publica` flag + V-17 | 01 (apartado 2.2), V-17 |
+| Cita ambigua | Documentos con nivel obligatorio | 01 (apartado 2.7), V-04 a V-13 |
+| Afirmación sin fuente | V-04 a V-13 bloqueantes | 01 (apartado 4) |
+| Información obsoleta | `ultima_revision_editorial` + revisión periódica | 03 (apartado 5) |
+| Rectificación no atendida | Mecanismo documentado con plazos | 04 (apartado 6) |
 | Línea editorial sesgada | Curador único con guía editorial pública + apertura a contribuciones revisadas | conv. brief |
 | Lenguaje editorial agresivo | Lista negra de adjetivos + revisión humana | 02 P-09 |
-| Identificación del responsable | Maintainer identificado, LSSI completa | 04 §7 |
-| Eliminación silenciosa de información | Git log público | 03 §0 |
+| Identificación del responsable | Maintainer identificado, LSSI completa | 04 (apartado 7) |
+| Eliminación silenciosa de información | Git log público | 03 (apartado 0) |
 
 ---
 
-## 10. Cómo responder a una querella o requerimiento formal
+## 10. Cómo responder a una querella o requerimiento formal {#10-cómo-responder-a-una-querella-o-requerimiento-formal}
 
 Procedimiento de emergencia:
 
@@ -322,7 +322,7 @@ Procedimiento de emergencia:
 
 ---
 
-## 11. Ética
+## 11. Ética {#11-ética}
 
 Más allá de lo legal, criterios éticos del proyecto:
 
@@ -335,7 +335,7 @@ Más allá de lo legal, criterios éticos del proyecto:
 
 ---
 
-## 12. Cuestiones abiertas
+## 12. Cuestiones abiertas {#12-cuestiones-abiertas}
 
 1. **Asesoría legal recurrente o sólo a demanda.** Razonable contratar 1-2h al año de revisión preventiva y dejar el resto a demanda.
 2. **Seguro de responsabilidad civil** para medios pequeños existe. Coste anual razonable; vale la pena explorar.
@@ -345,6 +345,6 @@ Más allá de lo legal, criterios éticos del proyecto:
 
 ---
 
-## 13. Siguiente paso
+## 13. Siguiente paso {#13-siguiente-paso}
 
 Doc 05 — Arquitectura técnica.

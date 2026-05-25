@@ -90,7 +90,7 @@ interface Caso {
                                          // (su historial vive en Hitos)
 
   // Estado
-  fase_actual: enum<FaseProcesal>;       // ver §3
+  fase_actual: enum<FaseProcesal>;       // ver "Enums catalogados"
   fecha_apertura: Date;
   fecha_cierre?: Date;                   // solo si fase = archivo / firme
 
@@ -153,12 +153,12 @@ interface Persona {
 **Reglas:**
 
 - Si `es_figura_publica = false`, su `biografia_corta` no puede contener datos personales más allá de los estrictamente necesarios para identificarla en el procedimiento (p.ej. un testigo: "Asesor jurídico externo contratado por X en 2019" — sin DNI, sin domicilio, sin familia).
-- Un `Persona` con `es_figura_publica = false` y todos sus `RolEnCaso` cerrados (desimputaciones, archivos) entra en revisión editorial automática para considerar **anonimización o retirada de la ficha**. Ver §4.
+- Un `Persona` con `es_figura_publica = false` y todos sus `RolEnCaso` cerrados (desimputaciones, archivos) entra en revisión editorial automática para considerar **anonimización o retirada de la ficha**. Ver "Validaciones lógicas (resumen consolidado)".
 - `fecha_nacimiento` y `nacionalidad` quedan vacíos por defecto; sólo se rellenan si añaden valor informativo y la persona es pública.
 
 #### 2.2.1 Test operativo para `es_figura_publica`
 
-El flag NO equivale a "el dato es público" — en este proyecto todo procede de fuentes públicas por construcción. Distingue **personas con función representativa al exterior** (figuras públicas) de **personas privadas** que merecen la salvaguarda de exposición limitada (P-07 doc 02, §5 principios irrenunciables [AGENTS.md](../../AGENTS.md)).
+El flag NO equivale a "el dato es público" — en este proyecto todo procede de fuentes públicas por construcción. Distingue **personas con función representativa al exterior** (figuras públicas) de **personas privadas** que merecen la salvaguarda de exposición limitada (P-07 doc 02, principios irrenunciables en [AGENTS.md](../../AGENTS.md)).
 
 **Una persona es figura pública (`es_figura_publica = true`) si cumple al menos una de**:
 
@@ -205,7 +205,7 @@ interface Organizacion {
   id: slug;                              // ej. "audiencia-nacional", "el-pais", "vox"
   nombre: string;                        // ej. "Audiencia Nacional"
   nombres_alternativos: array<string>;
-  tipo: enum<TipoOrganizacion>;          // ver §3
+  tipo: enum<TipoOrganizacion>;          // ver sección 3
   
   // Campos comunes
   descripcion_corta?: markdown;
@@ -241,7 +241,7 @@ interface Organizacion {
 
 - Una `Organizacion` de tipo `juzgado` o `tribunal` referenciada como `organo_judicial_id` de un Caso debe tener `jurisdiccion` y `ambito_territorial` informados.
 - `linea_editorial_declarada` de un medio se cita siempre a la fuente del propio medio (página "Quiénes somos" o equivalente), no a una opinión editorial de presuntamente.
-- Una Organización tipo `asociacion` o `partido_politico` que actúa como acusación popular en un caso se modela vía `RolEnCaso` aplicable a Organización; ver §2.4.
+- Una Organización tipo `asociacion` o `partido_politico` que actúa como acusación popular en un caso se modela vía `RolEnCaso` aplicable a Organización; ver apartado 2.4.
 
 ### 2.4 RolEnCaso
 
@@ -258,7 +258,7 @@ interface RolEnCaso {
   sujeto_organizacion_id?: ref<Organizacion>;
   // Exactamente uno de los dos anteriores debe estar informado.
   
-  rol: enum<RolProcesal>;                // ver §3 (investigado, procesado, acusado,
+  rol: enum<RolProcesal>;                // ver "Enums catalogados" (investigado, procesado, acusado,
                                          // condenado_no_firme, condenado_firme,
                                          // absuelto, desimputado, testigo, denunciante,
                                          // querellante, acusacion_popular, acusacion_particular,
@@ -300,7 +300,7 @@ interface Hito {
   id: slug;                              // ej. "koldo-imputacion-cerdan-2024-06-30"
   caso_id: ref<Caso>;
   
-  tipo: enum<TipoHito>;                  // ver §3 (querella_admitida, imputacion,
+  tipo: enum<TipoHito>;                  // ver "Enums catalogados" (querella_admitida, imputacion,
                                          // declaracion_imputado, auto_procesamiento,
                                          // apertura_juicio_oral, sentencia_primera_instancia,
                                          // recurso_apelacion, sentencia_apelacion,
@@ -384,7 +384,7 @@ interface Hecho {
 }
 ```
 
-**Reglas críticas (ver §4 para la lista completa):**
+**Reglas críticas (ver "Validaciones lógicas (resumen consolidado)" para la lista completa):**
 
 - `tipo = acreditado` exige al menos un Documento en `documentos_respaldo` de tipo jurisdiccional firme (sentencia firme, auto firme).
 - `tipo = investigado` exige al menos un Documento de nivel 1 ó 2 que sea jurisdiccional o instructor (auto, informe UCO/UDEF, atestado, escrito de Fiscalía publicado).
@@ -402,7 +402,7 @@ Un documento concreto y citable. Lo que sostiene los Hechos.
 interface Documento {
   id: slug;                              // ej. "auto-procesamiento-koldo-2024-12-12"
   titulo: string;
-  tipo: enum<TipoDocumento>;             // ver §3 (auto_judicial, sentencia, informe_uco,
+  tipo: enum<TipoDocumento>;             // ver "Enums catalogados" (auto_judicial, sentencia, informe_uco,
                                          // informe_udef, atestado, escrito_fiscalia,
                                          // acta_congreso, video_comision, articulo_prensa,
                                          // boletin_oficial, nota_prensa, declaracion_jurada,
@@ -444,9 +444,9 @@ interface Documento {
 
 **Reglas:**
 
-- Un Documento de `nivel_fuente = 1` debe tener `url_canonica` apuntando a un dominio de la lista blanca de fuentes oficiales (ver §3 → `DominiosOficiales`) o `ruta_local` con copia verificada hash en el repo.
+- Un Documento de `nivel_fuente = 1` debe tener `url_canonica` apuntando a un dominio de la lista blanca de fuentes oficiales (ver "Enums catalogados", `DominiosOficiales`) o `ruta_local` con copia verificada hash en el repo.
 - Si `estado_acceso = filtrado_verificado`, el `nivel_fuente_justificacion` debe explicar quién verificó el contenido y por qué medios (multi-medio, verificación cruzada, autenticidad confirmada por las partes, etc.).
-- `url_archivo` (archivo.org / archive.ph) es **muy recomendado** para cualquier documento de Nivel 4 (cobertura periodística), por defensa frente a desaparición o edición silenciosa del original. El repo trae un hook (`hooks/pre-commit`) que rellena este campo automáticamente cuando entran docs N4 nuevos. Para docs que el medio bloquea al bot de archive.org (típicamente Cloudflare anti-bot devolviendo HTTP 520), se documenta la razón editorial en `url_archivo_no_disponible` y se confía en el respaldo cruzado de otros documentos N4 archivados para mantener V-13.
+- `url_archivo` (archivo.org / archive.ph) es **muy recomendado** para cualquier documento de Nivel 4 (cobertura periodística), por defensa frente a desaparición o edición silenciosa del original. El repo trae un hook (`hooks/pre-commit`) que rellena este campo automáticamente cuando entran docs N4 nuevos. Para docs que el medio bloquea al bot de archive.org (típicamente Cloudflare anti-bot devolviendo HTTP 520), se documenta la razón editorial en `url_archivo_no_disponible` y se confía en el respaldo cruzado de otros documentos N4 archivados para mantener validación V-13.
 - Un Documento de tipo `articulo_prensa` no puede ser citado como soporte único para un Hecho de tipo `acreditado` o `investigado`. Puede serlo para Hechos `atribuidos` o como cita adicional.
 
 ### 2.8 RelacionEntreCasos
@@ -498,7 +498,7 @@ interface Delito {
 
 ### 2.10 EntradaGlosario (cosas de interés no jerárquicas)
 
-Catálogo ligero, paralelo al de Delito. NO genera ruta web ni participa de las validaciones cruzadas V-01..V-21. Sólo alimenta el tooltip de las menciones inline en `RichProse` (DESIGN.md §4). Útil para:
+Catálogo ligero, paralelo al de Delito. NO genera ruta web ni participa de las validaciones cruzadas V-01..V-21. Sólo alimenta el tooltip de las menciones inline en `RichProse` (ver [DESIGN.md, sección "Component Stylings"](../../DESIGN.md#4-component-stylings)). Útil para:
 
 - **Programas o fondos públicos citados por nombre comercial**: Fondo de Apoyo a la Solvencia de Empresas Estratégicas, PERTE Chip, FROB.
 - **Operaciones policiales nombradas**: Operación Kitchen, Operación Centauro, Operación Catalonia.
@@ -525,7 +525,7 @@ interface EntradaGlosario {
 
 ---
 
-## 3. Enums catalogados
+## 3. Enums catalogados {#3-enums-catalogados}
 
 Los enums siguientes son la lista cerrada inicial. Ampliarlos requiere PR razonado.
 
@@ -613,7 +613,7 @@ Criterio: organismos públicos con personalidad jurídica propia y publicaciones
 
 ---
 
-## 4. Validaciones lógicas (resumen consolidado)
+## 4. Validaciones lógicas (resumen consolidado) {#4-validaciones-lógicas-resumen-consolidado}
 
 Las reglas que CI ejecuta sobre los YAML antes de mergear cualquier PR. Cada una citable por id (`V-NN`) en mensajes de error.
 
@@ -645,7 +645,7 @@ V-17 es la salvaguarda LOPD/honor más sensible: una persona privada que fue tem
 
 ---
 
-## 5. Patrones de uso del modelo (ejemplos)
+## 5. Patrones de uso del modelo (ejemplos) {#5-patrones-de-uso-del-modelo-ejemplos}
 
 Validación del modelo contra los casos pre-inventariados.
 

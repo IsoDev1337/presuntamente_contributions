@@ -1,8 +1,7 @@
 # NOTES — Caso Kitchen
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos
-y agentes LLM que iteren sobre este caso. Convención en `AGENTS.md`
-§ *NOTES.md por caso*.
+y agentes LLM que iteren sobre este caso. Convención en [AGENTS.md → "NOTES.md por caso"](AGENTS.md#notesmd-por-caso).
 
 Última actualización: 2026-05-24 (PR3 — corrección sustantiva del
 modelado erróneo de PR1+PR2 sobre Cospedal/LdH + 6 procesados
@@ -79,7 +78,7 @@ casos con cadenas procesales largas (archivo → recurso →
 revocación), confirmar cada eslabón con al menos dos fuentes en
 líneas editoriales distintas antes de modelar la cadena entera. Para
 el inventario actual queda registrado como aprendizaje en
-ROADMAP §"Aprendizajes y notas (vivo)".
+[ROADMAP → "Aprendizajes y notas (vivo)"](../../../ROADMAP.md#aprendizajes-y-notas-vivo).
 
 ## Corrección sobre delitos atribuidos a procesados
 

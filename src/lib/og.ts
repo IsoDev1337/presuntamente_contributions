@@ -9,12 +9,11 @@
  * Tamaño canónico 1200×630, el estándar Open Graph que X, WhatsApp,
  * Telegram, LinkedIn, Slack, Discord, etc. consumen como "summary_large_image".
  *
- * Identidad visual sincronizada con DESIGN.md §1-§4: banda navy con doble
- * trim navy+mostaza, bloque blanco con borde fino, escudo + wordmark
- * "presuntamente.org" + tag identificador de tipo (CASO / PERSONA /
- * ORGANIZACIÓN / INVENTARIO). Texto y cifras en Lato (sustituto humanista
- * libre de Gill Sans, primer fallback declarado en el stack `font-sans`
- * del sitio).
+ * Identidad visual sincronizada con DESIGN.md (secciones 1–4, de "Visual Theme & Atmosphere"
+ * a "Component Stylings"): banda navy con doble trim navy+mostaza, bloque blanco con borde
+ * fino, escudo + wordmark "presuntamente.org" + tag identificador de tipo (CASO / PERSONA /
+ * ORGANIZACIÓN / INVENTARIO). Texto y cifras en Lato (sustituto humanista libre de Gill Sans,
+ * primer fallback declarado en el stack `font-sans` del sitio).
  *
  * Composición común a las 4 variantes: ver `ogChrome()`. Plantillas
  * específicas por tipo: `renderOgDefault`, `renderOgCaso`, `renderOgPersona`,
@@ -47,8 +46,8 @@ const T = {
   accentSecondarySoft: '#f7ecc5',
 } as const;
 
-// Tonos del badge de fase (mantienen la lectura de progresión navy→cargado
-// del sistema F4, simplificada a un único color de fondo en lugar de los
+// Tonos del badge de fase (mantienen la lectura de progresión navy→cargado del sistema F4
+// de DESIGN.md — "Sistema de badges", simplificada a un único color de fondo en lugar de los
 // 4 quesitos — el espacio de la card no da para microbarra legible).
 const PHASE_STYLE: Record<string, { bg: string; fg: string; label: string }> = {
   denuncia_o_querella: { bg: '#ecf0f6', fg: T.accent, label: 'Denuncia / querella' },
@@ -500,8 +499,8 @@ function statsLine(stats: StatItem[]): Node {
 // --- Estilos de rol procesal para OG de Persona -----------------------------
 //
 // Tonos derivados de los slots --color-rol-* de src/styles/global.css
-// (DESIGN.md §2bis F-estado). Mapeo simplificado: cuando el rol no está en
-// la tabla, se devuelve `undefined` y la card cae al estilo neutro accentSoft.
+// (DESIGN.md — "Sistema de badges", familia F-estado). Mapeo simplificado:
+// cuando el rol no está en la tabla, se devuelve `undefined` y la card cae al estilo neutro accentSoft.
 
 const ROL_OG_STYLE: Record<string, { bg: string; fg: string }> = {
   investigado:        { bg: '#ffffff', fg: T.accent },

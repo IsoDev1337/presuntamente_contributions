@@ -34,7 +34,7 @@ export function rolLabel(rol: string, _lang: Lang = 'es'): string {
   return ROL_LABEL_ES[rol] ?? rol;
 }
 
-// Agrupación por categoría que usa la ficha (§2.4 doc 02).
+// Agrupación por categoría que usa la ficha (doc 02, sección "Personas implicadas").
 // El grupo `condenado` cubre ambos sub-roles (firme y no firme): editorialmente
 // ambos van en la sección de condenados, pero el badge UI los distingue.
 const ROL_GRUPO: Record<string, 'imputacion_activa' | 'condenado' | 'exculpado' | 'otros' | 'funcional'> = {
@@ -67,8 +67,8 @@ export function rolGrupo(rol: string) {
 
 // Familia visual del badge: F-estado (rol del lado acusado, con dot+color) vs
 // F-función (acusación civil, parte civil, aparato judicial, con border-left
-// grueso + glyph + fondo neutro). Centraliza la lógica para que RolBadge la
-// consulte y nadie más tenga que saberlo. Ver DESIGN.md §"Sistema de badges".
+// grueso + SVG + fondo neutro). Centraliza la lógica para que RolBadge la
+// consulte y nadie más tenga que saberlo. Ver DESIGN.md — "Sistema de badges".
 const ROL_FAMILIA: Record<string, 'estado' | 'funcion-civil' | 'funcion-aparato'> = {
   investigado: 'estado',
   procesado: 'estado',

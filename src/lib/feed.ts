@@ -5,7 +5,7 @@
 // El enlace lleva a la ficha del caso con ancla al hito concreto
 // (`/casos/<slug>#hito-<hito-id>`), aprovechando el ancla estable que
 // `Hito.astro` renderiza desde 2026-05-24 (campo `id`) y el flash visual de
-// `:target` documentado en DESIGN.md §5 "Navegación interna en fichas largas".
+// `:target` documentado en DESIGN.md, sección "Layout Principles".
 
 import { getCollection } from 'astro:content';
 import { tipoHitoLabel } from './labels';
@@ -92,7 +92,7 @@ function toDate(yyyyMmDd: string): Date {
   return new Date(`${yyyyMmDd}T12:00:00Z`);
 }
 
-/** ISO 8601 con segundos y zona UTC, exigido por Atom (RFC 4287 §3.3 → RFC 3339). */
+/** ISO 8601 con segundos y zona UTC, exigido por Atom (RFC 4287 apartado 3.3 → RFC 3339). */
 export function toAtomDate(yyyyMmDd: string): string {
   return toDate(yyyyMmDd).toISOString().replace(/\.\d{3}Z$/, 'Z');
 }

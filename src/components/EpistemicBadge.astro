@@ -1,6 +1,6 @@
 ---
 // EpistemicBadge — badge de estado epistémico de un Hecho (familia F2).
-// 6 valores en el modelo (doc 01 §2.6), 4 colores con sub-tipo por borde:
+// 6 valores en el modelo (doc 01, sección "Hecho"), 4 colores con sub-tipo por borde:
 //   - acreditado     → verde sobrio, borde sólido
 //   - investigado    → ámbar, borde sólido
 //   - atribuido      → ámbar, borde DASHED (sub-tipo de investigado)
@@ -8,8 +8,8 @@
 //   - desmentido     → gris neutro, borde sólido
 //   - no_concluyente → gris neutro, borde DASHED (sub-tipo de desmentido)
 // El estado se transmite por TRES canales: color + label + dot. Nunca solo
-// color (DESIGN.md §7 "Do"). El borde dashed distingue sub-tipos sin
-// introducir colores nuevos. Nunca rojo (DESIGN.md §2).
+// color (DESIGN.md — "Do's and Don'ts"). El borde dashed distingue sub-tipos sin
+// introducir colores nuevos. Nunca rojo (DESIGN.md — "Color Palette & Roles").
 
 interface Props {
   tipo: 'acreditado' | 'investigado' | 'atribuido' | 'exculpatorio' | 'desmentido' | 'no_concluyente';

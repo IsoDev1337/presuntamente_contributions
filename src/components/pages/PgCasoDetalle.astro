@@ -1,9 +1,9 @@
 ---
 // PgCasoDetalle — ficha individual de un Caso.
-// Sigue la arquitectura de doc 02 §1-§2 (encabezado, resumen, estado,
-// personas, organizaciones, cronología, hechos por estado epistémico,
-// biblioteca, cómo se redacta, pie). Toda la lectura se hace contra
-// Content Collections; la página es estática.
+// Sigue la arquitectura de doc 02, secciones "Arquitectura de la página" y
+// "Detalle por sección" (encabezado, resumen, estado, personas, organizaciones,
+// cronología, hechos por estado epistémico, biblioteca, cómo se redacta, pie).
+// Toda la lectura se hace contra Content Collections; la página es estática.
 
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -68,7 +68,7 @@ const orgIndex = new Map(organizacionesCol.map((o) => [o.data.id, o.data]));
 const docIndex = new Map(documentosCol.map((d) => [d.data.id, d.data]));
 const delitoIndex = new Map(delitosCol.map((d) => [d.data.id, d.data]));
 
-// --- §2.1 Encabezado / §2.3 Estado procesal ---------------------------------
+// --- 2.1 Encabezado / 2.3 Estado procesal ---------------------------------
 
 const organo = orgIndex.get(data.organo_judicial_id);
 const ultimoHito = hitos[0]?.data;
@@ -77,9 +77,9 @@ const juezInstructorPersona = juezInstructor?.data.sujeto_persona_id
   ? personaIndex.get(juezInstructor.data.sujeto_persona_id)
   : undefined;
 
-// --- §2.4 Personas implicadas -----------------------------------------------
+// --- 2.4 Personas implicadas -----------------------------------------------
 // Agrupadas por rol procesal (imputación activa / condenado / exculpado /
-// otros / funcional), siguiendo doc 02 §2.4.
+// otros / funcional), siguiendo doc 02, sección "Personas implicadas".
 
 interface PersonaView {
   persona: ReturnType<typeof personaIndex.get>;
@@ -121,8 +121,8 @@ for (const pv of personasMap.values()) {
 }
 
 // Cada subheading se compone de partes, donde las que corresponden a un rol
-// concreto reciben el color de F-estado del badge (DESIGN.md §2bis). Refuerza
-// la lectura: "investigados" en navy, "procesados / acusados" en mostaza,
+// concreto reciben el color de F-estado del badge (DESIGN.md — "Sistema de badges").
+// Refuerza la lectura: "investigados" en navy, "procesados / acusados" en mostaza,
 // "condenados" en granate, "absueltos" en verde, "desimputados" en azul-gris.
 interface SubheadParte {
   text: string;
@@ -167,7 +167,7 @@ const grupoOrden: {
   },
 ];
 
-// --- §2.5 Organizaciones implicadas -----------------------------------------
+// --- 2.5 Organizaciones implicadas -----------------------------------------
 
 interface OrgView {
   org: ReturnType<typeof orgIndex.get>;
@@ -189,7 +189,7 @@ for (const r of roles) {
 }
 const orgsImplicadas = Array.from(orgsMap.values());
 
-// --- §2.6 Cronología ---------------------------------------------------------
+// --- 2.6 Cronología ---------------------------------------------------------
 
 const cronologia = hitos.map((h) => {
   const doc = h.data.documento_principal_id ? docIndex.get(h.data.documento_principal_id) : undefined;
@@ -206,7 +206,7 @@ const cronologia = hitos.map((h) => {
   };
 });
 
-// --- §2.7 Hechos clasificados por estado epistémico -------------------------
+// --- 2.7 Hechos clasificados por estado epistémico -------------------------
 
 interface HechoView {
   tipo: 'acreditado' | 'investigado' | 'atribuido' | 'exculpatorio' | 'desmentido' | 'no_concluyente';
@@ -255,7 +255,7 @@ const hechosPorGrupo = HECHOS_ORDEN.map((g) => ({
   items: hechosViews.filter((h) => g.tipos.includes(h.tipo)),
 }));
 
-// --- §2.8 Biblioteca ---------------------------------------------------------
+// --- 2.8 Biblioteca ---------------------------------------------------------
 
 // Documentos del caso = los que tienen caso_principal_id === data.id +
 // los referenciados desde hitos del caso + los referenciados en hechos del
@@ -324,7 +324,7 @@ const breadcrumb = [
   ogImage={`/og/casos/${data.id}.png`}
   ogType="article"
 >
-  <!-- §2.1 — Encabezado (ficha mast) -->
+  <!-- 2.1 — Encabezado (ficha mast) -->
   <section class="ficha-mast">
     <p class="ficha-mast__eye">{strings.eyebrow}</p>
     <h1 class="ficha-mast__name">{data.nombre_mediatico}</h1>
@@ -425,7 +425,7 @@ const breadcrumb = [
     </section>
   )}
 
-  <!-- §2.2 — Resumen ejecutivo -->
+  <!-- 2.2 — Resumen ejecutivo -->
   <SectionH num="1." title="Resumen ejecutivo" id="resumen" />
   <div class="prose">
     {data.descripcion_corta && (
@@ -447,7 +447,7 @@ const breadcrumb = [
     )}
   </div>
 
-  <!-- §2.3 — Estado procesal actual -->
+  <!-- 2.3 — Estado procesal actual -->
   <SectionH num="2." title="Estado procesal actual" id="estado" />
   <dl class="estado-grid">
     <div><dt>Fase</dt><dd>{faseLabel(data.fase_actual)}</dd></div>
@@ -464,7 +464,7 @@ const breadcrumb = [
     )}
   </dl>
 
-  <!-- §2.4 — Personas implicadas -->
+  <!-- 2.4 — Personas implicadas -->
   <SectionH
     num="3."
     title="Personas implicadas"
@@ -503,7 +503,7 @@ const breadcrumb = [
     );
   })}
 
-  <!-- §2.5 — Organizaciones implicadas -->
+  <!-- 2.5 — Organizaciones implicadas -->
   {orgsImplicadas.length > 0 && (
     <>
       <SectionH
@@ -528,7 +528,7 @@ const breadcrumb = [
     </>
   )}
 
-  <!-- §2.6 — Cronología -->
+  <!-- 2.6 — Cronología -->
   <SectionH
     num="5."
     title="Cronología"
@@ -560,7 +560,7 @@ const breadcrumb = [
     </div>
   )}
 
-  <!-- §2.7 — Hechos por estado epistémico -->
+  <!-- 2.7 — Hechos por estado epistémico -->
   <SectionH
     num="6."
     title="Hechos clasificados por estado epistémico"
@@ -589,7 +589,7 @@ const breadcrumb = [
     );
   })}
 
-  <!-- §2.8 — Biblioteca documental -->
+  <!-- 2.8 — Biblioteca documental -->
   <SectionH
     num="7."
     title="Biblioteca documental del caso"
@@ -615,7 +615,7 @@ const breadcrumb = [
     ))}
   </div>
 
-  <!-- §2.11 — Cómo se ha redactado esta ficha -->
+  <!-- 2.11 — Cómo se ha redactado esta ficha -->
   <SectionH num="8." title="Cómo se ha redactado esta ficha" id="redaccion" />
   <div class="prose">
     <p>
@@ -637,12 +637,12 @@ const breadcrumb = [
     </ul>
   </div>
 
-  <!-- §2.12 — Pie disclaimer -->
+  <!-- 2.12 — Pie disclaimer -->
   <div class="aviso aviso--accent mt-6">{strings.disclaimer}</div>
 </BaseLayout>
 
 <style>
-  /* === §2.1 Encabezado (ficha-mast) — extendido sobre el .ficha-mast del global.css === */
+  /* === 2.1 Encabezado (ficha-mast) — extendido sobre el .ficha-mast del global.css === */
   .ficha-mast__eye {
     font: 700 11px/1 var(--font-sans);
     letter-spacing: var(--ls-caps, 0.04em);
@@ -693,7 +693,7 @@ const breadcrumb = [
   }
   .ficha-mast__grid .mono { font-family: var(--font-mono); font-size: 12px; }
 
-  /* === Síntesis dentro de la cabecera de ficha === */
+  /* === Síntesis dentro de la cabecera de ficha (2.1) === */
   .ficha-sintesis {
     display: grid;
     gap: var(--space-3);
@@ -791,7 +791,7 @@ const breadcrumb = [
     }
   }
 
-  /* === §2.3 Estado procesal === */
+  /* === 2.3 Estado procesal === */
   .estado-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

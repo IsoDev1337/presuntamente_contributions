@@ -17,13 +17,13 @@ Tomar un brief, un nombre mediático o una URL de prensa de un procedimiento jud
 6. Los primeros `Hecho`s (típicamente `atribuido` y `investigado`; nunca `acreditado` automático).
 7. Los `RolEnCaso` mínimos para los implicados con condición formal vigente.
 
-Versión `v0`: deliberadamente mínima. La skill se moldea con la experiencia tras cada caso (`AGENTS.md` §"Skills locales").
+Versión `v0`: deliberadamente mínima. La skill se moldea con la experiencia tras cada caso ([AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills)).
 
 ## Inputs aceptados
 
 - Nombre mediático del caso (ej. "caso Begoña Gómez", "caso Koldo").
 - URL de un reportaje de prensa o de una nota CGPJ que sirva de punto de partida.
-- Brief breve del maintainer con datos preliminares (probablemente desactualizados o parciales — ver guardarraíl §"Tensión brief vs realidad procesal").
+- Brief breve del maintainer con datos preliminares (probablemente desactualizados o parciales — ver guardarraíl "Tensión brief vs realidad procesal").
 
 Si el input es ambiguo (puede referirse a varios procedimientos), preguntar antes de empezar a buscar.
 
@@ -47,17 +47,17 @@ Localizar **sólo personas con rol procesal formal**: investigados, procesados, 
 
 **No incluir** en la ficha inicial:
 - Personas mencionadas en prensa sin rol procesal formal.
-- Familiares no implicados (doc 04 §11).
+- Familiares no implicados ([doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética)).
 - Comentaristas, analistas, terceros que opinan.
 - Sospechosos identificados sólo por iniciales en notas oficiales (respeta la anonimización del propio órgano hasta que se publique el levantamiento).
 
-Si el procedimiento tiene una persona privada (no figura pública) con rol formal, marca para review humano antes de incluirla — V-17 + doc 04 §11.
+Si el procedimiento tiene una persona privada (no figura pública) con rol formal, marca para review humano antes de incluirla — V-17 + [doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética).
 
 ### 3. Localización de documentos primarios
 
 Para cada hito candidato, buscar el documento de mayor nivel de fuente disponible:
 
-- **N1 — preferido**: sentencia, auto, BOE, nota oficial CGPJ. URL canónica en lista blanca `DominiosOficiales` (doc 01 §3): `poderjudicial.es`, `cendoj.es`, `boe.es`, `congreso.es`, `senado.es`, `fiscal.es`, `tcu.es`, `airef.es`, `defensordelpueblo.es`, `tribunalconstitucional.es`, `cgpj.es`, subdominios `.gob.es`, organismos públicos con personalidad jurídica propia (SEPI, AEAT, CNMV, etc.).
+- **N1 — preferido**: sentencia, auto, BOE, nota oficial CGPJ. URL canónica en lista blanca `DominiosOficiales` (doc 01, "Enums catalogados"): `poderjudicial.es`, `cendoj.es`, `boe.es`, `congreso.es`, `senado.es`, `fiscal.es`, `tcu.es`, `airef.es`, `defensordelpueblo.es`, `tribunalconstitucional.es`, `cgpj.es`, subdominios `.gob.es`, organismos públicos con personalidad jurídica propia (SEPI, AEAT, CNMV, etc.).
 - **N2**: informe UCO/UDEF (a veces filtrado, a veces oficial), escrito de Fiscalía, nota institucional fuera de lista blanca, comunicado oficial de corporación de derecho público (Colegios profesionales como el ICAM, p. ej.).
 - **N3**: documento de parte, institucional no jurisdiccional, pericial de parte. Querella publicada íntegra por un medio identificable cuenta como N3 (filtrado_verificado). **Sentencias del TS no localizadas en CENDOJ pero accesibles vía mirrors periodísticos estables**, modeladas como N3 `filtrado_verificado` con verificación por triangulación entre al menos dos mirrors públicos coincidentes.
 - **N4**: cobertura periodística. Aceptable como soporte SI cumple V-13: al menos otra fuente en línea editorial distinta que cruce el hecho.
@@ -66,7 +66,7 @@ Si un hito relevante NO tiene N1 disponible (típico en operaciones policiales o
 
 ### 3.bis. Descarga y procesamiento de documentos primarios
 
-**Norma adoptada en PR2 del caso Fiscal General del Estado (2026-05-22).** Para documentos jurisdiccionales y oficiales clave del caso (sentencias, autos relevantes, BOE, informes públicos), no basta con citar la URL canónica: hay que **descargar copia íntegra al árbol del proyecto y procesarla** para extraer citas literales precisas. Convención completa en `AGENTS.md` §"Documentos primarios descargados a `/public/documentos/`".
+**Norma adoptada en PR2 del caso Fiscal General del Estado (2026-05-22).** Para documentos jurisdiccionales y oficiales clave del caso (sentencias, autos relevantes, BOE, informes públicos), no basta con citar la URL canónica: hay que **descargar copia íntegra al árbol del proyecto y procesarla** para extraer citas literales precisas. Convención completa en [AGENTS.md → "Documentos primarios descargados"](../../../AGENTS.md#documentos-primarios-descargados-a-publicdocumentos).
 
 **Flujo recomendado por documento**:
 
@@ -77,7 +77,7 @@ Si un hito relevante NO tiene N1 disponible (típico en operaciones policiales o
 5. **Si hay dos mirrors posibles**, descargar ambos y comparar hashes. Si difieren, comparar páginas y contenidos: distintos PDFs del mismo documento son frecuentes (uno con OCR, otro re-comprimido, uno con voto particular y otro sin él). Quedarse con el más completo y fiel al original (el del propio órgano).
 6. **Extraer texto con `pdftotext`** (depende de `poppler-utils`; `brew install poppler` una vez por máquina).
 7. **Mapear estructura de la sentencia / auto**: `grep -nE "^(HECHOS PROBADOS|FUNDAMENTOS|FALLO|VOTO PARTICULAR|PRIMERO|SEGUNDO|TERCERO|CUARTO)"`. Identificar líneas de inicio de cada sección y leer en bloques con `sed -n '<inicio>,<fin>p'`.
-8. **Para cada Hecho del caso**: buscar el pasaje literal que lo respalda, citarlo en `Hecho.documentos_respaldo[].pasaje` con localización precisa ("FALLO, p. 180", "Fundamento de Derecho Tercero §3.1, p. 147", "Hechos Probados pp. 18-21"). Si la sentencia es firme y el pasaje declara probado un hecho, **promover a `acreditado`** (con review humano explícito conforme al guardarraíl 3 cuando el caso es delicado).
+8. **Para cada Hecho del caso**: buscar el pasaje literal que lo respalda, citarlo en `Hecho.documentos_respaldo[].pasaje` con localización precisa ("FALLO, p. 180", "Fundamento de Derecho Tercero, apartado 3.1, p. 147", "Hechos Probados pp. 18-21"). Si la sentencia es firme y el pasaje declara probado un hecho, **promover a `acreditado`** (con review humano explícito conforme al guardarraíl 3 cuando el caso es delicado).
 9. **Actualizar el YAML del `Documento`** con `ruta_local`, `hash_sha256` y reescribir `nivel_fuente_justificacion` para reflejar la metadata real del archivo descargado y el cruce con segundo mirror si aplica.
 
 **Beneficio editorial**: el sitio puede ofrecer al lector "URL canónica + copia local + cita exacta", elevando el rigor a nivel de citación académica. Y si la URL canónica desaparece, el documento se conserva. La trazabilidad de fidelidad es el `hash_sha256`.
@@ -95,7 +95,7 @@ Producir los YAMLs en disco bajo:
 - `content/casos/<slug>/hechos/<slug>.yaml` — los primeros hechos.
 - `content/casos/<slug>/roles/<slug>.yaml` — los primeros roles.
 
-Y propone commits coherentes (una idea por commit, en español imperativo presente, ver `AGENTS.md` §"Commits").
+Y propone commits coherentes (una idea por commit, en español imperativo presente, ver [AGENTS.md → "Commits"](../../../AGENTS.md#commits)).
 
 ### 5. Alimentar el diccionario de citaciones inline
 
@@ -124,7 +124,7 @@ sin tener que marcar nada a mano en el YAML:
    Catalonia…), `trama_sobrenombre` (Gürtel, Lezo, Púnica, ERE…). Se
    renderiza con dotted underline + tooltip de `descripcion_breve`,
    sin link interno (no son páginas del inventario) ni externo
-   (DESIGN.md §4: nunca a Wikipedia).
+   ([DESIGN.md → "Component Stylings"](../../../DESIGN.md#4-component-stylings): nunca a Wikipedia).
 
 **Al crear una `Organizacion` o `Persona` nueva**, añadir SIEMPRE en
 `nombres_alternativos` cómo la prensa y los autos la citan. Ejemplos:
@@ -225,18 +225,18 @@ componente), así que ya están a salvo por construcción.
 
 3. **NUNCA asignes `Hecho.tipo = acreditado` automáticamente.** Sólo `investigado`, `atribuido` o `no_concluyente`. Marcar `acreditado` requiere sentencia firme + review humano explícito (V-04).
 
-4. **Lenguaje del doc 04 §3 obligatorio:**
+4. **Lenguaje de [doc 04 — "Presunción de inocencia: reglas de redacción"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción) obligatorio:**
    - Verbos prohibidos: "robó", "estafó", "se apropió", "es culpable", "ha cometido".
    - Verbos preferidos: "se investiga", "se atribuye", "consta en el auto X que…", "la acusación sostiene que…", "el instructor considera indiciariamente que…".
    - Final explícito de presunción de inocencia en notas de roles activos.
 
 5. **Anonimización del órgano se respeta.** Si una nota oficial identifica a un sospechoso con iniciales, no crear `Persona` con nombre completo aunque la prensa lo haya identificado. Esperar al levantamiento formal.
 
-6. **Familiares no implicados quedan fuera** salvo que un auto les atribuya rol procesal formal. Doc 04 §11.
+6. **Familiares no implicados quedan fuera** salvo que un auto les atribuya rol procesal formal. [Doc 04 — "Ética"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#11-ética).
 
-7. **Cobertura editorial sin cuota política.** Si el caso afecta a una formación política, no editorializar; aplicar exactamente la misma estructura, badges y tono que a cualquier otro caso. Doc 02 §"Principios de la ficha" P-10.
+7. **Cobertura editorial sin cuota política.** Si el caso afecta a una formación política, no editorializar; aplicar exactamente la misma estructura, badges y tono que a cualquier otro caso. Doc 02, reglas anti-desinformación P-10.
 
-8. **NUNCA `git push`.** El agente acumula commits locales; el push lo decide el maintainer (`AGENTS.md` §"Workflow de rama y PRs", norma reforzada el 2026-05-21).
+8. **NUNCA `git push`.** El agente acumula commits locales; el push lo decide el maintainer ([AGENTS.md → "Workflow de rama y PRs"](../../../AGENTS.md#workflow-de-rama-y-prs), norma reforzada el 2026-05-21).
 
 9. **Traducción terminológica `imputado → investigado`.** La LO 13/2015 sustituyó "imputado" por "investigado" como término procesal vigente. Mucha cobertura periodística (especialmente antes de 2015, pero también después por inercia) sigue usando "imputado". **El modelo de datos del proyecto usa `investigado`**, nunca `imputado`. Cuando una fuente diga "imputado" o "imputación de X" en un texto de Hecho/Hito, traducir mentalmente a `investigado` para el rol y mantener "imputación" sólo si se refiere al **acto** (auto de imputación, hito de imputación). Verbos preferidos en prosa: "se le investiga", "queda como investigada", "el juez la cita como investigada". Evitar "imputada" como adjetivo de persona — usar "investigada".
 
@@ -305,11 +305,10 @@ Lecciones operativas:
   pasajes literales con número de página, y futuras consultas
   cruzadas (¿qué dice exactamente la sentencia sobre X?) se
   resuelven con `grep` o `sed` sobre el texto extraído sin
-  reabrir el PDF. Convención añadida a `AGENTS.md`
-  §"Documentos primarios descargados a `/public/documentos/`" y al
-  flujo de la skill en §3.bis. **Patrón reusable** en todos los
+  reabrir el PDF. Convención añadida a [AGENTS.md → "Documentos primarios descargados"](../../../AGENTS.md#documentos-primarios-descargados-a-publicdocumentos) y al
+  flujo de la skill en apartado 3.bis. **Patrón reusable** en todos los
   casos del inventario; pendiente aplicarlo retroactivamente a
-  Plus Ultra, Begoña Gómez y González Amador (ver ROADMAP §"Trabajo
+  Plus Ultra, Begoña Gómez y González Amador (ver ROADMAP, "Trabajo
   paralelizable a otro agente").
 - **El sandbox classifier bloquea fetches a fuentes externas no
   pre-autorizadas.** Bloquea descargas de okdiario.com, brew install
@@ -348,8 +347,8 @@ Lecciones operativas:
   238 páginas y ~10.000 líneas de texto, esto reduce el coste de
   navegación a segundos. Para citas literales en
   `Hecho.documentos_respaldo[].pasaje` conviene anotar tanto el FJ
-  ("FJ Tercero §3.1") como la página (`p. 147`) — la página es
-  estable entre versiones de la sentencia, los `§` internos son
+  ("FJ Tercero, apartado 3.1") como la página (`p. 147`) — la página es
+  estable entre versiones de la sentencia, los apartados internos son
   más volátiles.
 - **`juez_ponente` se usa para todos los magistrados firmantes del
   tribunal de enjuiciamiento, no sólo para el ponente formal.**
@@ -391,7 +390,7 @@ Lecciones operativas:
 - **El brief paralelizable a otro agente vive en el ROADMAP, no
   en NOTES del caso.** Cuando una tarea es lo bastante grande y
   lineal para delegarla a una segunda sesión de Claude Code,
-  redactar en el ROADMAP, en sección §"Trabajo paralelizable a
+  redactar en el ROADMAP, en sección "Trabajo paralelizable a
   otro agente", como brief autónomo: objetivo, candidatos
   prioritarios, qué hacer y qué no hacer, pasos por unidad,
   output esperado, convivencia multiagéntico. La sesión paralela
@@ -768,7 +767,7 @@ Lecciones:
   La P-10 de neutralidad política se garantiza no por la línea
   editorial de cada medio (que es la que es) sino por **cuántas
   líneas se cruzan** y por el lenguaje del proyecto, que aplica los
-  verbos del doc 04 §3 con independencia de la cobertura.
+  verbos de [doc 04 — "Presunción de inocencia: reglas de redacción"](../../../docs/diseno/04-riesgos-legales-y-eticos.md#3-presunción-de-inocencia-reglas-de-redacción) con independencia de la cobertura.
 - **El nº exacto del procedimiento (Diligencias Previas xxxx/2024)
   no siempre es público.** En Begoña Gómez PR1 una fuente lo da como
   "DP Previas 1146" pero no se ha podido cruzar oficialmente. Patrón:

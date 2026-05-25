@@ -8,7 +8,7 @@ nivel_fuente_justificacion: |
   nota oficial del CGPJ publicada en poderjudicial.es (Oficina de
   Comunicación del Poder Judicial · Audiencia Nacional · Noticias
   Judiciales), dominio incluido en la lista blanca DominiosOficiales
-  del doc 01 §3. El texto íntegro del auto no se ha localizado
+  de [doc 01 — "Enums catalogados"](docs/diseno/01-modelo-de-datos.md#3-enums-catalogados). El texto íntegro del auto no se ha localizado
   todavía publicado en CENDOJ; la cita se hace a partir del extracto
   institucional del CGPJ, que recoge los fundamentos del juez
   Calama sobre el indicio de tráfico de influencias, la decisión de

@@ -11,7 +11,7 @@ nivel_fuente_justificacion: |
   procesados y, subsidiariamente, el sobreseimiento provisional. Es
   documento oficial secundario o instructor (escrito de Fiscalía
   publicado por la institución y reproducido por la cobertura), por
-  lo que se asigna nivel 2 conforme al doc 01 §3. El texto íntegro no
+  lo que se asigna nivel 2 conforme a [doc 01 — "Enums catalogados"](docs/diseno/01-modelo-de-datos.md#3-enums-catalogados). El texto íntegro no
   se ha localizado en `fiscal.es`; la existencia, fecha y contenido
   sustancial constan en la cobertura cruzada de Infobae, Moncloa.com,
   TheObjective y El Debate publicada el 22 de abril de 2026.

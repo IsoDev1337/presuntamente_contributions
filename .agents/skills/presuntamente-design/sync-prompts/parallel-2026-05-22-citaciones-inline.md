@@ -24,8 +24,8 @@ Cinco entregables, en este orden:
 
 ## Restricciones duras
 
-- **NUNCA link a Wikipedia**. La regla está en DESIGN.md §4 "Micro-componentes". Falsos positivos potenciales de personas hacia Wikipedia están EXPLÍCITAMENTE prohibidos.
-- **Workflow main directo**: commits directos a `main`, sin ramas ni PRs. NO push — el push lo decide el maintainer. Norma de [AGENTS.md](AGENTS.md) §"Workflow de rama y PRs".
+- **NUNCA link a Wikipedia**. La regla está en [DESIGN.md → "Component Stylings"](../../../../../DESIGN.md#4-component-stylings). Falsos positivos potenciales de personas hacia Wikipedia están EXPLÍCITAMENTE prohibidos.
+- **Workflow main directo**: commits directos a `main`, sin ramas ni PRs. NO push — el push lo decide el maintainer. Norma de [AGENTS.md → "Workflow de rama y PRs"](../../../../../AGENTS.md#workflow-de-rama-y-prs).
 - **No tocar nada del sistema de badges**. Hay una sesión paralela trabajando en `src/styles/global.css`, `src/components/RolBadge.astro`, `src/components/EpistemicBadge.astro`, `src/components/PhaseBadge.astro`, `src/components/Hito.astro` y `DESIGN.md`. Si tu trabajo necesita tocar alguno de esos ficheros, **párate y pregunta al maintainer**.
 - **Verificación obligatoria antes de commit**: `pnpm validate` + `pnpm exec astro check` + `pnpm build` verdes. Y verificar visualmente en `pnpm dev` que los enunciados de hecho del caso Begoña Gómez y Plus Ultra renderizan las nuevas citas sin romper la prosa.
 - **Test contra falsos positivos**: probar que el nombre del propio caso en su ficha no se autoenlaza (Begoña Gómez en `/casos/begona-gomez` no debe linkar a `/personas/begona-gomez`); que los nombres en breadcrumbs no se autoenlazan; que las cabeceras de tabla no se autoenlazan.

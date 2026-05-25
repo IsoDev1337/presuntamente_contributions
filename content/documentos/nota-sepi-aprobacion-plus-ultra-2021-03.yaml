@@ -4,7 +4,7 @@ tipo: nota_prensa_institucional
 nivel_fuente: 1
 nivel_fuente_justificacion: |
   Comunicación institucional publicada en sepi.es, dominio incluido en
-  la lista blanca DominiosOficiales del doc 01 §3 como entidad pública
+  la lista blanca DominiosOficiales de [doc 01 — "Enums catalogados"](docs/diseno/01-modelo-de-datos.md#3-enums-catalogados) como entidad pública
   empresarial con personalidad jurídica propia y publicaciones
   trazables al organismo. Verificación cruzada con cobertura multi-medio
   (Público, Hosteltur, El Liberal) refuerza la procedencia.
