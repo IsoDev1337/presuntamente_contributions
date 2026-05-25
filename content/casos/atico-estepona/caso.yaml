@@ -47,6 +47,18 @@ descripcion_corta: |
   de Málaga, no la Sección Segunda de la Sala de lo Penal de la
   Audiencia Nacional que conoce de las piezas Lezo.
 
+sintesis_caso:
+  que_se_investiga: "La adquisición de un ático en Estepona vinculado a Ignacio González y Lourdes Cavero."
+  hechos_clave:
+    - "La hipótesis investigada era si hubo una donación encubierta o una compra por debajo del valor de mercado."
+    - "El procedimiento fue instruido por un juzgado de Estepona, no por la Audiencia Nacional."
+    - "La conexión con Lezo es factual: comparte un investigado relevante, pero no es una pieza separada de esa macrocausa."
+  estado_actual: "El juez acordó el sobreseimiento provisional en julio de 2020."
+  cifras_clave:
+    - "770.000 € de precio de adquisición citado"
+    - "7 años de instrucción"
+    - "Archivo provisional en 2020"
+
 organo_judicial_id: juzgado-primera-instancia-instruccion-5-estepona
 numero_procedimiento: "Diligencias Previas (nº exacto pendiente de confirmación pública)"
 tipo_procedimiento: diligencias_previas

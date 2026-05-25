@@ -102,6 +102,19 @@ descripcion_corta: |
   `conexion_factual`. La regla de presunción de inocencia rige en
   todas las piezas no firmes.
 
+sintesis_caso:
+  que_se_investiga: "Una macrocausa sobre presunta corrupción en la gestión del Canal de Isabel II."
+  hechos_clave:
+    - "La investigación afecta a varias piezas separadas, con fases procesales distintas."
+    - "Ignacio González aparece en varias piezas con trayectorias procesales diferentes, incluidas imputaciones, procesamientos y desimputaciones parciales."
+    - "La pieza del campo de golf está señalada para juicio oral en septiembre de 2027."
+  estado_actual: "No hay sentencia firme en las piezas principales modeladas; varias ramas siguen pendientes de juicio o señalamiento."
+  cifras_clave:
+    - "6 piezas documentadas"
+    - "Juicio del golf previsto en 2027"
+    - "Hasta 16 años pide Comunidad de Madrid para Ignacio González"
+    - "Sobreprecio Emissao estimado en 9,7 M€"
+
 organo_judicial_id: juzgado-central-instruccion-6
 numero_procedimiento: "Diligencias Previas (nº exacto pendiente de confirmación pública)"
 tipo_procedimiento: diligencias_previas

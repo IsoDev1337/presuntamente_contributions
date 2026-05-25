@@ -56,6 +56,14 @@ const casos = defineCollection({
       nombre_mediatico: z.string(),
       nombres_alternativos: z.array(z.string()).default([]),
       descripcion_corta: z.string().optional(),
+      sintesis_caso: z
+        .object({
+          que_se_investiga: z.string(),
+          hechos_clave: z.array(z.string()),
+          estado_actual: z.string(),
+          cifras_clave: z.array(z.string()).default([]),
+        })
+        .optional(),
       caso_padre_id: z.string().optional(),
       organo_judicial_id: z.string(),
       numero_procedimiento: z.string().optional(),

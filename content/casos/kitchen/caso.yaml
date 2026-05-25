@@ -78,6 +78,18 @@ descripcion_corta: |
   de presunción de inocencia respecto de los procesados mientras no
   recaiga sentencia firme en contrario.
 
+sintesis_caso:
+  que_se_investiga: "Una presunta operación parapolicial vinculada al Ministerio del Interior entre 2013 y 2015."
+  hechos_clave:
+    - "Según el instructor, el objetivo era obtener documentación sensible de Luis Bárcenas, ex tesorero del Partido Popular."
+    - "Once personas fueron procesadas en 2021."
+    - "María Dolores de Cospedal e Ignacio López del Hierro quedaron sobreseídos en la fase de instrucción."
+  estado_actual: "El juicio oral empezó en abril de 2026; no hay sentencia firme sobre los procesados."
+  cifras_clave:
+    - "11 personas procesadas en 2021"
+    - "4 delitos atribuidos en la causa"
+    - "Penas solicitadas de hasta 19 años"
+
 organo_judicial_id: audiencia-nacional
 numero_procedimiento: "Diligencias Previas 96/2017, pieza separada nº 7; rollo de Sala 13/2024 (Sección Cuarta Sala de lo Penal AN)"
 tipo_procedimiento: procedimiento_abreviado

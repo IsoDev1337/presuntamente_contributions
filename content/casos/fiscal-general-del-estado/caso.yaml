@@ -63,6 +63,19 @@ descripcion_corta: |
   presentados por la Fiscalía y por el propio condenado en abril de
   2026.
 
+sintesis_caso:
+  que_se_investiga: "La filtración de un correo de la defensa de Alberto González Amador relacionado con una propuesta de conformidad ante Fiscalía."
+  hechos_clave:
+    - "El Tribunal Supremo investigó al entonces Fiscal General del Estado, Álvaro García Ortiz, y a la entonces Fiscal Jefa Provincial de Madrid, Pilar Rodríguez Fernández."
+    - "El Supremo acordó el sobreseimiento respecto de Rodríguez Fernández."
+    - "García Ortiz fue condenado por revelación de datos reservados."
+  estado_actual: "La condena es firme en la jurisdicción ordinaria, aunque hay recursos de amparo ante el Tribunal Constitucional."
+  cifras_clave:
+    - "7.200 € de multa"
+    - "2 años de inhabilitación especial"
+    - "10.000 € de indemnización"
+    - "Condena por 5 votos frente a 2"
+
 organo_judicial_id: tribunal-supremo
 numero_procedimiento: "Causa Especial nº 20557/2024"
 tipo_procedimiento: causa_especial_aforado

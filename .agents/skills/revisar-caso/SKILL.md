@@ -32,7 +32,7 @@ La skill asume que el caso ya pasa `pnpm validate` (capa A). Si no pasa, recomen
 
 Leer en disco todos los YAMLs del caso:
 
-- `content/casos/<slug>/caso.yaml` — raíz.
+- `content/casos/<slug>/caso.yaml` — raíz, incluyendo `sintesis_caso` si existe.
 - `content/casos/<slug>/NOTES.md` — anotaciones internas (no se publican pero pueden contener pistas útiles para entender decisiones del fichaje).
 - `content/casos/<slug>/hitos/*.yaml`.
 - `content/casos/<slug>/hechos/*.yaml`.
@@ -118,7 +118,7 @@ Si el caso es grande y la lista de hallazgos amenaza con desbordar el contexto, 
 
 ### CH2 — Lenguaje activo afirmativo sobre personas sin condena firme
 
-**Regla**: si en cualquier prosa (`Caso.resumen_ejecutivo`, `Caso.descripcion_corta`, `Caso.resumen_cifras`, `Hito.descripcion`, `Hecho.enunciado`, `Persona.biografia_corta`) se afirma que una persona X **hizo** una conducta delictiva en activo afirmativo (no atribuido, no condicional), tiene que cumplirse al menos una de:
+**Regla**: si en cualquier prosa (`Caso.resumen_ejecutivo`, `Caso.descripcion_corta`, `Caso.sintesis_caso.*`, `Caso.resumen_cifras`, `Hito.descripcion`, `Hecho.enunciado`, `Persona.biografia_corta`) se afirma que una persona X **hizo** una conducta delictiva en activo afirmativo (no atribuido, no condicional), tiene que cumplirse al menos una de:
 
 - X tiene `RolEnCaso.rol = condenado_firme` en el caso revisado.
 - Existe un `Hecho.tipo = acreditado` en el caso que respalda esa afirmación con `personas_implicadas` incluyendo a X.
@@ -141,7 +141,7 @@ Si no se cumple ninguna, hallazgo. Típico falso positivo: descripciones de hito
 
 ### CH4 — Personas privadas mencionadas sin rol formal en el procedimiento
 
-**Regla**: si una `Persona` aparece nominalmente (por `nombre_completo` o `nombres_alternativos`) en alguna prosa del caso (`Caso.resumen_*`, `Hito.descripcion`, `Hecho.enunciado`) y se cumple TODO:
+**Regla**: si una `Persona` aparece nominalmente (por `nombre_completo` o `nombres_alternativos`) en alguna prosa del caso (`Caso.resumen_*`, `Caso.sintesis_caso.*`, `Hito.descripcion`, `Hecho.enunciado`) y se cumple TODO:
 
 - `Persona.es_figura_publica = false`.
 - No tiene ningún `RolEnCaso` activo o pasado en el caso.
@@ -200,7 +200,7 @@ Es hallazgo. La detección de "mismo nudo factual" es heurística: marcar como `
 - Asimetría de tratamiento detectable: si el caso afecta a una formación política, frases que sólo se aplicarían a esa formación y no a su simétrica de signo contrario (heurística: presencia simultánea de adjetivos valorativos + identificadores partidistas en la misma oración).
 - Lenguaje editorial valorativo en titulares de hito o resumen ejecutivo (`grave`, `gravísimo`, `inaceptable`, `imperdonable`, `vergonzoso`, `clamoroso`).
 
-**Distinción prosa publicable vs slug interno** (añadido en v1): los términos de la lista negra detectados en **prosa publicable** (`Caso.resumen_*`, `Hito.descripcion`, `Hecho.enunciado`, `Persona.biografia_corta`, `Organizacion.descripcion_corta`, `RolEnCaso.notas` — todos estos campos se renderizan en la ficha del sitio) son `BLOQUEANTE`. En **slugs internos** (`Hecho.id`, `Hito.id`, `Rol.id`) son `SUGERENCIA`, salvo que el slug se renderice como URL anchor visible al usuario (`/casos/<slug>#hito-<slug>` con `<slug>` conteniendo "trama") — entonces vuelve a `BLOQUEANTE`.
+**Distinción prosa publicable vs slug interno** (añadido en v1): los términos de la lista negra detectados en **prosa publicable** (`Caso.resumen_*`, `Caso.sintesis_caso.*`, `Hito.descripcion`, `Hecho.enunciado`, `Persona.biografia_corta`, `Organizacion.descripcion_corta`, `RolEnCaso.notas` — todos estos campos se renderizan en la ficha del sitio) son `BLOQUEANTE`. En **slugs internos** (`Hecho.id`, `Hito.id`, `Rol.id`) son `SUGERENCIA`, salvo que el slug se renderice como URL anchor visible al usuario (`/casos/<slug>#hito-<slug>` con `<slug>` conteniendo "trama") — entonces vuelve a `BLOQUEANTE`.
 
 **Clasificación**: `BLOQUEANTE` para adjetivos de la lista negra del P-09 fuera de cita literal en prosa publicable o en slugs renderizados al usuario; `SUGERENCIA` para los mismos términos en slugs internos no renderizados o para asimetría de tratamiento heurística.
 

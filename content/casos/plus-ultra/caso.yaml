@@ -19,6 +19,18 @@ descripcion_corta: |
   investiga el presunto uso irregular de esos fondos y su posible relación
   con esquemas de blanqueo de capitales con origen en Venezuela.
 
+sintesis_caso:
+  que_se_investiga: "Si el rescate público de Plus Ultra se concedió o usó de forma irregular."
+  hechos_clave:
+    - "El Consejo de Ministros aprobó en marzo de 2021 un préstamo de 53 millones de euros a través de la SEPI."
+    - "La causa procede de cooperación internacional con Francia y Suiza y se instruye en la Audiencia Nacional."
+    - "El instructor investiga el posible uso irregular de fondos públicos y su conexión con esquemas de blanqueo con origen en Venezuela."
+  estado_actual: "La causa sigue en instrucción; no hay sentencia firme ni hechos penales acreditados contra las personas investigadas."
+  cifras_clave:
+    - "53 M€ de préstamo público"
+    - "4 delitos atribuidos en la causa"
+    - "Audiencia Nacional"
+
 organo_judicial_id: juzgado-central-instruccion-4
 numero_procedimiento: "DP (pendiente de confirmar número exacto público)"
 tipo_procedimiento: diligencias_previas

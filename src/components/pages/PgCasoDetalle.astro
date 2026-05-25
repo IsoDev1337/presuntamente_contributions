@@ -35,6 +35,13 @@ interface Props {
 
 const { lang = 'es', caso } = Astro.props;
 const data = caso.data;
+interface SintesisCaso {
+  que_se_investiga: string;
+  hechos_clave: string[];
+  estado_actual: string;
+  cifras_clave?: string[];
+}
+const sintesisCaso = (data as { sintesis_caso?: SintesisCaso }).sintesis_caso;
 
 // --- Collections relacionadas ------------------------------------------------
 
@@ -359,6 +366,65 @@ const breadcrumb = [
     </dl>
   </section>
 
+  {sintesisCaso && (
+    <section class="ficha-sintesis" aria-label="Síntesis del caso">
+      <div class="ficha-sintesis__lead">
+        <p class="ficha-sintesis__label">Qué se investiga</p>
+        <p>
+          <RichProse
+            text={sintesisCaso.que_se_investiga}
+            as="span"
+            excludePersonaIds={[data.id]}
+            excludeOrgIds={[data.id]}
+          />
+        </p>
+      </div>
+      <div class="ficha-sintesis__section">
+        <p class="ficha-sintesis__label">Hechos clave</p>
+        <ol class="ficha-sintesis__steps">
+          {sintesisCaso.hechos_clave.map((item) => (
+            <li>
+              <RichProse
+                text={item}
+                as="span"
+                excludePersonaIds={[data.id]}
+                excludeOrgIds={[data.id]}
+              />
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="ficha-sintesis__section ficha-sintesis__section--estado">
+        <p class="ficha-sintesis__label">Situación actual</p>
+        <p>
+          <RichProse
+            text={sintesisCaso.estado_actual}
+            as="span"
+            excludePersonaIds={[data.id]}
+            excludeOrgIds={[data.id]}
+          />
+        </p>
+      </div>
+      {sintesisCaso.cifras_clave && sintesisCaso.cifras_clave.length > 0 && (
+        <div class="ficha-sintesis__section ficha-sintesis__section--cifras">
+          <p class="ficha-sintesis__label">Cifras clave</p>
+          <ul class="ficha-sintesis__metrics">
+            {sintesisCaso.cifras_clave.map((item) => (
+              <li>
+                <RichProse
+                  text={item}
+                  as="span"
+                  excludePersonaIds={[data.id]}
+                  excludeOrgIds={[data.id]}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  )}
+
   <!-- §2.2 — Resumen ejecutivo -->
   <SectionH num="1." title="Resumen ejecutivo" id="resumen" />
   <div class="prose">
@@ -626,6 +692,104 @@ const breadcrumb = [
     color: var(--color-fg);
   }
   .ficha-mast__grid .mono { font-family: var(--font-mono); font-size: 12px; }
+
+  /* === Síntesis dentro de la cabecera de ficha === */
+  .ficha-sintesis {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-accent-secondary);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-flat);
+    margin: calc(-1 * var(--space-2)) 0 var(--space-6);
+  }
+  .ficha-sintesis__lead {
+    padding: 0 0 var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .ficha-sintesis__lead p,
+  .ficha-sintesis__section p {
+    margin: 0;
+    font: 600 16px/1.5 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .ficha-sintesis__section--estado {
+    padding: 12px 14px;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-surface-muted);
+  }
+  .ficha-sintesis__label {
+    margin: 0 0 7px !important;
+    font: 500 10.5px/1.1 var(--font-mono) !important;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted) !important;
+  }
+  .ficha-sintesis__steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    counter-reset: ficha-sintesis-step;
+  }
+  .ficha-sintesis__steps li {
+    position: relative;
+    counter-increment: ficha-sintesis-step;
+    padding-left: 34px;
+    font: 500 15px/1.55 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .ficha-sintesis__steps li::before {
+    content: counter(ficha-sintesis-step);
+    position: absolute;
+    left: 0;
+    top: 0.18em;
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--color-accent-secondary-border);
+    background: var(--color-accent-secondary-soft);
+    color: #6b4d00;
+    font: 800 11px/1 var(--font-mono);
+  }
+  .ficha-sintesis__metrics {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ficha-sintesis__metrics li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 6px 9px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    font: 500 12px/1.35 var(--font-mono);
+    letter-spacing: 0;
+  }
+  .ficha-sintesis__metrics .money {
+    margin-inline: 1px;
+    font-weight: 500;
+  }
+  @media (min-width: 760px) {
+    .ficha-sintesis {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    }
+    .ficha-sintesis__lead,
+    .ficha-sintesis__section--cifras {
+      grid-column: 1 / -1;
+    }
+    .ficha-sintesis__section--estado {
+      align-self: start;
+    }
+  }
 
   /* === §2.3 Estado procesal === */
   .estado-grid {

@@ -29,6 +29,27 @@
       "default": []
     },
     "descripcion_corta": { "type": "string" },
+    "sintesis_caso": {
+      "type": "object",
+      "description": "Síntesis accesible y estructurada de la ficha. Debe conservar presunción de inocencia y no sustituye al resumen ejecutivo.",
+      "additionalProperties": false,
+      "required": ["que_se_investiga", "hechos_clave", "estado_actual"],
+      "properties": {
+        "que_se_investiga": { "type": "string", "minLength": 1 },
+        "hechos_clave": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 2,
+          "maxItems": 4
+        },
+        "estado_actual": { "type": "string", "minLength": 1 },
+        "cifras_clave": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "default": []
+        }
+      }
+    },
 
     "caso_padre_id": { "type": "string" },
     "tipo_pieza": {
