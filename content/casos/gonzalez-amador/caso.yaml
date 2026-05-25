@@ -83,6 +83,23 @@ resumen_cifras: |
   PSOE y Más Madrid elevan la petición a 5 años de prisión y multa,
   añadiendo delito contable continuado y pertenencia a grupo criminal.
 
-estado_publicacion: borrador
+estado_publicacion: beta_publica
 ultima_revision_editorial: "2026-05-22"
 nivel_relevancia_editorial: alta
+
+# Honestidad editorial sobre el trabajo de presuntamente.org en esta ficha
+# (ver docs/web/features/estado-ficha-caso.md). No mide el procedimiento
+# judicial — su fase procesal está en `fase_actual`.
+estado_ficha:
+  cronologia: completo
+  roles_procesales: completo
+  documentos_primarios: parcial
+  hechos_modelados: completo
+  fuentes_cruzadas: completo
+  composicion_fuentes_citadas: pendiente
+  vinculos_institucionales: pendiente
+  grafo_relaciones: pendiente
+  cobertura_mediatica_general: pendiente
+  revision_editorial: completo
+  notas: "Auto de la AP Madrid Sección 3ª que ratifica el procesamiento (07-11-2025) pendiente de aparecer en CENDOJ con ROJ asignado; cuando aparezca se descarga a /public/documentos/gonzalez-amador/."
+  fecha_actualizacion: "2026-05-25"

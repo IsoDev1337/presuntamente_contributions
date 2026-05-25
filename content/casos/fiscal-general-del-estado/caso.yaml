@@ -101,6 +101,22 @@ resumen_cifras: |
   acusación particular. La condena fue adoptada por mayoría de cinco
   votos frente a dos.
 
-estado_publicacion: borrador
+estado_publicacion: beta_publica
 ultima_revision_editorial: "2026-05-22"
 nivel_relevancia_editorial: capital
+
+# Honestidad editorial sobre el trabajo de presuntamente.org en esta ficha
+# (ver docs/web/features/estado-ficha-caso.md). No mide el procedimiento
+# judicial — su fase procesal está en `fase_actual`.
+estado_ficha:
+  cronologia: completo
+  roles_procesales: completo
+  documentos_primarios: completo
+  hechos_modelados: completo
+  fuentes_cruzadas: completo
+  composicion_fuentes_citadas: pendiente
+  vinculos_institucionales: pendiente
+  grafo_relaciones: pendiente
+  cobertura_mediatica_general: pendiente
+  revision_editorial: completo
+  fecha_actualizacion: "2026-05-25"

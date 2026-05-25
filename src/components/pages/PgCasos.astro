@@ -2,7 +2,23 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CustomSelect from '@/components/CustomSelect.astro';
 import PhaseBadge from '@/components/PhaseBadge.astro';
+import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
 import { getCollection } from 'astro:content';
+
+// En producción los casos en `pendiente`/`borrador` aparecen en la tabla
+// pero no son clickables y la ruta /casos/<slug> no se genera (ver
+// src/pages/casos/[slug].astro getStaticPaths). En dev local TODO es
+// clickable para que el maintainer pueda trabajar fichas en construcción.
+const IS_PROD = import.meta.env.PROD;
+const ESTADOS_BLOQUEADOS_EN_PROD: ReadonlyArray<string> = ['pendiente', 'borrador'];
+type EstadoPublicacion =
+  | 'pendiente'
+  | 'borrador'
+  | 'beta_publica'
+  | 'en_revision'
+  | 'publicado'
+  | 'retirado_temporalmente'
+  | 'retirado_definitivamente';
 
 interface Props {
   lang?: 'es' | 'ca';
@@ -96,6 +112,8 @@ const casos = casosCol
       oficial: caso.nombre_oficial,
       fase_actual: caso.fase_actual,
       phaseKind: fase.kind,
+      estado_publicacion: caso.estado_publicacion as EstadoPublicacion,
+      bloqueadoEnProd: IS_PROD && ESTADOS_BLOQUEADOS_EN_PROD.includes(caso.estado_publicacion),
       organo: organoCorto,
       organoFull: org?.nombre ?? caso.organo_judicial_id,
       numero: caso.numero_procedimiento ?? '',
@@ -219,31 +237,43 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
   <table class="tbl" data-catalog>
     <thead>
       <tr>
-        <th style="width: 34%;">Caso</th>
-        <th style="width: 14%;">Fase</th>
-        <th style="width: 22%;">Órgano</th>
-        <th style="width: 8%;" class="c-num">Implic.</th>
-        <th style="width: 22%;">Último hito</th>
+        <th style="width: 30%;">Caso</th>
+        <th style="width: 12%;">Fase</th>
+        <th style="width: 12%;">Estado ficha</th>
+        <th style="width: 18%;">Órgano</th>
+        <th style="width: 7%;" class="c-num">Implic.</th>
+        <th style="width: 21%;">Último hito</th>
       </tr>
     </thead>
     <tbody>
       {casos.map((c) => (
         <tr
-          class="is-link"
+          class:list={['is-link', c.bloqueadoEnProd && 'is-blocked']}
           data-row
           data-phase={c.phaseKind}
           data-implicados={c.implicados}
           data-fecha={c.ultimo_hito?.fecha ?? ''}
           data-search={buildSearchBlob(c)}
+          data-estado={c.estado_publicacion}
         >
           <td>
-            <a href={`/casos/${c.slug}`}>
-              <span class="c-name">{c.mediatico}</span>
-              <span class="c-name__sub">{c.oficial}</span>
-            </a>
+            {c.bloqueadoEnProd ? (
+              <span aria-disabled="true" class="c-blocked">
+                <span class="c-name">{c.mediatico}</span>
+                <span class="c-name__sub">{c.oficial}</span>
+              </span>
+            ) : (
+              <a href={`/casos/${c.slug}`}>
+                <span class="c-name">{c.mediatico}</span>
+                <span class="c-name__sub">{c.oficial}</span>
+              </a>
+            )}
           </td>
           <td>
             <PhaseBadge fase={c.fase_actual} />
+          </td>
+          <td>
+            <EstadoPublicacionBadge estado={c.estado_publicacion} compact />
           </td>
           <td class="c-mono" title={c.organoFull}>{c.organo}</td>
           <td class="c-num">{c.implicados}</td>
@@ -375,5 +405,39 @@ function buildSearchBlob(c: (typeof casos)[number]): string {
     font-family: var(--font-sans);
     font-size: var(--font-size-1);
     color: var(--color-fg-muted);
+  }
+
+  /* Filas bloqueadas en producción (estados pendiente/borrador): aparecen
+     en la lista para que el lector vea que esos casos se están trabajando,
+     pero no son clickables y la ruta /casos/<slug> no se genera en build
+     de producción. En dev local nada está bloqueado. */
+  :global(.tbl) tr.is-blocked {
+    background: var(--color-surface-muted, var(--color-surface));
+    color: var(--color-fg-muted);
+  }
+  :global(.tbl) tr.is-blocked:hover {
+    /* anula el hover normal de filas clickables */
+    background: var(--color-surface-muted, var(--color-surface));
+    cursor: default;
+  }
+  :global(.tbl) tr.is-blocked .c-name {
+    color: var(--color-fg-muted);
+  }
+  :global(.tbl) tr.is-blocked .c-name__sub {
+    color: var(--color-fg-subtle, var(--color-fg-muted));
+  }
+  .c-blocked {
+    display: block;
+    cursor: default;
+    user-select: none;
+  }
+  .c-blocked .c-name {
+    display: block;
+    font-weight: 600;
+  }
+  .c-blocked .c-name__sub {
+    display: block;
+    font-size: var(--font-size-0);
+    margin-top: 2px;
   }
 </style>

@@ -20,8 +20,14 @@ import { glob } from 'astro/loaders';
 
 // --- Slots compartidos -------------------------------------------------------
 
+// Slot común a todas las collections con campo `estado_publicacion`.
+// Caso usa los 7 valores; el resto sólo usa el subconjunto de 5 históricos
+// (`pendiente` y `beta_publica` son específicos del ciclo de vida editorial
+// de una ficha de caso, no de una Persona/Organizacion/Documento).
 const ESTADO_PUBLICACION = z.enum([
+  'pendiente',
   'borrador',
+  'beta_publica',
   'en_revision',
   'publicado',
   'retirado_temporalmente',
@@ -39,6 +45,13 @@ const FASE = z.enum([
   'ejecucion',
   'archivo_provisional',
   'archivo_libre',
+]);
+
+const ESTADO_CHEQUEO = z.enum([
+  'completo',
+  'parcial',
+  'pendiente',
+  'no_aplica',
 ]);
 
 // --- casos -------------------------------------------------------------------
@@ -79,6 +92,22 @@ const casos = defineCollection({
       ultima_revision_editorial: z.string().optional(),
       nivel_relevancia_editorial: z
         .enum(['baja', 'media', 'alta', 'capital'])
+        .optional(),
+      estado_ficha: z
+        .object({
+          cronologia: ESTADO_CHEQUEO,
+          roles_procesales: ESTADO_CHEQUEO,
+          documentos_primarios: ESTADO_CHEQUEO,
+          hechos_modelados: ESTADO_CHEQUEO,
+          fuentes_cruzadas: ESTADO_CHEQUEO,
+          composicion_fuentes_citadas: ESTADO_CHEQUEO,
+          vinculos_institucionales: ESTADO_CHEQUEO,
+          grafo_relaciones: ESTADO_CHEQUEO,
+          cobertura_mediatica_general: ESTADO_CHEQUEO,
+          revision_editorial: ESTADO_CHEQUEO,
+          notas: z.string().optional(),
+          fecha_actualizacion: z.string().optional(),
+        })
         .optional(),
     })
     .passthrough(),
@@ -320,6 +349,156 @@ const relaciones = defineCollection({
     .passthrough(),
 });
 
+// --- vinculos-institucionales ------------------------------------------------
+//
+// Relaciones documentadas Persona/Organizacion ↔ Organizacion/Persona tipadas
+// por naturaleza (cargo público electo/designado/judicial, cargo orgánico de
+// partido, directivo público o privado, nombramiento por gobierno concreto,
+// acusación/perjudicado/entidad investigada en caso, vínculo familiar público,
+// económico o profesional documentado). Exige documentos_respaldo[] ≥ 1.
+// Schema canónico en /schemas/vinculo-institucional.schema.json.
+// Los datos los meterán agentes paralelos con la skill /documentar-vinculos.
+
+const NATURALEZA_VINCULO = z.enum([
+  'cargo_publico_electo',
+  'cargo_publico_designado',
+  'cargo_judicial',
+  'cargo_organico_partido',
+  'cargo_directivo_empresa_publica',
+  'cargo_directivo_organizacion_privada',
+  'cargo_academico_publico',
+  'cargo_organizacion_civica',
+  'nombramiento_por_gobierno',
+  'acusacion_institucional_en_caso',
+  'perjudicado_institucional_en_caso',
+  'entidad_investigada_en_caso',
+  'vinculo_familiar_publico',
+  'vinculo_economico_documentado',
+  'vinculo_profesional_documentado',
+]);
+
+const vinculos = defineCollection({
+  loader: glob({
+    pattern: '*.yaml',
+    base: './content/vinculos',
+    generateId: ({ data }) => String(data.id),
+  }),
+  schema: z
+    .object({
+      id: z.string(),
+      naturaleza: NATURALEZA_VINCULO,
+      descripcion: z.string(),
+      sujeto_persona_id: z.string().optional(),
+      sujeto_organizacion_id: z.string().optional(),
+      objeto_organizacion_id: z.string().optional(),
+      objeto_persona_id: z.string().optional(),
+      cargo_o_rol: z.string().optional(),
+      desde: z.string(),
+      hasta: z.string().optional(),
+      vigente: z.boolean().optional(),
+      gobierno_o_legislatura: z.string().optional(),
+      relevancia_para_caso_ids: z.array(z.string()).default([]),
+      documentos_respaldo: z
+        .array(
+          z.object({
+            documento_id: z.string(),
+            pasaje: z.string().optional(),
+            nota: z.string().optional(),
+          }),
+        )
+        .min(1),
+      notas: z.string().optional(),
+      estado_publicacion: ESTADO_PUBLICACION,
+      ultima_revision_editorial: z.string().optional(),
+    })
+    .passthrough(),
+});
+
+// --- cobertura-mediatica -----------------------------------------------------
+//
+// Corpus rastreado de noticias publicadas sobre un Caso, separado del corpus
+// de Documentos que respaldan Hechos. Una entrada YAML por Caso, con
+// metodología explícita y lista de noticias deduplicadas. Schema canónico
+// en /schemas/cobertura-mediatica.schema.json. Los datos los meterán
+// agentes paralelos con la skill /rastrear-cobertura.
+
+const TIPO_PIEZA = z.enum([
+  'noticia',
+  'reportaje',
+  'entrevista',
+  'analisis',
+  'editorial',
+  'opinion',
+  'columna',
+  'pieza_agencia',
+  'suelto',
+  'tv_radio',
+  'investigacion_periodistica',
+]);
+
+const coberturaMediatica = defineCollection({
+  loader: glob({
+    pattern: '*.yaml',
+    base: './content/cobertura-mediatica',
+    generateId: ({ data }) => String(data.caso_id),
+  }),
+  schema: z
+    .object({
+      caso_id: z.string(),
+      fecha_rastreo: z.string(),
+      metodologia: z
+        .object({
+          terminos_busqueda: z.array(z.string()).min(1),
+          ventanas_temporales: z
+            .array(
+              z.object({
+                desde: z.string(),
+                hasta: z.string().optional(),
+                notas: z.string().optional(),
+              }),
+            )
+            .min(1),
+          fuentes_buscadas: z.array(z.string()).optional(),
+          criterios_inclusion: z.string().optional(),
+          criterios_exclusion: z.string().optional(),
+          notas: z.string().optional(),
+        })
+        .passthrough(),
+      estado: z.enum(['pendiente', 'parcial', 'completo']),
+      ultima_revision_editorial: z.string().optional(),
+      noticias: z
+        .array(
+          z
+            .object({
+              id: z.string(),
+              url: z.string(),
+              medio_id: z.string(),
+              titular: z.string(),
+              subtitulo: z.string().optional(),
+              fecha_publicacion: z.string(),
+              autor: z.string().optional(),
+              resumen: z.string().optional(),
+              url_archivo: z.string().optional(),
+              tipo_pieza: TIPO_PIEZA,
+              relevancia_editorial: z
+                .enum(['capital', 'alta', 'media', 'baja'])
+                .optional(),
+              pieza_referenciada_id: z.string().optional(),
+              menciones: z
+                .array(
+                  z.enum(['titular', 'lead', 'cuerpo', 'destacado', 'pie_foto']),
+                )
+                .optional(),
+              fecha_rastreo: z.string().optional(),
+              notas: z.string().optional(),
+            })
+            .passthrough(),
+        )
+        .default([]),
+    })
+    .passthrough(),
+});
+
 export const collections = {
   casos,
   personas,
@@ -331,4 +510,6 @@ export const collections = {
   hechos,
   roles,
   relaciones,
+  vinculos,
+  coberturaMediatica,
 };

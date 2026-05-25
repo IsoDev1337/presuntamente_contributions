@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/vinculo-institucional.schema.json",
+  "title": "VinculoInstitucional",
+  "description": "Relación documentada entre Persona/Organizacion (sujeto) y Organizacion/Persona (objeto), tipada por naturaleza y respaldada por al menos un Documento. Modela el 'contexto institucional' de los casos sin reducirlo a etiqueta partidista. Una misma instancia puede ser relevante para varios casos; el campo es `relevancia_para_caso_ids[]`. Ver docs/web/features/vinculos-institucionales.md.",
+  "type": "object",
+  "required": [
+    "id",
+    "naturaleza",
+    "descripcion",
+    "desde",
+    "documentos_respaldo",
+    "estado_publicacion"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Slug. Convención: <sujeto-slug>-<objeto-slug-o-naturaleza-corta>."
+    },
+
+    "naturaleza": {
+      "type": "string",
+      "enum": [
+        "cargo_publico_electo",
+        "cargo_publico_designado",
+        "cargo_judicial",
+        "cargo_organico_partido",
+        "cargo_directivo_empresa_publica",
+        "cargo_directivo_organizacion_privada",
+        "cargo_academico_publico",
+        "cargo_organizacion_civica",
+        "nombramiento_por_gobierno",
+        "acusacion_institucional_en_caso",
+        "perjudicado_institucional_en_caso",
+        "entidad_investigada_en_caso",
+        "vinculo_familiar_publico",
+        "vinculo_economico_documentado",
+        "vinculo_profesional_documentado"
+      ],
+      "description": "Tipo de vínculo. cargo_*: Persona ocupa cargo en Organizacion. nombramiento_por_gobierno: vincula a la administración concreta que nombró. *_en_caso: Organizacion actúa en un Caso sin ser sujeto procesal directo de imputación (acusación popular, perjudicado institucional, ente investigado como persona jurídica). vinculo_familiar_publico: sólo si público, relevante y minimizado. vinculo_economico/profesional: sólo si documentado y relevante."
+    },
+
+    "descripcion": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Frase descriptiva neutral. Sin verbos prohibidos del P-09. Ej. 'Secretario de Organización del PSOE'."
+    },
+
+    "sujeto_persona_id": {
+      "type": "string",
+      "description": "Slug de Persona. Mutuamente excluyente con sujeto_organizacion_id."
+    },
+    "sujeto_organizacion_id": {
+      "type": "string",
+      "description": "Slug de Organizacion. Mutuamente excluyente con sujeto_persona_id."
+    },
+
+    "objeto_organizacion_id": {
+      "type": "string",
+      "description": "Slug de Organizacion. Requerido salvo para vinculo_familiar_publico, donde puede ser objeto_persona_id."
+    },
+    "objeto_persona_id": {
+      "type": "string",
+      "description": "Slug de Persona. Sólo permitido si naturaleza == vinculo_familiar_publico."
+    },
+
+    "cargo_o_rol": {
+      "type": "string",
+      "description": "Cargo concreto cuando naturaleza es de tipo cargo_*. Ej. 'Secretario de Organización', 'Magistrado del Tribunal Supremo', 'Director general'. Independiente de la prosa libre de `descripcion`."
+    },
+
+    "desde": {
+      "type": "string",
+      "format": "date",
+      "description": "Inicio del vínculo. Si sólo se conoce el año, usar YYYY-01-01 y precisar en `precision_desde`."
+    },
+    "hasta": {
+      "type": "string",
+      "format": "date",
+      "description": "Fin del vínculo. Ausente si está vigente."
+    },
+    "precision_desde": {
+      "type": "string",
+      "enum": ["dia", "mes", "anio"],
+      "default": "dia"
+    },
+    "precision_hasta": {
+      "type": "string",
+      "enum": ["dia", "mes", "anio"]
+    },
+    "vigente": {
+      "type": "boolean",
+      "description": "Calculado: true si `hasta` está ausente. Se exige declararlo explícitamente para evitar lecturas erróneas en UI."
+    },
+
+    "gobierno_o_legislatura": {
+      "type": "string",
+      "description": "Identificador legible de la legislatura/gobierno cuando naturaleza == nombramiento_por_gobierno o cargo_publico_designado. Ej. 'XV Legislatura', 'Gobierno Sánchez II', 'Comunidad de Madrid - Ayuso III'."
+    },
+
+    "relevancia_para_caso_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Casos del inventario para los que este vínculo es relevante. Vacío significa 'vínculo documentado pero no aún anclado a un caso'.",
+      "default": []
+    },
+
+    "documentos_respaldo": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["documento_id"],
+        "additionalProperties": false,
+        "properties": {
+          "documento_id": { "type": "string" },
+          "pasaje": { "type": "string" },
+          "nota": { "type": "string" }
+        }
+      },
+      "description": "Al menos un Documento debe respaldar el vínculo. Mismo principio V-13 que en Hecho."
+    },
+
+    "notas": {
+      "type": "string",
+      "description": "Justificación editorial extra. Obligatoria si naturaleza in [vinculo_familiar_publico, vinculo_economico_documentado, vinculo_profesional_documentado] para explicar relevancia y evitar inflación."
+    },
+
+    "estado_publicacion": {
+      "type": "string",
+      "enum": [
+        "borrador",
+        "en_revision",
+        "publicado",
+        "retirado_temporalmente",
+        "retirado_definitivamente"
+      ]
+    },
+    "ultima_revision_editorial": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+
+  "allOf": [
+    {
+      "description": "Exactamente un sujeto: persona O organización, no ambos ni ninguno.",
+      "oneOf": [
+        { "required": ["sujeto_persona_id"], "not": { "required": ["sujeto_organizacion_id"] } },
+        { "required": ["sujeto_organizacion_id"], "not": { "required": ["sujeto_persona_id"] } }
+      ]
+    },
+    {
+      "description": "Objeto: por defecto organización; sólo vinculo_familiar_publico permite objeto_persona_id.",
+      "oneOf": [
+        { "required": ["objeto_organizacion_id"], "not": { "required": ["objeto_persona_id"] } },
+        {
+          "required": ["objeto_persona_id"],
+          "properties": { "naturaleza": { "const": "vinculo_familiar_publico" } }
+        }
+      ]
+    },
+    {
+      "description": "vinculo_familiar_publico, vinculo_economico_documentado y vinculo_profesional_documentado exigen `notas` para justificar relevancia editorial.",
+      "if": {
+        "properties": {
+          "naturaleza": {
+            "enum": [
+              "vinculo_familiar_publico",
+              "vinculo_economico_documentado",
+              "vinculo_profesional_documentado"
+            ]
+          }
+        },
+        "required": ["naturaleza"]
+      },
+      "then": { "required": ["notas"] }
+    },
+    {
+      "description": "nombramiento_por_gobierno y cargo_publico_designado exigen `gobierno_o_legislatura` para anclar la responsabilidad política al gobierno concreto.",
+      "if": {
+        "properties": {
+          "naturaleza": {
+            "enum": ["nombramiento_por_gobierno", "cargo_publico_designado"]
+          }
+        },
+        "required": ["naturaleza"]
+      },
+      "then": { "required": ["gobierno_o_legislatura"] }
+    }
+  ]
+}

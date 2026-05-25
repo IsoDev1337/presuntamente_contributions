@@ -30,6 +30,8 @@ const SCHEMA_FOR_PATH = [
   { match: (p) => p.startsWith('content/delitos/') && p.endsWith('.yaml'), schema: 'delito.schema.json' },
   { match: (p) => p.startsWith('content/glosario/') && p.endsWith('.yaml'), schema: 'glosario.schema.json' },
   { match: (p) => p.startsWith('content/relaciones-entre-casos/') && p.endsWith('.yaml'), schema: 'relacion-entre-casos.schema.json' },
+  { match: (p) => p.startsWith('content/vinculos/') && p.endsWith('.yaml'), schema: 'vinculo-institucional.schema.json' },
+  { match: (p) => p.startsWith('content/cobertura-mediatica/') && p.endsWith('.yaml'), schema: 'cobertura-mediatica.schema.json' },
 ];
 
 const SCHEMA_FILES = [
@@ -43,6 +45,8 @@ const SCHEMA_FILES = [
   'hecho.schema.json',
   'rol-en-caso.schema.json',
   'relacion-entre-casos.schema.json',
+  'vinculo-institucional.schema.json',
+  'cobertura-mediatica.schema.json',
 ];
 
 const ajv = new Ajv2020({ allErrors: true, strict: false });

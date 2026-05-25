@@ -117,8 +117,11 @@
 
     "estado_publicacion": {
       "type": "string",
+      "description": "Estado de desarrollo + visibilidad pública de la ficha. `pendiente`: caso listado pero sin trabajo iniciado. `borrador`: en desarrollo, NO público (en producción la ruta /casos/<slug> no se genera). `beta_publica`: publicable con cosillas / huecos editoriales aceptados. `en_revision`: revisión interna pre-publicación. `publicado`: ficha terminada al máximo de lo que el producto sabe hacer hoy (no implica caso jurídico cerrado). `retirado_*`: estaba publicado y se retiró.",
       "enum": [
+        "pendiente",
         "borrador",
+        "beta_publica",
         "en_revision",
         "publicado",
         "retirado_temporalmente",
@@ -129,8 +132,52 @@
     "nivel_relevancia_editorial": {
       "type": "string",
       "enum": ["baja", "media", "alta", "capital"]
+    },
+
+    "estado_ficha": {
+      "type": "object",
+      "description": "Checklist público de completitud editorial y técnica de la ficha. NO mide el procedimiento judicial — habla del estado del trabajo del inventario. Ver docs/web/features/estado-ficha-caso.md.",
+      "additionalProperties": false,
+      "required": [
+        "cronologia",
+        "roles_procesales",
+        "documentos_primarios",
+        "hechos_modelados",
+        "fuentes_cruzadas",
+        "composicion_fuentes_citadas",
+        "vinculos_institucionales",
+        "grafo_relaciones",
+        "cobertura_mediatica_general",
+        "revision_editorial"
+      ],
+      "properties": {
+        "cronologia": { "$ref": "#/$defs/estadoChequeo" },
+        "roles_procesales": { "$ref": "#/$defs/estadoChequeo" },
+        "documentos_primarios": { "$ref": "#/$defs/estadoChequeo" },
+        "hechos_modelados": { "$ref": "#/$defs/estadoChequeo" },
+        "fuentes_cruzadas": { "$ref": "#/$defs/estadoChequeo" },
+        "composicion_fuentes_citadas": { "$ref": "#/$defs/estadoChequeo" },
+        "vinculos_institucionales": { "$ref": "#/$defs/estadoChequeo" },
+        "grafo_relaciones": { "$ref": "#/$defs/estadoChequeo" },
+        "cobertura_mediatica_general": { "$ref": "#/$defs/estadoChequeo" },
+        "revision_editorial": { "$ref": "#/$defs/estadoChequeo" },
+        "notas": {
+          "type": "string",
+          "description": "Justificación corta de por qué algún check está `parcial` o `pendiente`. Visible al lector."
+        },
+        "fecha_actualizacion": { "type": "string", "format": "date" }
+      }
     }
   },
+
+  "$defs": {
+    "estadoChequeo": {
+      "type": "string",
+      "enum": ["completo", "parcial", "pendiente", "no_aplica"],
+      "description": "completo: trabajado y revisado. parcial: hay algo pero falta cerrar. pendiente: aún no trabajado. no_aplica: el check no procede para este caso (justificar en notas)."
+    }
+  },
+
   "allOf": [
     {
       "if": { "required": ["caso_padre_id"] },

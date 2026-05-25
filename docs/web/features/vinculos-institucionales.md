@@ -1,65 +1,89 @@
-# Vinculos institucionales documentados
+# Vínculos institucionales documentados
 
-> Archivos clave: pendiente de implementar · Relacionada con [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md)
+> Archivos clave: [`schemas/vinculo-institucional.schema.json`](../../../schemas/vinculo-institucional.schema.json) · [`src/content.config.ts`](../../../src/content.config.ts) (collection `vinculos`) · [`.agents/skills/documentar-vinculos/SKILL.md`](../../../.agents/skills/documentar-vinculos/SKILL.md) · directorio `content/vinculos/` (vacío en main hasta primer poblado real). · Relacionada con [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md).
 
 ## Qué hace
 
-Modela y muestra los vinculos formales documentados entre personas, organizaciones, partidos, administraciones, empresas publicas, organos judiciales y casos.
+Modela y muestra los vínculos formales documentados entre personas, organizaciones, partidos, administraciones, empresas públicas, órganos judiciales y casos. La entidad nueva `VinculoInstitucional` cubre lo que `RolEnCaso` no cubre: el contexto institucional alrededor del procedimiento (cargos públicos, designaciones por gobierno concreto, cargos orgánicos en partido, dirección de empresas privadas relevantes para el hecho, vínculos económicos/familiares/profesionales documentados).
 
 ## Para qué sirve
 
-Permite que un lector entienda rapidamente a que entorno institucional alcanza un caso sin convertir la ficha en una etiqueta partidista. Es especialmente util cuando el nombre mediatico no explica nada o cuando la relacion no es procesal directa.
+Permite que un lector entienda rápidamente a qué entorno institucional alcanza un caso sin convertir la ficha en una etiqueta partidista. Es especialmente útil cuando el nombre mediático no explica nada o cuando la relación no es procesal directa pero es contextualmente decisiva (ej. "este caso afecta al gobierno X porque el alto cargo procesado fue nombrado por ese gobierno", documentado en BOE).
 
 ## Cómo funciona
 
-La feature debe partir de relaciones documentadas, no de simpatias, intuiciones o lectura politica general.
+### Modelo
 
-Tipos de vinculo candidatos:
+Entidad nueva `VinculoInstitucional` con schema en [`schemas/vinculo-institucional.schema.json`](../../../schemas/vinculo-institucional.schema.json):
 
-- Cargo publico o institucional en una organizacion durante fechas concretas.
-- Cargo organico en partido politico durante fechas concretas.
-- Nombramiento por un gobierno o administracion concreta.
-- Organizacion que actua como acusacion, denunciante, perjudicada, querellante o entidad investigada.
-- Empresa, fundacion, sindicato o asociacion relevante para el hecho investigado.
-- Vinculo familiar o de pareja solo si es publico, relevante para el caso y tratado con minimizacion.
+- **Sujeto**: exactamente uno de `sujeto_persona_id` o `sujeto_organizacion_id` (validado con `oneOf`).
+- **Objeto**: por defecto `objeto_organizacion_id`; `objeto_persona_id` sólo permitido si `naturaleza == vinculo_familiar_publico`.
+- **Naturaleza**: enum cerrado de 15 valores cubriendo cargo público electo/designado/judicial, cargo orgánico de partido, directivos públicos/privados, académico público, organización cívica, nombramiento por gobierno concreto, los tres roles institucionales en caso (acusación, perjudicado, entidad investigada como persona jurídica), y los tres tipos de vínculo no procesal documentado (familiar público, económico, profesional).
+- **Documentos de respaldo**: array con `minItems: 1` (mismo principio V-13). Cada respaldo lleva `documento_id` + `pasaje` opcional + `nota` opcional.
+- **Fechas**: `desde` obligatorio, `hasta` opcional (ausente → vigente). Precisión declarable por separado (`dia`/`mes`/`anio`) para evitar fingir precisión.
+- **`gobierno_o_legislatura`**: obligatorio cuando `naturaleza in [nombramiento_por_gobierno, cargo_publico_designado]` para anclar la responsabilidad política al gobierno concreto.
+- **`notas`**: obligatorio cuando `naturaleza in [vinculo_familiar_publico, vinculo_economico_documentado, vinculo_profesional_documentado]` para justificar relevancia editorial y evitar inflación.
+- **`relevancia_para_caso_ids[]`**: casos del inventario para los que el vínculo es relevante. Vacío significa "vínculo documentado pero no aún anclado a un caso".
 
-La implementacion puede requerir una entidad nueva tipo `VinculoInstitucional` o una tabla intermedia persona-organizacion con `desde`, `hasta`, `cargo`, `fuente_documento_id` y `naturaleza`.
+### Storage
+
+`content/vinculos/<id>.yaml` con id slug `<sujeto-slug>-<objeto-slug>` o `<sujeto-slug>-<naturaleza-corta>`. Colección global (no anidada en `content/casos/`) porque un vínculo puede ser relevante para varios casos (un cargo orgánico en partido alimenta varios casos sin duplicar).
+
+### Skill productora
+
+[`/documentar-vinculos <slug-caso>`](../../../.agents/skills/documentar-vinculos/SKILL.md) v0 — pensada para correr en sub-agente paralelo en un git worktree dedicado, lanzada por el maintainer cuando quiera ampliar el contexto institucional de un caso. La skill recorre las personas con rol y las organizaciones implicadas del caso, propone vínculos con su naturaleza correspondiente, exige documento de respaldo y aplica guardarraíles editoriales (verbos prohibidos del P-09, minimización en vínculos familiares, exigencia de documentación en vínculos económicos).
+
+### Próximo paso
+
+Una vez existan `VinculoInstitucional` poblados en al menos un caso piloto, el render en UI puede ser:
+
+- Bloque "Contexto institucional" en la ficha de caso (similar a "Personas implicadas" / "Organizaciones implicadas" pero específico para vínculos no procesales).
+- Listado paralelo de "vínculos formales del entorno" agrupados por naturaleza.
+- Reverso en ficha de Persona (todos los vínculos donde es sujeto) y de Organización (todos los vínculos donde es objeto).
+- Consumido también por [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md) como fuente de aristas.
 
 ## Estado actual
 
-No implementada como feature. Algunas relaciones aparecen hoy dispersas en `RolEnCaso`, `Organizacion`, `Persona.biografia_corta`, `organizaciones_implicadas` y descripciones de hechos, pero no hay un modelo transversal que permita filtrar, graficar o explicar "a quien alcanza" un caso.
+**Base entregada en main el 2026-05-25.** Schema canónico + collection en `content/vinculos/` + skill `/documentar-vinculos` v0 + ficha actualizada. **Datos vacíos** — los poblará un sub-agente paralelo lanzado por el maintainer con la skill, en un git worktree aislado. Render en UI de la ficha de caso, vista por Persona y vista por Organización pendientes de la primera oleada de datos reales.
+
+Algunas relaciones afines aparecen ya dispersas en `Persona.cargos_publicos_historicos`, `RolEnCaso`, `Hito.organizaciones_afectadas` y descripciones de Hechos; el agente paralelo decidirá caso a caso si esos datos se promueven a `VinculoInstitucional` formal o se mantienen donde están como dato resumen.
 
 ## Decisiones editoriales y aprendizajes
 
-- **No usar "ideologia afectada" como modelo canonico.** El encuadre correcto es vinculo institucional documentado.
-- **No implica responsabilidad del partido u organizacion.** Que una persona tenga o haya tenido cargo en una organizacion no significa que la organizacion sea sujeto procesal ni responsable de sus actos.
-- **Fecha importa.** No es lo mismo cargo vigente, excargo, cargo en el momento de los hechos o relacion posterior.
-- **El partido es una organizacion mas, no un color.** La UI no debe usar colores, iconos o badges asociados a partidos.
-- **Administraciones y organismos publicos importan tanto como partidos.** Muchos casos alcanzan ministerios, comunidades autonomas, ayuntamientos, empresas publicas u organos constitucionales sin que el partido sea sujeto procesal.
+- **No usar "ideología afectada" como modelo canónico.** El encuadre correcto es **vínculo institucional documentado**. Sin documento, no entra.
+- **No implica responsabilidad del partido u organización.** Que una persona tenga o haya tenido cargo en una organización no significa que la organización sea sujeto procesal ni responsable de sus actos.
+- **Cargo público formal ≠ cargo orgánico de partido ≠ nombramiento por gobierno.** Tres `VinculoInstitucional` separados si las tres dimensiones existen para la misma persona. Esto permite distinguir "es alto cargo del BOE" de "fue nombrado por el gobierno X" — son dos hechos editoriales distintos.
+- **El partido es una organización más, no un color.** Modelado en `Organizacion(tipo: partido_politico)`, sin colores ni iconos partidistas en UI. El badge de un vínculo en partido lleva el mismo lenguaje visual que un vínculo en empresa pública.
+- **Administraciones y organismos públicos importan tanto como partidos.** Muchos casos alcanzan ministerios, comunidades autónomas, ayuntamientos, empresas públicas u órganos constitucionales sin que el partido sea sujeto procesal. El enum `naturaleza` cubre los tres carriles (electo, designado, judicial) y los nombramientos.
+- **Vínculos familiares minimizados.** `vinculo_familiar_publico` exige: (a) que la persona vinculada también sea figura pública; (b) que la relación sea citada en cobertura cruzada; (c) que sea factualmente relevante para el hecho investigado. `notas` obligatoria. Sin uno de los tres, no entra.
+- **Vínculos económicos sólo con documento.** "X es proveedor de Y" exige factura/contrato/registro mercantil/sentencia. Sin documento no entra. `notas` obligatoria.
+- **Entidad nueva, no campos en `Persona`/`Organizacion`.** Razones documentadas en el plan de sesión 2026-05-25: (a) cubre 15 naturalezas, demasiado para un solo subtipo; (b) un vínculo puede cruzar varios casos sin duplicar; (c) mismo patrón que `RelacionEntreCasos`; (d) `documentos_respaldo[]` obligatorio se exige por defecto.
 
 ## Ideas futuras
 
 ### v1 pre-launch
 
-- Diseñar el modelo minimo de vinculo.
-- Prototipo en uno o dos casos representativos.
-- Mostrar bloque "Contexto institucional" en ficha de caso.
-- Permitir que el listado `/casos` muestre o filtre por organizaciones vinculadas.
+- Render visible en ficha de caso ("Contexto institucional"), una vez el corpus tenga ≥ 1 caso poblado.
+- Vista en ficha de Persona y de Organización con los vínculos en los que aparece, separando rol procesal de contexto institucional.
 
 ### v1.x
 
-- Vista por organizacion con todos los casos donde aparece por vinculo institucional, separando rol procesal de contexto.
-- Export de vinculos documentados.
-- Integracion con [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md).
+- Vista por organización con todos los casos donde aparece por vínculo institucional.
+- Vista por gobierno/legislatura (`gobierno_o_legislatura`) cruzando todos los nombramientos.
+- Export de vínculos documentados.
+- Integración con [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md) como fuente de aristas.
 
 ### Sin compromiso
 
-- Filtros agregados por tipo de administracion: estatal, autonomica, local, empresa publica, partido, fundacion, sindicato.
+- Filtros agregados por tipo de administración: estatal, autonómica, local, empresa pública, partido, fundación, sindicato.
+- Vista temporal: "vínculos vigentes en el momento del hecho X".
 
 ## Pendientes operativos
 
-- [ ] Decidir schema: entidad nueva vs campos en `Persona`/`Organizacion`.
-- [ ] Definir enum de `naturaleza` del vinculo.
-- [ ] Definir requisito de fuente para cada vinculo.
-- [ ] Revisar riesgos RGPD para vinculos familiares o de pareja.
-- [ ] Escribir nota metodologica publica.
+- [x] Decidir schema: entidad nueva vs campos en `Persona`/`Organizacion`. **Decisión 2026-05-25**: entidad nueva.
+- [x] Definir enum de `naturaleza` del vínculo. **Decisión 2026-05-25**: 15 valores cerrados (revisar tras primera ronda real de poblado).
+- [x] Definir requisito de fuente para cada vínculo. **Decisión 2026-05-25**: `documentos_respaldo[] minItems: 1` igual que `Hecho`.
+- [x] Revisar riesgos RGPD para vínculos familiares o de pareja. **Decisión 2026-05-25**: `vinculo_familiar_publico` con tres condiciones obligatorias + `notas` obligatoria + minimización máxima (no datos de hijos menores, no domicilios, no detalles privados).
+- [ ] Escribir nota metodológica pública en `/sobre` o `/cifras` cuando el corpus tenga ≥ 1 caso poblado.
+- [ ] Poblar el primer caso piloto con `/documentar-vinculos <slug>` lanzado en sub-agente paralelo.
+- [ ] Diseñar el render en UI ("Contexto institucional") una vez exista corpus.

@@ -1,0 +1,158 @@
+---
+// EstadoPublicacionBadge — badge del ciclo de vida editorial de una ficha
+// de Caso. Encapsula el enum de 7 valores en una etiqueta con color + dot,
+// sin glyph decorativo (ver AGENTS.md → "Convención de referencias y
+// citas", punto 4 sobre el sistema de badges).
+//
+// Estilos scoped en este mismo fichero para no inflar global.css ni chocar
+// con la sesión paralela `bloque-e`.
+//
+// Mapeo (ver caso.schema.json para semántica):
+//   pendiente   — caso listado pero sin trabajo iniciado (gris muy plano).
+//   borrador    — en desarrollo, NO público en producción (gris navy).
+//   beta_publica — publicable con cosillas / huecos editoriales (mostaza).
+//   en_revision — revisión interna pre-publicación (mostaza outlined).
+//   publicado   — ficha terminada al máximo de hoy (verde acreditado).
+//   retirado_temporalmente / retirado_definitivamente (granate).
+
+// Astro no soporta `export` en frontmatter de componentes .astro. Los
+// consumidores (PgCasoDetalle, PgCasos) re-declaran el type localmente
+// con los mismos 7 valores.
+type EstadoPublicacion =
+  | 'pendiente'
+  | 'borrador'
+  | 'beta_publica'
+  | 'en_revision'
+  | 'publicado'
+  | 'retirado_temporalmente'
+  | 'retirado_definitivamente';
+
+interface Props {
+  estado: EstadoPublicacion;
+  /** Si true, renderiza tamaño compacto para tablas. */
+  compact?: boolean;
+}
+
+const { estado, compact = false } = Astro.props;
+
+const LABELS: Record<EstadoPublicacion, string> = {
+  pendiente: 'Pendiente',
+  borrador: 'Borrador',
+  beta_publica: 'Beta pública',
+  en_revision: 'En revisión',
+  publicado: 'Publicado',
+  retirado_temporalmente: 'Retirado temp.',
+  retirado_definitivamente: 'Retirado',
+};
+---
+
+<span
+  class:list={[
+    'estado-pub-badge',
+    `estado-pub-badge--${estado.replace(/_/g, '-')}`,
+    compact && 'estado-pub-badge--compact',
+  ]}
+>
+  <span class="estado-pub-badge__dot" aria-hidden="true"></span>
+  <span class="estado-pub-badge__label">{LABELS[estado]}</span>
+</span>
+
+<style>
+  .estado-pub-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    padding: 0.2em 0.65em 0.2em 0.55em;
+    border-radius: 2px;
+    border: 1px solid;
+    background: var(--color-surface);
+    white-space: nowrap;
+  }
+
+  .estado-pub-badge--compact {
+    font-size: 0.72rem;
+    padding: 0.15em 0.5em 0.15em 0.4em;
+  }
+
+  .estado-pub-badge__dot {
+    flex-shrink: 0;
+    inline-size: 8px;
+    block-size: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* --- Estados --------------------------------------------------------- */
+
+  .estado-pub-badge--pendiente {
+    color: var(--color-fg-muted, #6c6f73);
+    border-color: var(--color-border, #cfd1d4);
+    background: var(--color-surface);
+    opacity: 0.85;
+  }
+
+  .estado-pub-badge--borrador {
+    color: var(--color-rol-investigado);
+    border-color: var(--color-rol-investigado);
+    background: var(--color-surface);
+  }
+
+  .estado-pub-badge--beta-publica {
+    color: #6b4d00;
+    border-color: var(--color-accent-secondary-border);
+    background: var(--color-accent-secondary-soft);
+  }
+
+  .estado-pub-badge--en-revision {
+    color: #6b4d00;
+    border-color: var(--color-accent-secondary-border);
+    background: var(--color-surface);
+    border-style: dashed;
+  }
+
+  .estado-pub-badge--publicado {
+    color: var(--color-acreditado);
+    border-color: var(--color-acreditado-border);
+    background: var(--color-acreditado-bg);
+  }
+
+  .estado-pub-badge--retirado-temporalmente,
+  .estado-pub-badge--retirado-definitivamente {
+    color: #8e2424;
+    border-color: #cf9a9a;
+    background: #f7e6e6;
+  }
+
+  /* Dark mode: el global.css redefine los `_bg` y `_soft` en oscuro; aquí
+     pinto sólo los foregrounds claros equivalentes para mantener contraste. */
+  @media (prefers-color-scheme: dark) {
+    .estado-pub-badge--pendiente {
+      color: var(--color-fg-subtle, var(--color-fg-muted));
+      border-color: var(--color-border);
+    }
+    .estado-pub-badge--borrador {
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+    .estado-pub-badge--beta-publica,
+    .estado-pub-badge--en-revision {
+      color: var(--color-accent-secondary);
+      border-color: var(--color-accent-secondary-border);
+    }
+    .estado-pub-badge--publicado {
+      color: #9ec5a7;
+      border-color: var(--color-acreditado-border);
+    }
+    .estado-pub-badge--retirado-temporalmente,
+    .estado-pub-badge--retirado-definitivamente {
+      color: #e0a4a4;
+      border-color: #5a2929;
+      background: #2a1414;
+    }
+  }
+</style>

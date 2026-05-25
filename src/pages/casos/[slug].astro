@@ -5,9 +5,22 @@ import PgCasoDetalle from '@/components/pages/PgCasoDetalle.astro';
 // Generación estática de una página por caso. La fuente de los slugs es la
 // collection `casos`; el id de cada entry ya coincide con el slug del YAML
 // (ver content.config.ts → generateId).
+//
+// En producción (`import.meta.env.PROD`) los casos con
+// `estado_publicacion` en `pendiente` o `borrador` NO generan ruta — la
+// URL responde 404. Siguen apareciendo en la tabla /casos como fila
+// gris no clickable para que el lector vea que se están trabajando. En
+// dev local todas las rutas existen para que el maintainer pueda
+// iterar sobre fichas en construcción.
 export async function getStaticPaths() {
+  // Variables locales: Astro extrae getStaticPaths a un módulo aparte y
+  // pierde las referencias del scope del componente.
+  const ESTADOS_BLOQUEADOS_EN_PROD = ['pendiente', 'borrador'];
   const casos = await getCollection('casos');
-  return casos.map((caso) => ({
+  const visibles = import.meta.env.PROD
+    ? casos.filter((c) => !ESTADOS_BLOQUEADOS_EN_PROD.includes(c.data.estado_publicacion))
+    : casos;
+  return visibles.map((caso) => ({
     params: { slug: caso.id },
     props: { caso },
   }));

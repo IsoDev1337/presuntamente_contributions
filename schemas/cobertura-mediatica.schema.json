@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presuntamente.org/schemas/cobertura-mediatica.schema.json",
+  "title": "CoberturaMediatica",
+  "description": "Corpus rastreado de noticias publicadas sobre un Caso, separado del corpus de Documentos que respaldan Hechos. Una entrada por Caso, con metodología explícita y lista de noticias deduplicadas. NO sustituye a los Documentos N4 que sostienen Hechos: este corpus mide cobertura pública del caso, no fundamenta presuntamente.org editorialmente. Ver docs/web/features/cobertura-mediatica-general.md.",
+  "type": "object",
+  "required": [
+    "caso_id",
+    "fecha_rastreo",
+    "metodologia",
+    "estado",
+    "noticias"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "caso_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+(/[a-z0-9-]+)*$",
+      "description": "Slug del Caso al que pertenece el corpus."
+    },
+
+    "fecha_rastreo": {
+      "type": "string",
+      "format": "date",
+      "description": "Fecha de la última actualización del corpus. La cobertura se reanaliza periódicamente; esta fecha es la del último barrido completo."
+    },
+
+    "metodologia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["terminos_busqueda", "ventanas_temporales"],
+      "properties": {
+        "terminos_busqueda": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "description": "Términos canónicos y aliases buscados. Ej. ['Begoña Gómez', 'cátedra UCM Barrabés']."
+        },
+        "ventanas_temporales": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["desde"],
+            "additionalProperties": false,
+            "properties": {
+              "desde": { "type": "string", "format": "date" },
+              "hasta": { "type": "string", "format": "date" },
+              "notas": { "type": "string" }
+            }
+          }
+        },
+        "fuentes_buscadas": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Listado de medios/agregadores rastreados. Ej. ['elpais.com', 'elmundo.es', 'eldiario.es', 'abc.es', 'publico.es', 'okdiario.com', 'theobjective.com']. Si vacío, se asume búsqueda transversal vía buscador."
+        },
+        "criterios_inclusion": {
+          "type": "string",
+          "description": "Criterio editorial declarado de qué piezas se incluyen. Ej. 'Sólo piezas que mencionan el caso en titular o lead.'"
+        },
+        "criterios_exclusion": {
+          "type": "string",
+          "description": "Criterio editorial declarado de qué se excluye. Ej. 'Republicaciones de pieza de agencia idéntica salvo por medio; columnas de opinión no firmadas; secciones de chistes y memes.'"
+        },
+        "notas": {
+          "type": "string",
+          "description": "Notas metodológicas adicionales: limitaciones, paywalls, sesgos conocidos del rastreo."
+        }
+      }
+    },
+
+    "estado": {
+      "type": "string",
+      "enum": ["pendiente", "parcial", "completo"],
+      "description": "Estado del rastreo. Espeja el enum de estado_ficha[cobertura_mediatica_general] del Caso."
+    },
+
+    "ultima_revision_editorial": {
+      "type": "string",
+      "format": "date"
+    },
+
+    "noticias": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/noticia" },
+      "default": []
+    }
+  },
+
+  "$defs": {
+    "noticia": {
+      "type": "object",
+      "required": [
+        "id",
+        "url",
+        "medio_id",
+        "titular",
+        "fecha_publicacion",
+        "tipo_pieza"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Slug local dentro del corpus del caso. Ej. 'elpais-auto-peinado-2026-04-13'."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "medio_id": {
+          "type": "string",
+          "description": "Slug de Organizacion con tipo: medio_comunicacion. Si el medio no existe en content/organizaciones/, hay que crearlo primero."
+        },
+        "titular": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Titular literal de la pieza. No reescribir ni paraphrase."
+        },
+        "subtitulo": { "type": "string" },
+        "fecha_publicacion": {
+          "type": "string",
+          "format": "date"
+        },
+        "autor": {
+          "type": "string",
+          "description": "Si la firma es 'Redacción' o agencia (EFE, Europa Press), reflejarlo literal."
+        },
+        "resumen": {
+          "type": "string",
+          "description": "Resumen neutro de 1-3 frases. Verbos prohibidos del P-09 vetados. Es un resumen, no un titular alternativo."
+        },
+        "url_archivo": {
+          "type": "string",
+          "format": "uri",
+          "description": "Snapshot en archive.org o equivalente. Mismo principio V-13."
+        },
+        "tipo_pieza": {
+          "type": "string",
+          "enum": [
+            "noticia",
+            "reportaje",
+            "entrevista",
+            "analisis",
+            "editorial",
+            "opinion",
+            "columna",
+            "pieza_agencia",
+            "suelto",
+            "tv_radio",
+            "investigacion_periodistica"
+          ]
+        },
+        "relevancia_editorial": {
+          "type": "string",
+          "enum": ["capital", "alta", "media", "baja"],
+          "description": "Criterio editorial: portada, exclusiva, primera ruptura factual = alta/capital; pieza derivada, agencia, suelto = media/baja."
+        },
+        "pieza_referenciada_id": {
+          "type": "string",
+          "description": "Si esta pieza es una republicación o derivada de otra del propio corpus, apunta a su id. Permite dedup transparente."
+        },
+        "menciones": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["titular", "lead", "cuerpo", "destacado", "pie_foto"]
+          },
+          "description": "Dónde aparece el caso o sus actores. Útil para distinguir cobertura central de mención marginal."
+        },
+        "fecha_rastreo": {
+          "type": "string",
+          "format": "date",
+          "description": "Fecha en que se añadió/verificó esta noticia en el corpus."
+        },
+        "notas": { "type": "string" }
+      }
+    }
+  }
+}

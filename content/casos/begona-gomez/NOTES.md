@@ -72,6 +72,22 @@ Ambos cierres dejan en pie la presunción de inocencia y las trayectorias proces
 
 ---
 
+## Hallazgos del rastreo de cobertura mediática — 2026-05-25
+
+Sesión `rastrear-cobertura` v0 sobre el corpus `content/cobertura-mediatica/begona-gomez.yaml`
+(29 piezas, 14 medios, 5 ventanas temporales). Hallazgos para PR4 que no estaban en la ficha:
+
+1. **Francisco Martín Aguirre (delegado del Gobierno en Madrid) fue investigado e imputado
+   en este caso.** Confirmado por múltiples piezas de cobertura (2025-09-24 eldiario.es, 2025-11-26 publico.es, 2025-05-19 infobae). A noviembre de 2025, la Fiscalía pidió archivar su causa junto a la de Begoña Gómez. Precisa modelar: nueva Persona `francisco-martin-aguirre`, roles `investigado`→`procesado`(?) + trayectoria procesal, hitos correspondientes. Antes de modelarlo, contrastar si la causa fue finalmente archivada o si siguió adelante hasta el auto de procesamiento de abr 2026.
+
+2. **Air Europa / rescate SEPI como línea de investigación archivada.** El auto de la AP
+   Madrid de mayo 2025 descartó la línea sobre el rescate a Air Europa (Barrabés ↔ SEPI ↔ Begoña Gómez). No está modelado como Hecho en la ficha. Podría merecer un Hecho de tipo `exculpatorio` con `vigencia: superado`, similar al del intrusismo archivado en el auto de procesamiento. Fuente: infobae 2025-05-19.
+
+3. **Judit González** (alto cargo de Moncloa cuya causa fue archivada por Peinado) aparece
+   mencionada en la cobertura como precedente usado por la Fiscalía para pedir el archivo de la causa de Cristina Álvarez. Verificar si merece modelar su trayectoria como persona con rol `investigado → desimputado`.
+
+---
+
 ## Pendiente para PR4 y siguientes
 
 - **Archive.org / archive.ph mirrors** para los documentos N4 (ahora 19 tras PR3: 6 de PR1 + 7 de PR2 + 6 de PR3; el escrito de la Fiscalía es N2 y no requiere mirror obligatorio aunque conviene). WebFetch no puede llamar a archive.org desde el entorno del agente; el maintainer debe lanzar el archivado y completar `url_archivo`. Mirror obligatorio para fuentes N4 según doc 01, "Enums catalogados".

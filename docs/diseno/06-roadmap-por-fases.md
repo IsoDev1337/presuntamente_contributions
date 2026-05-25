@@ -157,6 +157,23 @@ Antes de pasar de una fase a la siguiente, validar:
 - Performance budget cumplido (<2s LCP en 3G).
 - **Tu propio ánimo y disponibilidad para seguir.** Si en Fase 2 ves que se come fines de semana enteros sin compensación, parar a recalibrar antes de Fase 3.
 
+### Estados de ciclo de vida por ficha de caso
+
+Dentro de cada fase, el avance de una ficha concreta sigue su propio ciclo de vida modelado por `Caso.estado_publicacion` (ver [doc 01 — "Enums y catálogos"](01-modelo-de-datos.md#enums-y-catálogos), entrada `EstadoPublicacion`). Los cuatro tramos relevantes para fases tempranas son:
+
+1. **`pendiente`** — caso anunciado en el inventario pero todavía sin trabajo. Aparece en `/casos` como fila gris no clickable; la ruta `/casos/<slug>` no se genera en producción. Útil para indicar que un procedimiento conocido está en cola sin abrir todavía expediente editorial.
+2. **`borrador`** — esqueleto en desarrollo. Misma visibilidad que `pendiente` (listado + no clickable) pero ya con investigación arrancada. Sólo el maintainer y los agentes en `git worktree` lo ven completo en dev local.
+3. **`beta_publica`** — ficha presentable al público. Es el estado en el que la ficha del caso pasa a ser accesible bajo dominio, aunque pueda tener cosillas de UX, secciones pendientes (vínculos, cobertura) o pequeños huecos editoriales. La etiqueta es honestidad pública: "esto se está terminando, pero ya se puede leer".
+4. **`publicado`** — ficha terminada al máximo de lo que el producto sabe hacer hoy. No implica caso jurídico cerrado.
+
+La promoción entre estados es decisión editorial del maintainer, no automática. El `estado_ficha` (checklist público de 10 chequeos editoriales) es información complementaria que ayuda a decidir, pero no fuerza la transición.
+
+**Encaje con las fases del roadmap**:
+
+- **Fase 1**: el caso Plus Ultra debe estar al cierre en `beta_publica` (o `publicado` si la maintainer ya lo ve cerrado). Los demás casos visibles en el inventario aún pueden estar en `pendiente`.
+- **Fase 2**: 5-6 casos en `beta_publica` o `publicado`. El resto del catálogo que vaya entrando se modela como `pendiente` o `borrador` según avance.
+- **Fase 3+**: la mayoría de los casos visibles en producción están en `publicado`. Los nuevos casos que entren empiezan en `pendiente` y promocionan conforme se trabajan.
+
 ---
 
 ## Esfuerzo total estimado (broad strokes) {#esfuerzo-total-estimado-broad-strokes}

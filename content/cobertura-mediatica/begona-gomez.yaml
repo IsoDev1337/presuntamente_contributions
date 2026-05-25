@@ -1,0 +1,563 @@
+# Cobertura mediática general — caso begona-gomez
+# Corpus rastreado con la skill /rastrear-cobertura v0.
+# Separado del corpus de Documentos que respaldan Hechos (content/documentos/).
+# Ver docs/web/features/cobertura-mediatica-general.md
+
+caso_id: begona-gomez
+fecha_rastreo: "2026-05-25"
+
+metodologia:
+  terminos_busqueda:
+    - "Begoña Gómez"
+    - "caso Begoña Gómez"
+    - "Juan Carlos Peinado"
+    - "cátedra UCM Barrabés"
+    - "Manos Limpias Begoña"
+  ventanas_temporales:
+    - desde: "2024-04-01"
+      hasta: "2024-06-30"
+      notas: "Apertura del caso: denuncia Manos Limpias (8 abr), auto incoación (16 abr), revelación pública (24 abr), recurso Fiscalía archivo (25 abr)."
+    - desde: "2024-07-01"
+      hasta: "2024-12-31"
+      notas: "Comparecencia Sánchez (22 jul), imputación Goyache (22 jul), análisis instrucción. Imputación Güemes (18 nov), recurso Fiscalía contra imputación Güemes (3 dic)."
+    - desde: "2025-01-01"
+      hasta: "2025-06-30"
+      notas: "Ofensiva de la defensa, escrito Güemes, desimputación Goyache + Güemes (13/16 may), archivo Air Europa."
+    - desde: "2025-07-01"
+      hasta: "2025-12-31"
+      notas: "Varapalos al instructor, rechazo Supremo a imputar Bolaños, anuncio jurado malversación (sep), acumulación pieza (oct), Fiscalía pide archivo (nov), debate sobre conducta judicial."
+    - desde: "2026-01-01"
+      hasta: "2026-05-25"
+      notas: "AP Madrid frena jurado (feb), auto procesamiento cuatro delitos (13 abr), acusaciones populares presentan escritos (abr-may), escrito conclusiones defensa (18 may)."
+  fuentes_buscadas:
+    - infobae.com
+    - eldiario.es
+    - publico.es
+    - libertaddigital.com
+    - okdiario.com
+    - theobjective.com
+    - newtral.es
+    - el-espanol.com
+    - el-independiente.com
+    - el-debate.com
+    - el-plural.com
+    - moncloa.com
+    - maldita.es
+    - vozpopuli.com
+  criterios_inclusion: >
+    Se incluyen piezas que mencionan el caso en el titular o en el lead. Se incluyen
+    noticias, reportajes, análisis y columnas firmadas. Se incluyen piezas de agencia
+    republicadas cuando el titular o lead las identifica claramente como del caso. No
+    se incluyen editoriales anónimos ni republications sin autoría diferenciada.
+  criterios_exclusion: >
+    Se excluyen menciones de pasada en piezas sobre otros temas. Se excluyen
+    republications palabra por palabra de agencia sin valor añadido identificable.
+    Se excluye El País (elpais.com) en esta pasada: el dominio no es accesible
+    vía WebFetch en el entorno del agente. Se excluyen El Mundo (elmundo.es),
+    ABC (abc.es) y La Vanguardia (lavanguardia.com) por no estar modelados como
+    Organizacion en el inventario y no haber sido objeto de búsqueda sistemática
+    en este rastreo.
+  notas: >
+    Rastreo inicial v0 sobre cinco ventanas temporales (abr 2024 — may 2026).
+    El caso tiene cobertura de prácticamente todos los medios nacionales; este
+    corpus es un muestreo sistemático, no un listado exhaustivo. El País, El Mundo
+    y ABC tienen cobertura propia y relevante no incluida aquí por las limitaciones
+    de acceso señaladas. Las url_archivo quedarán vacías hasta que el hook
+    pre-commit las archive en web.archive.org al cerrar la sesión con commit.
+    Francisco Martín Aguirre (delegado del Gobierno en Madrid) fue investigado
+    e imputado en el caso — hallazgo anotado en NOTES.md del caso para modelar
+    en PR4 como persona + roles. Air Europa (vínculo Barrabés-SEPI) también fue
+    línea de investigación archivada — también en NOTES.md.
+
+estado: parcial
+
+noticias:
+
+  # ── VENTANA 1: APERTURA (abr 2024) ────────────────────────────────────────
+
+  - id: infobae-apertura-diligencias-2024-04-24
+    url: "https://www.infobae.com/espana/2024/04/24/un-juzgado-de-madrid-abre-diligencias-contra-begona-gomez-por-la-presunta-comision-de-trafico-de-influencias/"
+    medio_id: infobae
+    titular: "Un juzgado de Madrid abre diligencias contra Begoña Gómez por la presunta comisión de tráfico de influencias"
+    fecha_publicacion: "2024-04-24"
+    autor: "Marcos García Quesada"
+    resumen: >
+      El Juzgado de Instrucción nº 41 de Madrid abre investigación contra Begoña Gómez
+      tras la denuncia de Manos Limpias por presuntos delitos de tráfico de influencias
+      y corrupción en los negocios, vinculados a reuniones con empresas que
+      posteriormente recibieron fondos públicos. La apertura de diligencias no implica
+      que la investigación concluya en juicio.
+    tipo_pieza: noticia
+    relevancia_editorial: capital
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: theobjective-manos-limpias-querella-2024-04-24
+    url: "https://theobjective.com/espana/tribunales/2024-04-24/manos-limpias-querella-denuncia-gomez/"
+    medio_id: the-objective
+    titular: "Manos Limpias convertirá en querella la denuncia que investiga a Begoña Gómez"
+    fecha_publicacion: "2024-04-24"
+    autor: "Paula Huarte"
+    resumen: >
+      Un juzgado de Madrid abre diligencias previas contra la esposa del presidente
+      Pedro Sánchez para investigar sus vínculos con empresas que posteriormente
+      obtuvieron contratos y fondos públicos. La organización Manos Limpias convertirá
+      su denuncia inicial en querella formal.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: maldita-querella-explicacion-2024-04-25
+    url: "https://maldita.es/malditateexplica/20240425/denuncia-manos-limpias-begona-gomez/"
+    medio_id: maldita-es
+    titular: "En qué consiste la querella de Manos Limpias contra Begoña Gómez por supuesto tráfico de influencias"
+    fecha_publicacion: "2024-04-25"
+    resumen: >
+      Un juzgado de Madrid abrió diligencias previas contra la esposa del presidente
+      por una querella de Manos Limpias que alega delitos de tráfico de influencias
+      basándose en publicaciones periodísticas sobre supuestas conexiones con
+      empresarios beneficiados con fondos públicos. La Fiscalía solicitó el archivo
+      de la causa el mismo día.
+    tipo_pieza: analisis
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: infobae-fiscalia-archivo-2024-04-25
+    url: "https://www.infobae.com/espana/2024/04/25/la-fiscalia-pide-archivar-la-causa-abierta-contra-begona-gomez-tras-la-denuncia-de-manos-limpias/"
+    medio_id: infobae
+    titular: "La Fiscalía pide archivar la causa abierta contra Begoña Gómez tras la denuncia de Manos Limpias"
+    fecha_publicacion: "2024-04-25"
+    autor: "Jose Sánchez"
+    resumen: >
+      La Fiscalía Provincial de Madrid solicita al juzgado el archivo de la causa
+      por presuntos delitos de tráfico de influencias y corrupción en los negocios.
+      El Ministerio Público presenta recurso de apelación contra la decisión del
+      juez, que abrió diligencias previas a raíz de una denuncia basada en
+      informaciones periodísticas.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  # ── VENTANA 2: IMPUTACIONES Y ANÁLISIS INSTRUCCIÓN (jul–dic 2024) ──────────
+
+  - id: eldiario-caso-peinado-columna-2024-07-23
+    url: "https://www.eldiario.es/cultura/caso-begona-gomez-caso-juez-peinado_129_11543008.html"
+    medio_id: eldiario-es
+    titular: "De 'caso Begoña Gómez' a 'caso juez Peinado'"
+    fecha_publicacion: "2024-07-23"
+    autor: "Arsenio Escolar"
+    resumen: >
+      La columna argumenta que existen más indicios de irregularidades en la actuación
+      del juez Juan Carlos Peinado que de delito en lo investigado sobre Begoña Gómez.
+      Escolar analiza cómo la investigación inicial podría transformarse en un caso
+      centrado en la conducta judicial del magistrado.
+    tipo_pieza: columna
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: moncloa-goyache-contradicciones-2024-09-11
+    url: "https://www.moncloa.com/2024/09/11/caso-begona-gomez-goyache-goni-2858623/"
+    medio_id: moncloa-com
+    titular: "Caso Begoña Gómez: el juez Peinado detectó las contradicciones de Goyache Goñi"
+    fecha_publicacion: "2024-09-11"
+    autor: "Alvaro J. Medina"
+    resumen: >
+      El rector de la Universidad Complutense fue imputado por el juez Peinado tras
+      detectar inconsistencias en sus declaraciones sobre la creación de la cátedra
+      extraordinaria. Goyache afirmó haber tenido solo una reunión presencial con
+      Begoña Gómez, pero sus versiones variaron ante el magistrado.
+    tipo_pieza: noticia
+    relevancia_editorial: media
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: newtral-cronologia-caso-2024-10-07
+    url: "https://www.newtral.es/caso-begona-gomez/20241007/"
+    medio_id: newtral
+    titular: "Guía del caso Begoña Gómez: cronología de la investigación judicial e imputados clave"
+    fecha_publicacion: "2024-10-07"
+    autor: "Paula Del Toro y Rosa Soto"
+    resumen: >
+      Pieza de verificación que documenta cronológicamente la evolución del proceso
+      judicial desde la denuncia inicial hasta septiembre de 2025, cuando el juez
+      propone que sea juzgada ante un jurado popular por malversación de fondos públicos.
+      Artículo actualizado periódicamente; versión rastreada la de octubre de 2024.
+    tipo_pieza: reportaje
+    relevancia_editorial: capital
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+    notas: "Actualizado por el medio con fecha 25 de septiembre de 2025. Es una guía viva."
+
+  - id: libertad-digital-jurado-popular-2024-10-08
+    url: "https://www.libertaddigital.com/espana/2024-10-08/begona-gomez-sera-juzgada-jurado-popular-procesada-trafico-influencias-7171823/"
+    medio_id: libertad-digital
+    titular: "Begoña Gómez será juzgada por un jurado popular si es procesada por tráfico de influencias"
+    fecha_publicacion: "2024-10-08"
+    autor: "Miguel Ángel Pérez"
+    resumen: >
+      La Audiencia Provincial de Madrid respalda la investigación del juez Peinado
+      sobre Begoña Gómez por tráfico de influencias y corrupción en los negocios,
+      descartando que sea prospectiva. Si resulta procesada por tráfico de influencias,
+      será juzgada por un tribunal compuesto por nueve ciudadanos y un magistrado.
+    tipo_pieza: noticia
+    relevancia_editorial: media
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  # ── VENTANA 3: DESIMPUTACIONES (ene–jun 2025) ──────────────────────────────
+
+  - id: eldiario-guemes-archivo-falseo-2025-02-10
+    url: "https://www.eldiario.es/politica/guemes-pide-archivo-causa-peinado-falseo-declaracion-testigo-caso-begona-gomez_1_12040067.html"
+    medio_id: eldiario-es
+    titular: "Güemes pide el archivo de la causa contra él porque Peinado falseó la declaración de una testigo en el caso de Begoña Gómez"
+    fecha_publicacion: "2025-02-10"
+    autor: "Pedro Águeda"
+    resumen: >
+      El presidente del Centro de Estudios del IE solicita archivar su caso alegando
+      que el juez Peinado tergiversó las declaraciones de la jefa de Recursos Humanos
+      para acusarlo de mentir. La defensa sostiene que la testigo nunca afirmó que
+      Gómez fuera contratada por ser esposa del presidente del Gobierno.
+    tipo_pieza: noticia
+    relevancia_editorial: media
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: eldiario-acusaciones-ultras-excesos-2025-02-11
+    url: "https://www.eldiario.es/politica/acusaciones-ultras-caso-begona-gomez-empiezan-preocuparse-excesos-juez-peinado_1_12045331.html"
+    medio_id: eldiario-es
+    titular: "Las acusaciones ultras en el caso de Begoña Gómez empiezan a preocuparse por los excesos del juez Peinado"
+    fecha_publicacion: "2025-02-11"
+    autor: "Pedro Águeda"
+    resumen: >
+      Vox y asociaciones ultras presentan un recurso expresando preocupación por la
+      imputación de una asesora de Moncloa sin suficiente fundamentación legal,
+      temiendo que una nulidad arruine la causa. Advierten al juez Peinado sobre
+      las consecuencias de no motivar adecuadamente sus decisiones.
+    tipo_pieza: analisis
+    relevancia_editorial: media
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: infobae-auto-ap-dos-investigados-menos-2025-05-19
+    url: "https://www.infobae.com/espana/2025/05/19/como-queda-el-caso-begona-gomez-con-el-ultimo-auto-de-la-audiencia-de-madrid-descartado-el-rescate-a-air-europa-y-dos-investigados-menos/"
+    medio_id: infobae
+    titular: "Cómo queda el 'caso Begoña Gómez' con el último auto de la Audiencia de Madrid: descartado el rescate a Air Europa y dos investigados menos"
+    fecha_publicacion: "2025-05-19"
+    autor: "Marcos García Quesada"
+    resumen: >
+      La Audiencia Provincial de Madrid emitió una resolución desestimando la
+      investigación sobre el rescate a Air Europa y revocando la condición de
+      investigados a Joaquín Goyache y Juan José Güemes por falta de indicios
+      criminales suficientes. El procedimiento continúa contra Begoña Gómez, Juan
+      Carlos Barrabés, Cristina Álvarez y Francisco Martín Aguirre.
+    tipo_pieza: reportaje
+    relevancia_editorial: capital
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+    notas: "Confirma que Francisco Martín Aguirre (delegado del Gobierno en Madrid) seguía investigado a mayo de 2025. Hallazgo pendiente de modelar en PR4 del caso."
+
+  # ── VENTANA 4: FASE INTERMEDIA Y VARAPALOS (jul–dic 2025) ──────────────────
+
+  - id: eldiario-fiscalia-bolanos-2025-07-03
+    url: "https://www.eldiario.es/politica/fiscalia-rechaza-peticion-juez-peinado-imputar-ministro-bolanos-caso-begona-gomez_1_12434900.html"
+    medio_id: eldiario-es
+    titular: "La Fiscalía rechaza la petición del juez Peinado de imputar al ministro Bolaños en el caso contra Begoña Gómez"
+    fecha_publicacion: "2025-07-03"
+    autor: "Europa Press"
+    resumen: >
+      El Ministerio Público se opone a la solicitud del juez Peinado de investigar al
+      ministro Félix Bolaños por presuntos delitos de falso testimonio y malversación.
+      La Fiscalía argumenta en contra de la "exposición razonada" presentada por el
+      magistrado, que acusa a Bolaños de incumplimientos relacionados con la
+      contratación de Cristina Álvarez.
+    tipo_pieza: pieza_agencia
+    relevancia_editorial: media
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: eldiario-peinado-estrella-supremo-2025-07-15
+    url: "https://www.eldiario.es/politica/juez-peinado-estrella-supremo-implicar-moncloa-caso-begona-gomez_1_12466438.html"
+    medio_id: eldiario-es
+    titular: "El juez Peinado se estrella contra el Supremo en su intento de implicar a Moncloa en el caso contra Begoña Gómez"
+    fecha_publicacion: "2025-07-15"
+    autor: "Alberto Pozas"
+    resumen: >
+      El Tribunal Supremo rechazó la petición del juez Peinado de imputar al ministro
+      Félix Bolaños, criticando que la acusación se basaba en "meras hipótesis" sin
+      pruebas. El tribunal también reprochó al magistrado haber omitido información
+      relevante en su exposición razonada.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: publico-chapuzas-peinado-2025-07-19
+    url: "https://www.publico.es/politica/tribunales/grandes-chapuzas-juez-peinado-registros-ilegales-imputaciones-proceden-despistes-principiante.html"
+    medio_id: publico-es
+    titular: "Las grandes chapuzas del juez Peinado: registros ilegales, imputaciones que no proceden y 'despistes' de principiante"
+    fecha_publicacion: "2025-07-19"
+    autor: "Víctor López"
+    resumen: >
+      El magistrado ha archivado dos causas por agotar plazos de investigación sin
+      ampliarlos oportunamente. Diversos tribunales superiores han anulado sus
+      decisiones en causas sobre Begoña Gómez, registros a empresarios y tentativas
+      de imputación a ministros.
+    tipo_pieza: reportaje
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: eldiario-peinado-comunica-jurado-malversacion-2025-09-24
+    url: "https://www.eldiario.es/politica/juez-peinado-envia-begona-gomez-juicio-malversacion-jurado-popular_1_12627406.html"
+    medio_id: eldiario-es
+    titular: "El juez Peinado comunica a Begoña Gómez que será juzgada por malversación ante un jurado popular"
+    fecha_publicacion: "2025-09-24"
+    autor: "Alberto Pozas"
+    resumen: >
+      El magistrado Juan Carlos Peinado anuncia que la esposa del presidente, su
+      asistente y el delegado del Gobierno en Madrid serán juzgados por malversación
+      de fondos públicos. El juez citará a los tres imputados el sábado para
+      informarles de los cargos relacionados con trabajos realizados por la asistente
+      en la cátedra universitaria.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: eldiario-peinado-acumula-sola-pieza-2025-10-20
+    url: "https://www.eldiario.es/politica/juez-peinado-acata-orden-audiencia-madrid-acumula-sola-pieza-causa-begona-gomez_1_12699746.html"
+    medio_id: eldiario-es
+    titular: "El juez Peinado acata la orden de la Audiencia de Madrid y acumula en una sola pieza la causa contra Begoña Gómez"
+    fecha_publicacion: "2025-10-20"
+    autor: "Europa Press"
+    resumen: >
+      El juez ha unificado la investigación contra Begoña Gómez en una única pieza
+      tras ser ordenado por la Audiencia Provincial, que consideró prematura la
+      separación anterior. La acumulación abarca delitos de tráfico de influencias,
+      corrupción, apropiación indebida e intrusismo.
+    tipo_pieza: pieza_agencia
+    relevancia_editorial: media
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: publico-fiscalia-pide-archivar-2025-11-26
+    url: "https://www.publico.es/politica/fiscalia-pide-archivar-causa-begona-gomez-francisco-martin.html"
+    medio_id: publico-es
+    titular: "La Fiscalía pide archivar la causa contra Begoña Gómez y Francisco Martín"
+    fecha_publicacion: "2025-11-26"
+    autor: "EFE"
+    resumen: >
+      El Ministerio Público se adhiere a los recursos de Begoña Gómez y Francisco
+      Martín contra la decisión del juez Peinado de continuar investigándoles. La
+      Fiscalía argumenta que no hay elementos incriminatorios suficientes y señala
+      inconsistencias, especialmente tras el archivo de la causa para Judit González,
+      que ocupaba un puesto equivalente.
+    tipo_pieza: pieza_agencia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+    notas: "Francisco Martín es el delegado del Gobierno en Madrid, pendiente de modelar en PR4."
+
+  - id: elindependiente-desmonta-relato-2025-12-06
+    url: "https://www.elindependiente.com/espana/2025/12/06/caso-begona-gomez-desmonta-relato-justicia-politizada/"
+    medio_id: el-independiente
+    titular: "El 'caso Begoña Gómez' desmonta el relato de una Justicia politizada"
+    fecha_publicacion: "2025-12-06"
+    autor: "Miguel Triviño"
+    resumen: >
+      Las resoluciones de la Audiencia Provincial de Madrid y del Tribunal Supremo
+      han limitado y acotado la investigación del juez Peinado, archivando imputaciones
+      y descartando nuevas líneas de pesquisa. El caso ilustra que los contrapesos
+      del sistema judicial funcionan, corrigiendo decisiones poco fundamentadas
+      mediante instancias superiores.
+    tipo_pieza: analisis
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: eldiario-ap-avala-malversacion-2025-12-19
+    url: "https://www.eldiario.es/politica/audiencia-provincial-avala-juez-peinado-imputase-begona-gomez-asistente-malversacion_1_12859563.html"
+    medio_id: eldiario-es
+    titular: "La Audiencia Provincial avala que el juez Peinado imputase a Begoña Gómez y su asistente por malversación"
+    fecha_publicacion: "2025-12-19"
+    autor: "Alberto Pozas"
+    resumen: >
+      La Audiencia Provincial de Madrid confirmó la imputación de Begoña Gómez y
+      Cristina Álvarez por malversación de caudales públicos, considerando sospechoso
+      que la asesora no fuera una funcionaria experta en protocolo. El tribunal avala
+      continuar investigando si Álvarez excedió sus funciones para beneficio personal
+      de Gómez.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: publico-13-varapalos-2025-12-22
+    url: "https://www.publico.es/politica/tribunales/superiores-peinado-le-han-corregido-13-veces-causa-begona-gomez-falta-indicios-motivacion.html"
+    medio_id: publico-es
+    titular: "Los superiores de Peinado ya le han corregido 13 veces en la causa contra Begoña Gómez por falta de \"indicios\" y de \"motivación\""
+    fecha_publicacion: "2025-12-22"
+    autor: "Ana María Pascual"
+    resumen: >
+      La Audiencia Provincial de Madrid ha revocado una orden del juez Peinado que
+      solicitaba todos los correos de Begoña Gómez desde 2018, considerando que
+      carecía de "proporcionalidad, necesidad e idoneidad". Son ya 13 las ocasiones
+      en que instancias superiores han corregido al juez instructor en esta causa
+      desde su apertura en abril de 2024.
+    tipo_pieza: reportaje
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: vozpopuli-recta-final-2025-12-28
+    url: "https://www.vozpopuli.com/tribunales/el-caso-begona-gomez-encara-su-recta-final-tres-acusados-cinco-delitos-y-una-veintena-de-recursos.html"
+    medio_id: vozpopuli
+    titular: "El 'caso Begoña Gómez' encara su recta final: tres acusados, cinco delitos y una veintena de recursos"
+    fecha_publicacion: "2025-12-28"
+    autor: "Blanca Valdés Mañas"
+    resumen: >
+      La investigación judicial se aproxima a su conclusión, con tres imputados y
+      múltiples recursos presentados. El juez Peinado tiene previsto jubilarse en
+      septiembre de 2026 sin prorrogar nuevamente la fase de instrucción.
+    tipo_pieza: reportaje
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+    notas: "Refiere cinco delitos (incluido intrusismo); el auto de procesamiento de abr 2026 archivó el intrusismo, quedando cuatro."
+
+  # ── VENTANA 5: PROCESAMIENTO (ene–may 2026) ────────────────────────────────
+
+  - id: eldebate-paso-a-paso-2026-01-03
+    url: "https://www.eldebate.com/espana/20260103/caso-begona-gomez-paso-paso-desde-imputacion-hasta-posible-juicio-ante-jurado-popular_358556.html"
+    medio_id: el-debate
+    titular: "El caso Begoña Gómez, paso a paso: desde su imputación hasta un posible juicio ante un jurado popular"
+    fecha_publicacion: "2026-01-03"
+    autor: "Gonzaga Durán"
+    resumen: >
+      La esposa del presidente Pedro Sánchez está imputada por presuntos delitos de
+      tráfico de influencias y corrupción, enfrentando una pena máxima de varios años
+      de cárcel. El proceso judicial comenzó en abril de 2024 tras una denuncia de
+      Manos Limpias y continúa con investigaciones sobre contratos públicos y la
+      cátedra universitaria que codirigía.
+    tipo_pieza: reportaje
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: infobae-ap-frena-jurado-popular-2026-02-23
+    url: "https://www.infobae.com/espana/agencias/2026/02/23/la-audiencia-provincial-frena-la-decision-de-peinado-de-que-el-caso-begona-gomez-acabe-en-un-jurado-popular/"
+    medio_id: infobae
+    titular: "La Audiencia Provincial frena la decisión de Peinado de que el 'caso Begoña Gómez' acabe en un jurado popular"
+    fecha_publicacion: "2026-02-23"
+    autor: "Newsroom Infobae"
+    resumen: >
+      La Audiencia Provincial de Madrid anuló la decisión del juez Peinado de llevar
+      el caso a juicio con jurado popular, considerando que faltaban fundamentos
+      legales sólidos. El tribunal ordenó retrotraer el procedimiento a la fase de
+      instrucción para recopilar indicios más consistentes.
+    tipo_pieza: noticia
+    relevancia_editorial: capital
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: publico-14-varapalos-2026-02-23
+    url: "https://www.publico.es/politica/tribunales/juez-peinado-acumula-14-varapalos-caso-begona-gomez-pero-desinfla-posible-sancion-cgpj.html"
+    medio_id: publico-es
+    titular: "El juez Peinado acumula ya 14 varapalos en el 'caso Begoña Gómez' pero se desinfla una posible sanción del CGPJ"
+    fecha_publicacion: "2026-02-23"
+    autor: "Ana María Pascual"
+    resumen: >
+      La Audiencia Provincial de Madrid ha anulado cuatro resoluciones del juez
+      Peinado por falta de motivación en el caso de Begoña Gómez, sumando 14
+      correcciones en total. El Promotor de la Acción Disciplinaria del CGPJ propone
+      archivar las denuncias contra Peinado, lo que haría improbable cualquier sanción
+      antes de su jubilación en septiembre.
+    tipo_pieza: reportaje
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: elespanol-procesamiento-cuatro-delitos-2026-04-13
+    url: "https://www.elespanol.com/espana/tribunales/20260413/juez-peinado-manda-juicio-jurado-begona-gomez-delitos/1003744204456_0.html"
+    medio_id: el-espanol
+    titular: "El juez Peinado finaliza la instrucción y propone juzgar ante un jurado a Begoña Gómez por cuatro delitos"
+    fecha_publicacion: "2026-04-13"
+    autor: "Javier Corbacho"
+    resumen: >
+      El juez Juan Carlos Peinado cierra la investigación y propone que Begoña Gómez
+      sea juzgada ante jurado popular por malversación, corrupción en negocios privados,
+      tráfico de influencias y apropiación indebida, archivando el intrusismo.
+      También serán enviados a juicio Cristina Álvarez y Juan Carlos Barrabés.
+    tipo_pieza: noticia
+    relevancia_editorial: capital
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: elplural-procesamiento-2026-04-13
+    url: "https://www.elplural.com/politica/espana/juez-peinado-finaliza-instruccion-procesa-begona-gomez-cuatro-delitos_386824102"
+    medio_id: el-plural
+    titular: "El juez Peinado finaliza la instrucción y procesa a Begoña Gómez por cuatro delitos"
+    fecha_publicacion: "2026-04-13"
+    autor: "Rodrigo de la Torre"
+    resumen: >
+      El magistrado Juan Carlos Peinado archiva la investigación por intrusismo laboral
+      y acuerda procesar a Begoña Gómez por malversación, tráfico de influencias,
+      corrupción en negocios y apropiación indebida de marca. También procesa a la
+      asesora Cristina Álvarez y al empresario Juan Carlos Barrabés.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+    pieza_referenciada_id: elespanol-procesamiento-cuatro-delitos-2026-04-13
+    notas: "Pieza independiente de El Plural sobre el mismo hito; no es republication de agencia."
+
+  - id: elindependiente-gobierno-salvajada-2026-04-14
+    url: "https://www.elindependiente.com/espana/2026/04/14/gobierno-indignado-salvajada-procesamiento-begona-gomez-locura-pp-auto/"
+    medio_id: el-independiente
+    titular: "El Gobierno, indignado por la \"salvajada\" del procesamiento de Begoña Gómez: \"Es una locura que el PP valide el auto del juez\""
+    fecha_publicacion: "2026-04-14"
+    autor: "Juanma Romero"
+    resumen: >
+      El juez Peinado cierra la instrucción contra Begoña Gómez y propone procesarla
+      por cuatro delitos. El Gobierno critica la decisión como una "salvajada" y
+      cuestiona la coincidencia temporal con el viaje oficial de Sánchez a China.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: okdiario-acusacion-24-anos-2026-04-20
+    url: "https://okdiario.com/espana/acusacion-pide-24-anos-carcel-begona-gomez-corrupcion-trafico-influencias-apropiacion-indebida-16640166"
+    medio_id: okdiario
+    titular: "La acusación pide 24 años de cárcel para Begoña Gómez por corrupción, tráfico de influencias y apropiación indebida"
+    fecha_publicacion: "2026-04-20"
+    autor: "Fernán González"
+    resumen: >
+      La acusación popular unificada encabezada por Hazte Oír solicita 24 años de
+      prisión e inhabilitación de veinte años para Begoña Gómez por seis delitos
+      relacionados con el uso de su posición como esposa del presidente. El caso
+      será juzgado ante un Tribunal del Jurado.
+    tipo_pieza: noticia
+    relevancia_editorial: alta
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"
+
+  - id: theobjective-conclusiones-defensa-2026-05-18
+    url: "https://theobjective.com/espana/tribunales/2026-05-18/begona-gomez-ucm-sanchez-cargo-publico/"
+    medio_id: the-objective
+    titular: "Begoña Gómez alega que colaboraba con la UCM cuando Sánchez no tenía cargo público"
+    fecha_publicacion: "2026-05-18"
+    autor: "Fran Serrato"
+    resumen: >
+      La defensa de Begoña Gómez solicita su absolución alegando que su vinculación
+      con la Universidad Complutense comenzó en 2012, antes de que su marido accediera
+      a cargos ejecutivos. El abogado niega los delitos imputados de malversación,
+      tráfico de influencias y corrupción.
+    tipo_pieza: noticia
+    relevancia_editorial: media
+    menciones: [titular, lead]
+    fecha_rastreo: "2026-05-25"

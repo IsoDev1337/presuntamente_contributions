@@ -591,7 +591,25 @@ Los enums siguientes son la lista cerrada inicial. Ampliarlos requiere PR razona
 - `misma_trama` (misma red factual aunque procesalmente desconectados)
 - `contradiccion_factual` (los hechos acreditados en uno contradicen los del otro)
 
-**`EstadoPublicacion`**: `borrador`, `en_revision`, `publicado`, `retirado_temporalmente`, `retirado_definitivamente`
+**`EstadoPublicacion`**: `pendiente`, `borrador`, `beta_publica`, `en_revision`, `publicado`, `retirado_temporalmente`, `retirado_definitivamente`.
+
+Para `Caso` el campo modela el **ciclo de vida editorial completo** de la ficha y determina la visibilidad pública (ver "Visibilidad en producción" más abajo). Para el resto de entidades el enum se restringe en la práctica al subconjunto histórico de 5 valores (`borrador`, `en_revision`, `publicado`, `retirado_*`); `pendiente` y `beta_publica` son estados específicos del recorrido de una ficha de caso, no de una `Persona`, `Organizacion`, `Documento`, etc. Semántica por valor:
+
+- `pendiente`: el caso está listado en el inventario (slug reservado) pero su trabajo editorial aún no se ha iniciado. Funciona como anuncio público de que el procedimiento está en cola.
+- `borrador`: en desarrollo activo, NO público todavía. Esqueleto con huecos significativos.
+- `beta_publica`: publicable. La ficha es presentable al público aunque pueda tener cosillas de UX o huecos menores; la imperfección está declarada por su propio nombre.
+- `en_revision`: revisión interna pre-publicación (uso ocasional, normalmente un caso pasa de `beta_publica` a `publicado` sin atravesar `en_revision`).
+- `publicado`: ficha terminada al máximo de lo que el producto sabe hacer hoy. **No implica caso jurídico cerrado** — un caso publicado puede seguir vivo procesalmente; su `fase_actual` modela la dimensión jurídica.
+- `retirado_temporalmente` / `retirado_definitivamente`: ficha que estuvo `publicado` o `beta_publica` y se retiró por motivo editorial, legal o de rectificación.
+
+**Visibilidad en producción** (regla aplicada por `src/pages/casos/[slug].astro` desde 2026-05-25 y reflejada en `src/components/pages/PgCasos.astro` como tratamiento de fila bloqueada):
+
+- En **build de producción** (`import.meta.env.PROD`), los casos con `estado_publicacion in {pendiente, borrador}` NO generan su ruta `/casos/<slug>`. Siguen apareciendo en la tabla `/casos` como fila gris no clickable con su badge de estado, para que el lector vea que el procedimiento está en cola sin que la ficha incompleta sea accesible.
+- En **dev local** todas las rutas se generan para que el maintainer y los agentes paralelos puedan iterar sobre fichas en construcción.
+- `beta_publica`, `en_revision` y `publicado` siempre son accesibles (en dev y en prod).
+- `retirado_*` son accesibles en dev pero deben filtrarse en producción cuando se decida el comportamiento concreto del retiro (decisión editorial futura cuando ocurra el primer retiro real).
+
+Decisión 2026-05-25 al introducir `pendiente` y `beta_publica` en el enum: el `estado_publicacion` lo decide manualmente el maintainer caso a caso. NO se deriva del `estado_ficha` (el checklist público de 10 chequeos del propio Caso); las cuatro features transversales del Bloque D que pueden estar `pendiente` en `estado_ficha` no bloquean el estado global de la ficha porque son features del producto, no fallas del caso.
 
 **`EstadoAcceso`** (de Documento): `publico`, `acceso_restringido_pero_citable`, `filtrado_verificado`, `retirado`
 
