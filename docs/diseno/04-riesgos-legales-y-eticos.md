@@ -117,7 +117,7 @@ Diseño:
   - Documento o fuente que sostiene la rectificación (URL, PDF).
   - Identificación opcional del solicitante (con email de contacto).
 - **Vía correo**: `rectificacion@presuntamente.org` como canal alternativo.
-- **Vía burofax / postal**: cuando aplique formalmente la LO 2/1984.
+- **Vía postal**: cuando esté operativo el apartado de correos del responsable, como alternativa formal a las vías electrónicas.
 
 Plazos comprometidos públicamente:
 - **Acuse de recibo**: 48 horas hábiles.
@@ -238,7 +238,7 @@ Análisis claro:
 
 **Opción A — Responsable identificado** (tú, con nombre y apellidos, con identificación a efectos LSSI):
 - Cumple LSSI art. 10 (deber de identificación del prestador).
-- Es la postura defendible si llega querella o burofax: hay responsable, hay canal.
+- Es la postura defendible si llega querella o requerimiento formal: hay responsable, hay canal.
 - Facilita confianza del lector y de medios que vayan a citar el sitio.
 - *Riesgo personal:* exposición a presiones legales y, en menor medida, a hostigamiento. En España es manejable si la línea editorial es rigurosa.
 
@@ -304,7 +304,7 @@ Trazabilidad de mitigaciones del proyecto a sus riesgos legales:
 
 ---
 
-## 10. Cómo responder a una querella o burofax
+## 10. Cómo responder a una querella o requerimiento formal
 
 Procedimiento de emergencia:
 

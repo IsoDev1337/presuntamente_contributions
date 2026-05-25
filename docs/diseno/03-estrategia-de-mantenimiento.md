@@ -135,7 +135,7 @@ Página interna estática del propio sitio, generada en build, protegida por bas
 
 | Incidente | Respuesta |
 |-----------|-----------|
-| Querella o burofax al maintainer | Procedimiento legal específico (doc 04 §10) |
+| Querella o requerimiento legal al maintainer | Procedimiento legal específico (doc 04 §10) |
 | Rectificación legítima vía issue | Atender en plazo definido (7 días para casos vivos, 21 para firmes) |
 | Cambio en sentencia firme (revisión TC, recurso amparo) | Crear Hito, marcar Hechos como superados con `corregido_por`, NO borrar |
 | Archivo o sentencia absolutoria | Marcar fase, marcar Hechos investigados como `superado` corregidos por exculpatorios, cerrar `RolEnCaso` investigado con `hito_fin` apuntando al archivo |

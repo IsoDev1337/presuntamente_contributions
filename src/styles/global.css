@@ -515,7 +515,11 @@ li { margin: var(--space-1) 0; }
 }
 .site-header__inner {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  /* 5 columnas: brand · nav · search · lang-wrap · aportar. El último slot
+   * (.site-aportar) se introdujo con la activación del cauce editorial §6bis
+   * el 2026-05-25; previamente el grid era de 4 columnas (sin aportar). Las
+   * media queries de abajo redefinen este grid en breakpoints 720/1080. */
+  grid-template-columns: auto 1fr auto auto auto;
   align-items: stretch;
   gap: 0;
   max-width: var(--container-max);
@@ -799,46 +803,45 @@ li { margin: var(--space-1) 0; }
 }
 
 /* =========================================================================
- * Botón CTA "Aportar" en el header (.site-aportar)
+ * CTA "Aportar" en el header (.site-aportar)
  *
- * CTA editorial visible junto al selector de idioma. Mostaza claro sobre el
- * header navy para destacar como acción primaria sin caer en banner ruidoso.
- * Coherente con el accent secundario del proyecto (mostaza institucional)
- * usado también en .vias__rec y en el flash :target.
+ * Versión ghost coherente con .site-search y .site-lang-btn: fondo
+ * transparente sobre el navy del header, texto mostaza para destacar como
+ * acción editorial sin caer en banner. El relleno mostaza se activa solo en
+ * hover (entonces el texto pasa a navy para mantener contraste). Mismo peso
+ * tipográfico que el resto de los items del header (700 11px), para que lea
+ * como "un item más con color distinto", no como anuncio.
+ *
+ * El CTA dentro del panel móvil (.site-menu-panel__aportar) sí mantiene
+ * fondo mostaza prominente: ahí el panel es navy oscuro y el botón es el
+ * primer item del menú, queremos que destaque al abrirse.
  * ========================================================================= */
 .site-aportar {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 16px;
-  background: var(--color-accent-secondary);
-  color: var(--color-accent);
+  gap: 6px;
+  padding: 0 14px;
+  background: transparent;
+  color: var(--color-accent-secondary);
   text-decoration: none;
-  font: 800 12px/1 var(--font-sans);
+  font: 700 11px/1 var(--font-sans);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
   align-self: stretch;
-  border-left: 1px solid rgba(255, 255, 255, 0.20);
+  border: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
   transition: background var(--motion-duration) var(--motion-ease),
               color var(--motion-duration) var(--motion-ease);
 }
 .site-aportar:hover,
 .site-aportar:focus-visible {
-  background: #f0c450;
+  background: var(--color-accent-secondary);
   color: var(--color-accent);
   outline: 0;
 }
 .site-aportar:focus-visible {
-  outline: 2px solid var(--color-fg);
+  outline: 2px solid var(--color-accent-secondary);
   outline-offset: -2px;
-}
-.site-aportar svg {
-  width: 14px;
-  height: 14px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.4;
-  stroke-linecap: round;
 }
 
 @media (max-width: 1080px) {
@@ -880,8 +883,7 @@ li { margin: var(--space-1) 0; }
     grid-column: 4;
     grid-row: 1;
     /* Compacta padding en 720-1080 manteniendo legibilidad. */
-    padding: 0 12px;
-    font-size: 11px;
+    padding: 0 10px;
   }
   .site-nav {
     grid-column: 1 / -1;
@@ -1112,10 +1114,8 @@ body.has-menu-open { overflow: hidden; }
     grid-column: 3;
     grid-row: 1;
     padding: 0 10px;
-    font-size: 11px;
     border-left: 0;
   }
-  .site-aportar svg { display: none; }
   .site-menu-btn {
     display: inline-flex;
     grid-column: 4;
