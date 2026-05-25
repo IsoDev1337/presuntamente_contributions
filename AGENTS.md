@@ -269,7 +269,8 @@ Skills planeadas para usar con Claude Code en este repo:
 - `revisar-señales` — procesar bandeja del watcher (`content/signals.yaml`).
 - `validar-repo` — ejecutar `pnpm validate` con output amigable (capa schema / V-rules mecánicas).
 - `revisar-caso` — auditoría editorial cualitativa por LLM de un caso entero (capa que `validar-repo` no cubre: reglas P del doc 02, presunción de inocencia en el lenguaje, uso correcto de N4, ausencia de cuota política). Sirve tanto para revisar PRs externas de contribuyentes (`gh pr checkout <num>` + `/revisar-caso <slug>` en local) como para auto-revisarse cuando se trabajan varios casos en paralelo. Detalle del diseño en cuatro capas y checklist inicial en [`/ROADMAP.md`](ROADMAP.md) §"Después de Fase 1".
-- `rectificar` — gestionar solicitud de rectificación entrante.
+- `rectificar` — gestionar solicitud de rectificación entrante (cauce legal LO 2/1984, doc 04 §6).
+- `incorporar-aporte` — procesar aporte editorial entrante desde `content/aportes/<YYYY-MM-DD-slug>.md` clasificando en uno de los tres carriles aceptados (pista a fuente o hito · corrección fáctica menor · idea sobre el sitio) y proponiendo diff editorial sobre `content/` o archivado razonado de la idea en `docs/web/`, más borrador de respuesta al aportante (cauce editorial doc 04 §6bis, hermano de `rectificar`).
 - `anonimizar` — V-17: gestionar anonimización de persona privada.
 
 En Fase 0 son placeholders; se implementan según se necesiten.
