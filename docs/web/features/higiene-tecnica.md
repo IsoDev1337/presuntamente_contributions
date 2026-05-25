@@ -20,11 +20,11 @@ Tres formatos complementarios servidos desde `/public/`:
 | `icon.svg` | SVG vectorial | Navegadores que soportan SVG favicon (Chrome 80+, Firefox 41+) |
 | `apple-touch-icon.png` | 180×180 PNG | iOS Safari al añadir a pantalla de inicio |
 
-Todos generados desde `/public/branding/logo.png` (1254×1254 RGBA) con `sips` + ImageMagick `magick`. El `apple-touch-icon` usa fondo navy `#1a2a4a` porque iOS lo añade a la pantalla de inicio sin fondo y el escudo transparente quedaría invisible sobre fondo claro.
+Todos generados desde `/public/branding/logo.png` (1254×1254 RGBA) con `sips` + ImageMagick `magick`. El `apple-touch-icon` usa **fondo blanco** (`-background white -extent 180x180`): iOS muestra el icono como tile cuadrado al añadir a pantalla de inicio; el isotipo transparente necesita un fondo opaco y el blanco encaja con el bloque de marca del header y con la mayoría de wallpapers claros en iPhone.
 
-El `icon.svg` es un wrapper SVG `viewBox="0 0 512 512"` con `<rect fill="#1a2a4a"/>` + `<image href="/branding/logo.png"/>` para que el favicon SVG mascarable de PWA también tenga el fondo ministerial.
+El `icon.svg` es un wrapper `viewBox="0 0 32 32"` con el PNG 32×32 embebido en base64 (sin referencia externa ni fondo opaco).
 
-Los `<link>` están en `BaseLayout.astro` en el orden recomendado por el spec de HTML: ico → png 32×32 → svg → apple-touch-icon.
+Los `<link>` activos en `BaseLayout.astro`: PNG 32×32 → SVG (sin `.ico` en el `<head>`: ImageMagick corrompe el alpha al convertir; el fichero `/favicon.ico` sigue en `/public/` por peticiones directas del navegador, generado con `sips` + `magick` desde el PNG limpio) → apple-touch-icon.
 
 ### sitemap.xml
 
@@ -71,6 +71,7 @@ Todo entregado y build verde. 168 páginas + `sitemap-index.xml` + `sitemap-0.xm
 - **ICO generado con ImageMagick `magick` (no con `convert` que está deprecado en IM v7)**: diferencia sutil pero puede romper scripts CI en sistemas con IM v7.
 - **`pnpm add` en el worktree, no en main**: el worktree tiene su propio `package.json` separado; `pnpm add` en el directorio del worktree modifica sólo ese `package.json`, no el del repo principal. Al hacer cherry-pick o merge a main hay que asegurarse de que el `package.json` de main también recibe la nueva dependencia.
 - **SVG mascarable con fondo declarado**: sin el `<rect fill="#1a2a4a"/>` el SVG mascarable en Android quedaría con fondo blanco y el escudo transparente se vería mal.
+- **Favicon en pestaña: transparencia y formatos (2026-05-26)**: (1) `favicon.ico` generado con ImageMagick desde PNG transparente dejó px con alpha=0 y RGB≠0 → Chrome los pinta negro; se retira del `<head>` (PNG+SVG bastan). (2) `icon.svg` con `<image href="/branding/logo.png">` no carga en contexto favicon — el PNG va embebido en base64. (3) El resize con filtro por defecto (Lanczos) corrompe el alpha al 32×32; **`sips -z 32 32`** (o `magick -filter point`) preserva transparencia. (4) Fondo en favicon de pestaña descartado: el isotipo va sin cuadrado. (5) **`apple-touch-icon`**: el navy del Bloque E se sustituye por blanco (2026-05-26, feedback maintainer) — mismo criterio que la caja de marca del header, no la banda navy del chrome.
 
 ## Pendientes operativos
 
