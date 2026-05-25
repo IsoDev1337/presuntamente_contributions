@@ -334,4 +334,10 @@ Document changes in a `## History` section at the bottom of this file, one bulle
 
 ## History
 
-(empty — v0)
+- **2026-05-25 · sesión `bloque-e` (Claude Code)** — Primera sesión real con el protocolo. Tres aprendizajes operativos para Claude Code:
+
+  1. **El Bash tool siempre arranca desde el worktree principal, no desde el worktree activo.** El CWD del Bash tool se resetea al directorio raíz del repo en cada llamada. `cd /ruta/worktree && git add <ficheros>` funciona dentro de una sola llamada, pero la siguiente llamada vuelve a arrancar desde el repo principal. Patrón fiable: usar `git -C <ruta-worktree> add <ficheros>` para que el contexto sea explícito, o encadenar todas las operaciones del worktree en una sola llamada Bash. Sin este cuidado, un `git add` aparentemente "en el worktree" toca el index del repo principal y rompe el aislamiento.
+
+  2. **`package.json` y lockfile llegan a main vía el merge, no vía `pnpm add` en el worktree.** Si la sesión ejecuta `pnpm add X` dentro del worktree, los cambios quedan aislados en esa rama. Cuando `git merge session/<slug> --ff-only` los trae a main, hay que correr `pnpm install` en el working tree principal para sincronizar `node_modules` antes de arrancar el servidor de dev. Sin este paso el servidor no encuentra el nuevo paquete.
+
+  3. **Flujo de merge que funcionó:** (a) desde el worktree: `git -C <ruta-worktree> add <rutas-explícitas> && git -C <ruta-worktree> commit -m "..."`, (b) desde main: `git merge session/<slug> --ff-only`. El flag `--ff-only` es la red de seguridad: si main ha avanzado mientras, el merge falla ruidosamente en lugar de crear un merge commit silencioso.
