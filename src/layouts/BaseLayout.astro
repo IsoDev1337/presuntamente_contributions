@@ -146,7 +146,7 @@ const brandSub = 'Inventario público de casos de corrupción en España';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     />
     <ClientRouter fallback="animate" />
 
@@ -467,6 +467,92 @@ const brandSub = 'Inventario público de casos de corrupción en España';
       }
       __ensureOrderToggleListener();
       document.addEventListener('astro:page-load', __ensureOrderToggleListener);
+
+      // Case masthead flip. Kept in the layout because ClientRouter swaps the
+      // page body without remounting page-scoped scripts on every navigation.
+      const __setCaseFlipHeight = (flip: HTMLElement) => {
+        const inner = flip.querySelector<HTMLElement>('.ficha-flip__inner');
+        const front = flip.querySelector<HTMLElement>('.ficha-flip__face--front');
+        const back = flip.querySelector<HTMLElement>('.ficha-flip__face--back');
+        if (!inner || !front || !back) return;
+        const target = flip.dataset.flipped === 'true' ? back : front;
+        const height = Math.max(target.scrollHeight, target.getBoundingClientRect().height);
+        inner.style.minHeight = `${Math.ceil(height)}px`;
+      };
+
+      const __setCaseFlipState = (flip: HTMLElement, flipped: boolean) => {
+        const toggle = flip.querySelector<HTMLButtonElement>('.ficha-flip__toggle');
+        const front = flip.querySelector<HTMLElement>('.ficha-flip__face--front');
+        const back = flip.querySelector<HTMLElement>('.ficha-flip__face--back');
+        if (!toggle || !front || !back) return;
+
+        flip.dataset.flipped = flipped ? 'true' : 'false';
+        toggle.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+        front.setAttribute('aria-hidden', flipped ? 'true' : 'false');
+        back.setAttribute('aria-hidden', flipped ? 'false' : 'true');
+        toggle.setAttribute(
+          'aria-label',
+          flipped ? 'Volver' : 'Ver detalles del desarrollo editorial de esta ficha',
+        );
+
+        const label = toggle.querySelector<HTMLElement>('.ficha-flip__toggle-label');
+        if (label) label.textContent = flipped ? 'Volver' : 'Ver detalles de desarrollo';
+        __setCaseFlipHeight(flip);
+      };
+
+      const __initCaseFlips = () => {
+        document.querySelectorAll<HTMLElement>('.ficha-flip').forEach((flip) => {
+          __setCaseFlipHeight(flip);
+          if (flip.dataset.flipReady === 'true') return;
+
+          const front = flip.querySelector<HTMLElement>('.ficha-flip__face--front');
+          const back = flip.querySelector<HTMLElement>('.ficha-flip__face--back');
+          if (!front || !back) return;
+
+          if (typeof ResizeObserver !== 'undefined') {
+            const ro = new ResizeObserver(() => __setCaseFlipHeight(flip));
+            ro.observe(front);
+            ro.observe(back);
+            __caseFlipResizeObservers.push(ro);
+          } else {
+            window.addEventListener('resize', () => __setCaseFlipHeight(flip));
+          }
+
+          flip.dataset.flipReady = 'true';
+        });
+      };
+
+      let __caseFlipAttached = false;
+      let __caseFlipResizeObservers: ResizeObserver[] = [];
+      function __ensureCaseFlipListeners() {
+        if (!__caseFlipAttached) {
+          __caseFlipAttached = true;
+          document.addEventListener('click', (e) => {
+            const target = e.target;
+            if (!(target instanceof Element)) return;
+            const toggle = target.closest<HTMLButtonElement>('.ficha-flip__toggle');
+            const flip = toggle?.closest<HTMLElement>('.ficha-flip');
+            if (!toggle || !flip) return;
+            __setCaseFlipState(flip, flip.dataset.flipped !== 'true');
+          });
+
+          document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            const flip = document.querySelector<HTMLElement>('.ficha-flip[data-flipped="true"]');
+            if (!flip) return;
+            __setCaseFlipState(flip, false);
+            flip.querySelector<HTMLButtonElement>('.ficha-flip__toggle')?.focus();
+          });
+
+          document.addEventListener('astro:before-preparation', () => {
+            __caseFlipResizeObservers.forEach((observer) => observer.disconnect());
+            __caseFlipResizeObservers = [];
+          });
+        }
+        __initCaseFlips();
+      }
+      __ensureCaseFlipListeners();
+      document.addEventListener('astro:page-load', __ensureCaseFlipListeners);
 
       // Click sobre un `.sec-h[id]` lleva al inicio natural de la sección.
       // Cuando el header sticky está pegado al top del viewport (se scrolleó

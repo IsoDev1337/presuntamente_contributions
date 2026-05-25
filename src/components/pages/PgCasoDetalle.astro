@@ -377,18 +377,21 @@ const breadcrumb = [
   <!-- 2.1 — Encabezado flippeable: el contenedor unificado lleva la
        masthead + síntesis del caso (cara A) y un reverso editorial (cara B)
        con estado global, 10 chequeos y "Cómo se ha redactado esta ficha".
-       Se voltea con el botón "esquina de página doblada" en la parte
-       superior derecha (metáfora visual de pasar de página). -->
+       Se voltea desde el grupo superior de estado editorial: badge de
+       publicación + botón de detalles de desarrollo. -->
   <section class="ficha-flip" data-flipped="false">
-    <button
-      type="button"
-      class="ficha-flip__corner"
-      aria-pressed="false"
-      aria-controls="ficha-flip-back"
-      aria-label="Sobre esta ficha — pasar al reverso"
-    >
-      <span class="ficha-flip__corner-hint" aria-hidden="true">Sobre la ficha</span>
-    </button>
+    <div class="ficha-flip__actions" aria-label="Estado editorial de la ficha">
+      <EstadoPublicacionBadge estado={data.estado_publicacion as EstadoPublicacion} />
+      <button
+        type="button"
+        class="ficha-flip__toggle"
+        aria-pressed="false"
+        aria-controls="ficha-flip-back"
+        aria-label="Ver detalles del desarrollo editorial de esta ficha"
+      >
+        <span class="ficha-flip__toggle-label">Ver detalles de desarrollo</span>
+      </button>
+    </div>
 
     <div class="ficha-flip__inner">
       <section class="ficha-mast ficha-flip__face ficha-flip__face--front" aria-hidden="false">
@@ -405,24 +408,24 @@ const breadcrumb = [
             </p>
           )}
           <dl class="ficha-mast__grid">
-            <div>
+            <div class="ficha-mast__grid-item ficha-mast__grid-item--phase">
               <dt>Fase actual</dt>
               <dd><PhaseBadge fase={data.fase_actual} /></dd>
             </div>
             {organo && (
-              <div>
+              <div class="ficha-mast__grid-item ficha-mast__grid-item--organo">
                 <dt>Órgano judicial</dt>
                 <dd><a href={lang === 'ca' ? `/cat/organizaciones/${organo.id}` : `/organizaciones/${organo.id}`}>{organo.nombre}</a></dd>
               </div>
             )}
             {data.numero_procedimiento && (
-              <div>
+              <div class="ficha-mast__grid-item ficha-mast__grid-item--procedure">
                 <dt>Nº procedimiento</dt>
                 <dd class="mono">{data.numero_procedimiento}</dd>
               </div>
             )}
             {ultimoHito && (
-              <div>
+              <div class="ficha-mast__grid-item ficha-mast__grid-item--latest">
                 <dt>Último hito</dt>
                 <dd>
                   <span class="mono">{ultimoHito.fecha}</span>
@@ -449,11 +452,6 @@ const breadcrumb = [
             sección 2; aquí ves qué partes de la ficha de presuntamente.org están
             cerradas y cuáles siguen pendientes.
           </p>
-
-          <div class="ficha-flip__estado-row">
-            <span class="ficha-flip__estado-label">Estado global</span>
-            <EstadoPublicacionBadge estado={data.estado_publicacion as EstadoPublicacion} />
-          </div>
 
           {estadoFicha && (
             <ul class="ficha-flip__chequeos">
@@ -792,13 +790,32 @@ const breadcrumb = [
   .ficha-mast__aka em { font-style: italic; color: var(--color-fg-muted); }
   .ficha-mast__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
+    grid-template-columns: max-content minmax(180px, 1fr) max-content;
+    align-items: flex-start;
+    gap: 12px clamp(16px, 2.4vw, 28px);
     margin: 0;
     padding-top: 12px;
     border-top: 1px solid var(--color-border);
   }
-  .ficha-mast__grid > div { display: flex; flex-direction: column; gap: 4px; }
+  .ficha-mast__grid-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .ficha-mast__grid-item--phase,
+  .ficha-mast__grid-item--procedure {
+    width: max-content;
+  }
+  .ficha-mast__grid-item--procedure {
+    grid-column: 3;
+  }
+  .ficha-mast__grid-item--organo {
+    grid-column: 2;
+  }
+  .ficha-mast__grid-item--latest {
+    grid-column: 1 / -1;
+  }
   .ficha-mast__grid dt {
     font: 600 10px/1 var(--font-sans);
     letter-spacing: 0.04em;
@@ -890,7 +907,7 @@ const breadcrumb = [
     border: 1px solid var(--color-accent-secondary-border);
     background: var(--color-accent-secondary-soft);
     color: #6b4d00;
-    font: 800 11px/1 var(--font-mono);
+    font: 700 11px/1 var(--font-mono);
   }
   .ficha-sintesis__metrics {
     margin: 0;
@@ -1030,9 +1047,8 @@ const breadcrumb = [
   .meta-list li { margin: 4px 0; }
   .meta-list .mono { font-family: var(--font-mono); font-size: 12px; }
 
-  /* === 2.1 Flip 3D de la masthead — la cabecera entera (masthead +
-     síntesis del caso) se voltea como una página al pulsar la esquina
-     superior derecha, revelando el reverso editorial (estado global +
+  /* === 2.1 Flip 3D de la masthead — la cabecera se voltea con un botón
+     textual explícito, revelando el reverso editorial (estado global +
      10 chequeos + cómo se ha redactado). Perspective 3D real, no
      crossfade. La altura del wrapper se mide con JS porque las dos
      caras tienen contenido distinto. === */
@@ -1041,6 +1057,11 @@ const breadcrumb = [
     margin-bottom: 24px;
     perspective: 2200px;
     perspective-origin: 50% 30%;
+  }
+  .ficha-flip[data-flipped='true'] + .ficha-sintesis {
+    /* The summary uses a negative margin to sit close to the front face.
+       The taller back face needs normal spacing so it does not look clipped. */
+    margin-top: 0;
   }
   .ficha-flip__inner {
     position: relative;
@@ -1068,6 +1089,10 @@ const breadcrumb = [
        both` mantiene el valor final y machaca nuestro `rotateY(180deg)`
        del reverso. Desactivamos la animación dentro del flip. */
     animation: none;
+    margin-bottom: 0;
+  }
+  .ficha-flip__face--front > .ficha-mast__top > :not(.ficha-mast__grid) {
+    max-width: calc(100% - 220px);
   }
   .ficha-flip__face--front {
     position: relative;
@@ -1076,112 +1101,63 @@ const breadcrumb = [
   }
   .ficha-flip__face--back {
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: 0;
     transform: rotateY(180deg);
   }
 
-  /* --- Botón "esquina doblada" (page corner fold) --------------------- */
-  .ficha-flip__corner {
+  /* --- Estado editorial + botón discreto de detalles ------------------- */
+  .ficha-flip__actions {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 56px;
-    height: 56px;
-    padding: 0;
+    top: 14px;
+    right: 14px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ficha-flip__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: 2px 0;
     margin: 0;
     border: 0;
-    background: 0;
+    border-bottom: 1px solid currentColor;
+    background: transparent;
+    color: var(--color-fg-muted);
+    font: 600 12px/1.2 var(--font-sans);
+    letter-spacing: 0;
+    text-transform: none;
     cursor: pointer;
-    z-index: 5;
-    /* La esquina ocupa el triángulo superior derecho del masthead */
-    clip-path: polygon(100% 0, 100% 100%, 0 0);
-    transition: width 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
-                height 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition:
+      border-color 0.18s ease,
+      color 0.18s ease,
+      transform 0.18s ease;
   }
-  .ficha-flip__corner::before {
-    /* "Cara visible" del pliegue: mostaza claro que asoma del reverso */
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      225deg,
-      var(--color-accent-secondary) 0%,
-      var(--color-accent-secondary-soft) 60%,
-      var(--color-accent-secondary-soft) 100%
-    );
-    clip-path: polygon(100% 0, 100% 100%, 0 0);
-    transition: filter 0.2s ease;
+  .ficha-flip__toggle:hover {
+    color: var(--color-accent);
+    transform: translateY(-1px);
   }
-  .ficha-flip__corner::after {
-    /* Sombra del doblez para dar profundidad: línea diagonal sutil */
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      225deg,
-      rgba(0, 0, 0, 0.22) 0%,
-      rgba(0, 0, 0, 0.05) 30%,
-      transparent 55%
-    );
-    clip-path: polygon(100% 0, 100% 100%, 0 0);
-    pointer-events: none;
-  }
-  .ficha-flip__corner:hover,
-  .ficha-flip__corner:focus-visible {
-    width: 72px;
-    height: 72px;
+  .ficha-flip__toggle:focus-visible {
     outline: none;
+    box-shadow:
+      0 0 0 2px var(--color-surface),
+      0 0 0 4px var(--color-accent);
   }
-  .ficha-flip__corner:hover::before,
-  .ficha-flip__corner:focus-visible::before {
-    filter: brightness(1.05);
+  .ficha-flip[data-flipped='true'] .ficha-flip__toggle {
+    color: var(--color-fg-muted);
   }
-  .ficha-flip__corner-hint {
-    /* Etiqueta accesible y tooltip visual al hover sobre la esquina */
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font: 700 9px/1 var(--font-sans);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #6b4d00;
-    opacity: 0;
-    transform: rotate(45deg) translate(2px, -8px);
-    transform-origin: top right;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-  .ficha-flip__corner:hover .ficha-flip__corner-hint,
-  .ficha-flip__corner:focus-visible .ficha-flip__corner-hint {
-    opacity: 1;
-  }
-  /* Cuando la cara B está visible, la esquina vive en la "otra hoja". El
-     JS la transplanta visualmente con transformación rotación 180 — pero
-     CSS por sí solo no la mueve. En su lugar mantenemos el botón siempre
-     visible: al estar la masthead rotada, el botón sigue en la esquina
-     superior derecha de lo que ves. */
-  .ficha-flip[data-flipped='true'] .ficha-flip__corner::before {
-    background: linear-gradient(
-      225deg,
-      var(--color-accent) 0%,
-      var(--color-accent-soft) 60%,
-      var(--color-accent-soft) 100%
-    );
-  }
-  .ficha-flip[data-flipped='true'] .ficha-flip__corner-hint {
+  .ficha-flip[data-flipped='true'] .ficha-flip__toggle:hover {
     color: var(--color-accent);
   }
 
   /* --- Tipografía y bloques de la cara B ------------------------------- */
   .ficha-flip__title {
-    font: 800 26px/1.15 var(--font-display, var(--font-sans));
+    font: 600 26px/1.15 var(--font-display, var(--font-sans));
     letter-spacing: -0.01em;
     margin: 6px 0 10px;
     color: var(--color-fg);
@@ -1191,21 +1167,7 @@ const breadcrumb = [
     color: var(--color-fg-muted, var(--color-fg));
     font-size: 0.92rem;
     line-height: 1.55;
-    max-width: 60ch;
-  }
-  .ficha-flip__estado-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 18px;
-    font-size: 0.92rem;
-  }
-  .ficha-flip__estado-label {
-    color: var(--color-fg-muted, var(--color-fg));
-    text-transform: uppercase;
-    letter-spacing: var(--ls-caps, 0.04em);
-    font-size: 0.74rem;
-    font-weight: 700;
+    max-width: none;
   }
   .ficha-flip__chequeos {
     list-style: none;
@@ -1243,14 +1205,24 @@ const breadcrumb = [
   }
 
   @media (max-width: 720px) {
-    .ficha-flip__corner {
-      width: 44px;
-      height: 44px;
+    .ficha-flip__actions {
+      position: static;
+      width: 100%;
+      justify-content: space-between;
+      margin: 0 0 8px;
     }
-    .ficha-flip__corner:hover,
-    .ficha-flip__corner:focus-visible {
-      width: 56px;
-      height: 56px;
+    .ficha-flip__face--front > .ficha-mast__top > :not(.ficha-mast__grid) {
+      max-width: none;
+    }
+    .ficha-mast__grid {
+      grid-template-columns: 1fr;
+    }
+    .ficha-mast__grid-item--phase,
+    .ficha-mast__grid-item--procedure,
+    .ficha-mast__grid-item--organo,
+    .ficha-mast__grid-item--latest {
+      grid-column: 1;
+      width: auto;
     }
     .ficha-flip__chequeo {
       flex-direction: column;
@@ -1263,73 +1235,3 @@ const breadcrumb = [
   }
 </style>
 
-<script>
-  // Flip 3D de la masthead. La esquina superior derecha actúa como botón
-  // ("page corner fold"). Vanilla, una instancia por PgCasoDetalle.
-  //
-  // Altura del wrapper: como ambas caras ocupan el mismo espacio
-  // (cara B `position: absolute`), el `.ficha-flip__inner` necesita un
-  // `min-height` igual al máximo de las dos caras para que la cara más
-  // larga no quede recortada al voltear. Lo medimos al cargar y lo
-  // re-medimos con ResizeObserver si cambian de tamaño (resize,
-  // tipografía dinámica, contenido editado).
-  (() => {
-    const flip = document.querySelector('.ficha-flip');
-    if (!(flip instanceof HTMLElement)) return;
-    const inner = flip.querySelector('.ficha-flip__inner');
-    const corner = flip.querySelector('.ficha-flip__corner');
-    const front = flip.querySelector('.ficha-flip__face--front');
-    const back = flip.querySelector('.ficha-flip__face--back');
-    if (
-      !(inner instanceof HTMLElement) ||
-      !(corner instanceof HTMLButtonElement) ||
-      !(front instanceof HTMLElement) ||
-      !(back instanceof HTMLElement)
-    ) {
-      return;
-    }
-
-    // Aplica el min-height al alto de la cara visible. scrollHeight
-    // ignora el rotateY del back y devuelve la altura natural; pero
-    // como back tiene position:absolute, su layout no afecta al flujo
-    // del inner — necesitamos forzar la altura manualmente.
-    const setHeight = () => {
-      const flipped = flip.dataset.flipped === 'true';
-      const target = flipped ? back : front;
-      inner.style.minHeight = `${target.scrollHeight}px`;
-    };
-    setHeight();
-
-    const apply = (flipped: boolean) => {
-      flip.dataset.flipped = flipped ? 'true' : 'false';
-      corner.setAttribute('aria-pressed', flipped ? 'true' : 'false');
-      front.setAttribute('aria-hidden', flipped ? 'true' : 'false');
-      back.setAttribute('aria-hidden', flipped ? 'false' : 'true');
-      corner.setAttribute(
-        'aria-label',
-        flipped ? 'Volver a la ficha' : 'Sobre esta ficha — pasar al reverso',
-      );
-      const hint = corner.querySelector('.ficha-flip__corner-hint');
-      if (hint) hint.textContent = flipped ? 'Volver' : 'Sobre la ficha';
-      setHeight();
-    };
-
-    corner.addEventListener('click', () => {
-      apply(flip.dataset.flipped !== 'true');
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && flip.dataset.flipped === 'true') {
-        apply(false);
-        corner.focus();
-      }
-    });
-
-    if ('ResizeObserver' in window) {
-      const ro = new ResizeObserver(setHeight);
-      ro.observe(front);
-      ro.observe(back);
-    } else {
-      window.addEventListener('resize', setHeight);
-    }
-  })();
-</script>

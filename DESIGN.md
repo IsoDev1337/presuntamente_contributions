@@ -255,7 +255,8 @@ CSS canónico en `src/styles/global.css` (sección "Badges"). Componentes Astro:
 
 - Body line-height: `1.6`.
 - Headings line-height: `1.2`.
-- Pesos: `400` para body, `600` o `700` para énfasis y headings. Nada por debajo de `400`.
+- Pesos: `400` para body, `500`/`600` para controles y metadatos, `600`/`700` para énfasis y headings. Nada por debajo de `400`.
+- No usar pesos `800`/`900` en interfaz, ni combinaciones de uppercase + peso negro para botones, títulos secundarios o llamadas de estado. Ese tratamiento convierte piezas funcionales en banners y compite con la jerarquía editorial.
 
 ---
 

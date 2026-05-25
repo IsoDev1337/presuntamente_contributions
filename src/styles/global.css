@@ -1080,7 +1080,7 @@ li { margin: var(--space-1) 0; }
 }
 .site-menu-panel__aportar {
   /* Misma voz que el CTA ghost del header: texto mostaza, sin bloque macizo
-   * ni uppercase 800 — el panel ya es navy y no necesita banner. */
+   * ni uppercase pesado — el panel ya es navy y no necesita banner. */
   display: flex;
   align-items: center;
   justify-content: space-between;
