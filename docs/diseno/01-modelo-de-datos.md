@@ -156,6 +156,46 @@ interface Persona {
 - Un `Persona` con `es_figura_publica = false` y todos sus `RolEnCaso` cerrados (desimputaciones, archivos) entra en revisión editorial automática para considerar **anonimización o retirada de la ficha**. Ver §4.
 - `fecha_nacimiento` y `nacionalidad` quedan vacíos por defecto; sólo se rellenan si añaden valor informativo y la persona es pública.
 
+#### 2.2.1 Test operativo para `es_figura_publica`
+
+El flag NO equivale a "el dato es público" — en este proyecto todo procede de fuentes públicas por construcción. Distingue **personas con función representativa al exterior** (figuras públicas) de **personas privadas** que merecen la salvaguarda de exposición limitada (P-07 doc 02, §5 principios irrenunciables [AGENTS.md](../../AGENTS.md)).
+
+**Una persona es figura pública (`es_figura_publica = true`) si cumple al menos una de**:
+
+**A. Cargo público formal**:
+- Cargo electo (parlamentario, alcalde, presidente autonómico, eurodiputado).
+- Cargo designado por autoridad pública (ministros, secretarios de Estado, altos cargos AGE/CCAA, embajadores, directores generales de organismo público).
+- Función de autoridad: magistrados, fiscales, policía con cargo público, militares de alta graduación.
+- Cargo en órgano constitucional o de relevancia constitucional (CGPJ, TC, Tribunal de Cuentas, Defensor del Pueblo, CGE, AIReF, CNMC, etc.).
+
+**B. Función representativa pública en organización privada**:
+- CEO / presidente / dirección general de empresa cotizada o gran corporación con presencia mediática.
+- Director de Asuntos Públicos / Public Policy / Relaciones Institucionales / Communications / Government Affairs (cualquier nomenclatura) de organización con presencia mediática.
+- Director ejecutivo de fundación con presencia institucional verificable (gestión de >1M€ y comparecencia en actos públicos con cobertura).
+- Periodista identificado por firma en medio de difusión nacional.
+- Académico con cátedra / dirección institucional + actividad pública verificable (intervenciones en medios, autorías firmadas, comparecencias).
+
+**NO son figura pública por defecto** (salvo cumplan A o B también):
+
+- Mandos intermedios sin función de representación al exterior.
+- Directivos de áreas internas sin función representativa pública (RR.HH., contabilidad, sistemas, operaciones, control interno).
+- Empleados de organizaciones grandes sin cargo público ni función representativa propia.
+- Familiares de figuras públicas que no ejerzan rol propio (cónyuges, hijos, parientes — salvo que tengan rol procesal formal o cargo público propio).
+- Asesores privados, abogados particulares, gestores y profesionales que no comparezcan públicamente.
+- **Testigos en procedimientos judiciales**: su rol procesal es testifical, no representativo. Aunque su nombre aparezca en un escrito procesal público y en cobertura periodística, ello por sí mismo NO les convierte en figura pública.
+
+**Test rápido en duda**: ¿hay rastro público de actividad representativa propia? — entrevistas en medios nacionales, comparecencias en eventos con cobertura, intervenciones en comisiones parlamentarias, autoría firmada de artículos o libros, publicación oficial en boletines, etc. Si sí → figura pública. Si no, política conservadora del P-07 / V-17.
+
+**Aplicación operativa a citas nominales en prosa sin ficha de `Persona` modelada** (típicamente, testigos o personajes secundarios mencionados en `Hito.descripcion` o `Hecho.enunciado`): si el sujeto pasa el test (A o B), puede nombrarse asumiendo implícitamente `es_figura_publica = true`, sin obligación de crearle ficha. Si no, **sustituir el nombre por la función** ("la responsable de RR.HH. de la institución", "un directivo de la empresa", "un representante de la fundación").
+
+> **Lección 2026-05-24** (primera pasada de `/revisar-caso` v0 sobre `begona-gomez/escrito-conclusiones-defensa-2026-05-18`): cinco testigos propuestos por la defensa exigieron aplicar este test.
+>
+> - **Miguel Escassi** — Director de Public Policy de Google España. Cumple B (cargo de representación institucional al exterior, comparece en actos públicos). → Se mantiene el nombre.
+> - **Rosauro Varo** — empresario con presencia mediática constante (Globalia/Air Europa). Cumple B. → Se mantiene el nombre.
+> - **Ignacio Mariscal** — consejero delegado de Reale Seguros. Cumple B (CEO de aseguradora grande, presencia en prensa económica e informes sectoriales). → Se mantiene el nombre.
+> - **Marc Simón** — director de la Fundación La Caixa. Cumple B (dirige fundación de presencia institucional alta). → Se mantiene el nombre.
+> - **Sonsoles Blanca Gil de Antuñano** — responsable interna de RR.HH. del IE Business School. No cumple A ni B (cargo interno sin función representativa al exterior). → Se sustituye por la función: «la responsable de recursos humanos del IE Business School».
+
 ### 2.3 Organización
 
 Cualquier entidad colectiva relevante para un caso: juzgados, fiscalías, partidos, empresas, organismos públicos, medios, asociaciones de acusación popular. Polimórfica por `tipo`.
