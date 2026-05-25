@@ -36,10 +36,10 @@ Si vas a tocar algo no trivial, consulta primero el doc correspondiente.
 
 ## Estructura del repositorio
 
-```
+```text
 /AGENTS.md                  ← este fichero
 /CLAUDE.md                  ← symlink → AGENTS.md
-/ROADMAP.md                 ← estado vivo del proyecto (leer al iniciar, actualizar al cerrar)
+/ROADMAP.md                 ← estado operativo vivo del proyecto (leer al iniciar, actualizar al cerrar)
 /DESIGN.md                  ← lenguaje visual canónico (Claude Design + Claude Code)
 /README.md                  ← descripción público-facing
 /CONTRIBUTING.md            ← cómo contribuir
@@ -47,6 +47,7 @@ Si vas a tocar algo no trivial, consulta primero el doc correspondiente.
 /LICENSE-CONTENT.md         ← CC BY-SA 4.0 (contenido editorial)
 /LEGAL.md                   ← aviso legal (placeholder hasta publicación con dominio)
 /docs/diseno/               ← documentos de diseño
+/docs/roadmap/              ← histórico largo, fases cerradas y aprendizajes no canónicos del roadmap
 /docs/web/pages/            ← backlog y notas por página visible del sitio (uno por ruta)
 /docs/web/features/         ← ficha por feature transversal (feed, búsqueda, RichProse, archive.org, …)
 /content/                   ← contenido canónico (YAML)
@@ -135,7 +136,7 @@ Convención de nombres: `<slug-kebab-case>.md` describiendo la capacidad (no el 
 
 ### Convención de referencias y citas
 
-**Decisión 2026-05-25, no negociable.** El proyecto **no usa el signo de sección ni los glyphs decorativos hermanos** (set retirado el 2026-05-25 — detalle histórico y razones en [`/ROADMAP.md`](ROADMAP.md), apartado "Aprendizajes y notas") en ninguna parte: ni en prosa, ni en YAML, ni en código, ni en componentes visuales, ni en comentarios. La judicatura española escribe "apartado", el BOE escribe "Artículo 5, apartado 1", la prensa no lo usa: la convención castellana real es "apartado" + enlace markdown al destino, no el signo germánico-académico.
+**Decisión 2026-05-25, no negociable.** El proyecto **no usa el signo de sección ni los glyphs decorativos hermanos** (set retirado el 2026-05-25 — detalle histórico y razones en [`docs/roadmap/aprendizajes.md`](docs/roadmap/aprendizajes.md)) en ninguna parte: ni en prosa, ni en YAML, ni en código, ni en componentes visuales, ni en comentarios. La judicatura española escribe "apartado", el BOE escribe "Artículo 5, apartado 1", la prensa no lo usa: la convención castellana real es "apartado" + enlace markdown al destino, no el signo germánico-académico.
 
 Sustituirlo según contexto:
 
@@ -169,6 +170,7 @@ Excepción única: si la sesión es **monoagente confirmada** (el maintainer dic
 Razón: en fase MVP el repo tiene un solo maintainer y los ciclos de feedback se hacen en sesiones de Claude Code, no en una review formal de GitHub. Las ramas + PRs ralentizan sin aportar, pero el push sí es un acto editorial que decide el maintainer (puede querer revisar el árbol de commits, esperar a juntar varios bloques, o vetar uno antes de que salga al repositorio público).
 
 **Cuando el maintainer reactive el modelo de ramas + PRs** (esperable cuando entren contribuyentes externos o cuando se establezcan CODEOWNERS), volver a:
+
 - Una rama por unidad de cambio coherente.
 - PR descriptivo con qué, por qué y fuentes.
 - CI verde antes de merge.
@@ -193,7 +195,7 @@ Normas mínimas que el agente debe seguir siempre en este repo, aunque no use la
 2. **Stagea siempre por ruta explícita.** Nunca `git add .`, `git add -A`, `git add -u` ni patrones genéricos. Lista las rutas concretas. Antes y después de `git add`, lanza `git status -s` y verifica que sólo aparecen como `A` los archivos que querías stagear.
 3. **No hagas `git add` ni `git commit` durante la sesión** (norma reforzada el 2026-05-24). Edita el working tree, acumula cambios, y commitea **un único commit al cierre** cuando el maintainer diga explícitamente "cerramos sesión" (o equivalente). Esto vale incluso con worktrees, por simplicidad y trazabilidad editorial.
 4. **Si dependes de un archivo creado por la sesión paralela**, no lo incluyas en tu commit. Sustituye la referencia por otra ya commiteada en main, o resuelve cuando ambos commits hayan aterrizado.
-5. **Para `ROADMAP.md`** (ruta especialmente caliente): lee primero la versión actual del fichero (puede haber cambiado mientras trabajabas), añade tu sección sin pisar la suya, y guarda todas las ediciones para el commit final único.
+5. **Para `ROADMAP.md` y `docs/roadmap/`** (rutas especialmente calientes): lee primero la versión actual del fichero (puede haber cambiado mientras trabajabas), añade tu sección sin pisar la de otra sesión, y guarda todas las ediciones para el commit final único. `ROADMAP.md` debe conservar contexto operativo suficiente para actuar; el histórico largo, fases cerradas y aprendizajes extensos van en `docs/roadmap/`.
 
 Recuperación si un incidente de contaminación cruzada ocurre: `git reset HEAD~1` no destructivo (los archivos ajenos vuelven al working dir como untracked, intactos). **Antes** del reset, comprueba con `git log` y `git reflog` qué commit está en `HEAD` — si una sesión paralela commiteó entremedias, `HEAD~1` puede ser el commit de ELLA y un reset ciego revertiría su trabajo.
 
@@ -216,7 +218,7 @@ Excepción legítima al "uno por sesión": si la sesión incluye un cambio edito
 
 **Norma incorporada el 2026-05-22 tras el PR2 del caso del Fiscal General del Estado.** Cuando un caso tiene asociado un documento jurisdiccional clave (sentencia, auto, BOE, informe oficial pericial), se descarga la copia íntegra al árbol del proyecto. El archivo del PDF/XML/etc. vive en:
 
-```
+```text
 /public/documentos/<slug-del-caso>/<id-del-documento>.<ext>
 ```
 
@@ -259,7 +261,7 @@ Y en el YAML del `Documento` se cumplimentan obligatoriamente los campos:
 
 El repo trae hooks de git versionados en `/hooks/` (no `.git/hooks/`, que no se versiona). Para activarlos en una máquina nueva ejecuta una vez:
 
-```
+```bash
 git config core.hooksPath hooks
 ```
 
@@ -283,7 +285,7 @@ Skills planeadas para usar con Claude Code en este repo:
 - `incorporar-hito` — añadir Hito + Hechos + Documento desde un PDF de auto.
 - `revisar-señales` — procesar bandeja del watcher (`content/signals.yaml`).
 - `validar-repo` — ejecutar `pnpm validate` con output amigable (capa schema / V-rules mecánicas).
-- `revisar-caso` — auditoría editorial cualitativa por LLM de un caso entero (capa que `validar-repo` no cubre: reglas P del doc 02, presunción de inocencia en el lenguaje, uso correcto de N4, ausencia de cuota política). Sirve tanto para revisar PRs externas de contribuyentes (`gh pr checkout <num>` + `/revisar-caso <slug>` en local) como para auto-revisarse cuando se trabajan varios casos en paralelo. Detalle del diseño en cuatro capas y checklist inicial en [`/ROADMAP.md`](ROADMAP.md), apartado "Después de Fase 1".
+- `revisar-caso` — auditoría editorial cualitativa por LLM de un caso entero (capa que `validar-repo` no cubre: reglas P del doc 02, presunción de inocencia en el lenguaje, uso correcto de N4, ausencia de cuota política). Sirve tanto para revisar PRs externas de contribuyentes (`gh pr checkout <num>` + `/revisar-caso <slug>` en local) como para auto-revisarse cuando se trabajan varios casos en paralelo. Detalle del diseño en cuatro capas y checklist inicial en [`docs/roadmap/fases-cerradas.md`](docs/roadmap/fases-cerradas.md).
 - `rectificar` — gestionar solicitud de rectificación entrante (cauce legal LO 2/1984, [doc 04 — "Mecanismo de rectificación"](docs/diseno/04-riesgos-legales-y-eticos.md#6-mecanismo-de-rectificación)).
 - `incorporar-aporte` — procesar aporte editorial entrante desde `content/aportes/<YYYY-MM-DD-slug>.md` clasificando en uno de los tres carriles aceptados (pista a fuente o hito · corrección fáctica menor · idea sobre el sitio) y proponiendo diff editorial sobre `content/` o archivado razonado de la idea en `docs/web/`, más borrador de respuesta al aportante (cauce editorial [doc 04 — "Mecanismo de aportación editorial"](docs/diseno/04-riesgos-legales-y-eticos.md#6bis-mecanismo-de-aportación-editorial), hermano de `rectificar`).
 - `anonimizar` — V-17: gestionar anonimización de persona privada.
@@ -331,12 +333,12 @@ En Fase 0 son placeholders; se implementan según se necesiten.
 
 ## Workflow para agentes
 
-0. **Lee [`/ROADMAP.md`](ROADMAP.md)** antes de hacer cualquier otra cosa. Es el estado vivo del proyecto: dónde estamos, qué toca, decisiones pendientes, aprendizajes. **Obligatorio.**
+0. **Lee [`/ROADMAP.md`](ROADMAP.md)** antes de hacer cualquier otra cosa. Es el estado operativo vivo del proyecto: dónde estamos, qué toca, decisiones pendientes y aprendizajes activos. **Obligatorio.** Si necesitas contexto histórico completo, sigue sus enlaces a `docs/roadmap/`; no cargues el histórico por defecto si el roadmap operativo ya basta.
 1. **Antes de cambiar algo no trivial**: lee el doc de diseño correspondiente en `docs/diseno/`. Si tocas algo visual o de marca, además [`/DESIGN.md`](DESIGN.md). Si el cambio contradice un principio o regla, NO lo hagas; pregunta.
 2. **Para crear/modificar contenido**: edita los archivos en el working tree. **NO hagas `git add` ni `git commit` durante la sesión** salvo que el maintainer lo pida explícitamente. Detalle en "Workflow de rama y PRs".
 3. **Valida localmente cuando tengas algo terminado**: `pnpm validate` y `pnpm build`. Reportar el resultado, no commitear todavía.
 4. **Si encuentras un dato sensible**: NO lo publiques sin consultar `docs/diseno/04-riesgos-legales-y-eticos.md`.
-5. **Al cerrar la sesión** (cuando el maintainer diga explícitamente "cerramos sesión", "haz el commit" o equivalente): actualiza [`/ROADMAP.md`](ROADMAP.md) — backlog, estado, aprendizajes — y haz el commit final único con `git add` por ruta explícita + mensaje descriptivo (qué, por qué, fuentes). **No hagas `git push`** — eso sigue siendo decisión del maintainer.
+5. **Al cerrar la sesión** (cuando el maintainer diga explícitamente "cerramos sesión", "haz el commit" o equivalente): actualiza [`/ROADMAP.md`](ROADMAP.md) con estado operativo, próximos pasos y aprendizajes activos. Si el cierre necesita detalle largo, escríbelo en `docs/roadmap/historial-YYYY-MM.md` y deja en `ROADMAP.md` sólo el resumen enlazado. Si se cierra una fase o queda un aprendizaje extenso no canónico, usa `docs/roadmap/fases-cerradas.md` o `docs/roadmap/aprendizajes.md`. Después haz el commit final único con `git add` por ruta explícita + mensaje descriptivo (qué, por qué, fuentes). **No hagas `git push`** — eso sigue siendo decisión del maintainer.
 
 ## Cuando dudes
 
