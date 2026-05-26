@@ -3,7 +3,7 @@
 // editorial, niveles de fuente, cómo rectificar y licencias.
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import SectionH from '@/components/SectionH.astro';
+import FichaTocSection from '@/components/FichaTocSection.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import type { Lang } from '@/lib/labels';
 
@@ -31,6 +31,7 @@ const strings = {
     { label: 'Sobre' },
   ]}
 >
+  <div class="ficha-detail">
   <section class="page-id">
     <div>
       <p class="page-id__eyebrow">{strings.eyebrow}</p>
@@ -44,7 +45,7 @@ const strings = {
     </div>
   </section>
 
-  <SectionH num="1." title="Qué es presuntamente" id="que-es" />
+  <FichaTocSection num="1." title="Qué es presuntamente" id="que-es">
   <div class="prose">
     <p>
       <strong>presuntamente.org</strong> es un inventario público, interactivo y open-source de los
@@ -59,8 +60,9 @@ const strings = {
       hasta que recaiga sentencia firme.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="2." title="Principios editoriales" id="principios" />
+  <FichaTocSection num="2." title="Principios editoriales" id="principios">
   <ol class="principios">
     <li>
       <strong>Imputación nunca equivale a condena.</strong> El modelo distingue investigado,
@@ -89,8 +91,9 @@ const strings = {
       correcciones conservan el histórico.
     </li>
   </ol>
+  </FichaTocSection>
 
-  <SectionH num="3." title="Niveles de fuente (N1–N4)" id="niveles" />
+  <FichaTocSection num="3." title="Niveles de fuente (N1–N4)" id="niveles">
   <div class="prose">
     <p>Cada Documento del inventario lleva un nivel de fuente que comunica su autoridad:</p>
   </div>
@@ -125,8 +128,9 @@ const strings = {
       </div>
     </li>
   </ul>
+  </FichaTocSection>
 
-  <SectionH num="4." title="Roles procesales" id="roles" />
+  <FichaTocSection num="4." title="Roles procesales" id="roles">
   <div class="prose">
     <p>
       Cada Persona u Organización está unida a un Caso mediante un <em>RolEnCaso</em> con periodo
@@ -244,8 +248,9 @@ const strings = {
     <li><RolBadge rol="perito_parte" /><div>Perito aportado por una de las partes.</div></li>
     <li><RolBadge rol="secretario_judicial" /><div>Letrado de la Administración de Justicia: fe pública procesal y dirección de la oficina judicial.</div></li>
   </ul>
+  </FichaTocSection>
 
-  <SectionH num="5." title="Tipos de hecho" id="tipos-hecho" />
+  <FichaTocSection num="5." title="Tipos de hecho" id="tipos-hecho">
   <div class="prose">
     <p>
       Cada <em>Hecho</em> del inventario lleva un tipo que comunica su estado epistémico — qué
@@ -304,8 +309,9 @@ const strings = {
       </div>
     </li>
   </ul>
+  </FichaTocSection>
 
-  <SectionH num="6." title="Lenguaje editorial" id="lenguaje" />
+  <FichaTocSection num="6." title="Lenguaje editorial" id="lenguaje">
   <div class="prose">
     <p>
       Para preservar la presunción de inocencia (apartado "Principios irrenunciables" de AGENTS.md, regla P de doc 02),
@@ -335,8 +341,9 @@ const strings = {
       consecuencia.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="7." title="Cómo proponer una corrección" id="rectificar" />
+  <FichaTocSection num="7." title="Cómo proponer una corrección" id="rectificar">
   <div class="prose">
     <p>
       El derecho a rectificación está garantizado. Si detectas un error en una ficha (un nombre mal
@@ -356,8 +363,9 @@ const strings = {
       entidad afectada — el histórico no se borra.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="8." title="Licencias y código" id="licencias" />
+  <FichaTocSection num="8." title="Licencias y código" id="licencias">
   <div class="prose">
     <ul class="meta-list">
       <li>
@@ -375,6 +383,8 @@ const strings = {
         </a>
       </li>
     </ul>
+  </div>
+  </FichaTocSection>
   </div>
 
   <div class="aviso aviso--accent mt-6">

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import SectionH from '@/components/SectionH.astro';
+import FichaTocSection from '@/components/FichaTocSection.astro';
 import PhaseBadge from '@/components/PhaseBadge.astro';
 import LevelBadge from '@/components/LevelBadge.astro';
 import RolBadge from '@/components/RolBadge.astro';
@@ -307,6 +307,7 @@ const breadcrumb = [
 ---
 
 <BaseLayout title={strings.title} lang={lang} description={strings.description} breadcrumb={breadcrumb} activeNav="cifras">
+  <div class="ficha-detail">
   <div class="cifras-head">
     <header class="page-id">
       <div>
@@ -338,7 +339,7 @@ const breadcrumb = [
   </div>
 
   <!-- 1. Estado procesal de las personas -->
-  <SectionH num="1." id="estado-procesal" title="Estado procesal de las personas" />
+  <FichaTocSection num="1." id="estado-procesal" title="Estado procesal de las personas">
   <p class="lead">
     Una misma persona puede acumular roles consecutivos en distintas fases procesales del mismo caso
     (p. ej. <em>investigada → procesada → condenada</em>). Los conteos siguientes cuentan personas únicas,
@@ -382,9 +383,10 @@ const breadcrumb = [
     Investigado y procesado son fases de instrucción; ninguna implica condena. La presunción de inocencia
     rige mientras no recaiga sentencia firme.
   </p>
+  </FichaTocSection>
 
   <!-- 2. Casos -->
-  <SectionH num="2." id="casos" title="Distribución de casos" />
+  <FichaTocSection num="2." id="casos" title="Distribución de casos">
 
   <h3 class="sub-h">Por fase procesal</h3>
   <div class="tbl-scroll">
@@ -435,9 +437,10 @@ const breadcrumb = [
       </tbody>
     </table>
   </div>
+  </FichaTocSection>
 
   <!-- 3. Documentos -->
-  <SectionH num="3." id="documentos" title="Documentos y fuentes" />
+  <FichaTocSection num="3." id="documentos" title="Documentos y fuentes">
 
   <ul class="kpis">
     <li class="kpi kpi--neutro">
@@ -505,9 +508,10 @@ const breadcrumb = [
       </tbody>
     </table>
   </div>
+  </FichaTocSection>
 
   <!-- 4. Hechos -->
-  <SectionH num="4." id="hechos" title="Hechos y carga editorial" />
+  <FichaTocSection num="4." id="hechos" title="Hechos y carga editorial">
   <p class="lead">
     Cada Hecho del inventario se clasifica por estado epistémico (qué grado de prueba lo respalda) y
     por vigencia (si sigue en pie o ha sido superado por otro Hecho posterior).
@@ -555,9 +559,10 @@ const breadcrumb = [
       </div>
     </div>
   </div>
+  </FichaTocSection>
 
   <!-- 5. Hitos -->
-  <SectionH num="5." id="hitos" title="Hitos del inventario" />
+  <FichaTocSection num="5." id="hitos" title="Hitos del inventario">
 
   <ul class="kpis">
     <li class="kpi kpi--neutro">
@@ -604,9 +609,10 @@ const breadcrumb = [
       </tbody>
     </table>
   </div>
+  </FichaTocSection>
 
   <!-- 6. Organizaciones -->
-  <SectionH num="6." id="organizaciones" title="Organizaciones citadas" />
+  <FichaTocSection num="6." id="organizaciones" title="Organizaciones citadas">
   <div class="tbl-scroll">
     <table class="tbl">
       <thead>
@@ -625,9 +631,10 @@ const breadcrumb = [
       </tbody>
     </table>
   </div>
+  </FichaTocSection>
 
   <!-- 7. Delitos -->
-  <SectionH num="7." id="delitos" title="Delitos catalogados y atribuidos" />
+  <FichaTocSection num="7." id="delitos" title="Delitos catalogados y atribuidos">
 
   <h3 class="sub-h">Catálogo por familia</h3>
   <div class="tbl-scroll">
@@ -672,9 +679,10 @@ const breadcrumb = [
       </tbody>
     </table>
   </div>
+  </FichaTocSection>
 
   <!-- 8. Conexiones y glosario -->
-  <SectionH num="8." id="conexiones" title="Conexiones y referencias auxiliares" />
+  <FichaTocSection num="8." id="conexiones" title="Conexiones y referencias auxiliares">
   <ul class="kpis">
     <li class="kpi kpi--neutro">
       <span class="kpi__val">{totalRelaciones}</span>
@@ -685,9 +693,10 @@ const breadcrumb = [
       <span class="kpi__lbl">Entradas de glosario</span>
     </li>
   </ul>
+  </FichaTocSection>
 
   <!-- 9. Notas metodológicas -->
-  <SectionH num="9." id="metodologia" title="Notas metodológicas" />
+  <FichaTocSection num="9." id="metodologia" title="Notas metodológicas">
   <ol class="notas">
     <li>
       Todas las cifras se recalculan en cada build a partir de los YAML de
@@ -725,15 +734,16 @@ const breadcrumb = [
     Esta página es un dashboard derivado. La fuente de verdad de cada cifra son los YAML del repositorio:
     <a href="https://github.com/davidchicano/presuntamente" rel="noopener">davidchicano/presuntamente</a>.
   </p>
+  </FichaTocSection>
+  </div>
 </BaseLayout>
 
 <style>
-  /* Wrapper que combina page-id + sello en un único bloque de grid.
-     Sin esto, en desktop con PageToc (grid-row: 1 / -1), el reparto de
-     altura del TOC sobre la fila 1 deja un hueco vertical grande entre
-     ambos. Tratarlos como un único item de grid lo elimina. */
+  /* Wrapper que combina page-id + sello dentro de .ficha-detail (un solo
+     item de grid con el TOC en desktop). El gap entre cabecera y sección 1
+     lo marca .ficha-detail, no margin-bottom aquí. */
   .cifras-head {
-    margin-bottom: var(--space-6);
+    margin-bottom: 0;
   }
   .cifras-head .page-id { margin-bottom: var(--space-4); }
 

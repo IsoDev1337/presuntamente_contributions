@@ -3,7 +3,7 @@
 // Texto derivado de docs/diseno/04-riesgos-legales-y-eticos.md, sección "Mecanismo de rectificación".
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import SectionH from '@/components/SectionH.astro';
+import FichaTocSection from '@/components/FichaTocSection.astro';
 import type { Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; }
@@ -34,6 +34,7 @@ const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
     { label: 'Rectificar' },
   ]}
 >
+  <div class="ficha-detail">
   <section class="page-id">
     <div>
       <p class="page-id__eyebrow">{strings.eyebrow}</p>
@@ -47,7 +48,7 @@ const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
     </div>
   </section>
 
-  <SectionH num="1." title="Vías habilitadas" id="vias" />
+  <FichaTocSection num="1." title="Vías habilitadas" id="vias">
   <ul class="vias">
     <li>
       <h3>Correo electrónico <span class="vias__rec">recomendado</span></h3>
@@ -87,8 +88,9 @@ const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
       </p>
     </li>
   </ul>
+  </FichaTocSection>
 
-  <SectionH num="2." title="Información necesaria" id="info" />
+  <FichaTocSection num="2." title="Información necesaria" id="info">
   <div class="prose">
     <p>Para procesar la solicitud, indica:</p>
     <ol class="numerada">
@@ -108,8 +110,9 @@ const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
       </li>
     </ol>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="3." title="Plazos comprometidos" id="plazos" />
+  <FichaTocSection num="3." title="Plazos comprometidos" id="plazos">
   <div class="tbl-scroll">
   <table class="tbl">
     <thead>
@@ -138,8 +141,9 @@ const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
     </tbody>
   </table>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="4." title="Tipos de respuesta posibles" id="tipos" />
+  <FichaTocSection num="4." title="Tipos de respuesta posibles" id="tipos">
   <ul class="tipos">
     <li>
       <h3>Rectificación íntegra</h3>
@@ -162,8 +166,9 @@ const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
       <p>El hecho era injustificable. Se elimina con anotación de corrección en el log público.</p>
     </li>
   </ul>
+  </FichaTocSection>
 
-  <SectionH num="5." title="Otras vías de mejora del inventario" id="otras" />
+  <FichaTocSection num="5." title="Otras vías de mejora del inventario" id="otras">
   <div class="prose">
     <p>
       Si no quieres rectificar nada pero detectas una <strong>fuente que falta</strong> (sentencia
@@ -175,6 +180,8 @@ const issueSugerirUrl = `${repoUrl}/issues/new?template=sugerencia-fuente.yml`;
         Sugerir una nueva fuente ↗
       </a>
     </p>
+  </div>
+  </FichaTocSection>
   </div>
 
   <div class="aviso aviso--accent mt-6">

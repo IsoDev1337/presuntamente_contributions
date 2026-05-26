@@ -6,7 +6,7 @@
 // operativo desde 2026-05-25 vía Cloudflare Email Routing.
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import SectionH from '@/components/SectionH.astro';
+import FichaTocSection from '@/components/FichaTocSection.astro';
 import type { Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; }
@@ -38,6 +38,7 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     { label: 'Aportar' },
   ]}
 >
+  <div class="ficha-detail">
   <section class="page-id">
     <div>
       <p class="page-id__eyebrow">{strings.eyebrow}</p>
@@ -51,7 +52,7 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     </div>
   </section>
 
-  <SectionH num="1." title="Qué puedes aportar" id="que" />
+  <FichaTocSection num="1." title="Qué puedes aportar" id="que">
   <ul class="carriles">
     <li>
       <h3>Pista a fuente o hito que falta</h3>
@@ -90,8 +91,9 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
       </p>
     </li>
   </ul>
+  </FichaTocSection>
 
-  <SectionH num="2." title="Vías habilitadas" id="vias" />
+  <FichaTocSection num="2." title="Vías habilitadas" id="vias">
   <ul class="vias">
     <li>
       <h3>Correo electrónico <span class="vias__rec">recomendado</span></h3>
@@ -129,8 +131,9 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
       </p>
     </li>
   </ul>
+  </FichaTocSection>
 
-  <SectionH num="3." title="Plazos comprometidos" id="plazos" />
+  <FichaTocSection num="3." title="Plazos comprometidos" id="plazos">
   <div class="tbl-scroll">
   <table class="tbl">
     <thead>
@@ -159,8 +162,9 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     </tbody>
   </table>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="4." title="Qué no aceptamos depositar" id="no" />
+  <FichaTocSection num="4." title="Qué no aceptamos depositar" id="no">
   <div class="prose">
     <p>
       El inventario <strong>solo cita fuentes públicas verificables</strong>. Tu aporte tiene
@@ -196,8 +200,9 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
       <code>AGENTS.md</code>, sección "Documentos primarios descargados".
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="5." title="Privacidad y acreditación" id="privacidad" />
+  <FichaTocSection num="5." title="Privacidad y acreditación" id="privacidad">
   <div class="prose">
     <p>
       <strong>Por defecto tu aporte es anónimo.</strong> El commit que incorpore tu pista al
@@ -225,8 +230,9 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
       cualquier momento (art. 17 RGPD) sin afectar al diff editorial ya commiteado.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="6." title="Otra puerta: rectificación" id="rectificar" />
+  <FichaTocSection num="6." title="Otra puerta: rectificación" id="rectificar">
   <div class="prose">
     <p>
       <strong>¿Te consideras aludido por una afirmación publicada y discrepas?</strong> El cauce
@@ -239,6 +245,8 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
         Ir a /rectificar →
       </a>
     </p>
+  </div>
+  </FichaTocSection>
   </div>
 
   <div class="aviso aviso--accent mt-6">

@@ -8,7 +8,7 @@
 // bajo el dominio propio (requiere apartado de correos + revisión legal previa).
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import SectionH from '@/components/SectionH.astro';
+import FichaTocSection from '@/components/FichaTocSection.astro';
 import type { Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; }
@@ -35,6 +35,7 @@ const strings = {
     { label: 'Aviso legal' },
   ]}
 >
+  <div class="ficha-detail">
   <section class="page-id">
     <div>
       <p class="page-id__eyebrow">{strings.eyebrow}</p>
@@ -48,7 +49,7 @@ const strings = {
     </div>
   </section>
 
-  <SectionH num="1." title="Qué es este sitio" id="que" />
+  <FichaTocSection num="1." title="Qué es este sitio" id="que">
   <div class="prose">
     <p>
       <strong>presuntamente.org</strong> es un sitio de información ciudadana que recoge y estructura
@@ -60,8 +61,9 @@ const strings = {
       (N1 oficial primaria, N2 oficial secundaria, N3 institucional, N4 cobertura periodística).
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="2." title="Presunción de inocencia" id="presuncion" />
+  <FichaTocSection num="2." title="Presunción de inocencia" id="presuncion">
   <div class="prose">
     <p>
       Toda persona mencionada en este sitio como <strong>investigada, procesada, acusada</strong> o
@@ -71,8 +73,9 @@ const strings = {
       culpabilidad.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="3." title="Categorización de afirmaciones" id="categorizacion" />
+  <FichaTocSection num="3." title="Categorización de afirmaciones" id="categorizacion">
   <div class="prose">
     <p>
       Las afirmaciones de cada ficha están categorizadas según su <strong>estado epistémico</strong>:
@@ -82,8 +85,9 @@ const strings = {
       se borra.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="4." title="Cómo se construye este sitio" id="construccion" />
+  <FichaTocSection num="4." title="Cómo se construye este sitio" id="construccion">
   <div class="prose">
     <p>
       El inventario se construye combinando trabajo editorial humano con apoyo de
@@ -105,8 +109,9 @@ const strings = {
       auditar cómo se construye una ficha.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="5." title="Rectificación" id="rectificacion" />
+  <FichaTocSection num="5." title="Rectificación" id="rectificacion">
   <div class="prose">
     <p>
       <strong>Si te consideras aludido</strong> por una información publicada y discrepas, puedes
@@ -118,8 +123,9 @@ const strings = {
       rectificación si procede dentro del plazo legal (LO 2/1984).
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="5bis." title="Aportación editorial" id="aportacion" />
+  <FichaTocSection num="5bis." title="Aportación editorial" id="aportacion">
   <div class="prose">
     <p>
       <strong>Si tienes mejor acceso a fuentes o mejor conocimiento del caso</strong> que el equipo
@@ -136,8 +142,9 @@ const strings = {
       <code>docs/diseno/04-riesgos-legales-y-eticos.md</code> apartado 6bis.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="6." title="Responsable a efectos de LSSI" id="responsable" />
+  <FichaTocSection num="6." title="Responsable a efectos de LSSI" id="responsable">
   <div class="aviso aviso--accent">
     <p>
       <strong>Identificación postal pendiente.</strong> El dominio
@@ -155,8 +162,9 @@ const strings = {
       vía o a los correos institucionales del dominio.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="7." title="Limitación de responsabilidad" id="limitacion" />
+  <FichaTocSection num="7." title="Limitación de responsabilidad" id="limitacion">
   <div class="prose">
     <p>
       Este sitio <strong>organiza información ya pública</strong> para facilitar su consulta y
@@ -173,8 +181,9 @@ const strings = {
       que distorsionen el sentido editorial original quedan fuera del amparo de esta licencia.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="8." title="Tratamiento de datos personales" id="datos" />
+  <FichaTocSection num="8." title="Tratamiento de datos personales" id="datos">
   <div class="prose">
     <p>
       Este sitio menciona personas <strong>únicamente en su condición de sujeto procesal</strong> de un
@@ -191,8 +200,9 @@ const strings = {
       y oposición (art. 15-22 RGPD) se atienden por las vías de la sección 5.
     </p>
   </div>
+  </FichaTocSection>
 
-  <SectionH num="9." title="Licencias" id="licencias" />
+  <FichaTocSection num="9." title="Licencias" id="licencias">
   <div class="prose">
     <ul class="meta-list">
       <li>
@@ -205,6 +215,8 @@ const strings = {
         publicarse bajo la misma licencia.
       </li>
     </ul>
+  </div>
+  </FichaTocSection>
   </div>
 
   <div class="aviso aviso--accent mt-6">
