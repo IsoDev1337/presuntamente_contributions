@@ -1,42 +1,52 @@
 # Navegación principal (header)
 
-> Archivos clave: [`src/layouts/BaseLayout.astro`](../../../src/layouts/BaseLayout.astro) (datos `navGroups` + markup desktop/móvil) · [`src/styles/global.css`](../../../src/styles/global.css) (`.site-nav`, `.site-nav__group`, panel móvil)
+> Archivos clave: [`src/layouts/BaseLayout.astro`](../../../src/layouts/BaseLayout.astro) (datos `navEntries` + markup desktop/móvil) · [`src/styles/global.css`](../../../src/styles/global.css) (`.site-nav`, `.site-nav-dropdown`, panel móvil)
 
 ## Qué hace
 
-Lista las secciones públicas del inventario en el header navy: Casos, entidades (Personas · Organizaciones · Delitos) y referencia (Biblioteca · Cifras · Sobre). Utilidades a la derecha: Buscar, idioma, Aportar; hamburguesa solo en `<720px`.
+Lista las secciones públicas del inventario en el header navy. **Desktop:** Casos (enlace directo) + dos menús desplegables (Inventario · Referencia). **Mobile:** hamburguesa con los mismos clusters y cabeceras. Utilidades a la derecha: Buscar, idioma, Aportar.
 
 ## Para qué sirve
 
-Orientar al visitante (periodista, contribuyente, lector casual) sin ocultar rutas detrás de dropdowns. Casos sigue siendo destino de un clic.
+Reducir ruido visual en el header cuando el inventario crece (Grafo, Biblioteca, etc.) sin perder acceso en un clic desde el panel desplegable. Casos sigue siendo destino directo — el núcleo del sitio.
 
 ## Cómo funciona
 
-- **`navGroups`**: tres clusters IA (2026-05-25, Sobre absorbido en referencia para evitar grupo huérfano al hacer wrap):
-  1. `core` — Casos
-  2. `inventario` — Personas, Organizaciones, Delitos
-  3. `referencia` — Biblioteca, Cifras, Sobre
-- **Desktop ancho (`>1180px`)**: grid `brand · nav · [1fr] · utilidades`. Nav a `max-content` (tamaño fijo 13px); el espaciador empuja Buscar/idioma/Aportar a la derecha. Hover a altura completa en **todos** los enlaces, incluidos los de grupo.
-- **Tablet (`721–1180px`)**: 2 filas, nav abajo ancho completo, 14px fijo.
-- **Mobile (`≤720px`)**: hamburguesa; nav en panel con cabeceras `Inventario` / `Referencia`.
-- Entre grupos: tick mostaza corto. Intra-grupo: padding compacto (10px).
+- **`navEntries`**: cinco entradas de primer nivel:
+  1. `link` — Casos
+  2. `menu` inventario — Personas, Organizaciones, Delitos
+  3. `link` — Conexiones (ruta `/grafo`; copy completo en [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md#convención-de-copy))
+  4. `menu` referencia — Biblioteca, Cifras
+  5. `link` — Sobre (metainfo; acceso directo)
+- **`navGroups`**: misma taxonomía para el panel móvil (cabeceras Inventario / Referencia).
+- **Desktop**: triggers reutilizan el listener global de paneles (`aria-controls` + `data-open`). Hover abre en `(hover: hover) and (pointer: fine)` en nav **e idioma**; click alterna en touch. Un solo panel abierto a la vez.
+- **Paneles nav**: extensión navy de la columna (tipografía blanca, filete mostaza inferior).
+- **Panel idioma**: superficie blanca pegada al trigger (utilidad lateral); mismo hover/click/ESC pero aspecto distinto al nav.
+- **Estado activo**: enlace directo por `activeNav`; trigger de menú activo si algún hijo coincide.
+- **Tablet (`721–1180px`)**: 2 filas; nav abajo ancho completo con los tres items de primer nivel (sin colapsar a hamburguesa).
+- **Mobile (`≤720px`)**: hamburguesa; nav en panel con cabeceras de grupo.
 
 ## Estado actual
 
-- **2026-05-25 (d)**: hover full-height restaurado en grupos; eliminado `clamp()`; nav `max-content` + columna `1fr` empuja utilidades a la derecha.
+- **2026-05-26 (b)**: Grafo y Sobre pasan a enlace directo; Referencia queda solo con Biblioteca + Cifras.
+- **2026-05-26**: nav desktop pasa de 8 enlaces planos a menús desplegables + enlaces destacados.
+- **2026-05-25 (d)**: hover full-height; nav `max-content` + columna `1fr` empuja utilidades a la derecha (sigue vigente).
 
 ## Decisiones editoriales y aprendizajes
 
 - **No hamburguesa en tablet** — el nav debe seguir siendo visible hasta mobile real.
-- **No encoger tipografía** — el nav empuja; por debajo de 1180px pasa a 2 filas.
-- **Tres clusters, no cuatro** — Sobre junto a Biblioteca/Cifras evita wrap huérfano.
-- **2 filas antes que recortar** — por debajo de 1180px el nav gana fila propia a ancho completo en lugar de comprimirse en `1fr` con overflow oculto.
+- **Casos fuera del dropdown** — acceso directo al núcleo editorial.
+- **Conexiones y Sobre fuera del dropdown** — explorador de relaciones como feature destacada (`/grafo`); Sobre como metainfo institucional sin enterrarla.
+- **Inventario vs Referencia** — entidades modeladas separadas de documentos agregados (biblioteca, cifras).
+- **Sin shadcn/Radix en runtime** — el proyecto es Astro estático; el patrón visual (trigger + panel + chevron) se replica con CSS/JS existente.
+- **2 filas antes que recortar** — por debajo de 1180px el nav gana fila propia a ancho completo.
 
 ## Ideas futuras
 
-- v1.x: si en 721–1180 aún aprieta con catalán activo, acortar label «Organizaciones» solo en ese rango vía CSS `font-size: 0` + `::after` (último recurso).
+- v1.x: descripciones cortas bajo cada ítem del dropdown (p. ej. «Grafo — relaciones entre actores») si el panel crece más.
+- v1.x: indicador de «nuevo» en Grafo mientras la feature esté en beta pública.
 
 ## Pendientes operativos
 
-- [ ] Verificar visualmente en `1280`, `1100`, `900`, `721` y `375`.
+- [ ] Verificar visualmente en `1280`, `1100`, `900`, `721` y `375` (dropdown hover, click fuera, ESC, item activo).
 - [ ] Sincronizar [`SiteChrome.jsx`](../../../.agents/skills/presuntamente-design/ui_kits/web/SiteChrome.jsx) del UI kit si se usa para mocks.
