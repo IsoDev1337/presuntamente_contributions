@@ -39,7 +39,20 @@ const strings = {
   sub:
     'Listado de los procedimientos judiciales relevantes registrados en el sistema. Cada caso ' +
     'enlaza con su ficha completa, sus personas implicadas y los documentos primarios que lo respaldan.',
+  leyendaEstadosTitulo: 'Estado de la ficha',
+  leyendaEstadosIntro:
+    'Ciclo editorial del inventario presuntamente.org — no confundir con la fase procesal del caso.',
 };
+
+const LEYENDA_ESTADOS: ReadonlyArray<{ estado: EstadoPublicacion; nota: string }> = [
+  { estado: 'pendiente', nota: 'En cola; aún no se ha empezado a trabajar la ficha.' },
+  { estado: 'borrador', nota: 'Ficha en desarrollo; no accesible en producción.' },
+  { estado: 'beta_publica', nota: 'Publicada con huecos editoriales menores.' },
+  { estado: 'en_revision', nota: 'Revisión interna antes de darla por cerrada.' },
+  { estado: 'publicado', nota: 'Ficha al máximo de lo que el inventario permite hoy.' },
+  { estado: 'retirado_temporalmente', nota: 'Retirada temporalmente del catálogo público.' },
+  { estado: 'retirado_definitivamente', nota: 'Retirada definitivamente del catálogo público.' },
+];
 
 // --- Carga desde Content Collections ----------------------------------------
 
@@ -250,6 +263,19 @@ function miniDescripcion(raw: string, max = 140): string {
       <span>Mostrando: <span data-shown>{casos.length}</span></span>
     </div>
   </section>
+
+  <aside class="catalog-legend" aria-label="Leyenda de estados de ficha">
+    <h3 class="catalog-legend__heading">{strings.leyendaEstadosTitulo}</h3>
+    <p class="catalog-legend__intro">{strings.leyendaEstadosIntro}</p>
+    <ul class="catalog-legend__list">
+      {LEYENDA_ESTADOS.map(({ estado, nota }) => (
+        <li class="catalog-legend__item">
+          <EstadoPublicacionBadge estado={estado} compact />
+          <span class="catalog-legend__desc">{nota}</span>
+        </li>
+      ))}
+    </ul>
+  </aside>
 
   <header class="sec-h">
     <span class="num">1.1</span>
@@ -505,6 +531,44 @@ function miniDescripcion(raw: string, max = 140): string {
 </script>
 
 <style>
+  .catalog-legend {
+    margin: 0 0 var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-accent-secondary);
+    background: var(--color-surface);
+  }
+  .catalog-legend__heading {
+    margin: 0 0 4px;
+    font: 600 0.82rem/1.3 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .catalog-legend__intro {
+    margin: 0 0 12px;
+    font: 400 0.78rem/1.45 var(--font-sans);
+    color: var(--color-fg-muted);
+    max-width: none;
+  }
+  .catalog-legend__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 8px 20px;
+  }
+  .catalog-legend__item {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 8px 10px;
+    align-items: center;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+  .catalog-legend__desc {
+    color: var(--color-fg-muted);
+  }
+
   .c-name-row {
     display: flex;
     align-items: center;

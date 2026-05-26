@@ -40,29 +40,29 @@ const LABELS: Record<Props['estado'], string> = {
   .estado-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.45em;
     font-family: var(--font-sans);
     font-size: 0.78rem;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
     letter-spacing: 0.02em;
-    padding: 0.18em 0.6em 0.18em 0.5em;
+    padding: 0.12em 0.38em;
     border-radius: 2px;
-    border: 1px solid;
-    background: var(--color-surface);
     white-space: nowrap;
   }
 
   .estado-badge__dot {
     flex-shrink: 0;
-    inline-size: 8px;
-    block-size: 8px;
+    inline-size: 0.5em;
+    block-size: 0.5em;
+    margin-top: 0.08em;
     border-radius: 50%;
     background: currentColor;
   }
 
   .estado-badge__label {
     text-transform: none;
+    line-height: 1.2;
   }
 
   .estado-badge__detalle {
@@ -70,57 +70,43 @@ const LABELS: Record<Props['estado'], string> = {
     color: var(--color-fg-muted, var(--color-fg));
     opacity: 0.85;
     white-space: normal;
+    line-height: 1.2;
   }
 
   /* Estados ---------------------------------------------------------------- */
 
   .estado-badge--completo {
     color: var(--color-acreditado);
-    border-color: var(--color-acreditado-border);
-    background: var(--color-acreditado-bg);
+    background: var(--color-acreditado-bg, #eef4ef);
   }
 
   .estado-badge--parcial {
     color: #6b4d00;
-    border-color: var(--color-accent-secondary-border);
-    background: var(--color-accent-secondary-soft);
+    background: var(--color-accent-secondary-soft, #f7ecc5);
   }
 
   .estado-badge--pendiente {
     color: var(--color-rol-investigado);
-    border-color: var(--color-rol-investigado);
-    background: var(--color-surface);
+    background: var(--color-investigado-bg, #f7f0dd);
   }
 
   .estado-badge--no-aplica {
     color: var(--color-fg-muted, #6c6f73);
-    border-color: var(--color-border, #cfd1d4);
-    background: var(--color-surface);
-    opacity: 0.78;
+    background: var(--color-desmentido-bg, #f0f0f0);
   }
 
-  /* Dark mode: el proyecto usa @media (prefers-color-scheme: dark) y
-     overridea tokens en :root. Los colores hardcoded de `completo`,
-     `parcial` y `pendiente` (escogidos para contrastar sobre fondo claro)
-     pierden contraste sobre fondos oscuros, así que aquí los re-pinto
-     con foregrounds claros propios del modo oscuro. Los backgrounds
-     ya son los `_bg` / `_soft` que el global.css redefine en oscuro. */
   @media (prefers-color-scheme: dark) {
     .estado-badge--completo {
       color: #9ec5a7;
-      border-color: var(--color-acreditado-border);
     }
     .estado-badge--parcial {
       color: var(--color-accent-secondary);
-      border-color: var(--color-accent-secondary-border);
     }
     .estado-badge--pendiente {
       color: var(--color-accent);
-      border-color: var(--color-accent);
     }
     .estado-badge--no-aplica {
       color: var(--color-fg-subtle, var(--color-fg-muted));
-      border-color: var(--color-border, #2e3035);
     }
   }
 </style>

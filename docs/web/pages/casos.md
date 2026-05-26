@@ -4,7 +4,7 @@
 
 ## Estado actual
 
-Listado tabular de casos con filtros (búsqueda, fase procesal, orden) + cinco columnas tras el sprint del 2026-05-26 (tarde):
+Listado tabular de casos con leyenda de estados de ficha a ancho completo (antes de la sección 1.1 Filtros), filtros (búsqueda, fase procesal, orden) + cinco columnas tras el sprint del 2026-05-26 (tarde):
 
 1. **Caso** — nombre mediático + `EstadoPublicacionBadge` compacto en la misma línea + mini-descripción de `sintesis_caso.que_se_investiga` (fallback `descripcion_corta`). Primera columna ensanchada (30%).
 2. **Fase** — `PhaseBadge`.
@@ -42,6 +42,7 @@ Filas en estado `pendiente`/`borrador` aparecen no clicables en producción (`tr
 - **Columna «Implicados» eliminada.** Era un número muerto que no marketing nada al lector. Decisión maintainer 2026-05-26 (tarde).
 - **Último hito truncado.** Antes ocupaba mucho alto en filas con titulares largos. Truncado a ~90 chars + tooltip con texto completo.
 - **Partidos como chips, no badge enum.** Cada caso puede tocar varios partidos por motivos distintos; un único badge no captura la pluralidad. Decisión 2026-05-26.
+- **Leyenda antes de la sección Filtros.** Decisión 2026-05-26: bloque `catalog-legend` a ancho completo, sólo estado de ficha (sin fases procesales), colocado entre el page-id y el apartado 1.1. El copy distingue ciclo editorial del inventario vs. situación procesal del caso.
 
 ## Pendientes operativos
 
