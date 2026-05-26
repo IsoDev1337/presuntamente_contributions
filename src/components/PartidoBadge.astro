@@ -1,0 +1,147 @@
+---
+/**
+ * Badge de partido político — color institucional con saturación bajada.
+ *
+ * Refactor 2026-05-26: hasta ahora los partidos se renderizaban como chip
+ * uniforme con `--color-accent` en /casos, /inicio y PgCasoDetalle. Esto
+ * borraba la identificación visual del partido. El nuevo badge usa el color
+ * institucional real con saturación bajada, en línea con el resto del sistema
+ * gov-retro (sobrio, no infografía electoral).
+ *
+ * Reglas:
+ *  - Sólo los 7 partidos modelados en el inventario tienen tokens propios:
+ *    `psoe`, `partido-popular`, `vox`, `podemos`, `sumar`,
+ *    `izquierda-unida`, `mas-madrid`. Cualquier otro `id` cae al fallback
+ *    gris neutro (no se elige color a ojo).
+ *  - Estilo: rectangular con fondo suave + border-left de 3px del color
+ *    institucional + label en peso 600 (no negro). Coherente con
+ *    `OrientacionBadge` (también rectangular con fondo, no pill outlined).
+ *  - Si `href` se pasa, el badge es un enlace (uso típico desde listados).
+ *  - Hover: oscurece levemente el fondo (no invierte color, mantiene
+ *    legibilidad).
+ *
+ * Canon visual: `DESIGN.md` + paleta en `global.css` tokens
+ *   `--color-partido-<slug>-{bg,fg,border}`.
+ */
+
+interface Props {
+  /** Slug de la organización-partido en `content/organizaciones/`.
+   *  P. ej.: `psoe`, `partido-popular`, `vox`. */
+  id: string;
+  /** Texto a mostrar — normalmente las siglas (`PSOE`, `PP`, `Vox`). */
+  label: string;
+  /** Si se pasa, el badge se renderiza como `<a>`. */
+  href?: string;
+  /** `sm` para listados densos, `md` para fichas. */
+  size?: 'sm' | 'md';
+  /** Pasa `false` para forzar `<span>` aunque haya `href`. Útil cuando el
+   *  badge ya está dentro de un enlace mayor (evita anidar `<a>` dentro de
+   *  `<a>`, HTML inválido). */
+  asLink?: boolean;
+}
+
+// Slugs reconocidos. Cualquier valor fuera del mapa cae al fallback.
+const SLUGS_CONOCIDOS = new Set([
+  'psoe',
+  'partido-popular',
+  'vox',
+  'podemos',
+  'sumar',
+  'izquierda-unida',
+  'mas-madrid',
+]);
+
+const { id, label, href, size = 'sm', asLink = true } = Astro.props;
+
+// Normaliza para el nombre de clase CSS. Sólo seguro porque hay un set fijo.
+const slug = SLUGS_CONOCIDOS.has(id) ? id : 'fallback';
+const renderAsLink = Boolean(href) && asLink !== false;
+
+const klass = [
+  'partido-badge',
+  `partido-badge--${slug}`,
+  size === 'md' && 'partido-badge--md',
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{renderAsLink ? (
+  <a class={klass} href={href} aria-label={`Partido ${label}`}>
+    {label}
+  </a>
+) : (
+  <span class={klass} aria-label={`Partido ${label}`}>{label}</span>
+)}
+
+<style>
+  .partido-badge {
+    display: inline-block;
+    padding: 1px 6px 1px 8px;
+    border-radius: 2px;
+    font: 600 11px/1.45 var(--font-sans);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    background: var(--color-partido-fallback-bg);
+    color: var(--color-partido-fallback-fg);
+    border: 1px solid var(--color-partido-fallback-border);
+    border-left-width: 3px;
+    transition: background-color 0.12s ease, border-color 0.12s ease;
+  }
+  .partido-badge--md {
+    font-size: 12px;
+    padding: 2px 8px 2px 10px;
+  }
+
+  /* Cada partido reasigna sus tres tokens. El border solo se "ve" porque
+     el border-left es más grueso, pero mantenemos el border-color uniforme
+     para no romper el alineado vertical en el listado. */
+  .partido-badge--psoe {
+    background: var(--color-partido-psoe-bg);
+    color: var(--color-partido-psoe-fg);
+    border-color: var(--color-partido-psoe-border);
+  }
+  .partido-badge--partido-popular {
+    background: var(--color-partido-pp-bg);
+    color: var(--color-partido-pp-fg);
+    border-color: var(--color-partido-pp-border);
+  }
+  .partido-badge--vox {
+    background: var(--color-partido-vox-bg);
+    color: var(--color-partido-vox-fg);
+    border-color: var(--color-partido-vox-border);
+  }
+  .partido-badge--podemos {
+    background: var(--color-partido-podemos-bg);
+    color: var(--color-partido-podemos-fg);
+    border-color: var(--color-partido-podemos-border);
+  }
+  .partido-badge--sumar {
+    background: var(--color-partido-sumar-bg);
+    color: var(--color-partido-sumar-fg);
+    border-color: var(--color-partido-sumar-border);
+  }
+  .partido-badge--izquierda-unida {
+    background: var(--color-partido-iu-bg);
+    color: var(--color-partido-iu-fg);
+    border-color: var(--color-partido-iu-border);
+  }
+  .partido-badge--mas-madrid {
+    background: var(--color-partido-mas-madrid-bg);
+    color: var(--color-partido-mas-madrid-fg);
+    border-color: var(--color-partido-mas-madrid-border);
+  }
+
+  /* Sólo aplica a `<a class="partido-badge">` */
+  a.partido-badge:hover,
+  a.partido-badge:focus-visible {
+    /* Oscurece el fondo simulando overlay sutil. Mantiene legibilidad
+       y NO invierte color (eso parece selección, no hover). */
+    filter: brightness(0.94);
+    text-decoration: none;
+  }
+  a.partido-badge:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 1px;
+  }
+</style>

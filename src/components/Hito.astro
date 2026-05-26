@@ -9,6 +9,7 @@
 // como `::before` absoluto; aquí cada item solo dibuja su dot.
 
 import CalGlyph from './CalGlyph.astro';
+import CategoryBadge from './CategoryBadge.astro';
 import RichProse from './RichProse.astro';
 
 interface Props {
@@ -53,9 +54,12 @@ const {
   </div>
   <div class="hito-item__body">
     <div class="hito-item__head">
-      <span class:list={['badge', 'badge--cat', `badge--cat-${tipoFamilia}`]}>
-        {tipoLabel}
-      </span>
+      <CategoryBadge
+        kind="hito"
+        tipo={tipoFamilia}
+        familia={tipoFamilia}
+        label={tipoLabel}
+      />
       {documentoTitulo && documentoNivel && (
         <span class="hito-item__doc">
           <span class:list={['badge', `badge--n${documentoNivel}`]}>N{documentoNivel}</span>

@@ -10,7 +10,7 @@ Listado tabular de casos con leyenda de estados de ficha a ancho completo (antes
 2. **Fase** — `PhaseBadge`.
 3. **Órgano** — acrónimo en mono + nombre oficial del procedimiento debajo. La celda es clicable a la página de la organización.
 4. **Organización afectada** — primera organización derivada de `VinculoInstitucional` con prioridad investigada → perjudicada → acusación. Lleva `RolBadge` del rol procesal equivalente (`investigado` / `perjudicado` / `acusacion_popular`). Misma chapa visual que la sección «Instituciones alcanzadas» de la ficha de caso.
-5. **Partidos afectados** — chips clicables (siglas) hacia la página del partido. Hoy estilo accent uniforme; refactor a `PartidoBadge` con colores por partido pendiente en ROADMAP.
+5. **Partidos afectados** — `PartidoBadge` clicable por partido, con color institucional sobrio (saturación bajada). Deduplicado por `partido_id` cuando el mismo partido aparece varias veces con `tipo_afectacion` distinto. La columna y la columna 4 "Organización afectada" se fusionarán en una sola "Organizaciones afectadas" (directa + indirecta) cuando se ejecute el refactor de afectación directa/indirecta — ver [`afectacion-directa-indirecta.md`](../features/afectacion-directa-indirecta.md).
 6. **Último hito** — fecha en mono + título truncado a ~90 caracteres (texto completo en `title=` para hover).
 
 Filas en estado `pendiente`/`borrador` aparecen no clicables en producción (`tr.is-blocked`) pero visibles para transparencia. En dev local todas son clicables.
@@ -20,13 +20,12 @@ Filas en estado `pendiente`/`borrador` aparecen no clicables en producción (`tr
 ### v1 pre-launch
 
 - Pulir copy del eyebrow y sub del page-id (Bloque C de revisión editorial humana).
-- Revisar si los chips de "Partidos afectados" se ven bien con muchos partidos (caso González Amador tiene 3).
+- Refactor estructural: fusionar columnas "Organización afectada" + "Partidos afectados" en una sola "Organizaciones afectadas" con sub-listas directa/indirecta. Plan en [`afectacion-directa-indirecta.md`](../features/afectacion-directa-indirecta.md).
 
 ### v1.x
 
 - Filtro nuevo por «Partido afectado».
 - Filtro nuevo por «Organización afectada» (auto-completado con orgs presentes en la columna).
-- Componente `PartidoBadge` reutilizable con tokens de color por partido.
 
 ### Sin compromiso
 
@@ -52,4 +51,5 @@ Filas en estado `pendiente`/`borrador` aparecen no clicables en producción (`tr
 - [x] Órgano clicable. **Entregado 2026-05-26 (tarde).**
 - [x] `RolBadge` en columna Organización afectada. **Entregado 2026-05-26 (tarde).**
 - [x] Nueva columna `Partidos afectados`. **Entregado 2026-05-26 (tarde).**
-- [ ] Refactor a `PartidoBadge` con colores por partido. Ver ROADMAP.
+- [x] Refactor a `PartidoBadge` con colores por partido + dedupe. **Entregado 2026-05-27.** Detalle en [`../features/partido-badge.md`](../features/partido-badge.md).
+- [ ] Refactor estructural "Organizaciones afectadas (directa/indirecta)" — fusión de columnas 4 y 5. Plan en [`../features/afectacion-directa-indirecta.md`](../features/afectacion-directa-indirecta.md).

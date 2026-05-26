@@ -131,6 +131,50 @@
   --color-nat-otro-border:           #a8a8a2;
   --color-nat-otro-bg:               #f4f3ee;
 
+  /* ===== Partidos políticos — color institucional con saturación bajada ===
+   * Para `PartidoBadge`. Decisión 2026-05-26: usar el color institucional real
+   * del partido como referencia identificable, pero con saturación bajada para
+   * no convertir el sitio en infografía electoral. Fondo muy claro + texto
+   * contrastado + border medio. Cubre los 7 partidos modelados en el
+   * inventario; cualquier otro `partido_id` cae al fallback gris neutro.
+   *
+   * Importante: el `border` es el tono medio (usado como border-left de 3px en
+   * el componente). El `fg` es el texto. El `bg` es el fondo muy suave.
+   * No usar los `fg` como fondo ni los `bg` como border — la jerarquía visual
+   * se rompe.
+   * ====================================================================== */
+  --color-partido-psoe-bg:           #f5e2e2;
+  --color-partido-psoe-fg:           #8a3030;
+  --color-partido-psoe-border:       #c87575;
+
+  --color-partido-pp-bg:             #e1eaf5;
+  --color-partido-pp-fg:             #2f4a75;
+  --color-partido-pp-border:         #7090c0;
+
+  --color-partido-vox-bg:            #e3edd6;
+  --color-partido-vox-fg:            #4a6826;
+  --color-partido-vox-border:        #7a9a4f;
+
+  --color-partido-podemos-bg:        #efe1ef;
+  --color-partido-podemos-fg:        #6a3a6a;
+  --color-partido-podemos-border:    #a87aa8;
+
+  --color-partido-sumar-bg:          #f7e6da;
+  --color-partido-sumar-fg:          #9a4d22;
+  --color-partido-sumar-border:      #c47a55;
+
+  --color-partido-iu-bg:             #f3dada;
+  --color-partido-iu-fg:             #7a1f1f;
+  --color-partido-iu-border:         #a44a4a;
+
+  --color-partido-mas-madrid-bg:     #d8eaec;
+  --color-partido-mas-madrid-fg:     #1f5560;
+  --color-partido-mas-madrid-border: #5a99a5;
+
+  --color-partido-fallback-bg:       #ececea;
+  --color-partido-fallback-fg:       #4a4d52;
+  --color-partido-fallback-border:   #b3b6ba;
+
   /* ===== Niveles de fuente (badges N1-N4) ================================
    * Gradient sobre el MISMO navy institucional. NUNCA colores distintos por
    * nivel (introduciría semántica accidental tipo "verde=bueno/rojo=malo").
@@ -2850,14 +2894,34 @@ body.has-page-toc .main > .ficha-detail {
   padding: 0.55rem 0.75rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-accent);
+  border-left: 4px solid var(--color-partido-fallback-border);
 }
+/* Color del border-left + de la sigla por partido. Sobrescribe el fallback
+ * en función del slug declarado en `data-partido`. Mismos tokens que
+ * `PartidoBadge`; mantener sincronizado si se añade un partido nuevo. */
+.partidos-afectados__item[data-partido="psoe"]            { border-left-color: var(--color-partido-psoe-border); }
+.partidos-afectados__item[data-partido="partido-popular"] { border-left-color: var(--color-partido-pp-border); }
+.partidos-afectados__item[data-partido="vox"]             { border-left-color: var(--color-partido-vox-border); }
+.partidos-afectados__item[data-partido="podemos"]         { border-left-color: var(--color-partido-podemos-border); }
+.partidos-afectados__item[data-partido="sumar"]           { border-left-color: var(--color-partido-sumar-border); }
+.partidos-afectados__item[data-partido="izquierda-unida"] { border-left-color: var(--color-partido-iu-border); }
+.partidos-afectados__item[data-partido="mas-madrid"]      { border-left-color: var(--color-partido-mas-madrid-border); }
+
 .partidos-afectados__partido {
   grid-row: 1 / span 2;
   align-self: center;
-  font: 700 13px/1.2 var(--font-sans);
+  /* Peso 600 (no negro 700/800) por la regla AGENTS.md "Tipografía y pesos". */
+  font: 600 13px/1.2 var(--font-sans);
   letter-spacing: 0.02em;
+  color: var(--color-partido-fallback-fg);
 }
+.partidos-afectados__item[data-partido="psoe"]            .partidos-afectados__partido { color: var(--color-partido-psoe-fg); }
+.partidos-afectados__item[data-partido="partido-popular"] .partidos-afectados__partido { color: var(--color-partido-pp-fg); }
+.partidos-afectados__item[data-partido="vox"]             .partidos-afectados__partido { color: var(--color-partido-vox-fg); }
+.partidos-afectados__item[data-partido="podemos"]         .partidos-afectados__partido { color: var(--color-partido-podemos-fg); }
+.partidos-afectados__item[data-partido="sumar"]           .partidos-afectados__partido { color: var(--color-partido-sumar-fg); }
+.partidos-afectados__item[data-partido="izquierda-unida"] .partidos-afectados__partido { color: var(--color-partido-iu-fg); }
+.partidos-afectados__item[data-partido="mas-madrid"]      .partidos-afectados__partido { color: var(--color-partido-mas-madrid-fg); }
 .partidos-afectados__tipo {
   font-size: 0.78rem;
   font-weight: 600;

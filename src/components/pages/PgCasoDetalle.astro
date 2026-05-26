@@ -20,6 +20,7 @@ import RichProse from '@/components/RichProse.astro';
 import EstadoFichaBadge from '@/components/EstadoFichaBadge.astro';
 import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
 import GraphConexionesLink from '@/components/GraphConexionesLink.astro';
+import PartidoBadge from '@/components/PartidoBadge.astro';
 
 // Mismo enum que en EstadoPublicacionBadge — Astro no exporta tipos entre
 // componentes .astro de forma estable, así que re-declaro aquí.
@@ -640,6 +641,7 @@ const coberturaRows = [...noticiasCobertura]
     fecha: n.fecha_publicacion,
     medioLabel: orgLabel(n.medio_id),
     medioHref: orgHref(n.medio_id),
+    tipo: n.tipo_pieza,
     tipoLabel: tipoPiezaMediaticaLabel(n.tipo_pieza),
     titular: n.titular,
     resumen: n.resumen,
@@ -927,7 +929,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
       </p>
       <ul class="partidos-afectados__list">
         {partidosAfectados.map((p) => (
-          <li class="partidos-afectados__item">
+          <li class="partidos-afectados__item" data-partido={p.partidoId}>
             <a class="partidos-afectados__partido" href={p.href}>
               {p.partidoSiglas ?? p.partidoNombre}
             </a>

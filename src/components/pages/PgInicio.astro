@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PhaseBadge from '@/components/PhaseBadge.astro';
 import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
 import RolBadge from '@/components/RolBadge.astro';
+import PartidoBadge from '@/components/PartidoBadge.astro';
 import { rolLabel } from '@/lib/labels';
 import { getCollection } from 'astro:content';
 
@@ -125,10 +126,10 @@ const destacados = casos
 
 // TODO i18n: rama 'ca' cuando se active el catalán.
 const strings = {
-  title: 'Inicio',
+  title: 'La corrupción en España, ordenada y con sus fuentes',
   description:
     'Inventario público, interactivo y open-source de los casos de corrupción más relevantes en España.',
-  eyebrow: 'Inventario público · v0.0.0-alpha',
+  eyebrow: 'Inventario público',
   hero: {
     kicker: 'sin ruido, sin ideología, sin financiación',
     title: 'La corrupción en España, ordenada y con sus fuentes.',
@@ -138,22 +139,22 @@ const strings = {
     ctaGhost: { label: 'Cómo se redacta', href: '/sobre' },
   },
   reglas: [
-    { title: 'Cita siempre', body: 'Cada afirmación con su documento de fuente y nivel N1–N4 visible.' },
+    { title: 'Cita siempre', body: 'Cada afirmación cita el documento que la respalda, con su nivel de fuente visible.' },
     { title: 'Sin cuota política', body: 'Casos de cualquier partido, ordenados por relevancia objetiva.' },
     { title: 'Presunción de inocencia', body: 'Investigado, procesado y condenado son cosas distintas — y se distinguen.' },
   ],
   contadores: [
-    { label: 'Casos catalogados',      value: casos.length },
-    { label: 'Personas con rol',       value: personas.length },
-    { label: 'Organizaciones citadas', value: organizaciones.length },
-    { label: 'Documentos primarios',   value: documentos.length },
+    { label: 'Casos catalogados',       value: casos.length },
+    { label: 'Personas con papel formal', value: personas.length },
+    { label: 'Organizaciones citadas',  value: organizaciones.length },
+    { label: 'Documentos de respaldo',  value: documentos.length },
   ],
   secciones: [
     {
       key: 'casos',
       num: '01',
       title: 'Catálogo de casos',
-      desc: 'Listado tabular con fase, órgano y último hito visibles.',
+      desc: 'Todos los procedimientos con su fase, tribunal y último movimiento documentado.',
       href: '/casos',
       cta: 'Ver catálogo',
     },
@@ -161,7 +162,7 @@ const strings = {
       key: 'personas',
       num: '02',
       title: 'Personas implicadas',
-      desc: 'Índice con trayectoria procesal completa. Sin exposición de privados no implicados.',
+      desc: 'Índice de personas con cargo o papel formal en cada procedimiento.',
       href: '/personas',
       cta: 'Ver personas',
     },
@@ -177,7 +178,7 @@ const strings = {
       key: 'biblioteca',
       num: '04',
       title: 'Biblioteca documental',
-      desc: 'Sentencias, autos, informes UDEF/UCO, notas institucionales y coberturas cruzadas.',
+      desc: 'Sentencias, autos judiciales, informes policiales y piezas periodísticas de referencia.',
       href: '/biblioteca',
       cta: 'Ver documentos',
     },
@@ -193,7 +194,6 @@ const strings = {
   description={strings.description}
   hideSubstrip={true}
 >
-  <!-- HERO institucional moderno -->
   <section class="hero">
     <div class="hero__col-text">
       <p class="hero__kicker">{strings.hero.kicker}</p>
@@ -228,7 +228,6 @@ const strings = {
     </aside>
   </section>
 
-  <!-- Tres reglas del proyecto, formato horizontal compacto -->
   <ol class="reglas" aria-label="Principios del inventario">
     {strings.reglas.map((r) => (
       <li class="regla">
@@ -238,7 +237,6 @@ const strings = {
     ))}
   </ol>
 
-  <!-- CASOS DESTACADOS: prueba social concreta de cómo son las fichas -->
   {destacados.length > 0 && (
     <section class="destacado">
       <header class="destacado__head">
@@ -276,7 +274,7 @@ const strings = {
                   <dt>Partidos afectados</dt>
                   <dd class="destacado__partidos">
                     {d.partidos.map((p) => (
-                      <span class="destacado__partido-chip">{p.label}</span>
+                      <PartidoBadge id={p.id} label={p.label} size="sm" asLink={false} />
                     ))}
                   </dd>
                 </div>
@@ -297,7 +295,6 @@ const strings = {
     </section>
   )}
 
-  <!-- Secciones del sitio en formato más respirado -->
   <section class="secciones">
     <header class="secciones__head">
       <h2>Explora el inventario</h2>
@@ -319,7 +316,6 @@ const strings = {
     </ul>
   </section>
 
-  <!-- Pie suave con disclaimer -->
   <p class="bottom-note">{strings.disclaimer}</p>
 </BaseLayout>
 
@@ -653,16 +649,6 @@ const strings = {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-  }
-  .destacado__partido-chip {
-    display: inline-block;
-    padding: 1px 7px;
-    border-radius: 2px;
-    font: 700 11px/1.4 var(--font-sans);
-    letter-spacing: 0.02em;
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
-    background: var(--color-accent-soft);
   }
   .destacado__mono { font-family: var(--font-mono); font-size: 12px; color: var(--color-fg-muted); }
   .destacado__hito-text { color: var(--color-fg); }

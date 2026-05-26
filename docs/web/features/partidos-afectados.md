@@ -39,9 +39,9 @@ partidos_afectados:
 
 ### UI
 
-- **Listado /casos**: columna «Partidos afectados» con chips de siglas clicables a la página del partido. Hoy con estilo accent uniforme (todo igual de azul); pendiente refactor a `PartidoBadge` con color por partido — ver ROADMAP.
-- **PgCasoDetalle**: bloque dentro de «Estado procesal actual», antes de «Instituciones alcanzadas». Cada partido en una fila con siglas grandes + label del tipo de afectación (versalitas, muted) + justificación literal.
-- **Landing**: el preview de "Casos destacados" muestra los chips de partidos afectados.
+- **Listado /casos**: columna «Partidos afectados» con `PartidoBadge` por partido, clicable a la página del partido. Deduplicado por `partido_id` cuando el mismo partido tiene varias entradas con `tipo_afectacion` distinto (la justificación detallada vive en la ficha del caso, no en el chip).
+- **PgCasoDetalle**: bloque dentro de «Estado procesal actual», antes de «Instituciones alcanzadas». Cada partido en una fila con siglas grandes + label del tipo de afectación (versalitas, muted) + justificación literal. El `border-left` y el color de la sigla los marca el `data-partido` con los tokens de `--color-partido-<slug>-*` (sin meter el chip dentro del bloque editorial — el color identifica, no se anida caja en caja).
+- **Landing**: el preview de "Casos destacados" muestra `PartidoBadge` en modo `asLink={false}` (la card destacada ya envuelve un `<a>`, evita anidar enlaces).
 
 ### Mantenimiento
 
@@ -67,7 +67,9 @@ El campo lo rellena el maintainer al cerrar la primera versión publicable de un
 - **Justificación obligatoria y neutra.** Sin justificación literal y verificable contra fuentes públicas (cobertura cruzada, BOE, manifestación pública del propio investigado), no se rellena. Las justificaciones son auditables por cualquier lector contra documentos del propio inventario.
 - **No reemplaza a `VinculoInstitucional`.** Cuando un caso alcanza a un partido por imputación a un cargo orgánico del partido, ambos modelos coexisten: el vínculo cargo_orgánico_partido en `VinculoInstitucional` (con su documento de respaldo), y `partidos_afectados` con `tipo_afectacion: imputacion_a_cargo_del_partido` (con justificación que probablemente cite ese mismo vínculo).
 - **Tipos de afectación son ortogonales.** Un mismo caso puede afectar al mismo partido por más de un tipo. En esos casos se modelan **varias entradas** en el array, una por tipo, cada una con su justificación. No promediamos.
-- **Sin colores partidistas en la UI actual.** Los chips usan el estilo accent del proyecto (azul institucional uniforme). El refactor a `PartidoBadge` con colores por partido está en ROADMAP — se hará cuando se haya pensado bien si los colores oficiales transmiten lo que queremos sin perder neutralidad.
+- **Color institucional por partido con saturación bajada.** Decidido 2026-05-26 e implementado 2026-05-27 con `PartidoBadge`. Cubre los 7 partidos modelados (PSOE, PP, Vox, Podemos, Sumar, IU, Más Madrid). Cualquier otro `partido_id` cae a fallback gris neutro: no se elige color a ojo. Tokens en `global.css` (`--color-partido-<slug>-{bg,fg,border}`). Detalle de paleta en [`partido-badge.md`](partido-badge.md).
+- **Dedupe en listado.** Si un caso tiene el mismo partido en varios `tipo_afectacion` (Plus Ultra: PSOE × 2; Kitchen: PP × 2), el listado muestra un solo chip por partido. La justificación detallada queda en la ficha del caso.
+- **Refactor "afectación directa vs indirecta" pendiente.** Decisión 2026-05-27: el enum actual confunde "afectación" con "papel procesal" (`querella_o_acusacion_popular_del_partido` no debería ser "afectación"). El modelo se fusionará con `VinculoInstitucional` bajo una sola dimensión `nivel_afectacion: directa | indirecta | no` en una sesión dedicada futura. Ver [`afectacion-directa-indirecta.md`](afectacion-directa-indirecta.md) para el plan completo.
 
 ## Ideas futuras
 
@@ -95,4 +97,5 @@ El campo lo rellena el maintainer al cerrar la primera versión publicable de un
 - [x] Entregar UI en PgCasoDetalle y /casos. **Entregado 2026-05-26 (tarde):** bloque dentro de «Estado procesal actual» + columna en listado.
 - [x] Poblar al menos dos casos piloto. **Entregado 2026-05-26 (tarde):** `begona-gomez`, `gonzalez-amador`.
 - [x] Poblar los 4 casos restantes (`plus-ultra`, `fiscal-general-del-estado`, `kitchen`, `lezo`). **Entregado 2026-05-26 (tarde-noche, sprint extendido).** Detalle por caso en «Estado actual».
-- [ ] Refactor a `PartidoBadge` con tokens de color por partido. Ver ROADMAP.
+- [x] Refactor a `PartidoBadge` con tokens de color por partido. **Entregado 2026-05-27**: 7 partidos modelados con paleta sobria + dedupe en listado + `data-partido` en bloque editorial de la ficha. Detalle en [`partido-badge.md`](partido-badge.md).
+- [ ] **Refactor estructural "afectación directa vs indirecta"** — fusión con `VinculoInstitucional`, retirada de `Caso.partidos_afectados[]` o aplanado a `nivel_afectacion`. Sesión dedicada futura. Plan en [`afectacion-directa-indirecta.md`](afectacion-directa-indirecta.md).

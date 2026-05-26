@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CategoryBadge from '@/components/CategoryBadge.astro';
 import CustomSelect from '@/components/CustomSelect.astro';
 import OrientacionBadge from '@/components/OrientacionBadge.astro';
 import NaturalezaBadge from '@/components/NaturalezaBadge.astro';
@@ -144,7 +145,9 @@ const tiposPresentes = Array.from(new Set(orgs.map((o) => o.tipo)))
               <span class="c-name">{o.nombre}</span>
             </a>
           </td>
-          <td><span class="badge badge--cat">{o.tipoLabel}</span></td>
+          <td>
+            <CategoryBadge kind="org" tipo={o.tipo} label={o.tipoLabel} />
+          </td>
           <td>
             {o.tipo === 'medio_comunicacion' ? (
               <div class="orgs-clasif">

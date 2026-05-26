@@ -1,0 +1,273 @@
+---
+/**
+ * CategoryBadge — wrapper único del sistema `badge--cat`.
+ *
+ * Centraliza la categoría/tipo (sub-variante de F-función): mismo contenedor
+ * que F-función (border-left 4px + fondo neutro + label) con tono por
+ * subfamilia. Aplica a:
+ *   - tipo de organización (juzgado, fiscalía, partido, empresa, medio…)
+ *   - tipo de hito (jurisdiccional, político, mediático)
+ *   - tipo de pieza de cobertura mediática (noticia, tv_radio…)
+ *   - familia de delito
+ *
+ * **Iconografía funcional**: incorpora un icono Lucide identificativo antes del
+ * label. El icono es funcional (identifica el tipo), no ornamental — la regla
+ * AGENTS.md contra glyphs decorativos sigue vigente; los SVG aquí son la única
+ * iconografía permitida dentro del badge. El icono toma `currentColor` del
+ * badge, así que cambia con la subfamilia. Si el `tipo` no tiene icono
+ * asignado, el badge se renderiza sólo con label (degradado gracioso).
+ *
+ * Decisión maintainer 2026-05-26.
+ *
+ * Ver:
+ *   - DESIGN.md → "Sistema de badges"
+ *   - AGENTS.md → "Convención de referencias y citas" + "Tipografía y pesos"
+ *   - docs/web/features/iconografia-badge-cat.md
+ */
+
+// --- Iconos Lucide inlineados -----------------------------------------------
+//
+// SVGs copiados literalmente de lucide-static v1.16.0 (ISC). Se inlinean en el
+// componente para evitar runtime extra y para que el bundle final sólo
+// transporte los iconos que realmente usamos. Si se añade un tipo nuevo, copiar
+// el SVG correspondiente de `node_modules/lucide-static/icons/<name>.svg`.
+//
+// Convención: el SVG conserva `stroke="currentColor"` y `fill="none"`, sin
+// width/height fijos (el size lo controla el CSS).
+
+type IconName =
+  | 'gavel'        // martillo de juez → órganos judiciales en sentido amplio
+  | 'scale'        // balanza → fiscalía, delitos (figura penal abstracta)
+  | 'landmark'     // institución pública → organismo público, hito político
+  | 'building-2'   // edificio empresarial → empresa
+  | 'newspaper'    // periódico → medio de comunicación, hito mediático, pieza
+  | 'users'        // grupo de personas → asociación, sindicato, fundación
+  | 'shield'       // escudo → unidad de policía judicial
+  | 'briefcase'    // maletín → consultora
+  | 'banknote'     // billete → entidad financiera
+  | 'flag'         // bandera → partido político
+  | 'radio';       // ondas → tv/radio (pieza audiovisual)
+
+const ICONS: Record<IconName, string> = {
+  gavel: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 13-8.381 8.38a1 1 0 0 1-3.001-3l8.384-8.381"/><path d="m16 16 6-6"/><path d="m21.5 10.5-8-8"/><path d="m8 8 6-6"/><path d="m8.5 7.5 8 8"/></svg>`,
+  scale: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg>`,
+  landmark: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 18v-7"/><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg>`,
+  'building-2': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12h4"/><path d="M10 8h4"/><path d="M14 21v-3a2 2 0 0 0-4 0v3"/><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></svg>`,
+  newspaper: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18h-5"/><path d="M18 14h-8"/><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="10" y="6" rx="1"/></svg>`,
+  users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg>`,
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>`,
+  briefcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>`,
+  banknote: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>`,
+  flag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"/></svg>`,
+  radio: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></svg>`,
+};
+
+// --- Mapeo tipo → icono -----------------------------------------------------
+//
+// El mapeo identifica la FAMILIA de la entidad, no la sub-especialidad. Todos
+// los órganos judiciales superiores (`tribunal` AP, AN, TS, TSJ, TC) comparten
+// `gavel`; juzgados de instrucción también. Esto evita inflación de iconos:
+// el badge no es para distinguir un juzgado de una audiencia, sino para que
+// el lector reconozca de un vistazo "esto es un órgano judicial".
+
+const ORG_ICON: Record<string, IconName> = {
+  juzgado: 'gavel',
+  tribunal: 'gavel',
+  fiscalia: 'scale',
+  partido_politico: 'flag',
+  empresa: 'building-2',
+  asociacion_acusacion_popular: 'users',
+  organismo_publico: 'landmark',
+  policia_judicial_unidad: 'shield',
+  medio_comunicacion: 'newspaper',
+  sindicato: 'users',
+  fundacion: 'users',
+  entidad_financiera: 'banknote',
+  consultora: 'briefcase',
+  // `otra` queda sin icono (fallback gracioso).
+};
+
+const HITO_FAMILIA_ICON: Record<string, IconName> = {
+  jurisdiccional: 'gavel',
+  politico: 'landmark',
+  mediatico: 'newspaper',
+};
+
+const COBERTURA_TIPO_ICON: Record<string, IconName> = {
+  noticia: 'newspaper',
+  reportaje: 'newspaper',
+  entrevista: 'newspaper',
+  analisis: 'newspaper',
+  editorial: 'newspaper',
+  opinion: 'newspaper',
+  columna: 'newspaper',
+  pieza_agencia: 'newspaper',
+  suelto: 'newspaper',
+  tv_radio: 'radio',
+  investigacion_periodistica: 'newspaper',
+};
+
+const DELITO_FAMILIA_ICON: Record<string, IconName> = {
+  contra_administracion_publica: 'scale',
+  contra_patrimonio_y_orden_socioeconomico: 'scale',
+  falsedad_documental: 'scale',
+  delitos_electorales: 'scale',
+  blanqueo_capitales: 'scale',
+  pertenencia_organizacion_criminal: 'scale',
+  cohecho_y_trafico_influencias: 'scale',
+  otros: 'scale',
+};
+
+/**
+ * Familia visual: controla el color del border-left y del texto. Coincide con
+ * las subfamilias de CSS ya existentes en global.css y NaturalezaBadge.astro.
+ *
+ *   - `jurisdiccional`, `politico`, `mediatico`: tipos genéricos (usado en
+ *     Hito y en tablas donde el tipo organizativo no aplica).
+ *   - `nat-*`: variantes específicas de naturaleza editorial de medios
+ *     (manejadas por NaturalezaBadge.astro; el badge--cat genérico no las
+ *     necesita).
+ *   - sin familia: visual neutro (gris). Se usa cuando la entidad es
+ *     heterogénea (ej. listado /organizaciones sin discriminar) o cuando
+ *     no encaja en jurisdiccional/político/mediático.
+ */
+type CategoryFamilia =
+  | 'jurisdiccional'
+  | 'politico'
+  | 'mediatico'
+  | 'neutral';
+
+/**
+ * Tipo de entrada — usado para elegir el mapeo tipo→icono apropiado y la
+ * familia visual por defecto. Si el caller pasa `familia` explícita, esa
+ * decisión gana.
+ */
+type CategoryKind = 'org' | 'hito' | 'cobertura' | 'delito';
+
+interface Props {
+  /** Etiqueta visible del badge (ya en español, ya traducida por el caller). */
+  label: string;
+  /** Slug del tipo (depende del `kind`). Determina qué icono se elige. */
+  tipo?: string;
+  /** Discriminador para saber qué tabla de mapeo usar. Default: 'org'. */
+  kind?: CategoryKind;
+  /**
+   * Familia visual explícita. Si no se pasa:
+   *  - `kind='org'` → derivado del tipo (juzgado/tribunal/fiscalia →
+   *    jurisdiccional; partido_politico/organismo_publico → politico;
+   *    medio_comunicacion → mediatico; resto → neutral).
+   *  - `kind='hito'` → el caller debe pasar familia (`jurisdiccional`,
+   *    `politico`, `mediatico`).
+   *  - `kind='cobertura'` → `mediatico`.
+   *  - `kind='delito'` → `neutral`.
+   */
+  familia?: CategoryFamilia;
+  size?: 'sm' | 'md';
+  /** Atributo `title` opcional para tooltip nativo. */
+  title?: string;
+}
+
+const {
+  label,
+  tipo,
+  kind = 'org',
+  familia,
+  size = 'md',
+  title,
+} = Astro.props;
+
+// Resolver icono.
+function resolveIcon(): string | null {
+  if (!tipo) return null;
+  const table = kind === 'org'
+    ? ORG_ICON
+    : kind === 'hito'
+      ? HITO_FAMILIA_ICON
+      : kind === 'cobertura'
+        ? COBERTURA_TIPO_ICON
+        : DELITO_FAMILIA_ICON;
+  const iconName = table[tipo];
+  if (!iconName) return null;
+  return ICONS[iconName];
+}
+
+// Resolver familia visual por defecto.
+function resolveFamilia(): CategoryFamilia {
+  if (familia) return familia;
+  if (kind === 'cobertura') return 'mediatico';
+  if (kind === 'delito') return 'neutral';
+  if (kind === 'hito') return 'neutral'; // el caller debería pasar familia
+  // kind === 'org'
+  if (!tipo) return 'neutral';
+  if (tipo === 'juzgado' || tipo === 'tribunal' || tipo === 'fiscalia' || tipo === 'policia_judicial_unidad') {
+    return 'jurisdiccional';
+  }
+  if (tipo === 'partido_politico' || tipo === 'organismo_publico') {
+    return 'politico';
+  }
+  if (tipo === 'medio_comunicacion') {
+    return 'mediatico';
+  }
+  return 'neutral';
+}
+
+const svg = resolveIcon();
+const fam = resolveFamilia();
+const famClass = fam === 'neutral' ? null : `badge--cat-${fam}`;
+---
+
+<span
+  class:list={[
+    'badge',
+    'badge--cat',
+    famClass,
+    size === 'sm' && 'badge--sm',
+    svg && 'badge--cat-has-icon',
+  ]}
+  title={title}
+>
+  {svg && <Fragment set:html={svg} />}
+  <span class="badge--cat__label">{label}</span>
+</span>
+
+<style>
+  /* `.badge.badge--cat` y sus subfamilias viven en global.css. Aquí sólo
+     gestionamos el icono interno. */
+
+  /* El badge ya es inline-flex desde global.css. Cuando hay icono añadimos
+     un gap pequeño entre icono y label. */
+  .badge--cat-has-icon {
+    gap: 5px;
+  }
+
+  /* Icono Lucide inline: hereda `currentColor` del badge. Tamaño coherente con
+     el font-size del label.
+
+     Tamaño regular (~12px de font-size del badge): icono 13px.
+     Tamaño sm (~11px): icono 11px. */
+  .badge--cat :global(svg) {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    /* Pequeña corrección óptica: el viewBox de Lucide es cuadrado, pero el
+       trazo visual queda ligeramente por encima del baseline del texto.
+       Bajar 0.5px alinea mejor con la x-height del label. */
+    transform: translateY(0.5px);
+  }
+  .badge--sm :global(svg) {
+    width: 11px;
+    height: 11px;
+  }
+
+  .badge--cat__label {
+    /* Necesario para el flex gap funcione bien y el label no rompa línea
+       junto al icono. */
+    display: inline-block;
+  }
+
+  /* Variante size sm — paridad con NaturalezaBadge. */
+  .badge--sm {
+    font-size: 0.7rem;
+    padding-block: 0.05rem;
+  }
+</style>

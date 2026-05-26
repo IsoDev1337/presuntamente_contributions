@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CategoryBadge from '@/components/CategoryBadge.astro';
 import CustomSelect from '@/components/CustomSelect.astro';
 import { getCollection } from 'astro:content';
 import { familiaDelitoLabel, type Lang } from '@/lib/labels';
@@ -137,7 +138,9 @@ const familiasPresentes = Array.from(new Set(delitos.map((d) => d.familia)))
               <span class="c-name">{d.nombre}</span>
             </a>
           </td>
-          <td><span class="badge badge--cat">{d.familiaLabel}</span></td>
+          <td>
+            <CategoryBadge kind="delito" tipo={d.familia} label={d.familiaLabel} />
+          </td>
           <td class="c-mono c-arts">{d.articulos.join(' · ')}</td>
           <td class="c-num">{d.casosCount}</td>
           <td class="c-num">{d.atribCount}</td>

@@ -4,6 +4,7 @@ import CustomSelect from '@/components/CustomSelect.astro';
 import PhaseBadge from '@/components/PhaseBadge.astro';
 import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
 import RolBadge from '@/components/RolBadge.astro';
+import PartidoBadge from '@/components/PartidoBadge.astro';
 import { getCollection } from 'astro:content';
 import { rolLabel } from '@/lib/labels';
 
@@ -191,14 +192,24 @@ const casos = casosCol
       orgPrincipalNombre: orgPrincipal?.nombre,
       orgPrincipalNaturaleza,
       orgPrincipalRol: orgPrincipalNaturaleza ? NATURALEZA_A_ROL[orgPrincipalNaturaleza] : undefined,
-      partidosAfectados: ((caso as { partidos_afectados?: Array<{ partido_id: string }> }).partidos_afectados ?? [])
-        .map((p) => {
+      // Deduplicado por `partido_id`: el modelo admite varias entradas con el
+      // mismo partido y `tipo_afectacion` distintos (p. ej. PSOE como
+      // `gobierno_responsable_del_acto_investigado` y como
+      // `militancia_o_cargo_organico_relevante`). En el listado de casos sólo
+      // queremos un chip por partido — la justificación detallada vive en la
+      // ficha del caso.
+      partidosAfectados: (() => {
+        const seen = new Map<string, { id: string; label: string }>();
+        for (const p of (caso as { partidos_afectados?: Array<{ partido_id: string }> }).partidos_afectados ?? []) {
+          if (seen.has(p.partido_id)) continue;
           const partidoOrg = orgIndex.get(p.partido_id);
-          return {
+          seen.set(p.partido_id, {
             id: p.partido_id,
             label: (partidoOrg as { siglas?: string } | undefined)?.siglas ?? partidoOrg?.nombre ?? p.partido_id,
-          };
-        }),
+          });
+        }
+        return Array.from(seen.values());
+      })(),
       ultimo_hito: ultimo
         ? { fecha: ultimo.fecha, titulo: ultimo.titulo }
         : null,
@@ -410,7 +421,7 @@ function miniDescripcion(raw: string, max = 140): string {
             {c.partidosAfectados.length > 0 ? (
               <div class="c-partidos">
                 {c.partidosAfectados.map((p) => (
-                  <a href={`/organizaciones/${p.id}`} class="c-partido-chip">{p.label}</a>
+                  <PartidoBadge id={p.id} label={p.label} href={`/organizaciones/${p.id}`} size="sm" />
                 ))}
               </div>
             ) : (
@@ -609,18 +620,6 @@ function miniDescripcion(raw: string, max = 140): string {
     flex-wrap: wrap;
     gap: 4px;
   }
-  .c-partido-chip {
-    display: inline-block;
-    padding: 1px 7px;
-    border-radius: 2px;
-    font: 700 11px/1.4 var(--font-sans);
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
-    background: var(--color-accent-soft);
-  }
-  .c-partido-chip:hover { background: var(--color-accent); color: var(--color-accent-fg); }
   .c-hito-title {
     font-size: var(--font-size-0);
     color: var(--color-fg-muted);

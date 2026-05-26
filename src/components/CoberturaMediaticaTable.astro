@@ -2,11 +2,15 @@
 // CoberturaMediaticaTable -- separate media corpus table.
 // These rows are not probative documents and must not use source-level badges.
 
+import CategoryBadge from './CategoryBadge.astro';
+
 export interface CoberturaMediaticaRow {
   id: string;
   fecha: string;
   medioLabel: string;
   medioHref?: string;
+  /** Slug del tipo de pieza (`noticia`, `tv_radio`, etc.) — para iconografía. */
+  tipo?: string;
   tipoLabel: string;
   titular: string;
   resumen?: string;
@@ -41,7 +45,11 @@ const { rows } = Astro.props;
             {row.medioHref ? <a href={row.medioHref}>{row.medioLabel}</a> : row.medioLabel}
           </td>
           <td>
-            <span class="badge badge--cat badge--cat-mediatico">{row.tipoLabel}</span>
+            <CategoryBadge
+              kind="cobertura"
+              tipo={row.tipo}
+              label={row.tipoLabel}
+            />
             {row.relevanciaLabel && <span class="coverage-relevance">{row.relevanciaLabel}</span>}
           </td>
           <td>
