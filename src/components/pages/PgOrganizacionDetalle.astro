@@ -6,6 +6,7 @@ import OrgGlyph from '@/components/OrgGlyph.astro';
 import RichProse from '@/components/RichProse.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import VinculosInstitucionalesList from '@/components/VinculosInstitucionalesList.astro';
+import GraphConexionesLink from '@/components/GraphConexionesLink.astro';
 import SourceLinkBadge from '@/components/SourceLinkBadge.astro';
 import OrientacionBadge from '@/components/OrientacionBadge.astro';
 import NaturalezaBadge from '@/components/NaturalezaBadge.astro';
@@ -255,6 +256,7 @@ const breadcrumb = [
   { label: 'Organizaciones', href: lang === 'ca' ? '/cat/organizaciones' : '/organizaciones' },
   { label: data.nombre },
 ];
+const graphHref = `/grafo?focus=organizacion&id=${data.id}&depth=2&layout=cose`;
 ---
 
 <BaseLayout
@@ -284,6 +286,9 @@ const breadcrumb = [
             <span><strong>{documentosProducidos.length}</strong> documento{documentosProducidos.length === 1 ? '' : 's'} producido{documentosProducidos.length === 1 ? '' : 's'}</span>
           </>
         )}
+      </div>
+      <div class="graph-link-row">
+        <GraphConexionesLink href={graphHref} />
       </div>
     </div>
   </section>

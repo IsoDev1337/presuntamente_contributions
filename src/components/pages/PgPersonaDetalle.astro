@@ -9,6 +9,7 @@ import FichaTocSection from '@/components/FichaTocSection.astro';
 import RichProse from '@/components/RichProse.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import VinculosInstitucionalesList from '@/components/VinculosInstitucionalesList.astro';
+import GraphConexionesLink from '@/components/GraphConexionesLink.astro';
 import { rolLabel, iniciales, naturalezaVinculoLabel, type Lang } from '@/lib/labels';
 import { documentoRespaldoHref } from '@/lib/documentos';
 
@@ -146,6 +147,7 @@ const strings = {
     'La condición de investigado, procesado o acusado no implica valoración de culpabilidad. ' +
     'Rige el principio de presunción de inocencia mientras no recaiga sentencia firme.',
 };
+const graphHref = `/grafo?focus=persona&id=${data.id}&depth=2&layout=cose`;
 ---
 
 <BaseLayout
@@ -171,6 +173,9 @@ const strings = {
         <span><strong>{casosUnicos.length}</strong> caso{casosUnicos.length === 1 ? '' : 's'} referenciado{casosUnicos.length === 1 ? '' : 's'}</span>
         <span class="entity-mast__sep">·</span>
         <span><strong>{rolesPersona.length}</strong> rol{rolesPersona.length === 1 ? '' : 'es'} en total</span>
+      </div>
+      <div class="graph-link-row">
+        <GraphConexionesLink href={graphHref} />
       </div>
     </div>
   </section>

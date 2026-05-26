@@ -21,6 +21,7 @@
     "@astrojs/sitemap": "^3.7.2",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^5.0.0",
+    "cytoscape": "^3.33.4",
     "open-props": "^1.7.0",
     "satori": "^0.26.0",
     "satori-html": "^0.3.2"

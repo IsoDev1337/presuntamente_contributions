@@ -1,0 +1,67 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GrafoRelaciones from '@/components/GrafoRelaciones.astro';
+import { getCollection } from 'astro:content';
+import { buildGraphPayload } from '@/lib/grafo';
+import type { Lang } from '@/lib/labels';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+
+const [
+  casos,
+  personas,
+  organizaciones,
+  documentos,
+  roles,
+  vinculos,
+  relaciones,
+  hitos,
+  hechos,
+] = await Promise.all([
+  getCollection('casos'),
+  getCollection('personas'),
+  getCollection('organizaciones'),
+  getCollection('documentos'),
+  getCollection('roles'),
+  getCollection('vinculos'),
+  getCollection('relaciones'),
+  getCollection('hitos'),
+  getCollection('hechos'),
+]);
+
+const graph = buildGraphPayload({
+  casos,
+  personas,
+  organizaciones,
+  documentos,
+  roles,
+  vinculos,
+  relaciones,
+  hitos,
+  hechos,
+});
+
+const strings = {
+  title: 'Explorador de Conexiones',
+  description:
+    'Grafo visual y textual de conexiones y relaciones procesales, institucionales, documentales y entre casos del inventario.',
+};
+---
+
+<BaseLayout
+  title={strings.title}
+  lang={lang}
+  description={strings.description}
+  activeNav="grafo"
+  hideSubstrip
+  breadcrumb={[
+    { label: 'Inicio', href: lang === 'ca' ? '/cat' : '/' },
+    { label: 'Conexiones' },
+  ]}
+>
+  <GrafoRelaciones graph={graph} />
+</BaseLayout>

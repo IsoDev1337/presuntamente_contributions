@@ -4,7 +4,7 @@
 >
 > El roadmap conceptual vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión operativa: estado actual, próximos pasos, backlog inmediato y aprendizajes recientes. El histórico largo se ha movido a [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-26 (tarde, sprint completo). Sesión grande que cierra cinco piezas:
+**Última actualización:** 2026-05-26 (tarde, sprint completo + grafo). Sesión grande que cierra seis piezas:
 
 1. **Modelo de clasificación editorial de medios** — canon [`docs/diseno/07-clasificacion-editorial-medios.md`](docs/diseno/07-clasificacion-editorial-medios.md). Cuatro campos nuevos en `Organizacion` (`naturaleza_editorial`, `orientacion_editorial_declarada`, `orientacion_editorial_percibida`, `grupo_editorial`). Enum del eje 7+1. Naturaleza separa generalistas políticos y confesionales (admiten orientación) del resto. 9 medios con orientación declarada verificada (piloto + sub-agente). Sin `percibida` poblada todavía (Reuters 2025 no contiene esos datos; ver bloque D).
 
@@ -15,6 +15,8 @@
 4. **Mejoras de listados y vista agregada de "instituciones alcanzadas"** — /casos con mini-descripción `que_se_investiga`, último hito truncado, órgano clic, RolBadge para naturaleza de org afectada, columna `Partidos afectados`, sin Implic; /personas con biografía corta + columna `Organización principal` + figura pública al lado del nombre como texto pálido; /organizaciones con bloque inverso `Personas relacionadas`; cabecera de Caso con bloques "Partidos afectados" e "Instituciones alcanzadas" (cajas con border-left por familia).
 
 5. **Landing actualizada** — "Casos destacados" (plural, ≥2) en stack vertical con preview enriquecido: fase + estado de publicación, organización afectada con RolBadge, partidos afectados, último hito truncado.
+
+6. **Explorador de Conexiones `/grafo`** — página global full-screen con Cytoscape.js, modo inventario completo sin foco, foco caso/persona/organización/documento, profundidad 1-3, filtros por tipo de nodo/arista con ayudas contextuales, layouts `cose`/`breadthfirst`, paneles flotantes, tabla textual equivalente activable y enlaces profundos desde fichas.
 
 **Anterior inmediato:** ritmo vertical unificado en fichas (caso, persona, organización, delito): `FichaTocSection.astro` + `.entity-mast` compartido + `PgCasoDetalle` migrado al patrón común.
 
@@ -42,7 +44,7 @@
 - **Casos publicables actuales**: `plus-ultra`, `begona-gomez`, `gonzalez-amador`, `fiscal-general-del-estado`, `kitchen`, `lezo`.
 - **Caso no publicable en producción**: `atico-estepona`, en `borrador`.
 - **Bloques pre-launch cerrados**: Bloque A (casos equilibrados), Bloque B (`revisar-caso` v1 + primera auditoría), Bloque E (higiene técnica).
-- **Bloque D**: parcialmente entregado. Cerrados `/cifras`, OG images, RSS/Atom, timeline visual, estado de ficha, síntesis de caso, vínculos institucionales (datos + UI) y cobertura mediática general (corpus + UI). Quedan grafo y composición de fuentes citadas.
+- **Bloque D**: parcialmente entregado. Cerrados `/cifras`, OG images, RSS/Atom, timeline visual, estado de ficha, síntesis de caso, vínculos institucionales (datos + UI), cobertura mediática general (corpus + UI) y explorador de relaciones `/grafo`. Queda composición de fuentes citadas.
 - **Próximo paso comprometido**: lo decide el maintainer. Opciones naturales: Bloque C (revisión editorial humana pre-launch), continuar Bloque D, o publicación técnica en Cloudflare Pages sin DNS apex.
 - **Dev server local**: `pnpm dev` en `http://localhost:4321`.
 - **Workflow git**: trabajo directo sobre `main`, sin ramas ni PRs mientras dure el MVP. No hacer `git add`, `git commit` ni `git push` salvo petición explícita del maintainer. Ver [`AGENTS.md`](AGENTS.md).
@@ -146,7 +148,7 @@ Objetivo: que el sitio parezca serio y útil al compartirlo, sin convertirlo en 
   - `/rastrear-cobertura`: hecho en `begona-gomez` (29 piezas). Pendientes: `plus-ultra`, `gonzalez-amador`, `fiscal-general-del-estado`, `kitchen`, `lezo`.
   - `/revisar-caso` v1 con CH11 (partidos_afectados) + CH12 (naturaleza_editorial de medios): aplicar a los 6 casos publicables tras esta sesión.
 - [ ] **Listado completo de casos públicos españoles en estado `pendiente`** pre-launch (Bloque C bis). Antes del lanzamiento, poblar `content/casos/` con un esqueleto mínimo (sólo `caso.yaml` con `nombre_mediatico`, `nombre_oficial`, `organo_judicial_id`, `fase_actual`, `estado_publicacion: pendiente`) para todos los casos públicos relevantes que un lector español esperaría encontrar (ej. Pretoria, Pokémon, Bárcenas/Gürtel piezas, EREs Andalucía, Filesa, Malaya, Faisán, ITV, Palau, Pretoria, Madoff/Forum Filatélico, Convenio Bankia, Marsans, Caja Madrid tarjetas opacas, Edu cero, Junta Andalucía, etc.). Aparecen en `/casos` como filas no clicables con badge "pendiente" — señal explícita de que están considerados aunque la ficha aún no esté redactada. **Decisión 2026-05-26**: amplía el conjunto del inventario antes del anuncio público para que no parezca selección curada de seis casos. Apuntado por feedback del maintainer.
-- [ ] Grafo de relaciones por caso. Detalle en [`docs/web/features/grafo-relaciones-caso.md`](docs/web/features/grafo-relaciones-caso.md). Grafo local por caso, no grafo global todavía; siempre con alternativa textual.
+- [x] **Explorador de Conexiones `/grafo`**. Entregado 2026-05-26: página global full-screen con modo inventario completo, foco caso/persona/organización/documento, profundidad 1-3, filtros por nodos/aristas con ayudas contextuales, layouts Cytoscape (`cose`/`breadthfirst`), paneles flotantes, tabla textual equivalente activable y enlaces profundos desde fichas. Detalle en [`docs/web/features/grafo-relaciones-caso.md`](docs/web/features/grafo-relaciones-caso.md).
 - [ ] Fotos reales de personas + logos institucionales: en pausa hasta consulta legal. No tocar modelado ni cosecha antes de cerrar criterio editorial sobre derecho de imagen, licencias, desimputaciones y tratamiento de fotos de juicio/detención.
 
 #### Bloque E - Higiene técnica pre-launch `[x]`
@@ -193,7 +195,7 @@ Esta sección conserva el contexto mínimo por caso para saber qué tipo de trab
 Usar worktrees aislados y la skill `multi-agent-orchestration` si hay sesiones simultáneas.
 
 - [x] **UI de vínculos institucionales**: consumir `content/vinculos/` e integrar relaciones en personas/organizaciones implicadas sin ranking de bandos. Coordinar con grafo.
-- [ ] **Grafo por caso**: prototipo visual + equivalente textual. Puede empezar con vínculos y relaciones existentes, pero no debe bloquear la ficha si faltan datos.
+- [x] **Explorador de Conexiones `/grafo`**: página global full-screen, modo inventario completo, foco prefiltrado desde fichas de caso/persona/organización, profundidad configurable y equivalente textual activable. Entregado 2026-05-26.
 - [x] **Clasificación editorial de medios + barra en cobertura general**: schema, canon, paleta, badges, barra en /casos, columna en /organizaciones. Entregado 2026-05-26 (tarde). Falta sólo poblar `percibida` y `grupo_editorial` (ver Bloque D).
 - [ ] **Resumen "instituciones alcanzadas" en ficha de caso**: agregar vista agregada de vínculos `*_en_caso` y nombramientos; datos piloto ya en `begona-gomez`.
 - [x] **Cobertura mediática general**: convertir el corpus `content/cobertura-mediatica/begona-gomez.yaml` en patrón reutilizable, deduplicación y UI inicial.

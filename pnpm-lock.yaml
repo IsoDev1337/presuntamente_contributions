@@ -17,6 +17,9 @@ importers:
       astro:
         specifier: ^5.0.0
         version: 5.18.1(@types/node@24.12.4)(rollup@4.60.4)(typescript@5.9.3)(yaml@2.9.0)
+      cytoscape:
+        specifier: ^3.33.4
+        version: 3.33.4
       open-props:
         specifier: ^1.7.0
         version: 1.7.23
@@ -1163,6 +1166,10 @@ packages:
   csso@5.0.5:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+
+  cytoscape@3.33.4:
+    resolution: {integrity: sha512-HIN5Pmd9MrX9BkV7tDwnOcEJCSFvCpc8X97h3f508J6I5FsqAY65wKOCvgH2CuP42CaahWaz4tuh32SOOIH7ww==}
+    engines: {node: '>=0.10'}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -3183,6 +3190,8 @@ snapshots:
   csso@5.0.5:
     dependencies:
       css-tree: 2.2.1
+
+  cytoscape@3.33.4: {}
 
   debug@4.4.3:
     dependencies:

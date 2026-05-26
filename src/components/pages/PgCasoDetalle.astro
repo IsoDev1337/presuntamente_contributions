@@ -19,6 +19,7 @@ import ClasificacionEditorialBarra from '@/components/ClasificacionEditorialBarr
 import RichProse from '@/components/RichProse.astro';
 import EstadoFichaBadge from '@/components/EstadoFichaBadge.astro';
 import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
+import GraphConexionesLink from '@/components/GraphConexionesLink.astro';
 
 // Mismo enum que en EstadoPublicacionBadge — Astro no exporta tipos entre
 // componentes .astro de forma estable, así que re-declaro aquí.
@@ -95,7 +96,7 @@ const CHEQUEOS_FICHA: ReadonlyArray<readonly [keyof EstadoFicha, string]> = [
   ['fuentes_cruzadas', 'Fuentes periodísticas cruzadas'],
   ['composicion_fuentes_citadas', 'Composición de fuentes citadas'],
   ['vinculos_institucionales', 'Vínculos institucionales documentados'],
-  ['grafo_relaciones', 'Grafo de relaciones'],
+  ['grafo_relaciones', 'Conexiones y relaciones'],
   ['cobertura_mediatica_general', 'Cobertura mediática general'],
   ['revision_editorial', 'Revisión editorial cualitativa'],
 ] as const;
@@ -667,6 +668,7 @@ const breadcrumb = [
   { label: 'Casos', href: lang === 'ca' ? '/cat/casos' : '/casos' },
   { label: data.nombre_mediatico },
 ];
+const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
 ---
 
 <BaseLayout
@@ -682,11 +684,10 @@ const breadcrumb = [
   <!-- 2.1 — Encabezado flippeable: el contenedor unificado lleva la
        masthead + síntesis del caso (cara A) y un reverso editorial (cara B)
        con estado global, 10 chequeos y "Cómo se ha redactado esta ficha".
-       Se voltea desde el grupo superior de estado editorial: badge de
-       publicación + botón de detalles de desarrollo. -->
+       El badge de publicación vive junto al eyebrow/título de cada cara;
+       el botón "Ver detalles de desarrollo" queda solo arriba a la derecha. -->
   <section class="ficha-flip" data-flipped="false">
-    <div class="ficha-flip__actions" aria-label="Estado editorial de la ficha">
-      <EstadoPublicacionBadge estado={data.estado_publicacion as EstadoPublicacion} />
+    <div class="ficha-flip__actions" aria-label="Detalles del desarrollo editorial">
       <button
         type="button"
         class="ficha-flip__toggle"
@@ -701,7 +702,10 @@ const breadcrumb = [
     <div class="ficha-flip__inner">
       <section class="ficha-mast ficha-flip__face ficha-flip__face--front" aria-hidden="false">
         <div class="ficha-mast__top">
-          <p class="ficha-mast__eye">{strings.eyebrow}</p>
+          <div class="ficha-mast__eye-row">
+            <p class="ficha-mast__eye">{strings.eyebrow}</p>
+            <EstadoPublicacionBadge estado={data.estado_publicacion as EstadoPublicacion} />
+          </div>
           <h1 class="ficha-mast__name">{data.nombre_mediatico}</h1>
           <p class="ficha-mast__official">{data.nombre_oficial}</p>
           {data.nombres_alternativos && data.nombres_alternativos.length > 0 && (
@@ -739,6 +743,9 @@ const breadcrumb = [
               </div>
             )}
           </dl>
+          <div class="graph-link-row">
+            <GraphConexionesLink href={graphHref} />
+          </div>
         </div>
 
       </section>
@@ -750,7 +757,10 @@ const breadcrumb = [
       >
         <div class="ficha-mast__top">
           <p class="ficha-mast__eye">Sobre la ficha</p>
-          <h2 class="ficha-flip__title">Estado de esta ficha</h2>
+          <div class="ficha-flip__title-row">
+            <h2 class="ficha-flip__title">Estado de esta ficha</h2>
+            <EstadoPublicacionBadge estado={data.estado_publicacion as EstadoPublicacion} />
+          </div>
           <p class="ficha-flip__intro">
             Esta cara habla del estado del <strong>trabajo del inventario</strong>,
             no del procedimiento judicial. La fase procesal del caso está en la
@@ -1260,12 +1270,22 @@ const breadcrumb = [
 
 <style>
   /* === 2.1 Encabezado (ficha-mast) — extendido sobre el .ficha-mast del global.css === */
+  .ficha-mast__eye-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    margin: 0 0 8px;
+  }
+  .ficha-mast__top > .ficha-mast__eye {
+    margin-bottom: 8px;
+  }
   .ficha-mast__eye {
     font: 700 11px/1 var(--font-sans);
     letter-spacing: var(--ls-caps, 0.04em);
     text-transform: uppercase;
     color: var(--color-accent-secondary-hover);
-    margin: 0 0 8px;
+    margin: 0;
   }
   .ficha-mast__name {
     font: 700 clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem) / 1.15 var(--font-sans);
@@ -1756,7 +1776,7 @@ const breadcrumb = [
     margin-bottom: 0;
   }
   .ficha-flip__face--front > .ficha-mast__top > :not(.ficha-mast__grid) {
-    max-width: calc(100% - 220px);
+    max-width: calc(100% - 168px);
   }
   .ficha-flip__face--front {
     position: relative;
@@ -1820,10 +1840,17 @@ const breadcrumb = [
   }
 
   /* --- Tipografía y bloques de la cara B ------------------------------- */
+  .ficha-flip__title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    margin: 6px 0 10px;
+  }
   .ficha-flip__title {
     font: 600 26px/1.15 var(--font-display, var(--font-sans));
     letter-spacing: -0.01em;
-    margin: 6px 0 10px;
+    margin: 0;
     color: var(--color-fg);
   }
   .ficha-flip__intro {
@@ -1872,7 +1899,7 @@ const breadcrumb = [
     .ficha-flip__actions {
       position: static;
       width: 100%;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin: 0 0 8px;
     }
     .ficha-flip__face--front > .ficha-mast__top > :not(.ficha-mast__grid) {
@@ -1898,4 +1925,3 @@ const breadcrumb = [
     }
   }
 </style>
-

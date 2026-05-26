@@ -106,6 +106,16 @@ const strings = { /* castellano hardcoded */ };
 
 Estructura ES + CAT desde día 1 (carpetas `/src/pages/cat/` listas). MVP castellano hardcoded en `Pg*` con `// TODO i18n` donde irán los catalanes. Migración a `astro-i18n` nativo cuando toque.
 
+### Tipografía y pesos visuales
+
+Antes de tocar UI, consulta `DESIGN.md` y respeta su escala tipográfica. Norma operativa: **no usar pesos `800`/`900`** ni tratamientos de "black bold" en componentes, controles, popovers, botones, badges, metadatos o títulos secundarios. El rango permitido en interfaz es:
+
+- `400` para texto normal.
+- `500`/`600` para controles, metadatos y énfasis funcional.
+- `600`/`700` para headings y énfasis editorial justificado.
+
+Si algo necesita más jerarquía, usar estructura, color, borde, fondo, tamaño moderado o posición; no subir a peso negro. Esta regla aplica también a HTML generado por scripts (`innerHTML`) y a estilos `:global(...)`.
+
 ### NOTES.md por caso
 
 Cada `/content/casos/<slug>/NOTES.md` contiene anotaciones internas: contexto, "ojo con esta fuente porque…", decisiones tomadas, recordatorios para el LLM. **Excluido del build del sitio público.** Vive sólo en el repo para humanos y agentes.
