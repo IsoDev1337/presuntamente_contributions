@@ -60,7 +60,7 @@ metodologia:
     de la defensa de González Amador a la Fiscalía da origen al caso FGE. Las
     piezas que tratan ambos casos se asignan al corpus más relevante según el
     objeto central de la pieza. Las url_archivo se rellenan con
-    scripts/archivar-n4.mjs (pnpm archive:catchup o hook pre-commit).
+    scripts/archivar-n4.mjs (pnpm archive:catchup).
 
 estado: parcial
 

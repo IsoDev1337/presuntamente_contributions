@@ -146,7 +146,7 @@ estado `atribuido` / `investigado` / `exculpatorio`, sin
   Independiente + The Objective). V-13 cumplido en todos los
   hitos sin documento oficial accesible.
 - **Hook archive.org**: los 9 documentos N4 de Lezo se
-  procesarán por el hook pre-commit cuando entren al staging.
+  procesarán con `pnpm archive:catchup` cuando haya red.
   Sin verificación específica en NOTES.
 
 ## Pendientes PR8+

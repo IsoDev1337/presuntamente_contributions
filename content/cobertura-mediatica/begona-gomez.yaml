@@ -63,8 +63,7 @@ metodologia:
     corpus es un muestreo sistemático, no un listado exhaustivo. El País, El Mundo
     y ABC tienen cobertura propia y relevante no incluida aquí por las limitaciones
     de acceso señaladas. Las url_archivo se rellenan con scripts/archivar-n4.mjs
-    (pnpm archive:catchup o hook pre-commit si core.hooksPath=hooks está activo;
-    ver docs/web/features/archive-org-pre-commit.md).
+    (pnpm archive:catchup; ver docs/web/features/archive-org-pre-commit.md).
     Francisco Martín Aguirre (delegado del Gobierno en Madrid) fue investigado
     e imputado en el caso — hallazgo anotado en NOTES.md del caso para modelar
     en PR4 como persona + roles. Air Europa (vínculo Barrabés-SEPI) también fue

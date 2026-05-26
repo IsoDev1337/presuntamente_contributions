@@ -7,7 +7,7 @@
  *   - content/cobertura-mediatica/*.yaml — noticias del corpus (campo url por ítem)
  *
  * Modos:
- *   --staged-only      Solo YAML en staging (hook; tope 5 URLs por defecto).
+ *   --staged-only      Solo YAML en staging (tope 5 URLs por defecto; uso manual).
  *   --catchup          Todo el backlog pendiente del repo.
  *   --caso=<slug>      Filtra por caso.
  *   --dry-run          Lista pendientes sin llamar a archive.org.
@@ -17,7 +17,7 @@
  *
  * Velocidad:
  *   1. wayback/available: si ya hay snapshot, reutiliza (segundos, sin /save/).
- *   2. ARCHIVAR_WAIT_MS: pausa entre URLs (catchup default 2s; hook default 8s).
+ *   2. ARCHIVAR_WAIT_MS: pausa entre URLs (catchup default 2s; staged-only default 8s).
  *   3. /save/ solo si no hay snapshot o --force-save (30s–2min por URL).
  *
  * Variables de entorno:
@@ -350,7 +350,7 @@ async function main() {
 
   const ctx = stagedOnly ? '(staged)' : '(catchup)';
   const reuseNote = skipReuse ? 'sin reutilizar snapshots' : 'reutiliza Wayback si existe';
-  const label = `${pending.length} URL(s)${deferred ? ` (${deferred} aplazada(s) por tope del hook)` : ''}`;
+  const label = `${pending.length} URL(s)${deferred ? ` (${deferred} aplazada(s) por tope de --staged-only)` : ''}`;
   console.log(
     `📚 archivar-n4 ${ctx}: ${label}${casoFilter ? ` — caso=${casoFilter}` : ''} · wait=${waitMs}ms · ${reuseNote}`,
   );

@@ -68,7 +68,7 @@ Marcar `pieza_referenciada_id` en piezas derivadas/sindicadas/idénticas dentro 
 
 ### 5. Archivado
 
-Cada noticia incluida exige `url_archivo` en `web.archive.org` (mismo principio V-13). Tras cerrar el corpus, el maintainer o el agente ejecutan `pnpm archive:catchup -- --caso=<slug>` (o el hook pre-commit archiva hasta 5 URLs por commit si `core.hooksPath=hooks` está activo). Ver [`docs/web/features/archive-org-pre-commit.md`](../../../docs/web/features/archive-org-pre-commit.md). Si archive.org no responde, dejar vacío y anotar en `notas` del ítem; **no inventar URL**.
+Cada noticia incluida exige `url_archivo` en `web.archive.org` (mismo principio V-13). Tras cerrar el corpus, el maintainer o el agente (con red) ejecutan `pnpm archive:catchup -- --caso=<slug>`. Ver [`docs/web/features/archive-org-pre-commit.md`](../../../docs/web/features/archive-org-pre-commit.md). Si archive.org no responde, dejar vacío y anotar en `notas` del ítem; **no inventar URL**.
 
 ### 6. Tipificación
 

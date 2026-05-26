@@ -67,7 +67,7 @@ Regla: si un aprendizaje se convierte en norma obligatoria, debe promoverse a `A
 - **Archive.org `Location` puede ser absoluta.** El parser debe aceptar `https://web.archive.org/web/...` además de paths relativos.
 - **Timeout Archive.org depende del medio.** Infobae puede necesitar 90-180s.
 - **Cloudflare anti-bot puede bloquear Archive.org.** `elespanol.com` devolvió HTTP 520; usar `url_archivo_no_disponible` y respaldo cruzado.
-- **Hooks versionados.** `hooks/` + `core.hooksPath` es el patrón; los hooks nunca deben bloquear commits por red.
+- **Archivado archive.org manual.** `scripts/archivar-n4.mjs` + `pnpm archive:catchup`; sin hook de git (los agentes commitean en sandbox sin red). Retirado el pre-commit el 2026-05-26.
 
 ## Multiagente y git
 

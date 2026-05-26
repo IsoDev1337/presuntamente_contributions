@@ -192,8 +192,7 @@ delitos atribuidos durante la fase de instrucción sin cambios.
   y `tipo_pieza: pieza_separada`.
 - **Mirror archive.org (N4)**: 25 documentos con `url_canonica` pendientes
   de `url_archivo` a 2026-05-26. Ejecutar `pnpm archive:catchup -- --caso=kitchen`
-  (el hook pre-commit sólo archiva hasta 5 URLs por commit y requiere
-  `git config core.hooksPath hooks`).
+  (`pnpm archive:catchup`; requiere red).
 - **Auto íntegro del 24-feb-2023 de la Sección 3ª** si se localiza
   publicado con URL canónica (descarga local + N1).
 - **Auto íntegro del 13-oct-2023 y rectificador del 23-ene-2024** si

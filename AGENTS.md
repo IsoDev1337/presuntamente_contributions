@@ -248,7 +248,7 @@ Y en el YAML del `Documento` se cumplimentan obligatoriamente los campos:
 
 **Cuándo NO descargar**:
 
-- Cobertura periodística N4 en `content/documentos/`. El mirror en archive.org lo gestiona `scripts/archivar-n4.mjs` (hook pre-commit acotado o `pnpm archive:catchup`); no descargar PDF local salvo investigación periodística con valor probatorio propio. El corpus de cobertura mediática general (`content/cobertura-mediatica/`) es entidad aparte — ver [doc feature — "Archivado automático en archive.org"](docs/web/features/archive-org-pre-commit.md).
+- Cobertura periodística N4 en `content/documentos/`. El mirror en archive.org lo gestiona `scripts/archivar-n4.mjs` vía `pnpm archive:catchup` (manual; requiere red); no descargar PDF local salvo investigación periodística con valor probatorio propio. El corpus de cobertura mediática general (`content/cobertura-mediatica/`) es entidad aparte — ver [doc feature — "Archivado en archive.org"](docs/web/features/archive-org-pre-commit.md).
 - Autos de instrucción ordinaria no localizados públicamente (no podemos descargar lo que no está accesible).
 - Documentos con `estado_acceso: acceso_restringido_pero_citable` o restricciones legales del art. 234 LOPJ / 301 LECrim (escritos de parte no notificados a terceros).
 
@@ -267,25 +267,18 @@ Y en el YAML del `Documento` se cumplimentan obligatoriamente los campos:
 
 **Dependencia de sistema**: la extracción de texto de PDFs requiere `poppler-utils` (`pdftotext`, `pdfinfo`). En macOS se instala con `brew install poppler` (una vez por máquina).
 
-## Git hooks (`hooks/`)
+## Archivado archive.org (manual)
 
-El repo trae hooks de git versionados en `/hooks/` (no `.git/hooks/`, que no se versiona). Para activarlos en una máquina nueva ejecuta una vez:
+El mirror de fuentes N4 y cobertura mediática lo gestiona [`scripts/archivar-n4.mjs`](scripts/archivar-n4.mjs). **No hay hook de git**: los agentes suelen commitear en sandbox sin red y un hook bloquearía el flujo. El archivado es operación manual del maintainer (o del agente cuando tenga red), fuera del commit.
 
-```bash
-git config core.hooksPath hooks
-```
-
-Hooks vigentes:
-
-- **`hooks/pre-commit`** — Si entran en staging documentos N4 (`content/documentos/`) o noticias de cobertura mediática (`content/cobertura-mediatica/`), archiva hasta **5 URLs** por commit en `archive.org` y añade `url_archivo`. Lotes grandes: `pnpm archive:catchup` (manual). Detalle en [`docs/web/features/archive-org-pre-commit.md`](docs/web/features/archive-org-pre-commit.md).
-  - **No bloquea nunca el commit**: si archive.org no responde / hay timeout / no hay red, avisa y deja pasar. Los YAMLs sin `url_archivo` se reintentan en el siguiente commit que toque docs.
-  - Reutiliza snapshots Wayback existentes antes de `/save/` (rápido). Captura nueva: ~30 s–2 min/URL; catchup usa 2 s entre URLs, hook 8 s. Lotes grandes: `pnpm archive:catchup`, no el hook. Para saltárselo: `git commit --no-verify`.
-  - Sin autenticación: usa el endpoint anónimo de archive.org, cuota 8.000 captures/día (sobra varios órdenes de magnitud).
-
-Comandos relacionados:
+Comandos:
 
 - `pnpm archive:dry` — Lista URLs pendientes (documentos N4 + noticias de cobertura mediática; dry-run).
-- `pnpm archive:catchup` — Archiva TODO el backlog pendiente del repo (no solo lo del staging). Útil al activar el hook por primera vez o cuando se acumula backlog por sesiones con archive.org caído.
+- `pnpm archive:catchup` — Archiva TODO el backlog pendiente del repo.
+- `pnpm archive:catchup -- --caso=<slug>` — Solo un caso.
+- `pnpm archive:catchup -- --limit=3` — Prueba acotada.
+
+Detalle en [`docs/web/features/archive-org-pre-commit.md`](docs/web/features/archive-org-pre-commit.md). Sin autenticación: endpoint anónimo de archive.org, cuota ~8.000 capturas/día.
 
 ## Skills locales (`.agents/skills/`)
 

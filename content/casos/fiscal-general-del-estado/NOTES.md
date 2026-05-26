@@ -291,8 +291,7 @@ Extraídos del texto íntegro de la Sentencia 1000/2025:
 ## Pendiente para PR4 y siguientes
 
 - **Archive.org / archive.ph mirrors** para los documentos N4.
-  Maintainer está automatizándolo vía hook pre-commit (commit
-  `64d92a8`).
+  Maintainer archiva con `pnpm archive:catchup` (manual; requiere red).
 - **Localización del texto íntegro de la Sentencia 1000/2025 en
   CENDOJ**. Si aparece, sustituir `nivel_fuente: 3` por `1`
   manteniendo el mismo `id` del documento y el mismo `hash_sha256`

@@ -59,7 +59,7 @@ metodologia:
     El caso tuvo escasa cobertura judicial hasta las detenciones de diciembre
     2025 y la imputación de Zapatero en mayo 2026, momento que concentra la
     mayor parte del corpus. Las url_archivo se rellenan con
-    scripts/archivar-n4.mjs (pnpm archive:catchup o hook pre-commit).
+    scripts/archivar-n4.mjs (pnpm archive:catchup).
 
 estado: parcial
 

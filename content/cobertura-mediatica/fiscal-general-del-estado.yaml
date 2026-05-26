@@ -60,8 +60,7 @@ metodologia:
     apertura de la causa en octubre de 2024. El período del juicio oral
     (nov 2025) y la sentencia (dic 2025) concentran la mayor densidad. Es el
     primer caso con sentencia firme del Tribunal Supremo en el inventario. Las
-    url_archivo se rellenan con scripts/archivar-n4.mjs (pnpm archive:catchup
-    o hook pre-commit).
+    url_archivo se rellenan con scripts/archivar-n4.mjs (pnpm archive:catchup).
 
 estado: parcial
 

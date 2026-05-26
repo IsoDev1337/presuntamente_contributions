@@ -57,7 +57,7 @@ metodologia:
     El caso tiene cobertura extensa en todos los medios nacionales desde 2019;
     este corpus es un muestreo sistemático. El período del juicio oral (abr-may
     2026) concentra la mayor densidad de piezas. Las url_archivo se rellenan
-    con scripts/archivar-n4.mjs (pnpm archive:catchup o hook pre-commit).
+    con scripts/archivar-n4.mjs (pnpm archive:catchup).
 
 estado: parcial
 

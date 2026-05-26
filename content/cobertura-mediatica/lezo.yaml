@@ -57,7 +57,7 @@ metodologia:
     es la apertura del procedimiento (abr 2017) y los procesamientos (2019-2021).
     El juicio oral de la pieza golf (señalado para sept 2027) concentrará la
     mayor cobertura futura. Las url_archivo se rellenan con
-    scripts/archivar-n4.mjs (pnpm archive:catchup o hook pre-commit).
+    scripts/archivar-n4.mjs (pnpm archive:catchup).
 
 estado: parcial
 
