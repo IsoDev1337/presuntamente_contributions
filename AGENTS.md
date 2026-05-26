@@ -238,7 +238,7 @@ Y en el YAML del `Documento` se cumplimentan obligatoriamente los campos:
 
 **Cuándo NO descargar**:
 
-- Cobertura periodística N4. Para esto ya está el hook `pre-commit` que archiva en `archive.org` y añade `url_archivo`. No conviene duplicar capacidad.
+- Cobertura periodística N4 en `content/documentos/`. El mirror en archive.org lo gestiona `scripts/archivar-n4.mjs` (hook pre-commit acotado o `pnpm archive:catchup`); no descargar PDF local salvo investigación periodística con valor probatorio propio. El corpus de cobertura mediática general (`content/cobertura-mediatica/`) es entidad aparte — ver [doc feature — "Archivado automático en archive.org"](docs/web/features/archive-org-pre-commit.md).
 - Autos de instrucción ordinaria no localizados públicamente (no podemos descargar lo que no está accesible).
 - Documentos con `estado_acceso: acceso_restringido_pero_citable` o restricciones legales del art. 234 LOPJ / 301 LECrim (escritos de parte no notificados a terceros).
 
@@ -267,14 +267,14 @@ git config core.hooksPath hooks
 
 Hooks vigentes:
 
-- **`hooks/pre-commit`** — Si entran nuevos documentos N4 (artículos de prensa) en el staging, los archiva automáticamente en `archive.org` y añade `url_archivo` al YAML antes de cerrar el commit. Cumple V-13 (mirror permanente para fuentes N4) sin que nadie tenga que recordarlo.
+- **`hooks/pre-commit`** — Si entran en staging documentos N4 (`content/documentos/`) o noticias de cobertura mediática (`content/cobertura-mediatica/`), archiva hasta **5 URLs** por commit en `archive.org` y añade `url_archivo`. Lotes grandes: `pnpm archive:catchup` (manual). Detalle en [`docs/web/features/archive-org-pre-commit.md`](docs/web/features/archive-org-pre-commit.md).
   - **No bloquea nunca el commit**: si archive.org no responde / hay timeout / no hay red, avisa y deja pasar. Los YAMLs sin `url_archivo` se reintentan en el siguiente commit que toque docs.
   - Si una sesión añade muchos documentos a la vez puede tardar ~10-20 segundos por URL. Para saltárselo puntualmente: `git commit --no-verify`.
   - Sin autenticación: usa el endpoint anónimo de archive.org, cuota 8.000 captures/día (sobra varios órdenes de magnitud).
 
 Comandos relacionados:
 
-- `pnpm archive:dry` — Lista qué documentos N4 del repo no tienen `url_archivo` (dry-run, no llama a archive.org).
+- `pnpm archive:dry` — Lista URLs pendientes (documentos N4 + noticias de cobertura mediática; dry-run).
 - `pnpm archive:catchup` — Archiva TODO el backlog pendiente del repo (no solo lo del staging). Útil al activar el hook por primera vez o cuando se acumula backlog por sesiones con archive.org caído.
 
 ## Skills locales (`.agents/skills/`)

@@ -501,17 +501,13 @@ Lecciones operativas:
   en NOTES y diferir; si bloquea contenido editorial necesario,
   ampliar enum siguiendo el patrón de `escrito_conclusiones_provisionales`
   (Begoña PR3) o de V-11 ampliada (GA PR3).
-- **El hook pre-commit de archive.org reduce drásticamente la
-  carga editorial.** El hook archive.org (commit 64d92a8) procesa
-  cada documento N4 nuevo del staging y añade `url_archivo`
-  automáticamente antes de cerrar el commit, con timeout suave (si
-  archive.org tarda o devuelve HTTP 520, se salta sin bloquear).
-  En PR1 del FGE, de los 6 documentos N4 nuevos, todos quedan
-  archivados antes del commit o quedan en backlog para
-  `pnpm archive:catchup` posterior. Buena disciplina V-13 sin
-  esfuerzo manual. **Patrón reusable**: el agente no tiene que
-  preocuparse de `url_archivo` al fichar un caso nuevo; basta
-  asegurar URL canónica accesible al `git commit`.
+- **Archivado archive.org vía `scripts/archivar-n4.mjs`.** El hook
+  pre-commit archiva hasta 5 URLs por commit (documentos N4 +
+  cobertura mediática) si `core.hooksPath=hooks` está activo; lotes
+  grandes: `pnpm archive:catchup`. Si archive.org falla o HTTP 520, no
+  bloquea el commit. **Patrón reusable**: al fichar N4, basta
+  `url_canonica` verificable; `url_archivo` lo rellena catchup o hook.
+  Ver [`docs/web/features/archive-org-pre-commit.md`](../../../docs/web/features/archive-org-pre-commit.md).
 
 ### González Amador PR1 + PR2 + PR3 (2026-05-22) — segundo caso real arrancado con la skill, en sesión paralela
 

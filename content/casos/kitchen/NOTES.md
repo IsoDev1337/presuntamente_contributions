@@ -190,10 +190,10 @@ delitos atribuidos durante la fase de instrucción sin cambios.
 - **Caso Tándem matriz**. Cuando se decida fichar Tándem como caso
   raíz, modificar este `caso.yaml` añadiendo `caso_padre_id: tandem`
   y `tipo_pieza: pieza_separada`.
-- **Cobertura local archive.org**: pendiente del hook pre-commit en
-  el commit del PR3 (10+ documentos N4 nuevos con `url_canonica` —
-  esta vez sí tienen URL verificable, así que el hook archive.org
-  los procesará automáticamente).
+- **Mirror archive.org (N4)**: 25 documentos con `url_canonica` pendientes
+  de `url_archivo` a 2026-05-26. Ejecutar `pnpm archive:catchup -- --caso=kitchen`
+  (el hook pre-commit sólo archiva hasta 5 URLs por commit y requiere
+  `git config core.hooksPath hooks`).
 - **Auto íntegro del 24-feb-2023 de la Sección 3ª** si se localiza
   publicado con URL canónica (descarga local + N1).
 - **Auto íntegro del 13-oct-2023 y rectificador del 23-ene-2024** si

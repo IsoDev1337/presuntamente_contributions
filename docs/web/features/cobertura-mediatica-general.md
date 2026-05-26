@@ -53,7 +53,7 @@ No se muestra reparto por bloque ideológico: `Organizacion` no tiene todavía u
 - **Separar corpus judicial de corpus mediático.** Los `Documento` que respaldan `Hecho` siguen en `content/documentos/`; la cobertura general no debe inflar artificialmente la biblioteca probatoria.
 - **La métrica debe evitar convertir ausencia de cobertura en intención.** Que un medio no cubra algo puede significar agenda, falta de recursos, paywall, duplicación de agencia, baja relevancia editorial o error de rastreo. La nota metodológica lo declarará explícitamente.
 - **Republicaciones de agencia marcadas con `pieza_referenciada_id` + `tipo_pieza: pieza_agencia`.** Esto evita inflar el conteo confundiendo 12 copias del mismo suelto EFE con 12 piezas independientes.
-- **Archivado obligatorio en archive.org.** Mismo principio V-13. Excepción: piezas tras paywall duro que archive.org no captura; se anota la limitación y se decide caso a caso con el maintainer.
+- **Archivado obligatorio en archive.org.** Mismo principio V-13. El script [`archive-org-pre-commit.md`](archive-org-pre-commit.md) archiva `url` de cada noticia (y documentos N4 por separado). Excepción: paywall duro; anotar en `notas` del ítem y decidir con el maintainer.
 - **Resumen neutral.** Verbos prohibidos del P-09 vetados también en este corpus. El resumen es un resumen, no un titular alternativo.
 - **No usar el corpus para inferir hechos jurisdiccionales.** Si el rastreo descubre algo no modelado todavía, se anota en `NOTES.md` del caso para que la sesión principal lo evalúe con `/incorporar-hito` o `/investigar-caso`.
 - **No sustituye a fuentes primarias.** Una ficha puede estar completa judicialmente aunque su cobertura mediática general no esté analizada — son dimensiones distintas del `estado_ficha`.
@@ -86,6 +86,8 @@ No se muestra reparto por bloque ideológico: `Organizacion` no tiene todavía u
 - [x] Definir política de archivo para noticias que no respaldan hechos. **Decisión 2026-05-25**: archive.org obligatorio; paywall duro decidido caso a caso con el maintainer.
 - [ ] Decidir si "sesgo mediático" se usa sólo internamente o también como copy público. Posponer hasta que la feature hermana [`composicion-fuentes-citadas.md`](composicion-fuentes-citadas.md) esté entregada — ambas comparten metodología y conviene cerrar el copy a la vez.
 - [ ] Diseñar e implementar barra horizontal por corriente editorial (depende de `Organizacion.orientacion_editorial` + metodología documentada).
+- [x] Extender archivado archive.org a `content/cobertura-mediatica/`. **Entregado 2026-05-26:** `scripts/archivar-n4.mjs` + ficha [`archive-org-pre-commit.md`](archive-org-pre-commit.md).
+- [ ] Ejecutar `pnpm archive:catchup` para rellenar `url_archivo` del corpus piloto `begona-gomez` (29 noticias pendientes a 2026-05-26).
 - [ ] Actualizar skill `/rastrear-cobertura` sólo si hace falta documentar el límite ("no clasificar medios") o el mantenimiento cruzado con medios del inventario.
 - [x] Poblar el primer caso piloto con `/rastrear-cobertura <slug>` lanzado en sub-agente paralelo. **Entregado 2026-05-25**: `begona-gomez`, 29 piezas.
 - [x] Diseñar el render en UI cuando exista corpus. **Entregado 2026-05-26**: sección propia en ficha de caso, separada de biblioteca documental.

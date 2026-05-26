@@ -68,7 +68,7 @@ Marcar `pieza_referenciada_id` en piezas derivadas/sindicadas/idénticas dentro 
 
 ### 5. Archivado
 
-Cada noticia incluida exige `url_archivo` en `web.archive.org` (mismo principio V-13). Si la URL no responde al archivado anónimo de archive.org, dejarlo vacío y anotar en `notas` del item; **no inventar URL**.
+Cada noticia incluida exige `url_archivo` en `web.archive.org` (mismo principio V-13). Tras cerrar el corpus, el maintainer o el agente ejecutan `pnpm archive:catchup -- --caso=<slug>` (o el hook pre-commit archiva hasta 5 URLs por commit si `core.hooksPath=hooks` está activo). Ver [`docs/web/features/archive-org-pre-commit.md`](../../../docs/web/features/archive-org-pre-commit.md). Si archive.org no responde, dejar vacío y anotar en `notas` del ítem; **no inventar URL**.
 
 ### 6. Tipificación
 
@@ -153,7 +153,7 @@ Material: <N> noticias recogidas, <N> medios cubiertos, <N> ventanas temporales.
 ## Guardarraíles editoriales
 
 1. **Corpus separado del corpus probatorio.** Los Documentos que respaldan Hechos siguen en `content/documentos/`. La cobertura general vive en `content/cobertura-mediatica/`. No mezclar.
-2. **Sin archivado en archive.org, no entra.** Mismo principio V-13. Excepción: piezas tras paywall duro que archive.org no captura; anotar limitación en `notas` y discutirlo con el maintainer antes de incluir.
+2. **Sin archivado en archive.org, no entra en producción pública.** Mismo principio V-13. El agente puede dejar `url_archivo` vacío al rastrear y delegar el mirror a `pnpm archive:catchup`. Excepción: paywall duro; anotar en `notas` y decidir con el maintainer.
 3. **Resumen neutral.** Verbos prohibidos del P-09 vetados. No reescribir el titular.
 4. **No inventar URL ni fecha.** Si `WebFetch` no resuelve, anotar y omitir.
 5. **No clasificar orientación editorial del medio en este corpus.** La clasificación de medios es decisión sensible que vive (cuando exista) en `Organizacion.orientacion_editorial`, fuera del scope de esta skill. Hoy esta skill sólo registra `medio_id`.

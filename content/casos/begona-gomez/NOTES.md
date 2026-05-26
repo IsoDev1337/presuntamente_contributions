@@ -88,7 +88,7 @@ Ambos cierres dejan en pie la presunción de inocencia y las trayectorias proces
 
 - 3 autos jurisdiccionales (`auto_judicial`): `auto-procesamiento-bg-2026-04-13`, `auto-audiencia-desimputa-goyache-2025-05-16`, `auto-ap-madrid-anula-jurado-2026-02-23` — todos con `nivel_fuente: 4` y `estado_acceso: acceso_restringido_pero_citable` (no localizables públicamente).
 - 1 escrito de la Fiscalía (`escrito_fiscalia`): `escrito-fiscalia-recurso-ap-bg-2026-04-21` — `nivel_fuente: 2`, `estado_acceso: acceso_restringido_pero_citable`.
-- 20 artículos de prensa (`articulo_prensa`): todos `nivel_fuente: 4`, gestionados por el hook `pre-commit` / `archive.org` (`url_archivo`).
+- 20 artículos de prensa (`articulo_prensa`): todos `nivel_fuente: 4`; mirror archive.org vía `scripts/archivar-n4.mjs` (`pnpm archive:catchup` o hook si `core.hooksPath=hooks`). A 2026-05-26: 19/20 con `url_archivo`; pendiente `libertaddigital-uco-cristina-alvarez-bg-2025-10-01` (catchup). Cobertura mediática general en `content/cobertura-mediatica/begona-gomez.yaml` (29 noticias): `url_archivo` pendiente de catchup.
 - 0 documentos del BOE (no hay nombramiento/cese de juez/fiscal específicos del caso) ni nota institucional con URL canónica en `poderjudicial.es` ni Acuerdo del CGPJ publicado relacionado con el caso.
 
 **Resultado del barrido.** Cero descargas aplicadas. Razón: a 2026-05-23 no se ha localizado en fuente oficial (BOE / CENDOJ / poderjudicial.es / fiscal.es) ninguno de los documentos candidatos a descarga primaria. Verificado vía WebSearch contra los buscadores institucionales y contra los acuerdos publicados del CGPJ; el barrido reproduce la misma conclusión de PR3 del 22-may, ampliada a las cuatro fuentes oficiales.

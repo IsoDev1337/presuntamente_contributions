@@ -25,7 +25,7 @@ Documentos candidatos a aplicar la convención de `ruta_local` + `hash_sha256` q
 
 - **Auto íntegro del JCI nº 4 del 19-may-2026 en CENDOJ** — el documento `auto-jci4-plus-ultra-2026-05-19` referencia hoy la nota CGPJ (descargada en HTML). Cuando aparezca el auto íntegro firmado por el magistrado Calama en CENDOJ, descargarlo como PDF anexo conservando el `id` del documento existente y añadiendo un segundo `ruta_local` o creando un documento complementario `auto-jci4-plus-ultra-2026-05-19-integro` con el texto íntegro. Es la pasada que permitiría citar `Hechos Probados` o fundamentos jurídicos con localización exacta tipo "FJ Tercero, apartado 3.1, p. 14".
 
-- **Documentos N4 (cobertura periodística) del caso** — fuera de scope de la convención de primarios descargados ([AGENTS.md → "Documentos primarios descargados"](AGENTS.md#documentos-primarios-descargados-a-publicdocumentos), sección "Cuándo NO descargar"). El mirror permanente está cubierto por el hook `pre-commit` + `archive.org`; los cinco documentos N4 del caso ya tienen `url_archivo` cumplimentado desde la sesión 6 del 2026-05-22.
+- **Documentos N4 (cobertura periodística) del caso** — fuera de scope de la convención de primarios descargados ([AGENTS.md → "Documentos primarios descargados"](AGENTS.md#documentos-primarios-descargados-a-publicdocumentos), sección "Cuándo NO descargar"). El mirror permanente está cubierto por `scripts/archivar-n4.mjs` + archive.org; los cinco documentos N4 del caso ya tienen `url_archivo` cumplimentado desde la sesión 6 del 2026-05-22.
 
 ---
 

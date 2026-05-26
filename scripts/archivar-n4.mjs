@@ -1,27 +1,23 @@
 #!/usr/bin/env node
 /**
- * Archivado en archive.org de documentos N4 sin url_archivo.
+ * Archivado en archive.org de URLs sin url_archivo.
+ *
+ * Fuentes:
+ *   - content/documentos/*.yaml — documentos N4 (campo url_canonica)
+ *   - content/cobertura-mediatica/*.yaml — noticias del corpus (campo url por ítem)
  *
  * Modos:
- *   --staged-only      Solo procesa documentos en el staging area del git
- *                      en curso. Usado por hooks/pre-commit.
- *   --catchup          Procesa TODO el backlog pendiente del repo. Usado
- *                      en arranque o cuando hay que rellenar histórico.
- *   --caso=<slug>      Filtra por caso_principal_id.
- *   --dry-run          Lista lo que haría sin llamar a archive.org.
+ *   --staged-only      Solo YAML en staging. Usado por hooks/pre-commit (tope por
+ *                      defecto: 5 URLs; ver ARCHIVAR_HOOK_MAX).
+ *   --catchup          Todo el backlog pendiente del repo.
+ *   --caso=<slug>      Filtra por caso_principal_id (documentos) o caso_id (cobertura).
+ *   --dry-run          Lista pendientes sin llamar a archive.org.
+ *   --hook-max=<n>     Tope en --staged-only (default 5; 0 = sin tope).
  *
  * Comportamiento:
- *   - Modifica YAMLs in-place añadiendo `url_archivo` tras `url_canonica`.
- *     Preserva el resto del formato (comentarios, orden de keys, etc.)
- *     porque trabaja por inserción de línea, no por reescritura yaml.
- *   - En modo --staged-only re-stagea los YAMLs modificados para que
- *     entren en el mismo commit que los disparó.
- *   - Si archive.org no responde, devuelve rate-limit, o no se obtiene
- *     URL de snapshot: avisa al usuario y CONTINÚA sin bloquear. Los
- *     YAMLs sin url_archivo quedan para próximo intento.
- *
- * Sin autenticación. Cuota anónima de archive.org: 8.000 captures/día,
- * sobra varios órdenes de magnitud para el ritmo del proyecto.
+ *   - Modifica YAMLs in-place insertando url_archivo tras url_canonica o url.
+ *   - En --staged-only re-stagea los YAML modificados.
+ *   - Si archive.org falla: avisa y continúa; no bloquea commits (exit 0).
  */
 
 import { readFile, writeFile } from 'node:fs/promises';
@@ -34,6 +30,7 @@ const WAIT_MS = 8_000;
 const REQUEST_TIMEOUT_MS = 180_000;
 const MAX_ATTEMPTS = 2;
 const RATE_LIMIT_BACKOFF_MS = 60_000;
+const DEFAULT_HOOK_MAX = 5;
 const UA = 'presuntamente.org/archivar-n4 (https://github.com/davidchicano/presuntamente)';
 
 const args = process.argv.slice(2);
@@ -41,35 +38,48 @@ const stagedOnly = args.includes('--staged-only');
 const catchup = args.includes('--catchup');
 const dryRun = args.includes('--dry-run');
 const casoArg = args.find((a) => a.startsWith('--caso='));
+const hookMaxArg = args.find((a) => a.startsWith('--hook-max='));
 const casoFilter = casoArg ? casoArg.slice('--caso='.length) : null;
 
+let hookMax = DEFAULT_HOOK_MAX;
+if (process.env.ARCHIVAR_HOOK_MAX != null && process.env.ARCHIVAR_HOOK_MAX !== '') {
+  hookMax = Number.parseInt(process.env.ARCHIVAR_HOOK_MAX, 10);
+}
+if (hookMaxArg) {
+  hookMax = Number.parseInt(hookMaxArg.slice('--hook-max='.length), 10);
+}
+if (Number.isNaN(hookMax) || hookMax < 0) {
+  hookMax = DEFAULT_HOOK_MAX;
+}
+
 if (!stagedOnly && !catchup) {
-  console.error('Uso: node scripts/archivar-n4.mjs (--staged-only|--catchup) [--caso=<slug>] [--dry-run]');
+  console.error(
+    'Uso: node scripts/archivar-n4.mjs (--staged-only|--catchup) [--caso=<slug>] [--dry-run] [--hook-max=<n>]',
+  );
   process.exit(2);
 }
 
-function listStagedDocFiles() {
-  const out = execFileSync('git', ['diff', '--cached', '--name-only', '--diff-filter=AM', '--', 'content/documentos/'], {
-    encoding: 'utf-8',
-  });
+function listStagedPaths(globPath) {
+  const out = execFileSync(
+    'git',
+    ['diff', '--cached', '--name-only', '--diff-filter=AM', '--', globPath],
+    { encoding: 'utf-8' },
+  );
   return out.split('\n').filter((l) => l.endsWith('.yaml'));
 }
 
-async function loadCandidateFiles() {
+async function loadCandidateDocFiles() {
   if (stagedOnly) {
-    return listStagedDocFiles();
+    return listStagedPaths('content/documentos/');
   }
-  const files = await glob('content/documentos/*.yaml');
-  return files;
+  return glob('content/documentos/*.yaml');
 }
 
-function pickPending(parsedDocs) {
-  return parsedDocs
-    .filter(({ data }) => data?.nivel_fuente === 4)
-    .filter(({ data }) => typeof data?.url_canonica === 'string' && data.url_canonica.length > 0)
-    .filter(({ data }) => !data?.url_archivo)
-    .filter(({ data }) => !data?.url_archivo_no_disponible)
-    .filter(({ data }) => (casoFilter ? data?.caso_principal_id === casoFilter : true));
+async function loadCandidateCoberturaFiles() {
+  if (stagedOnly) {
+    return listStagedPaths('content/cobertura-mediatica/');
+  }
+  return glob('content/cobertura-mediatica/*.yaml');
 }
 
 async function loadParsed(files) {
@@ -90,6 +100,43 @@ async function loadParsed(files) {
     out.push({ file, raw, data });
   }
   return out;
+}
+
+function pickPendingDocumentos(parsedDocs) {
+  return parsedDocs
+    .filter(({ data }) => data?.nivel_fuente === 4)
+    .filter(({ data }) => typeof data?.url_canonica === 'string' && data.url_canonica.length > 0)
+    .filter(({ data }) => !data?.url_archivo)
+    .filter(({ data }) => !data?.url_archivo_no_disponible)
+    .filter(({ data }) => (casoFilter ? data?.caso_principal_id === casoFilter : true))
+    .map(({ file, raw, data }) => ({
+      source: 'documento',
+      file,
+      raw,
+      id: data.id,
+      url: data.url_canonica,
+    }));
+}
+
+function pickPendingCobertura(parsedCobertura) {
+  const items = [];
+  for (const { file, raw, data } of parsedCobertura) {
+    if (!data?.caso_id) continue;
+    if (casoFilter && data.caso_id !== casoFilter) continue;
+    const noticias = Array.isArray(data.noticias) ? data.noticias : [];
+    for (const noticia of noticias) {
+      if (!noticia?.id || typeof noticia.url !== 'string' || !noticia.url) continue;
+      if (noticia.url_archivo) continue;
+      items.push({
+        source: 'cobertura',
+        file,
+        raw,
+        id: noticia.id,
+        url: noticia.url,
+      });
+    }
+  }
+  return items;
 }
 
 function sleep(ms) {
@@ -139,7 +186,7 @@ async function saveOne(url, attempt = 1) {
   }
 }
 
-function insertUrlArchivo(rawYaml, archiveUrl) {
+function insertUrlArchivoDocumento(rawYaml, archiveUrl) {
   const lines = rawYaml.split('\n');
   const idx = lines.findIndex((l) => /^url_canonica:\s/.test(l));
   if (idx < 0) {
@@ -154,6 +201,23 @@ function insertUrlArchivo(rawYaml, archiveUrl) {
   return lines.join('\n');
 }
 
+function insertUrlArchivoCobertura(rawYaml, targetUrl, archiveUrl) {
+  const lines = rawYaml.split('\n');
+  const needle = targetUrl.replace(/"/g, '');
+  for (let i = 0; i < lines.length; i++) {
+    if (!/^    url:\s/.test(lines[i])) continue;
+    if (!lines[i].includes(needle)) continue;
+    const next = lines[i + 1];
+    if (next && /^    url_archivo:\s/.test(next)) {
+      lines[i + 1] = `    url_archivo: "${archiveUrl}"`;
+    } else {
+      lines.splice(i + 1, 0, `    url_archivo: "${archiveUrl}"`);
+    }
+    return lines.join('\n');
+  }
+  return null;
+}
+
 function gitAdd(file) {
   try {
     execFileSync('git', ['add', file], { stdio: 'pipe' });
@@ -164,27 +228,42 @@ function gitAdd(file) {
 }
 
 async function main() {
-  const files = await loadCandidateFiles();
-  if (files.length === 0) {
-    if (catchup) console.log('✅ No hay documentos para archivar.');
+  const docFiles = await loadCandidateDocFiles();
+  const cobFiles = await loadCandidateCoberturaFiles();
+
+  if (docFiles.length === 0 && cobFiles.length === 0) {
+    if (catchup) console.log('✅ No hay YAML de documentos ni cobertura mediática para revisar.');
     return;
   }
 
-  const parsed = await loadParsed(files);
-  const pending = pickPending(parsed);
+  const parsedDocs = docFiles.length ? await loadParsed(docFiles) : [];
+  const parsedCob = cobFiles.length ? await loadParsed(cobFiles) : [];
+
+  let pending = [...pickPendingDocumentos(parsedDocs), ...pickPendingCobertura(parsedCob)];
 
   if (pending.length === 0) {
-    if (catchup) console.log('✅ Ningún documento N4 pendiente de archivar.');
+    if (catchup) console.log('✅ Ninguna URL pendiente de archivar (documentos N4 + cobertura mediática).');
     return;
   }
 
-  const ctx = stagedOnly ? '(staged)' : catchup ? '(catchup)' : '';
-  console.log(`📚 archivar-n4 ${ctx}: ${pending.length} documento(s) N4 pendiente(s)${casoFilter ? ` — caso=${casoFilter}` : ''}`);
+  const totalPending = pending.length;
+  let deferred = 0;
+  if (stagedOnly && hookMax > 0 && pending.length > hookMax) {
+    deferred = pending.length - hookMax;
+    pending = pending.slice(0, hookMax);
+  }
+
+  const ctx = stagedOnly ? '(staged)' : '(catchup)';
+  const label = `${pending.length} URL(s)${deferred ? ` (${deferred} aplazada(s) por tope del hook; usa pnpm archive:catchup)` : ''}`;
+  console.log(`📚 archivar-n4 ${ctx}: ${label}${casoFilter ? ` — caso=${casoFilter}` : ''}`);
 
   if (dryRun) {
     for (const d of pending) {
-      console.log(`  ${d.data.id}`);
-      console.log(`    ${d.data.url_canonica}`);
+      console.log(`  [${d.source}] ${d.id}`);
+      console.log(`    ${d.url}`);
+    }
+    if (deferred) {
+      console.log(`  … y ${deferred} más no listadas (tope --hook-max)`);
     }
     console.log('(dry-run: no se ha hecho ninguna llamada)');
     return;
@@ -192,21 +271,28 @@ async function main() {
 
   let okCount = 0;
   let failCount = 0;
+  const fileCache = new Map();
 
   for (let i = 0; i < pending.length; i++) {
     const d = pending[i];
-    process.stdout.write(`  [${i + 1}/${pending.length}] ${d.data.id} … `);
+    process.stdout.write(`  [${i + 1}/${pending.length}] [${d.source}] ${d.id} … `);
 
-    const r = await saveOne(d.data.url_canonica);
+    const r = await saveOne(d.url);
     if (r.ok) {
-      const updated = insertUrlArchivo(d.raw, r.archiveUrl);
+      let raw = fileCache.get(d.file) ?? d.raw;
+      const updated =
+        d.source === 'documento'
+          ? insertUrlArchivoDocumento(raw, r.archiveUrl)
+          : insertUrlArchivoCobertura(raw, d.url, r.archiveUrl);
+
       if (updated) {
         await writeFile(d.file, updated, 'utf-8');
+        fileCache.set(d.file, updated);
         if (stagedOnly) gitAdd(d.file);
         console.log('OK');
         okCount++;
       } else {
-        console.log('OK (archivado) pero NO se pudo insertar url_archivo: falta url_canonica en YAML');
+        console.log('OK (archivado) pero NO se pudo insertar url_archivo en el YAML');
         failCount++;
       }
     } else {
@@ -221,7 +307,13 @@ async function main() {
 
   console.log(`📝 ${okCount} archivado(s) · ${failCount} fallido(s)`);
   if (failCount > 0) {
-    console.log('   Los fallidos quedan sin url_archivo; el próximo commit los reintentará.');
+    console.log('   Los fallidos quedan sin url_archivo; reintenta con pnpm archive:catchup.');
+  }
+  if (deferred > 0) {
+    console.log(`   Quedan ${deferred} URL(s) pendiente(s) en este staging — ejecuta: pnpm archive:catchup`);
+  }
+  if (catchup && totalPending > pending.length) {
+    // catchup has no cap; this branch unused
   }
 }
 
