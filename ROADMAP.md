@@ -4,7 +4,9 @@
 >
 > El roadmap conceptual vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión operativa: estado actual, próximos pasos, backlog inmediato y aprendizajes recientes. El histórico largo se ha movido a [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-27. Sesión paralela al deploy de Cloudflare Pages. Cuatro piezas:
+**Última actualización:** 2026-05-27 (noche). **Bloque C cerrado: revisión editorial humana pre-launch.** Auditoría multi-agente del sitio público (5 sub-agentes Sonnet en paralelo barriendo home/chrome, institucionales, fichas y entidades, listados+casos, transversales+repo). Hallazgos consolidados y aplicados en 30 ediciones sobre 26 ficheros + 3 nuevos: limpieza sistemática de jerga del repo (rutas `docs/diseno/...md`, `AGENTS.md`, `pnpm <comando>`, códigos `V-XX` / `P-XX`, mayúsculas de entidades del modelo `Documento`/`Hecho`/`RolEnCaso`), retirada de banderines de borrador (`v0.0.0-alpha`, "Estado: borrador · Fase 1 — MVP Plus Ultra", banner "revisar con abogado"), placeholder `"DP (pendiente de confirmar...)"` quitado de los 4 YAMLs publicables, glosa con `<abbr>` de UDEF / UCO / CGPJ / CENDOJ / AIReF / LSSI / LO 2/1984, sustitución de "rescate" por "préstamo" en Plus Ultra y de `Caso (atico-estepona)` por prosa en Lezo, [PgTraduccionCatalan.astro](src/components/pages/PgTraduccionCatalan.astro) nuevo para que el selector ES/CAT no caiga en 404 crudo, glosa pública de PgGrafo ("Red viva"/"Profundidad" → "Disposición orgánica"/"Disposición jerárquica"), mensaje de fallback de PgBuscar sin comandos pnpm, `EstadoPublicacionBadge` en lugar de raw `{estado_publicacion}` en fichas de persona y organización, identificación nominal de **David Chicano** como responsable LSSI en [/aviso-legal §6](src/components/pages/PgAvisoLegal.astro), track de versión `Versión <sha7> · <fecha>` en substrip y footer vía nuevo [src/lib/build-info.ts](src/lib/build-info.ts) (lee `CF_PAGES_COMMIT_SHA` con fallback a `git rev-parse`), README/CONTRIBUTING/LEGAL adelgazados sin cifras hardcoded ni jerga de roadmap interno. Validate **676/0**, build **201 páginas + 4476 palabras Pagefind**. Decisiones del maintainer en la sesión: mantener nomenclatura `borrador/beta_publica/publicado` y eyebrows "Sección X · …" (tono institucional intencionado), mantener "imputación" en el hero, mantener N1-N4 glosándolo en primer encuentro, página personalizada para `/cat` en lugar de 404. Hueco editorial pendiente (no bloqueante): el listado /organizaciones aún muestra "—" como valor para no-medios en la columna editorial, ahora renombrada "Orientación editorial (medios)" con tooltip; se puede mejorar visualmente en una iteración v1.x.
+
+**Anterior (2026-05-27 mañana-tarde):** sesión paralela al deploy de Cloudflare Pages. Cuatro piezas:
 
 1. **`PartidoBadge` con color institucional sobrio** — componente reutilizable + tokens `--color-partido-<slug>-{bg,fg,border}` en `global.css` para los 7 partidos modelados (PSOE, PP, Vox, Podemos, Sumar, IU, Más Madrid) + fallback gris para cualquier otro. Sustituido en `/casos` (chip con `href`), home (cards destacadas con `asLink={false}` para no anidar `<a>`) y bloque editorial "Partidos afectados" de la ficha de caso (`data-partido` sobre `<li>`, no chip dentro de chip). Peso tipográfico bajado de 700 → 600 en el bloque editorial. Detalle en [`docs/web/features/partido-badge.md`](docs/web/features/partido-badge.md).
 
@@ -57,7 +59,7 @@
 - **Fase activa**: Fase 0 operativa pendiente de publicación pública; Fase 1.0 y Fase 1 cerradas; Fase 2 en marcha con 6 casos publicables y 1 borrador/conexo.
 - **Casos publicables actuales**: `plus-ultra`, `begona-gomez`, `gonzalez-amador`, `fiscal-general-del-estado`, `kitchen`, `lezo`.
 - **Caso no publicable en producción**: `atico-estepona`, en `borrador`.
-- **Bloques pre-launch cerrados**: Bloque A (casos equilibrados), Bloque B (`revisar-caso` v1 + primera auditoría), Bloque E (higiene técnica).
+- **Bloques pre-launch cerrados**: Bloque A (casos equilibrados), Bloque B (`revisar-caso` v1 + primera auditoría), **Bloque C (revisión editorial humana pre-launch)**, Bloque E (higiene técnica).
 - **Bloque D**: casi cerrado. Cerrados `/cifras`, OG images, RSS/Atom, timeline visual, estado de ficha, síntesis de caso, vínculos institucionales (datos + UI, corpus ampliado a personas no atadas a caso vía skill v2), cobertura mediática general (corpus completo en los 6 casos + UI), explorador de relaciones `/grafo`, clasificación editorial de medios (declarada · percibida · grupo), mejoras de listados, **PartidoBadge con color de partido** e **iconografía funcional en `badge--cat`**. Quedan composición de fuentes citadas, barra proporcional por corriente editorial y el **refactor de afectación directa/indirecta** (estructural, sesión dedicada).
 - **Próximo paso comprometido**: lo decide el maintainer. Opciones naturales: Bloque C (revisión editorial humana pre-launch), continuar Bloque D, o publicación técnica en Cloudflare Pages sin DNS apex.
 - **Dev server local**: `pnpm dev` en `http://localhost:4321`.
@@ -123,17 +125,17 @@ Objetivo: cubrir el hueco entre `pnpm validate` y una lectura humana. La skill n
 - [x] Iterar la skill a v1 con CH9/CH10 y refinamientos.
 - [ ] Opcional pre-launch: triaje de sugerencias no críticas que no sean mero "esperar a CENDOJ".
 
-#### Bloque C - Revisión editorial humana pre-launch
+#### Bloque C - Revisión editorial humana pre-launch `[x]`
 
-Pasada manual del maintainer con ojos de "esto lo va a leer un periodista hostil".
+Cerrado 2026-05-27 (noche). Auditoría multi-agente del sitio público (5 sub-agentes Sonnet en paralelo) + ejecución consolidada. Detalle en cabecera del roadmap. Lo no obvio que sí merece pasar a `docs/roadmap/aprendizajes.md`: la auditoría como patrón reutilizable (cinco zonas — home/chrome, institucionales, fichas y entidades, listados+casos, transversales+repo — y dos categorías ortogonales — tecnicismo del repo · borradores · desfasado · mal-explicado · no-producción), con clasificación BLOQUEANTE/SUGERENCIA/NICE-TO-HAVE; las decisiones de tono (mantener nomenclatura editorial, mantener "imputación", mantener eyebrows numerados) son ya criterio fijo para futuras revisiones.
 
-Es el bloque más importante si el siguiente paso es publicar. El objetivo no es buscar bugs, sino detectar frases, jerarquías visuales o silencios que puedan ser injustos, malinterpretables o demasiado internos.
-
-- [ ] Reescribir o pulir el hero de `PgInicio` para primer impacto en visitantes que entren desde redes.
-- [ ] Repasar `/sobre`: misión, principios editoriales, escala N1-N4 y cauces de rectificación/aporte.
-- [ ] Repasar el sustantivo de `/aviso-legal`, aparte de la revisión jurídica formal.
-- [ ] Repasar la síntesis y el resumen ejecutivo de cada caso.
-- [ ] Repasar `README.md` público del repo.
+- [x] Reescribir o pulir el hero de `PgInicio` para primer impacto en visitantes que entren desde redes.
+- [x] Repasar `/sobre`: misión, principios editoriales, escala N1-N4 y cauces de rectificación/aporte.
+- [x] Repasar el sustantivo de `/aviso-legal`, aparte de la revisión jurídica formal — sumado: identificación nominal del responsable LSSI (David Chicano).
+- [x] Repasar la síntesis y el resumen ejecutivo de cada caso — sumado: `numero_procedimiento` placeholder quitado en 4 YAMLs, lenguaje del modelo (`Caso`/`RolEnCaso`/backticks) fuera de las prosas públicas.
+- [x] Repasar `README.md` público del repo — sumado: CONTRIBUTING y LEGAL adelgazados.
+- [x] **Sumado**: nueva página `/cat` (`PgTraduccionCatalan`) para que el selector de idioma no caiga en 404.
+- [x] **Sumado**: track de versión en substrip y footer (`Versión <sha7> · <fecha>`) vía `src/lib/build-info.ts`.
 
 #### Bloque D - Features de enganche para v1
 

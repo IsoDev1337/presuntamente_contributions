@@ -57,9 +57,13 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     <li>
       <h3>Pista a fuente o hito que falta</h3>
       <p>
-        Sentencia publicada en CENDOJ, auto judicial relevante, disposición del BOE,
-        informe institucional (UCO, UDEF, Tribunal de Cuentas, AIReF), nota oficial del CGPJ o
-        Fiscalía, cobertura periodística cruzada de una línea editorial no representada.
+        Sentencia publicada en
+        <abbr title="Centro de Documentación Judicial: repositorio oficial de jurisprudencia del Consejo General del Poder Judicial">CENDOJ</abbr>,
+        auto judicial relevante, disposición del BOE, informe institucional (Unidad Central
+        Operativa de la Guardia Civil, Unidad de Delincuencia Económica y Fiscal, Tribunal de
+        Cuentas, Autoridad Independiente de Responsabilidad Fiscal), nota oficial del
+        <abbr title="Consejo General del Poder Judicial">CGPJ</abbr> o Fiscalía, cobertura
+        periodística cruzada de una línea editorial no representada.
       </p>
       <p class="meta">
         <strong>Qué pedimos</strong>: URL canónica del documento o del evento procesal, fecha,
@@ -82,8 +86,8 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     <li>
       <h3>Idea o sugerencia sobre el sitio</h3>
       <p>
-        Feature deseada, mejora de UX, observación editorial general, fuente que vale la pena
-        vigilar en el futuro, caso que crees que debería entrar en el inventario.
+        Función o mejora deseada, observación editorial general, fuente que vale la pena vigilar
+        en el futuro, caso que crees que debería entrar en el inventario.
       </p>
       <p class="meta">
         <strong>Qué pedimos</strong>: descripción breve y honesta. No hace falta que esté
@@ -98,10 +102,9 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     <li>
       <h3>Correo electrónico <span class="vias__rec">recomendado</span></h3>
       <p>
-        Envía la pista, corrección o idea a <code>aportar@presuntamente.org</code> (operativo
-        desde el 25 de mayo de 2026 vía Cloudflare Email Routing, reenviado al maintainer). Es
-        la vía más privada: no queda registro público hasta que el aporte se incorpore al
-        inventario.
+        Envía la pista, corrección o idea a
+        <a href="mailto:aportar@presuntamente.org">aportar@presuntamente.org</a>. Es la vía más
+        privada: no queda registro público hasta que el aporte se incorpore al inventario.
       </p>
       <p>
         <a class="btn btn--primary" href="mailto:aportar@presuntamente.org?subject=Aporte%20al%20inventario">
@@ -124,10 +127,9 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     <li>
       <h3>Vía postal</h3>
       <p>
-        Cuando esté operativo el apartado de correos del responsable (gestión en curso a efectos
-        LSSI), la dirección postal se publicará en el aviso legal como alternativa para aportes
-        formales con copias certificadas o documentos físicos. Mientras tanto las vías
-        electrónicas son suficientes.
+        Cuando esté disponible la dirección postal del responsable, se publicará en el aviso legal
+        como alternativa para aportes formales con copias certificadas o documentos físicos.
+        Mientras tanto las vías electrónicas son suficientes.
       </p>
     </li>
   </ul>
@@ -174,8 +176,8 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     </p>
     <p>No podemos aceptar:</p>
     <ul class="no-list">
-      <li>Documentos sometidos a <strong>secreto de sumario</strong> (art. 301 LECrim).</li>
-      <li>Escritos de parte <strong>no notificados a terceros</strong> (art. 234 LOPJ).</li>
+      <li>Documentos sometidos a <strong>secreto de sumario</strong> (artículo 301 de la Ley de Enjuiciamiento Criminal).</li>
+      <li>Escritos de parte <strong>no notificados a terceros</strong> (artículo 234 de la Ley Orgánica del Poder Judicial).</li>
       <li>
         <strong>Información personal de terceros no investigados</strong> en el procedimiento
         (familiares, asesores externos sin rol formal, testigos no nombrados públicamente).
@@ -192,12 +194,12 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
     </ul>
     <p>
       <strong>Caso excepcional</strong>: cuando un primario debería existir pero no está
-      accesible aún (típicamente sentencia íntegra del Tribunal Supremo antes de CENDOJ), una
-      pista del aportante con copia que dice ser fiel <strong>no se publica como PDF</strong>,
-      pero la pista entra como señal interna y el agente la trata como Nivel 3
-      <code>filtrado_verificado</code> con triangulación; cuando aparezca el primario se eleva a
-      Nivel 1 conservando hash histórico. Mecanismo previsto en
-      <code>AGENTS.md</code>, sección "Documentos primarios descargados".
+      accesible aún (típicamente sentencia íntegra del Tribunal Supremo antes de que aparezca en
+      <abbr title="Centro de Documentación Judicial">CENDOJ</abbr>), una pista del aportante con
+      copia que dice ser fiel <strong>no se publica como PDF</strong>, pero la pista entra como
+      señal interna y se trata como nivel institucional cruzado con otras fuentes; cuando aparezca
+      el primario se eleva a nivel oficial conservando trazabilidad histórica. La metodología
+      completa es pública en el repositorio.
     </p>
   </div>
   </FichaTocSection>
@@ -222,12 +224,12 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
       que tú autorices por escrito.
     </p>
     <p>
-      <strong>Tratamiento de tus datos</strong>: base jurídica art. 6.1.f RGPD (interés
-      legítimo). Extraemos el contenido editorial del correo a un fichero interno
-      (<code>content/aportes/YYYY-MM-DD-slug.md</code>, excluido del build público); los headers
-      identificativos del email (remitente, IP, metadatos del cliente) no se versionan y se
-      eliminan al cerrar el aporte. Puedes solicitar supresión de los datos asociados en
-      cualquier momento (art. 17 RGPD) sin afectar al diff editorial ya commiteado.
+      <strong>Tratamiento de tus datos</strong>: base jurídica artículo 6.1.f del Reglamento
+      General de Protección de Datos (interés legítimo). El contenido editorial del correo se
+      registra internamente de forma separada al inventario público; los datos identificativos del
+      mensaje (remitente, IP, metadatos del cliente) no se incorporan al repositorio y se eliminan
+      al cerrar el aporte. Puedes solicitar supresión de los datos asociados en cualquier momento
+      (artículo 17 RGPD) sin afectar al cambio editorial ya publicado.
     </p>
   </div>
   </FichaTocSection>
@@ -252,9 +254,7 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
   <div class="aviso aviso--accent mt-6">
     El procedimiento de aportación es el mismo independientemente del cargo o relevancia del
     aportante. Los aportes se atienden por orden de entrada con prioridad a los que apuntan a
-    una fuente oficial firme o resuelven un error en un caso vivo. Más detalle editorial-legal
-    en
-    <code>docs/diseno/04-riesgos-legales-y-eticos.md</code> apartado 6bis.
+    una fuente oficial firme o resuelven un error en un caso vivo.
   </div>
 </BaseLayout>
 

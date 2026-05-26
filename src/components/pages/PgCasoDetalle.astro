@@ -629,7 +629,7 @@ const coberturaHasta = coberturaFechas[coberturaFechas.length - 1];
 const coberturaMedioPrincipal = coberturaPorMedio[0];
 const coberturaTipoPrincipal = coberturaPorTipo[0];
 const coberturaEstadoLabel = coberturaCaso?.estado === 'parcial'
-  ? 'Rastreo parcial: primera muestra útil, con medios pendientes por revisar.'
+  ? 'Muestra inicial verificada; el rastreo de cobertura se completará en revisiones posteriores.'
   : coberturaCaso?.estado === 'completo'
     ? 'Rastreo completo según la metodología declarada.'
     : 'Rastreo pendiente de completar.';
@@ -662,7 +662,7 @@ const strings = {
     'Las personas mencionadas como investigadas, procesadas o acusadas se presumen inocentes ' +
     'hasta que recaiga sentencia firme. Cada afirmación está respaldada por su documento de fuente y su nivel.',
   rectificar:
-    'Si detectas un error en esta ficha, abre un issue en el repositorio público con el rótulo `rectificacion`.',
+    'Si detectas un error en esta ficha, escríbenos a rectificacion@presuntamente.org.',
 };
 
 const breadcrumb = [
@@ -687,7 +687,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
        masthead + síntesis del caso (cara A) y un reverso editorial (cara B)
        con estado global, 10 chequeos y "Cómo se ha redactado esta ficha".
        El badge de publicación vive junto al eyebrow/título de cada cara;
-       el botón "Ver detalles de desarrollo" queda solo arriba a la derecha. -->
+       el botón "Sobre esta ficha" queda solo arriba a la derecha. -->
   <section class="ficha-flip" data-flipped="false">
     <div class="ficha-flip__actions" aria-label="Detalles del desarrollo editorial">
       <button
@@ -697,7 +697,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
         aria-controls="ficha-flip-back"
         aria-label="Ver detalles del desarrollo editorial de esta ficha"
       >
-        <span class="ficha-flip__toggle-label">Ver detalles de desarrollo</span>
+        <span class="ficha-flip__toggle-label">Sobre esta ficha</span>
       </button>
     </div>
 
@@ -798,10 +798,11 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
           <div class="ficha-sintesis__lead">
             <p class="ficha-sintesis__label">Cómo se ha redactado esta ficha</p>
             <p>
-              Esta ficha se compone a partir de los YAML del caso en el repositorio público
-              <a href="https://github.com/davidchicano/presuntamente">davidchicano/presuntamente</a>.
               Cada hito enlaza con su documento principal de respaldo (auto judicial, escrito de
-              fiscalía, nota institucional) y cada hecho explicita su nivel de fuente (N1-N4).
+              fiscalía, nota institucional) y cada hecho explicita su nivel de fuente —
+              de la oficial primaria (N1) a la cobertura periodística (N4). Los datos estructurados
+              que sostienen esta ficha son públicos en el
+              <a href="https://github.com/davidchicano/presuntamente">repositorio del proyecto</a>.
             </p>
           </div>
           <div class="ficha-sintesis__section">
@@ -810,7 +811,10 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
               {data.ultima_revision_editorial && (
                 <li><strong>Última revisión editorial:</strong> <span class="mono">{data.ultima_revision_editorial}</span></li>
               )}
-              <li><strong>Nivel de relevancia editorial:</strong> {data.nivel_relevancia_editorial ?? '—'}</li>
+              <li>
+                <strong>Nivel de relevancia editorial:</strong>{' '}
+                {data.nivel_relevancia_editorial ? relevanciaEditorialLabel(data.nivel_relevancia_editorial) : '—'}
+              </li>
               <li><strong>Cómo proponer una corrección:</strong> {' '}{strings.rectificar}</li>
             </ul>
           </div>

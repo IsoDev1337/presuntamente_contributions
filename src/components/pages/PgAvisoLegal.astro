@@ -20,9 +20,8 @@ const strings = {
     'Aviso legal y editorial de presuntamente.org: presunción de inocencia, categorización de afirmaciones, cómo se construye el inventario, mecanismo de rectificación, responsable, limitación de responsabilidad y licencias.',
   eyebrow: 'Marco legal',
   sub:
-    'Aviso legal y editorial. Borrador alineado con docs/diseno/04-riesgos-legales-y-eticos.md, ' +
-    'sección "Disclaimer recomendado"; la identificación postal del responsable a efectos LSSI ' +
-    'se publica cuando el sitio entre en operación bajo presuntamente.org.',
+    'Aviso legal y editorial de presuntamente.org: presunción de inocencia, categorización de ' +
+    'afirmaciones, mecanismo de rectificación, responsable y licencias.',
 };
 ---
 
@@ -41,11 +40,6 @@ const strings = {
       <p class="page-id__eyebrow">{strings.eyebrow}</p>
       <h1 class="page-id__title">{strings.title}</h1>
       <p class="page-id__sub">{strings.sub}</p>
-    </div>
-    <div class="page-id__meta">
-      <span>Estado: borrador</span>
-      <span>·</span>
-      <span>Revisar con abogado antes de publicación con dominio</span>
     </div>
   </section>
 
@@ -92,21 +86,21 @@ const strings = {
     <p>
       El inventario se construye combinando trabajo editorial humano con apoyo de
       <strong>modelos de lenguaje</strong> (LLM). Los modelos asisten en la extracción de información
-      de documentos jurisdiccionales (sentencias, autos, BOE, informes UCO/UDEF), en la redacción de
-      borradores de fichas y en la detección de inconsistencias internas; <strong>no toman decisiones
-      editoriales</strong>. Toda inclusión en el inventario, toda calificación de un Hecho como
-      acreditado, investigado, atribuido, exculpatorio o desmentido, y toda promoción de un Documento
-      a Nivel 1 pasa por revisión humana del responsable editorial.
+      de documentos jurisdiccionales (sentencias, autos, BOE, informes policiales judiciales), en la
+      redacción de borradores de fichas y en la detección de inconsistencias internas;
+      <strong>no toman decisiones editoriales</strong>. Toda inclusión en el inventario, toda
+      calificación de un hecho como acreditado, investigado, atribuido, exculpatorio o desmentido, y
+      toda promoción de un documento a fuente oficial primaria pasa por revisión humana del
+      responsable editorial.
     </p>
     <p>
-      Los guardarraíles del proceso están documentados en
-      <code>docs/diseno/03-estrategia-de-mantenimiento.md</code>, sección "Uso de LLM para diffs revisables",
-      y en las skills locales del repositorio (<code>.agents/skills/</code>). Los chequeos mecánicos
-      (21 reglas V-01 a V-21,
-      lista blanca de dominios oficiales para nivel de fuente N1, integridad por hash SHA-256 de los
-      documentos primarios descargados) se ejecutan en CI sobre cada cambio, antes y al margen de
-      cualquier LLM. El código y las skills son públicos bajo AGPL-3.0: cualquier lector puede
-      auditar cómo se construye una ficha.
+      Los guardarraíles del proceso están documentados públicamente en el
+      <a href="https://github.com/davidchicano/presuntamente" target="_blank" rel="noopener">repositorio del proyecto</a>.
+      Las comprobaciones automáticas (reglas de validación del modelo, lista blanca de dominios
+      oficiales para fuente primaria, verificación de integridad por hash de los documentos
+      descargados) se ejecutan sobre cada cambio, antes y al margen de cualquier modelo de lenguaje.
+      El código y la metodología son públicos bajo AGPL-3.0: cualquier lector puede auditar cómo se
+      construye una ficha.
     </p>
   </div>
   </FichaTocSection>
@@ -115,12 +109,14 @@ const strings = {
   <div class="prose">
     <p>
       <strong>Si te consideras aludido</strong> por una información publicada y discrepas, puedes
-      solicitar rectificación por el cauce de la Ley Orgánica 2/1984. Las vías habilitadas y el
-      procedimiento operativo están en
+      solicitar rectificación por el cauce de la
+      <abbr title="Ley Orgánica 2/1984, reguladora del derecho de rectificación">LO 2/1984</abbr>.
+      Las vías habilitadas y el procedimiento operativo están en
       <a href={lang === 'ca' ? '/cat/rectificar' : '/rectificar'}>la página de rectificación</a>.
-      El canal de correo es <code>rectificacion@presuntamente.org</code>. Plazos comprometidos: acuse
-      de recibo en 48 horas hábiles, resolución provisional en 7 días hábiles, publicación de
-      rectificación si procede dentro del plazo legal (LO 2/1984).
+      El canal de correo es
+      <a href="mailto:rectificacion@presuntamente.org">rectificacion@presuntamente.org</a>.
+      Plazos comprometidos: acuse de recibo en 48 horas hábiles, resolución provisional en 7 días
+      hábiles, publicación de rectificación si procede dentro del plazo legal.
     </p>
   </div>
   </FichaTocSection>
@@ -129,37 +125,43 @@ const strings = {
   <div class="prose">
     <p>
       <strong>Si tienes mejor acceso a fuentes o mejor conocimiento del caso</strong> que el equipo
-      del sitio, puedes aportar al inventario sin saber git ni exponerte en un issue público. Tres
-      tipos de aporte aceptados bajo el mismo cauce: pista a fuente o hito que falta, corrección
-      fáctica menor (errata, fecha equivocada, link roto) e idea o sugerencia sobre el sitio. Canal:
-      <code>aportar@presuntamente.org</code> (operativo desde el 25 de mayo de 2026 vía Cloudflare
-      Email Routing) o issue
-      <a href="https://github.com/davidchicano/presuntamente/issues/new?template=sugerencia-fuente.yml" target="_blank" rel="noopener"><code>sugerencia-fuente</code></a>.
-      Por defecto el aporte es <strong>anónimo</strong>: el commit que incorpora tu pista cita la
-      fuente verificada, no a ti. Plazos comprometidos: acuse en 5 días hábiles, resolución en 30
-      días hábiles. Procedimiento, alcance (qué se acepta y qué no) y tratamiento RGPD en
-      <a href={lang === 'ca' ? '/cat/aportar' : '/aportar'}>la página de aportar</a> y en
-      <code>docs/diseno/04-riesgos-legales-y-eticos.md</code> apartado 6bis.
+      del sitio, puedes aportar al inventario sin necesidad de conocimiento técnico. Tres tipos de
+      aporte aceptados bajo el mismo cauce: pista a fuente o hito que falta, corrección fáctica menor
+      (errata, fecha equivocada, link roto) e idea o sugerencia sobre el sitio. Canal:
+      <a href="mailto:aportar@presuntamente.org">aportar@presuntamente.org</a>. Por defecto el
+      aporte es <strong>anónimo</strong>: cuando se incorpora, se cita la fuente verificada, no a ti.
+      Plazos comprometidos: acuse en 5 días hábiles, resolución en 30 días hábiles. Procedimiento,
+      alcance (qué se acepta y qué no) y tratamiento RGPD en
+      <a href={lang === 'ca' ? '/cat/aportar' : '/aportar'}>la página de aportar</a>.
     </p>
   </div>
   </FichaTocSection>
 
   <FichaTocSection num="6." title="Responsable a efectos de LSSI" id="responsable">
-  <div class="aviso aviso--accent">
+  <div class="prose">
+    <ul class="meta-list">
+      <li><strong>Responsable del sitio:</strong> David Chicano.</li>
+      <li>
+        <strong>Correo electrónico de contacto general:</strong>
+        <a href="mailto:contacto@presuntamente.org">contacto@presuntamente.org</a>.
+      </li>
+      <li>
+        <strong>Rectificación</strong>
+        (<abbr title="Ley Orgánica 2/1984, reguladora del derecho de rectificación">LO 2/1984</abbr>):
+        <a href="mailto:rectificacion@presuntamente.org">rectificacion@presuntamente.org</a>.
+      </li>
+      <li>
+        <strong>Aportación editorial:</strong>
+        <a href="mailto:aportar@presuntamente.org">aportar@presuntamente.org</a>.
+      </li>
+    </ul>
     <p>
-      <strong>Identificación postal pendiente.</strong> El dominio
-      <code>presuntamente.org</code> está registrado en Cloudflare Registrar (alta del 23 de mayo de
-      2026) y los tres canales de contacto formal <code>contacto@presuntamente.org</code>,
-      <code>rectificacion@presuntamente.org</code> y <code>aportar@presuntamente.org</code> (este
-      último activado el 25 de mayo de 2026) operan vía Cloudflare Email Routing. La
-      identificación completa del responsable a efectos de la Ley de Servicios de la Sociedad de la
-      Información (Ley 34/2002), incluida la dirección postal, se publica cuando el sitio entre en
-      operación bajo el dominio propio — momento que requiere (a) apertura del apartado de correos
-      del responsable, y (b) revisión del aviso legal con abogado especializado. Mientras tanto el
-      repositorio público en GitHub
-      (<a href="https://github.com/davidchicano/presuntamente" target="_blank" rel="noopener">davidchicano/presuntamente</a>)
-      es el canal principal de trazabilidad y cualquier comunicación formal puede dirigirse por esa
-      vía o a los correos institucionales del dominio.
+      La dirección postal del responsable a efectos de la
+      <abbr title="Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico">LSSI-CE</abbr>
+      se publicará en este apartado en cuanto esté disponible. Mientras tanto, las vías electrónicas
+      anteriores son canal válido para iniciar cualquier comunicación formal, incluidas las
+      solicitudes de rectificación y las del ejercicio de derechos previstos en el Reglamento
+      General de Protección de Datos.
     </p>
   </div>
   </FichaTocSection>
@@ -170,9 +172,9 @@ const strings = {
       Este sitio <strong>organiza información ya pública</strong> para facilitar su consulta y
       verificación. No es asesoramiento jurídico, periodístico ni profesional, ni sustituye la
       consulta del documento original. Cuando una afirmación del inventario contradiga una fuente
-      oficial primaria (sentencia, auto, BOE, acuerdo CGPJ), <strong>prevalece la fuente oficial</strong>;
-      el procedimiento adecuado es solicitar rectificación por las vías de la sección 5 para
-      corregir el inventario.
+      oficial primaria (sentencia, auto, BOE, acuerdo del Consejo General del Poder Judicial),
+      <strong>prevalece la fuente oficial</strong>; el procedimiento adecuado es solicitar
+      rectificación por las vías de la sección 5 para corregir el inventario.
     </p>
     <p>
       Las decisiones que cualquier tercero adopte basándose en lo publicado son responsabilidad
@@ -195,9 +197,10 @@ const strings = {
     </p>
     <p>
       Las personas privadas (sin condición de figura pública) que pierden su rol activo en un
-      procedimiento se someten al protocolo de anonimización V-17 documentado en
-      <code>docs/diseno/01-modelo-de-datos.md</code>. Los derechos de acceso, rectificación, supresión
-      y oposición (art. 15-22 RGPD) se atienden por las vías de la sección 5.
+      procedimiento se someten al protocolo de anonimización del proyecto, documentado en el
+      <a href="https://github.com/davidchicano/presuntamente" target="_blank" rel="noopener">repositorio público</a>.
+      Los derechos de acceso, rectificación, supresión y oposición previstos en los artículos 15-22
+      del Reglamento General de Protección de Datos (RGPD) se atienden por las vías de la sección 5.
     </p>
   </div>
   </FichaTocSection>
@@ -219,11 +222,11 @@ const strings = {
   </FichaTocSection>
   </div>
 
-  <div class="aviso aviso--accent mt-6">
-    Este aviso es un borrador alineado con el doc de diseño legal del proyecto. Debe revisarse con
-    abogado especializado antes de la publicación con dominio propio y de la activación de cualquier
-    canal de contacto formal.
-  </div>
+  {/*
+    Aviso interno: este texto es el aviso publicado del sitio. Cualquier
+    actualización tras revisión jurídica con abogado especializado debe
+    aplicarse en commit dedicado.
+  */}
 </BaseLayout>
 
 <style>

@@ -272,11 +272,11 @@ const topDelitosAtribuidos = entries(distribAtribucionDelito)
 const strings = {
   title: 'Cifras del inventario',
   description:
-    'Dashboard agregado del estado del inventario presuntamente.org. Cifras derivadas en tiempo de build de los YAML canónicos de /content/.',
+    'Cifras agregadas del inventario: volumen, estado procesal y distribución de fuentes, actualizadas con cada publicación.',
   eyebrow: 'Sección · Cifras',
   sub:
-    'Visión panorámica del estado del inventario: volumen, estado procesal, distribución por fase y por nivel de fuente, ' +
-    'carga editorial. Cifras recalculadas en cada build a partir de los YAML de /content/, sin agregación intermedia ni cacheo.',
+    'Visión panorámica del inventario: volumen, estado procesal, distribución por fase y por nivel de fuente, ' +
+    'carga documental. Cifras recalculadas en cada publicación del sitio.',
   buildDate: new Date().toISOString().slice(0, 10),
 };
 
@@ -316,7 +316,7 @@ const breadcrumb = [
         <p class="page-id__sub">{strings.sub}</p>
       </div>
       <div class="page-id__meta">
-        <span>build {strings.buildDate}</span>
+        <span>Actualizado el {strings.buildDate}</span>
         <span>{totalCasos} casos</span>
       </div>
     </header>
@@ -408,7 +408,7 @@ const breadcrumb = [
     </table>
   </div>
 
-  <h3 class="sub-h">Ranking de casos por carga editorial</h3>
+  <h3 class="sub-h">Casos con mayor documentación registrada</h3>
   <p class="lead">
     Combina volumen de hitos registrados, implicados con imputación activa y documentos de respaldo
     asociados como caso principal. No es un ranking de gravedad, sólo de densidad documental.
@@ -449,15 +449,15 @@ const breadcrumb = [
     </li>
     <li class="kpi kpi--neutro">
       <span class="kpi__val">{docsPrimariosDescargados}</span>
-      <span class="kpi__lbl">Primarios descargados con hash SHA-256</span>
+      <span class="kpi__lbl">Documentos originales con copia local verificada</span>
     </li>
     <li class="kpi kpi--neutro">
       <span class="kpi__val">{docsConUrlArchivo}</span>
-      <span class="kpi__lbl">Con copia en archive.org</span>
+      <span class="kpi__lbl">Con copia de respaldo en archive.org</span>
     </li>
     <li class="kpi kpi--neutro">
       <span class="kpi__val">{cobertura_archive}%</span>
-      <span class="kpi__lbl">Cobertura archive.org de fuentes N4</span>
+      <span class="kpi__lbl">Fuentes periodísticas (N4) con copia de respaldo</span>
     </li>
   </ul>
 
@@ -551,7 +551,7 @@ const breadcrumb = [
               </tr>
             ))}
             <tr>
-              <td>Con <code>corregido_por</code></td>
+              <td>Con corrección posterior registrada</td>
               <td class="c-num">{hechosCorregidos}</td>
             </tr>
           </tbody>
@@ -699,13 +699,13 @@ const breadcrumb = [
   <FichaTocSection num="9." id="metodologia" title="Notas metodológicas">
   <ol class="notas">
     <li>
-      Todas las cifras se recalculan en cada build a partir de los YAML de
-      <code>/content/</code>. No hay caché ni agregación intermedia.
+      Todas las cifras se recalculan con cada publicación del sitio a partir del repositorio de
+      datos del inventario. No hay caché ni agregación intermedia.
     </li>
     <li>
-      <em>Persona con rol activo</em> = persona con al menos un Rol cuyo campo
-      <code>fecha_fin</code> está vacío. Un mismo nombre puede tener roles activos en varios casos
-      simultáneamente y se cuenta una sola vez.
+      <em>Persona con rol activo</em> = persona con al menos un rol procesal sin fecha de cierre
+      registrada. Un mismo nombre puede tener roles activos en varios casos simultáneamente y se
+      cuenta una sola vez.
     </li>
     <li>
       Los conteos de <em>investigados activos</em>, <em>procesados activos</em> y
@@ -714,25 +714,25 @@ const breadcrumb = [
     </li>
     <li>
       Una imputación nunca equivale a una condena. Investigado, procesado, acusado y condenado son
-      fases distintas. Ver <a href="/sobre#roles-procesales">/sobre — Roles procesales</a>.
+      fases distintas. Ver <a href="/sobre#roles">/sobre — Roles procesales</a>.
     </li>
     <li>
       Los hitos clasificados como <em>políticos</em> o <em>mediáticos</em> son hitos no
       jurisdiccionales relevantes para la cronología (dimisiones, ceses, comparecencias,
       investigaciones periodísticas). Ver
-      <a href="/sobre#tipos-de-hecho">/sobre — Tipos de hecho</a>.
+      <a href="/sobre#tipos-hecho">/sobre — Tipos de hecho</a>.
     </li>
     <li>
-      La cobertura archive.org se calcula sólo sobre fuentes de nivel <LevelBadge nivel={4} />
-      (cobertura periodística), archivadas con <code>pnpm archive:catchup</code>. Los documentos
-      N1-N3 no pasan por esa vía (los N1 oficiales no desaparecen; los N2-N3 viven en mirrors
-      estables o se descargan como primarios al árbol).
+      La cobertura de respaldo en archive.org se calcula sólo sobre fuentes periodísticas
+      (<LevelBadge nivel={4} />, cobertura periodística). Los documentos oficiales (N1-N3) no pasan
+      por esa vía: las fuentes oficiales primarias no suelen desaparecer y las institucionales
+      viven en mirrors estables o se descargan como copia local al inventario.
     </li>
   </ol>
 
   <p class="bottom-note">
-    Esta página es un dashboard derivado. La fuente de verdad de cada cifra son los YAML del repositorio:
-    <a href="https://github.com/davidchicano/presuntamente" rel="noopener">davidchicano/presuntamente</a>.
+    Esta página es un panel agregado del inventario. La fuente de verdad de cada cifra es el
+    <a href="https://github.com/davidchicano/presuntamente" rel="noopener">repositorio público</a>.
   </p>
   </FichaTocSection>
   </div>

@@ -1,6 +1,6 @@
 # Cómo contribuir a presuntamente
 
-> Esta guía es preliminar. Versión completa cuando el proyecto entre en Fase 4 del roadmap (apertura editorial).
+> La guía de colaboración técnica completa (Pull Requests, revisión de código, etc.) estará disponible cuando el proyecto abra la contribución directa al repositorio. Mientras tanto, los cauces editoriales descritos abajo están plenamente operativos.
 
 ## Antes de cualquier cosa
 
@@ -19,7 +19,7 @@ Si tienes mejor acceso a fuentes o mejor conocimiento de un caso que el equipo d
 - **Corrección fáctica menor**: errata, fecha equivocada, órgano mal asignado, segundo apellido incorrecto, link roto, atribución de delito que no encaja con el auto.
 - **Idea o sugerencia sobre el sitio**: feature deseada, mejora de UX, observación editorial general.
 
-**Cauce principal**: correo a `aportar@presuntamente.org` (operativo desde el 25 de mayo de 2026 vía Cloudflare Email Routing, reenviado al maintainer). Por defecto el aporte es **anónimo**: el commit que incorpore tu pista cita la fuente verificada, no a ti. Si quieres ser acreditado, pídelo explícitamente en el correo y se añadirá un trailer `Aporte-externo: <nombre o medio>` al commit.
+**Cauce principal**: correo a `aportar@presuntamente.org`. Por defecto el aporte es **anónimo**: el commit que incorpore tu pista cita la fuente verificada, no a ti. Si quieres ser acreditado, pídelo explícitamente en el correo y se añadirá un trailer `Aporte-externo: <nombre o medio>` al commit.
 
 **Alternativa para usuarios de GitHub**: issue con etiqueta `sugerencia-fuente` (template en [`.github/ISSUE_TEMPLATE/sugerencia-fuente.yml`](.github/ISSUE_TEMPLATE/sugerencia-fuente.yml)). El issue es público; si necesitas privacidad, usa el correo.
 
@@ -27,11 +27,11 @@ Procedimiento editorial completo, alcance (qué se acepta y qué no, qué no dep
 
 ## Proponer una rectificación
 
-**Si te consideras aludido** por una información publicada y discrepas, el cauce es distinto del de aportación: es el derecho de rectificación de la Ley Orgánica 2/1984. Ver [`LEGAL.md`](LEGAL.md). Resumen: issue con etiqueta `rectificacion` (template en [`.github/ISSUE_TEMPLATE/rectificacion.yml`](.github/ISSUE_TEMPLATE/rectificacion.yml)) o correo a `rectificacion@presuntamente.org` (operativo vía Cloudflare Email Routing desde el 2026-05-23, reenviado al maintainer). Plazos comprometidos: acuse 48 h hábiles, resolución provisional 7 días hábiles. Detalle en [doc 04 — "Mecanismo de rectificación"](docs/diseno/04-riesgos-legales-y-eticos.md#6-mecanismo-de-rectificación).
+**Si te consideras aludido** por una información publicada y discrepas, el cauce es distinto del de aportación: es el derecho de rectificación de la Ley Orgánica 2/1984. Ver [`LEGAL.md`](LEGAL.md). Resumen: correo a `rectificacion@presuntamente.org`, o issue con etiqueta `rectificacion` (template en [`.github/ISSUE_TEMPLATE/rectificacion.yml`](.github/ISSUE_TEMPLATE/rectificacion.yml)). Plazos comprometidos: acuse 48 h hábiles, resolución provisional 7 días hábiles. Detalle en [doc 04 — "Mecanismo de rectificación"](docs/diseno/04-riesgos-legales-y-eticos.md#6-mecanismo-de-rectificación).
 
 ## Para colaboradores con permisos (futuro)
 
-Pendiente: protocolo de PR cuando entren colaboradores externos a partir de Fase 4 del roadmap. Mientras tanto, el maintainer único trabaja en **commits directos a `main`** (sin ramas ni Pull Requests) y el push lo lanza siempre él, no los agentes. Detalle en [AGENTS.md → "Workflow de rama y PRs"](AGENTS.md#workflow-de-rama-y-prs).
+Pendiente: protocolo de PR cuando entren colaboradores externos. Mientras tanto, el maintainer único trabaja en **commits directos a `main`** (sin ramas ni Pull Requests) y el push lo lanza siempre el mantenedor. Detalle en [AGENTS.md → "Workflow de rama y PRs"](AGENTS.md#workflow-de-rama-y-prs).
 
 Política prevista: ver `docs/diseno/03-estrategia-de-mantenimiento.md` y `docs/diseno/04-riesgos-legales-y-eticos.md`.
 

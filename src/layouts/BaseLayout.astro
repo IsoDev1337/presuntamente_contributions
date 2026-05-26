@@ -3,6 +3,7 @@ import '@/styles/global.css';
 import 'open-props/style';
 import PresuntamenteLogo from '@/components/PresuntamenteLogo.astro';
 import PageToc from '@/components/PageToc.astro';
+import { commitShaShort, buildDate, commitUrl } from '@/lib/build-info';
 
 type NavKey = 'casos' | 'personas' | 'organizaciones' | 'delitos' | 'biblioteca' | 'grafo' | 'cifras' | 'sobre';
 
@@ -104,9 +105,8 @@ const navGroups: NavGroup[] = [
 
 const isNavMenuActive = (items: NavTab[]) => items.some((t) => activeNav === t.key);
 
-const buildTime = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
 // El subtítulo del bloque de marca es sólo el descriptor institucional;
-// la versión y el build hash viven exclusivamente en el footer (.site-footer .meta).
+// la versión y el commit hash viven en el substrip y el footer.
 const brandSub = 'Inventario público de casos de corrupción en España';
 ---
 
@@ -322,7 +322,11 @@ const brandSub = 'Inventario público de casos de corrupción en España';
               </>
             ))}
           </span>
-          <span>Última actualización · {buildTime}</span>
+          <span class="site-substrip__version">
+            Versión <code class="site-substrip__sha">{commitShaShort}</code>
+            <span aria-hidden="true"> · </span>
+            <span>{buildDate}</span>
+          </span>
         </div>
       </div>
     )}
@@ -887,7 +891,15 @@ const brandSub = 'Inventario público de casos de corrupción en España';
         <div>
           <h6>presuntamente.org</h6>
           <p>Inventario público, interactivo y open-source de los casos de corrupción más relevantes en España.</p>
-          <p class="meta">© 2026 · v0.0.0-alpha · build {buildTime}</p>
+          <p class="meta">
+            © 2026 presuntamente.org
+            <br />
+            Versión {commitUrl ? (
+              <a href={commitUrl} target="_blank" rel="noopener" class="meta__sha"><code>{commitShaShort}</code></a>
+            ) : (
+              <code class="meta__sha">{commitShaShort}</code>
+            )} · {buildDate}
+          </p>
         </div>
         <div>
           <h6>Marco</h6>
@@ -905,8 +917,8 @@ const brandSub = 'Inventario público de casos de corrupción en España';
           <h6>Aportar y rectificar</h6>
           <a href="/aportar">Aportar al inventario ↗</a>
           <a href="/rectificar">Proponer rectificación ↗</a>
-          <a href="https://github.com/davidchicano/presuntamente/issues">Abrir issue en GitHub</a>
-          <a href="https://github.com/davidchicano/presuntamente/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+          <a href="https://github.com/davidchicano/presuntamente/issues">Reportar incidencia técnica (GitHub)</a>
+          <a href="https://github.com/davidchicano/presuntamente/blob/main/CONTRIBUTING.md">Guía de contribución</a>
         </div>
         <div>
           <h6>Suscribirse</h6>

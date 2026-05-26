@@ -11,6 +11,9 @@ import SourceLinkBadge from '@/components/SourceLinkBadge.astro';
 import OrientacionBadge from '@/components/OrientacionBadge.astro';
 import NaturalezaBadge from '@/components/NaturalezaBadge.astro';
 import { tipoOrgLabel, rolLabel, naturalezaVinculoLabel, type Lang } from '@/lib/labels';
+import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
+
+type EstadoPub = 'pendiente' | 'borrador' | 'beta_publica' | 'en_revision' | 'publicado' | 'retirado_temporalmente' | 'retirado_definitivamente';
 import { documentoRespaldoHref } from '@/lib/documentos';
 
 interface Props { lang?: Lang; organizacion: CollectionEntry<'organizaciones'>; }
@@ -301,7 +304,7 @@ const graphHref = `/grafo?focus=organizacion&id=${data.id}&depth=2&layout=cose`;
 
   <FichaTocSection num="2." title="Casos implicados" id="casos" right={`${casos.length} caso${casos.length === 1 ? '' : 's'}`}>
     {casos.length === 0 ? (
-      <p class="muted">Sin implicación procesal en casos del inventario.</p>
+      <p class="muted">Sin implicación procesal en los casos registrados.</p>
     ) : (
       <ul class="casos-list">
         {casos.map((c) => (
@@ -422,23 +425,18 @@ const graphHref = `/grafo?focus=organizacion&id=${data.id}&depth=2&layout=cose`;
         !editorialData.orientacion_editorial_percibida &&
         editorialData.linea_editorial_declarada && (
           <div class="clasif-block">
-            <span class="clasif-label">Cita histórica (modelo previo, deprecada)</span>
+            <span class="clasif-label">Autodefinición editorial</span>
             <blockquote class="clasif-cita">
               «{editorialData.linea_editorial_declarada}»
             </blockquote>
-            <p class="clasif-source">
-              Cita conservada del modelado anterior al 2026-05-26. La nueva clasificación
-              estructurada se incorpora en una próxima revisión.
-            </p>
           </div>
         )}
 
       <p class="clasif-intro">
-        Datos de naturaleza y orientación editorial del medio. Cada valor procede o bien
-        de una autoadscripción literal del propio medio, o bien de una clasificación de
-        fuente externa reputada. Sin etiquetas peyorativas, sin promediar dimensiones que
-        digan cosas distintas. Ver{' '}
-        <a href={lang === 'ca' ? '/cat/sobre' : '/sobre'}>metodología</a>.
+        Cada valor refleja cómo se clasifica el medio: bien por sus propios documentos
+        fundacionales o autoadscripción literal, bien por estudios externos con metodología
+        documentada. Sin etiquetas peyorativas, sin valoraciones de veracidad.
+        Ver <a href={lang === 'ca' ? '/cat/sobre' : '/sobre'}>metodología</a>.
       </p>
     </FichaTocSection>
   )}
@@ -471,14 +469,13 @@ const graphHref = `/grafo?focus=organizacion&id=${data.id}&depth=2&layout=cose`;
   {personasRelacionadas.length > 0 && (
     <FichaTocSection
       num={personasRelacionadasSectionNum!}
-      title="Personas relacionadas"
+      title="Cargos y nombramientos documentados"
       id="personas-relacionadas"
       right={`${personasRelacionadas.length} persona${personasRelacionadas.length === 1 ? '' : 's'}`}
     >
       <p class="contexto-intro">
-        Personas con cargo o nombramiento documentado en esta organización.
-        Inverso del bloque «Relaciones institucionales documentadas» de la ficha
-        de persona. Para el detalle del vínculo, ver el bloque de vínculos.
+        Personas con cargo, designación o nombramiento documentado en esta organización.
+        Para el detalle de cada vínculo, ver el bloque de relaciones institucionales.
       </p>
       <div class="personas-rel-list">
         {personasRelacionadas.map((pr) => (
@@ -530,10 +527,13 @@ const graphHref = `/grafo?focus=organizacion&id=${data.id}&depth=2&layout=cose`;
     </FichaTocSection>
   )}
 
-  <FichaTocSection num={redaccionSectionNum} title="Cómo se ha redactado esta ficha" id="redaccion">
+  <FichaTocSection num={redaccionSectionNum} title="Sobre esta ficha" id="redaccion">
     <div class="prose">
       <ul class="meta-list">
-        <li><strong>Estado de publicación:</strong> {data.estado_publicacion}</li>
+        <li>
+          <strong>Estado de la ficha:</strong>
+          <EstadoPublicacionBadge estado={data.estado_publicacion as EstadoPub} compact />
+        </li>
         {data.ultima_revision_editorial && (
           <li><strong>Última revisión editorial:</strong> <span class="mono">{data.ultima_revision_editorial}</span></li>
         )}

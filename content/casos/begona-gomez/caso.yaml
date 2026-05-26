@@ -38,14 +38,14 @@ sintesis_caso:
     - "El procedimiento empezó en abril de 2024 por una denuncia de Manos Limpias."
     - "El instructor propuso en abril de 2026 que el caso pase a Tribunal del Jurado por varios delitos presuntos."
     - "La Fiscalía sostiene que no hay indicios suficientes y ha pedido el archivo."
-  estado_actual: "El caso está en fase intermedia; no hay sentencia firme y la ficha separa lo investigado de lo acreditado."
+  estado_actual: "El caso está en fase intermedia; no hay sentencia firme."
   cifras_clave:
     - "113.509,32 € de gasto UCM citado"
     - "4 delitos presuntos en la causa"
     - "Tribunal del Jurado propuesto"
 
 organo_judicial_id: juzgado-instruccion-41-madrid
-numero_procedimiento: "Diligencias Previas (número exacto pendiente de confirmación pública)"
+numero_procedimiento: "Diligencias Previas"
 tipo_procedimiento: diligencias_previas
 
 fase_actual: fase_intermedia

@@ -20,7 +20,7 @@ descripcion_corta: |
   con esquemas de blanqueo de capitales con origen en Venezuela.
 
 sintesis_caso:
-  que_se_investiga: "Si el rescate público de Plus Ultra se concedió o usó de forma irregular."
+  que_se_investiga: "Si el préstamo público de 53 millones de euros concedido a Plus Ultra se otorgó o se usó de forma irregular."
   hechos_clave:
     - "El Consejo de Ministros aprobó en marzo de 2021 un préstamo de 53 millones de euros a través de la SEPI."
     - "La causa procede de cooperación internacional con Francia y Suiza y se instruye en la Audiencia Nacional."
@@ -32,7 +32,7 @@ sintesis_caso:
     - "Audiencia Nacional"
 
 organo_judicial_id: juzgado-central-instruccion-4
-numero_procedimiento: "DP (pendiente de confirmar número exacto público)"
+numero_procedimiento: "Diligencias Previas"
 tipo_procedimiento: diligencias_previas
 
 fase_actual: instruccion

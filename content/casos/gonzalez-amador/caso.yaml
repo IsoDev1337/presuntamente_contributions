@@ -37,9 +37,8 @@ descripcion_corta: |
   auto del 22 de septiembre de 2025 se acordó la apertura del juicio
   oral. La Audiencia Provincial de Madrid (Sección 3ª) ratificó el
   procesamiento por auto del 7 de noviembre de 2025, desestimando el
-  recurso de apelación de las defensas. El procedimiento se encuentra,
-  a la fecha de redacción de esta ficha, en fase intermedia a la espera
-  del señalamiento de juicio oral.
+  recurso de apelación de las defensas. El procedimiento se encuentra
+  en fase intermedia a la espera del señalamiento de juicio oral.
 
 sintesis_caso:
   que_se_investiga: "Un presunto fraude fiscal y falsedad documental atribuidos a Alberto González Amador y otros investigados."
@@ -54,7 +53,7 @@ sintesis_caso:
     - "5 años piden PSOE y Más Madrid"
 
 organo_judicial_id: juzgado-instruccion-19-madrid
-numero_procedimiento: "Diligencias Previas (número exacto pendiente de confirmación pública)"
+numero_procedimiento: "Diligencias Previas"
 tipo_procedimiento: procedimiento_abreviado
 ponente_actual_id: antonio-viejo
 

@@ -38,11 +38,6 @@ const strings = {
       <h1 class="page-id__title">{strings.title}</h1>
       <p class="page-id__sub">{strings.sub}</p>
     </div>
-    <div class="page-id__meta">
-      <span>Estado: borrador</span>
-      <span>·</span>
-      <span>Fase 1 — MVP Plus Ultra</span>
-    </div>
   </section>
 
   <FichaTocSection num="1." title="Qué es presuntamente" id="que-es">
@@ -54,10 +49,11 @@ const strings = {
       judiciales relevantes.
     </p>
     <p>
-      Cada caso se documenta a partir de fuentes primarias (BOE, CENDOJ, autos, sentencias) y,
-      complementariamente, de cobertura periodística cruzada. Cada afirmación lleva su nivel de
-      fuente visible. Las personas mencionadas como investigadas o procesadas se presumen inocentes
-      hasta que recaiga sentencia firme.
+      Cada caso se documenta a partir de fuentes primarias (BOE,
+      <abbr title="Centro de Documentación Judicial: repositorio oficial de jurisprudencia del Consejo General del Poder Judicial">CENDOJ</abbr>,
+      autos, sentencias) y, complementariamente, de cobertura periodística cruzada. Cada afirmación
+      lleva su nivel de fuente visible. Las personas mencionadas como investigadas o procesadas se
+      presumen inocentes hasta que recaiga sentencia firme.
     </p>
   </div>
   </FichaTocSection>
@@ -87,15 +83,15 @@ const strings = {
       rol formal en el procedimiento. Cuando un rol se cierra, se revisa la anonimización.
     </li>
     <li>
-      <strong>El git log es el changelog público.</strong> Nunca se borra información; las
-      correcciones conservan el histórico.
+      <strong>Historial público.</strong> El historial de cambios del repositorio es público.
+      Nunca se borra información; las correcciones conservan el histórico completo.
     </li>
   </ol>
   </FichaTocSection>
 
   <FichaTocSection num="3." title="Niveles de fuente (N1–N4)" id="niveles">
   <div class="prose">
-    <p>Cada Documento del inventario lleva un nivel de fuente que comunica su autoridad:</p>
+    <p>Cada documento del inventario lleva un nivel de fuente que comunica su autoridad:</p>
   </div>
   <ul class="niveles">
     <li>
@@ -108,22 +104,26 @@ const strings = {
     <li>
       <span class="badge badge--n2">N2</span>
       <div>
-        <strong>Oficial secundaria / instructora.</strong> Informes UDEF/UCO, escritos de Fiscalía,
-        autos no firmes, escritos de acusación particular o popular.
+        <strong>Oficial secundaria / instructora.</strong> Informes de unidades policiales judiciales
+        (<abbr title="Unidad de Delincuencia Económica y Fiscal del Cuerpo Nacional de Policía">UDEF</abbr>
+        / <abbr title="Unidad Central Operativa de la Guardia Civil">UCO</abbr>), escritos de
+        Fiscalía, autos no firmes, escritos de acusación particular o popular.
       </div>
     </li>
     <li>
       <span class="badge badge--n3">N3</span>
       <div>
-        <strong>Institucional / pericial.</strong> Informes del Tribunal de Cuentas, AIReF, CGPJ,
-        Consejo de Estado; notas institucionales de organismos públicos; periciales.
+        <strong>Institucional / pericial.</strong> Informes del Tribunal de Cuentas,
+        <abbr title="Autoridad Independiente de Responsabilidad Fiscal">AIReF</abbr>,
+        <abbr title="Consejo General del Poder Judicial">CGPJ</abbr>, Consejo de Estado; notas
+        institucionales de organismos públicos; periciales.
       </div>
     </li>
     <li>
       <span class="badge badge--n4">N4</span>
       <div>
-        <strong>Cobertura periodística.</strong> Investigaciones publicadas por medios. Nunca soporte
-        único (V-13): un hecho con sólo respaldo periodístico se etiqueta como "atribuido" o
+        <strong>Cobertura periodística.</strong> Investigaciones publicadas por medios. Nunca como
+        soporte único: un hecho con sólo respaldo periodístico se etiqueta como "atribuido" o
         "investigado", no como acreditado.
       </div>
     </li>
@@ -133,18 +133,18 @@ const strings = {
   <FichaTocSection num="4." title="Roles procesales" id="roles">
   <div class="prose">
     <p>
-      Cada Persona u Organización está unida a un Caso mediante un <em>RolEnCaso</em> con periodo
+      Cada persona u organización está unida a un caso mediante un rol procesal con periodo
       temporal acotado. El rol nunca afirma culpabilidad fuera de lo que dictó el órgano judicial.
       Cuando un rol se cierra (por sobreseimiento, absolución, condena firme, etc.) la trayectoria
       queda registrada: un investigado que pasa a procesado y luego a absuelto conserva toda la
       cadena.
     </p>
     <p>
-      Los roles se dividen en tres familias visuales: <strong>estado procesal</strong> del lado
-      acusado (badge con punto de color), <strong>acusación civil / parte civil</strong> (badge
-      con banderín) y <strong>función en el aparato judicial</strong> (badge con balanza). Los
-      tres grupos se renderizan distintos para que de un vistazo sepas si una persona está
-      acusada, está acusando, o trabaja en el procedimiento.
+      Los roles se dividen en tres familias visuales, identificables por su color: el
+      <strong>estado procesal</strong> del lado acusado, la <strong>acusación civil o parte civil</strong>
+      y la <strong>función en el aparato judicial</strong>. Cada grupo se renderiza distinto para
+      que de un vistazo sepas si una persona está acusada, está acusando, o trabaja en el
+      procedimiento.
     </p>
   </div>
 
@@ -225,7 +225,7 @@ const strings = {
       <RolBadge rol="acusacion_popular" />
       <div>
         Persona o entidad no directamente ofendida que ejerce la acción penal pública prevista en
-        el art. 125 CE.
+        el artículo 125 de la Constitución Española.
       </div>
     </li>
     <li>
@@ -253,10 +253,10 @@ const strings = {
   <FichaTocSection num="5." title="Tipos de hecho" id="tipos-hecho">
   <div class="prose">
     <p>
-      Cada <em>Hecho</em> del inventario lleva un tipo que comunica su estado epistémico — qué
-      sabemos del hecho, con qué fuerza, y con respaldo de qué fuente. Esto, combinado con el
-      nivel del documento de respaldo (N1–N4) y la regla V-13, es lo que garantiza que ninguna
-      afirmación se publique como acreditada sin trazabilidad documental suficiente.
+      Cada hecho del inventario lleva un tipo que comunica qué sabemos de él, con qué fuerza, y con
+      respaldo de qué fuente. Esta clasificación, combinada con el nivel del documento de respaldo
+      (N1–N4), garantiza que ninguna afirmación se publique como acreditada sin trazabilidad
+      documental suficiente.
     </p>
   </div>
   <ul class="niveles niveles--badges">
@@ -289,7 +289,7 @@ const strings = {
       <div>
         Hecho que refuta o matiza una atribución previa. Tan importante como las imputaciones:
         el inventario incorpora los exculpatorios documentados con la misma trazabilidad y los
-        usa para corregir hechos anteriores (campo <code>corregido_por</code>).
+        usa para corregir hechos anteriores, conservando el historial completo.
       </div>
     </li>
     <li>
@@ -314,10 +314,10 @@ const strings = {
   <FichaTocSection num="6." title="Lenguaje editorial" id="lenguaje">
   <div class="prose">
     <p>
-      Para preservar la presunción de inocencia (apartado "Principios irrenunciables" de AGENTS.md, regla P de doc 02),
-      el inventario sigue una convención léxica fija al redactar resúmenes, fichas y descripciones
-      de hechos. La regla es simple: el verbo afirmativo en activa sólo se permite cuando hay un
-      Hecho <span class="badge badge--acreditado">acreditado</span> que lo respalde, o un Rol
+      Para preservar la presunción de inocencia, el inventario sigue una convención léxica fija al
+      redactar resúmenes, fichas y descripciones de hechos. La regla es simple: el verbo afirmativo
+      en activa sólo se permite cuando hay un hecho
+      <span class="badge badge--acreditado">acreditado</span> que lo respalde, o un rol
       <RolBadge rol="condenado_firme" /> en sentencia firme.
     </p>
     <p><strong>Verbos preferidos</strong> (compatibles con cualquier nivel de fuente y con la presunción de inocencia):</p>
@@ -336,7 +336,7 @@ const strings = {
     </ul>
     <p>
       Esta convención no es estética: es el mecanismo que evita que el inventario funcione como
-      tribunal paralelo. Cuando una sentencia firme acredite la autoría, los Hechos pasan a
+      tribunal paralelo. Cuando una sentencia firme acredite la autoría, los hechos pasan a
       <span class="badge badge--acreditado">acreditado</span> y la redacción se actualiza en
       consecuencia.
     </p>
@@ -348,19 +348,25 @@ const strings = {
     <p>
       El derecho a rectificación está garantizado. Si detectas un error en una ficha (un nombre mal
       escrito, una fecha incorrecta, una atribución sin fuente, una persona privada expuesta sin
-      necesidad), puedes:
+      necesidad), tienes dos vías:
     </p>
     <ol>
-      <li>Abrir un issue en el repositorio público con el rótulo <code>rectificacion</code>.</li>
       <li>
-        Enviar un correo a la dirección de contacto del repositorio (pendiente de configurar
-        dominio).
+        <strong>Rectificación formal</strong> bajo la
+        <abbr title="Ley Orgánica 2/1984, reguladora del derecho de rectificación">LO 2/1984</abbr>:
+        envía la solicitud a <a href="mailto:rectificacion@presuntamente.org">rectificacion@presuntamente.org</a>.
+        Procedimiento detallado en <a href="/rectificar">/rectificar</a>.
+      </li>
+      <li>
+        <strong>Aportación editorial</strong> (corrección menor, pista, fuente o sugerencia):
+        envía un correo a <a href="mailto:aportar@presuntamente.org">aportar@presuntamente.org</a>.
+        Detalle en <a href="/aportar">/aportar</a>.
       </li>
     </ol>
     <p>
       Las correcciones se procesan en orden de entrada. Los cambios significativos quedan
-      registrados en el git log y, cuando aplican, en el campo <code>corregido_por</code> de la
-      entidad afectada — el histórico no se borra.
+      registrados en el historial público del repositorio y, cuando aplican, en la propia ficha
+      afectada — el historial nunca se borra.
     </p>
   </div>
   </FichaTocSection>

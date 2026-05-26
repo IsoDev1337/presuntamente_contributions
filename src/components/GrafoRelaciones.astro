@@ -69,7 +69,7 @@ const nodesByKind = {
       <div class="field field--wide">
         <label for="graph-focus-id">Foco</label>
         <select id="graph-focus-id" name="id" class="graph-native-select" data-graph-focus-id data-graph-select>
-          <option value="">Todas las entidades publicables</option>
+          <option value="">Todo el inventario</option>
           {nodesByKind.caso.map((node) => <option value={node.rawId}>{node.label}</option>)}
         </select>
       </div>
@@ -82,10 +82,10 @@ const nodesByKind = {
         </select>
       </div>
       <div class="field">
-        <label for="graph-layout">Modo</label>
+        <label for="graph-layout" title="Cómo se disponen los nodos en el lienzo">Disposición</label>
         <select id="graph-layout" name="layout" class="graph-native-select" data-graph-layout data-graph-select>
-          <option value="cose">Red viva</option>
-          <option value="breadthfirst">Profundidad</option>
+          <option value="cose">Disposición orgánica</option>
+          <option value="breadthfirst">Disposición jerárquica</option>
         </select>
       </div>
     </div>
@@ -178,7 +178,7 @@ const nodesByKind = {
           value="1"
           data-graph-separation
         />
-        <p>Abre el layout; en nodos con muchas conexiones aplica más fuerza.</p>
+        <p>Aumenta la separación entre nodos para facilitar la lectura cuando hay muchas conexiones.</p>
       </div>
     </details>
 
@@ -277,7 +277,7 @@ const nodesByKind = {
   </div>
 
   <noscript>
-    <p class="aviso aviso--accent">El grafo interactivo necesita JavaScript. La tabla de relaciones se genera al activar la vista.</p>
+    <p class="aviso aviso--accent">El explorador de conexiones requiere JavaScript activado. Para navegar el inventario sin JavaScript, consulta el listado de casos, personas y organizaciones desde el menú principal.</p>
   </noscript>
 </section>
 

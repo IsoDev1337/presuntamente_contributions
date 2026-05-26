@@ -46,7 +46,7 @@ const delitos = delitosCol
 const strings = {
   title: 'Delitos del catálogo',
   description:
-    'Catálogo de tipos penales referenciados en los procedimientos del inventario. ' +
+    'Catálogo de tipos penales referenciados en los procedimientos de presuntamente.org. ' +
     'No es un listado de personas condenadas: cada ficha cuenta los casos y los roles donde el delito se ATRIBUYE.',
   eyebrow: 'Sección 4 · Delitos',
   sub:
@@ -127,7 +127,11 @@ const familiasPresentes = Array.from(new Set(delitos.map((d) => d.familia)))
         <th style="width: 28%;">Familia</th>
         <th style="width: 20%;">Artículos CP</th>
         <th style="width: 8%;" class="c-num">Casos</th>
-        <th style="width: 8%;" class="c-num">Atribuciones</th>
+        <th
+          style="width: 8%;"
+          class="c-num"
+          title="Roles procesales (investigado, procesado, acusado, condenado) a los que se ha atribuido formalmente este delito en algún momento del procedimiento. Una atribución NO equivale a condena."
+        >Atribuciones</th>
       </tr>
     </thead>
     <tbody>

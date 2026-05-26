@@ -15,9 +15,9 @@ const strings = {
   description: 'Búsqueda full-text sobre todas las fichas del inventario.',
   eyebrow: 'Búsqueda',
   sub:
-    'Búsqueda full-text en el inventario: nombres mediáticos, oficiales, hechos, hitos, organizaciones, ' +
-    'documentos y biografías. El índice se construye con Pagefind sobre el contenido estático ' +
-    'generado por Astro; nunca envía datos a un servicio externo.',
+    'Búsqueda en el inventario: nombres mediáticos, oficiales, hechos, hitos, organizaciones, ' +
+    'documentos y biografías. La búsqueda funciona directamente en tu navegador sin enviar datos ' +
+    'a servidores externos.',
 };
 ---
 
@@ -55,8 +55,8 @@ const strings = {
   </noscript>
 
   <p id="pagefind-fallback" class="aviso aviso--accent" hidden>
-    El índice de búsqueda no está disponible en el servidor de desarrollo. Ejecuta
-    <code>pnpm build</code> y luego <code>pnpm preview</code> para verla operativa.
+    El índice de búsqueda no está disponible en este momento. Navega por las secciones del menú
+    principal para explorar el inventario.
   </p>
 
   <script src="/pagefind/pagefind-ui.js" is:inline></script>

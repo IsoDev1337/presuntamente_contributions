@@ -35,14 +35,14 @@ const { lang = 'es' } = Astro.props;
 const strings = {
   title: 'Catálogo de casos',
   description:
-    'Listado público de los procedimientos judiciales relevantes registrados en el sistema.',
+    'Listado público de los procedimientos judiciales relevantes registrados en presuntamente.org.',
   eyebrow: 'Sección 1 · Casos',
   sub:
-    'Listado de los procedimientos judiciales relevantes registrados en el sistema. Cada caso ' +
+    'Listado de los procedimientos judiciales relevantes registrados en este sitio. Cada caso ' +
     'enlaza con su ficha completa, sus personas implicadas y los documentos primarios que lo respaldan.',
-  leyendaEstadosTitulo: 'Estado de la ficha',
+  leyendaEstadosTitulo: 'Estado de elaboración de la ficha',
   leyendaEstadosIntro:
-    'Ciclo editorial del inventario presuntamente.org — no confundir con la fase procesal del caso.',
+    'Indica el grado de avance editorial de cada ficha. No debe confundirse con la fase procesal del caso (instrucción, juicio oral, sentencia firme), que se muestra aparte.',
 };
 
 const LEYENDA_ESTADOS: ReadonlyArray<{ estado: EstadoPublicacion; nota: string }> = [

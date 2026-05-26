@@ -51,12 +51,13 @@ const documentos = documentosCol
 const strings = {
   title: 'Biblioteca documental',
   description:
-    'Sentencias, autos, informes UDEF/UCO, notas institucionales y coberturas periodísticas que respaldan cada hecho del inventario.',
+    'Sentencias, autos judiciales, informes policiales, notas institucionales y coberturas periodísticas que respaldan cada hecho del inventario.',
   eyebrow: 'Sección 4 · Biblioteca',
   sub:
     'Documentos primarios y secundarios que respaldan los hechos del inventario. Cada documento ' +
-    'lleva su nivel de fuente (N1-N4) visible. Cobertura periodística (N4) se admite siempre que ' +
-    'no sea soporte único (V-13).',
+    'lleva su nivel de fuente visible — del oficial primario (N1) a la cobertura periodística (N4). ' +
+    'La cobertura periodística se admite siempre que no sea soporte único. ' +
+    'Más detalle en la sección "Niveles de fuente" de /sobre.',
 };
 
 function searchBlob(d: (typeof documentos)[number]): string {
@@ -147,7 +148,7 @@ const tiposPresentes = Array.from(new Set(documentos.map((d) => d.tipo)))
         <th style="width: 44%;">Documento</th>
         <th style="width: 18%;">Productor</th>
         <th style="width: 12%;">Fecha</th>
-        <th style="width: 8%;" class="c-num">Citado en</th>
+        <th style="width: 8%;" class="c-num" title="Número de hechos del inventario que citan este documento">Citado en hechos</th>
         <th style="width: 10%;" class="c-tight">Enlaces</th>
       </tr>
     </thead>

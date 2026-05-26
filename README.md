@@ -13,36 +13,34 @@ Ofrecer una **referencia objetiva, trazable y sin cuota política** sobre los pr
 
 ## Estado
 
-Fase 1.0 (integración del design system) ✅ — el sitio se construye estático con Astro 5 sobre los YAML del propio repo. Primer caso fichado: **Plus Ultra**. Inventario actual: 1 caso · 5 personas · 9 organizaciones · 6 documentos · 4 hitos · 5 hechos · 6 roles.
-
-Todavía **no hay versión pública desplegada**: el dominio `presuntamente.org` está registrado en Cloudflare Registrar (alta del 23 de mayo de 2026) y tres canales editoriales operan vía Cloudflare Email Routing — `contacto@presuntamente.org`, `rectificacion@presuntamente.org` y `aportar@presuntamente.org` (este último activado el 25 de mayo de 2026, cauce editorial documentado en [`CONTRIBUTING.md`](CONTRIBUTING.md) y en [doc 04 — "Mecanismo de aportación editorial"](docs/diseno/04-riesgos-legales-y-eticos.md#6bis-mecanismo-de-aportación-editorial)). La publicación pública del sitio depende además de (a) apertura del apartado de correos del responsable a efectos LSSI y (b) revisión del aviso legal con abogado especializado (ver [`LEGAL.md`](LEGAL.md)). Mientras tanto el sitio funciona localmente con `pnpm dev` y el catálogo evoluciona en este repositorio.
+Proyecto en fase beta, todavía sin publicar bajo dominio propio. El sitio es navegable localmente y el catálogo evoluciona en este repositorio. Las cifras actualizadas del inventario están en la página [`/cifras`](src/pages/cifras/index.astro) cuando el sitio está en ejecución.
 
 Estado vivo y backlog detallado en [`ROADMAP.md`](ROADMAP.md).
-
-## Stack
-
-- [Astro 5](https://astro.build) (static build) + CSS nativo + [Open Props](https://open-props.style/) como capa base.
-- Content Collections sobre los YAML de [`/content/`](content/), validados también por JSON Schema vía [`pnpm validate`](scripts/validate.mjs).
-- [Pagefind](https://pagefind.app) para búsqueda full-text estática.
-- pnpm 11, Node 24 (ver [`.nvmrc`](.nvmrc)).
 
 ## Licencias
 
 - **Código**: AGPL-3.0 (ver [`LICENSE`](LICENSE)).
 - **Contenido editorial** (fichas, textos, datos estructurados): CC BY-SA 4.0 (ver [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md)).
 
-## Contribuir
+## Cómo participar
 
-Ver [`CONTRIBUTING.md`](CONTRIBUTING.md). Hoy se aceptan:
+Ver [`CONTRIBUTING.md`](CONTRIBUTING.md). Vías abiertas:
 
-- **Aportes editoriales** — fuentes que faltan, correcciones fácticas menores o ideas sobre el sitio — por correo a `aportar@presuntamente.org` o issue [`sugerencia-fuente`](.github/ISSUE_TEMPLATE/sugerencia-fuente.yml). Por defecto anónimos; acreditación opt-in si se solicita explícitamente. Detalle en `/aportar`.
-- **Rectificaciones** — si te consideras aludido y discrepas, cauce LO 2/1984 — por correo a `rectificacion@presuntamente.org` o issue [`rectificacion`](.github/ISSUE_TEMPLATE/rectificacion.yml).
+- **Aportes editoriales** — fuentes que faltan, correcciones fácticas menores o ideas sobre el sitio — por correo a `aportar@presuntamente.org`. Por defecto anónimos; acreditación opt-in si se solicita explícitamente.
+- **Rectificaciones** — si te consideras aludido y discrepas, cauce LO 2/1984 — por correo a `rectificacion@presuntamente.org`.
 
-El modelo de PR formales se activará en Fase 4 (apertura editorial); hasta entonces el maintainer único trabaja en commits directos a `main`.
+El maintainer único trabaja en commits directos a `main`; el modelo de Pull Requests formales se activará cuando el proyecto abra la colaboración externa.
+
+## Stack técnico
+
+- [Astro 5](https://astro.build) (build estático) + CSS nativo + [Open Props](https://open-props.style/) como capa base.
+- Content Collections sobre los YAML de [`/content/`](content/), validados además por JSON Schema.
+- [Pagefind](https://pagefind.app) para búsqueda en el cliente, sin servidor.
+- pnpm 11, Node 24 (ver [`.nvmrc`](.nvmrc)).
 
 ## Documentación de diseño
 
-[`docs/diseno/`](docs/diseno/) contiene los documentos de diseño completos del proyecto: modelo de datos, UX de ficha, mantenimiento, riesgos legales, arquitectura técnica y roadmap.
+[`docs/diseno/`](docs/diseno/) contiene los documentos de diseño completos del proyecto: modelo de datos, ficha de caso, mantenimiento, riesgos legales, arquitectura técnica y roadmap.
 
 ## Para agentes (LLM)
 
