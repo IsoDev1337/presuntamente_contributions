@@ -1,0 +1,134 @@
+---
+/**
+ * Chip de organización afectada para listados densos (/casos).
+ * El nombre va en un contenedor tipo badge; el detalle (nivel, naturaleza,
+ * justificación) aparece en un HoverCard al pasar el cursor.
+ */
+import HoverCard from '@/components/HoverCard.astro';
+import PartidoBadge from '@/components/PartidoBadge.astro';
+import RolBadge from '@/components/RolBadge.astro';
+import { rolLabel } from '@/lib/labels';
+
+interface Props {
+  id: string;
+  label: string;
+  href: string;
+  esPartido?: boolean;
+  nivel: 'directa' | 'indirecta';
+  naturalezaLabel: string;
+  rol?: string;
+  justificacion?: string;
+}
+
+const {
+  id,
+  label,
+  href,
+  esPartido = false,
+  nivel,
+  naturalezaLabel,
+  rol,
+  justificacion,
+} = Astro.props;
+
+const nivelLabel = nivel === 'directa' ? 'Directa' : 'Indirecta';
+---
+<div class="org-afect-chip-root">
+<HoverCard side="top" align="start">
+  <span slot="trigger" class="org-afect-chip">
+    {esPartido ? (
+      <PartidoBadge id={id} label={label} href={href} size="sm" />
+    ) : (
+      <a class="org-afect-chip__link" href={href}>{label}</a>
+    )}
+  </span>
+  <div slot="content" class="org-afect-chip__detail">
+    <p class="org-afect-chip__name">{label}</p>
+    <div class="org-afect-chip__status">
+      {rol ? (
+        <RolBadge rol={rol} label={rolLabel(rol)} />
+      ) : (
+        <span class="org-afect-chip__nat">{naturalezaLabel}</span>
+      )}
+    </div>
+    <p class="org-afect-chip__nivel">{nivelLabel}</p>
+    {justificacion && (
+      <p class="org-afect-chip__just">{justificacion}</p>
+    )}
+  </div>
+</HoverCard>
+</div>
+
+<style>
+  .org-afect-chip-root :global(.hcard) {
+    max-width: var(--org-afect-chip-max, 8.5rem);
+    min-width: 0;
+  }
+  .org-afect-chip {
+    display: inline-flex;
+    max-width: var(--org-afect-chip-max, 8.5rem);
+    min-width: 0;
+  }
+  .org-afect-chip :global(a.partido-badge) {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .org-afect-chip__link {
+    display: block;
+    padding: 1px 7px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    background: var(--color-surface-muted, var(--color-surface));
+    font: 500 11px/1.45 var(--font-sans);
+    color: var(--color-fg);
+    text-decoration: none;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .org-afect-chip__link:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+</style>
+
+<style is:global>
+  .org-afect-chip__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .org-afect-chip__name {
+    margin: 0;
+    font: 600 12px/1.35 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .org-afect-chip__status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .org-afect-chip__nivel {
+    margin: 0;
+    font: 600 0.68rem/1 var(--font-sans);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  .org-afect-chip__nat {
+    font: 500 11px/1.35 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .org-afect-chip__just {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--color-fg-muted);
+  }
+</style>

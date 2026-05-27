@@ -4,13 +4,12 @@
 
 ## Estado actual
 
-Listado tabular de casos con leyenda colapsable común (`CatalogoLeyenda`) antes de la sección 1.1, filtros (búsqueda, fase procesal, **estado de ficha**, **organizaciones afectadas multi-select**) + ordenación ampliada (último hito, **última actualización de la ficha**, **fase procesal ↑/↓**, implicados) + cinco columnas tras el refactor de afectación del 2026-05-27 (noche):
+Listado tabular de casos con leyenda colapsable común (`CatalogoLeyenda`) antes de la sección 1.1, filtros (búsqueda, fase procesal, **estado de ficha**, **organizaciones afectadas multi-select**) + ordenación ampliada (último hito, **última actualización de la ficha**, **fase procesal ↑/↓**, implicados) + **cuatro columnas** tras el pulido UI del 2026-05-27:
 
-1. **Caso** — nombre mediático + `EstadoPublicacionBadge` compacto en la misma línea + mini-descripción de `sintesis_caso.que_se_investiga` (fallback `descripcion_corta`).
-2. **Fase** — `PhaseBadge`.
-3. **Órgano** — acrónimo en mono + nombre oficial del procedimiento debajo. La celda es clicable a la página de la organización.
-4. **Organizaciones afectadas** — columna unificada con sub-listas **Directa** e **Indirecta**, deduplicadas por `organizacion_id`. La derivación pasa por [`src/lib/afectacion.ts`](../../../src/lib/afectacion.ts), que lee `VinculoInstitucional` con `nivel_afectacion` y agrupa por nivel. Las directas llevan `RolBadge` cuando hay rol procesal equivalente (`investigado` / `perjudicado`) o microtag de texto cuando es `ambito_administrativo_directo_del_acto_en_caso`. Las indirectas usan `PartidoBadge` si la organización es `tipo: partido_politico` o nombre llano en otro caso. La acusación popular **no aparece aquí**: figura en participación procesal de la ficha. Canon: [`docs/diseno/08-afectacion-directa-indirecta.md`](../../diseno/08-afectacion-directa-indirecta.md).
-5. **Último hito** — fecha en mono + título truncado a ~90 caracteres (texto completo en `title=` para hover).
+1. **Caso** (32%) — nombre mediático con `<EstadoPublicacionBadge listado />` (dot-only + hover en beta/publicado; texto visible en estados excepcionales). Mini-descripción debajo.
+2. **Fase / Órgano** (22%) — `PhaseBadge` arriba; debajo acrónimo del órgano en mono (enlace a la org) + nombre oficial del procedimiento.
+3. **Organizaciones afectadas** (20%) — sub-bloques **Directa** e **Indirecta** con chips en **flex-wrap**. Cada org es un [`OrgAfectadaChip`](../../../src/components/OrgAfectadaChip.astro) truncado (~8.5rem + ellipsis); nombre completo, nivel, naturaleza/`RolBadge` y justificación en el [`HoverCard`](../../../docs/web/features/hover-card.md). Derivación vía [`src/lib/afectacion.ts`](../../../src/lib/afectacion.ts). Acusación popular no aparece aquí.
+4. **Último hito** — fecha en mono + título truncado a ~90 caracteres (texto completo en `title=` para hover nativo).
 
 Filas en estado `pendiente`/`borrador` aparecen no clicables en producción (`tr.is-blocked`) pero visibles para transparencia. En dev local todas son clicables.
 
@@ -34,9 +33,11 @@ Filas en estado `pendiente`/`borrador` aparecen no clicables en producción (`tr
 ## Aprendizajes y decisiones editoriales
 
 - **Mini-descripción debe ser breve y útil**, no resumen ejecutivo. Cambio 2026-05-26: pasamos de `descripcion_corta` a `sintesis_caso.que_se_investiga`, que rinde mejor en escaneo rápido.
-- **Estado de ficha junto al nombre, no en columna propia.** Quita peso visual y deja claro de un vistazo qué fichas están maduras.
+- **Estado de ficha en listado vía `EstadoPublicacionBadge listado`.** Decisión 2026-05-27: prop `listado` en el badge canónico (sin wrapper aparte): dot-only + hover teñido en beta/publicado; pastilla con texto en estados excepcionales. Props sueltas `compact`, `dotOnly`, `hover` para otros contextos.
 - **Órgano clicable.** La columna acrónimo (AN, JCI 4) era texto plano; ahora es enlace a la org porque el lector que quiere saber qué juzgado es debe llegar de un clic.
-- **`RolBadge` para naturaleza institucional, no strings.** «perjudicada» en texto frente a `RolBadge` perjudicado en la ficha era inconsistencia visible. Decisión 2026-05-26: usar mapping `entidad_investigada_en_caso → investigado`, `perjudicado_institucional_en_caso → perjudicado`. Tras el refactor del 2026-05-27, `acusacion_institucional_en_caso` deja de usarse aquí (no es afectación) y `ambito_administrativo_directo_del_acto_en_caso` se etiqueta como microtag de texto en lugar de `RolBadge` (no es rol procesal).
+- **Fase y órgano en una sola columna.** Decisión 2026-05-27: el badge de fase arriba y el órgano debajo ahorran ancho; el acrónimo sigue siendo enlace a la org.
+- **Chips + HoverCard en org afectadas.** Decisión 2026-05-27: nombre en contenedor tipo badge; nivel, naturaleza y justificación al hover (`HoverCard` + `OrgAfectadaChip`). Lista en flex-wrap para que partidos quepan en fila. Detalle en [`../features/hover-card.md`](../features/hover-card.md).
+- **`RolBadge` para naturaleza institucional, no strings.** «perjudicada» en texto frente a `RolBadge` perjudicado en la ficha era inconsistencia visible. Decisión 2026-05-26: usar mapping `entidad_investigada_en_caso → investigado`, `perjudicado_institucional_en_caso → perjudicado`. Tras el refactor del 2026-05-27, `acusacion_institucional_en_caso` deja de usarse aquí (no es afectación) y el detalle de `ambito_administrativo_directo_del_acto_en_caso` va al hover card (no es rol procesal).
 - **Acusación popular no es afectación.** Refactor 2026-05-27: el bug visual de Kitchen mostrando "Podemos · ACUSACIÓN POPULAR" en la columna se eliminó separando afectación editorial de papel procesal. Canon en doc 08.
 - **Dedupe centralizado.** Toda la lógica de deduplicación por `organizacion_id` y el orden por nivel viven en `src/lib/afectacion.ts`. Listado, ficha y home leen del mismo módulo: añadir un punto de uso nuevo no requiere reimplementar dedupe.
 - **Columna «Implicados» eliminada.** Era un número muerto que no marketing nada al lector. Decisión maintainer 2026-05-26 (tarde).

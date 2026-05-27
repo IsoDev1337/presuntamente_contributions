@@ -1,0 +1,281 @@
+---
+/**
+ * HoverCard — preview al pasar el cursor (patrón shadcn/Radix, vanilla).
+ *
+ * Inspirado en https://ui.shadcn.com/docs/components/radix/hover-card pero
+ * implementado sin React: markup estático + script singleton que posiciona el
+ * panel con `position: fixed` para que no lo recorte el scroll horizontal de
+ * tablas (.tbl-scroll).
+ *
+ * Slots:
+ *   - trigger — elemento interactivo (enlace, botón, chip…)
+ *   - content — cuerpo del popover
+ *
+ * Accesibilidad: el trigger es focusable (`tabindex="0"`); Escape cierra.
+ * Touch: tap en el trigger alterna abierto/cerrado (no hay hover en móvil).
+ */
+
+interface Props {
+  side?: 'top' | 'bottom' | 'left' | 'right';
+  align?: 'start' | 'center' | 'end';
+  openDelay?: number;
+  closeDelay?: number;
+  /** id opcional del panel (para aria-describedby desde el trigger). */
+  contentId?: string;
+}
+
+const {
+  side = 'top',
+  align = 'start',
+  openDelay = 120,
+  closeDelay = 180,
+  contentId,
+} = Astro.props;
+
+const panelId = contentId ?? `hcard-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class="hcard"
+  data-hcard
+  data-side={side}
+  data-align={align}
+  data-open-delay={String(openDelay)}
+  data-close-delay={String(closeDelay)}
+>
+  <div
+    class="hcard__trigger"
+    data-hcard-trigger
+    tabindex="0"
+    aria-describedby={panelId}
+  >
+    <slot name="trigger" />
+  </div>
+  <div
+    class="hcard__content"
+    data-hcard-content
+    id={panelId}
+    role="tooltip"
+    hidden
+    aria-hidden="true"
+  >
+    <slot name="content" />
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    if (window.__hcardInited) return;
+    window.__hcardInited = true;
+
+    const GAP = 6;
+    const VIEWPORT_PAD = 8;
+
+    function parseDelay(raw, fallback) {
+      const n = Number(raw);
+      return Number.isFinite(n) ? n : fallback;
+    }
+
+    function positionPanel(hcard, content, trigger) {
+      const side = hcard.dataset.side || 'top';
+      const align = hcard.dataset.align || 'start';
+      const tr = trigger.getBoundingClientRect();
+      content.style.position = 'fixed';
+      content.style.zIndex = '50';
+      content.style.maxWidth = 'min(280px, calc(100vw - 16px))';
+      content.hidden = false;
+      content.setAttribute('aria-hidden', 'false');
+      content.style.visibility = 'hidden';
+      content.style.left = '0';
+      content.style.top = '0';
+
+      const cr = content.getBoundingClientRect();
+      let top = 0;
+      let left = 0;
+
+      if (side === 'bottom') {
+        top = tr.bottom + GAP;
+      } else if (side === 'left') {
+        top = tr.top + (tr.height - cr.height) / 2;
+        left = tr.left - cr.width - GAP;
+      } else if (side === 'right') {
+        top = tr.top + (tr.height - cr.height) / 2;
+        left = tr.right + GAP;
+      } else {
+        top = tr.top - cr.height - GAP;
+      }
+
+      if (side === 'top' || side === 'bottom') {
+        if (align === 'center') {
+          left = tr.left + (tr.width - cr.width) / 2;
+        } else if (align === 'end') {
+          left = tr.right - cr.width;
+        } else {
+          left = tr.left;
+        }
+      }
+
+      const maxLeft = window.innerWidth - cr.width - VIEWPORT_PAD;
+      const maxTop = window.innerHeight - cr.height - VIEWPORT_PAD;
+      left = Math.min(Math.max(left, VIEWPORT_PAD), Math.max(VIEWPORT_PAD, maxLeft));
+      top = Math.min(Math.max(top, VIEWPORT_PAD), Math.max(VIEWPORT_PAD, maxTop));
+
+      content.style.left = `${Math.round(left)}px`;
+      content.style.top = `${Math.round(top)}px`;
+      content.style.visibility = '';
+    }
+
+    function close(hcard) {
+      const content = hcard.querySelector('[data-hcard-content]');
+      const trigger = hcard.querySelector('[data-hcard-trigger]');
+      if (hcard.__hcardOpenTimer) {
+        clearTimeout(hcard.__hcardOpenTimer);
+        hcard.__hcardOpenTimer = null;
+      }
+      if (hcard.__hcardCloseTimer) {
+        clearTimeout(hcard.__hcardCloseTimer);
+        hcard.__hcardCloseTimer = null;
+      }
+      hcard.classList.remove('hcard--open');
+      if (content) {
+        content.hidden = true;
+        content.setAttribute('aria-hidden', 'true');
+        content.style.visibility = '';
+        content.style.left = '';
+        content.style.top = '';
+      }
+      if (trigger) trigger.removeAttribute('aria-expanded');
+    }
+
+    function open(hcard) {
+      document.querySelectorAll('[data-hcard].hcard--open').forEach((other) => {
+        if (other !== hcard) close(other);
+      });
+      const content = hcard.querySelector('[data-hcard-content]');
+      const trigger = hcard.querySelector('[data-hcard-trigger]');
+      if (!content || !trigger) return;
+      hcard.classList.add('hcard--open');
+      trigger.setAttribute('aria-expanded', 'true');
+      positionPanel(hcard, content, trigger);
+    }
+
+    function scheduleOpen(hcard) {
+      if (hcard.classList.contains('hcard--open')) return;
+      if (hcard.__hcardCloseTimer) {
+        clearTimeout(hcard.__hcardCloseTimer);
+        hcard.__hcardCloseTimer = null;
+      }
+      const delay = parseDelay(hcard.dataset.openDelay, 120);
+      hcard.__hcardOpenTimer = setTimeout(() => open(hcard), delay);
+    }
+
+    function scheduleClose(hcard) {
+      if (hcard.__hcardOpenTimer) {
+        clearTimeout(hcard.__hcardOpenTimer);
+        hcard.__hcardOpenTimer = null;
+      }
+      const delay = parseDelay(hcard.dataset.closeDelay, 180);
+      hcard.__hcardCloseTimer = setTimeout(() => close(hcard), delay);
+    }
+
+    function bind(hcard) {
+      if (hcard.dataset.hcardBound === '1') return;
+      hcard.dataset.hcardBound = '1';
+      const trigger = hcard.querySelector('[data-hcard-trigger]');
+      const content = hcard.querySelector('[data-hcard-content]');
+      if (!trigger || !content) return;
+
+      hcard.addEventListener('mouseenter', () => scheduleOpen(hcard));
+      hcard.addEventListener('mouseleave', () => scheduleClose(hcard));
+      hcard.addEventListener('focusin', () => scheduleOpen(hcard));
+      hcard.addEventListener('focusout', (e) => {
+        if (hcard.contains(e.relatedTarget)) return;
+        scheduleClose(hcard);
+      });
+
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          close(hcard);
+          trigger.focus();
+        }
+      });
+
+      trigger.addEventListener('click', (e) => {
+        if (window.matchMedia('(hover: hover)').matches) return;
+        e.stopPropagation();
+        if (hcard.classList.contains('hcard--open')) {
+          close(hcard);
+        } else {
+          open(hcard);
+        }
+      });
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (hcard.classList.contains('hcard--open')) {
+            positionPanel(hcard, content, trigger);
+          }
+        },
+        true,
+      );
+      window.addEventListener('resize', () => {
+        if (hcard.classList.contains('hcard--open')) {
+          positionPanel(hcard, content, trigger);
+        }
+      });
+    }
+
+    function init() {
+      document.querySelectorAll('[data-hcard]').forEach(bind);
+    }
+
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest('[data-hcard]')) return;
+      document.querySelectorAll('[data-hcard].hcard--open').forEach(close);
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<style is:global>
+  .hcard {
+    position: relative;
+    display: inline-flex;
+    max-width: 100%;
+  }
+  .hcard__trigger {
+    display: inline-flex;
+    max-width: 100%;
+    min-width: 0;
+    outline: none;
+  }
+  .hcard__trigger:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .hcard__content {
+    padding: 8px 10px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-accent);
+    border-radius: 0;
+    box-shadow: 0 6px 14px -10px rgba(0, 0, 0, 0.28);
+    font: 400 12px/1.45 var(--font-sans);
+    color: var(--color-fg);
+    pointer-events: none;
+  }
+  .hcard__content[hidden] {
+    display: none !important;
+  }
+  .hcard--open .hcard__content {
+    pointer-events: auto;
+  }
+</style>

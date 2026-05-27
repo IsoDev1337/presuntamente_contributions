@@ -461,7 +461,7 @@ const brandSub = 'Inventario público de casos de corrupción en España';
           }
         };
         const isInteractive = (el: Element | null) =>
-          !!el && !!el.closest('a, button, input, select, textarea, label, summary, [role="button"]');
+          !!el && !!el.closest('a, button, input, select, textarea, label, summary, [role="button"], [data-hcard-trigger]');
         document.addEventListener('click', (e) => {
           const target = e.target;
           if (!(target instanceof Element)) return;

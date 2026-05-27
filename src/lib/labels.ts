@@ -252,6 +252,20 @@ export function naturalezaVinculoLabel(naturaleza: string, _lang: Lang = 'es'): 
   return NATURALEZA_VINCULO_LABEL_ES[naturaleza] ?? naturaleza;
 }
 
+/** Etiqueta corta de la naturaleza de afectación institucional en un caso.
+ *  Usada en listados y hover cards de org afectada — más legible que el slug
+ *  del vínculo. Canon: docs/diseno/08-afectacion-directa-indirecta.md. */
+const NATURALEZA_AFECTACION_LABEL_ES: Record<string, string> = {
+  entidad_investigada_en_caso: 'Persona jurídica investigada',
+  perjudicado_institucional_en_caso: 'Perjudicado institucional',
+  ambito_administrativo_directo_del_acto_en_caso: 'Ámbito administrativo del acto',
+  afectacion_indirecta_en_caso: 'Afectación indirecta',
+};
+
+export function naturalezaAfectacionLabel(naturaleza: string, _lang: Lang = 'es'): string {
+  return NATURALEZA_AFECTACION_LABEL_ES[naturaleza] ?? naturaleza;
+}
+
 // --- Cobertura mediática general --------------------------------------------
 
 const TIPO_PIEZA_MEDIATICA_LABEL_ES: Record<string, string> = {

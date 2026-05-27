@@ -6,10 +6,9 @@ import CatalogoLeyenda from '@/components/CatalogoLeyenda.astro';
 import SectionH from '@/components/SectionH.astro';
 import PhaseBadge from '@/components/PhaseBadge.astro';
 import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
-import RolBadge from '@/components/RolBadge.astro';
-import PartidoBadge from '@/components/PartidoBadge.astro';
+import OrgAfectadaChip from '@/components/OrgAfectadaChip.astro';
 import { getCollection } from 'astro:content';
-import { rolLabel } from '@/lib/labels';
+import { naturalezaAfectacionLabel } from '@/lib/labels';
 import { organizacionesAfectadasDeCaso } from '@/lib/afectacion';
 import { ultimaActualizacionDeCaso } from '@/lib/git-meta';
 
@@ -70,17 +69,11 @@ const [casosCol, hitosCol, rolesCol, organizacionesCol, vinculosCol] = await Pro
   getCollection('vinculos'),
 ]);
 
-// Etiqueta corta por naturaleza de afectación, mostrada bajo el nombre
-// de cada organización afectada en la columna del listado. Las dos
-// naturalezas con `rol` procesal equivalente reutilizan `RolBadge`; el
-// "ámbito administrativo directo" se etiqueta como microtag de texto
-// porque no es un rol procesal. Ver docs/diseno/08-afectacion-directa-indirecta.md.
+// Etiqueta de rol procesal por naturaleza de afectación directa (cuando aplica).
+// El detalle completo va al HoverCard del chip; ver OrgAfectadaChip.astro.
 const NATURALEZA_AFECTADA_DIRECTA_ROL: Record<string, string> = {
   entidad_investigada_en_caso: 'investigado',
   perjudicado_institucional_en_caso: 'perjudicado',
-};
-const NATURALEZA_AFECTADA_DIRECTA_TAG: Record<string, string> = {
-  ambito_administrativo_directo_del_acto_en_caso: 'Ámbito del acto',
 };
 
 // Truncado del título del último hito para no engordar la fila.
@@ -202,21 +195,22 @@ const casos = casosCol
       organoId: caso.organo_judicial_id,
       numero: caso.numero_procedimiento ?? '',
       implicados,
-      // Lista de organizaciones afectadas para la columna fusionada.
-      // Pre-resuelve el RolBadge / microtag por naturaleza y la etiqueta
-      // visible (nombre completo para no-partidos, siglas para partidos).
+      // Lista de organizaciones afectadas para la columna del listado.
+      // El detalle (nivel, naturaleza, justificación) va al HoverCard del chip.
       afectadasDirectas: afectadas.directas.map((o) => ({
         id: o.organizacionId,
-        nombre: o.nombre,
+        label: o.tipo === 'partido_politico' ? (o.siglas ?? o.nombre) : o.nombre,
+        esPartido: o.tipo === 'partido_politico',
+        naturalezaLabel: naturalezaAfectacionLabel(o.naturaleza),
         rol: NATURALEZA_AFECTADA_DIRECTA_ROL[o.naturaleza],
-        tag: NATURALEZA_AFECTADA_DIRECTA_TAG[o.naturaleza],
+        justificacion: o.justificacion,
       })),
       afectadasIndirectas: afectadas.indirectas.map((o) => ({
         id: o.organizacionId,
-        nombre: o.nombre,
-        siglas: o.siglas,
+        label: o.tipo === 'partido_politico' ? (o.siglas ?? o.nombre) : o.nombre,
         esPartido: o.tipo === 'partido_politico',
-        labelCorto: o.siglas ?? o.nombre,
+        naturalezaLabel: naturalezaAfectacionLabel(o.naturaleza),
+        justificacion: o.justificacion,
       })),
       ultimo_hito: ultimo
         ? { fecha: ultimo.fecha, titulo: ultimo.titulo }
@@ -256,16 +250,17 @@ const orgIdsPresentes = new Set<string>();
 for (const c of casos) for (const id of c.orgIdsAfectadas) orgIdsPresentes.add(id);
 
 const opcionesOrgsAfectadas = Array.from(orgIdsPresentes)
-  .map((id) => {
+  .flatMap((id) => {
     const o = orgIndex.get(id);
-    if (!o) return null;
-    return {
-      value: id,
-      label: o.nombre,
-      sublabel: o.siglas && o.siglas !== o.nombre ? o.siglas : undefined,
-    };
+    if (!o) return [];
+    return [
+      {
+        value: id,
+        label: o.nombre,
+        ...(o.siglas && o.siglas !== o.nombre ? { sublabel: o.siglas } : {}),
+      },
+    ];
   })
-  .filter((x): x is { value: string; label: string; sublabel?: string } => x !== null)
   .sort((a, b) => a.label.localeCompare(b.label, 'es'));
 
 // Lista única de estados de elaboración de ficha que aparecen en el listado
@@ -466,11 +461,10 @@ function miniDescripcion(raw: string, max = 140): string {
   <table class="tbl" data-catalog>
     <thead>
       <tr>
-        <th style="width: 28%;">Caso</th>
-        <th style="width: 10%;">Fase</th>
-        <th style="width: 14%;">Órgano</th>
-        <th style="width: 28%;">Organizaciones afectadas</th>
-        <th style="width: 20%;">Último hito</th>
+        <th style="width: 32%;">Caso</th>
+        <th style="width: 22%;">Fase / Órgano</th>
+        <th style="width: 20%;">Organizaciones afectadas</th>
+        <th style="width: 26%;">Último hito</th>
       </tr>
     </thead>
     <tbody>
@@ -490,9 +484,9 @@ function miniDescripcion(raw: string, max = 140): string {
           <td>
             {c.bloqueadoEnProd ? (
               <span aria-disabled="true" class="c-blocked">
-                <span class="c-name-row">
+                <span class="c-case-line">
+                  <EstadoPublicacionBadge estado={c.estado_publicacion} listado />
                   <span class="c-name">{c.mediatico}</span>
-                  <EstadoPublicacionBadge estado={c.estado_publicacion} compact />
                 </span>
                 {c.descripcion && (
                   <span class="c-desc">{miniDescripcion(c.descripcion)}</span>
@@ -500,9 +494,9 @@ function miniDescripcion(raw: string, max = 140): string {
               </span>
             ) : (
               <a href={`/casos/${c.slug}`}>
-                <span class="c-name-row">
+                <span class="c-case-line">
+                  <EstadoPublicacionBadge estado={c.estado_publicacion} listado />
                   <span class="c-name">{c.mediatico}</span>
-                  <EstadoPublicacionBadge estado={c.estado_publicacion} compact />
                 </span>
                 {c.descripcion && (
                   <span class="c-desc">{miniDescripcion(c.descripcion)}</span>
@@ -511,12 +505,12 @@ function miniDescripcion(raw: string, max = 140): string {
             )}
           </td>
           <td>
-            <PhaseBadge fase={c.fase_actual} />
-          </td>
-          <td>
-            <div class="c-organo">
-              <a class="c-organo__short c-mono" title={c.organoFull} href={`/organizaciones/${c.organoId}`}>{c.organo}</a>
-              <span class="c-organo__full">{c.oficial}</span>
+            <div class="c-fase-organo">
+              <PhaseBadge fase={c.fase_actual} />
+              <div class="c-organo">
+                <a class="c-organo__short c-mono" title={c.organoFull} href={`/organizaciones/${c.organoId}`}>{c.organo}</a>
+                <span class="c-organo__full">{c.oficial}</span>
+              </div>
             </div>
           </td>
           <td>
@@ -530,9 +524,16 @@ function miniDescripcion(raw: string, max = 140): string {
                     <ul class="c-afectadas__lista">
                       {c.afectadasDirectas.map((o) => (
                         <li class="c-afectadas__item">
-                          <a href={`/organizaciones/${o.id}`}>{o.nombre}</a>
-                          {o.rol && <RolBadge rol={o.rol} label={rolLabel(o.rol)} />}
-                          {o.tag && <span class="c-afectadas__tag">{o.tag}</span>}
+                          <OrgAfectadaChip
+                            id={o.id}
+                            label={o.label}
+                            href={`/organizaciones/${o.id}`}
+                            esPartido={o.esPartido}
+                            nivel="directa"
+                            naturalezaLabel={o.naturalezaLabel}
+                            rol={o.rol}
+                            justificacion={o.justificacion}
+                          />
                         </li>
                       ))}
                     </ul>
@@ -544,11 +545,15 @@ function miniDescripcion(raw: string, max = 140): string {
                     <ul class="c-afectadas__lista">
                       {c.afectadasIndirectas.map((o) => (
                         <li class="c-afectadas__item">
-                          {o.esPartido ? (
-                            <PartidoBadge id={o.id} label={o.labelCorto} href={`/organizaciones/${o.id}`} size="sm" />
-                          ) : (
-                            <a href={`/organizaciones/${o.id}`}>{o.nombre}</a>
-                          )}
+                          <OrgAfectadaChip
+                            id={o.id}
+                            label={o.label}
+                            href={`/organizaciones/${o.id}`}
+                            esPartido={o.esPartido}
+                            nivel="indirecta"
+                            naturalezaLabel={o.naturalezaLabel}
+                            justificacion={o.justificacion}
+                          />
                         </li>
                       ))}
                     </ul>
@@ -721,11 +726,16 @@ function miniDescripcion(raw: string, max = 140): string {
     min-width: 0;
   }
 
-  .c-name-row {
+  .c-case-line {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: baseline;
     flex-wrap: wrap;
+    gap: 8px;
+  }
+  .c-name {
+    display: inline;
+    line-height: 1.25;
+    font-weight: 600;
   }
   .c-desc {
     display: block;
@@ -733,6 +743,12 @@ function miniDescripcion(raw: string, max = 140): string {
     color: var(--color-fg-muted);
     margin-top: 4px;
     line-height: 1.4;
+  }
+  .c-fase-organo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
   .c-organo {
     display: flex;
@@ -771,24 +787,14 @@ function miniDescripcion(raw: string, max = 140): string {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .c-afectadas__item {
-    display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
-    line-height: 1.3;
+    gap: 4px 6px;
   }
-  .c-afectadas__tag {
-    font: 500 0.72rem/1 var(--font-sans);
-    padding: 2px 6px;
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    background: var(--color-surface-muted, var(--color-surface));
-    color: var(--color-fg-muted);
-    white-space: nowrap;
+  .c-afectadas__item {
+    display: inline-flex;
+    max-width: 100%;
+    line-height: 1.3;
   }
   .c-hito-title {
     font-size: var(--font-size-0);

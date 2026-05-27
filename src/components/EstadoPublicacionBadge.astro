@@ -1,23 +1,18 @@
 ---
-// EstadoPublicacionBadge — badge del ciclo de vida editorial de una ficha
-// de Caso. Encapsula el enum de 7 valores en una etiqueta con color + dot,
-// sin glyph decorativo (ver AGENTS.md → "Convención de referencias y
-// citas", punto 4 sobre el sistema de badges).
+// EstadoPublicacionBadge — badge del ciclo de vida editorial de una ficha de Caso.
 //
-// Estilos scoped en este mismo fichero para no inflar global.css ni chocar
-// con la sesión paralela `bloque-e`.
+// Por defecto: pastilla con dot + etiqueta (comportamiento original).
+// Props opcionales:
+//   compact   — tamaño reducido para tablas
+//   dotOnly   — misma pastilla sin texto (solo dot + fondo)
+//   hover     — con dotOnly, envuelve en HoverCard con panel teñido
+//   listado   — atajo para /casos: compact + reglas dot-only/hover en
+//               beta_publica/publicado; badge con texto en estados excepcionales
 //
-// Mapeo (ver caso.schema.json para semántica):
-//   pendiente   — caso listado pero sin trabajo iniciado (gris muy plano).
-//   borrador    — en desarrollo, NO público en producción (gris navy).
-//   beta_publica — publicable con cosillas / huecos editoriales (mostaza).
-//   en_revision — revisión interna pre-publicación (mostaza outlined).
-//   publicado   — ficha terminada al máximo de hoy (verde acreditado).
-//   retirado_temporalmente / retirado_definitivamente (granate).
+// Canon visual: DESIGN.md + caso.schema.json (enum estado_publicacion).
 
-// Astro no soporta `export` en frontmatter de componentes .astro. Los
-// consumidores (PgCasoDetalle, PgCasos) re-declaran el type localmente
-// con los mismos 7 valores.
+import HoverCard from '@/components/HoverCard.astro';
+
 type EstadoPublicacion =
   | 'pendiente'
   | 'borrador'
@@ -29,11 +24,23 @@ type EstadoPublicacion =
 
 interface Props {
   estado: EstadoPublicacion;
-  /** Si true, renderiza tamaño compacto para tablas. */
   compact?: boolean;
+  dotOnly?: boolean;
+  hover?: boolean;
+  /** Atajo editorial para la columna Caso en /casos. Implica compact. */
+  listado?: boolean;
+  /** Nota del panel hover; default = copy canónica por estado. */
+  hoverNota?: string;
 }
 
-const { estado, compact = false } = Astro.props;
+const {
+  estado,
+  compact = false,
+  dotOnly = false,
+  hover = false,
+  listado = false,
+  hoverNota,
+} = Astro.props;
 
 const LABELS: Record<EstadoPublicacion, string> = {
   pendiente: 'Pendiente',
@@ -44,20 +51,81 @@ const LABELS: Record<EstadoPublicacion, string> = {
   retirado_temporalmente: 'Retirado temp.',
   retirado_definitivamente: 'Retirado',
 };
+
+const NOTAS: Record<EstadoPublicacion, string> = {
+  pendiente: 'En cola; aún no se ha empezado a trabajar la ficha.',
+  borrador: 'Ficha en desarrollo; no accesible en producción.',
+  beta_publica: 'Publicada con huecos editoriales menores.',
+  en_revision: 'Revisión interna antes de darla por cerrada.',
+  publicado: 'Ficha al máximo de lo que el inventario permite hoy.',
+  retirado_temporalmente: 'Retirada temporalmente del catálogo público.',
+  retirado_definitivamente: 'Retirada definitivamente del catálogo público.',
+};
+
+/** En listado, estos estados llevan etiqueta visible (sin hover). */
+const ESTADOS_TEXTO_EN_LISTADO = new Set<EstadoPublicacion>([
+  'pendiente',
+  'borrador',
+  'en_revision',
+  'retirado_temporalmente',
+  'retirado_definitivamente',
+]);
+
+const estadoSlug = estado.replace(/_/g, '-');
+const textoVisibleEnListado = listado && ESTADOS_TEXTO_EN_LISTADO.has(estado);
+const effectiveCompact = compact || listado;
+const effectiveDotOnly = textoVisibleEnListado ? false : dotOnly || listado;
+const effectiveHover = textoVisibleEnListado ? false : hover || (listado && effectiveDotOnly);
+const notaHover = hoverNota ?? NOTAS[estado];
+
+const badgeClass = [
+  'estado-pub-badge',
+  `estado-pub-badge--${estadoSlug}`,
+  effectiveCompact && 'estado-pub-badge--compact',
+  effectiveDotOnly && 'estado-pub-badge--dot-only',
+];
 ---
 
-<span
-  class:list={[
-    'estado-pub-badge',
-    `estado-pub-badge--${estado.replace(/_/g, '-')}`,
-    compact && 'estado-pub-badge--compact',
-  ]}
->
-  <span class="estado-pub-badge__dot" aria-hidden="true"></span>
-  <span class="estado-pub-badge__label">{LABELS[estado]}</span>
-</span>
+{effectiveHover ? (
+  <div class="estado-pub-badge-wrap">
+    <HoverCard side="top" align="start" openDelay={80} closeDelay={120}>
+      <span
+        slot="trigger"
+        class:list={badgeClass}
+        aria-label={`Estado de la ficha: ${LABELS[estado]}`}
+      >
+        <span class="estado-pub-badge__dot" aria-hidden="true"></span>
+      </span>
+      <div
+        slot="content"
+        class:list={[
+          'estado-pub-badge__hover',
+          `estado-pub-badge__hover--${estadoSlug}`,
+        ]}
+      >
+        <p class="estado-pub-badge__hover-title">{LABELS[estado]}</p>
+        <p class="estado-pub-badge__hover-note">{notaHover}</p>
+      </div>
+    </HoverCard>
+  </div>
+) : (
+  <span
+    class:list={badgeClass}
+    aria-label={effectiveDotOnly ? `Estado de la ficha: ${LABELS[estado]}` : undefined}
+  >
+    <span class="estado-pub-badge__dot" aria-hidden="true"></span>
+    {!effectiveDotOnly && (
+      <span class="estado-pub-badge__label">{LABELS[estado]}</span>
+    )}
+  </span>
+)}
 
 <style>
+  .estado-pub-badge-wrap :global(.hcard) {
+    flex-shrink: 0;
+    max-width: none;
+  }
+
   .estado-pub-badge {
     display: inline-flex;
     align-items: center;
@@ -77,6 +145,24 @@ const LABELS: Record<EstadoPublicacion, string> = {
     padding: 0.1em 0.32em;
   }
 
+  .estado-pub-badge--dot-only {
+    gap: 0;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+  }
+  .estado-pub-badge--dot-only .estado-pub-badge__dot {
+    margin-top: 0;
+  }
+  .estado-pub-badge--dot-only:not(.estado-pub-badge--compact) {
+    padding: 0.28em 0.34em;
+  }
+  .estado-pub-badge--dot-only.estado-pub-badge--compact {
+    padding: 4px 5px;
+    min-inline-size: 18px;
+    min-block-size: 16px;
+  }
+
   .estado-pub-badge__dot {
     flex-shrink: 0;
     inline-size: 0.5em;
@@ -89,8 +175,6 @@ const LABELS: Record<EstadoPublicacion, string> = {
   .estado-pub-badge__label {
     line-height: 1.2;
   }
-
-  /* --- Estados --------------------------------------------------------- */
 
   .estado-pub-badge--pendiente {
     color: var(--color-fg-muted, #6c6f73);
@@ -128,7 +212,6 @@ const LABELS: Record<EstadoPublicacion, string> = {
     background: #f9ecec;
   }
 
-  /* Dark mode: foregrounds claros equivalentes para mantener contraste. */
   @media (prefers-color-scheme: dark) {
     .estado-pub-badge--pendiente {
       color: var(--color-fg-subtle, var(--color-fg-muted));
@@ -145,6 +228,90 @@ const LABELS: Record<EstadoPublicacion, string> = {
     }
     .estado-pub-badge--retirado-temporalmente,
     .estado-pub-badge--retirado-definitivamente {
+      color: #e0a4a4;
+      background: #2a1414;
+    }
+  }
+</style>
+
+<style is:global>
+  .estado-pub-badge-wrap .hcard__content {
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .estado-pub-badge__hover {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 240px;
+    padding: 8px 10px;
+    border: 1px solid var(--color-accent);
+    border-radius: 0;
+    box-shadow: 0 6px 14px -10px rgba(0, 0, 0, 0.28);
+  }
+
+  .estado-pub-badge__hover-title {
+    margin: 0;
+    font: 600 12px/1.3 var(--font-sans);
+    color: inherit;
+  }
+
+  .estado-pub-badge__hover-note {
+    margin: 0;
+    font: 400 11px/1.4 var(--font-sans);
+    color: color-mix(in srgb, currentColor 72%, transparent);
+  }
+
+  .estado-pub-badge__hover--pendiente {
+    color: var(--color-fg-muted, #6c6f73);
+    background: var(--color-desmentido-bg, #f0f0f0);
+  }
+
+  .estado-pub-badge__hover--borrador {
+    color: var(--color-rol-investigado);
+    background: var(--color-investigado-bg, #f7f0dd);
+  }
+
+  .estado-pub-badge__hover--beta-publica {
+    color: #6b4d00;
+    background: var(--color-accent-secondary-soft, #f7ecc5);
+  }
+
+  .estado-pub-badge__hover--en-revision {
+    color: #6b4d00;
+    background: color-mix(in srgb, var(--color-accent-secondary-soft, #f7ecc5) 55%, transparent);
+  }
+
+  .estado-pub-badge__hover--publicado {
+    color: var(--color-acreditado);
+    background: var(--color-acreditado-bg, #eef4ef);
+  }
+
+  .estado-pub-badge__hover--retirado-temporalmente,
+  .estado-pub-badge__hover--retirado-definitivamente {
+    color: #8e2424;
+    background: #f9ecec;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .estado-pub-badge__hover--pendiente {
+      color: var(--color-fg-subtle, var(--color-fg-muted));
+    }
+    .estado-pub-badge__hover--borrador {
+      color: var(--color-accent);
+    }
+    .estado-pub-badge__hover--beta-publica,
+    .estado-pub-badge__hover--en-revision {
+      color: var(--color-accent-secondary);
+    }
+    .estado-pub-badge__hover--publicado {
+      color: #9ec5a7;
+    }
+    .estado-pub-badge__hover--retirado-temporalmente,
+    .estado-pub-badge__hover--retirado-definitivamente {
       color: #e0a4a4;
       background: #2a1414;
     }
