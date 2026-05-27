@@ -226,6 +226,8 @@ Excepción legítima al "uno por sesión": si la sesión incluye un cambio edito
 
 ### Documentos primarios descargados a `/public/documentos/`
 
+> **Para localizar el PDF de un primario oficial**, consulta primero el catálogo técnico de portales en [`docs/fuentes/`](docs/fuentes/README.md): poder judicial, BOE y boletines autonómicos, Fiscalía, Tribunal Constitucional, organismos económicos, Congreso/Senado/Defensor del Pueblo y archivos/mirrors. Cada ficha trae endpoints, parámetros, cobertura temporal real y trampas conocidas. Si descubres algo nuevo, anótalo allí en la misma sesión.
+
 **Norma incorporada el 2026-05-22 tras el PR2 del caso del Fiscal General del Estado.** Cuando un caso tiene asociado un documento jurisdiccional clave (sentencia, auto, BOE, informe oficial pericial), se descarga la copia íntegra al árbol del proyecto. El archivo del PDF/XML/etc. vive en:
 
 ```text

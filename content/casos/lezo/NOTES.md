@@ -234,6 +234,81 @@ para PR8+):
   vanguardia.com.mx para Felicísimo Damián Ramos Ramos como
   director de Control de Gestión OHL hasta su jubilación en 2013).
 
+- **~~Acuerdo del CGPJ que adscribe a Manuel María García-Castellón
+  García-Lomas al Juzgado Central de Instrucción nº 6~~** —
+  **Resuelto el 2026-05-27 noche (3)** tras navegación directa al
+  endpoint estable de boletines del CGPJ. El maintainer aportó el
+  curl del formulario de búsqueda del CGPJ; el agente confirmó que
+  ese buscador interno sólo indexa acuerdos a partir de 2024 (no
+  llega a 2017) pero localizó las URLs canónicas del histórico
+  estático de boletines en `/cgpj/es/Servicios/Acuerdos-del-CGPJ/Historico-Acuerdos-de-la-Comision-Permanente/Acuerdos-de-la-Comision-Permanente-del-CGPJ-de-<DD>-de-<mes>-de-<YYYY>`,
+  cada uno con su PDF en `/stfls/CGPJ/SECRETARÍA GENERAL/ACUERDOS
+  DE LA COMISIÓN PERMANENTE/FICHERO/<YYYYMMDD> BoletinesAcuerdosCP.pdf`.
+  La fecha real del acuerdo de reingreso es **22 de junio de 2017**
+  (acuerdo 1.1-2, no 6-jun-2017 como suponía el sub-agente Sonnet
+  Explore por cita imprecisa de tres medios). Texto literal: «Acordar
+  el reingreso al servicio activo en la Carrera Judicial del
+  magistrado Manuel García-Castellón García-Lomas, con destino en el
+  Juzgado Central de Instrucción número 6 con efectos económicos y
+  administrativos del día 16 de junio de 2017, disponiendo del plazo
+  de 20 días hábiles para tomar posesión a partir de dicho momento.»
+  Boletín íntegro descargado al árbol como `cgpj-cp-22jun2017-reingreso-castellon-jci6.pdf`
+  (400 803 bytes, sha256 `39c968b7…f5870b`).
+
+  Adicionalmente se localizó y descargó el acuerdo 2-3-1 de la
+  Comisión Permanente del 8 de junio de 2017 (boletín
+  `cgpj-cp-08jun2017-velasco-interino-jci6.pdf`, 312 563 bytes, sha256
+  `dc535616…f259a`) por el que, al amparo del artículo 216 bis 1
+  párrafo 2 LOPJ, se acuerda la adscripción obligatoria de Eloy
+  Velasco Núñez en régimen de comisión de servicio sin relevación
+  de funciones para cubrir interinamente la vacante del JCI nº 6
+  «hasta la incorporación efectiva del magistrado Manuel
+  García-Castellón García-Lomas». Esta medida cautelar interina
+  explica la transición ordenada del juzgado mientras García-Castellón
+  formalizaba su reingreso desde el extranjero.
+
+  El hito `cambio-juez-velasco-castellon-lezo-2017-07-01` queda
+  cumplimentado con cinco documentos: `documento_principal_id`
+  `cgpj-cp-22jun2017-reingreso-castellon-jci6` (N1, acuerdo formal
+  de adscripción); `documentos_relacionados[0]`
+  `cgpj-cp-08jun2017-velasco-interino-jci6` (N1, medida cautelar
+  interina); `documentos_relacionados[1]`
+  `cgpj-velasco-sala-apelaciones-2017-05-17` (N1, nota CGPJ que
+  adjudica las plazas de la Sala de Apelación a Velasco y Enrique
+  López); `documentos_relacionados[2]`
+  `boe-rd527-vacante-velasco-jci6-2017-05-24` (N1, RD 527/2017 que
+  formaliza por Real Decreto el acuerdo del 17-may-2017);
+  `documentos_relacionados[3]`
+  `eldiario-velasco-sustituido-castellon-2017-05-31` (N4, cobertura
+  del regreso de García-Castellón). Cronología procesal-administrativa
+  completa y trazable en el árbol del proyecto.
+
+  **Aprendizaje operativo del 2026-05-27**: el buscador interno del
+  CGPJ (`/Servicios/Acuerdos-del-CGPJ/Acuerdos-de-la-Comision-Permanente/`)
+  sólo indexa de 2024 en adelante. Para acuerdos previos a 2024 hay
+  que navegar al histórico estático
+  (`/Servicios/Acuerdos-del-CGPJ/Historico-Acuerdos-de-la-Comision-Permanente/`)
+  por URL directa con el formato
+  `Acuerdos-de-la-Comision-Permanente-del-CGPJ-de-<DD>-de-<mes>-de-<YYYY>`
+  o probar fechas próximas con HEAD/GET para descubrir qué sesiones
+  existen. Las sesiones tienen URLs PDF estables en
+  `/stfls/CGPJ/SECRETARÍA GENERAL/ACUERDOS DE LA COMISIÓN PERMANENTE/FICHERO/<YYYYMMDD> BoletinesAcuerdosCP.pdf`
+  (con espacios en URL-encoding `%20`).
+
+  **Corrección de fecha del hito 2026-05-27**: la toma de posesión
+  efectiva de García-Castellón en el JCI nº 6 es el **lunes 26 de
+  junio de 2017**, no julio como tenía previamente el hito (Confilegal
+  del 21-jun-2017 dice «tomará posesión el próximo lunes»; el acuerdo
+  CP CGPJ del 22-jun-2017 fija efectos del reingreso al 16-jun-2017
+  con plazo de 20 días hábiles para tomar posesión, lo que sitúa la
+  toma de posesión efectiva entre el 16-jun y mediados de julio).
+  `fecha` corregida a `"2017-06-26"` con `fecha_precision: dia`; el
+  `id` del fichero (`cambio-juez-velasco-castellon-lezo-2017-07-01`)
+  se conserva por V-21 (slugs inmutables tras `estado_publicacion = publicado`
+  del caso), patrón ya aplicado en Begoña Gómez al documento
+  `auto-audiencia-desimputa-goyache-2025-05-16` cuando la fecha real
+  resultó ser 13-may-2025 sin cambiar el slug.
+
 ## Lo que NO está bloqueante
 
 Ninguno de los pendientes anteriores impide que el caso Lezo se

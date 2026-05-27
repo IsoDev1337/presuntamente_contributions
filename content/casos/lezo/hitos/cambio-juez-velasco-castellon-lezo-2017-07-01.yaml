@@ -1,28 +1,53 @@
 id: cambio-juez-velasco-castellon-lezo-2017-07-01
 caso_id: lezo
 tipo: cambio_juez
-fecha: "2017-07-01"
-fecha_precision: mes
+fecha: "2017-06-26"
+fecha_precision: dia
 titulo: "El magistrado Manuel García-Castellón asume la titularidad del Juzgado Central de Instrucción nº 6 en sustitución de Eloy Velasco, que pasa a la Sala de Apelaciones de la Audiencia Nacional"
 descripcion: |
   El magistrado titular hasta la fecha del Juzgado Central de
-  Instrucción nº 6 de la Audiencia Nacional, Eloy Velasco
-  Núñez, abandona la plaza al ascender por concurso a la Sala
-  de Apelaciones de la Audiencia Nacional, órgano de reciente
-  creación encargado de revisar las sentencias dictadas por la
-  Sala de lo Penal de la propia Audiencia. Le sucede en la
-  titularidad del JCI nº 6 Manuel María García-Castellón
-  García-Lomas, magistrado que regresa a España tras desempeñar
-  funciones jurisdiccionales como magistrado de enlace en
-  París. La asunción del juzgado por García-Castellón implica
-  la continuación de la instrucción del procedimiento Lezo, ya
+  Instrucción nº 6 de la Audiencia Nacional, Eloy Velasco Núñez,
+  abandona la plaza al ascender por concurso a la Sala de Apelación
+  de la Audiencia Nacional, órgano de reciente creación encargado
+  de revisar las sentencias dictadas por la Sala de lo Penal de la
+  propia Audiencia. El acuerdo de la Comisión Permanente del
+  Consejo General del Poder Judicial del 17 de mayo de 2017 adjudica
+  las dos plazas de la nueva Sala de Apelación a Velasco y a Enrique
+  López, y se formaliza por Real Decreto 527/2017, de 22 de mayo
+  (BOE-A-2017-5738), publicado en el BOE núm. 123 del 24 de mayo
+  de 2017. La Comisión Permanente del CGPJ acuerda en sesión del
+  8 de junio de 2017 (acuerdo 2-3-1), al amparo del artículo 216
+  bis 1 párrafo 2 de la Ley Orgánica del Poder Judicial, la
+  adscripción obligatoria de Velasco en régimen de comisión de
+  servicio sin relevación de funciones para cubrir interinamente
+  la vacante del JCI nº 6 «hasta la incorporación efectiva del
+  magistrado Manuel García-Castellón García-Lomas». Por acuerdo
+  1.1-2 de la Comisión Permanente del 22 de junio de 2017 se
+  acuerda «el reingreso al servicio activo en la Carrera Judicial
+  del magistrado Manuel García-Castellón García-Lomas, con destino
+  en el Juzgado Central de Instrucción número 6 con efectos
+  económicos y administrativos del día 16 de junio de 2017,
+  disponiendo del plazo de 20 días hábiles para tomar posesión a
+  partir de dicho momento». García-Castellón regresa a España
+  tras desempeñar funciones jurisdiccionales como magistrado de
+  enlace en París y toma posesión efectiva del juzgado el lunes
+  26 de junio de 2017, según cobertura de Confilegal del 21 de
+  junio. La asunción del juzgado por García-Castellón implica la
+  continuación de la instrucción del procedimiento Lezo, ya
   iniciada por Velasco con la operación policial coordinada del
-  19 de abril de 2017 y los autos de prisión preventiva del 22
-  de abril, así como de la macrocausa Púnica.
+  19 de abril de 2017 y los autos de prisión preventiva del 22 de
+  abril, así como de la macrocausa Púnica.
 personas_afectadas:
   - eloy-velasco-nunez
   - manuel-garcia-castellon
 organizaciones_afectadas:
   - juzgado-central-instruccion-6
   - audiencia-nacional
+  - consejo-general-poder-judicial
+documento_principal_id: cgpj-cp-22jun2017-reingreso-castellon-jci6
+documentos_relacionados:
+  - cgpj-cp-08jun2017-velasco-interino-jci6
+  - cgpj-velasco-sala-apelaciones-2017-05-17
+  - boe-rd527-vacante-velasco-jci6-2017-05-24
+  - eldiario-velasco-sustituido-castellon-2017-05-31
 fase_resultante: instruccion

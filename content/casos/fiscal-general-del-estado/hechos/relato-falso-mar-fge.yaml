@@ -33,8 +33,8 @@ organizaciones_implicadas:
 documentos_respaldo:
   - documento_id: ts-sentencia-1000-2025-fge
     pasaje: "Hechos Probados, p. 17, sobre la difusión en redes sociales por parte del jefe de Gabinete de la Presidencia de la Comunidad de Madrid del relato sobre una supuesta retirada del pacto por parte de la Fiscalía, identificado por la Sala como detonante de la actuación posterior del Fiscal General; voto particular, p. 237, contraste interpretativo de la misma secuencia."
-nivel_fuente_efectivo: 1
+nivel_fuente_efectivo: 3
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-23"
+ultima_revision_editorial: "2026-05-27"

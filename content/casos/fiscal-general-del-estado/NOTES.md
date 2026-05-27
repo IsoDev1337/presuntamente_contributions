@@ -288,6 +288,54 @@ Extraídos del texto íntegro de la Sentencia 1000/2025:
   (presidía en funciones desde el 6-dic-2024 tras expiración del
   mandato de Marchena; nombramiento formal CGPJ el 23-jul-2025).
 
+## Cambios aplicados durante el backlog editorial heredado (2026-05-27)
+
+Pasada de afinamiento sobre tres hallazgos no estructurales detectados por la
+auditoría `/revisar-caso` del 2026-05-27 (ver `ROADMAP.md` del cierre).
+
+### Nuevo rol procesal para Julián Salto Torres en la fase TSJM
+
+- `content/casos/fiscal-general-del-estado/roles/salto-investigado-tsjm.yaml`
+  (id `salto-investigado-tsjm-fge-2024-04`, `rol: investigado`, fechas
+  2024-04-03 → 2024-10-15, delitos `revelacion-de-secretos` / art. 417.1 CP,
+  `hito_origen_id: querella-gonzalez-amador-tsjm-fge-2024-04-03`,
+  `hito_fin_id: apertura-causa-fge-2024-10-15`).
+- Cierra el gap detectado: Julián Salto Torres figuraba ya como Persona
+  fichada con `es_figura_publica: true` y aparecía nominalmente en la
+  descripción de dos hitos (`querella-gonzalez-amador-tsjm-fge-2024-04-03`,
+  `tsjm-admite-querella-fge-2024-05-07`) sin rol formal.
+- El rol cubre estrictamente la fase TSJM: la Sala Segunda del TS, al asumir
+  competencia el 15-oct-2024 por razón del aforamiento del entonces FGE, abrió
+  causa especial únicamente contra Álvaro García Ortiz y Pilar Rodríguez
+  Fernández; Salto quedó excluido de la causa principal.
+- Salto añadido a `personas_afectadas` de los dos hitos TSJM en que aparece
+  mencionado en la prosa (presentación y admisión de la querella), por
+  coherencia con el `hito_origen_id` del nuevo rol.
+
+### V-19 aplicada a cuatro hechos con `nivel_fuente_efectivo: 1` que sólo citan la sentencia TS (N3)
+
+Hechos corregidos a `nivel_fuente_efectivo: 3`:
+
+- `adelanto-nota-elpais-fge`.
+- `presion-whatsapp-lastra-fge`.
+- `relato-falso-mar-fge`.
+- `borrado-dispositivos-fge`.
+
+Verificado que las dos notas CGPJ disponibles (fallo del 20-nov-2025 y
+notificación del 9-dic-2025) son resúmenes generales del fallo y no entran en
+el detalle específico de la nota a EL PAÍS, los WhatsApp a Lastra, el relato
+falso de MAR ni el borrado de dispositivos. Cuando aparezca la sentencia
+íntegra en CENDOJ y se promueva el documento a N1 (manteniendo `id` y
+`hash_sha256`), los cuatro hechos volverán automáticamente a N1 por V-19.
+
+### Aclaración de `nivel_fuente_justificacion` en escrito Fiscalía recurso AP (Begoña Gómez)
+
+Hallazgo aplicado al documento `escrito-fiscalia-recurso-ap-bg-2026-04-21`
+(caso `begona-gomez`, no FGE) — anotado aquí sólo como referencia cruzada
+para mantener trazabilidad de la pasada del 27-may: la justificación se
+reescribió para aclarar que el N2 se asigna por tipo y origen (escrito
+procesal del Ministerio Fiscal), no por publicación oficial en `fiscal.es`.
+
 ## Pendiente para PR4 y siguientes
 
 - **Archive.org / archive.ph mirrors** para los documentos N4.

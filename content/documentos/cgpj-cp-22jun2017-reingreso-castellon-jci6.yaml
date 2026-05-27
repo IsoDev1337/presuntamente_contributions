@@ -1,0 +1,45 @@
+id: cgpj-cp-22jun2017-reingreso-castellon-jci6
+titulo: "Acuerdo 1.1-2 de la Comisión Permanente del CGPJ del 22 de junio de 2017 — reingreso al servicio activo del magistrado Manuel María García-Castellón García-Lomas con destino al Juzgado Central de Instrucción nº 6"
+tipo: otro
+nivel_fuente: 1
+nivel_fuente_justificacion: |
+  Tipo `otro` por ausencia de valor enum específico para "acuerdo de
+  órgano colegiado del CGPJ" (el enum del schema cubre `informe_cgpj`,
+  `boletin_oficial` y `nota_prensa_institucional`, pero no acuerdo
+  formal de la Comisión Permanente como tal). Documento sustantivo:
+  acuerdo formal de la Comisión Permanente del Consejo General del
+  Poder Judicial adoptado en la sesión celebrada el 22 de junio de
+  2017 (acuerdo 1.1-2 del boletín de la sesión), por el que se acuerda
+  «el reingreso al servicio activo en la Carrera Judicial del
+  magistrado Manuel García-Castellón García-Lomas, con destino en el
+  Juzgado Central de Instrucción número 6 con efectos económicos y
+  administrativos del día 16 de junio de 2017, disponiendo del plazo
+  de 20 días hábiles para tomar posesión a partir de dicho momento».
+  Es el documento formal que adscribe a García-Castellón al JCI nº 6
+  en sustitución de Eloy Velasco Núñez (destinado a la Sala de
+  Apelación de la Audiencia Nacional por RD 527/2017). El boletín
+  íntegro de la sesión (77 páginas) incluye además otros 76 acuerdos
+  de la misma sesión; el acuerdo relevante para el caso Lezo es el
+  1.1-2 transcrito literalmente, localizable en la página 1.
+
+  Dominio oficial en lista blanca (`poderjudicial.es`). Copia íntegra
+  descargada del endpoint estable del CGPJ (`/stfls/CGPJ/SECRETARÍA
+  GENERAL/ACUERDOS DE LA COMISIÓN PERMANENTE/FICHERO/20170622
+  BoletinesAcuerdosCP.pdf`, 400 803 bytes) y servida desde el árbol
+  del proyecto en
+  `/documentos/lezo/cgpj-cp-22jun2017-reingreso-castellon-jci6.pdf`
+  con hash SHA-256 verificable. Metadatos del PDF reflejan autoría
+  interna del Consejo General del Poder Judicial (autor `jmcanedo`,
+  generado desde Microsoft Word con ScanSoft PDF Create! 7, fecha de
+  creación 23 de junio de 2017). Cumple V-12.
+productor_organizacion_id: consejo-general-poder-judicial
+fecha_documento: "2017-06-22"
+fecha_publicacion: "2017-06-22"
+url_canonica: "https://www.poderjudicial.es/cgpj/es/Servicios/Acuerdos-del-CGPJ/Historico-Acuerdos-de-la-Comision-Permanente/Acuerdos-de-la-Comision-Permanente-del-CGPJ-de-22-de-junio-de-2017"
+ruta_local: "/documentos/lezo/cgpj-cp-22jun2017-reingreso-castellon-jci6.pdf"
+hash_sha256: "39c968b7b396a77ec8b26fd8772d82cb8ee28b82cd306485a88e3d2fa355870b"
+estado_acceso: publico
+idioma: es
+caso_principal_id: lezo
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-27"

@@ -82,6 +82,29 @@ Si un hito relevante NO tiene N1 disponible (típico en operaciones policiales o
 
 **Beneficio editorial**: el sitio puede ofrecer al lector "URL canónica + copia local + cita exacta", elevando el rigor a nivel de citación académica. Y si la URL canónica desaparece, el documento se conserva. La trazabilidad de fidelidad es el `hash_sha256`.
 
+### 3.ter. Localización de PDFs en portales oficiales
+
+El catálogo técnico de **endpoints, patrones de URL y trampas conocidas por portal** vive en [`docs/fuentes/`](../../../docs/fuentes/README.md), no aquí. Es conocimiento operativo reusable por varias skills, scripts y agentes; centralizarlo evita duplicidad y permite ampliarlo con cada sesión.
+
+Para localizar un documento primario al fichar un caso:
+
+1. **Identifica el portal**: poder judicial (sentencias, autos, acuerdos CGPJ, notas de prensa) → [`docs/fuentes/poder-judicial.md`](../../../docs/fuentes/poder-judicial.md). BOE y boletines autonómicos → [`docs/fuentes/boe-y-boletines-oficiales.md`](../../../docs/fuentes/boe-y-boletines-oficiales.md). Fiscalía → [`docs/fuentes/fiscalia.md`](../../../docs/fuentes/fiscalia.md). Tribunal Constitucional → [`docs/fuentes/tribunal-constitucional.md`](../../../docs/fuentes/tribunal-constitucional.md). Organismos económicos → [`docs/fuentes/organismos-economicos.md`](../../../docs/fuentes/organismos-economicos.md). Congreso/Senado/Defensor → [`docs/fuentes/legislativo.md`](../../../docs/fuentes/legislativo.md). archive.org y mirrors → [`docs/fuentes/archivos-y-mirrors.md`](../../../docs/fuentes/archivos-y-mirrors.md).
+
+2. **Lee la ficha del portal** y reproduce el endpoint con `curl`. La ficha trae patrones de URL, parámetros del buscador, cobertura temporal real, filtros silenciosos y un caso de prueba conocido para verificar que el portal sigue funcionando como esperamos.
+
+3. **Si descubres algo nuevo** (endpoint estable no documentado, código numérico opaco, filtro que no filtra de verdad, cobertura recortada en años): **anótalo en la misma sesión** en la ficha correspondiente, en el bloque "Histórico de descubrimientos". El catálogo crece y se vuelve más útil cada vez que se usa.
+
+4. **Si el portal no existe todavía en el catálogo**: crea la ficha mínima con el patrón básico que descubras, aunque sea breve. La plantilla está en [`docs/fuentes/README.md`](../../../docs/fuentes/README.md#plantilla-mínima-por-ficha).
+
+**Decisión editorial sobre nivel de fuente** (esto sí es responsabilidad de la skill, no del catálogo):
+
+- **N1 — preferido**: documento del propio órgano emisor en lista blanca `DominiosOficiales`, con URL canónica estable. Descargar al árbol cuando aplica la convención de "Documentos primarios descargados" (sentencias, autos relevantes, BOE, informes públicos).
+- **N2**: documento oficial secundario o instructor (informe UCO/UDEF, escrito de Fiscalía, comunicado de corporación de derecho público fuera de lista blanca). El nivel se asigna **por tipo y origen**, no por publicación oficial. Si una Fiscalía emite un escrito procesal y no lo publica en `fiscal.es`, sigue siendo N2 por tipo; documentar la verificación cruzada en `nivel_fuente_justificacion`.
+- **N3**: documento de parte, institucional no jurisdiccional, pericial de parte, sentencia TS no localizada en CENDOJ pero accesible íntegra vía mirror periodístico identificable con triangulación (`filtrado_verificado`). Criterios para aceptar un mirror en [`docs/fuentes/archivos-y-mirrors.md`](../../../docs/fuentes/archivos-y-mirrors.md). **NO** mirrors anónimos (Wuolah, Scribd, blogs personales): rechazar y anotar `pendiente_primario` en `NOTES.md`.
+- **N4**: cobertura periodística. Exigir respaldo cruzado por al menos otra línea editorial distinta (V-13). `url_archivo` en archive.org obligatorio.
+
+Si un hito relevante NO tiene N1 disponible (típico en autos de instrucción de JI ordinarios o autos intermedios de AP en causas vivas), modelar con N4 cruzado como `documento_principal_id` + uno o más `documentos_relacionados` en distintas líneas editoriales. Anotar en `NOTES.md` del caso como `pendiente_primario` para una pasada futura cuando aparezca el documento oficial — típicamente cuando el procedimiento llegue al TS o gane firmeza definitiva.
+
 ### 4. Generación del esqueleto
 
 Producir los YAMLs en disco bajo:

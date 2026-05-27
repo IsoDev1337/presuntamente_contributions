@@ -35,8 +35,8 @@ organizaciones_implicadas:
 documentos_respaldo:
   - documento_id: ts-sentencia-1000-2025-fge
     pasaje: "Hechos Probados, p. 21, transcripción literal de la conversación telefónica y de los cuatro mensajes de WhatsApp del 14-mar-2024 dirigidos por el Fiscal General a la Fiscal Superior de Madrid."
-nivel_fuente_efectivo: 1
+nivel_fuente_efectivo: 3
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-23"
+ultima_revision_editorial: "2026-05-27"

@@ -210,3 +210,49 @@ El detalle granular anterior a la limpieza del 2026-05-25 sigue preservado en el
 ## 2026-05-22 y anteriores
 
 El detalle de Fase 1, integración del design system, Pagefind, RichProse, `/delitos`, `/sobre`, `/rectificar`, Plus Ultra, Begoña Gómez, González Amador y Fiscal General del Estado queda consolidado en [`fases-cerradas.md`](fases-cerradas.md) y en el git log.
+
+## 2026-05-26
+
+### Cloudflare Pages conectado al repo (noche)
+
+**Cloudflare Pages conectado al repo y sirviendo el preview en [`presuntamente.pages.dev`](https://presuntamente.pages.dev)** con `X-Robots-Tag: noindex` durante la fase sin DNS apex y Web Analytics activado a nivel de proyecto. Auto-deploy por push a `main` operativo. Detalle, configuración del panel y aprendizajes (primer build falló por `npm build` sin `run`; UI nueva empuja al flujo de Workers Static Assets; Web Analytics de zona DNS ≠ Web Analytics del proyecto Pages) en [`docs/web/features/cloudflare-pages-deploy.md`](../web/features/cloudflare-pages-deploy.md).
+
+### Cierre del sprint extendido (tarde-noche)
+
+Sesión grande con siete piezas:
+
+1. **Modelo de clasificación editorial de medios** — canon [`docs/diseno/07-clasificacion-editorial-medios.md`](../diseno/07-clasificacion-editorial-medios.md). Cuatro campos nuevos en `Organizacion` (`naturaleza_editorial`, `orientacion_editorial_declarada`, `orientacion_editorial_percibida`, `grupo_editorial`). Enum del eje 7+1. Naturaleza separa generalistas políticos y confesionales (admiten orientación) del resto. 9 medios con orientación declarada verificada (piloto + sub-agente). Sin `percibida` poblada todavía (Reuters 2025 no contiene esos datos; ver bloque D).
+
+2. **UI de clasificación editorial** — `ClasificacionEditorialBarra.astro`, `OrientacionBadge.astro` (rectangular con fondo + paleta cool→warm invertida: izquierda ámbar, derecha azul), `NaturalezaBadge.astro` (estilo `badge--cat`). Integrados en `PgCasoDetalle` (cobertura mediática) y `PgOrganizacionDetalle` (clasificación editorial); columna en /organizaciones. Disclaimers de cobertura reordenados al final.
+
+3. **Modelo de partidos afectados** — `Caso.partidos_afectados[]` con enum cerrado (`imputacion_a_cargo_del_partido`, `gobierno_responsable_del_acto_investigado`, `vinculo_familiar_directo_con_dirigente`, `militancia_o_cargo_organico_relevante`, `querella_o_acusacion_popular_del_partido`, `otro`) + justificación. **Declaración explícita, nunca inferida.** Poblado piloto: `begona-gomez` (PSOE) y `gonzalez-amador` (PP + PSOE + Más Madrid). [Retirado del schema el 2026-05-27 noche, 2 por el refactor de afectación directa/indirecta.]
+
+4. **Mejoras de listados y vista agregada de "instituciones alcanzadas"** — /casos con mini-descripción `que_se_investiga`, último hito truncado, órgano clic, RolBadge para naturaleza de org afectada, columna `Partidos afectados`, sin Implic; /personas con biografía corta + columna `Organización principal` + figura pública al lado del nombre como texto pálido; /organizaciones con bloque inverso `Personas relacionadas`; cabecera de Caso con bloques "Partidos afectados" e "Instituciones alcanzadas" (cajas con border-left por familia).
+
+5. **Landing actualizada** — "Casos destacados" (plural, ≥2) en stack vertical con preview enriquecido: fase + estado de publicación, organización afectada con RolBadge, partidos afectados, último hito truncado.
+
+6. **Explorador de Conexiones `/grafo`** — página global full-screen con Cytoscape.js, modo inventario completo sin foco, foco caso/persona/organización/documento, profundidad 1-3, filtros por tipo de nodo/arista con ayudas contextuales, layouts `cose`/`breadthfirst`, paneles flotantes, tabla textual equivalente activable y enlaces profundos desde fichas.
+
+7. **Sprint extendido de datos editoriales** — `orientacion_editorial_percibida` poblada en 5 medios desde CIS 3421 (única fuente externa verificable); `grupo_editorial` en 21 medios (4 secundarios + 17 grandes: PRISA, Atresmedia, etc.); `partidos_afectados` cerrado en los 4 casos pendientes (10 entradas); `/documentar-vinculos` y `/rastrear-cobertura` aplicadas a los 5 casos pendientes (30 vínculos modo caso + 108 piezas de cobertura); `/revisar-caso` v1 sobre los 6 publicables con cero BLOQUEANTES y 17 sugerencias resueltas; 26 esqueletos `pendiente` + 19 órganos judiciales (con 7 órganos/fases corregidos tras auditoría); 2 RelacionEntreCasos (gurtel↔barcenas, tandem↔kitchen); rename `psoe-financiacion-venezuela` → `caso-apamate`; skill `/documentar-vinculos` ascendida a **v2 modal** (caso · persona · organización) con dos pasadas cruzadas que añaden 4 fichas de Persona (Feijóo, Rajoy, Iglesias, Yolanda Díaz), 33 vínculos persona↔organización (Sánchez/Ayuso/Bárcenas/Cospedal/Fernández Díaz/Cobo/Gallardón/I. González/Rajoy/Iglesias/Yolanda Díaz/Feijóo/Calvo Poch/Bravo Rivera y 9 vínculos diputado/a Congreso), 4 organizaciones nuevas (`congreso-de-los-diputados`, `xunta-de-galicia`, `sumar`, `izquierda-unida`) y 22 documentos nuevos (5 BOE nacionales descargados al árbol + 2 BOCM Lezo descargados al árbol + 1 BOE FGE corregido + cobertura N4 cruzada). Validate final: **676/0**.
+
+### Ritmo vertical unificado en fichas
+
+Ritmo vertical unificado en fichas (caso, persona, organización, delito): `FichaTocSection.astro` + `.entity-mast` compartido + `PgCasoDetalle` migrado al patrón común.
+
+### UI Bloque D primera entrega
+
+Vínculos institucionales + cobertura mediática general en `PgCasoDetalle`, Persona y Organización; 16 vínculos + 29 piezas en `begona-gomez`.
+
+## 2026-05-27
+
+### Sesión paralela al deploy de Cloudflare Pages (mañana-tarde)
+
+Cuatro piezas:
+
+1. **`PartidoBadge` con color institucional sobrio** — componente reutilizable + tokens `--color-partido-<slug>-{bg,fg,border}` en `global.css` para los 7 partidos modelados (PSOE, PP, Vox, Podemos, Sumar, IU, Más Madrid) + fallback gris para cualquier otro. Sustituido en `/casos` (chip con `href`), home (cards destacadas con `asLink={false}` para no anidar `<a>`) y bloque editorial "Partidos afectados" de la ficha de caso (`data-partido` sobre `<li>`, no chip dentro de chip). Peso tipográfico bajado de 700 → 600 en el bloque editorial. Detalle en [`docs/web/features/partido-badge.md`](../web/features/partido-badge.md).
+
+2. **Iconografía funcional en `badge--cat`** — `CategoryBadge.astro` nuevo, wrapper único con 11 iconos Lucide inlineados como SVG (`gavel`, `scale`, `landmark`, `building-2`, `newspaper`, `users`, `shield`, `briefcase`, `banknote`, `flag`, `radio`). Mapeo `tipo → icono` por familia: el icono identifica la familia, no la sub-especialidad (todos los órganos judiciales superiores comparten `gavel`). Refactorizado en `Hito.astro`, `CoberturaMediaticaTable.astro`, `PgOrganizaciones.astro`, `PgDelitos.astro`. `NaturalezaBadge` mantiene paleta propia sin iconos. `lucide-static@1.16.0` como devDep, no runtime. Detalle en [`docs/web/features/iconografia-badge-cat.md`](../web/features/iconografia-badge-cat.md).
+
+3. **Dedupe de partidos en `/casos`** — bug visual: el listado mostraba `PSOE PSOE` en Plus Ultra y `PP PP` en Kitchen porque `partidos_afectados[]` admite varias entradas con el mismo `partido_id` y distinto `tipo_afectacion`. Ahora se deduplica por `partido_id` antes de renderizar; la justificación detallada sigue en la ficha del caso.
+
+4. **Decisión editorial: afectación directa vs indirecta** — al revisar la columna "Organización afectada" de `/casos`, el maintainer detectó que Podemos aparecía como "afectada" en Kitchen siendo acusación popular. Análisis: hoy se confunde "afectación" con "papel procesal" en dos modelos paralelos (`Caso.partidos_afectados[].tipo_afectacion: querella_o_acusacion_popular_del_partido` + prioridad `acusacion_institucional_en_caso` en la derivación). Taxonomía nueva acordada (directa · indirecta · no afectada / papel procesal) + 6 reglas editoriales que resuelven fronteras. **No implementado en esta sesión** — es refactor estructural con doc canónico, schema, migración de datos y UI. Plan completo en [`docs/web/features/afectacion-directa-indirecta.md`](../web/features/afectacion-directa-indirecta.md). [Implementado el mismo día en la sesión "(noche, 2)", ver cabecera del `ROADMAP.md`.]

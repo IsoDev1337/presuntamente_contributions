@@ -30,8 +30,8 @@ organizaciones_implicadas:
 documentos_respaldo:
   - documento_id: ts-sentencia-1000-2025-fge
     pasaje: "Hechos Probados, p. 21, sobre la difusión anticipada de la nota al diario EL PAÍS con autorización del Fiscal General. Y Fundamento de Derecho Tercero, apartado 3.1, p. 147, sobre la subsunción típica de la unidad de acción (correo + nota)."
-nivel_fuente_efectivo: 1
+nivel_fuente_efectivo: 3
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-23"
+ultima_revision_editorial: "2026-05-27"

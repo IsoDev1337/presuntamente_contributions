@@ -36,6 +36,8 @@ Lee el documento entero. Identifica:
 - Hechos nuevos sostenidos por el documento (acreditados o investigados según naturaleza del documento).
 - Cambios en roles procesales (imputaciones, desimputaciones, condenas).
 
+Si el documento todavía no está descargado y necesitas localizar su PDF en una fuente oficial, **consulta el catálogo técnico de portales en [`docs/fuentes/`](../../../docs/fuentes/README.md)** (poder judicial, BOE y boletines, Fiscalía, TC, organismos económicos, legislativo, archivos y mirrors). Cada ficha trae patrones de URL estables, endpoints de búsqueda con sus parámetros reales, cobertura temporal verificada y trampas conocidas. El catálogo se amplía con cada sesión que descubre un endpoint nuevo — si encuentras uno, anótalo en la ficha correspondiente en la misma sesión.
+
 ### 2. Validaciones previas (bloqueantes)
 
 Antes de proponer YAML alguno:

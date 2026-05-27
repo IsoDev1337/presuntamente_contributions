@@ -11,7 +11,7 @@ enunciado: |
   2025 por su presunta irregularidad; el acto administrativo de
   autorización en sí no está cuestionado y consta tanto en la nota
   oficial de la SEPI como en la base normativa publicada en el BOE.
-tipo: acreditado
+tipo: atribuido
 fecha_o_periodo:
   desde: "2021-03-09"
   precision: dia
@@ -32,4 +32,4 @@ nivel_fuente_efectivo: 1
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-24"
+ultima_revision_editorial: "2026-05-27"
