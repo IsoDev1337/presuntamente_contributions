@@ -6,6 +6,7 @@ import CatalogoLeyenda from '@/components/CatalogoLeyenda.astro';
 import SectionH from '@/components/SectionH.astro';
 import { getCollection } from 'astro:content';
 import { familiaDelitoLabel, type Lang } from '@/lib/labels';
+import Aclaracion from '@/components/Aclaracion.astro';
 
 interface Props { lang?: Lang; }
 const { lang = 'es' } = Astro.props;
@@ -233,11 +234,11 @@ const familiasPresentes = Array.from(new Set(delitos.map((d) => d.familia)))
 
   <p class="empty-state" data-empty hidden>Sin resultados para los filtros actuales.</p>
 
-  <p class="legal-note">
+  <Aclaracion nivel="baja">
     <strong>Aviso editorial.</strong> La columna «Atribuciones» cuenta los roles procesales (investigados, procesados,
     acusados, condenados) a los que el delito ha sido formalmente atribuido en algún momento del procedimiento.
     La presunción de inocencia se mantiene mientras no exista sentencia firme.
-  </p>
+  </Aclaracion>
 </BaseLayout>
 
 <script is:inline>
@@ -328,13 +329,4 @@ const familiasPresentes = Array.from(new Set(delitos.map((d) => d.familia)))
     color: var(--color-fg-muted);
   }
   .c-arts { font-size: 11px; color: var(--color-fg-muted); }
-  .legal-note {
-    margin: var(--space-4) 0 0;
-    padding: 12px 14px;
-    border-left: 3px solid var(--color-border-strong);
-    background: var(--color-surface-muted);
-    font: 400 12px/1.55 var(--font-sans);
-    color: var(--color-fg-muted);
-  }
-  .legal-note strong { color: var(--color-fg); font-weight: 600; }
 </style>

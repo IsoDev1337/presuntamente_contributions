@@ -7,6 +7,7 @@
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import FichaTocSection from '@/components/FichaTocSection.astro';
+import Aclaracion from '@/components/Aclaracion.astro';
 import type { Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; }
@@ -251,11 +252,11 @@ const rectificarHref = lang === 'ca' ? '/cat/rectificar' : '/rectificar';
   </FichaTocSection>
   </div>
 
-  <div class="aviso aviso--accent mt-6">
+  <Aclaracion nivel="baja">
     El procedimiento de aportación es el mismo independientemente del cargo o relevancia del
     aportante. Los aportes se atienden por orden de entrada con prioridad a los que apuntan a
     una fuente oficial firme o resuelven un error en un caso vivo.
-  </div>
+  </Aclaracion>
 </BaseLayout>
 
 <style>

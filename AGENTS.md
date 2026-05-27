@@ -336,6 +336,34 @@ En Fase 0 son placeholders; se implementan según se necesiten.
 
 **Regla compacta**: el maintainer aporta **operaciones**, no **conocimiento**. Si el agente se ve necesitando saber un dato del caso, lo investiga; si se ve necesitando hacer una operación que el entorno le impide, lo pide.
 
+## Delegación a sub-agentes por coste cognitivo
+
+**Norma operativa incorporada el 2026-05-27.** El agente principal del proyecto debe **delegar a un sub-agente más barato** todo trabajo trivial-repetitivo, mecánico o pesado en lectura, y reservar su propio razonamiento para lo cognitivamente alto. Esto reduce coste por sesión sin sacrificar calidad, porque la decisión y el design ya han ocurrido en la conversación principal.
+
+**Delegable a sub-agente barato** (Sonnet si el proveedor es Anthropic; el modelo barato equivalente en cualquier otro proveedor — Codex, Cursor, etc., aplica la misma filosofía con su catálogo):
+
+- Migraciones mecánicas multi-fichero ("sustituye estas 14 instancias de `class="aviso--mostaza"` por `<Aclaracion nivel="alta">`").
+- Búsqueda y lectura exhaustiva de tokens en el repo cuando ya se sabe qué se busca.
+- Aplicación de un patrón ya decidido sobre N ficheros similares.
+- Sweep de fuentes web N4 ya identificadas en busca de un dato concreto.
+- Validación final (`pnpm validate`, `pnpm build`) y reporte del output.
+- Cualquier tarea con criterio de éxito claro y baja ambigüedad.
+
+**No delegable, lo hace el agente principal** (Opus si el proveedor es Anthropic, o el modelo top equivalente del proveedor que toque):
+
+- Diseño de la API de un componente o de un schema.
+- Decisiones editoriales sobre presunción de inocencia, lenguaje, anonimización, niveles de fuente.
+- Auditoría cualitativa (skills `/revisar-caso`, `/rectificar`) y resolución de conflictos entre principios.
+- Conversaciones con el maintainer y decisiones operativas vivas.
+- Diff editorial que el LLM va a proponer para revisión humana.
+- Cualquier paso donde la elección entre opciones cambia el resultado del proyecto.
+
+**Cómo se delega bien**: el agente principal toma la decisión, escribe el contrato (qué inputs, qué outputs, qué éxito), invoca el sub-agente con ese contrato cerrado, y al volver **lee críticamente** el resultado en lugar de aceptarlo a ciegas. El sub-agente nunca recibe el problema abierto; recibe la tarea ya acotada.
+
+**Cuándo no merece la pena delegar**: trabajo de un sólo fichero pequeño, cambios donde el coste de explicar el contrato supera el coste de hacerlo, situaciones donde la respuesta del sub-agente tendría que ser re-leída casi entera para validar (porque ahí el ahorro de tokens evapora).
+
+**Filosofía agnóstica de proveedor**: la regla en abstracto es "delega lo barato cognitivamente al modelo barato del proveedor que estés usando, reserva tu razonamiento para lo alto". El reparto Opus/Sonnet es la encarnación de esta regla en Anthropic; otros proveedores tienen su pareja análoga (modelo top y modelo medio/barato).
+
 ## Workflow para agentes
 
 0. **Lee [`/ROADMAP.md`](ROADMAP.md)** antes de hacer cualquier otra cosa. Es el estado operativo vivo del proyecto: dónde estamos, qué toca, decisiones pendientes y aprendizajes activos. **Obligatorio.** Si necesitas contexto histórico completo, sigue sus enlaces a `docs/roadmap/`; no cargues el histórico por defecto si el roadmap operativo ya basta.

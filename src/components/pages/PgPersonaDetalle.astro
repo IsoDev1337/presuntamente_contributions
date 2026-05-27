@@ -12,6 +12,7 @@ import VinculosInstitucionalesList from '@/components/VinculosInstitucionalesLis
 import GraphConexionesLink from '@/components/GraphConexionesLink.astro';
 import { rolLabel, iniciales, naturalezaVinculoLabel, type Lang } from '@/lib/labels';
 import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
+import Aclaracion from '@/components/Aclaracion.astro';
 
 type EstadoPub = 'pendiente' | 'borrador' | 'beta_publica' | 'en_revision' | 'publicado' | 'retirado_temporalmente' | 'retirado_definitivamente';
 import { documentoRespaldoHref } from '@/lib/documentos';
@@ -263,11 +264,11 @@ const graphHref = `/grafo?focus=persona&id=${data.id}&depth=2&layout=cose`;
       id="contexto-institucional"
       right={`${vinculosPersona.length} vínculo${vinculosPersona.length === 1 ? '' : 's'}`}
     >
-      <p class="contexto-intro">
+      <Aclaracion nivel="media">
         Cargos, nombramientos y relaciones formales documentadas en las que aparece esta persona.
         Este bloque queda separado de la trayectoria procesal: tener un cargo o vínculo
         institucional no implica papel en un procedimiento judicial.
-      </p>
+      </Aclaracion>
       <VinculosInstitucionalesList rows={vinculosPersona} />
     </FichaTocSection>
   )}
@@ -292,5 +293,5 @@ const graphHref = `/grafo?focus=persona&id=${data.id}&depth=2&layout=cose`;
   </FichaTocSection>
   </div>
 
-  <div class="aviso aviso--accent mt-6">{strings.disclaimer}</div>
+  <Aclaracion nivel="media" posicion="bottom">{strings.disclaimer}</Aclaracion>
 </BaseLayout>

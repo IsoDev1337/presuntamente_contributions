@@ -1,0 +1,160 @@
+---
+// Aclaracion — componente único para aclaraciones, notas y avisos editoriales
+// del sitio. Sustituye el zoo previo de .aviso/.aviso--accent/.aviso--mostaza,
+// .grupo__intro, .contexto-intro, .clasif-intro, .legal-note, .bottom-note,
+// .coverage-disclaimer, .org-afectadas__note, .org-procesal__note y la
+// `.disclaimer` scoped de PgCifras.
+//
+// Tres niveles, con su posición default. La ficha de feature canónica vive
+// en `docs/web/features/aclaraciones-editoriales.md`.
+//
+//   - `alta`  → presunción de inocencia, advertencia normativa irrenunciable
+//               o "lo que viene es preliminar/incompleto". Borde y fondo
+//               mostaza. Va antes del contenido (top) por defecto.
+//   - `media` → aclaración metodológica o de alcance ("qué es y qué no es
+//               esta sección"). Borde gris fuerte, fondo muted. Va antes
+//               del contenido por defecto; admite `bottom` cuando cierra
+//               un bloque (ver "Alcance y límites del rastreo" en cobertura
+//               mediática). También cubre fallbacks funcionales ("requiere
+//               JavaScript").
+//   - `baja`  → nota auxiliar, créditos, recordatorio operativo. Sin caja,
+//               border-top sutil, color subtle, 12 px. Va después del
+//               contenido (bottom) por defecto.
+//
+// Cuando se pasa `titulo`, se renderiza un h3 propio dentro del aside con
+// `aria-labelledby` para landmarks.
+
+interface Props {
+  nivel: 'alta' | 'media' | 'baja';
+  posicion?: 'top' | 'bottom';
+  titulo?: string;
+  /** Override del id del título (para fragment links). */
+  id?: string;
+  /** Clase extra opcional para ajustes puntuales (e.g. margen en caso límite). */
+  class?: string;
+}
+
+const { nivel, posicion, titulo, id, class: extraClass } = Astro.props;
+
+// Posición default según nivel. Override sólo si llega explícitamente.
+const pos: 'top' | 'bottom' = posicion ?? (nivel === 'baja' ? 'bottom' : 'top');
+
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+const headingId = titulo ? (id ?? `aclar-${slugify(titulo)}`) : id;
+
+const cls = [
+  'aclaracion',
+  `aclaracion--${nivel}`,
+  `aclaracion--${pos}`,
+  titulo ? 'aclaracion--with-title' : null,
+  extraClass,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<aside
+  class={cls}
+  role={nivel === 'alta' ? 'note' : undefined}
+  aria-labelledby={headingId}
+>
+  {titulo && <h3 id={headingId} class="aclaracion__titulo">{titulo}</h3>}
+  <div class="aclaracion__cuerpo"><slot /></div>
+</aside>
+
+<style>
+  .aclaracion {
+    margin: 0;
+    /* Tipografía y línea base comunes. Cada nivel ajusta tamaño y peso. */
+    font: 400 13px/1.55 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .aclaracion :global(strong) {
+    /* Sin pesos black, en línea con la norma del proyecto. */
+    font-weight: 600;
+  }
+  .aclaracion :global(a) {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .aclaracion__titulo {
+    margin: 0 0 6px;
+    font: 600 14px/1.35 var(--font-sans);
+    color: var(--color-fg);
+  }
+  .aclaracion__cuerpo :global(p) {
+    margin: 0;
+  }
+  .aclaracion__cuerpo :global(p + p) {
+    margin-top: 6px;
+  }
+  /* Línea de metadatos al final de una aclaración multi-párrafo
+     (e.g. "Última revisión de cobertura: 2026-05-20"). Opcional. */
+  .aclaracion__cuerpo :global(.aclaracion__meta) {
+    color: var(--color-fg-muted);
+    font-size: 12px;
+  }
+  .aclaracion__cuerpo :global(.mono) {
+    font-family: var(--font-mono);
+  }
+
+  /* ─── Nivel alta ──────────────────────────────────────────────────────── */
+  /* Mostaza institucional del proyecto: la misma paleta que ya marcaba
+     "hechos bajo investigación" en PgCasoDetalle. Reutiliza tokens, no
+     introduce paleta nueva. */
+  .aclaracion--alta {
+    padding: 10px 14px;
+    background: var(--color-accent-secondary-soft);
+    border-left: 4px solid var(--color-accent-secondary);
+    color: #6b4d00;
+  }
+  :global(html.theme-dark) .aclaracion--alta {
+    /* En oscuro, la mostaza-soft queda muy plana; bajamos el contraste del
+       texto al fg estándar y dejamos que el border-left siga marcando. */
+    color: var(--color-fg);
+  }
+
+  /* ─── Nivel media ─────────────────────────────────────────────────────── */
+  .aclaracion--media {
+    padding: 10px 14px;
+    background: var(--color-surface-muted);
+    border-left: 3px solid var(--color-border-strong);
+    color: var(--color-fg);
+  }
+
+  /* ─── Nivel baja ──────────────────────────────────────────────────────── */
+  /* Sin caja, sin fondo. Cierre auxiliar tipográfico. */
+  .aclaracion--baja {
+    padding: 12px 0 0;
+    border-top: 1px solid var(--color-border);
+    font-size: 12px;
+    color: var(--color-fg-subtle);
+    max-width: 76ch;
+  }
+  /* Cuando la baja es un cierre genérico al pie de una página entera y
+     tiene que sentirse "fuera del flujo", el sitio que la usa le pasa
+     class="aclaracion--centered". Patrón opcional, no default. */
+  .aclaracion--baja.aclaracion--centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 64ch;
+  }
+
+  /* ─── Posición ────────────────────────────────────────────────────────── */
+  .aclaracion--top {
+    margin: 0 0 var(--space-3);
+  }
+  .aclaracion--bottom {
+    margin: var(--space-5) 0 0;
+  }
+</style>

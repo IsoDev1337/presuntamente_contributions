@@ -5,6 +5,7 @@
 // existe; la página avisa al lector.
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Aclaracion from '@/components/Aclaracion.astro';
 import type { Lang } from '@/lib/labels';
 
 interface Props { lang?: Lang; }
@@ -48,16 +49,18 @@ const strings = {
   <div id="pagefind-search" data-pagefind-ignore></div>
 
   <noscript>
-    <p class="aviso aviso--accent">
+    <Aclaracion nivel="media">
       La búsqueda requiere JavaScript activo. Si tienes JavaScript desactivado, navega por las
       secciones del menú principal.
-    </p>
+    </Aclaracion>
   </noscript>
 
-  <p id="pagefind-fallback" class="aviso aviso--accent" hidden>
-    El índice de búsqueda no está disponible en este momento. Navega por las secciones del menú
-    principal para explorar el inventario.
-  </p>
+  <div id="pagefind-fallback" hidden>
+    <Aclaracion nivel="media" class="hidden-fallback">
+      El índice de búsqueda no está disponible en este momento. Navega por las secciones del menú
+      principal para explorar el inventario.
+    </Aclaracion>
+  </div>
 
   <script src="/pagefind/pagefind-ui.js" is:inline></script>
   <script is:inline>
@@ -113,10 +116,4 @@ const strings = {
     --pagefind-ui-font: var(--font-sans);
   }
 
-  .aviso code {
-    font-family: var(--font-mono);
-    background: var(--color-bg-muted);
-    padding: 1px 4px;
-    border: 1px solid var(--color-border);
-  }
 </style>

@@ -5,6 +5,7 @@ import PhaseBadge from '@/components/PhaseBadge.astro';
 import LevelBadge from '@/components/LevelBadge.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import EpistemicBadge from '@/components/EpistemicBadge.astro';
+import Aclaracion from '@/components/Aclaracion.astro';
 import {
   faseLabel,
   tipoHitoLabel,
@@ -379,10 +380,10 @@ const breadcrumb = [
     </table>
   </div>
 
-  <p class="disclaimer">
+  <Aclaracion nivel="media" posicion="bottom">
     Investigado y procesado son fases de instrucción; ninguna implica condena. La presunción de inocencia
     rige mientras no recaiga sentencia firme.
-  </p>
+  </Aclaracion>
   </FichaTocSection>
 
   <!-- 2. Casos -->
@@ -730,10 +731,10 @@ const breadcrumb = [
     </li>
   </ol>
 
-  <p class="bottom-note">
+  <Aclaracion nivel="baja" class="aclaracion--centered">
     Esta página es un panel agregado del inventario. La fuente de verdad de cada cifra es el
     <a href="https://github.com/davidchicano/presuntamente" rel="noopener">repositorio público</a>.
-  </p>
+  </Aclaracion>
   </FichaTocSection>
   </div>
 </BaseLayout>
@@ -868,16 +869,6 @@ const breadcrumb = [
     color: var(--color-fg-muted);
   }
 
-  .disclaimer {
-    font: 400 12px/1.55 var(--font-sans);
-    color: var(--color-fg-subtle);
-    border-left: 3px solid var(--color-accent-secondary-border);
-    background: var(--color-surface-muted);
-    padding: 10px 14px;
-    margin: var(--space-4) 0 var(--space-5);
-    max-width: 76ch;
-  }
-
   .latest {
     display: flex;
     flex-wrap: wrap;
@@ -923,13 +914,4 @@ const breadcrumb = [
     padding: 1px 6px;
   }
 
-  .bottom-note {
-    text-align: center;
-    font: 400 12px/1.55 var(--font-sans);
-    color: var(--color-fg-subtle);
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-4);
-    margin: var(--space-6) auto 0;
-    max-width: 64ch;
-  }
 </style>

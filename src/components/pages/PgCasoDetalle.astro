@@ -25,6 +25,7 @@ import Chip from '@/components/Chip.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import EpistemicBadge from '@/components/EpistemicBadge.astro';
 import CategoryBadge from '@/components/CategoryBadge.astro';
+import Aclaracion from '@/components/Aclaracion.astro';
 
 // Mismo enum que en EstadoPublicacionBadge — Astro no exporta tipos entre
 // componentes .astro de forma estable, así que re-declaro aquí.
@@ -1041,7 +1042,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
   {hayOrgAfectadas && (
     <section class="org-afectadas" aria-labelledby="org-afectadas-title">
       <h3 id="org-afectadas-title">Organizaciones afectadas</h3>
-      <p class="org-afectadas__note">
+      <Aclaracion nivel="media">
         Organizaciones que el procedimiento alcanza, separadas por profundidad de
         afectación. <strong>Directa</strong>: sujeto procesal pasivo, perjudicado oficial
         o ámbito administrativo del que emana el acto investigado.
@@ -1049,7 +1050,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
         familiar, sin papel procesal propio. La acusación popular constituida figura
         más abajo como participación procesal, no como afectación
         (<a href="/sobre#afectacion">qué es y qué no es afectación</a>).
-      </p>
+      </Aclaracion>
       <div class="org-afectadas__grid">
         {orgAfectadasDirectas.length > 0 && (
           <div class="org-afectadas__col org-afectadas__col--directa">
@@ -1092,11 +1093,11 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
   {hayAcusacionPopular && (
     <section class="org-procesal" aria-labelledby="org-procesal-title">
       <h3 id="org-procesal-title">Participación procesal</h3>
-      <p class="org-procesal__note">
+      <Aclaracion nivel="media">
         Organizaciones personadas formalmente en el procedimiento que <strong>no
         constituyen afectación editorial</strong>: ejercen un papel procesal proactivo
         (acusación popular). Aparecen aquí, separadas de las organizaciones afectadas.
-      </p>
+      </Aclaracion>
       <div class="org-procesal__col">
         <h4>Acusación popular constituida</h4>
         <ul>
@@ -1145,7 +1146,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
             )
           )}
         </h3>
-        {g.intro && <p class="grupo__intro">{g.intro}</p>}
+        {g.intro && <Aclaracion nivel="alta">{g.intro}</Aclaracion>}
         <div class="grupo__cards">
           {items.map((pv) => (
             <div class="row-pass" data-persona-row data-roles={pv.roles.map((r) => r.rol).join(',')}>
@@ -1269,7 +1270,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
     return (
       <div class="grupo" data-hechos-grupo>
         <h3 class="grupo__title"><span class="grupo__num">{g.num}</span>{g.titulo}</h3>
-        {g.aviso && <p class="aviso aviso--mostaza">{g.aviso}</p>}
+        {g.aviso && <Aclaracion nivel="alta">{g.aviso}</Aclaracion>}
         <div class="grupo__cards">
           {g.items.map((h) => (
             <div class="row-pass" data-hecho-row data-tipo-epi={h.tipo}>
@@ -1385,9 +1386,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
         <CoberturaMediaticaTable rows={coberturaRows} />
       </details>
 
-      <footer class="coverage-disclaimers">
-        <section class="coverage-disclaimer" aria-labelledby="coverage-scope-title">
-          <h3 id="coverage-scope-title">Alcance y límites del rastreo</h3>
+      <Aclaracion nivel="media" posicion="bottom" titulo="Alcance y límites del rastreo" id="coverage-scope-title">
           <p>
             Este bloque resume cómo aparece el caso en una muestra sistemática de prensa.
             No prueba hechos del procedimiento: sirve para entender momentos de atención,
@@ -1400,12 +1399,11 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
             limitaciones de acceso o por no haber entrado en este muestreo inicial.
           </p>
           <p><strong>Términos buscados:</strong> {coberturaCaso.metodologia.terminos_busqueda.join(' · ')}</p>
-          <p class="coverage-disclaimer__meta">
+          <p class="aclaracion__meta">
             Última revisión de cobertura: <span class="mono">{coberturaCaso.fecha_rastreo}</span>.
             {` ${coberturaEstadoLabel}`}
           </p>
-        </section>
-      </footer>
+      </Aclaracion>
     </FichaTocSection>
   )}
 
@@ -1442,7 +1440,7 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
        Las antiguas secciones 8 "Estado de esta ficha" y 9 "Cómo se ha
        redactado esta ficha" se han movido a la cara B del flip de la
        masthead (apartado 2.1). Se acceden con el botón "Sobre la ficha". -->
-  <div class="aviso aviso--accent mt-6">{strings.disclaimer}</div>
+  <Aclaracion nivel="media" posicion="bottom">{strings.disclaimer}</Aclaracion>
 </BaseLayout>
 
 <style>
@@ -1691,14 +1689,6 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
     color: var(--color-accent);
     font-size: 11px;
   }
-  .grupo__intro {
-    margin: 0 0 var(--space-3);
-    padding: 10px 12px;
-    background: var(--color-surface-muted);
-    border-left: 3px solid var(--color-accent-secondary-border);
-    font: 400 13px/1.55 var(--font-sans);
-    color: var(--color-fg);
-  }
   .grupo__cards {
     display: grid;
     grid-template-columns: 1fr;
@@ -1733,12 +1723,6 @@ const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
     .timeline::before { left: 12px; }
   }
 
-
-  .aviso--mostaza {
-    background: var(--color-accent-secondary-soft);
-    border-left: 3px solid var(--color-accent-secondary-border);
-    color: #6b4d00;
-  }
 
   .coverage-note {
     margin: 0;

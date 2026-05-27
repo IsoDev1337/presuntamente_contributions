@@ -1,5 +1,6 @@
 ---
 import type { GraphPayload } from '@/lib/grafo';
+import Aclaracion from '@/components/Aclaracion.astro';
 
 interface Props {
   graph: GraphPayload;
@@ -277,7 +278,7 @@ const nodesByKind = {
   </div>
 
   <noscript>
-    <p class="aviso aviso--accent">El explorador de conexiones requiere JavaScript activado. Para navegar el inventario sin JavaScript, consulta el listado de casos, personas y organizaciones desde el menú principal.</p>
+    <Aclaracion nivel="media">El explorador de conexiones requiere JavaScript activado. Para navegar el inventario sin JavaScript, consulta el listado de casos, personas y organizaciones desde el menú principal.</Aclaracion>
   </noscript>
 </section>
 

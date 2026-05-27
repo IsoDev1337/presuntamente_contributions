@@ -17,6 +17,7 @@ import FichaTocSection from '@/components/FichaTocSection.astro';
 import RichProse from '@/components/RichProse.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import { familiaDelitoLabel, rolLabel, type Lang } from '@/lib/labels';
+import Aclaracion from '@/components/Aclaracion.astro';
 
 interface Props { lang?: Lang; delito: CollectionEntry<'delitos'>; }
 const { lang = 'es', delito } = Astro.props;
@@ -230,5 +231,5 @@ const strings = {
   </FichaTocSection>
   </div>
 
-  <div class="aviso aviso--accent mt-6">{strings.disclaimer}</div>
+  <Aclaracion nivel="media" posicion="bottom">{strings.disclaimer}</Aclaracion>
 </BaseLayout>
