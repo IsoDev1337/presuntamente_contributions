@@ -45,7 +45,7 @@ Importante: el color es **identificación**, no juicio. El sistema visual gov-re
 | `mas-madrid` | cyan-turquesa | `#d8eaec` | `#1f5560` | `#5a99a5` |
 | **(otros)** | fallback gris | `#ececea` | `#4a4d52` | `#b3b6ba` |
 
-Estructura visual: fondo muy claro + texto contrastado + border 1px + border-left 3px del color institucional. Peso tipográfico 600 (regla AGENTS.md "Tipografía y pesos" — sin negros 700/800).
+Contenedor: fondo suave + texto + borde fino uniforme (1px), sin `border-left` grueso (vocabulario ajeno — ver [DESIGN.md — "Sistema de badges"](../../../DESIGN.md#2bis-sistema-de-badges)). Peso 600.
 
 ### Hover en versión enlazable
 
@@ -53,7 +53,7 @@ Estructura visual: fondo muy claro + texto contrastado + border 1px + border-lef
 
 ### Bloque editorial de PgCasoDetalle
 
-El bloque grande "Partidos afectados" (sigla + tipo + justificación) **no usa `PartidoBadge` directamente** — el color de partido se aplica al `border-left` del `<li>` y al `color` de la sigla vía atributo `data-partido="<slug>"`. Razón: el chip dentro del bloque editorial duplicaría caja-en-caja y rompería el grid.
+El bloque grande "Organizaciones afectadas" (sigla + tipo + justificación) **no usa `PartidoBadge` directamente** — el color de partido se aplica al `color` de la sigla vía atributo `data-partido="<slug>"`. Razón: el chip dentro del bloque editorial duplicaría caja-en-caja y rompería el grid.
 
 ## Estado actual
 
@@ -66,12 +66,12 @@ El bloque grande "Partidos afectados" (sigla + tipo + justificación) **no usa `
   - `PgCasoDetalle.astro` bloque editorial — vía `data-partido` (no `PartidoBadge` directo).
 - CSS muerto (`.destacado__partido-chip`, `.c-partido-chip`) borrado.
 - Dedupe en columna `/casos`: un chip por partido aunque haya varias entradas con `tipo_afectacion` distinto.
+- **2026-05-27 (tarde)**: contenedor sin `border-left` grueso (ver "Paleta sobria" arriba).
 
 ## Decisiones editoriales y aprendizajes
 
 - **Sólo los 7 partidos modelados tienen tokens.** Cualquier `partido_id` desconocido cae al fallback gris. No se eligen colores a ojo; si entra un partido nuevo en el inventario hay que añadirlo explícitamente al mapa.
 - **Color institucional con saturación bajada, no fiel a marca.** Vox verde-bandera y PP azul-bandera saturados convertirían el listado en una papeleta electoral. La saturación bajada conserva identificación sin tono partidista.
-- **`border-left` 3px, no fondo sólido.** El fondo muy claro mantiene legibilidad; el color identificativo va concentrado en el border-left, que es lo que el ojo lee primero al escanear.
 - **Peso 600 obligatorio.** No subir a 700/800 (regla AGENTS.md). En el refactor del bloque editorial de PgCasoDetalle se bajó la sigla de 700→600 también, alineando con la regla.
 - **No anidar `<a>` dentro de `<a>`.** El prop `asLink={false}` existe específicamente para la home, donde la card destacada ya es un enlace. Saltarse esto produce HTML inválido y el navegador rompe el segundo `<a>` silenciosamente.
 

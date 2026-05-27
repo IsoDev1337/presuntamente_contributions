@@ -93,6 +93,8 @@ Mismo patrón (dot + label, fondo suave sin borde) pero para los 4 estados del c
 
 **Experimento visual 2026-05-26**: `EstadoPublicacionBadge` y `EstadoFichaBadge` evolucionan a dot + label coloreado sobre fondo muy suave, padding mínimo, sin borde. El dot usa tamaño relativo (`0.5em`) y un micro-ajuste vertical (`margin-top: 0.08em`) para alinearlo con el texto. `en_revision` se distingue de `beta_publica` con fondo más tenue y dot hueco.
 
+**Ajuste visual 2026-05-27**: el patrón dot + fondo suave sin borde de estos badges se reutiliza en `RolBadge` (familia F-estado rol). Detalle del sistema completo de badges: [DESIGN.md — "Sistema de badges"](../../../DESIGN.md#2bis-sistema-de-badges).
+
 **Ajuste de composición 2026-05-25**: la intro de la cara B deja de limitarse a `60ch` y pasa a ocupar todo el ancho disponible. En este reverso la descripción funciona como explicación de estado, no como lede largo de lectura, y el panel ya tiene suficiente estructura debajo.
 
 **Migración al nuevo enum** (2026-05-25):

@@ -135,13 +135,12 @@
    * Para `PartidoBadge`. Decisión 2026-05-26: usar el color institucional real
    * del partido como referencia identificable, pero con saturación bajada para
    * no convertir el sitio en infografía electoral. Fondo muy claro + texto
-   * contrastado + border medio. Cubre los 7 partidos modelados en el
-   * inventario; cualquier otro `partido_id` cae al fallback gris neutro.
+   * contrastado + borde fino uniforme (1px). Sin border-left grueso: lectura
+   * de organización, no etiqueta de categoría. Cubre los 7 partidos modelados
+   * en el inventario; cualquier otro `partido_id` cae al fallback gris neutro.
    *
-   * Importante: el `border` es el tono medio (usado como border-left de 3px en
-   * el componente). El `fg` es el texto. El `bg` es el fondo muy suave.
-   * No usar los `fg` como fondo ni los `bg` como border — la jerarquía visual
-   * se rompe.
+   * El `border` es el tono medio del contorno. El `fg` es el texto. El `bg` es
+   * el fondo muy suave. No usar los `fg` como fondo ni los `bg` como border.
    * ====================================================================== */
   --color-partido-psoe-bg:           #f5e2e2;
   --color-partido-psoe-fg:           #8a3030;
@@ -1807,10 +1806,10 @@ body.has-menu-open { overflow: hidden; }
  *
  * Sistema de 4 familias por dimensión (DESIGN.md — "Sistema de badges"):
  *   F1 Nivel (N1-N4)    → font-mono + gradiente navy sólido→outline
- *   F-estado            → · dot a la izquierda + color (rectángulo fino)
+ *   F-estado            → color + label sobre fondo suave (sin borde en roles;
+ *                          borde fino en estado epistémico del Hecho)
  *                          - Estado epistémico del Hecho (acreditado/inv/...)
  *                          - Rol procesal del lado acusado (investigado..condenado_firme)
- *                          Mismo vocabulario porque ambos comunican "estado de algo".
  *                          Contexto desambigua: Hecho vs Persona.
  *   F4 Fase del caso    → ▆▆▆░ micro-barra de progreso en la base
  *   F-función           → ▌ border-left 3-4px + glyph + fondo neutro
@@ -1838,8 +1837,27 @@ body.has-menu-open { overflow: hidden; }
   vertical-align: 1px;
 }
 
-/* F2 vocabulario: dot circular a la izquierda. Estado epistémico (Hecho). */
-.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+/* F-estado soft — roles procesales del lado acusado (investigado…testigo).
+ * Misma lectura que EstadoFichaBadge: dot + texto coloreado + fondo suave, sin borde. */
+.badge.badge--estado-soft {
+  border: none;
+  border-radius: 2px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  padding: 0.12em 0.38em;
+  gap: 0.45em;
+  vertical-align: baseline;
+}
+.badge.badge--estado-soft .dot {
+  flex-shrink: 0;
+  width: 0.5em;
+  height: 0.5em;
+  margin-top: 0.08em;
+  border-radius: 50%;
+  background: currentColor;
+}
 
 /* F-función y categorías de hito: sin glyph decorativo. La distinción
  * visual se obtiene del color del border-left + label de texto. */
@@ -1871,34 +1889,34 @@ body.has-menu-open { overflow: hidden; }
 
 /* ------------------------------------------------------------------------ *
  * F-estado — Rol procesal del lado acusado (Persona en Caso).
- * Contenedor: rectángulo fino normal (sin border-left grueso — eso es
- * F-función). Adorno: dot a la izquierda en el color del rol.
+ * Contenedor soft (badge--estado-soft): fondo suave + texto coloreado, sin
+ * borde. Misma familia visual que EstadoFichaBadge.
  *
- * Eje matiz × eje saturación:
- *   investigado          → navy outline               (cautelar, no acusatorio)
- *   procesado            → mostaza outline            (auto procesamiento)
- *   acusado              → mostaza FILL               (escrito de acusación)
- *   condenado_no_firme   → rojo apagado outline       (sentencia recurrible)
- *   condenado_firme      → rojo chillón FILL          (sentencia ejecutiva)
- *   absuelto             → verde outline              (cierre favorable)
- *   desimputado          → gris azul outline          (sobreseimiento individual)
- *   testigo              → gris neutro outline        (no es parte)
+ * Eje matiz × eje saturación (texto sobre fondo suave):
+ *   investigado          → navy sobre crema
+ *   procesado            → mostaza oscuro sobre crema secundaria
+ *   acusado              → mostaza oscuro sobre crema acusación
+ *   condenado_no_firme   → rojo apagado sobre rosa pálido
+ *   condenado_firme      → rojo firme sobre rosa más intenso
+ *   absuelto             → verde sobre verde pálido
+ *   desimputado          → gris azul sobre gris pálido
+ *   testigo              → gris neutro sobre gris claro
  * ------------------------------------------------------------------------ */
-.badge--rol-investigado        { color: var(--color-rol-investigado); border-color: var(--color-rol-investigado); background: var(--color-surface); }
+.badge--rol-investigado        { color: var(--color-rol-investigado); background: var(--color-investigado-bg); }
 .badge--rol-investigado .dot   { background: var(--color-rol-investigado); }
-.badge--rol-procesado          { color: var(--color-rol-procesado-text); border-color: var(--color-rol-procesado); background: var(--color-surface); }
+.badge--rol-procesado          { color: var(--color-rol-procesado-text); background: var(--color-accent-secondary-soft, #f7ecc5); }
 .badge--rol-procesado .dot     { background: var(--color-rol-procesado); }
-.badge--rol-acusado            { color: var(--color-rol-acusado-text); border-color: var(--color-rol-acusado); background: var(--color-rol-acusado-bg); }
+.badge--rol-acusado            { color: var(--color-rol-acusado-text); background: var(--color-rol-acusado-bg); }
 .badge--rol-acusado .dot       { background: var(--color-rol-acusado-text); }
-.badge--rol-condenado_no_firme       { color: var(--color-rol-condenado-no-firme); border-color: var(--color-rol-condenado-no-firme); background: var(--color-surface); }
-.badge--rol-condenado_no_firme .dot  { background: var(--color-rol-condenado-no-firme); }
-.badge--rol-condenado_firme          { color: #fff; border-color: var(--color-rol-condenado-firme); background: var(--color-rol-condenado-firme); }
-.badge--rol-condenado_firme .dot     { background: #fff; }
-.badge--rol-absuelto           { color: var(--color-rol-absuelto); border-color: var(--color-rol-absuelto); background: var(--color-surface); }
+.badge--rol-condenado_no_firme { color: var(--color-rol-condenado-no-firme); background: #fceaea; }
+.badge--rol-condenado_no_firme .dot { background: var(--color-rol-condenado-no-firme); }
+.badge--rol-condenado_firme    { color: var(--color-rol-condenado-firme); background: #fde0e0; }
+.badge--rol-condenado_firme .dot { background: var(--color-rol-condenado-firme); }
+.badge--rol-absuelto           { color: var(--color-rol-absuelto); background: var(--color-acreditado-bg); }
 .badge--rol-absuelto .dot      { background: var(--color-rol-absuelto); }
-.badge--rol-desimputado        { color: var(--color-rol-desimputado); border-color: var(--color-rol-desimputado); background: var(--color-surface); }
+.badge--rol-desimputado        { color: var(--color-rol-desimputado); background: var(--color-exculpatorio-bg); }
 .badge--rol-desimputado .dot   { background: var(--color-rol-desimputado); }
-.badge--rol-testigo            { color: var(--color-rol-testigo); border-color: var(--color-rol-testigo); background: var(--color-surface); }
+.badge--rol-testigo            { color: var(--color-rol-testigo); background: var(--color-desmentido-bg); }
 .badge--rol-testigo .dot       { background: var(--color-rol-testigo); }
 
 /* ------------------------------------------------------------------------ *

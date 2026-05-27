@@ -9,6 +9,8 @@ Una ficha por página visible del sitio. Cada ficha recoge:
 
 Sirve para descargar el `ROADMAP.md` global: lo específico de una página vive aquí, el roadmap solo lleva los hitos transversales y el estado del proyecto.
 
+**Centralización:** enlaza al canon en lugar de duplicarlo. Ver [AGENTS.md — "Centralización documental"](../../../AGENTS.md#centralización-documental).
+
 Convención de nombres: `<ruta-sin-barra-inicial>.md`. Para la home, `inicio.md`.
 
 Plantilla mínima cuando arranques una ficha nueva:

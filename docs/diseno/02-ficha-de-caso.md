@@ -322,7 +322,7 @@ Búsqueda:
 
 - Toda visualización gráfica tiene fallback textual.
 - Texto con contraste suficiente (WCAG AA mínimo).
-- Sin información transmitida sólo por color (estado epistémico también por icono y etiqueta textual).
+- Sin información transmitida sólo por color (badges: ver [DESIGN.md — "Sistema de badges"](../../DESIGN.md#2bis-sistema-de-badges)).
 - Sticky nav colapsable.
 - Lazy load de gráficos pesados (grafo, swimlanes).
 - Visualizaciones por defecto activan teclado para usuarios sin ratón.

@@ -2,7 +2,7 @@
 
 Lenguaje visual canónico de presuntamente.org. Este fichero es la fuente de verdad de la identidad visual del proyecto. Cualquier agente (Claude Design, Claude Code, otros) que vaya a generar diseño, código o cualquier output visual debe leerlo antes de empezar.
 
-**Última actualización:** 2026-05-22 — sistema de badges redefinido a 4 familias finales (F1 Nivel · F-estado · F4 Fase · F-función). Decisiones editoriales clave incorporadas: el rol procesal `investigado` queda fuera de los rojos (cautelar, no acusatorio); el rol `condenado` se separa en `condenado_no_firme` (rojo apagado outline) y `condenado_firme` (rojo chillón fill), porque la presunción de inocencia formal cae solo con firmeza. El sistema F-estado y F-función comparten colores parcialmente pero usan **contenedores distintos** (rectángulo fino vs rectángulo + border-left grueso + glyph) para evitar colisión. Pendiente sincronizar con Claude Design (prompt entregado al maintainer).
+**Última actualización:** 2026-05-27 — refinamiento visual de F-estado (epistémico sin dot; rol procesal con dot + fondo suave sin borde, alineado con `EstadoFichaBadge`) y `PartidoBadge` (borde fino uniforme, sin `border-left` grueso). Decisiones editoriales clave incorporadas: el rol procesal `investigado` queda fuera de los rojos (cautelar, no acusatorio); el rol `condenado` se separa en `condenado_no_firme` (rojo apagado sobre fondo rosa pálido) y `condenado_firme` (rojo firme sobre fondo rosa más intenso), porque la presunción de inocencia formal cae solo con firmeza. F-estado rol y F-función comparten colores parcialmente pero usan **contenedores distintos** (fondo suave + dot vs rectángulo + border-left grueso). Pendiente sincronizar con Claude Design (prompt entregado al maintainer).
 
 ---
 
@@ -116,11 +116,13 @@ Mismo "rectángulo institucional" base (borde 1px, radius 0, padding 1px 6px, ca
 | Familia | Adorno | Contenedor | Cuándo aplica |
 |---|---|---|---|
 | **F1 Nivel** | `font-mono` + gradiente navy (sólido→outline) | rectángulo fino | Documento N1-N4 |
-| **F-estado** | `•` dot 6px a la izquierda + color | rectángulo fino | Hecho (estado epistémico) y Persona (rol procesal del lado acusado) |
+| **F2 epistémico** | color + label | rectángulo fino + borde (sólido / dashed en sub-tipos) | Hecho (estado epistémico) |
+| **F-estado rol** | `•` dot + color | fondo suave, sin borde | Persona (rol procesal del lado acusado) |
 | **F4 Fase** | `▆▆▆░` micro-barra de progreso en la base | rectángulo fino + bar 3px | Caso fase actual |
-| **F-función** | glyph monocromo + color | rectángulo + **`▌` border-left 4px** + fondo neutro | Aparato judicial, acusación civil / parte civil, categorías de Hito/Organización/Documento |
+| **F-función** | label de texto | rectángulo + **`▌` border-left 4px** + fondo neutro | Aparato judicial, acusación civil / parte civil, categorías de Hito/Organización/Documento |
+| **Partido** *(ajeno a las 4 familias)* | — | ver [`partido-badge.md`](docs/web/features/partido-badge.md) | `PartidoBadge` |
 
-Aunque **F-estado** y **F-función** comparten parcialmente colores (p.ej. navy aparece en `investigado` y en aparato judicial), el contenedor manda: F-estado es rectángulo fino normal, F-función añade border-left grueso + fondo neutro + glyph. Visualmente no se confunden.
+Aunque **F-estado rol** y **F-función** comparten parcialmente colores (p.ej. navy aparece en `investigado` y en aparato judicial), el contenedor manda: F-estado rol es fondo suave + dot sin borde; F-función añade border-left grueso + fondo neutro. Visualmente no se confunden.
 
 ### F1 — Nivel de fuente (N1–N4)
 
@@ -131,11 +133,9 @@ Cuatro variantes del **mismo navy institucional**, NUNCA colores distintos por n
 - **N3** (Tribunal de Cuentas, nota organismo público, medio con cita) → fill claro + texto navy.
 - **N4** (cobertura periodística cruzada) → outline navy sin fill. El más "ligero".
 
-### F-estado — Estado epistémico (Hecho) + Rol procesal (Persona)
+### F2 epistémico — Estado del Hecho
 
-El `•` dot a la izquierda y el contenedor rectangular fino son comunes a ambas dimensiones porque **ambas comunican un estado**: estado de un hecho (¿está acreditado?) o estado de una persona frente al caso (¿está investigada, procesada, condenada?). El contexto (Hecho card vs PersonaCard) desambigua. La coincidencia conceptual no es accidental: un Hecho `investigado` y un rol procesal `investigado` comparten color (ámbar) y semántica ("atribución no acreditada").
-
-**Estado epistémico del Hecho** (6 valores, 4 colores). Borde sólido para tipo principal, borde dashed para sub-tipo:
+Seis valores, cuatro colores. **Sin dot**: el estado se comunica por color + label + borde (sólido en tipos principales, dashed en sub-tipos semánticamente cercanos). Contenedor rectangular fino con borde 1px (misma base que F1/F4).
 
 - **Acreditado** → verde sobrio, sólido.
 - **Investigado** → ámbar, sólido.
@@ -146,23 +146,29 @@ El `•` dot a la izquierda y el contenedor rectangular fino son comunes a ambas
 
 **Nunca rojo en estado epistémico** (ver "Color Palette & Roles" — convención UI, presunción de inocencia).
 
-**Rol procesal del lado acusado** (8 valores). Dos ejes cruzados:
+### F-estado rol — Rol procesal del lado acusado (Persona)
+
+Ocho valores. **Con dot** a la izquierda, alineado con `EstadoFichaBadge` y `EstadoPublicacionBadge`: texto coloreado + fondo suave, **sin borde**. El modificador CSS `badge--estado-soft` centraliza la tipografía (peso 600, minúsculas normales, radius 2px).
+
+Dos ejes cruzados:
 
 - Eje matiz: **navy → mostaza → rojo** según gravedad procesal acumulada.
-- Eje saturación: **outline → fill** dentro de cada matiz, marcando el "siguiente escalón".
+- Eje saturación: fondos más cargados marcan el "siguiente escalón" dentro de cada matiz.
 
-| Rol | Dot/borde | Fondo | Razón editorial |
+| Rol | Dot / texto | Fondo | Razón editorial |
 |---|---|---|---|
-| `investigado` | navy `#1f3a68` | blanco | Estado cautelar; ser investigado **no implica** valoración judicial — una persona puede ser investigada y ser inocente. Por eso va en navy outline (caso base, no acusatorio), no en mostaza ni rojo |
-| `procesado` | mostaza `#c89b00` | blanco | Auto de procesamiento: un juez ha dicho que hay indicios racionales |
-| `acusado` | mostaza `#c89b00` | mostaza soft `#f7ecc5` (fill) | Escrito de acusación formal; misma familia que procesado, "siguiente escalón" |
-| `condenado_no_firme` | rojo apagado `#c44545` | blanco | Sentencia condenatoria recurrible; presunción de inocencia formal **sigue viva** mientras quepa recurso |
-| `condenado_firme` | blanco | rojo chillón `#c92e2e` (fill) | Sentencia ejecutiva sin recurso pendiente; **único momento jurídico** en que cae la presunción de inocencia |
-| `absuelto` | verde sobrio `#2f6a3a` | blanco | Cierre favorable (mismo verde que estado epistémico `acreditado`) |
-| `desimputado` | gris azulado `#5b6878` | blanco | Sobreseimiento individual (mismo color que `exculpatorio`) |
-| `testigo` | gris neutro | blanco | No es parte |
+| `investigado` | navy `#1f3a68` | crema `#f7f0dd` | Estado cautelar; ser investigado **no implica** valoración judicial |
+| `procesado` | mostaza oscuro `#6b4d00` | crema secundaria `#f7ecc5` | Auto de procesamiento: indicios racionales |
+| `acusado` | mostaza oscuro | crema acusación `#f7ecc5` | Escrito de acusación formal |
+| `condenado_no_firme` | rojo apagado `#c44545` | rosa pálido `#fceaea` | Sentencia recurrible; presunción de inocencia formal **sigue viva** |
+| `condenado_firme` | rojo firme `#c92e2e` | rosa `#fde0e0` | Sentencia ejecutiva; **único momento** en que cae la presunción de inocencia |
+| `absuelto` | verde `#2f6a3a` | verde pálido `#eef4ef` | Cierre favorable |
+| `desimputado` | gris azul `#5b6878` | gris pálido `#ecedf1` | Sobreseimiento individual |
+| `testigo` | gris neutro | gris claro `#f0f0f0` | No es parte |
 
-> El rol **`condenado` se separa en dos sub-roles** en el schema (`condenado_no_firme` y `condenado_firme`) precisamente porque la distinción tiene peso editorial y legal: la presunción de inocencia formal sólo cae con la firmeza. Mantener ambos como un único `condenado` sería editorialmente menos honesto.
+> El rol **`condenado` se separa en dos sub-roles** en el schema (`condenado_no_firme` y `condenado_firme`) precisamente porque la distinción tiene peso editorial y legal: la presunción de inocencia formal sólo cae con la firmeza.
+
+> **F2 epistémico vs F-estado rol:** comparten la dimensión conceptual ("estado de algo") pero **no comparten contenedor**. Un Hecho `investigado` (ámbar, borde fino, sin dot) y un rol `investigado` (navy, dot, fondo suave) se distinguen por color, adorno y contexto (Hecho card vs PersonaCard). No forzar paridad cromática entre ambas dimensiones.
 
 El **rojo se reserva exclusivamente a `condenado_no_firme` y `condenado_firme`**. Tonos institucionales muted (`#c44545`, `#c92e2e`), nunca el rojo PSOE/IU saturado de campaña. La progresión expresa **gravedad procesal**, no juicio moral.
 
@@ -205,18 +211,19 @@ Colores por subfamilia:
 
 1. **No combinar adornos de familias distintas.** Un badge pertenece a una sola familia.
 2. **No introducir colores nuevos.** El sistema está cerrado. Si parece que un caso pide un color nuevo, casi siempre es señal de que la dimensión está mal asignada.
-3. **Dos canales simultáneos siempre.** Estado se comunica por color + label. Nunca solo color (ver "Do's and Don'ts" → "Do").
-4. **Densidad administrativa.** Adornos sobrios (border-left 4px, bar 3px, dot 6px). No glyphs decorativos en el contenedor: la claridad viene del color + posición + texto.
+3. **Dos canales simultáneos siempre.** Estado se comunica por color + label (+ borde o dot según familia). Nunca solo color (ver "Do's and Don'ts" → "Do").
+4. **Densidad administrativa.** Adornos sobrios (border-left 4px en F-función, bar 3px en F4, dot relativo en F-estado rol). No glyphs decorativos en el contenedor: la claridad viene del color + posición + texto.
 
 ### Implementación
 
 CSS canónico en `src/styles/global.css` (sección "Badges"). Componentes Astro:
 
 - `LevelBadge.astro` — F1
-- `EpistemicBadge.astro` — F-estado (Hecho)
-- `RolBadge.astro` — F-estado (Persona, lado acusado) + F-función (aparato + acusación civil). Centraliza el routing: el caller pasa `rol` y el componente decide la familia/adorno con `rolFamilia()` de `lib/labels.ts`.
+- `EpistemicBadge.astro` — F2 epistémico (Hecho)
+- `RolBadge.astro` — F-estado rol (Persona, lado acusado) + F-función (aparato + acusación civil). Centraliza el routing: el caller pasa `rol` y el componente decide la familia/adorno con `rolFamilia()` de `lib/labels.ts`.
 - `PhaseBadge.astro` — F4
-- `Hito.astro` — usa `.badge--cat-*` con border-left + glyph propio
+- `PartidoBadge.astro` — ver [`docs/web/features/partido-badge.md`](docs/web/features/partido-badge.md)
+- `Hito.astro` — usa `.badge--cat-*` con border-left + icono Lucide
 
 ---
 

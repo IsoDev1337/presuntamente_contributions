@@ -144,6 +144,28 @@ Cada ficha recoge: qué hace · para qué sirve · cómo funciona (piezas técni
 
 Convención de nombres: `<slug-kebab-case>.md` describiendo la capacidad (no el nombre del fichero de código). Ejemplos: `feed-rss-atom.md`, `archive-org-pre-commit.md`, `richprose-citaciones.md`.
 
+### Centralización documental
+
+**Norma incorporada 2026-05-27.** Al escribir o actualizar documentación en el repo:
+
+1. **Un tema, un documento canónico.** No copies tablas, paletas, reglas completas ni párrafos explicativos en varios sitios. Enlaza al canon con `[doc — "Sección"](ruta/al/doc.md#anchor)`.
+
+2. **Cada ficha documenta sólo lo suyo.** Una ficha en `docs/web/features/` o `docs/web/pages/` recoge lo específico de esa feature o ruta (API, call-sites, decisiones propias, pendientes). Lo transversal vive en su canon:
+
+   | Tema | Canon |
+   |---|---|
+   | Sistema visual e identidad | [`DESIGN.md`](DESIGN.md) |
+   | Modelo de datos, reglas V/P, ficha editorial | [`docs/diseno/`](docs/diseno/) |
+   | Feature transversal | su ficha en [`docs/web/features/`](docs/web/features/) |
+   | Página concreta | su ficha en [`docs/web/pages/`](docs/web/pages/) |
+   | Estado operativo del proyecto | [`ROADMAP.md`](ROADMAP.md) (resumen; histórico largo en [`docs/roadmap/`](docs/roadmap/)) |
+
+3. **Marca lo ajeno como referencia, no como contenido propio.** Si mencionas un componente, schema o convención que **no pertenece** a lo que estás documentando, una línea + enlace bastan. No recapitules su diseño: el lector va al canon.
+
+4. **Al cambiar el canon, actualiza el canon.** Si cambias el sistema de badges, toca [`DESIGN.md`](DESIGN.md#2bis-sistema-de-badges). En fichas afectadas, limita el diff a estado/decisión **propia** de esa feature (fecha + enlace al canon si el detalle ya está allí).
+
+5. **No repitas entre secciones de la misma ficha.** "Estado actual" = hitos de entrega y deltas recientes en una línea; el cómo visual detallado vive en un solo sitio dentro del documento (normalmente "Cómo funciona" o el canon externo).
+
 ### Convención de referencias y citas
 
 **Decisión 2026-05-25, no negociable.** El proyecto **no usa el signo de sección ni los glyphs decorativos hermanos** (set retirado el 2026-05-25 — detalle histórico y razones en [`docs/roadmap/aprendizajes.md`](docs/roadmap/aprendizajes.md)) en ninguna parte: ni en prosa, ni en YAML, ni en código, ni en componentes visuales, ni en comentarios. La judicatura española escribe "apartado", el BOE escribe "Artículo 5, apartado 1", la prensa no lo usa: la convención castellana real es "apartado" + enlace markdown al destino, no el signo germánico-académico.
@@ -155,7 +177,7 @@ Sustituirlo según contexto:
 3. **Cita literal de un fundamento jurídico** (sentencia, auto, BOE) en `Hecho.documentos_respaldo[].pasaje` → usar la palabra `apartado` o la numeración nativa del documento. Ejemplo: `"FJ Segundo, apartado 2.7.2, p. 134"` o `"FJ 2.7.2 (p. 134)"`. Esto reproduce el estilo real de los autos españoles.
 4. **Comentario organizativo en código** (`/* === sección X === */`) → sin glyph, sólo el número/nombre.
 
-**Sistema visual de badges**: usa color + label de texto, **sin glyphs decorativos**. No reintroducir el set retirado (signo de sección, doble daga, rombo, calderón, balanza, banderín) ni SVGs equivalentes como adorno del badge. La diferenciación de familias viene del border-left de color + label.
+**Sistema visual de badges**: canon en [`DESIGN.md`](DESIGN.md#2bis-sistema-de-badges). Sin glyphs decorativos retirados (detalle histórico en [`docs/roadmap/aprendizajes.md`](docs/roadmap/aprendizajes.md)).
 
 Si vas a editar un fichero del repo y dudas si una notación es la correcta, consulta esta sección antes de actuar.
 

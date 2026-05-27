@@ -13,9 +13,9 @@
  *    `psoe`, `partido-popular`, `vox`, `podemos`, `sumar`,
  *    `izquierda-unida`, `mas-madrid`. Cualquier otro `id` cae al fallback
  *    gris neutro (no se elige color a ojo).
- *  - Estilo: rectangular con fondo suave + border-left de 3px del color
- *    institucional + label en peso 600 (no negro). Coherente con
- *    `OrientacionBadge` (también rectangular con fondo, no pill outlined).
+ *  - Estilo: rectangular con fondo suave + borde fino uniforme (1px) + label en
+ *    peso 600 (no negro). Sin border-left grueso: identifica una organización,
+ *    no una etiqueta de categoría.
  *  - Si `href` se pasa, el badge es un enlace (uso típico desde listados).
  *  - Hover: oscurece levemente el fondo (no invierte color, mantiene
  *    legibilidad).
@@ -77,7 +77,7 @@ const klass = [
 <style>
   .partido-badge {
     display: inline-block;
-    padding: 1px 6px 1px 8px;
+    padding: 1px 6px;
     border-radius: 2px;
     font: 600 11px/1.45 var(--font-sans);
     letter-spacing: 0.02em;
@@ -85,17 +85,14 @@ const klass = [
     background: var(--color-partido-fallback-bg);
     color: var(--color-partido-fallback-fg);
     border: 1px solid var(--color-partido-fallback-border);
-    border-left-width: 3px;
-    transition: background-color 0.12s ease, border-color 0.12s ease;
+    transition: filter 0.12s ease, border-color 0.12s ease;
   }
   .partido-badge--md {
     font-size: 12px;
-    padding: 2px 8px 2px 10px;
+    padding: 2px 8px;
   }
 
-  /* Cada partido reasigna sus tres tokens. El border solo se "ve" porque
-     el border-left es más grueso, pero mantenemos el border-color uniforme
-     para no romper el alineado vertical en el listado. */
+  /* Cada partido reasigna bg + fg + borde fino uniforme (sin acento lateral). */
   .partido-badge--psoe {
     background: var(--color-partido-psoe-bg);
     color: var(--color-partido-psoe-fg);

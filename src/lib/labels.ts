@@ -65,7 +65,7 @@ export function rolGrupo(rol: string) {
   return ROL_GRUPO[rol] ?? 'otros';
 }
 
-// Familia visual del badge: F-estado (rol del lado acusado, con dot+color) vs
+// Familia visual del badge: F-estado (rol del lado acusado, dot + fondo suave sin borde) vs
 // F-función (acusación civil, parte civil, aparato judicial, con border-left
 // grueso + SVG + fondo neutro). Centraliza la lógica para que RolBadge la
 // consulte y nadie más tenga que saberlo. Ver DESIGN.md — "Sistema de badges".

@@ -7,8 +7,8 @@
 //   - exculpatorio   → gris azulado, borde sólido
 //   - desmentido     → gris neutro, borde sólido
 //   - no_concluyente → gris neutro, borde DASHED (sub-tipo de desmentido)
-// El estado se transmite por TRES canales: color + label + dot. Nunca solo
-// color (DESIGN.md — "Do's and Don'ts"). El borde dashed distingue sub-tipos sin
+// El estado se transmite por color + label (+ borde dashed en sub-tipos). Nunca
+// solo color (DESIGN.md — "Do's and Don'ts"). El borde dashed distingue sub-tipos sin
 // introducir colores nuevos. Nunca rojo (DESIGN.md — "Color Palette & Roles").
 
 interface Props {
@@ -28,6 +28,5 @@ const VARIANT = {
 const { cls, label } = VARIANT[tipo];
 ---
 <span class:list={['badge', `badge--${cls}`]}>
-  <span class="dot" aria-hidden="true"></span>
   {label}
 </span>

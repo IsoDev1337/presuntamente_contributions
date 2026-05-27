@@ -16,6 +16,8 @@ Cada ficha recoge:
 
 Sirve para descargar el `ROADMAP.md` global y las páginas Pg* de detalle de implementación: lo específico de una feature vive aquí; el `ROADMAP.md` sólo lleva los hitos transversales y el estado del proyecto.
 
+**Centralización:** no dupliques contenido del canon (p. ej. paleta de badges en `DESIGN.md`, modelo en `docs/diseno/`). Enlaza y documenta sólo lo propio de la feature. Ver [AGENTS.md — "Centralización documental"](../../../AGENTS.md#centralización-documental).
+
 ## Convención de nombres
 
 `<slug-kebab-case>.md`. El slug describe la capacidad, no el archivo de código. Ejemplos:
