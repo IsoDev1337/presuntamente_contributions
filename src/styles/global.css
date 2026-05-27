@@ -2433,15 +2433,27 @@ kbd.cite .n { font-weight: 700; }
  * ========================================================================= */
 .hecho {
   border: 1px solid;
-  border-left-width: 4px;
   padding: var(--space-3) var(--space-4);
   margin-bottom: var(--space-2);
   background: var(--color-surface);
+  transition:
+    background 200ms ease-out,
+    transform 200ms ease-out;
 }
-.hecho--acreditado  { border-color: var(--color-acreditado-border);  border-left-color: var(--color-acreditado); }
-.hecho--investigado { border-color: var(--color-investigado-border); border-left-color: var(--color-investigado); }
-.hecho--exculpatorio{ border-color: var(--color-exculpatorio-border);border-left-color: var(--color-exculpatorio); }
-.hecho--desmentido  { border-color: var(--color-desmentido-border);  border-left-color: var(--color-desmentido); }
+.hecho:hover {
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-secondary-soft));
+  transform: translateX(-2px);
+}
+.hecho--acreditado      { border-color: var(--color-acreditado-border); }
+.hecho--investigado     { border-color: var(--color-investigado-border); }
+.hecho--atribuido       { border-color: var(--color-investigado-border); }
+.hecho--exculpatorio    { border-color: var(--color-exculpatorio-border); }
+.hecho--desmentido      { border-color: var(--color-desmentido-border); }
+.hecho--no_concluyente  { border-color: var(--color-desmentido-border); }
+@media (prefers-reduced-motion: reduce) {
+  .hecho { transition: none; }
+  .hecho:hover { transform: none; }
+}
 .hecho__head {
   display: flex; align-items: center; gap: var(--space-3);
   flex-wrap: wrap;
@@ -2878,9 +2890,13 @@ body.has-page-toc .main > .ficha-detail {
   border-top: 1px solid var(--color-border);
 }
 .org-afectadas h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0 0 0.35rem;
+  font: 700 11px/1.4 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent-secondary-hover);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 4px;
+  margin: 0 0 var(--space-3);
 }
 .org-afectadas__grid {
   display: grid;
@@ -2894,8 +2910,7 @@ body.has-page-toc .main > .ficha-detail {
   padding: 0.75rem 0.9rem;
 }
 .org-afectadas__col h4 {
-  font-size: 0.78rem;
-  font-weight: 600;
+  font: 600 10px/1.2 var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-fg-muted);
@@ -2958,9 +2973,13 @@ body.has-page-toc .main > .ficha-detail {
   border-top: 1px solid var(--color-border);
 }
 .org-procesal h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0 0 0.35rem;
+  font: 700 11px/1.4 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent-secondary-hover);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 4px;
+  margin: 0 0 var(--space-3);
 }
 .org-procesal__col {
   background: var(--color-surface);
@@ -2969,8 +2988,7 @@ body.has-page-toc .main > .ficha-detail {
   padding: 0.75rem 0.9rem;
 }
 .org-procesal__col h4 {
-  font-size: 0.78rem;
-  font-weight: 600;
+  font: 600 10px/1.2 var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-fg-muted);

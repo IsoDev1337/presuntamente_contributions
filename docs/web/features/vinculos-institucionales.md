@@ -58,6 +58,8 @@ La biblioteca del caso incluye también los documentos que respaldan vínculos i
 
 En las cards de persona/organización del caso, las relaciones van separadas del bloque de roles por una línea divisoria, sin título redundante ni viñetas: el badge ya aporta el contexto institucional.
 
+Desde el ajuste visual del 2026-05-27 (noche), `PersonaCard` y `OrgCard` usan el contenedor común de cards de ficha (borde fino uniforme + hover sutil) documentado en [DESIGN.md — "Contenedor común de cards de ficha"](../../../DESIGN.md#contenedor-común-de-cards-de-ficha). Los vínculos no modifican el borde de la card: su naturaleza se lee en `SourceLinkBadge`.
+
 ## Decisiones editoriales y aprendizajes
 
 - **No usar "ideología afectada" como modelo canónico.** El encuadre correcto es **vínculo institucional documentado**. Sin documento, no entra.

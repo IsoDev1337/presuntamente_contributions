@@ -6,11 +6,9 @@
 // Lote 4 con la ficha individual de Persona); aquí mostramos rol activo +
 // metadata.
 //
-// El border-left de la card refleja el color del **rol más reciente** de
-// esta persona en el caso: activo (sin fecha_fin) si existe; si no, el de
-// fecha_inicio más reciente. Esto da una lectura inmediata del "estado
-// actual" de cada persona en la sección de implicados, alineada con los
-// tokens --color-rol-* del sistema de badges (DESIGN.md — "Sistema de badges").
+// El estado procesal se transmite con los RolBadge internos, no con la caja
+// de la card. El contenedor usa el patrón administrativo común: borde fino
+// uniforme, fondo de papel y hover sutil.
 
 import RolBadge from './RolBadge.astro';
 import SourceLinkBadge from './SourceLinkBadge.astro';
@@ -45,24 +43,11 @@ interface Props {
 
 const { nombre, cargo, esFiguraPublica, iniciales, href, roles, relaciones = [], notas } = Astro.props;
 
-// Rol más reciente: activos primero (sin fecha_fin), luego por fecha_inicio
-// descendente. Si no hay roles, fallback a navy (--color-accent) vía el
-// fallback en CSS.
-function rolMasReciente(rs: RolView[]): string | null {
-  if (rs.length === 0) return null;
-  const activos = rs.filter((r) => !r.fecha_fin);
-  const pool = activos.length > 0 ? activos : rs;
-  return [...pool].sort((a, b) => b.fecha_inicio.localeCompare(a.fecha_inicio))[0].rol;
-}
-const rolReciente = rolMasReciente(roles);
-
 // Roles ordenados para mostrar en la card: vigentes primero (por
 // fecha_inicio descendente), cerrados después (por fecha_fin descendente).
-// El primero de la lista es el "más reciente", coincide con el que pinta
-// el border-left de la card. Visualmente los no-primeros se atenúan para
-// que se lean como "anteriores" sin perder la información (decisión
-// 2026-05-27: el lector veía un orden cronológico ASC que no destacaba el
-// estado actual).
+// Visualmente los no-primeros se atenúan para que se lean como "anteriores"
+// sin perder la información (decisión 2026-05-27: el lector veía un orden
+// cronológico ASC que no destacaba el estado actual).
 const rolesOrdenados = [...roles].sort((a, b) => {
   const aVig = a.fecha_fin ? 0 : 1;
   const bVig = b.fecha_fin ? 0 : 1;
@@ -75,7 +60,7 @@ const rolesOrdenados = [...roles].sort((a, b) => {
   return bRef.localeCompare(aRef);
 });
 ---
-<article class:list={['pcard', rolReciente && `pcard--rol-${rolReciente}`]}>
+<article class="pcard">
   <div class="pcard__init" aria-hidden="true">{iniciales}</div>
   <div class="pcard__body">
     <h4 class="pcard__name">
@@ -125,43 +110,25 @@ const rolesOrdenados = [...roles].sort((a, b) => {
 <style>
   .pcard {
     border: 1px solid var(--color-border);
-    border-left: 3px solid var(--pcard-rol, var(--color-accent));
     background: var(--color-surface);
     padding: 14px 16px;
     display: grid;
     grid-template-columns: 44px 1fr;
     gap: 14px;
-    transition: border-left-width 160ms ease-out, background 160ms ease-out;
+    transition:
+      border-color 200ms ease-out,
+      background 200ms ease-out,
+      transform 200ms ease-out;
   }
   .pcard:hover {
-    border-left-width: 5px;
-    background: var(--color-bg-muted);
+    border-color: var(--color-accent-secondary-border);
+    background: color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-secondary-soft));
+    transform: translateX(-2px);
   }
-  /* Color del border-left por rol más reciente. Reusa los tokens del sistema
-   * de badges ([DESIGN.md → "Sistema de badges"](../../DESIGN.md#2bis-sistema-de-badges)) para coherencia con los RolBadge dentro de
-   * la card. */
-  .pcard--rol-investigado        { --pcard-rol: var(--color-rol-investigado); }
-  .pcard--rol-procesado          { --pcard-rol: var(--color-rol-procesado); }
-  .pcard--rol-acusado            { --pcard-rol: var(--color-rol-acusado); }
-  .pcard--rol-condenado_no_firme { --pcard-rol: var(--color-rol-condenado-no-firme); }
-  .pcard--rol-condenado_firme    { --pcard-rol: var(--color-rol-condenado-firme); }
-  .pcard--rol-absuelto           { --pcard-rol: var(--color-rol-absuelto); }
-  .pcard--rol-desimputado        { --pcard-rol: var(--color-rol-desimputado); }
-  .pcard--rol-testigo            { --pcard-rol: var(--color-rol-testigo); }
-  .pcard--rol-juez_instructor,
-  .pcard--rol-juez_ponente,
-  .pcard--rol-fiscal,
-  .pcard--rol-magistrado,
-  .pcard--rol-abogado_defensa,
-  .pcard--rol-abogado_acusacion,
-  .pcard--rol-perito_judicial,
-  .pcard--rol-perito_parte,
-  .pcard--rol-secretario_judicial { --pcard-rol: var(--color-rol-aparato); }
-  .pcard--rol-denunciante,
-  .pcard--rol-querellante,
-  .pcard--rol-acusacion_particular,
-  .pcard--rol-acusacion_popular,
-  .pcard--rol-perjudicado        { --pcard-rol: var(--color-rol-acusacion-civil); }
+  @media (prefers-reduced-motion: reduce) {
+    .pcard { transition: none; }
+    .pcard:hover { transform: none; }
+  }
   .pcard__init {
     width: 44px;
     height: 44px;
@@ -178,6 +145,10 @@ const rolesOrdenados = [...roles].sort((a, b) => {
     font: 700 16px/1.2 var(--font-sans);
     margin: 0 0 4px;
     letter-spacing: -0.005em;
+    transition: color 200ms ease-out;
+  }
+  .pcard:hover .pcard__name {
+    color: color-mix(in srgb, var(--color-accent-secondary-hover) 72%, #1a1a18);
   }
   .pcard__name a { color: inherit; text-decoration: none; }
   .pcard__name a:hover { text-decoration: underline; }

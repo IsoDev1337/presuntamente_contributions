@@ -2,7 +2,7 @@
 
 Lenguaje visual canónico de presuntamente.org. Este fichero es la fuente de verdad de la identidad visual del proyecto. Cualquier agente (Claude Design, Claude Code, otros) que vaya a generar diseño, código o cualquier output visual debe leerlo antes de empezar.
 
-**Última actualización:** 2026-05-27 — refinamiento visual de F-estado (epistémico sin dot; rol procesal con dot + fondo suave sin borde, alineado con `EstadoFichaBadge`) y `PartidoBadge` (borde fino uniforme, sin `border-left` grueso). Decisiones editoriales clave incorporadas: el rol procesal `investigado` queda fuera de los rojos (cautelar, no acusatorio); el rol `condenado` se separa en `condenado_no_firme` (rojo apagado sobre fondo rosa pálido) y `condenado_firme` (rojo firme sobre fondo rosa más intenso), porque la presunción de inocencia formal cae solo con firmeza. F-estado rol y F-función comparten colores parcialmente pero usan **contenedores distintos** (fondo suave + dot vs rectángulo + border-left grueso). Pendiente sincronizar con Claude Design (prompt entregado al maintainer).
+**Última actualización:** 2026-05-27 — contenedor común de cards de ficha (PersonaCard, OrgCard y Hecho) alineado con los casos destacados de home: borde fino uniforme, fondo `--color-surface`, hover sutil `translateX(-2px)` con fondo muy claro, y sin `border-left` grueso. El `border-left` queda reservado para F-función, avisos/aclaraciones y algunos bloques administrativos, no para codificar estado en cards de entidad o hecho. Se mantiene el refinamiento visual de F-estado (epistémico sin dot; rol procesal con dot + fondo suave sin borde) y `PartidoBadge` sin `border-left` grueso. Pendiente sincronizar con Claude Design.
 
 ---
 
@@ -296,9 +296,19 @@ CSS canónico en `src/styles/global.css` (sección "Badges"). Componentes Astro:
 
 ### Convenciones de estado
 
-- **Hover**: subrayado en enlaces; cambio de color sutil en cards interactivas. Sin animaciones decorativas.
+- **Hover**: subrayado en enlaces; en cards interactivas o escaneables, cambio de borde/fondo sutil y desplazamiento horizontal máximo `translateX(-2px)`. Sin animaciones decorativas.
 - **Focus**: `:focus-visible` con outline claramente visible (2px sólido en `--color-accent`).
 - **Active**: feedback inmediato, sin delay.
+
+### Contenedor común de cards de ficha
+
+`PersonaCard`, `OrgCard` y `Hecho` comparten el mismo chasis: `border: 1px solid var(--color-border)`, fondo `--color-surface`, radius 0, sin sombra y hover discreto (`border-color`, fondo apenas tintado con `color-mix(in srgb, var(--color-surface) 92%, var(--color-accent-secondary-soft))` + `translateX(-2px)`, desactivado con `prefers-reduced-motion`). La información de estado vive dentro del contenido:
+
+- Persona: `RolBadge` + orden de roles vigentes/anteriores.
+- Organización: `OrgGlyph` + tipo/roles/vínculos.
+- Hecho: `EpistemicBadge` + borde fino del color epistémico + fuentes inline.
+
+No usar `border-left` grueso para estas cards. Ese vocabulario pertenece a F-función, avisos/aclaraciones o bloques administrativos donde la barra lateral marca una función de contenedor, no el estado de una entidad.
 
 ### Diferenciación Persona vs Organización
 

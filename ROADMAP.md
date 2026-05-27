@@ -4,7 +4,9 @@
 >
 > El roadmap conceptual vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión operativa: estado actual, próximos pasos, backlog inmediato y aprendizajes recientes. El histórico largo se ha movido a [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-27 (noche, 7). **Copy pre-launch (home, `/sobre`, `/aportar`) + banda `.page-id`.** Kicker home `con fuente`. `/sobre`: filosofía del hilo, mantenimiento, §4 Colaborar → `/aportar`, §9 Correcciones → `/rectificar`. `/aportar` ampliado; cross-link recíproco `/rectificar`. `.page-id`: meta alineada al eyebrow. Fichas `inicio.md`, `sobre.md`, `aportar.md`.
+**Última actualización:** 2026-05-27 (noche, 8). **Contenedor común de cards de ficha.** `PersonaCard`, `OrgCard` y `Hecho` alineados con el patrón de “casos destacados” de home: borde fino uniforme, fondo `--color-surface`, hover `translateX(-2px)` con fondo muy claro y sin `border-left` grueso. El estado queda dentro de los badges (`RolBadge`, `EpistemicBadge`); `border-left` se reserva para F-función, avisos/aclaraciones y bloques administrativos. Subtítulos de “Organizaciones afectadas” y “Participación procesal” homogeneizados con `.grupo__title`. Canon actualizado en `DESIGN.md`; detalle en `filtros-pills-ficha-caso.md` y `vinculos-institucionales.md`. Validate **690/0**, build **201 páginas + 4563 palabras Pagefind**.
+
+**Anterior (2026-05-27 noche, 7).** **Copy pre-launch (home, `/sobre`, `/aportar`) + banda `.page-id`.** Kicker home `con fuente`. `/sobre`: filosofía del hilo, mantenimiento, §4 Colaborar → `/aportar`, §9 Correcciones → `/rectificar`. `/aportar` ampliado; cross-link recíproco `/rectificar`. `.page-id`: meta alineada al eyebrow. Fichas `inicio.md`, `sobre.md`, `aportar.md`.
 
 **Anterior (2026-05-27 noche, 6).** Iteración UI `/casos` (HoverCard, chips org afectadas, `EstadoPublicacionBadge` en listado). Detalle en [`casos.md`](docs/web/pages/casos.md) y [`hover-card.md`](docs/web/features/hover-card.md).
 
