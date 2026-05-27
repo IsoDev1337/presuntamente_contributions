@@ -255,4 +255,48 @@ Cuatro piezas:
 
 3. **Dedupe de partidos en `/casos`** — bug visual: el listado mostraba `PSOE PSOE` en Plus Ultra y `PP PP` en Kitchen porque `partidos_afectados[]` admite varias entradas con el mismo `partido_id` y distinto `tipo_afectacion`. Ahora se deduplica por `partido_id` antes de renderizar; la justificación detallada sigue en la ficha del caso.
 
-4. **Decisión editorial: afectación directa vs indirecta** — al revisar la columna "Organización afectada" de `/casos`, el maintainer detectó que Podemos aparecía como "afectada" en Kitchen siendo acusación popular. Análisis: hoy se confunde "afectación" con "papel procesal" en dos modelos paralelos (`Caso.partidos_afectados[].tipo_afectacion: querella_o_acusacion_popular_del_partido` + prioridad `acusacion_institucional_en_caso` en la derivación). Taxonomía nueva acordada (directa · indirecta · no afectada / papel procesal) + 6 reglas editoriales que resuelven fronteras. **No implementado en esta sesión** — es refactor estructural con doc canónico, schema, migración de datos y UI. Plan completo en [`docs/web/features/afectacion-directa-indirecta.md`](../web/features/afectacion-directa-indirecta.md). [Implementado el mismo día en la sesión "(noche, 2)", ver cabecera del `ROADMAP.md`.]
+4. **Decisión editorial: afectación directa vs indirecta** — al revisar la columna "Organización afectada" de `/casos`, el maintainer detectó que Podemos aparecía como "afectada" en Kitchen siendo acusación popular. Análisis: hoy se confunde "afectación" con "papel procesal" en dos modelos paralelos (`Caso.partidos_afectados[].tipo_afectacion: querella_o_acusacion_popular_del_partido` + prioridad `acusacion_institucional_en_caso` en la derivación). Taxonomía nueva acordada (directa · indirecta · no afectada / papel procesal) + 6 reglas editoriales que resuelven fronteras. **No implementado en esta sesión** — es refactor estructural con doc canónico, schema, migración de datos y UI. Plan completo en [`docs/web/features/afectacion-directa-indirecta.md`](../web/features/afectacion-directa-indirecta.md). Implementado el mismo día en la sesión «noche, 2» (ver más abajo).
+
+### Bloque C — revisión editorial humana pre-launch (2026-05-27)
+
+Cerrado 2026-05-27 (noche). Auditoría multi-agente del sitio público (5 sub-agentes Sonnet en paralelo barriendo home/chrome, institucionales, fichas y entidades, listados+casos, transversales+repo). Hallazgos consolidados y aplicados en 30 ediciones sobre 26 ficheros + 3 nuevos.
+
+Piezas principales: limpieza de jerga del repo (rutas `docs/diseno/`, `AGENTS.md`, `pnpm`, códigos V/P, mayúsculas de entidades del modelo); retirada de banderines de borrador (`v0.0.0-alpha`, banner legal); placeholder `numero_procedimiento` quitado de 4 YAMLs publicables; glosas `<abbr>` de siglas (UDEF, UCO, CGPJ, CENDOJ, AIReF, LSSI, LO 2/1984); «rescate» → «préstamo» en Plus Ultra; `PgTraduccionCatalan` para selector ES/CAT; glosa pública de explorador de conexiones; fallback de búsqueda sin comandos pnpm; `EstadoPublicacionBadge` en persona/organización; David Chicano como responsable LSSI en `/aviso-legal`; track `Versión <sha7> · <fecha>` vía `src/lib/build-info.ts`; README/CONTRIBUTING/LEGAL adelgazados.
+
+Decisiones del maintainer: mantener nomenclatura `borrador/beta_publica/publicado`, eyebrows «Sección X · …», «imputación» en hero, escala N1-N4 glosada en primer encuentro, página `/cat` personalizada. Hueco no bloqueante: columna orientación en `/organizaciones` con «—» para no-medios.
+
+Validate **676/0**, build **201 páginas + 4476 palabras Pagefind**.
+
+### Refactor afectación directa/indirecta (noche, 2)
+
+Sesión dedicada en 7 fases: (1) doc canónico [`08-afectacion-directa-indirecta.md`](../diseno/08-afectacion-directa-indirecta.md); (2) schema `VinculoInstitucional` + V-22..V-24; (3) migración 6 publicables (5 directos anotados + 8 vínculos nuevos); (4) UI [`src/lib/afectacion.ts`](../src/lib/afectacion.ts) — columna fusionada Directa/Indirecta + participación procesal; (5) skill `/documentar-vinculos` v3; (6) `/revisar-caso` CH11 + pasada 6 casos (0 BLOQUEANTES del refactor); (7) retirada `Caso.partidos_afectados[]`. Validate **684/0**, build **201 páginas**.
+
+Fichas: [`afectacion-directa-indirecta.md`](../web/features/afectacion-directa-indirecta.md), [`partidos-afectados.md`](../web/features/partidos-afectados.md) (retirada), [`vinculos-institucionales.md`](../web/features/vinculos-institucionales.md).
+
+### Backlog editorial heredado (noche, 3)
+
+Pasada sobre 13 hallazgos no estructurales de auditoría `/revisar-caso` 2026-05-27: Plus Ultra (`pu-prestamo-sepi` → `atribuido`; URL Infobae corregida); Begoña Gómez (hito imputación Cristina Álvarez reasignado); González Amador (`hito_origen_id` acusación popular eliminado); FGE (rol Salto investigado; V-19 en 4 hechos N1→3); Kitchen (biografías Bárcenas/Iglesias; fechas `fecha_precision: mes`); Lezo (documentos hito cambio juez Velasco/Castellón; CGPJ histórico pre-2024 vía URL estática + PDFs CP jun-2017; BOE RD 527/2017). Sub-agente Sonnet: autos GA acusación popular por cobertura N4; BOE Lezo descargado. Validate final **690/0**.
+
+Catálogo [`docs/fuentes/`](../fuentes/README.md) creado (poder judicial, BOE, archivos; placeholders Fiscalía, TC, etc.).
+
+### Pasada UX catálogos y ficha (noche, 4)
+
+Cinco piezas: (1) `CatalogoLeyenda` en 4 catálogos; (2) filtros/ordenación ampliados (`MultiSelectFilter`, `git-meta.ts` para última actualización, pirámide procesal); (3) `SectionH` + botón limpiar en header vía `form=`; (4) pills en ficha §3 Personas, §5 Cronología, §6 Hechos (`ChipFilterGroup`); §7 cobertura aplazado; (5) bugs `CustomSelect`/`MultiSelectFilter` (`DOMContentLoaded`, `[hidden]`). Fichas: [`catalogos-comunes.md`](../web/features/catalogos-comunes.md), [`filtros-pills-ficha-caso.md`](../web/features/filtros-pills-ficha-caso.md), páginas catálogo actualizadas. Validate **690/0**.
+
+### Rename grafo → conexiones (noche, 5)
+
+Coherencia URL `/conexiones`, schema `estado_ficha.conexiones`, nav y slugs de docs. Sin tocar tipos TS `Graph*`, clases `graph-*` ni prosa «grafo» como descriptor de formato. Reparto Opus/Sonnet: mecánico en sub-agente, párrafos editoriales en principal. Validate **690/0**, build **201 páginas**.
+
+Fichas: [`conexiones.md`](../web/pages/conexiones.md), [`explorador-conexiones.md`](../web/features/explorador-conexiones.md).
+
+### Iteración UI /casos (noche, 6)
+
+HoverCard, chips org afectadas, `EstadoPublicacionBadge` en listado. [`casos.md`](../web/pages/casos.md), [`hover-card.md`](../web/features/hover-card.md).
+
+### Sesiones 2026-05-27 (noche, 7 a 9)
+
+**Noche 7 — copy pre-launch:** kicker home `con fuente`; `/sobre` (filosofía, mantenimiento, §4→`/aportar`, §9→`/rectificar`); `/aportar` ampliado; `.page-id` meta alineada al eyebrow. Fichas: [`inicio.md`](../web/pages/inicio.md), [`sobre.md`](../web/pages/sobre.md), [`aportar.md`](../web/pages/aportar.md).
+
+**Noche 8 — contenedor común de cards:** `PersonaCard`, `OrgCard`, `Hecho` alineados con cards de home (borde fino, `--color-surface`, hover `translateX(-2px)` sin `border-left` grueso). Canon en [`DESIGN.md`](../../DESIGN.md); detalle en [`filtros-pills-ficha-caso.md`](../web/features/filtros-pills-ficha-caso.md), [`vinculos-institucionales.md`](../web/features/vinculos-institucionales.md). Validate **690/0**, build **201 páginas + 4563 palabras Pagefind**.
+
+**Noche 9 — preindexación pública:** eliminado `public/_headers` (dejaba `X-Robots-Tag: noindex` en Pages); pendiente barrido actualidad 6 casos; norma higiene roadmap en `AGENTS.md`. Fichas: [`higiene-tecnica.md`](../web/features/higiene-tecnica.md), [`cloudflare-pages-deploy.md`](../web/features/cloudflare-pages-deploy.md).
