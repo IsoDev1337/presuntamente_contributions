@@ -260,7 +260,7 @@ const breadcrumb = [
   { label: 'Organizaciones', href: lang === 'ca' ? '/cat/organizaciones' : '/organizaciones' },
   { label: data.nombre },
 ];
-const graphHref = `/grafo?focus=organizacion&id=${data.id}&depth=2&layout=cose`;
+const graphHref = `/conexiones?focus=organizacion&id=${data.id}&depth=2&layout=cose`;
 ---
 
 <BaseLayout

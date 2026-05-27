@@ -96,7 +96,7 @@ estado_ficha:
   fuentes_cruzadas: parcial
   composicion_fuentes_citadas: pendiente
   vinculos_institucionales: pendiente
-  grafo_relaciones: pendiente
+  conexiones: pendiente
   cobertura_mediatica_general: pendiente
   revision_editorial: completo
   notas: "Caso modelado como esqueleto inicial. Conexo factualmente con Lezo por compartir el principal investigado. Pendiente desarrollar a publicable o consolidar como sub-entidad de Lezo; la elección la decide el maintainer."

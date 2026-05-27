@@ -8,14 +8,14 @@ Lista las secciones públicas del inventario en el header navy. **Desktop:** Cas
 
 ## Para qué sirve
 
-Reducir ruido visual en el header cuando el inventario crece (Grafo, Biblioteca, etc.) sin perder acceso en un clic desde el panel desplegable. Casos sigue siendo destino directo — el núcleo del sitio.
+Reducir ruido visual en el header cuando el inventario crece (Conexiones, Biblioteca, etc.) sin perder acceso en un clic desde el panel desplegable. Casos sigue siendo destino directo — el núcleo del sitio.
 
 ## Cómo funciona
 
 - **`navEntries`**: cinco entradas de primer nivel:
   1. `link` — Casos
   2. `menu` inventario — Personas, Organizaciones, Delitos
-  3. `link` — Conexiones (ruta `/grafo`; copy completo en [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md#convención-de-copy))
+  3. `link` — Conexiones (ruta `/conexiones`; copy completo en [`explorador-conexiones.md`](explorador-conexiones.md#convención-de-copy))
   4. `menu` referencia — Biblioteca, Cifras
   5. `link` — Sobre (metainfo; acceso directo)
 - **`navGroups`**: misma taxonomía para el panel móvil (cabeceras Inventario / Referencia).
@@ -28,7 +28,7 @@ Reducir ruido visual en el header cuando el inventario crece (Grafo, Biblioteca,
 
 ## Estado actual
 
-- **2026-05-26 (b)**: Grafo y Sobre pasan a enlace directo; Referencia queda solo con Biblioteca + Cifras.
+- **2026-05-26 (b)**: Conexiones y Sobre pasan a enlace directo; Referencia queda solo con Biblioteca + Cifras.
 - **2026-05-26**: nav desktop pasa de 8 enlaces planos a menús desplegables + enlaces destacados.
 - **2026-05-25 (d)**: hover full-height; nav `max-content` + columna `1fr` empuja utilidades a la derecha (sigue vigente).
 
@@ -36,15 +36,15 @@ Reducir ruido visual en el header cuando el inventario crece (Grafo, Biblioteca,
 
 - **No hamburguesa en tablet** — el nav debe seguir siendo visible hasta mobile real.
 - **Casos fuera del dropdown** — acceso directo al núcleo editorial.
-- **Conexiones y Sobre fuera del dropdown** — explorador de relaciones como feature destacada (`/grafo`); Sobre como metainfo institucional sin enterrarla.
+- **Conexiones y Sobre fuera del dropdown** — explorador de relaciones como feature destacada (`/conexiones`); Sobre como metainfo institucional sin enterrarla.
 - **Inventario vs Referencia** — entidades modeladas separadas de documentos agregados (biblioteca, cifras).
 - **Sin shadcn/Radix en runtime** — el proyecto es Astro estático; el patrón visual (trigger + panel + chevron) se replica con CSS/JS existente.
 - **2 filas antes que recortar** — por debajo de 1180px el nav gana fila propia a ancho completo.
 
 ## Ideas futuras
 
-- v1.x: descripciones cortas bajo cada ítem del dropdown (p. ej. «Grafo — relaciones entre actores») si el panel crece más.
-- v1.x: indicador de «nuevo» en Grafo mientras la feature esté en beta pública.
+- v1.x: descripciones cortas bajo cada ítem del dropdown (p. ej. «Conexiones — relaciones entre actores») si el panel crece más.
+- v1.x: indicador de «nuevo» en Conexiones mientras la feature esté en beta pública.
 
 ## Pendientes operativos
 

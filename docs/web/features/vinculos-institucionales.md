@@ -1,6 +1,6 @@
 # Vínculos institucionales documentados
 
-> Archivos clave: [`schemas/vinculo-institucional.schema.json`](../../../schemas/vinculo-institucional.schema.json) · [`src/content.config.ts`](../../../src/content.config.ts) (collection `vinculos`) · [`.agents/skills/documentar-vinculos/SKILL.md`](../../../.agents/skills/documentar-vinculos/SKILL.md) · [`SourceLinkBadge.astro`](../../../src/components/SourceLinkBadge.astro) · [`src/lib/documentos.ts`](../../../src/lib/documentos.ts) · directorio `content/vinculos/` (primer corpus: `begona-gomez`). · Relacionada con [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md).
+> Archivos clave: [`schemas/vinculo-institucional.schema.json`](../../../schemas/vinculo-institucional.schema.json) · [`src/content.config.ts`](../../../src/content.config.ts) (collection `vinculos`) · [`.agents/skills/documentar-vinculos/SKILL.md`](../../../.agents/skills/documentar-vinculos/SKILL.md) · [`SourceLinkBadge.astro`](../../../src/components/SourceLinkBadge.astro) · [`src/lib/documentos.ts`](../../../src/lib/documentos.ts) · directorio `content/vinculos/` (primer corpus: `begona-gomez`). · Relacionada con [`explorador-conexiones.md`](explorador-conexiones.md).
 
 ## Qué hace
 
@@ -46,7 +46,7 @@ Una vez existan `VinculoInstitucional` poblados en al menos un caso piloto, el r
 
 - Relaciones embebidas dentro de las propias cards de "Personas implicadas" y "Organizaciones implicadas" en la ficha de caso. No hay sección independiente de contexto institucional porque duplicaba contenido y añadía ruido.
 - Vista compacta en ficha de Persona y de Organización con los vínculos en los que aparece la entidad, separada del rol procesal pero sin tabla pesada.
-- Consumido también por [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md) como fuente de aristas.
+- Consumido también por [`explorador-conexiones.md`](explorador-conexiones.md) como fuente de aristas.
 
 ## Estado actual
 
@@ -87,7 +87,7 @@ En las cards de persona/organización del caso, las relaciones van separadas del
 - Vista por organización con todos los casos donde aparece por vínculo institucional.
 - Vista por gobierno/legislatura (`gobierno_o_legislatura`) cruzando todos los nombramientos.
 - Export de vínculos documentados.
-- Integración con [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md) como fuente de aristas.
+- Integración con [`explorador-conexiones.md`](explorador-conexiones.md) como fuente de aristas.
 
 ### Sin compromiso
 

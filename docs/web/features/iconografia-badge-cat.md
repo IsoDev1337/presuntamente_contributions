@@ -58,7 +58,7 @@ Acelera el escaneo visual de listados densos: `/organizaciones`, `/delitos`, cob
 
 - Componente `CategoryBadge.astro` desplegado en los 4 sitios de uso.
 - `NaturalezaBadge.astro` **conserva su propia paleta y no usa iconos** — los tipos de naturaleza editorial (`generalista_politico`, `verificacion`, `confesional`, `especializado_juridico`, etc.) no tienen un icono Lucide obviamente identificativo y meter algo a la fuerza añadiría ruido sin información. Se mantiene la decisión "color + label" para esta variante.
-- El `badge--cat` "genérico" usado en `src/scripts/grafo-relaciones.ts` (tabla textual del grafo) **no usa CategoryBadge** porque se renderiza vía `innerHTML` en cliente sobre etiquetas de arista (`EDGE_LABEL`), no sobre tipos de entidad. El icono no aplica.
+- El `badge--cat` "genérico" usado en `src/scripts/conexiones.ts` (tabla textual del grafo) **no usa CategoryBadge** porque se renderiza vía `innerHTML` en cliente sobre etiquetas de arista (`EDGE_LABEL`), no sobre tipos de entidad. El icono no aplica.
 - `lucide-static@1.16.0` añadido como `devDependency`.
 
 ## Decisiones editoriales y aprendizajes
@@ -75,7 +75,7 @@ Acelera el escaneo visual de listados densos: `/organizaciones`, `/delitos`, cob
 ### Sin compromiso
 
 - **Icono para `otra` o fallback `circle-help`** si en el futuro se quiere que todos los tipos lleven icono. Hoy preferimos el degradado gracioso (sin icono) para `otra` y para tipos no mapeados.
-- **Iconos dentro de los nodos del grafo Cytoscape** (no del badge HTML — eso es trabajo aparte, ver `grafo-relaciones-caso.md`). Si se aborda, reutilizar el mismo mapeo `tipo → icono` exportándolo desde `CategoryBadge.astro` para evitar divergencia.
+- **Iconos dentro de los nodos del grafo Cytoscape** (no del badge HTML — eso es trabajo aparte, ver `explorador-conexiones.md`). Si se aborda, reutilizar el mismo mapeo `tipo → icono` exportándolo desde `CategoryBadge.astro` para evitar divergencia.
 - **Icono para `entidad_investigada_en_caso` u otras naturalezas de `VinculoInstitucional`** si se llega a renderizar como badge. Hoy no aplica.
 - **Modo "icon-only"** (`size="icon"`) para columnas muy estrechas donde el label estorbe. Posible v1.x si llegamos a mostrar tablas comprimidas en mobile.
 

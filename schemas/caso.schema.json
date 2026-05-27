@@ -146,7 +146,7 @@
         "fuentes_cruzadas",
         "composicion_fuentes_citadas",
         "vinculos_institucionales",
-        "grafo_relaciones",
+        "conexiones",
         "cobertura_mediatica_general",
         "revision_editorial"
       ],
@@ -158,7 +158,7 @@
         "fuentes_cruzadas": { "$ref": "#/$defs/estadoChequeo" },
         "composicion_fuentes_citadas": { "$ref": "#/$defs/estadoChequeo" },
         "vinculos_institucionales": { "$ref": "#/$defs/estadoChequeo" },
-        "grafo_relaciones": { "$ref": "#/$defs/estadoChequeo" },
+        "conexiones": { "$ref": "#/$defs/estadoChequeo" },
         "cobertura_mediatica_general": { "$ref": "#/$defs/estadoChequeo" },
         "revision_editorial": { "$ref": "#/$defs/estadoChequeo" },
         "notas": {

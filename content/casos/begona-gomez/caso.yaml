@@ -81,7 +81,7 @@ estado_ficha:
   fuentes_cruzadas: completo
   composicion_fuentes_citadas: pendiente
   vinculos_institucionales: parcial
-  grafo_relaciones: pendiente
+  conexiones: pendiente
   cobertura_mediatica_general: parcial
   revision_editorial: completo
   notas: "Cuatro autos de instrucción y un escrito de Fiscalía siguen pendientes de aparecer en fuente oficial verificable. Los Juzgados de Instrucción ordinarios no publican autos en CENDOJ; se reanalizará cuando el CGPJ los publique o cuando aparezcan en un mirror auditable. Cobertura mediática: corpus inicial de 29 piezas verificadas (14 medios, 5 ventanas temporales abr 2024–may 2026). Parcial por ausencia de El País, El Mundo y ABC; pendiente segunda pasada con esos medios."

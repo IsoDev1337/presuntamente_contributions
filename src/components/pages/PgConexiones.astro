@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import GrafoRelaciones from '@/components/GrafoRelaciones.astro';
+import ConexionesExplorer from '@/components/ConexionesExplorer.astro';
 import { getCollection } from 'astro:content';
-import { buildGraphPayload } from '@/lib/grafo';
+import { buildGraphPayload } from '@/lib/conexiones';
 import type { Lang } from '@/lib/labels';
 
 interface Props {
@@ -56,12 +56,12 @@ const strings = {
   title={strings.title}
   lang={lang}
   description={strings.description}
-  activeNav="grafo"
+  activeNav="conexiones"
   hideSubstrip
   breadcrumb={[
     { label: 'Inicio', href: lang === 'ca' ? '/cat' : '/' },
     { label: 'Conexiones' },
   ]}
 >
-  <GrafoRelaciones graph={graph} />
+  <ConexionesExplorer graph={graph} />
 </BaseLayout>

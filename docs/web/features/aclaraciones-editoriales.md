@@ -55,7 +55,7 @@ Cuando una aclaración tiene varios párrafos y el último es una línea de meta
 
 ## Estado actual
 
-Migrados 22 puntos de uso en 13 ficheros (`PgCasoDetalle`, `PgPersonaDetalle`, `PgOrganizacionDetalle`, `PgDelitoDetalle`, `PgInicio`, `PgCifras`, `PgDelitos`, `PgSobre`, `PgAportar`, `PgRectificar`, `PgBuscar`, `GrafoRelaciones`). Borradas las clases legacy: `.aviso`, `.aviso--accent`, `.aviso--mostaza`, `.grupo__intro`, `.contexto-intro`, `.clasif-intro`, `.legal-note`, `.bottom-note`, `.coverage-disclaimer*`, `.org-afectadas__note`, `.org-procesal__note`, `.disclaimer` (scoped en PgCifras).
+Migrados 22 puntos de uso en 13 ficheros (`PgCasoDetalle`, `PgPersonaDetalle`, `PgOrganizacionDetalle`, `PgDelitoDetalle`, `PgInicio`, `PgCifras`, `PgDelitos`, `PgSobre`, `PgAportar`, `PgRectificar`, `PgBuscar`, `ConexionesExplorer`). Borradas las clases legacy: `.aviso`, `.aviso--accent`, `.aviso--mostaza`, `.grupo__intro`, `.contexto-intro`, `.clasif-intro`, `.legal-note`, `.bottom-note`, `.coverage-disclaimer*`, `.org-afectadas__note`, `.org-procesal__note`, `.disclaimer` (scoped en PgCifras).
 
 `pnpm validate` y `pnpm build` verdes tras la migración.
 
@@ -76,7 +76,7 @@ El disclaimer general de presunción de inocencia que aparece al final de cada f
 
 ### Por qué los fallbacks de JavaScript usan `media`, no una clase aparte
 
-PgBuscar (cuando Pagefind no carga) y GrafoRelaciones (cuando no hay JS) muestran un aviso explicativo. Conceptualmente son empty states funcionales, no aclaraciones editoriales. Pero visualmente son lo mismo: gris muted con border-left gris fuerte. Crearles un componente `FallbackWarning` propio duplicaría CSS para dos sitios. Reutilizar `<Aclaracion nivel="media">` es pragmático y mantiene el lenguaje visual coherente; el día que aparezca un tercer fallback con necesidades distintas (e.g. botón de acción dentro), se extrae componente nuevo.
+PgBuscar (cuando Pagefind no carga) y ConexionesExplorer (cuando no hay JS) muestran un aviso explicativo. Conceptualmente son empty states funcionales, no aclaraciones editoriales. Pero visualmente son lo mismo: gris muted con border-left gris fuerte. Crearles un componente `FallbackWarning` propio duplicaría CSS para dos sitios. Reutilizar `<Aclaracion nivel="media">` es pragmático y mantiene el lenguaje visual coherente; el día que aparezca un tercer fallback con necesidades distintas (e.g. botón de acción dentro), se extrae componente nuevo.
 
 ### El `<noscript>` literal
 

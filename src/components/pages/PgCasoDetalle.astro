@@ -81,7 +81,7 @@ interface EstadoFicha {
   fuentes_cruzadas: ChequeoFicha;
   composicion_fuentes_citadas: ChequeoFicha;
   vinculos_institucionales: ChequeoFicha;
-  grafo_relaciones: ChequeoFicha;
+  conexiones: ChequeoFicha;
   cobertura_mediatica_general: ChequeoFicha;
   revision_editorial: ChequeoFicha;
   notas?: string;
@@ -102,7 +102,7 @@ const CHEQUEOS_FICHA: ReadonlyArray<readonly [keyof EstadoFicha, string]> = [
   ['fuentes_cruzadas', 'Fuentes periodísticas cruzadas'],
   ['composicion_fuentes_citadas', 'Composición de fuentes citadas'],
   ['vinculos_institucionales', 'Vínculos institucionales documentados'],
-  ['grafo_relaciones', 'Conexiones y relaciones'],
+  ['conexiones', 'Conexiones y relaciones'],
   ['cobertura_mediatica_general', 'Cobertura mediática general'],
   ['revision_editorial', 'Revisión editorial cualitativa'],
 ] as const;
@@ -787,7 +787,7 @@ const breadcrumb = [
   { label: 'Casos', href: lang === 'ca' ? '/cat/casos' : '/casos' },
   { label: data.nombre_mediatico },
 ];
-const graphHref = `/grafo?focus=caso&id=${data.id}&depth=2&layout=cose`;
+const graphHref = `/conexiones?focus=caso&id=${data.id}&depth=2&layout=cose`;
 ---
 
 <BaseLayout

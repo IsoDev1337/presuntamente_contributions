@@ -102,7 +102,7 @@ const casos = defineCollection({
           fuentes_cruzadas: ESTADO_CHEQUEO,
           composicion_fuentes_citadas: ESTADO_CHEQUEO,
           vinculos_institucionales: ESTADO_CHEQUEO,
-          grafo_relaciones: ESTADO_CHEQUEO,
+          conexiones: ESTADO_CHEQUEO,
           cobertura_mediatica_general: ESTADO_CHEQUEO,
           revision_editorial: ESTADO_CHEQUEO,
           notas: z.string().optional(),

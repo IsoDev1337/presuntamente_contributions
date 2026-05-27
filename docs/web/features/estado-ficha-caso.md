@@ -50,7 +50,7 @@ Lista cerrada de los 10 chequeos:
 5. `fuentes_cruzadas`
 6. `composicion_fuentes_citadas` (feature [`composicion-fuentes-citadas.md`](composicion-fuentes-citadas.md))
 7. `vinculos_institucionales` (feature [`vinculos-institucionales.md`](vinculos-institucionales.md))
-8. `grafo_relaciones` (feature [`grafo-relaciones-caso.md`](grafo-relaciones-caso.md))
+8. `conexiones` (feature [`explorador-conexiones.md`](explorador-conexiones.md))
 9. `cobertura_mediatica_general` (feature [`cobertura-mediatica-general.md`](cobertura-mediatica-general.md))
 10. `revision_editorial` (skill [`revisar-caso`](../../../.agents/skills/revisar-caso/SKILL.md))
 
@@ -105,7 +105,7 @@ Mismo patrón (dot + label, fondo suave sin borde) pero para los 4 estados del c
 
 ## Decisiones editoriales y aprendizajes
 
-- **El estado global lo decide el maintainer, no se deriva del `estado_ficha`.** Las 4 features transversales del Bloque D que están `pendiente` en `estado_ficha` son features del producto, no fallas del caso — un caso puede estar `publicado` aunque sus chequeos de vínculos/grafo/composición/cobertura sigan en `pendiente` mientras esas features no estén entregadas para todos los casos.
+- **El estado global lo decide el maintainer, no se deriva del `estado_ficha`.** Las 4 features transversales del Bloque D que están `pendiente` en `estado_ficha` son features del producto, no fallas del caso — un caso puede estar `publicado` aunque sus chequeos de vínculos/conexiones/composición/cobertura sigan en `pendiente` mientras esas features no estén entregadas para todos los casos.
 - **`pendiente` es honestidad pública, no penalización.** Listar un caso como `pendiente` antes de tocarlo dice "este procedimiento está en cola"; ocultarlo hasta tenerlo listo daría falsa impresión de que el inventario es exhaustivo.
 - **`beta_publica` declara la imperfección por su nombre.** Mejor que "casi publicado" o un porcentaje arbitrario — la palabra "beta" comunica al lector que la ficha es accesible y útil, y que puede tener cosillas.
 - **La incompletitud debe verse.** En un inventario vivo, ocultar los huecos genera más desconfianza que admitirlos. El badge `pendiente` dentro del `estado_ficha` no es nota a la baja — es un compromiso público de seguir trabajando.

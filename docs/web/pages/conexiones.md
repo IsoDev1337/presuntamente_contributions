@@ -1,6 +1,6 @@
-# Página `/grafo`
+# Página `/conexiones`
 
-> Estado: entregada v1 inicial el 2026-05-26. Feature transversal: [`grafo-relaciones-caso.md`](../features/grafo-relaciones-caso.md).
+> Estado: entregada v1 inicial el 2026-05-26. Feature transversal: [`explorador-conexiones.md`](../features/explorador-conexiones.md).
 
 ## Qué muestra
 
@@ -8,8 +8,8 @@ Explorador de conexiones y relaciones del inventario. Abre en modo inventario co
 
 ## Estado actual
 
-- Ruta: `/grafo`.
-- Entrada en navegación principal: **Conexiones** (ruta `/grafo`).
+- Ruta: `/conexiones`.
+- Entrada en navegación principal: **Conexiones** (ruta `/conexiones`).
 - Título de página / H1: **Explorador de Conexiones**; eyebrow: **Grafo de conexiones y relaciones**.
 - Modo inicial: inventario completo, sin foco.
 - Filtros: foco, entidad, profundidad, layout, tipo de relación y tipo de nodo.
@@ -18,7 +18,7 @@ Explorador de conexiones y relaciones del inventario. Abre en modo inventario co
 - Slider `Separación de nodos` dentro del bloque `Nodos`, para abrir el layout y despejar nodos con muchas conexiones.
 - Enlaces profundos desde fichas (CTA unificado con icono de grafo):
   - Caso, persona y organización: `Ver en grafo de conexiones` ([`GraphConexionesLink.astro`](../../../src/components/GraphConexionesLink.astro)).
-- Dataset derivado desde YAML en build mediante `src/lib/grafo.ts`.
+- Dataset derivado desde YAML en build mediante `src/lib/conexiones.ts`.
 - Selectores propios sobre `<select>` nativo para evitar controles del navegador y mantener el estilo administrativo.
 - Búsqueda interna en selectores largos, especialmente el selector de foco.
 - Popovers de ayuda junto a los filtros de tipo de relación para explicar las categorías del modelo.
@@ -27,7 +27,7 @@ Explorador de conexiones y relaciones del inventario. Abre en modo inventario co
 
 ## Decisiones de diseño
 
-- **Convención de copy (2026-05-26):** ver tabla en [`grafo-relaciones-caso.md`](../features/grafo-relaciones-caso.md#convención-de-copy). La ruta técnica sigue siendo `/grafo`; el vocabulario visible prioriza «conexiones» frente a «grafo» en nav y CTAs.
+- **Convención de copy (2026-05-26, revisada 2026-05-27):** ver tabla en [`explorador-conexiones.md`](../features/explorador-conexiones.md#convención-de-copy). El 2026-05-27 se alineó la ruta pública (`/conexiones`) y el campo del schema (`estado_ficha.conexiones`) con el vocabulario visible para evitar la asimetría inicial entre URL, modelo y nav. «Grafo» queda solo como descriptor de formato en H1 y eyebrow.
 - Estética de red tipo Obsidian adaptada al sitio: nodos circulares, física animada y paneles flotantes.
 - Sin paleta arcoíris. Los colores separan familias de entidad/relación, no partidos ni culpabilidad.
 - Layout por defecto `cose` como modo "Red viva"; `breadthfirst` queda como modo de lectura por profundidad.
