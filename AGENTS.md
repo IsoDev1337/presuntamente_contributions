@@ -6,7 +6,7 @@ Guía para cualquier agente LLM (Claude Code, Codex, Cursor, etc.) que trabaje e
 
 **presuntamente** es un inventario interactivo, público y open source de los casos de corrupción más relevantes en España. La misión es **reducir desinformación** ofreciendo una referencia objetiva, trazable y sin cuota política de los procedimientos judiciales relevantes.
 
-- Sitio: `presuntamente.org` (dominio registrado en Cloudflare Registrar el 2026-05-23; canales `contacto@` y `rectificacion@` operativos vía Cloudflare Email Routing. DNS apex y publicación del sitio pendientes de apartado de correos del responsable + revisión legal).
+- Sitio: `presuntamente.org` (dominio registrado en Cloudflare Registrar el 2026-05-23; canales `contacto@`, `rectificacion@` y `aportar@` operativos vía Cloudflare Email Routing. Publicación técnica vía Cloudflare Pages; DNS apex y `www` se activan desde el panel de Cloudflare cuando el maintainer lo decida).
 - Licencia código: AGPL-3.0.
 - Licencia contenido editorial: CC BY-SA 4.0.
 
@@ -165,6 +165,16 @@ Convención de nombres: `<slug-kebab-case>.md` describiendo la capacidad (no el 
 4. **Al cambiar el canon, actualiza el canon.** Si cambias el sistema de badges, toca [`DESIGN.md`](DESIGN.md#2bis-sistema-de-badges). En fichas afectadas, limita el diff a estado/decisión **propia** de esa feature (fecha + enlace al canon si el detalle ya está allí).
 
 5. **No repitas entre secciones de la misma ficha.** "Estado actual" = hitos de entrega y deltas recientes en una línea; el cómo visual detallado vive en un solo sitio dentro del documento (normalmente "Cómo funciona" o el canon externo).
+
+### Higiene del roadmap y AGENTS.md
+
+**Norma incorporada 2026-05-27.** `ROADMAP.md` no es un diario de sesión. Debe permitir decidir qué hacer ahora en 5 minutos.
+
+1. **Cierre de sesión breve**: máximo 3 bullets o 120 palabras en `ROADMAP.md`. Si hace falta más detalle, va a `docs/roadmap/historial-YYYY-MM.md` y en el roadmap queda una línea con enlace.
+2. **Sin listas exhaustivas de archivos en el roadmap** salvo migraciones donde la lista sea la decisión. Para cambios normales, enlaza la ficha de página/feature.
+3. **Una sola entrada "Última actualización" y como mucho una "Anterior" reciente.** Las anteriores se compactan al histórico mensual.
+4. **Pendientes concretos, no memoria de cómo se llegó.** El roadmap conserva bloqueantes, próximos pasos, decisiones abiertas y riesgos activos. Aprendizajes largos van a `docs/roadmap/aprendizajes.md`.
+5. **`AGENTS.md` tampoco es archivo histórico.** Si una norma necesita ejemplos largos, moverlos al doc canónico correspondiente y dejar aquí la regla compacta + enlace.
 
 ### Convención de referencias y citas
 

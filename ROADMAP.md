@@ -4,7 +4,9 @@
 >
 > El roadmap conceptual vive en [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Este fichero es la versión operativa: estado actual, próximos pasos, backlog inmediato y aprendizajes recientes. El histórico largo se ha movido a [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-27 (noche, 8). **Contenedor común de cards de ficha.** `PersonaCard`, `OrgCard` y `Hecho` alineados con el patrón de “casos destacados” de home: borde fino uniforme, fondo `--color-surface`, hover `translateX(-2px)` con fondo muy claro y sin `border-left` grueso. El estado queda dentro de los badges (`RolBadge`, `EpistemicBadge`); `border-left` se reserva para F-función, avisos/aclaraciones y bloques administrativos. Subtítulos de “Organizaciones afectadas” y “Participación procesal” homogeneizados con `.grupo__title`. Canon actualizado en `DESIGN.md`; detalle en `filtros-pills-ficha-caso.md` y `vinculos-institucionales.md`. Validate **690/0**, build **201 páginas + 4563 palabras Pagefind**.
+**Última actualización:** 2026-05-27 (noche, 9). **Prelaunch público: repo listo para indexación + foco editorial urgente.** Retirado `public/_headers` para que el próximo deploy de Cloudflare Pages deje de enviar `X-Robots-Tag: noindex`; `astro.config.mjs` ya tiene `site: "https://presuntamente.org"`. Añadido pendiente urgente: barrido de actualidad de los 6 casos publicables antes de mandar el sitio a revisores externos, con prioridad Plus Ultra. Regla nueva en `AGENTS.md`: el roadmap no es diario de sesión; cierres largos van al histórico/fichas.
+
+**Anterior (2026-05-27 noche, 8).** **Contenedor común de cards de ficha.** `PersonaCard`, `OrgCard` y `Hecho` alineados con el patrón de “casos destacados” de home: borde fino uniforme, fondo `--color-surface`, hover `translateX(-2px)` con fondo muy claro y sin `border-left` grueso. Canon actualizado en `DESIGN.md`; detalle en `filtros-pills-ficha-caso.md` y `vinculos-institucionales.md`. Validate **690/0**, build **201 páginas + 4563 palabras Pagefind**.
 
 **Anterior (2026-05-27 noche, 7).** **Copy pre-launch (home, `/sobre`, `/aportar`) + banda `.page-id`.** Kicker home `con fuente`. `/sobre`: filosofía del hilo, mantenimiento, §4 Colaborar → `/aportar`, §9 Correcciones → `/rectificar`. `/aportar` ampliado; cross-link recíproco `/rectificar`. `.page-id`: meta alineada al eyebrow. Fichas `inicio.md`, `sobre.md`, `aportar.md`.
 
@@ -50,11 +52,11 @@
 - **Casos publicables actuales**: `plus-ultra`, `begona-gomez`, `gonzalez-amador`, `fiscal-general-del-estado`, `kitchen`, `lezo`.
 - **Caso no publicable en producción**: `atico-estepona`, en `borrador`.
 - **Bloques pre-launch cerrados**: Bloque A (casos equilibrados), Bloque B (`revisar-caso` v1 + primera auditoría), **Bloque C (revisión editorial humana pre-launch)**, Bloque E (higiene técnica).
-- **Bloque D**: casi cerrado. Cerrados `/cifras`, OG images, RSS/Atom, timeline visual, estado de ficha, síntesis de caso, vínculos institucionales (datos + UI, corpus ampliado a personas no atadas a caso vía skill v2), cobertura mediática general (corpus completo en los 6 casos + UI), explorador de relaciones `/conexiones`, clasificación editorial de medios (declarada · percibida · grupo), mejoras de listados, PartidoBadge con color de partido, iconografía funcional en `badge--cat`, **refactor de afectación directa/indirecta** (estructural, doc 08 + schema V-22..V-24 + datos migrados + UI fusionada + skill v3 + revisión limpia). Quedan composición de fuentes citadas y barra proporcional por corriente editorial.
-- **Próximo paso comprometido**: lo decide el maintainer. Opciones naturales: Bloque C (revisión editorial humana pre-launch), continuar Bloque D, o publicación técnica en Cloudflare Pages sin DNS apex.
+- **Bloque D**: suficiente para launch blando. Cerrados `/cifras`, OG images, RSS/Atom, timeline visual, estado de ficha, síntesis de caso, vínculos institucionales, cobertura mediática general, `/conexiones`, clasificación editorial de medios, mejoras de listados, PartidoBadge, iconografía funcional, aclaraciones editoriales y refactor de afectación directa/indirecta. Quedan para v1.x la UI de composición de fuentes citadas y la barra proporcional por corriente editorial.
+- **Próximo paso comprometido**: barrido urgente de actualidad prelaunch en los 6 casos publicables, prioridad Plus Ultra; después activar DNS apex + `www` desde Cloudflare y mandar a revisores externos.
 - **Dev server local**: `pnpm dev` en `http://localhost:4321`.
 - **Workflow git**: trabajo directo sobre `main`, sin ramas ni PRs mientras dure el MVP. No hacer `git add`, `git commit` ni `git push` salvo petición explícita del maintainer. Ver [`AGENTS.md`](AGENTS.md).
-- **Infraestructura pública**: dominio `presuntamente.org` comprado, `contacto@`, `rectificacion@` y `aportar@` operativos vía Cloudflare Email Routing. **Cloudflare Pages conectado y sirviendo preview en [`presuntamente.pages.dev`](https://presuntamente.pages.dev) con `X-Robots-Tag: noindex` y Web Analytics activado.** Sitio aún sin publicar bajo dominio propio: DNS apex no apuntado a la espera de apartado de correos del responsable y revisión legal del aviso.
+- **Infraestructura pública**: dominio `presuntamente.org` comprado, `contacto@`, `rectificacion@` y `aportar@` operativos vía Cloudflare Email Routing. Cloudflare Pages conectado en [`presuntamente.pages.dev`](https://presuntamente.pages.dev), Web Analytics activado y repo preparado para indexación pública tras retirar `public/_headers`. Falta acción de panel: conectar dominio apex + `www` y verificar cabeceras tras el deploy.
 
 ---
 
@@ -85,16 +87,18 @@ Contexto: esto cierra la Fase 0 operativa. No es sólo configurar DNS; publicar 
 
 - [x] Comprar dominio `presuntamente.org` en Cloudflare Registrar.
 - [x] Activar Cloudflare Email Routing para `contacto@`, `rectificacion@` y `aportar@`.
-- [ ] Abrir apartado de correos del responsable y completar la identificación postal del aviso legal.
-- [x] Conectar Cloudflare Pages al repo `davidchicano/presuntamente`. Cerrado 2026-05-26: proyecto `presuntamente`, build `pnpm build`, output `dist`, Node 24.13.1 detectado desde `.nvmrc`. Preview servido en [`presuntamente.pages.dev`](https://presuntamente.pages.dev) con `X-Robots-Tag: noindex, nofollow` (vía `public/_headers`) y Web Analytics activado a nivel de proyecto. Auto-deploy por push a `main` operativo. Detalle y aprendizajes en [`cloudflare-pages-deploy.md`](docs/web/features/cloudflare-pages-deploy.md).
-- [ ] Revisar el aviso legal con abogado especializado. Repaso especial: LSSI, datos personales/RGPD, licencias y límites de responsabilidad.
-- [ ] Activar DNS apex + `www` cuando lo anterior esté cerrado, y **retirar `public/_headers`** en un commit dedicado para reabrir indexación.
+- [ ] Abrir apartado de correos del responsable y completar la identificación postal del aviso legal. **Post-launch temprano por decisión del maintainer; no bloquea el envío inicial a revisores externos.**
+- [x] Conectar Cloudflare Pages al repo `davidchicano/presuntamente`. Cerrado 2026-05-26: proyecto `presuntamente`, build `pnpm build`, output `dist`, Node 24.13.1 detectado desde `.nvmrc`. Preview servido en [`presuntamente.pages.dev`](https://presuntamente.pages.dev); la cabecera temporal `X-Robots-Tag: noindex, nofollow` se retiró del repo el 2026-05-27 y desaparecerá tras el siguiente deploy. Web Analytics activado a nivel de proyecto. Auto-deploy por push a `main` operativo. Detalle y aprendizajes en [`cloudflare-pages-deploy.md`](docs/web/features/cloudflare-pages-deploy.md).
+- [ ] Revisar el aviso legal con abogado especializado. Repaso especial: LSSI, datos personales/RGPD, licencias y límites de responsabilidad. **Post-launch temprano por decisión del maintainer; no convertir esta nota en criterio legal general.**
+- [ ] Activar DNS apex + `www` en Cloudflare Pages y verificar en producción: HTTP 200, sin `X-Robots-Tag: noindex`, canonical/OG apuntando a `https://presuntamente.org`, sitemap accesible.
 
 ### Camino al lanzamiento público
 
 Pre-requisitos para anunciar el sitio sin riesgo editorial excesivo.
 
 Origen: sesión de planning del 2026-05-23. La pregunta no era "qué falta para deployar", sino "qué falta para enseñarlo en redes y a periodistas sin que parezca sesgado, inmaduro o jurídicamente temerario".
+
+- [ ] **URGENTE prelaunch: barrido de actualidad de los 6 casos publicables** antes de enviar a revisores externos. Prioridad: **Plus Ultra** por ser el caso más reciente y sensible al auto Calama 19-may-2026; comprobar CGPJ/CENDOJ/BOE/SEPI/Fiscalía y cobertura N4 cruzada por si ha aparecido auto íntegro, recurso, archivo, procesamiento, nueva detención, informe UCO/UDEF o resolución que cambie fase/roles/hechos. Si aparece material nuevo, incorporarlo antes del launch blando; si no, dejar nota fechada en `NOTES.md` de cada caso.
 
 #### Bloque A - Casos equilibrados `[x]`
 
@@ -140,8 +144,8 @@ Objetivo: que el sitio parezca serio y útil al compartirlo, sin convertirlo en 
 - [x] Vínculos institucionales documentados: schema, collection, skill v1, primera pasada `begona-gomez` y UI en caso/persona/organización. Detalle en [`docs/web/features/vinculos-institucionales.md`](docs/web/features/vinculos-institucionales.md).
 - [x] Cobertura mediática general / barómetro de cobertura: schema, collection, skill v1, corpus piloto `begona-gomez` y UI separada de biblioteca documental. Detalle en [`docs/web/features/cobertura-mediatica-general.md`](docs/web/features/cobertura-mediatica-general.md).
 - [x] **Modelo de clasificación editorial de medios** (canon + schema + piloto). Cerrado 2026-05-26: tres dimensiones (`declarada` autoadscripción · `percibida` por fuente externa · `grupo_editorial` propiedad), naturaleza editorial separada del eje, enum 7+1 con extremos. Canon en [`docs/diseno/07-clasificacion-editorial-medios.md`](docs/diseno/07-clasificacion-editorial-medios.md). Sub-agente poblando los 21 medios restantes.
-- [ ] **Barra proporcional por corriente editorial en cobertura mediática general** (v1.x). Prerrequisito desbloqueado. Falta: poblar resto de medios y entregar UI con toggle "Declarada · Percibida", tooltip por medio con las tres dimensiones, franjas separadas para medios fuera del eje. Detalle en [`docs/web/features/cobertura-mediatica-general.md`](docs/web/features/cobertura-mediatica-general.md).
-- [ ] **Composición de fuentes periodísticas citadas** (v1.x). Prerrequisito desbloqueado (mismo schema editorial). Bloque agregador sobre `Documento.nivel_fuente: 4` por caso. Detalle en [`docs/web/features/composicion-fuentes-citadas.md`](docs/web/features/composicion-fuentes-citadas.md).
+- [ ] **Barra proporcional por corriente editorial en cobertura mediática general** (v1.x, no bloqueante para launch blando). Prerrequisito desbloqueado. Falta: UI con toggle "Declarada · Percibida", tooltip por medio con las tres dimensiones, franjas separadas para medios fuera del eje. Detalle en [`docs/web/features/cobertura-mediatica-general.md`](docs/web/features/cobertura-mediatica-general.md).
+- [ ] **Composición de fuentes periodísticas citadas** (v1.x, no bloqueante para launch blando). Modelo, metodología y copy ya cerrados; sigue pendiente la UI agregadora por caso y por eso los `estado_ficha.composicion_fuentes_citadas` continúan en `pendiente`. Detalle en [`docs/web/features/composicion-fuentes-citadas.md`](docs/web/features/composicion-fuentes-citadas.md).
 - [ ] **Filtros con pills en §7 Cobertura mediática general** (v1.x). Aplazado de la pasada del 2026-05-27 (noche, 4) — el resto de pills (§3 Personas, §5 Cronología, §6 Hechos) sí entregados. Es multi-eje (tipo de pieza + medio + relevancia editorial) y cardinalidad alta (20-100 piezas por caso); merece UX dedicada en lugar de heredar la mecánica simple de las otras tres secciones. Reutilizar `ChipFilterGroup` + `Chip` ya disponibles. Detalle del patrón en [`docs/web/features/filtros-pills-ficha-caso.md`](docs/web/features/filtros-pills-ficha-caso.md) § Ideas futuras.
 - [x] **Vista agregada "instituciones alcanzadas" en ficha de caso** + columna "Organización principal" en listado /casos. Entregado 2026-05-26 (tarde) durante el sprint de mejoras de listados — derivación automática `VinculoInstitucional` con prioridad `entidad_investigada → perjudicado_institucional → acusacion_institucional`. Esta prioridad **será revisada** en el refactor de afectación directa/indirecta (ver más abajo): hoy pinta "acusación popular" como "afectada", lo cual es semánticamente erróneo.
 - [x] **Mejoras de listados** (CASOS · PERSONAS · ORGANIZACIONES). Entregado 2026-05-26: /casos con mini-descripción `que_se_investiga`, último hito truncado, órgano clic, RolBadge para naturaleza de org afectada, columna `Partidos afectados`, sin Implic; /personas con biografía corta + columna `Organización principal` + figura pública al lado del nombre; /organizaciones con bloque inverso `Personas relacionadas`.
@@ -209,7 +213,7 @@ Usar worktrees aislados y la skill `multi-agent-orchestration` si hay sesiones s
 - [x] **Clasificación editorial de medios + barra en cobertura general**: schema, canon, paleta, badges, barra en /casos, columna en /organizaciones. Entregado 2026-05-26 (tarde). Falta sólo poblar `percibida` y `grupo_editorial` (ver Bloque D).
 - [x] **Resumen "instituciones alcanzadas" en ficha de caso**: vista agregada de vínculos `*_en_caso` + columna derivada en /casos con `RolBadge` y prioridad investigada → perjudicada → acusación. Entregado 2026-05-26 (tarde) durante el sprint de mejoras de listados.
 - [x] **Cobertura mediática general**: convertir el corpus `content/cobertura-mediatica/begona-gomez.yaml` en patrón reutilizable, deduplicación y UI inicial.
-- [ ] **Revisión editorial humana asistida**: preparar checklist de Bloque C para que el maintainer revise hero, `/sobre`, `/aviso-legal`, README y resúmenes.
+- [ ] **Barrido de actualidad prelaunch**: ejecutar por caso, con sub-agentes en worktrees si hace falta; prioridad Plus Ultra. No tocar modelado si no hay fuente nueva relevante.
 
 Orden recomendado si hay varios agentes: primero composición/vínculos, después grafo y cobertura UI. Evitar que dos sesiones toquen a la vez `schemas/caso.schema.json`, `content/casos/*/caso.yaml` o `global.css`.
 
@@ -236,8 +240,8 @@ Tareas operativas que reducen fricción en futuras sesiones sin ser features del
 - [x] **Taxonomía de afectación directa/indirecta.** Cerrada 2026-05-27 (decisión editorial + implementación entera en sesión dedicada de la misma noche): directa = sujeto procesal pasivo, víctima oficial o ámbito administrativo del que emana el acto · indirecta = institución salpicada por dependencia política, familiar o de cargo · no afectada = papel procesal (acusación popular, defensa, instructor, fiscalía, peritos). 6 reglas + V-22..V-24 + UI fusionada + skill v3. Canon en [`docs/diseno/08-afectacion-directa-indirecta.md`](docs/diseno/08-afectacion-directa-indirecta.md); cierre operativo en [`docs/web/features/afectacion-directa-indirecta.md`](docs/web/features/afectacion-directa-indirecta.md).
 - [ ] **Posible nuevo campo `Organizacion.afiliacion_politica`** para soporte de columna en /organizaciones. No decidido aún (replicaría el patrón de medios: declarada + percibida con cita externa). Apuntado 2026-05-26 por feedback del maintainer.
 - Cerrar criterio legal antes de usar fotos reales de personas o logos con licencia/crédito.
-- Elegir el siguiente bloque de trabajo: revisión editorial humana, UI del bloque editorial recién cerrado, mejoras de listados o publicación técnica en Cloudflare Pages.
-- Decidir cuándo se activa el deploy público y cuándo se anuncia.
+- Activar DNS apex + `www` desde Cloudflare Pages cuando el maintainer quiera abrir el dominio público.
+- Criterio legal/postal post-launch: apartado de correos y revisión profesional quedan como deuda temprana; no convertir esta decisión práctica en evaluación legal de bajo riesgo.
 
 ---
 
@@ -246,6 +250,7 @@ Tareas operativas que reducen fricción en futuras sesiones sin ser features del
 Sólo se quedan aquí los aprendizajes que probablemente afecten a las próximas sesiones. El histórico largo vive en [`docs/roadmap/aprendizajes.md`](docs/roadmap/aprendizajes.md).
 
 - **Roadmap operativo acotado**: `ROADMAP.md` debe mantenerse en torno a 150-220 líneas. Si una entrada de cierre necesita mucho detalle, va a `docs/roadmap/historial-YYYY-MM.md` y aquí queda un resumen.
+- **Cierre de sesión breve en roadmap**: máximo 3 bullets o 120 palabras. No listar todos los archivos tocados salvo que la lista sea la decisión. Una sola "Última actualización" y como mucho una "Anterior"; el resto va a `docs/roadmap/historial-YYYY-MM.md`.
 - **No usar signo de sección ni glyphs decorativos hermanos**. La convención vigente está en [`AGENTS.md`](AGENTS.md), apartado "Convención de referencias y citas".
 - **Vínculos institucionales no equivalen a ideología afectada**. El modelo debe documentar cargos, nombramientos, relaciones formales y vínculos públicos relevantes, no inferir bandos.
 - **Estado de ficha habla de completitud editorial, no de estado judicial**. La UI debe evitar que un lector confunda "pendiente/parcial/completo" con culpabilidad o fase procesal.

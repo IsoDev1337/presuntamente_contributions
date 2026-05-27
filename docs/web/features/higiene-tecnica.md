@@ -64,7 +64,7 @@ Script de analítica añadido a `BaseLayout.astro` condicionado a la variable de
 
 ## Estado actual
 
-Todo entregado y build verde. 168 páginas + `sitemap-index.xml` + `sitemap-0.xml` (167 URLs) + `robots.txt` + `404.html` + los 4 ficheros de favicon.
+Todo entregado y build verde. 168 páginas + `sitemap-index.xml` + `sitemap-0.xml` (167 URLs) + `robots.txt` + `404.html` + los 4 ficheros de favicon. Cloudflare Web Analytics está activado desde el panel de Pages; no hace falta `CF_ANALYTICS_TOKEN` en el repo.
 
 ## Decisiones editoriales y aprendizajes
 
@@ -75,6 +75,6 @@ Todo entregado y build verde. 168 páginas + `sitemap-index.xml` + `sitemap-0.xm
 
 ## Pendientes operativos
 
-- [ ] Obtener el `CF_ANALYTICS_TOKEN` desde el panel de Cloudflare tras conectar Pages al dominio y activar el proyecto. Añadir a las variables de entorno del build en Cloudflare Pages (o usar el toggle del panel, que es la opción sin código).
+- [x] Activar Cloudflare Web Analytics. **Hecho 2026-05-26** vía toggle del proyecto Pages, sin `CF_ANALYTICS_TOKEN`.
 - [ ] Verificar que el sitemap está indexado en Google Search Console y Bing Webmaster Tools tras el lanzamiento.
 - [ ] Considerar si el `sitemap-0.xml` debe excluir páginas de bajo valor editorial (`/buscar`, `/og/*`) — hoy el integrador las incluye porque son rutas Astro válidas. Se puede añadir `filter` en la config de `@astrojs/sitemap`.

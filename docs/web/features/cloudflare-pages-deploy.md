@@ -1,10 +1,10 @@
 # Cloudflare Pages deploy
 
-> Archivos clave: `public/_headers` · `astro.config.mjs` · `.nvmrc` · `package.json`
+> Archivos clave: `astro.config.mjs` · `.nvmrc` · `package.json` · histórico: `public/_headers` retirado el 2026-05-27
 
 ## Qué hace
 
-Convierte cada `git push` a `main` (más cualquier commit en ramas) en un build automático servido por la CDN de Cloudflare. Es el mecanismo de publicación del sitio mientras vivimos sin DNS apex propio (fase preview `*.pages.dev`) y será el mismo mecanismo cuando se active el dominio `presuntamente.org`.
+Convierte cada `git push` a `main` (más cualquier commit en ramas) en un build automático servido por la CDN de Cloudflare. Es el mecanismo de publicación del sitio en `*.pages.dev` y será el mismo mecanismo cuando se active el dominio `presuntamente.org`.
 
 ## Para qué sirve
 
@@ -32,18 +32,18 @@ Variables de entorno **no necesarias** para el build estándar. Si en el futuro 
 
 Versión de Node: Pages la coge de [`.nvmrc`](../../../.nvmrc) (hoy `24`). Si Pages no la detecta por algún motivo, fijar `NODE_VERSION=24` como variable de entorno.
 
-### Cabeceras (`public/_headers`)
+### Cabeceras históricas (`public/_headers`)
 
-Astro copia [`public/_headers`](../../../public/_headers) a `dist/_headers` durante el build. Cloudflare Pages lo lee y aplica las cabeceras a las respuestas. Sintaxis: [`developers.cloudflare.com/pages/configuration/headers`](https://developers.cloudflare.com/pages/configuration/headers/).
+Astro copia `public/_headers` a `dist/_headers` durante el build si el fichero existe. Cloudflare Pages lo lee y aplica las cabeceras a las respuestas. Sintaxis: [`developers.cloudflare.com/pages/configuration/headers`](https://developers.cloudflare.com/pages/configuration/headers/).
 
-Hoy contiene una sola regla:
+Durante la fase preview inicial contenía una sola regla:
 
 ```
 /*
   X-Robots-Tag: noindex, nofollow
 ```
 
-Aplicada **sólo durante la fase preview** (mientras no haya DNS apex). Cuando se active `presuntamente.org`, la regla se retira en un commit dedicado: el `robots.txt` ya está abierto y queremos indexación máxima desde el primer día público. Documentado también en la cabecera del propio fichero.
+Se retiró el 2026-05-27 para preparar el launch público y permitir indexación máxima desde el primer deploy que ya se comparta como oficial. El `robots.txt` ya está abierto y `astro.config.mjs` fija `site: "https://presuntamente.org"`.
 
 ### Analytics
 
@@ -64,10 +64,10 @@ Si en algún momento se considera bloquear el deploy de Pages cuando GitHub Acti
 
 ## Estado actual
 
-**Conectado y operativo desde 2026-05-26.**
+**Conectado y operativo desde 2026-05-26. Preparado para indexación pública desde 2026-05-27.**
 
 - Proyecto Pages: `presuntamente`. Production branch `main`. Build command `pnpm build`. Output `dist`.
-- URL preview: [`https://presuntamente.pages.dev`](https://presuntamente.pages.dev). Respondiendo HTTP 200 desde el PoP de Madrid (≈100 ms al primer byte). Cabecera `x-robots-tag: noindex, nofollow` activa, vía [`public/_headers`](../../../public/_headers).
+- URL preview: [`https://presuntamente.pages.dev`](https://presuntamente.pages.dev). Respondiendo HTTP 200 desde el PoP de Madrid (≈100 ms al primer byte). La cabecera `x-robots-tag: noindex, nofollow` se retira del repo el 2026-05-27; desaparece del servicio cuando Cloudflare despliegue el commit correspondiente.
 - Web Analytics activado a nivel de proyecto Pages (toggle del panel, sin token en repo). Empieza a contar tráfico a partir del siguiente deploy posterior a la activación; Cloudflare lo avisa con banner.
 - Auto-deploy en `git push origin main` operativo: cada commit dispara build + rollout sin intervención.
 - Node 24.13.1 detectado automáticamente desde [`.nvmrc`](../../../.nvmrc); pnpm 11.1.3 desde `packageManager`. No fue necesario fijar `NODE_VERSION` ni nada equivalente.
@@ -76,7 +76,7 @@ Si en algún momento se considera bloquear el deploy de Pages cuando GitHub Acti
 ## Decisiones editoriales y aprendizajes
 
 - **Sin GitHub Action propio para deploy.** La integración nativa de Pages basta. Añadir un workflow `deploy.yml` propio sería duplicar trabajo y mover el secreto `CLOUDFLARE_API_TOKEN` al repo. Si en el futuro hace falta orquestar (deploy condicionado a `validate` verde, deploy de previews sólo para PRs etiquetados), entonces sí.
-- **`X-Robots-Tag: noindex` sólo durante fase preview.** El `robots.txt` actual indexa todo porque la intención editorial es máxima difusión bajo dominio propio. El header HTTP `noindex` gana sobre `robots.txt` y se retira en un commit cuando se active DNS apex. Patrón intencionalmente reversible.
+- **`X-Robots-Tag: noindex` sólo durante fase preview inicial.** El `robots.txt` actual indexa todo porque la intención editorial es máxima difusión bajo dominio propio. El header HTTP `noindex` ganaba sobre `robots.txt`; se retiró el 2026-05-27 al preparar el envío a revisores externos y el dominio oficial. Patrón reversible si alguna vez hace falta volver a una fase privada.
 - **Build command incluye Pagefind.** `pnpm build:no-index` existe para depuración local pero no debe usarse en Pages: rompería `/buscar`.
 - **Analytics: toggle del panel sobre env var.** Mantiene el token fuera del repo y del CI. Decisión revisable si en algún momento hace falta inyectar variantes (ej. eventos custom desde build).
 - **Preview por commit es una forma natural de compartir cambios sin push a main**. Si en algún momento se reactiva el modelo de ramas + PR (cuando entren contribuyentes externos, ver AGENTS.md), Pages ya genera la URL preview automáticamente.
@@ -102,5 +102,6 @@ Si en algún momento se considera bloquear el deploy de Pages cuando GitHub Acti
 - [x] **Maintainer**: activar "Web Analytics" en el toggle del proyecto Pages (sin tocar `CF_ANALYTICS_TOKEN` ni env vars). _Hecho 2026-05-26. Empieza a recoger datos a partir del primer deploy posterior a la activación._
 - [x] **Maintainer**: probar que `https://<proyecto>.pages.dev` responde y verificar con curl que la cabecera `X-Robots-Tag: noindex, nofollow` está presente. _Verificado 2026-05-26 desde el agente: HTTP 200, 23 KB, cabecera presente, `cf-ray: …-MAD`._
 - [x] **Verificar Node 24 desde `.nvmrc`**. Logs del primer build confirman `Detected the following tools from environment: nodejs@24.13.1, pnpm@11.1.3`. No fue necesario fijar `NODE_VERSION` como env var.
-- [ ] **Maintainer**: tras la activación de Web Analytics, lanzar manualmente _Retry deployment_ del último deploy verde para que el beacon empiece a inyectarse antes del próximo push natural.
-- [ ] **Agente, sesión posterior**: cuando se active DNS apex de `presuntamente.org`, retirar `public/_headers` (o vaciarlo) en un commit dedicado, validar que la cabecera desaparece y registrar la fecha de switch en esta ficha.
+- [x] **Agente**: retirar `public/_headers` para reabrir indexación. _Hecho 2026-05-27; validar desaparición de la cabecera tras el siguiente deploy._
+- [ ] **Maintainer**: conectar dominio personalizado `presuntamente.org` y `www.presuntamente.org` en Cloudflare Pages / DNS, y verificar HTTP 200 en ambos hostnames.
+- [ ] **Agente o maintainer**: tras el deploy público, validar con `curl -I` que ya no aparece `X-Robots-Tag: noindex` y registrar la fecha de switch en esta ficha.
