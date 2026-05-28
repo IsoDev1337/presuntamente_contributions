@@ -2,6 +2,7 @@
 // DocumentoCard — card de documento en la biblioteca de la ficha.
 // Markup canónico en preview/comp_documento.html.
 
+import AnchorLink from './AnchorLink.astro';
 import LevelBadge from './LevelBadge.astro';
 import { documentoPrimaryHref } from '@/lib/documentos';
 
@@ -17,6 +18,8 @@ interface Props {
   urlCanonica?: string;
   urlArchivo?: string;
   citadoEn?: number;
+  /** Si se pasa, la card muestra un botón "copiar enlace" a este documento. */
+  anchorId?: string;
 }
 
 const {
@@ -30,6 +33,7 @@ const {
   urlCanonica,
   urlArchivo,
   citadoEn,
+  anchorId,
 } = Astro.props;
 
 const primaryHref = documentoPrimaryHref({
@@ -37,7 +41,7 @@ const primaryHref = documentoPrimaryHref({
   url_canonica: urlCanonica,
   url_archivo: urlArchivo,
 });
-const hasLinks = Boolean(rutaLocal || urlCanonica || urlArchivo);
+const hasLinks = Boolean(rutaLocal || urlCanonica || urlArchivo || anchorId);
 ---
 <article class="docard">
   <div class="docard__icon" aria-hidden="true">
@@ -85,6 +89,7 @@ const hasLinks = Boolean(rutaLocal || urlCanonica || urlArchivo);
   </div>
   {hasLinks && (
     <div class="docard__links">
+      {anchorId && <AnchorLink target={anchorId} label={`Copiar enlace a este documento: ${titulo}`} />}
       {rutaLocal && <a href={rutaLocal}>Copia local</a>}
       {urlCanonica && <a href={urlCanonica} target="_blank" rel="noopener">Original ↗</a>}
       {urlArchivo && <a href={urlArchivo} target="_blank" rel="noopener">Archive.org ↗</a>}

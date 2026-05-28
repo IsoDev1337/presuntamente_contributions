@@ -8,6 +8,7 @@
 // El rail visual lo pinta el contenedor `.timeline` en PgCasoDetalle.astro
 // como `::before` absoluto; aquí cada item solo dibuja su dot.
 
+import AnchorLink from './AnchorLink.astro';
 import CalGlyph from './CalGlyph.astro';
 import CategoryBadge from './CategoryBadge.astro';
 import RichProse from './RichProse.astro';
@@ -46,6 +47,7 @@ const {
 } = Astro.props;
 ---
 <div class:list={['hito-item', `hito-item--${tipoFamilia}`]} id={id ? `hito-${id}` : undefined}>
+  {id && <AnchorLink target={`hito-${id}`} label={`Copiar enlace a este hito: ${titulo}`} />}
   <div class="hito-item__rail" aria-hidden="true">
     <span class="hito-item__dot"></span>
   </div>

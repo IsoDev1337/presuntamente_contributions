@@ -4,9 +4,9 @@
 >
 > Roadmap conceptual: [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Histórico largo: [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-29 (casos "en cola"). Cuatro esqueletos `pendiente` para que aparezcan en `/casos` — **Púnica, Mediador, David Sánchez (Badajoz), Pequeño Nicolás** — con órgano/fase/fecha verificados por subagentes y `NOTES.md` de revisión; 2 órganos nuevos como esqueleto (JI nº 4 de Santa Cruz de Tenerife, AP de Badajoz). Curaduría de profundización (Gürtel·Púnica·Pujol/Palau·Bárcenas·Tarjetas black·ERE·Nóos) y disclaimer público en [`casos-aislados-candidatos.md`](docs/fuentes/casos-aislados-candidatos.md). En `/casos`: CTA "aporta una pista" en filas en cola → `/aportar`, y aviso de cierre con enlace al backlog abierto en GitHub. `pnpm validate` 793 OK.
+**Última actualización:** 2026-05-29 (enlaces de apartado). Feature transversal "copiar enlace": icono al pasar en cabeceras de toda página + botón en hitos, personas, organizaciones y documentos de la ficha de caso; copia la URL con ancla + la refleja en la barra. De paso, corregido el desfase de anclas del drill-down de `/graficas` y `/cifras` (`#hito-`/`#hecho-`). Ficha [`enlaces-de-apartado.md`](docs/web/features/enlaces-de-apartado.md). `pnpm validate` 793 OK + build limpio.
 
-**Anterior (2026-05-29, página `/graficas`).** Sistema propio de charts en build + tabs + drill-down vía componente común [`Sheet`](src/components/Sheet.astro); brief de importe presuntamente atribuido aparte. Fichas [`visualizaciones-graficas.md`](docs/web/features/visualizaciones-graficas.md), [`graficas.md`](docs/web/pages/graficas.md). Antes: scouting de casos ([`casos-aislados-candidatos.md`](docs/fuentes/casos-aislados-candidatos.md)).
+**Anterior (2026-05-29, casos "en cola").** Cuatro esqueletos `pendiente` en `/casos` (Púnica, Mediador, David Sánchez Badajoz, Pequeño Nicolás) + 2 órganos esqueleto; CTA "aporta una pista" y aviso de cierre con backlog en GitHub; curaduría de profundización en [`casos-aislados-candidatos.md`](docs/fuentes/casos-aislados-candidatos.md). Antes: página `/graficas` (charts en build + drill-down) — [`graficas.md`](docs/web/pages/graficas.md).
 
 ---
 

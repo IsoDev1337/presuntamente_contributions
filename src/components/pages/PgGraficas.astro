@@ -395,7 +395,7 @@ for (const h of hechosComputables) {
   const arr = hechosByEpis.get(h.data.tipo) ?? [];
   arr.push({
     label: truncar(h.data.enunciado),
-    href: `/casos/${h.data.caso_id}#${h.data.id}`,
+    href: `/casos/${h.data.caso_id}#hecho-${h.data.id}`,
     meta: casoNombre.get(h.data.caso_id),
   });
   hechosByEpis.set(h.data.tipo, arr);
@@ -453,7 +453,7 @@ for (const h of hitosComputables) {
   if (y == null) continue;
   const item: RefItem = {
     label: truncar(h.data.titulo, 80),
-    href: `/casos/${h.data.caso_id}#${h.data.id}`,
+    href: `/casos/${h.data.caso_id}#hito-${h.data.id}`,
     meta: casoNombre.get(h.data.caso_id),
   };
   const hk = hitosByYear.get(y) ?? [];

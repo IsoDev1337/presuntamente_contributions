@@ -3539,6 +3539,137 @@ body.has-page-toc .main > .ficha-detail {
 }
 
 /* =========================================================================
+ * Enlace de apartado (`.anchor-link`)
+ *
+ * Botón "copiar enlace" que aparece en cabeceras de sección, hitos y cards
+ * (persona, organización, documento). Copia la URL absoluta con el hash al
+ * portapapeles y la refleja en la barra de direcciones. El markup lo genera
+ * el componente AnchorLink.astro o, para las cabeceras, el script de
+ * BaseLayout que lo inyecta en cada `.sec-h[id]`. El handler de click es
+ * delegado (BaseLayout). Los estilos viven aquí (global) porque las anclas
+ * inyectadas por JS no heredarían estilos scoped de componente.
+ * ========================================================================= */
+.anchor-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-fg-subtle);
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms ease-out, color 140ms ease-out,
+    background 140ms ease-out, border-color 140ms ease-out;
+}
+.anchor-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.anchor-link:hover,
+.anchor-link:focus-visible {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  outline: none;
+}
+/* El botón se enfoca con teclado aunque su contenedor no esté en hover. */
+.anchor-link:focus-visible { opacity: 1; }
+
+/* Feedback al copiar: burbuja flotante "Copiado" + el botón se tiñe de
+ * acento un instante. Atributo puesto/quitado por el handler de BaseLayout. */
+.anchor-link[data-copied] {
+  opacity: 1;
+  color: var(--color-accent);
+}
+.anchor-link[data-copied]::after {
+  content: 'Copiado';
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font: 600 10.5px/1 var(--font-sans);
+  letter-spacing: 0.02em;
+  color: var(--color-accent-fg);
+  background: var(--color-accent);
+  padding: 4px 7px;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* --- Contexto: cabecera de sección. Se inyecta tras el <h2> del .sec-h. --- */
+.sec-h > .anchor-link {
+  align-self: center;
+  margin-left: calc(-1 * var(--space-2));
+}
+.sec-h:hover > .anchor-link,
+.sec-h:focus-within > .anchor-link { opacity: 1; }
+
+/* --- Contexto: cards e hitos. Esquina superior derecha, sobre el contenido,
+ *     revelado al pasar el ratón o enfocar dentro de la card. --- */
+.pcard, .ocard, .hito-item { position: relative; }
+.pcard > .anchor-link,
+.ocard > .anchor-link,
+.hito-item > .anchor-link {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--color-surface);
+  z-index: 2;
+}
+.pcard:hover > .anchor-link,
+.pcard:focus-within > .anchor-link,
+.ocard:hover > .anchor-link,
+.ocard:focus-within > .anchor-link,
+.hito-item:hover > .anchor-link,
+.hito-item:focus-within > .anchor-link { opacity: 1; }
+
+/* --- Contexto: documento. Va integrado en la columna de enlaces persistente
+ *     (`.docard__links`), así que es visible siempre, en tono atenuado. --- */
+.docard__links .anchor-link {
+  opacity: 1;
+  width: 22px;
+  height: 22px;
+  align-self: flex-end;
+}
+
+/* En punteros gruesos (táctil) no hay hover: las anclas de card/hito se
+ * muestran siempre y atenuadas para no depender de un estado inexistente. */
+@media (hover: none) {
+  .pcard > .anchor-link,
+  .ocard > .anchor-link,
+  .hito-item > .anchor-link,
+  .sec-h > .anchor-link { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anchor-link { transition: none; }
+}
+
+/* Región viva para anuncios de copiado a lectores de pantalla. */
+.anchor-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================================
  * Índice de página (PageToc)
  *
  * Cápsula lateral en desktop (≥1280px) que vive fixed a la derecha del

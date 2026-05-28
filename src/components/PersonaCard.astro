@@ -10,6 +10,7 @@
 // de la card. El contenedor usa el patrón administrativo común: borde fino
 // uniforme, fondo de papel y hover sutil.
 
+import AnchorLink from './AnchorLink.astro';
 import RolBadge from './RolBadge.astro';
 import SourceLinkBadge from './SourceLinkBadge.astro';
 
@@ -39,9 +40,11 @@ interface Props {
   roles: RolView[];
   relaciones?: RelacionView[];
   notas?: string;
+  /** Si se pasa, la card se vuelve enlazable: id propio + botón "copiar enlace". */
+  anchorId?: string;
 }
 
-const { nombre, cargo, esFiguraPublica, iniciales, href, roles, relaciones = [], notas } = Astro.props;
+const { nombre, cargo, esFiguraPublica, iniciales, href, roles, relaciones = [], notas, anchorId } = Astro.props;
 
 // Roles ordenados para mostrar en la card: vigentes primero (por
 // fecha_inicio descendente), cerrados después (por fecha_fin descendente).
@@ -60,7 +63,8 @@ const rolesOrdenados = [...roles].sort((a, b) => {
   return bRef.localeCompare(aRef);
 });
 ---
-<article class="pcard">
+<article class="pcard" id={anchorId}>
+  {anchorId && <AnchorLink target={anchorId} label={`Copiar enlace a esta persona: ${nombre}`} />}
   <div class="pcard__init" aria-hidden="true">{iniciales}</div>
   <div class="pcard__body">
     <h4 class="pcard__name">

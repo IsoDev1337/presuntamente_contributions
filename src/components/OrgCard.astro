@@ -3,6 +3,7 @@
 // Distinguible de PersonaCard a primera vista: glyph geométrico por tipo
 // a la izquierda (NO iniciales — esa es la marca de Persona).
 
+import AnchorLink from './AnchorLink.astro';
 import OrgGlyph from './OrgGlyph.astro';
 import RolBadge from './RolBadge.astro';
 import SourceLinkBadge from './SourceLinkBadge.astro';
@@ -32,11 +33,14 @@ interface Props {
   roles: RolView[];
   relaciones?: RelacionView[];
   notas?: string;
+  /** Si se pasa, la card se vuelve enlazable: id propio + botón "copiar enlace". */
+  anchorId?: string;
 }
 
-const { nombre, tipo, tipoLabel, localidad, href, roles, relaciones = [], notas } = Astro.props;
+const { nombre, tipo, tipoLabel, localidad, href, roles, relaciones = [], notas, anchorId } = Astro.props;
 ---
-<article class="ocard">
+<article class="ocard" id={anchorId}>
+  {anchorId && <AnchorLink target={anchorId} label={`Copiar enlace a esta organización: ${nombre}`} />}
   <OrgGlyph tipo={tipo} size={44} />
   <div class="ocard__body">
     <h4 class="ocard__name">

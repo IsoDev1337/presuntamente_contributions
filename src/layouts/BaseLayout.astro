@@ -982,6 +982,88 @@ const brandSub = 'Inventario público de casos de corrupción en España';
         __ensurePageTocClickHandler();
         __buildPageToc();
       });
+
+      // Enlaces de apartado (`.anchor-link`). Dos piezas:
+      //  1) Inyección: cada `.sec-h[id]` del <main> recibe un botón de copia
+      //     tras su <h2>. Las cards (persona, organización, documento) y los
+      //     hitos ya lo traen renderizado del lado servidor.
+      //  2) Handler delegado: copia la URL absoluta con el hash al
+      //     portapapeles y la refleja en la barra de direcciones
+      //     (replaceState, sin salto ni inundar el history). El handler de
+      //     click-to-top del `.sec-h` ignora clicks sobre <button>, así que
+      //     el icono de ancla no dispara el scroll-to-top.
+      const __ANCHOR_SVG =
+        '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+
+      function __injectHeadingAnchors() {
+        const main = document.querySelector('main');
+        if (!main) return;
+        main.querySelectorAll<HTMLElement>('.sec-h[id]').forEach((sec) => {
+          if (sec.querySelector(':scope > .anchor-link')) return;
+          const id = sec.id;
+          if (!id) return;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'anchor-link';
+          btn.dataset.anchor = id;
+          btn.setAttribute('aria-label', 'Copiar enlace a este apartado');
+          btn.title = 'Copiar enlace';
+          btn.innerHTML = __ANCHOR_SVG;
+          const h2 = sec.querySelector('h2');
+          if (h2 && h2.nextSibling) sec.insertBefore(btn, h2.nextSibling);
+          else sec.appendChild(btn);
+        });
+      }
+
+      let __anchorLinkAttached = false;
+      let __anchorCopyTimer = 0;
+      function __ensureAnchorLinkListener() {
+        if (__anchorLinkAttached) return;
+        __anchorLinkAttached = true;
+
+        const announce = (msg: string) => {
+          let region = document.getElementById('anchor-live');
+          if (!region) {
+            region = document.createElement('span');
+            region.id = 'anchor-live';
+            region.className = 'anchor-live';
+            region.setAttribute('aria-live', 'polite');
+            document.body.appendChild(region);
+          }
+          region.textContent = msg;
+        };
+        const flash = (btn: HTMLElement, msg: string) => {
+          btn.setAttribute('data-copied', '');
+          window.clearTimeout(__anchorCopyTimer);
+          __anchorCopyTimer = window.setTimeout(() => btn.removeAttribute('data-copied'), 1500);
+          announce(msg);
+        };
+
+        document.addEventListener('click', (e) => {
+          const target = e.target;
+          if (!(target instanceof Element)) return;
+          const btn = target.closest<HTMLButtonElement>('.anchor-link[data-anchor]');
+          if (!btn) return;
+          const id = btn.dataset.anchor;
+          if (!id) return;
+          const url = location.origin + location.pathname + location.search + '#' + id;
+          try { history.replaceState(null, '', '#' + id); } catch (err) { /* history bloqueado */ }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url)
+              .then(() => flash(btn, 'Enlace copiado'))
+              .catch(() => flash(btn, 'Enlace en la barra de direcciones'));
+          } else {
+            flash(btn, 'Enlace en la barra de direcciones');
+          }
+        });
+      }
+
+      __injectHeadingAnchors();
+      __ensureAnchorLinkListener();
+      document.addEventListener('astro:page-load', () => {
+        __injectHeadingAnchors();
+        __ensureAnchorLinkListener();
+      });
     </script>
 
     <footer class="site-footer">

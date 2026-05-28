@@ -1,0 +1,32 @@
+---
+// AnchorLink — botón "copiar enlace a este apartado".
+// Copia la URL absoluta con el hash al portapapeles y la refleja en la barra
+// de direcciones (replaceState, sin salto). El handler delegado vive en
+// BaseLayout.astro (selector `.anchor-link[data-anchor]`); el feedback visual
+// y todos los estilos viven en global.css (`.anchor-link`), porque las anclas
+// de las cabeceras se inyectan por JS y no podrían heredar estilos scoped.
+//
+// `target` es el id del elemento ancla destino en la página (p.ej. `hito-<id>`,
+// `persona-<id>`, `doc-<id>`). Debe existir un elemento con ese id en el DOM.
+
+interface Props {
+  target: string;
+  /** Texto accesible; por defecto genérico. */
+  label?: string;
+  class?: string;
+}
+
+const { target, label = 'Copiar enlace a este apartado', class: cls } = Astro.props;
+---
+<button
+  type="button"
+  class:list={['anchor-link', cls]}
+  data-anchor={target}
+  aria-label={label}
+  title="Copiar enlace"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+  </svg>
+</button>

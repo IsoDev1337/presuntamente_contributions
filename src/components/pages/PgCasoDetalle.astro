@@ -531,6 +531,7 @@ const cronologia = hitos.map((h) => {
 // --- 2.7 Hechos clasificados por estado epistémico -------------------------
 
 interface HechoView {
+  id: string;
   tipo: 'acreditado' | 'investigado' | 'atribuido' | 'exculpatorio' | 'desmentido' | 'no_concluyente';
   enunciado: string;
   fechaTexto: string;
@@ -545,6 +546,7 @@ function formatPeriodo(fop: { desde: string; hasta?: string; precision: string }
 }
 
 const hechosViews: HechoView[] = hechos.map((h) => ({
+  id: h.data.id,
   tipo: h.data.tipo,
   enunciado: h.data.enunciado,
   fechaTexto: formatPeriodo(h.data.fecha_o_periodo as { desde: string; hasta?: string; precision: string }),
@@ -1151,6 +1153,7 @@ const graphHref = `/conexiones?focus=caso&id=${data.id}&depth=2&layout=cose`;
           {items.map((pv) => (
             <div class="row-pass" data-persona-row data-roles={pv.roles.map((r) => r.rol).join(',')}>
               <PersonaCard
+                anchorId={`persona-${pv.persona!.id}`}
                 nombre={pv.persona!.nombre_completo}
                 cargo={pv.persona!.cargo_publico_actual}
                 esFiguraPublica={pv.persona!.es_figura_publica}
@@ -1179,6 +1182,7 @@ const graphHref = `/conexiones?focus=caso&id=${data.id}&depth=2&layout=cose`;
       <div class="grupo__cards">
         {orgsImplicadas.map((ov) => (
           <OrgCard
+            anchorId={`org-${ov.org!.id}`}
             nombre={ov.org!.nombre}
             tipo={ov.org!.tipo}
             tipoLabel={tipoOrgLabel(ov.org!.tipo)}
@@ -1273,7 +1277,7 @@ const graphHref = `/conexiones?focus=caso&id=${data.id}&depth=2&layout=cose`;
         {g.aviso && <Aclaracion nivel="alta">{g.aviso}</Aclaracion>}
         <div class="grupo__cards">
           {g.items.map((h) => (
-            <div class="row-pass" data-hecho-row data-tipo-epi={h.tipo}>
+            <div class="row-pass" data-hecho-row data-tipo-epi={h.tipo} id={`hecho-${h.id}`}>
               <Hecho
                 tipo={h.tipo}
                 enunciado={h.enunciado}
@@ -1418,6 +1422,7 @@ const graphHref = `/conexiones?focus=caso&id=${data.id}&depth=2&layout=cose`;
     {biblioteca.map(({ d, productor, productorId, citadoEn }) => (
       <div id={`doc-${d.id}`}>
         <DocumentoCard
+          anchorId={`doc-${d.id}`}
           titulo={d.titulo}
           tipo={d.tipo}
           tipoLabel={tipoDocLabel(d.tipo)}

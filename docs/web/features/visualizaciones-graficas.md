@@ -38,6 +38,7 @@ Entregado con la página [`/graficas`](../pages/graficas.md). Siete componentes 
 - **Drill-down con `<div>` oculto, no `<template>`.** El compilador de Astro rompe con expresiones (`{...}`) dentro de `<template>` ("Expected ) but found }"). Se usan `<div hidden data-ref-list>` + `data-pagefind-ignore` y el JS clona `innerHTML`.
 - **Objetos literales fuera de los atributos JSX.** `tabs={[{…}]}` inline truncaba en el primer `}`; los arrays de tabs viven en el frontmatter.
 - **Reveal armado pre-paint** para evitar el flash full→0→anima above-the-fold: el `is:inline` colapsa antes de pintar; la isla diferida sólo revela. Las gráficas de un tab oculto se revelan al activarlo.
+- **Anclas de deep-link a la ficha de caso: `#hito-<id>` y `#hecho-<id>`, no `#<id>`.** El drill-down enlaza a hitos y hechos concretos dentro de `/casos/<slug>`; las anclas reales que renderiza la ficha llevan prefijo (`Hito.astro` → `id="hito-<id>"`, wrapper del `Hecho` → `id="hecho-<id>"`), igual que el feed RSS (`src/lib/feed.ts`). Generar `#<id>` a secas no resuelve y el navegador no hace scroll. Misma convención en el enlace "último hito" de `/cifras`.
 
 ## Ideas futuras
 
