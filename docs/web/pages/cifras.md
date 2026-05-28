@@ -38,7 +38,7 @@ Toggle visible en lo alto de la página (con la vista B como default si se confi
 
 Cifras candidatas a explorar:
 
-- **Importe total presuntamente atribuido en procedimientos abiertos** — agregación del importe atribuido por la acusación / instrucción en cada caso. Necesita campo nuevo `importe_presunto_perjuicio` en `Hecho` o en `Caso` (no existe hoy — el campo `resumen_cifras` es texto libre).
+- **Importe total presuntamente atribuido en procedimientos abiertos** — agregación del importe atribuido por la acusación / instrucción en cada caso. Necesita campo nuevo `importe_presunto_perjuicio` en `Hecho` o en `Caso` (no existe hoy — el campo `resumen_cifras` es texto libre). **Proyecto con brief ejecutable** (modelado en `Hecho`, guardarraíles, fases): [`importe-presunto.md`](../features/importe-presunto.md).
 - **Top personas por importe presuntamente atribuido en causa abierta** — ranking de personas con rol procesal activo ordenadas por importe asociado a los Hechos de los casos en que figuran. Sólo personas con rol formal (ver AGENTS.md — "Principios irrenunciables", punto sobre no exposición innecesaria de personas privadas).
 - **Distribución por organización política** — partidos, ex-cargos por partido, dinero atribuido a procedimientos donde aparecen miembros activos o pasados. Requiere modelar la **vinculación formal persona ↔ partido en el momento de los hechos** (no la simpatía percibida) — campo nuevo en `Persona` o tabla intermedia `MilitanciaPartido` con `desde`, `hasta`, `cargo`. Pendiente decidir.
 - **Timeline de incoaciones por año** — gráfico de barras con número de Hitos `imputacion` / `auto_procesamiento` por año.
