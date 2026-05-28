@@ -1,0 +1,13 @@
+id: david-sanchez-badajoz
+nombre_oficial: "Diligencias Previas 965/2024 — Juzgado de Instrucción nº 3 de Badajoz; juicio oral ante la Audiencia Provincial de Badajoz (caso David Sánchez)"
+nombre_mediatico: "Caso David Sánchez"
+nombres_alternativos:
+  - "Caso Diputación de Badajoz"
+
+organo_judicial_id: audiencia-provincial-badajoz
+fase_actual: juicio_oral
+fecha_apertura: "2024-06-07"
+
+origen_denuncia: querella_asociacion_acusacion_popular
+
+estado_publicacion: pendiente

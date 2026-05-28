@@ -1,0 +1,13 @@
+id: punica
+nombre_oficial: "Procedimiento Abreviado 91/2016 — Audiencia Nacional (caso Púnica, instruido por el Juzgado Central de Instrucción nº 6)"
+nombre_mediatico: "Caso Púnica"
+nombres_alternativos:
+  - "Operación Púnica"
+
+organo_judicial_id: audiencia-nacional
+fase_actual: juicio_oral
+fecha_apertura: "2014-06-13"
+
+origen_denuncia: fiscalia_anticorrupcion
+
+estado_publicacion: pendiente

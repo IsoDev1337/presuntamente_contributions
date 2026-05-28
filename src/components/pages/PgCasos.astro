@@ -491,6 +491,7 @@ function miniDescripcion(raw: string, max = 140): string {
                 {c.descripcion && (
                   <span class="c-desc">{miniDescripcion(c.descripcion)}</span>
                 )}
+                <a class="c-encola-cta" href="/aportar">¿Conoces fuentes de este caso? Aporta una pista</a>
               </span>
             ) : (
               <a href={`/casos/${c.slug}`}>
@@ -581,6 +582,24 @@ function miniDescripcion(raw: string, max = 140): string {
   <p class="empty-state" data-empty hidden>
     Sin resultados para los filtros actuales.
   </p>
+
+  <aside class="casos-backlog">
+    <p>
+      Este catálogo crece de forma curada. Mantenemos además, en abierto, una
+      <strong>lista de trabajo de casos candidatos por verificar</strong>: cientos de
+      procedimientos cruzados con fuentes públicas, muchos históricos o ya cerrados.
+      No son fichas ni acusaciones —rige la presunción de inocencia— y cada uno se
+      re-investiga desde fuentes primarias antes de publicarse.
+    </p>
+    <a
+      class="casos-backlog__link"
+      href="https://github.com/davidchicano/presuntamente/blob/main/docs/fuentes/casos-aislados-candidatos.md"
+      target="_blank"
+      rel="noopener"
+    >
+      Ver la lista de candidatos en GitHub →
+    </a>
+  </aside>
 </BaseLayout>
 
 <script is:inline>
@@ -811,6 +830,31 @@ function miniDescripcion(raw: string, max = 140): string {
     font-size: var(--font-size-1);
     color: var(--color-fg-muted);
   }
+  /* Aviso de cierre del listado: apunta al backlog abierto de casos
+     candidatos por verificar (documento de trabajo en el repo). Enmarcado
+     como lista de trabajo, no fichas ni acusaciones. */
+  .casos-backlog {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border-strong);
+    background: var(--color-surface-muted);
+    font-family: var(--font-sans);
+  }
+  .casos-backlog p {
+    margin: 0 0 8px;
+    font-size: var(--font-size-1);
+    color: var(--color-fg-muted);
+    line-height: 1.5;
+  }
+  .casos-backlog__link {
+    font-weight: 600;
+    font-size: var(--font-size-1);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+  .casos-backlog__link:hover {
+    color: var(--color-fg);
+  }
 
   /* Filas bloqueadas en producción (estados pendiente/borrador): aparecen
      en la lista para que el lector vea que esos casos se están trabajando,
@@ -845,5 +889,21 @@ function miniDescripcion(raw: string, max = 140): string {
     display: block;
     font-size: var(--font-size-0);
     margin-top: 2px;
+  }
+  /* CTA discreto en filas "en cola": invita a aportar fuentes del caso aún
+     sin ficha. Sólo se renderiza en producción (las filas bloqueadas no
+     existen en dev). Enlaza a /aportar. */
+  .c-encola-cta {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: var(--font-size-0);
+    font-weight: 500;
+    color: var(--color-fg-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+  }
+  .c-encola-cta:hover {
+    color: var(--color-fg);
+    border-bottom-style: solid;
   }
 </style>

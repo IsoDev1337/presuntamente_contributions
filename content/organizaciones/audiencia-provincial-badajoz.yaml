@@ -1,0 +1,16 @@
+id: audiencia-provincial-badajoz
+nombre: "Audiencia Provincial de Badajoz"
+nombres_alternativos:
+  - "AP de Badajoz"
+tipo: tribunal
+descripcion_corta: |
+  Audiencia Provincial de Badajoz. Su Sección Primera enjuicia el
+  procedimiento conocido mediáticamente como caso David Sánchez, instruido
+  por el Juzgado de Instrucción nº 3 de Badajoz.
+jurisdiccion: penal
+ambito_territorial: provincial
+localidad: "Badajoz"
+provincia: "Badajoz"
+comunidad_autonoma: "Extremadura"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-29"

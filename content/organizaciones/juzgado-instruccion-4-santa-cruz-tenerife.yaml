@@ -1,0 +1,15 @@
+id: juzgado-instruccion-4-santa-cruz-tenerife
+nombre: "Juzgado de Instrucción nº 4 de Santa Cruz de Tenerife"
+nombres_alternativos:
+  - "JI nº 4 de Santa Cruz de Tenerife"
+tipo: juzgado
+descripcion_corta: |
+  Juzgado de Instrucción nº 4 de Santa Cruz de Tenerife. Órgano instructor
+  del procedimiento conocido mediáticamente como caso Mediador.
+jurisdiccion: penal
+ambito_territorial: provincial
+localidad: "Santa Cruz de Tenerife"
+provincia: "Santa Cruz de Tenerife"
+comunidad_autonoma: "Canarias"
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-29"

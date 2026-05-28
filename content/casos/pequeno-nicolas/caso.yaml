@@ -1,0 +1,13 @@
+id: pequeno-nicolas
+nombre_oficial: "Procedimiento por falsedad en documento oficial — Audiencia Provincial de Madrid (caso del Pequeño Nicolás), confirmado en casación por el Tribunal Supremo (STS 885/2025)"
+nombre_mediatico: "Caso del Pequeño Nicolás"
+nombres_alternativos:
+  - "Caso Francisco Nicolás"
+
+organo_judicial_id: audiencia-provincial-madrid
+fase_actual: sentencia_firme
+fecha_apertura: "2014-10-14"
+
+origen_denuncia: otro
+
+estado_publicacion: pendiente

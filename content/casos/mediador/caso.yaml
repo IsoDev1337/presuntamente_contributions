@@ -1,0 +1,13 @@
+id: mediador
+nombre_oficial: "Diligencias Previas — Juzgado de Instrucción nº 4 de Santa Cruz de Tenerife (caso Mediador)"
+nombre_mediatico: "Caso Mediador"
+nombres_alternativos:
+  - "Caso Tito Berni"
+
+organo_judicial_id: juzgado-instruccion-4-santa-cruz-tenerife
+fase_actual: fase_intermedia
+fecha_apertura: "2022-01-01"
+
+origen_denuncia: otro
+
+estado_publicacion: pendiente

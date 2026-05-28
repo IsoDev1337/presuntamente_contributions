@@ -95,6 +95,14 @@ Reglas:
 
 - Sustituir Cytoscape por Sigma.js + Graphology si el inventario crece a miles de nodos y WebGL compensa la complejidad adicional.
 
+### Escala del inventario completo (paso intermedio, antes del salto a WebGL)
+
+No urgente: hoy ~34 casos / ~290 entidades van bien. El cuello de botella es el modo **Inventario completo**, que corre el layout *force-directed* `cose` sobre **todos** los nodos (animado, ~2200 iteraciones, en [`src/scripts/conexiones.ts`](../../../src/scripts/conexiones.ts)); a ~50+ casos / varios cientos de nodos tardará y dará tirones, sobre todo en móvil. El render ya es canvas y el modo foco hace subgrafo limitado por profundidad (eso escala bien). Fix dirigido, **antes** de plantear el salto a Sigma.js/WebGL de arriba:
+
+- `cose` → **`fcose`** (dependencia nueva; mucho más rápido en grafos grandes), o
+- **precalcular posiciones en build** y usar layout `preset` (coste de layout en cliente = cero), y
+- desactivar la animación por encima de un umbral de nodos.
+
 ## Pendientes operativos
 
 - [x] Decidir librería o SVG propio generado en build. **Cytoscape.js**.

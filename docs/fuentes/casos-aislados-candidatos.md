@@ -1,7 +1,8 @@
 # Cruce casos-aislados.com × presuntamente — 2026-05-28
 
-> **Fuente de radar**: casos-aislados.com (agregador secundario, NO citable como fuente primaria).
-> Sólo usamos esta lista como radar de descubrimiento. Re-investigar siempre desde primarios con `/investigar-caso`.
+> **⚠ Lista de trabajo — no son fichas ni acusaciones.** Este documento es un inventario interno de **casos candidatos por verificar**, no contenido publicado del sitio. Muchos son procedimientos históricos o ya cerrados. **Nada aquí afirma culpabilidad de nadie: rige la presunción de inocencia.** Las columnas **Partido** y **Comunidad** reproducen la clasificación de la fuente externa (casos-aislados.com); **Prioridad** es un triaje mecánico orientativo interno, no un juicio editorial ni político. Cada caso se re-investiga desde fuentes primarias antes de convertirse en ficha publicada.
+>
+> **Fuente de radar**: casos-aislados.com (agregador secundario, NO citable como fuente primaria). Sólo usamos esta lista como radar de descubrimiento. Re-investigar siempre desde primarios con `/investigar-caso`.
 
 ## Resumen
 
@@ -20,6 +21,22 @@
 **Nota de cobertura**: los 589 casos se extrajeron íntegramente del HTML de `tramas.php` (conteo verificado contra el total declarado por la web). La cobertura es completa.
 
 **Advertencia editorial**: la prioridad sugerida es orientativa y mecánica (nacional/partido grande/palabras clave). El maintainer debe revisar antes de arrancar cualquier investigación. Los importes económicos, estados judiciales y datos de casos-aislados.com NO deben importarse — sólo el nombre sirve como pista de descubrimiento.
+
+## Curaduría del maintainer — orden de profundización (2026-05-28)
+
+Distinto de la shortlist mecánica de más abajo: aquí van los casos a **llevar de esqueleto a publicable** (casi todos ya existen como esqueleto en `content/casos/`), **ponderados para corregir el sesgo reciente** hacia casos de órbita PSOE/gobierno. No es volumen: profundidad, de uno en uno.
+
+| Orden | Caso | Estado hoy | Eje | Por qué |
+|---|---|---|---|---|
+| 1 | Gürtel | esqueleto | PP | Caso canónico; muchas personas ya fichadas. |
+| 2 | Púnica | **falta** | PP | Macroproceso comparable; reaprovecha ecosistema PP-Madrid. |
+| 3 | Pujol / Palau de la Música | esqueleto | Convergència | Equilibra con un tercer eje; gran notoriedad. |
+| 4 | Bárcenas / caja B | esqueleto | PP | Financiación ilegal, columna del relato. |
+| 5 | Tarjetas black | esqueleto | transversal (PP/PSOE/IU/sindicatos) | Escaparate de neutralidad. |
+| 6 | ERE de Andalucía | esqueleto | PSOE | El mayor por importe; cierra "el más grande". |
+| 7 | Nóos / Malaya | esqueleto | — | Memorables, alta demanda de público. |
+
+**"En cola" público ya operativo:** los casos `estado_publicacion: pendiente`/`borrador` aparecen en `/casos` (no clicables en producción, con badge "En cola"). Para ampliar la lista visible al lector, crear esqueletos `pendiente` curados — nunca en masa.
 
 ## Shortlist — Alta prioridad (top 15, revisión humana obligatoria)
 

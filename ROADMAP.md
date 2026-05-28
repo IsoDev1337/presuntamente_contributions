@@ -4,9 +4,9 @@
 >
 > Roadmap conceptual: [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Histórico largo: [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-29 (página `/graficas`). Sistema propio de charts en build (barras, stacked, treemap, timeline, Gantt), estética gov-retro; **tabs** por dataset (tiempo: hitos/casos/imputaciones; mapas: familias/delitos) y **drill-down** vía componente común [`Sheet`](src/components/Sheet.astro) (bottom sheet móvil / modal desktop), reutilizable y ya usado en el teaser de fase de la home. Solo casos en beta+ (con disclaimer); nav reordenado (Gráficas·Cifras·Biblioteca). Brief del proyecto de **importe presuntamente atribuido** documentado para otra sesión (commit aparte `2ee9586`). Fichas: [`visualizaciones-graficas.md`](docs/web/features/visualizaciones-graficas.md), [`graficas.md`](docs/web/pages/graficas.md); canon visual en [`DESIGN.md`](DESIGN.md).
+**Última actualización:** 2026-05-29 (casos "en cola"). Cuatro esqueletos `pendiente` para que aparezcan en `/casos` — **Púnica, Mediador, David Sánchez (Badajoz), Pequeño Nicolás** — con órgano/fase/fecha verificados por subagentes y `NOTES.md` de revisión; 2 órganos nuevos como esqueleto (JI nº 4 de Santa Cruz de Tenerife, AP de Badajoz). Curaduría de profundización (Gürtel·Púnica·Pujol/Palau·Bárcenas·Tarjetas black·ERE·Nóos) y disclaimer público en [`casos-aislados-candidatos.md`](docs/fuentes/casos-aislados-candidatos.md). En `/casos`: CTA "aporta una pista" en filas en cola → `/aportar`, y aviso de cierre con enlace al backlog abierto en GitHub. `pnpm validate` 793 OK.
 
-**Anterior (2026-05-28, scouting de casos).** Fuentes de descubrimiento no citables ([`agregadores-y-descubrimiento.md`](docs/fuentes/agregadores-y-descubrimiento.md)), cruce casos-aislados.com ([`casos-aislados-candidatos.md`](docs/fuentes/casos-aislados-candidatos.md)) y 3 pistas `pending` en `signals.yaml`. Antes: modo claro/oscuro ([`dark-mode.md`](docs/web/features/dark-mode.md)).
+**Anterior (2026-05-29, página `/graficas`).** Sistema propio de charts en build + tabs + drill-down vía componente común [`Sheet`](src/components/Sheet.astro); brief de importe presuntamente atribuido aparte. Fichas [`visualizaciones-graficas.md`](docs/web/features/visualizaciones-graficas.md), [`graficas.md`](docs/web/pages/graficas.md). Antes: scouting de casos ([`casos-aislados-candidatos.md`](docs/fuentes/casos-aislados-candidatos.md)).
 
 ---
 
@@ -158,7 +158,7 @@ Sólo lo que afecta sesiones inmediatas. Resto: [`aprendizajes.md`](docs/roadmap
 - **Portales oficiales:** catálogo incremental [`docs/fuentes/`](docs/fuentes/README.md) (CGPJ histórico pre-2024, CENDOJ, BOE fechas).
 - **Fichas `docs/web/` descargan el roadmap** — ideas futuras allí, no aquí.
 - **Scouting ≠ fuente citable:** agregadores secundarios (casos-aislados.com) sólo para descubrir candidatos — [`agregadores-y-descubrimiento.md`](docs/fuentes/agregadores-y-descubrimiento.md). Backlog de 554 candidatos en [`casos-aislados-candidatos.md`](docs/fuentes/casos-aislados-candidatos.md); promover de uno en uno, no en masa (profundidad > volumen).
-- **Plan abierto (sin arrancar):** "en cola" público ligero (casos previstos sin esqueletos pesados) · escala `/conexiones` (`fcose`/preset antes de ~50 casos) · profundizar Gürtel.
+- **Plan abierto (sin arrancar):** escala `/conexiones` antes de ~50 casos (detalle técnico para handoff en [`explorador-conexiones.md`](docs/web/features/explorador-conexiones.md) — "Escala del inventario completo") · profundizar la shortlist de casos (Gürtel…).
 
 ---
 
