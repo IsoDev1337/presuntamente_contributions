@@ -16,7 +16,7 @@ La skill cubre exclusivamente la **capa B** del diseño de cuatro capas document
 - **Capa C — Verificación externa de fuentes** → diferida a v2+.
 - **Capa D — Integración con PRs externas** → invocación manual con `gh pr checkout <num>` + `/revisar-caso <slug>` en local. Misma skill sirve para auto-revisión y para PR externa.
 
-Versión `v1` (2026-05-24): 10 chequeos tras la primera iteración real sobre los 6 casos publicables del Bloque A. La v0 original (8 chequeos) queda documentada en (ver "Histórico"). La skill se moldea con la experiencia tras cada uso real ([AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills)), añadiendo guardarraíles a la sección Histórico cuando aparezcan falsos positivos o falsos negativos.
+Versión `v1` (2026-05-24): 13 chequeos tras la primera iteración real sobre los 6 casos publicables del Bloque A y refinamientos posteriores. La v0 original (8 chequeos) queda documentada en (ver "Histórico"). La skill se moldea con la experiencia tras cada uso real ([AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills)), añadiendo guardarraíles a la sección Histórico cuando aparezcan falsos positivos o falsos negativos.
 
 ## Inputs aceptados
 
@@ -51,7 +51,7 @@ Si una referencia no resuelve (`getEntry` devuelve null), anotar como hallazgo `
 
 ### 2. Aplicación de la checklist
 
-Aplicar los 10 chequeos de la (ver "Checklist") sobre el material cargado. Cada hallazgo se acumula con:
+Aplicar los 13 chequeos de la (ver "Checklist") sobre el material cargado. Cada hallazgo se acumula con:
 
 - `nivel`: `BLOQUEANTE` (debe arreglarse antes de publicar / mergear) · `SUGERENCIA` (mejora editorial recomendable, no bloquea) · `OK` (chequeo pasado limpiamente — se reporta sólo en el resumen final, no como entrada individual).
 - `chequeo`: nombre corto del chequeo (CH1..CH10).
@@ -102,7 +102,7 @@ Si el caso es grande y la lista de hallazgos amenaza con desbordar el contexto, 
 
 ## Checklist
 
-10 chequeos tras la primera iteración del 2026-05-24. Los 8 originales (CH1..CH8) del bullet del ROADMAP + CH9 (Documentos huérfanos) y CH10 (Condena firme afirmada en biografía sin Documento modelado) añadidos tras la primera pasada cualitativa. Cada uno con qué busca, dónde lo busca y cómo clasifica.
+13 chequeos tras la primera iteración del 2026-05-24 y refinamientos posteriores. Los 8 originales (CH1..CH8) del bullet del ROADMAP + CH9 (Documentos huérfanos), CH10 (Condena firme afirmada en biografía sin Documento modelado), CH11 (afectación directa/indirecta), CH12 (medios productores) y CH13 (síntesis sobredimensionada o sin sujeto principal). Cada uno con qué busca, dónde lo busca y cómo clasifica.
 
 ### CH1 — Verbos prohibidos en Hechos no acreditados
 
@@ -283,6 +283,21 @@ Si no se cumple ninguna:
 
 **Orientación editorial declarada/percibida queda como nota informativa**, no bloqueante: su poblado depende de la disponibilidad de cita verificable y de fuentes externas reputadas (`reuters_institute`, `cis`, `estudio_academico_revisado`, `clasificacion_iniciativa_publica`). Sin esas, `sin_clasificar` es legal.
 
+### CH13 — `sintesis_caso.que_se_investiga` como mini-resumen ejecutivo o sin sujeto principal
+
+**Regla**: `Caso.sintesis_caso.que_se_investiga` es una entradilla accesible, no otro resumen ejecutivo. Debe responder al objeto de investigacion en una frase breve. Es hallazgo si:
+
+- Tiene longitud parecida o superior a `descripcion_corta` o `resumen_cifras`.
+- Acumula en el mismo campo auto, fecha, registro policial, importes concretos, nombres secundarios y causa paralela.
+- Duplica de forma sustantiva lo que ya aparece en `hechos_clave`, `estado_actual` o `cifras_clave`.
+- El nombre mediatico del caso gira sobre una persona con rol formal y la sintesis no la nombra ni justifica la omision.
+
+**Accion sugerida**: compactar `que_se_investiga` a objeto investigado + cautela procesal, nombrando al sujeto principal si explica el nombre mediatico, y mover o conservar el detalle en `hechos_clave`, `estado_actual`, `cifras_clave` o `descripcion_corta`.
+
+**Clasificación**: `SUGERENCIA` por defecto; `BLOQUEANTE` si la longitud, la abstraccion o la acumulacion de detalles produce una lectura confusa o contradice el resumen ejecutivo.
+
+**Referencia**: [`docs/web/features/sintesis-caso.md`](../../../docs/web/features/sintesis-caso.md), aprendizaje Leire Diez 2026-05-28.
+
 ## Guardarraíles obligatorios
 
 1. **No auto-fix.** La skill **sólo señala**. Nunca edita YAMLs, nunca abre commits, nunca hace `git add`. Las acciones sugeridas se redactan en prosa para que el maintainer las aplique manualmente. Esto es una norma dura del diseño: el LLM no decide qué se publica.
@@ -308,7 +323,7 @@ Mensaje final al usuario con:
 1. El informe markdown completo (estructura de "Proceso", apartado 3).
 2. Recordatorio explícito de que la skill **no ha tocado ningún archivo** y que las acciones sugeridas requieren intervención manual del maintainer.
 3. Si hay hallazgos `BLOQUEANTE`, una nota al final advirtiendo que el caso **no está listo para publicar / mergear** hasta que se resuelvan.
-4. Si la skill encontró cosas que no encajan en ninguno de los 10 chequeos pero le parecen relevantes editorialmente, una sección final `## Observaciones fuera de checklist` con esos hallazgos marcados explícitamente como heurísticos. Esta sección alimenta la iteración de la skill (ver "Iteración").
+4. Si la skill encontró cosas que no encajan en ninguno de los 13 chequeos pero le parecen relevantes editorialmente, una sección final `## Observaciones fuera de checklist` con esos hallazgos marcados explícitamente como heurísticos. Esta sección alimenta la iteración de la skill (ver "Iteración").
 
 ## Iteración
 
@@ -321,7 +336,7 @@ Tras cada uso real de la skill, añadir una entrada en `## Histórico` con:
 - **Falsos negativos detectados**: cosas que el maintainer encontró mal en revisión humana posterior y que la skill no marcó. Si un patrón se repite, añadir un nuevo chequeo (CH11, CH12...) o ampliar uno existente.
 - **Heurísticas que merecen promocionarse**: si la sección `Observaciones fuera de checklist` revela un patrón reincidente, codificarlo como chequeo formal.
 
-La skill sigue el patrón de [AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills): se moldea con la experiencia, no se diseña perfecta upfront. v0 fueron 8 chequeos; v1 son 10 (CH9 y CH10 añadidos el 2026-05-24); v2 puede incorporar CH11..CH14 candidatos (ver "Histórico") cuando se confirme reincidencia, o la capa C (verificación externa de fuentes).
+La skill sigue el patrón de [AGENTS.md → "Skills locales"](../../../AGENTS.md#skills-locales-agentsskills): se moldea con la experiencia, no se diseña perfecta upfront. v0 fueron 8 chequeos; v1 crece con guardarrailes promocionados a CH9..CH13; v2 puede incorporar nuevos candidatos cuando se confirme reincidencia, o la capa C (verificación externa de fuentes).
 
 ## Histórico
 
@@ -342,9 +357,9 @@ La skill sigue el patrón de [AGENTS.md → "Skills locales"](../../../AGENTS.md
   - **CH5**: añadido `cambio_juez` al enum de tipos jurisdiccionales que activan el chequeo (caso Lezo: `cambio-juez-velasco-castellon-lezo-2017-07-01` sin `documento_principal_id`).
   - **CH5**: añadido `informe_organismo_publico` al enum de excepciones no jurisdiccionales (caso Kitchen: `informe-asuntos-internos-kitchen-2020-07-29`).
   - **CH8**: documentada explícitamente la distinción entre prosa publicable (BLOQUEANTE) y slug interno (SUGERENCIA), tras el caso Plus Ultra donde "trama" apareció en `RolEnCaso.notas` publicable + en dos `Hecho.id` slugs con clasificación distinta.
-- **Candidatos a chequeos futuros (CH11..CH14)** pendientes de promoción hasta confirmar reincidencia (observados ≥1 vez):
-  - **CH11 candidato** — Coherencia temporal entre `Rol.fecha_inicio` y `Hito[id=hito_origen_id].fecha`. Caso observado: Lezo (8 roles con desencaje sistemático — roles de piezas Navalcarnero/Inassa apuntando al hito de Emissao porque el hito propio de cada pieza no está modelado).
-  - **CH12 candidato** — Consistencia entre `Hecho.personas_implicadas` y `Hito.personas_afectadas` de los hitos que respaldan el hecho. Caso observado: Lezo (Hito Emissao sin Edmundo Rodríguez Sobrino en `personas_afectadas` pese a citarlo en `descripcion`).
-  - **CH13 candidato** — Coherencia entre `Hito.fecha` y `Hito.fecha_precision` (convención: `fecha_precision: mes` exige día 01). Caso observado: Kitchen (`imputacion-cospedal-kitchen-2019-09-09.yaml` con `fecha_precision: mes` rompe la convención del resto de hitos con `precision: mes`).
-  - **CH14 candidato** — Campos canónicos con valor placeholder "(pendiente de confirmar)" que pasan schema pero no son dato. Casos observados: Plus Ultra y Begoña Gómez (`Caso.numero_procedimiento`).
+- **Candidatos a chequeos futuros** pendientes de promoción hasta confirmar reincidencia (observados una vez):
+  - Coherencia temporal entre `Rol.fecha_inicio` y `Hito[id=hito_origen_id].fecha`. Caso observado: Lezo (8 roles con desencaje sistemático — roles de piezas Navalcarnero/Inassa apuntando al hito de Emissao porque el hito propio de cada pieza no está modelado).
+  - Consistencia entre `Hecho.personas_implicadas` y `Hito.personas_afectadas` de los hitos que respaldan el hecho. Caso observado: Lezo (Hito Emissao sin Edmundo Rodríguez Sobrino en `personas_afectadas` pese a citarlo en `descripcion`).
+  - Coherencia entre `Hito.fecha` y `Hito.fecha_precision` (convención: `fecha_precision: mes` exige día 01). Caso observado: Kitchen (`imputacion-cospedal-kitchen-2019-09-09.yaml` con `fecha_precision: mes` rompe la convención del resto de hitos con `precision: mes`).
+  - Campos canónicos con valor placeholder "(pendiente de confirmar)" que pasan schema pero no son dato. Casos observados: Plus Ultra y Begoña Gómez (`Caso.numero_procedimiento`).
 - **Output método**: 6 sub-agentes paralelos `general-purpose` invocados con prompts autocontenidos por caso. Coste agregado aproximado: ~700K tokens, ~30 min wall-clock. Aceptable como pasada completa pre-launch. Para PRs externas individuales basta con una sola invocación de la skill por el agente principal sin paralelización.

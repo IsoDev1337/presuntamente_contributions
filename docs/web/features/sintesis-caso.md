@@ -17,12 +17,20 @@ La version pre-launch deberia ser contenido editorial controlado, no generacion 
 Modelo implementado:
 
 - `descripcion_corta`: prosa formal actual del resumen ejecutivo.
-- `sintesis_caso.que_se_investiga`: respuesta corta a que se investiga.
+- `sintesis_caso.que_se_investiga`: respuesta corta a que se investiga, en una frase o dos lineas utiles para tarjetas y cabecera.
 - `sintesis_caso.hechos_clave`: 2-4 hitos o hechos relevantes.
 - `sintesis_caso.estado_actual`: situacion procesal actual en lenguaje directo.
 - `sintesis_caso.cifras_clave`: chips de cifras, delitos, penas, organo o hitos cuantificables.
 
 El bloque se renderiza justo despues del masthead de caso y antes del `SectionH` "Resumen ejecutivo". No tiene header numerado propio porque forma parte de la ficha superior, no de la estructura larga de la pagina. La version completa sigue debajo como resumen ejecutivo formal.
+
+Regla de copy para `que_se_investiga`:
+
+- Debe caber mentalmente como entradilla: una frase, idealmente 20-35 palabras y excepcionalmente hasta dos lineas.
+- Debe responder al objeto de investigacion, no recapitular organos, fechas, personas, registros, importes y estado procesal.
+- Si el nombre mediatico del caso gira sobre una persona que tiene rol formal, la entradilla debe nombrarla con su rol procesal prudente (`investigada`, `procesada`, etc.) o debe quedar claro por que no se la nombra.
+- Los importes concretos, fechas de autos, registros policiales, nombres secundarios y causas paralelas van en `hechos_clave`, `estado_actual`, `cifras_clave` o `descripcion_corta`.
+- Si `que_se_investiga` queda casi tan largo como `descripcion_corta` o `resumen_cifras`, esta mal calibrado: compactar antes de publicar.
 
 ## Estado actual
 
@@ -44,6 +52,8 @@ Implementada en pre-launch el 2026-05-25.
 - **Puede apoyarse en Lectura Facil, pero no limitarse a ella.** La referencia UNE-153101 es util por prudencia, aunque el producto puede tener voz propia.
 - **El nombre canonico es `sintesis_caso`.** Se descarta `resumen_accesible` porque promete una conformidad formal con lectura facil que no se esta certificando, y se descarta el nombre de trabajo anterior porque ya no hay boton ni modo alternativo.
 - **La version breve no sustituye al resumen formal.** El resumen completo sigue siendo la referencia indexable y SEO; `sintesis_caso` es una entrada de lectura rapida.
+- **`que_se_investiga` no es otro resumen ejecutivo.** Aprendizaje del caso Leire Diez (2026-05-28): cuando ese campo acumula sujetos, auto, cifras, registro y causa paralela, duplica el resumen ejecutivo y degrada tambien las tarjetas de inicio/listado que lo reutilizan.
+- **Compactar no puede borrar al sujeto principal.** En el mismo caso, el primer ajuste dejo la sintesis demasiado abstracta y el resumen ejecutivo tampoco nombraba a Leire Diez; si el nombre mediatico depende de una persona con rol formal, hay que nombrarla con cautela procesal.
 - **No usar gradientes.** El bloque necesita presencia, pero el gradiente le resta seriedad institucional. Fondo plano, borde y filete mostaza bastan.
 - **Parte de la ficha, no seccion autonoma.** Va antes del resumen ejecutivo formal y no consume numeracion propia.
 - **Objeto estructurado, no bloque markdown.** La estructura evita que el campo se convierta en una segunda mini-ficha narrativa y fuerza la misma arquitectura en todos los casos.
@@ -76,5 +86,5 @@ Implementada en pre-launch el 2026-05-25.
 - [x] Decidir nombre de campo (`sintesis_caso`).
 - [x] Retirar el nombre de trabajo anterior de la UI y de los identificadores internos activos.
 - [ ] Resolver impacto SEO/Pagefind tras pasar de toggle oculto a bloque visible.
-- [ ] Crear guia de estilo breve para esta voz.
+- [x] Crear guia de estilo breve para `sintesis_caso.que_se_investiga`.
 - [ ] Revisar visualmente el bloque en mobile tras el siguiente pase de browser.

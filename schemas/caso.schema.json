@@ -31,7 +31,7 @@
     "descripcion_corta": { "type": "string" },
     "sintesis_caso": {
       "type": "object",
-      "description": "Síntesis accesible y estructurada de la ficha. Debe conservar presunción de inocencia y no sustituye al resumen ejecutivo.",
+      "description": "Síntesis accesible y estructurada de la ficha. Debe conservar presunción de inocencia y no sustituye al resumen ejecutivo. `que_se_investiga` debe ser una entradilla breve; detalles de autos, fechas, sujetos secundarios, registros e importes van en hechos_clave, estado_actual, cifras_clave o descripcion_corta. Si el nombre mediático gira sobre una persona con rol formal, la síntesis debe nombrarla con cautela procesal o justificar la omisión.",
       "additionalProperties": false,
       "required": ["que_se_investiga", "hechos_clave", "estado_actual"],
       "properties": {

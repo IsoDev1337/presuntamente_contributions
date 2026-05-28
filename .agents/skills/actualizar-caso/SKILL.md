@@ -80,7 +80,7 @@ La tabla siguiente lista los campos clasificados por **probabilidad real de camb
 | Campo | Cuándo y cómo |
 |---|---|
 | `sintesis_caso.hechos_clave` | Si el hito introduce uno de los 2-4 hechos más relevantes del caso, sustituye o añade (límite del schema) |
-| `sintesis_caso.que_se_investiga` | Si el hito amplía o restringe el objeto de la investigación |
+| `sintesis_caso.que_se_investiga` | Si el hito amplía o restringe el objeto de la investigación. Mantenerlo como entradilla de una frase: objeto investigado, sin recapitular fechas, autos, registros, nombres secundarios ni cifras que ya viven en `hechos_clave`, `estado_actual` o `cifras_clave`. Si el nombre mediático gira sobre una persona con rol formal, nombrarla con cautela procesal |
 | `sintesis_caso.cifras_clave` | Si el hito documenta cifras nuevas (importes, transferencias, plazos) |
 | `resumen_cifras` | Como `cifras_clave` pero en campo descriptivo libre |
 | `fase_actual` | Si el hito transita la causa (`instruccion` → `fase_intermedia` → `juicio_oral` → `sentencia_primera_instancia` → `recurso` → `sentencia_firme` → `ejecucion`/`archivo_*`) |
