@@ -4,7 +4,7 @@
 
 ## Qué hace
 
-Página `/conexiones` con el **Explorador de Conexiones**: grafo visual y tabla textual de relaciones del inventario. Abre en modo **inventario completo**, sin foco, y permite fijar un foco (`caso`, `persona`, `organizacion` o `documento`), elegir profundidad 1-3 y filtrar tipos de nodo/arista. Las fichas de caso, persona y organización enlazan con el CTA unificado «Ver en grafo de conexiones».
+Página `/conexiones` con el **Explorador de Conexiones**: grafo visual y tabla textual de relaciones del inventario. Abre en modo **inventario completo**, sin foco, y permite fijar uno o varios focos (`caso`, `persona`, `organizacion` o `documento`), elegir profundidad 1-3 y filtrar tipos de nodo/arista. Las fichas de caso, persona y organización enlazan con el CTA unificado «Ver en grafo de conexiones».
 
 ## Para qué sirve
 
@@ -13,9 +13,10 @@ Ayuda a entender conexiones complejas sin convertir la ficha en una pantalla sat
 ## Cómo funciona
 
 - `src/lib/conexiones.ts` deriva un `GraphPayload` desde las collections YAML.
-- `ConexionesExplorer.astro` renderiza una superficie full-screen tipo red, controles flotantes, panel de detalle flotante, leyenda y tabla textual equivalente activable.
+- `ConexionesExplorer.astro` renderiza una superficie full-screen tipo red, controles flotantes redimensionables en desktop, panel de detalle flotante, leyenda y tabla textual equivalente activable.
 - `src/scripts/conexiones.ts` monta Cytoscape en cliente, aplica BFS por profundidad, sincroniza query params y actualiza tabla/panel de detalle.
-- Los selects del panel son controles propios generados sobre `<select>` nativo para mantener accesibilidad/form state y evitar la UI nativa del navegador. En listas largas incorporan búsqueda interna.
+- El selector de vista conserva el patrón de `<select>` nativo mejorado; el foco usa `MultiSelectFilter` para seleccionar varios casos, personas, organizaciones o documentos. En listas largas incorpora búsqueda interna.
+- `Profundidad` es un slider compacto 1-3; `Disposición` es un selector icónico de dos estados (`cose` orgánico y `breadthfirst` jerárquico); `Separación de nodos` usa el mismo patrón de slider + valor.
 - Los tipos de relación tienen ayudas contextuales en popover para explicar qué significa `procesal`, `institucional`, `caso_caso` y `documental` sin obligar al lector a conocer el modelo interno.
 - El panel de detalle distingue cierre puntual (`Cerrar detalle`) de preferencia de exploración (`No mostrar detalle`): con la preferencia activa, los clicks siguen resaltando el grafo pero no abren el panel.
 - La visualización deduplica aristas por pareja de nodos: si A y B tienen varias relaciones modeladas, se dibuja una sola línea agregada para no ensuciar la lectura. La tabla textual muestra esa misma agregación visible.
@@ -23,6 +24,7 @@ Ayuda a entender conexiones complejas sin convertir la ficha en una pantalla sat
 - En modo "Red viva", el arrastre de un nodo desplaza suavemente vecinos de primer y segundo grado para dar sensación de malla sin recalcular aleatoriamente todo el layout al soltar.
 - URL compartible global: `/conexiones?focus=inventario&layout=cose`.
 - URL compartible con foco: `/conexiones?focus=caso&id=begona-gomez&depth=2&layout=cose`.
+- URL compartible con varios focos: `/conexiones?focus=caso&id=begona-gomez,plus-ultra&depth=2&layout=cose`.
 - Los casos `pendiente`, `borrador` o retirados quedan fuera del dataset del grafo para que esqueletos editoriales no contaminen la vista pública.
 - Nodos v1: caso, persona, organización, documento.
 - Aristas v1: `procesal`, `institucional`, `caso_caso`, `documental`.
@@ -32,7 +34,7 @@ La fuente de verdad es el modelo de datos, no un dibujo manual. Si una arista no
 
 ## Estado actual
 
-**Entregada en v1 inicial el 2026-05-26.** Página `/conexiones`, nav **Conexiones**, CTAs desde fichas, modo inventario completo, paneles flotantes y tabla textual. Copy unificado el 2026-05-26 (ver «Convención de copy»). Cytoscape.js en producción.
+**Entregada en v1 inicial el 2026-05-26.** Página `/conexiones`, nav **Conexiones**, CTAs desde fichas, modo inventario completo, paneles flotantes y tabla textual. Copy unificado el 2026-05-26 (ver «Convención de copy»). El 2026-05-28 se añadió foco múltiple para todos los tipos de entidad publicable, panel redimensionable/adaptativo, controles compactos de profundidad/disposición/separación y mejor comportamiento móvil. Cytoscape.js en producción.
 
 ## Convención de copy
 
@@ -66,6 +68,10 @@ Reglas:
 - **Los tipos de relación necesitan explicación in situ.** "Procesal", "institucional" o "documental" son categorías del modelo; el lector no tiene por qué conocerlas. La UI incorpora popovers breves junto a cada filtro.
 - **Detalle no debe forzar el flujo de exploración.** El lector puede cerrar el detalle de la selección actual o activar "No mostrar detalle" para navegar por la red sólo con resaltados visuales.
 - **Los hubs necesitan aire configurable.** En la vista inventario completo algunos casos u organizaciones acumulan muchas aristas; el slider de separación permite abrir la red sin convertirlo en un modo visual distinto.
+- **El foco múltiple evita una falsa jerarquía de caso único.** La vista de caso, persona, organización y documento permite comparar varios focos a la vez; el detalle lateral se abre sólo cuando hay un foco único para no mezclar resúmenes incompatibles.
+- **Los controles de ajuste no deben parecer filtros de catálogo.** Profundidad y separación son sliders compactos; disposición queda como selector icónico binario. Esto reduce peso visual frente a `Vista` y `Foco`, que sí son filtros principales.
+- **Panel redimensionable, pero sin scroll horizontal.** El panel puede cambiar de tamaño en desktop; el contenido usa grid adaptativo y `overflow-x: hidden` para que el resize no genere una barra inferior ni controles cortados.
+- **Fuera de foco, el panel debe dejar respirar el grafo.** En reposo baja opacidad y recupera presencia con hover/focus; en móvil se mantiene algo más visible por ergonomía táctil.
 - **Cytoscape no es un motor de física live completo.** Su `cose` calcula y anima layouts, pero no mantiene una simulación continua tipo Obsidian. Para aproximarlo sin migrar librería se añade arrastre local de vecinos; si se exige física live real, conviene evaluar `d3-force` o una capa de simulación específica.
 
 ## Ideas futuras
@@ -97,5 +103,8 @@ Reglas:
 - [x] Pasar la UI a superficie full-screen con paneles flotantes.
 - [x] Añadir enlaces desde fichas de caso, persona y organización.
 - [x] Mantener alternativa textual.
+- [x] Añadir foco múltiple con URL compartible por ids CSV.
+- [x] Convertir profundidad/disposición/separación en controles compactos especializados.
+- [x] Hacer el panel de controles redimensionable en desktop y adaptado a móvil.
 - [ ] Verificar con navegador local desktop/mobile que el grafo no sale vacío ni solapa texto.
 - [x] Unificar microcopy nav / página / CTAs (2026-05-26).

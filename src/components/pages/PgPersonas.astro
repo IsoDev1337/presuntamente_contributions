@@ -5,46 +5,29 @@
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CustomSelect from '@/components/CustomSelect.astro';
+import MultiSelectFilter from '@/components/MultiSelectFilter.astro';
 import CatalogoLeyenda from '@/components/CatalogoLeyenda.astro';
 import SectionH from '@/components/SectionH.astro';
+import OrgChip from '@/components/OrgChip.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import { getCollection } from 'astro:content';
 import { rolLabel, rolGrupo, type Lang } from '@/lib/labels';
 
-// Bucket de roles procesales para el filtro: condenado_no_firme y
-// condenado_firme se funden en 'condenado'; los demás roles se mantienen
-// como están. Mantiene la categorización entendible para el lector sin
-// duplicar opciones por matiz de firmeza.
-const ROL_BUCKET: Record<string, string> = {
-  investigado: 'investigado',
-  procesado: 'procesado',
-  acusado: 'acusado',
-  condenado_no_firme: 'condenado',
-  condenado_firme: 'condenado',
-  absuelto: 'absuelto',
-  desimputado: 'desimputado',
-};
-const ROL_BUCKET_LABEL: Record<string, string> = {
-  investigado: 'Investigado',
-  procesado: 'Procesado',
-  acusado: 'Acusado',
-  condenado: 'Condenado',
-  absuelto: 'Absuelto',
-  desimputado: 'Desimputado',
-};
-const ROL_BUCKET_ORDER = ['investigado', 'procesado', 'acusado', 'condenado', 'absuelto', 'desimputado'];
-
 interface Props { lang?: Lang; }
 const { lang = 'es' } = Astro.props;
 
-const [personasCol, rolesCol, vinculosCol, organizacionesCol] = await Promise.all([
+const [personasCol, rolesCol, vinculosCol, organizacionesCol, casosCol, delitosCol] = await Promise.all([
   getCollection('personas'),
   getCollection('roles'),
   getCollection('vinculos'),
   getCollection('organizaciones'),
+  getCollection('casos'),
+  getCollection('delitos'),
 ]);
 
 const orgIdx = new Map(organizacionesCol.map((o) => [o.data.id, o.data]));
+const casoIdx = new Map(casosCol.map((c) => [c.data.id, c.data]));
+const delitoIdx = new Map(delitosCol.map((d) => [d.data.id, d.data]));
 
 // Naturalezas de vínculo que implican "cargo / vinculación a una organización"
 // y se pueden usar como derivación de "Relación principal con organización".
@@ -83,6 +66,26 @@ const personas = personasCol
         ?? activos[0])
       : roles[roles.length - 1];
     const casosUnicos = new Set(roles.map((r) => r.caso_id));
+    const delitosUnicos = new Set(roles.flatMap((r) => r.delitos_atribuidos ?? []));
+    const casosPersona = Array.from(casosUnicos)
+      .flatMap((casoId) => {
+        const caso = casoIdx.get(casoId);
+        if (!caso) return [];
+        const rolesCaso = roles
+          .filter((r) => r.caso_id === casoId)
+          .sort((a, b) => {
+            const aActivo = a.fecha_fin ? 0 : 1;
+            const bActivo = b.fecha_fin ? 0 : 1;
+            if (aActivo !== bActivo) return bActivo - aActivo;
+            return (b.fecha_inicio ?? '').localeCompare(a.fecha_inicio ?? '');
+          });
+        return [{
+          id: casoId,
+          nombre: caso.nombre_mediatico,
+          roles: rolesCaso.map((r) => ({ rol: r.rol, label: rolLabel(r.rol) })),
+        }];
+      })
+      .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
     // Vínculo de cargo más reciente que apunte a una organización.
     // Si está vigente y tiene `desde` posterior, se elige por encima de
@@ -112,21 +115,32 @@ const personas = personasCol
       biografia: miniDescPersona(p.data.biografia_corta),
       esFigura: p.data.es_figura_publica,
       rolPrincipal: referencia ? { rol: referencia.rol, label: rolLabel(referencia.rol) } : null,
-      rolBucket: referencia ? (ROL_BUCKET[referencia.rol] ?? referencia.rol) : '',
       casosCount: casosUnicos.size,
+      casoIds: Array.from(casosUnicos),
+      delitoIds: Array.from(delitosUnicos),
+      casosPersona,
       orgRefId,
       orgRefNombre: orgRef?.nombre,
+      orgRefEsPartido: orgRef?.tipo === 'partido_politico',
     };
   })
   .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
-// Buckets de rol procesal realmente presentes en el listado, para no
-// engordar el dropdown con opciones vacías. Orden canónico (pirámide
-// procesal), no alfabético.
-const rolBucketsPresentes = new Set(personas.map((p) => p.rolBucket).filter(Boolean));
-const opcionesRolBucket = ROL_BUCKET_ORDER
-  .filter((b) => rolBucketsPresentes.has(b))
-  .map((b) => ({ value: b, label: ROL_BUCKET_LABEL[b] }));
+const casoIdsPresentes = new Set(personas.flatMap((p) => p.casoIds));
+const opcionesCasos = Array.from(casoIdsPresentes)
+  .flatMap((id) => {
+    const c = casoIdx.get(id);
+    return c ? [{ value: id, label: c.nombre_mediatico }] : [];
+  })
+  .sort((a, b) => a.label.localeCompare(b.label, 'es'));
+
+const delitoIdsPresentes = new Set(personas.flatMap((p) => p.delitoIds));
+const opcionesDelitos = Array.from(delitoIdsPresentes)
+  .flatMap((id) => {
+    const d = delitoIdx.get(id);
+    return d ? [{ value: id, label: d.nombre_tipico }] : [];
+  })
+  .sort((a, b) => a.label.localeCompare(b.label, 'es'));
 
 const strings = {
   title: 'Personas implicadas',
@@ -140,7 +154,15 @@ const strings = {
 };
 
 function searchBlob(p: (typeof personas)[number]): string {
-  return [p.nombre, p.cargo, p.rolPrincipal?.label, p.biografia, p.orgRefNombre]
+  return [
+    p.nombre,
+    p.cargo,
+    p.rolPrincipal?.label,
+    p.biografia,
+    p.orgRefNombre,
+    ...p.casosPersona.map((c) => c.nombre),
+    ...p.delitoIds.map((id) => delitoIdx.get(id)?.nombre_tipico),
+  ]
     .filter(Boolean)
     .join(' ')
     .toLowerCase();
@@ -213,9 +235,10 @@ function searchBlob(p: (typeof personas)[number]): string {
     <section class="cat-legend__section">
       <h3 class="cat-legend__section-title">Filtros y ordenación</h3>
       <p class="cat-legend__inline">
-        Puedes <strong>buscar</strong> por nombre, cargo o rol; filtrar por
-        <strong>rol procesal principal</strong> y por <strong>figura pública</strong>
-        (cargo público, mediático o relevancia institucional). El selector de orden cubre
+        Puedes <strong>buscar</strong> por nombre, cargo, caso o rol; filtrar por
+        <strong>causa</strong>, por <strong>delito atribuido</strong> y por
+        <strong>figura pública</strong> (cargo público, mediático o relevancia institucional).
+        El selector de orden cubre
         <strong>alfabético</strong> y <strong>número de casos</strong> en los que la persona aparece.
       </p>
     </section>
@@ -253,17 +276,26 @@ function searchBlob(p: (typeof personas)[number]): string {
       <label for="q">Buscar</label>
       <input id="q" name="q" type="search" placeholder="Nombre, cargo, rol…" autocomplete="off" />
     </div>
-    <div class="field">
-      <label for="rol">Rol procesal</label>
-      <CustomSelect
-        id="rol"
-        name="rol"
-        value="all"
-        ariaLabel="Filtrar por rol procesal principal"
-        options={[
-          { value: 'all', label: 'Todos' },
-          ...opcionesRolBucket,
-        ]}
+    <div class="field field--wide">
+      <label for="caso">Causa</label>
+      <MultiSelectFilter
+        id="caso"
+        name="caso"
+        options={opcionesCasos}
+        placeholder="Todas"
+        ariaLabel="Filtrar por causa o caso"
+        searchPlaceholder="Buscar caso…"
+      />
+    </div>
+    <div class="field field--wide">
+      <label for="delito">Delito atribuido</label>
+      <MultiSelectFilter
+        id="delito"
+        name="delito"
+        options={opcionesDelitos}
+        placeholder="Todos"
+        ariaLabel="Filtrar por delito atribuido en la causa"
+        searchPlaceholder="Buscar delito…"
       />
     </div>
     <div class="field">
@@ -305,11 +337,10 @@ function searchBlob(p: (typeof personas)[number]): string {
   <table class="tbl" data-personas>
     <thead>
       <tr>
-        <th style="width: 38%;">Persona</th>
-        <th style="width: 18%;">Rol procesal principal</th>
-        <th style="width: 22%;">Organización principal</th>
-        <th style="width: 16%;">Cargo actual</th>
-        <th style="width: 6%;" class="c-num">Casos</th>
+        <th style="width: 28%;">Persona</th>
+        <th style="width: 18%;">Organización principal</th>
+        <th style="width: 18%;">Cargo actual</th>
+        <th style="width: 36%;">Casos y rol procesal</th>
       </tr>
     </thead>
     <tbody>
@@ -318,8 +349,9 @@ function searchBlob(p: (typeof personas)[number]): string {
           class="is-link"
           data-row
           data-figura={p.esFigura ? 'publica' : 'privada'}
-          data-rol={p.rolBucket}
           data-casos={p.casosCount}
+          data-caso-ids={p.casoIds.join(',')}
+          data-delito-ids={p.delitoIds.join(',')}
           data-search={searchBlob(p)}
         >
           <td>
@@ -336,21 +368,36 @@ function searchBlob(p: (typeof personas)[number]): string {
             </a>
           </td>
           <td>
-            {p.rolPrincipal ? (
-              <RolBadge rol={p.rolPrincipal.rol} label={p.rolPrincipal.label} />
-            ) : (
-              <span class="muted">—</span>
-            )}
-          </td>
-          <td>
             {p.orgRefId && p.orgRefNombre ? (
-              <a href={`/organizaciones/${p.orgRefId}`} class="c-org-link">{p.orgRefNombre}</a>
+              <OrgChip
+                id={p.orgRefId}
+                label={p.orgRefNombre}
+                href={`/organizaciones/${p.orgRefId}`}
+                esPartido={p.orgRefEsPartido}
+              />
             ) : (
               <span class="muted">—</span>
             )}
           </td>
           <td class="c-mono">{p.cargo ?? '—'}</td>
-          <td class="c-num">{p.casosCount}</td>
+          <td>
+            {p.casosPersona.length > 0 ? (
+              <ul class="c-cases-list">
+                {p.casosPersona.map((caso) => (
+                  <li class="c-case-ref">
+                    <a href={`/casos/${caso.id}`} class="c-case-ref__name">{caso.nombre}</a>
+                    <span class="c-case-ref__roles">
+                      {caso.roles.map((r) => (
+                        <RolBadge rol={r.rol} label={r.label} />
+                      ))}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <span class="muted">—</span>
+            )}
+          </td>
         </tr>
       ))}
     </tbody>
@@ -372,7 +419,8 @@ function searchBlob(p: (typeof personas)[number]): string {
     const meta = document.querySelector('[data-listado-meta]');
     const qInput = form.querySelector('#q');
     const figura = form.querySelector('input[name="figura"]');
-    const rolSel = form.querySelector('input[name="rol"]');
+    const casoSel = form.querySelector('input[name="caso"]');
+    const delitoSel = form.querySelector('input[name="delito"]');
     const orderSel = form.querySelector('input[name="order"]');
 
     const ORDER_LABEL = {
@@ -396,15 +444,19 @@ function searchBlob(p: (typeof personas)[number]): string {
     function apply() {
       const q = (qInput.value || '').trim().toLowerCase();
       const fig = figura.value;
-      const rol = rolSel ? rolSel.value : 'all';
+      const casos = (casoSel?.value || '').split(',').filter(Boolean);
+      const delitos = (delitoSel?.value || '').split(',').filter(Boolean);
       const order = orderSel ? orderSel.value : 'alfabetico';
 
       const visible = [];
       for (const row of rows) {
         const matchQ = !q || (row.dataset.search || '').includes(q);
         const matchF = fig === 'all' || row.dataset.figura === fig;
-        const matchR = rol === 'all' || row.dataset.rol === rol;
-        const show = matchQ && matchF && matchR;
+        const rowCasos = (row.dataset.casoIds || '').split(',').filter(Boolean);
+        const rowDelitos = (row.dataset.delitoIds || '').split(',').filter(Boolean);
+        const matchCaso = casos.length === 0 || casos.some((id) => rowCasos.includes(id));
+        const matchDelito = delitos.length === 0 || delitos.some((id) => rowDelitos.includes(id));
+        const show = matchQ && matchF && matchCaso && matchDelito;
         row.hidden = !show;
         if (show) visible.push(row);
       }
@@ -444,6 +496,12 @@ function searchBlob(p: (typeof personas)[number]): string {
     font: 400 var(--font-size-1)/1.5 var(--font-sans);
     color: var(--color-fg-muted);
   }
+  .filter-bar {
+    grid-template-columns: minmax(220px, 1.3fr) minmax(180px, 1fr) minmax(180px, 1fr) minmax(150px, 0.8fr) minmax(150px, 0.8fr);
+  }
+  .filter-bar .field--wide {
+    min-width: 0;
+  }
   .c-name-row {
     display: flex;
     align-items: center;
@@ -463,7 +521,35 @@ function searchBlob(p: (typeof personas)[number]): string {
     margin-top: 4px;
     line-height: 1.4;
   }
-  .c-org-link {
+  .c-cases-list {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .c-case-ref {
+    display: grid;
+    gap: 3px;
+    min-width: 0;
+  }
+  .c-case-ref__name {
     font-size: var(--font-size-0);
+    line-height: 1.25;
+  }
+  .c-case-ref__roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  @media (max-width: 980px) {
+    .filter-bar {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 620px) {
+    .filter-bar {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

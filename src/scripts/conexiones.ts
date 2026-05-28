@@ -98,8 +98,7 @@ function renderFilterSummary(root: HTMLElement) {
   if (!panel) return;
 
   const focusType = getFocusKind(root);
-  const focusSelect = qs<HTMLSelectElement>(root, "[data-graph-focus-id]");
-  const depth = qs<HTMLSelectElement>(root, "[data-graph-depth]")?.value ?? "1";
+  const depth = qs<HTMLInputElement>(root, "[data-graph-depth]")?.value ?? "1";
   const layout =
     qs<HTMLSelectElement>(root, "[data-graph-layout]")?.value ?? "cose";
 
@@ -107,9 +106,13 @@ function renderFilterSummary(root: HTMLElement) {
   if (focusType === "inventario") {
     context.push(FOCUS_LABEL.inventario);
   } else {
+    const labels = getFocusLabels(root, focusType);
     const focusName =
-      focusSelect?.selectedOptions[0]?.textContent?.replace(/\s+/g, " ").trim() ??
-      "Sin foco";
+      labels.length === 0
+        ? "Sin foco"
+        : labels.length === 1
+          ? labels[0]
+          : `${labels.length} seleccionados`;
     context.push(`${FOCUS_LABEL[focusType]}: ${focusName}`, `p.${depth}`);
   }
   context.push(LAYOUT_LABEL[layout] ?? layout);
@@ -211,11 +214,58 @@ function getFocusKind(root: HTMLElement): FocusKind {
     "inventario") as FocusKind;
 }
 
-function getFocusNodeId(root: HTMLElement): string {
+function activeFocusPicker(root: HTMLElement, type = getFocusKind(root)): HTMLElement | null {
+  if (type === "inventario") return null;
+  return qs<HTMLElement>(root, `[data-graph-focus-picker="${type}"]`);
+}
+
+function getFocusRawIds(root: HTMLElement, type = getFocusKind(root)): string[] {
+  const picker = activeFocusPicker(root, type);
+  const raw = qs<HTMLInputElement>(picker ?? root, "[data-msf-value]")?.value ?? "";
+  return raw.split(",").map((value) => value.trim()).filter(Boolean);
+}
+
+function getFocusNodeIds(root: HTMLElement): string[] {
   const type = getFocusKind(root);
-  const id = qs<HTMLSelectElement>(root, "[data-graph-focus-id]")?.value ?? "";
-  if (type === "inventario") return "";
-  return `${type}:${id}`;
+  if (type === "inventario") return [];
+  return getFocusRawIds(root, type).map((id) => `${type}:${id}`);
+}
+
+function getFocusLabels(root: HTMLElement, type = getFocusKind(root)): string[] {
+  const picker = activeFocusPicker(root, type);
+  if (!picker) return [];
+  return getFocusRawIds(root, type).map((value) => {
+    const opt = qs<HTMLElement>(
+      picker,
+      `[data-msf-opt][data-value="${CSS.escape(value)}"] .msf__opt-label`,
+    );
+    return opt?.textContent?.replace(/\s+/g, " ").trim() ?? value;
+  });
+}
+
+function setMultiSelectValues(root: HTMLElement, values: string[]) {
+  const selected = new Set(values);
+  qsa<HTMLInputElement>(root, "[data-msf-checkbox]").forEach((checkbox) => {
+    checkbox.checked = selected.has(checkbox.value);
+  });
+  const globalWindow = window as Window & {
+    __msfCommit?: (root: HTMLElement) => void;
+  };
+  if (globalWindow.__msfCommit) {
+    globalWindow.__msfCommit(root);
+    return;
+  }
+  const hidden = qs<HTMLInputElement>(root, "[data-msf-value]");
+  if (hidden) hidden.value = values.join(",");
+}
+
+function syncFocusPickers(root: HTMLElement) {
+  const type = getFocusKind(root);
+  qsa<HTMLElement>(root, "[data-graph-focus-picker]").forEach((picker) => {
+    picker.hidden = picker.dataset.graphFocusPicker !== type;
+  });
+  const all = qs<HTMLElement>(root, "[data-graph-focus-all]");
+  if (all) all.hidden = type !== "inventario";
 }
 
 function closeGraphSelect(widget: HTMLElement) {
@@ -411,46 +461,79 @@ function refreshGraphSelects(root: HTMLElement) {
   );
 }
 
+function syncDepthControl(root: HTMLElement) {
+  const input = qs<HTMLInputElement>(root, "[data-graph-depth]");
+  const output = qs<HTMLOutputElement>(root, "[data-graph-depth-value]");
+  if (!input || !output) return;
+  output.value = input.value;
+  output.textContent = input.value;
+  output.toggleAttribute("aria-disabled", input.disabled);
+}
+
+function syncLayoutControl(root: HTMLElement) {
+  const select = qs<HTMLSelectElement>(root, "[data-graph-layout]");
+  if (!select) return;
+  qsa<HTMLButtonElement>(root, "[data-graph-layout-choice]").forEach(
+    (button) => {
+      const selected = button.dataset.graphLayoutChoice === select.value;
+      button.setAttribute("aria-checked", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+    },
+  );
+}
+
+function bindLayoutControls(root: HTMLElement) {
+  const select = qs<HTMLSelectElement>(root, "[data-graph-layout]");
+  if (!select) return;
+  const buttons = qsa<HTMLButtonElement>(root, "[data-graph-layout-choice]");
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      const choice = button.dataset.graphLayoutChoice;
+      if (!choice || select.value === choice) return;
+      select.value = choice;
+      syncLayoutControl(root);
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+    button.addEventListener("keydown", (event) => {
+      if (
+        event.key !== "ArrowRight" &&
+        event.key !== "ArrowDown" &&
+        event.key !== "ArrowLeft" &&
+        event.key !== "ArrowUp"
+      )
+        return;
+      event.preventDefault();
+      const direction =
+        event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1;
+      const next = buttons[(index + direction + buttons.length) % buttons.length];
+      next?.focus();
+      next?.click();
+    });
+  });
+  syncLayoutControl(root);
+}
+
 function updateFocusOptions(root: HTMLElement, payload: GraphPayload) {
   const typeSelect = qs<HTMLSelectElement>(root, "[data-graph-focus-type]");
-  const idSelect = qs<HTMLSelectElement>(root, "[data-graph-focus-id]");
-  const depthSelect = qs<HTMLSelectElement>(root, "[data-graph-depth]");
-  if (!typeSelect || !idSelect) return;
+  const depthInput = qs<HTMLInputElement>(root, "[data-graph-depth]");
+  if (!typeSelect) return;
 
   const type = typeSelect.value as FocusKind;
+  syncFocusPickers(root);
   if (type === "inventario") {
-    idSelect.textContent = "";
-    const option = document.createElement("option");
-    option.value = "";
-    option.textContent = "Todas las entidades publicables";
-    idSelect.append(option);
-    idSelect.disabled = true;
-    if (depthSelect) depthSelect.disabled = true;
-    refreshGraphSelect(idSelect);
-    refreshGraphSelect(depthSelect ?? null);
+    if (depthInput) depthInput.disabled = true;
+    syncDepthControl(root);
     return;
   }
 
-  idSelect.disabled = false;
-  if (depthSelect) depthSelect.disabled = false;
-  const current = idSelect.value;
-  const nodes = payload.nodes
-    .filter((node) => node.kind === type)
-    .sort((a, b) => a.label.localeCompare(b.label, "es"));
-  idSelect.textContent = "";
-  for (const node of nodes) {
-    const option = document.createElement("option");
-    option.value = node.rawId;
-    option.textContent = node.label;
-    idSelect.append(option);
+  if (depthInput) depthInput.disabled = false;
+  const current = getFocusRawIds(root, type);
+  const nodes = payload.nodes.filter((node) => node.kind === type);
+  if (current.length === 0 && nodes[0]) {
+    const picker = activeFocusPicker(root, type);
+    if (picker) setMultiSelectValues(picker, [nodes[0].rawId]);
   }
-  if (nodes.some((node) => node.rawId === current)) {
-    idSelect.value = current;
-  } else if (nodes[0]) {
-    idSelect.value = nodes[0].rawId;
-  }
-  refreshGraphSelect(idSelect);
-  refreshGraphSelect(depthSelect ?? null);
+  syncDepthControl(root);
 }
 
 function parseUrlState(root: HTMLElement, payload: GraphPayload) {
@@ -460,40 +543,42 @@ function parseUrlState(root: HTMLElement, payload: GraphPayload) {
   const depth = params.get("depth");
   const layout = params.get("layout");
   const typeSelect = qs<HTMLSelectElement>(root, "[data-graph-focus-type]");
-  const idSelect = qs<HTMLSelectElement>(root, "[data-graph-focus-id]");
-  const depthSelect = qs<HTMLSelectElement>(root, "[data-graph-depth]");
+  const depthInput = qs<HTMLInputElement>(root, "[data-graph-depth]");
   const layoutSelect = qs<HTMLSelectElement>(root, "[data-graph-layout]");
 
   if (type && FOCUS_KINDS.includes(type) && typeSelect) {
     typeSelect.value = type;
   }
   updateFocusOptions(root, payload);
-  if (
-    id &&
-    idSelect &&
-    typeSelect?.value !== "inventario" &&
-    payload.nodes.some(
-      (node) => node.kind === typeSelect?.value && node.rawId === id,
-    )
-  ) {
-    idSelect.value = id;
+  if (id && typeSelect?.value !== "inventario") {
+    const focusType = typeSelect?.value as FocusKind;
+    const valid = new Set(
+      payload.nodes
+        .filter((node) => node.kind === focusType)
+        .map((node) => node.rawId),
+    );
+    const ids = id.split(",").filter((value) => valid.has(value));
+    const picker = activeFocusPicker(root, focusType);
+    if (ids.length > 0 && picker) setMultiSelectValues(picker, ids);
   }
-  if (depth && depthSelect && ["1", "2", "3"].includes(depth))
-    depthSelect.value = depth;
+  if (depth && depthInput && ["1", "2", "3"].includes(depth))
+    depthInput.value = depth;
   if (layout && layoutSelect && ["breadthfirst", "cose"].includes(layout))
     layoutSelect.value = layout;
   refreshGraphSelects(root);
+  syncDepthControl(root);
+  syncLayoutControl(root);
 }
 
 function pushUrlState(root: HTMLElement) {
   const type = getFocusKind(root);
-  const id = qs<HTMLSelectElement>(root, "[data-graph-focus-id]")?.value ?? "";
-  const depth = qs<HTMLSelectElement>(root, "[data-graph-depth]")?.value ?? "1";
+  const ids = getFocusRawIds(root, type);
+  const depth = qs<HTMLInputElement>(root, "[data-graph-depth]")?.value ?? "1";
   const layout =
     qs<HTMLSelectElement>(root, "[data-graph-layout]")?.value ?? "cose";
   const params = new URLSearchParams({ focus: type, layout });
   if (type !== "inventario") {
-    params.set("id", id);
+    if (ids.length > 0) params.set("id", ids.join(","));
     params.set("depth", depth);
   }
   window.history.replaceState(
@@ -514,10 +599,10 @@ function allowedSubgraph(
   const edgeKinds = getChecked<EdgeKind>(root, "[data-edge-kind]");
   const nodeKinds = getChecked<NodeKind>(root, "[data-node-kind]");
   const focusType = getFocusKind(root);
-  const focus = getFocusNodeId(root);
+  const focuses = getFocusNodeIds(root);
   const edgePool = payload.edges.filter((edge) => edgeKinds.has(edge.kind));
 
-  if (focusType === "inventario" || !focus) {
+  if (focusType === "inventario" || focuses.length === 0) {
     const visibleNodes = new Set(
       payload.nodes
         .filter((node) => nodeKinds.has(node.kind))
@@ -534,7 +619,7 @@ function allowedSubgraph(
   }
 
   const depth = Number(
-    qs<HTMLSelectElement>(root, "[data-graph-depth]")?.value ?? "1",
+    qs<HTMLInputElement>(root, "[data-graph-depth]")?.value ?? "1",
   );
   const adjacency = new Map<string, GraphEdge[]>();
   for (const edge of edgePool) {
@@ -544,10 +629,13 @@ function allowedSubgraph(
     adjacency.get(edge.target)!.push(edge);
   }
 
-  const visibleNodes = new Set<string>([focus]);
+  const visibleNodes = new Set<string>(focuses);
   const visibleEdges = new Map<string, GraphEdge>();
-  const depthByNode = new Map<string, number>([[focus, 0]]);
-  const queue: Array<{ id: string; depth: number }> = [{ id: focus, depth: 0 }];
+  const depthByNode = new Map<string, number>(focuses.map((id) => [id, 0]));
+  const queue: Array<{ id: string; depth: number }> = focuses.map((id) => ({
+    id,
+    depth: 0,
+  }));
 
   while (queue.length > 0) {
     const current = queue.shift()!;
@@ -556,7 +644,7 @@ function allowedSubgraph(
       const next = edge.source === current.id ? edge.target : edge.source;
       const node = payload.nodes.find((item) => item.id === next);
       if (!node) continue;
-      if (!nodeKinds.has(node.kind) && next !== focus) continue;
+      if (!nodeKinds.has(node.kind) && !focuses.includes(next)) continue;
       visibleEdges.set(edge.id, edge);
       if (!visibleNodes.has(next)) {
         visibleNodes.add(next);
@@ -973,7 +1061,7 @@ function applyViewportFit(
   if (root) syncZoomControl(root, cy);
 }
 
-function layoutFor(root: HTMLElement, focus: string, nodeCount: number) {
+function layoutFor(root: HTMLElement, nodeCount: number) {
   const focusType = getFocusKind(root);
   const narrow = isNarrowGraphViewport(graphViewportWidth(root));
   const padding = fitPaddingForNodeCount(nodeCount, focusType, narrow);
@@ -1010,7 +1098,7 @@ function layoutFor(root: HTMLElement, focus: string, nodeCount: number) {
   }
   return {
     name: "breadthfirst",
-    roots: focus ? [focus] : undefined,
+    roots: getFocusNodeIds(root).length > 0 ? getFocusNodeIds(root) : undefined,
     directed: false,
     animate: true,
     animationDuration: 450,
@@ -1069,7 +1157,7 @@ function renderGraph(
   const container = qs<HTMLElement>(root, "[data-graph-canvas]");
   if (!container) throw new Error("Missing graph container");
   const subgraph = allowedSubgraph(root, payload);
-  const focus = getFocusNodeId(root);
+  const focuses = getFocusNodeIds(root);
   const displayEdges = aggregateEdges(subgraph.edges);
   renderedEdgesByRoot.set(
     root,
@@ -1199,13 +1287,13 @@ function renderGraph(
         {
           selector: "node.is-dim",
           style: {
-            opacity: 0.26,
+            opacity: 0.12,
           },
         },
         {
           selector: "edge.is-dim",
           style: {
-            opacity: 0.08,
+            opacity: 0.035,
           },
         },
         {
@@ -1358,7 +1446,7 @@ function renderGraph(
   root.dataset.graphViewportLocked = "true";
   const nodeCount = subgraph.nodes.size;
   const focusType = getFocusKind(root);
-  const layout = cy.layout(layoutFor(root, focus, nodeCount));
+  const layout = cy.layout(layoutFor(root, nodeCount));
   layout.one("layoutstop", () => {
     applyViewportFit(cy!, nodeCount, focusType, root);
     delete root.dataset.graphViewportLocked;
@@ -1368,7 +1456,7 @@ function renderGraph(
   renderTable(root, payload, displayEdges);
   const visibleNodes = qs<HTMLElement>(root, "[data-graph-node-count]");
   if (visibleNodes) visibleNodes.textContent = String(subgraph.nodes.size);
-  if (focus) renderDetails(root, payload, focus);
+  if (focuses.length === 1) renderDetails(root, payload, focuses[0]);
   renderFilterSummary(root);
   syncPanelButtons(root);
   return cy;
@@ -1389,9 +1477,12 @@ function init(root: HTMLElement) {
   }
 
   enhanceGraphSelects(root);
+  bindLayoutControls(root);
   parseUrlState(root, payload);
   let cy: Core | null = null;
   const rerender = () => {
+    syncDepthControl(root);
+    syncLayoutControl(root);
     pushUrlState(root);
     syncSeparationControl(root);
     cy = renderGraph(root, payload, cy);

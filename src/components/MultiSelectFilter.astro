@@ -35,6 +35,7 @@ interface Props {
   id: string;
   name: string;
   options: Option[];
+  value?: string[] | string;
   placeholder?: string;
   ariaLabel?: string;
   searchPlaceholder?: string;
@@ -46,16 +47,29 @@ const {
   id,
   name,
   options,
+  value = [],
   placeholder = 'Todas',
   ariaLabel,
   searchPlaceholder = 'Buscar opciones…',
   clearLabel = 'Limpiar selección',
   emptyLabel = 'Sin resultados',
 } = Astro.props;
+
+const selectedValues = Array.isArray(value)
+  ? value
+  : value.split(',').map((v) => v.trim()).filter(Boolean);
+const selectedSet = new Set(selectedValues);
+const selectedOptions = options.filter((o) => selectedSet.has(o.value));
+const triggerText =
+  selectedOptions.length === 0
+    ? placeholder
+    : selectedOptions.length === 1
+      ? selectedOptions[0].label
+      : `${selectedOptions.length} seleccionadas`;
 ---
 
 <div class="msf" data-msf data-msf-name={name}>
-  <input type="hidden" name={name} value="" data-msf-value />
+  <input type="hidden" name={name} value={selectedOptions.map((o) => o.value).join(',')} data-msf-value />
   <button
     type="button"
     class="msf__trigger"
@@ -66,13 +80,27 @@ const {
     data-msf-trigger
     data-msf-placeholder={placeholder}
   >
-    <span class="msf__trigger-text" data-msf-trigger-text>{placeholder}</span>
+    <span
+      class:list={['msf__trigger-text', selectedOptions.length > 0 && 'msf__trigger-text--has']}
+      data-msf-trigger-text
+    >
+      {triggerText}
+    </span>
     <svg class="msf__caret" viewBox="0 0 24 24" aria-hidden="true">
       <polyline points="6 9 12 15 18 9" />
     </svg>
   </button>
 
-  <ul class="msf__chips" data-msf-chips aria-live="polite"></ul>
+  <ul class="msf__chips" data-msf-chips aria-live="polite">
+    {selectedOptions.map((o) => (
+      <li class="msf__chip" data-msf-chip={o.value}>
+        <span class="msf__chip-text">{o.label}</span>
+        <button type="button" class="msf__chip-x" aria-label={`Quitar ${o.label}`} data-msf-chip-remove={o.value}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </li>
+    ))}
+  </ul>
 
   <div class="msf__popover" data-msf-popover hidden>
     <div class="msf__searchwrap">
@@ -99,6 +127,7 @@ const {
               class="msf__checkbox"
               data-msf-checkbox
               value={o.value}
+              checked={selectedSet.has(o.value)}
             />
             <span class="msf__opt-text">
               <span class="msf__opt-label">{o.label}</span>
@@ -190,6 +219,8 @@ const {
       }
       root.classList.toggle('msf--has', selected.length > 0);
     }
+
+    window.__msfCommit = commit;
 
     function close(root) {
       root.classList.remove('msf--open');
@@ -319,6 +350,7 @@ const {
           commit(root);
         }, 0);
       });
+      commit(root);
       });
     }
 

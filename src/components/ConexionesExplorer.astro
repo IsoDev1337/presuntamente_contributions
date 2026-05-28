@@ -1,6 +1,7 @@
 ---
 import type { GraphPayload } from '@/lib/conexiones';
 import Aclaracion from '@/components/Aclaracion.astro';
+import MultiSelectFilter from '@/components/MultiSelectFilter.astro';
 
 interface Props {
   graph: GraphPayload;
@@ -69,25 +70,115 @@ const nodesByKind = {
       </div>
       <div class="field field--wide">
         <label for="graph-focus-id">Foco</label>
-        <select id="graph-focus-id" name="id" class="graph-native-select" data-graph-focus-id data-graph-select>
-          <option value="">Todo el inventario</option>
-          {nodesByKind.caso.map((node) => <option value={node.rawId}>{node.label}</option>)}
-        </select>
+        <div class="graph-focus-pickers" data-graph-focus-pickers>
+          <div data-graph-focus-picker="caso" hidden>
+            <MultiSelectFilter
+              id="graph-focus-id"
+              name="id_caso"
+              options={nodesByKind.caso.map((node) => ({
+                value: node.rawId,
+                label: node.label,
+                ...(node.sublabel ? { sublabel: node.sublabel } : {}),
+              }))}
+              placeholder="Seleccionar casos"
+              ariaLabel="Seleccionar uno o varios casos"
+              searchPlaceholder="Buscar caso…"
+            />
+          </div>
+          <div data-graph-focus-picker="persona" hidden>
+            <MultiSelectFilter
+              id="graph-focus-persona"
+              name="id_persona"
+              options={nodesByKind.persona.map((node) => ({
+                value: node.rawId,
+                label: node.label,
+                ...(node.sublabel ? { sublabel: node.sublabel } : {}),
+              }))}
+              placeholder="Seleccionar personas"
+              ariaLabel="Seleccionar una o varias personas"
+              searchPlaceholder="Buscar persona…"
+            />
+          </div>
+          <div data-graph-focus-picker="organizacion" hidden>
+            <MultiSelectFilter
+              id="graph-focus-organizacion"
+              name="id_organizacion"
+              options={nodesByKind.organizacion.map((node) => ({
+                value: node.rawId,
+                label: node.label,
+                ...(node.sublabel ? { sublabel: node.sublabel } : {}),
+              }))}
+              placeholder="Seleccionar organizaciones"
+              ariaLabel="Seleccionar una o varias organizaciones"
+              searchPlaceholder="Buscar organización…"
+            />
+          </div>
+          <div data-graph-focus-picker="documento" hidden>
+            <MultiSelectFilter
+              id="graph-focus-documento"
+              name="id_documento"
+              options={nodesByKind.documento.map((node) => ({
+                value: node.rawId,
+                label: node.label,
+                ...(node.sublabel ? { sublabel: node.sublabel } : {}),
+              }))}
+              placeholder="Seleccionar documentos"
+              ariaLabel="Seleccionar uno o varios documentos"
+              searchPlaceholder="Buscar documento…"
+            />
+          </div>
+          <p class="graph-focus-pickers__all" data-graph-focus-all>Todo el inventario</p>
+        </div>
       </div>
-      <div class="field">
+      <div class="field field--depth">
         <label for="graph-depth">Profundidad</label>
-        <select id="graph-depth" name="depth" class="graph-native-select" data-graph-depth data-graph-select>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
+        <div class="graph-range-control graph-range-control--depth">
+          <input id="graph-depth" name="depth" type="range" min="1" max="3" step="1" value="1" data-graph-depth />
+          <output for="graph-depth" data-graph-depth-value>1</output>
+        </div>
       </div>
-      <div class="field">
-        <label for="graph-layout" title="Cómo se disponen los nodos en el lienzo">Disposición</label>
-        <select id="graph-layout" name="layout" class="graph-native-select" data-graph-layout data-graph-select>
+      <div class="field field--layout">
+        <label id="graph-layout-label" for="graph-layout" title="Cómo se disponen los nodos en el lienzo">Disposición</label>
+        <select id="graph-layout" name="layout" class="graph-native-select" data-graph-layout>
           <option value="cose">Disposición orgánica</option>
           <option value="breadthfirst">Disposición jerárquica</option>
         </select>
+        <div class="graph-layout-toggle" role="radiogroup" aria-labelledby="graph-layout-label">
+          <button
+            type="button"
+            class="graph-layout-option"
+            data-graph-layout-choice="cose"
+            role="radio"
+            aria-checked="true"
+            aria-label="Disposición orgánica"
+            title="Disposición orgánica"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+              <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="graph-layout-option"
+            data-graph-layout-choice="breadthfirst"
+            role="radio"
+            aria-checked="false"
+            aria-label="Disposición jerárquica"
+            title="Disposición jerárquica"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="16" y="16" width="6" height="6" rx="1"></rect>
+              <rect x="2" y="16" width="6" height="6" rx="1"></rect>
+              <rect x="9" y="2" width="6" height="6" rx="1"></rect>
+              <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path>
+              <path d="M12 12V8"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -166,19 +257,19 @@ const nodesByKind = {
         <label><input type="checkbox" value="documento" data-node-kind /> Documentos</label>
       </div>
       <div class="graph-tuning">
-        <label for="graph-separation">
-          Separación de nodos
-          <span data-graph-separation-value>1.0x</span>
-        </label>
-        <input
-          id="graph-separation"
-          type="range"
-          min="0.7"
-          max="1.9"
-          step="0.1"
-          value="1"
-          data-graph-separation
-        />
+        <label for="graph-separation">Separación de nodos</label>
+        <div class="graph-range-control">
+          <input
+            id="graph-separation"
+            type="range"
+            min="0.7"
+            max="1.9"
+            step="0.1"
+            value="1"
+            data-graph-separation
+          />
+          <output for="graph-separation" data-graph-separation-value>1.0x</output>
+        </div>
         <p>Aumenta la separación entre nodos para facilitar la lectura cuando hay muchas conexiones.</p>
       </div>
     </details>
@@ -320,15 +411,36 @@ const nodesByKind = {
     top: 18px;
     left: 18px;
     width: min(620px, calc(100vw - 36px));
+    min-width: 320px;
+    max-width: calc(100vw - 36px);
+    max-height: calc(100dvh - 108px);
+    box-sizing: border-box;
+    container-type: inline-size;
     display: grid;
     gap: 12px;
     padding: 14px;
-    transition: width 180ms ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0.46;
+    resize: both;
+    transition:
+      opacity 160ms ease,
+      background 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .graph-panel--controls:hover,
+  .graph-panel--controls:focus-within {
+    opacity: 1;
+    background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+    box-shadow: 0 14px 38px rgba(15, 23, 42, 0.16);
   }
 
   .graph-explorer[data-controls-minimized] .graph-panel--controls {
     width: min(320px, calc(100vw - 36px));
     gap: 0;
+    opacity: 0.34;
+    resize: none;
   }
 
   .graph-panel__head {
@@ -440,8 +552,12 @@ const nodesByKind = {
 
   .graph-fields {
     display: grid;
-    grid-template-columns: minmax(122px, 0.95fr) minmax(190px, 1.6fr) minmax(96px, 0.75fr) minmax(112px, 0.9fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(148px, 100%), 1fr));
     gap: 8px;
+  }
+
+  .graph-fields .field--wide {
+    grid-column: span 2;
   }
 
   .graph-fields .field {
@@ -450,6 +566,88 @@ const nodesByKind = {
 
   .graph-fields .field label {
     font-size: 11px;
+  }
+
+  .graph-range-control {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 7px;
+    min-height: 26px;
+  }
+
+  .graph-range-control input {
+    width: 100%;
+    min-width: 0;
+    height: 18px;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+  }
+
+  .graph-range-control input:disabled {
+    cursor: not-allowed;
+    opacity: 0.42;
+  }
+
+  .graph-range-control output {
+    display: grid;
+    place-items: center;
+    min-width: 26px;
+    height: 20px;
+    color: var(--color-accent);
+    font: 700 11px/1 var(--font-mono);
+  }
+
+  .graph-range-control--depth {
+    padding-top: 2px;
+  }
+
+  .graph-layout-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 28px;
+    border: 1px solid var(--color-border-strong);
+    background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+  }
+
+  .graph-layout-option {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    min-height: 26px;
+    padding: 4px;
+    border: 0;
+    border-right: 1px solid var(--color-border);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-fg-muted);
+    cursor: pointer;
+  }
+
+  .graph-layout-option:last-child {
+    border-right: 0;
+  }
+
+  .graph-layout-option[aria-checked="true"] {
+    background: var(--color-accent);
+    color: var(--color-surface);
+  }
+
+  .graph-layout-option:hover,
+  .graph-layout-option:focus-visible {
+    color: var(--color-accent);
+    outline: none;
+  }
+
+  .graph-layout-option[aria-checked="true"]:hover,
+  .graph-layout-option[aria-checked="true"]:focus-visible {
+    color: var(--color-surface);
+  }
+
+  .graph-layout-option svg {
+    width: 15px;
+    height: 15px;
+    pointer-events: none;
   }
 
   :global(.graph-native-select) {
@@ -546,7 +744,35 @@ const nodesByKind = {
   }
 
   .field--wide :global(.gsel__menu) {
-    width: max(100%, min(520px, calc(100vw - 48px)));
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .graph-focus-pickers {
+    min-width: 0;
+  }
+
+  .graph-focus-pickers :global(.msf__popover) {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .graph-focus-pickers :global(.msf__chips) {
+    display: none;
+  }
+
+  .graph-focus-pickers__all {
+    min-height: 36px;
+    margin: 0;
+    padding: 8px 10px;
+    border: 1px solid var(--color-border-strong);
+    background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+    color: var(--color-fg-muted);
+    font: 600 12px/1.25 var(--font-sans);
+  }
+
+  .graph-focus-pickers__all[hidden] {
+    display: none;
   }
 
   :global(.gsel__option) {
@@ -712,7 +938,7 @@ const nodesByKind = {
 
   .graph-tuning {
     display: grid;
-    gap: 6px;
+    gap: 4px;
     flex: 1 1 100%;
     margin-top: 3px;
     padding-bottom: 8px;
@@ -720,23 +946,9 @@ const nodesByKind = {
   }
 
   .graph-tuning label {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
     color: var(--color-accent);
-    font-size: var(--font-size-0);
+    font-size: 11px;
     font-weight: 700;
-  }
-
-  .graph-tuning label span {
-    color: var(--color-fg-muted);
-    font-family: var(--font-mono);
-    font-weight: 500;
-  }
-
-  .graph-tuning input[type="range"] {
-    width: 100%;
-    accent-color: var(--color-accent);
   }
 
   .graph-tuning p {
@@ -1036,6 +1248,16 @@ const nodesByKind = {
   .dot--org { background: var(--color-accent-soft); border-color: #4a6694; }
   .dot--doc { background: var(--color-bg); border-style: dashed; }
 
+  @container (max-width: 520px) {
+    .graph-fields {
+      grid-template-columns: 1fr;
+    }
+
+    .graph-fields .field--wide {
+      grid-column: auto;
+    }
+  }
+
   @media (max-width: 760px) {
     .graph-explorer {
       height: calc(100dvh - 64px);
@@ -1043,25 +1265,56 @@ const nodesByKind = {
     }
 
     .graph-panel--controls {
-      top: 10px;
+      top: auto;
+      right: 10px;
       left: 10px;
-      width: calc(100vw - 20px);
-      max-height: 52vh;
-      overflow: auto;
+      bottom: 10px;
+      width: auto;
+      min-width: 0;
+      max-width: none;
+      max-height: min(64dvh, 520px);
+      padding: 12px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      opacity: 0.58;
+      resize: none;
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-panel--controls {
+      width: auto;
+      right: 10px;
+    }
+
+    .graph-panel__title-row {
+      display: grid;
+      gap: 4px;
+    }
+
+    .graph-panel h1 {
+      font-size: var(--font-size-3);
+      line-height: 1.1;
+    }
+
+    .graph-panel__stats {
+      gap: 6px 10px;
     }
 
     .graph-fields {
       grid-template-columns: 1fr 1fr;
     }
 
+    .graph-fields .field--wide {
+      grid-column: span 2;
+    }
+
     .graph-panel--details {
-      top: auto;
+      top: 10px;
       right: 10px;
       left: 10px;
-      bottom: 10px;
+      bottom: auto;
       width: auto;
-      max-height: 48vh;
-      transform: translateY(calc(100% + 24px));
+      max-height: 34vh;
+      transform: translateY(calc(-100% - 24px));
     }
 
     .graph-explorer[data-details-open] .graph-panel--details {
@@ -1076,7 +1329,8 @@ const nodesByKind = {
 
     .graph-hud {
       right: 10px;
-      bottom: 10px;
+      bottom: calc(10px + min(64dvh, 520px));
+      max-width: calc(100vw - 20px);
     }
 
     .graph-legend {
@@ -1091,6 +1345,10 @@ const nodesByKind = {
 
     .field--wide :global(.gsel__menu) {
       width: 100%;
+    }
+
+    .graph-fields .field--wide {
+      grid-column: auto;
     }
   }
 
