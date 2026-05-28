@@ -29,6 +29,12 @@ documentos_respaldo:
       través de la Sociedad Estatal de Participaciones Industriales (SEPI)"
       (Art. 2.1)
 nivel_fuente_efectivo: 1
+importe: 53000000
+importe_alcance: total_caso
+importe_naturaleza: fondo_publico_concedido
+importe_nota: >-
+  Préstamo público concedido a través del FASEE; el acto de concesión consta
+  (nota SEPI y BOE), lo que se investiga es su regularidad. Cifra titular del caso.
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

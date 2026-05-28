@@ -30,6 +30,14 @@ documentos_respaldo:
   - documento_id: confilegal-apertura-juicio-oral-ga-2025-09-22
     pasaje: "Pliego de peticiones recogido en la crónica de la apertura del juicio oral del 22 de septiembre de 2025."
 nivel_fuente_efectivo: 4
+importe: 600000
+importe_alcance: individual
+importe_naturaleza: multa_penal
+importe_nota: >-
+  Multa superior a 600.000 € solicitada por la Fiscalía y la Abogacía del Estado
+  para Alberto González Amador (petición provisional de calificación). Las
+  acusaciones populares del PSOE y Más Madrid elevan la petición de prisión y
+  multa. Cifra no firme.
 vigencia: vigente
 estado_publicacion: borrador
 ultima_revision_editorial: "2026-05-22"

@@ -281,6 +281,27 @@ const hechos = defineCollection({
           precision: z.enum(['dia', 'mes', 'anio', 'rango']),
         })
         .passthrough(),
+      // Importe presuntamente atribuido (opcional). Canon en
+      // schemas/hecho.schema.json + docs/web/features/importe-presunto.md.
+      importe: z.number().positive().optional(),
+      importe_moneda: z.string().default('EUR'),
+      importe_alcance: z
+        .enum(['total_caso', 'componente', 'individual'])
+        .optional(),
+      importe_naturaleza: z
+        .enum([
+          'perjuicio',
+          'objeto_contrato',
+          'fondo_publico_concedido',
+          'comision_ilicita',
+          'cobro_indebido',
+          'multa_penal',
+          'responsabilidad_civil',
+          'gasto_publico_cuestionado',
+          'otro',
+        ])
+        .optional(),
+      importe_nota: z.string().optional(),
       vigencia: z.enum(['vigente', 'superado', 'retirado']),
       estado_publicacion: ESTADO_PUBLICACION,
     })

@@ -34,6 +34,14 @@ documentos_respaldo:
   - documento_id: infobae-prorroga-pieza-quiron-ga-2026-04-09
     pasaje: "Confirmación de la naturaleza separada de la pieza y de los delitos investigados (corrupción en los negocios y administración desleal)."
 nivel_fuente_efectivo: 4
+importe: 1900000
+importe_alcance: total_caso
+importe_naturaleza: objeto_contrato
+importe_nota: >-
+  Volumen de facturación de Maxwell Cremona a Quirón Prevención en 2020
+  investigado en la pieza separada (importe próximo a 1,9 M€). Incluye además
+  un presunto pago encubierto de 500.000 € que se estructura en su hecho
+  dedicado para no contarlo dos veces.
 vigencia: vigente
 estado_publicacion: borrador
 ultima_revision_editorial: "2026-05-22"

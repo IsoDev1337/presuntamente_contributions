@@ -28,6 +28,13 @@ documentos_respaldo:
   - documento_id: vozpopuli-auto-pedraz-pieza-separada-2026-05-26
     pasaje: "Cobertura de Voz Pópuli confirmando las acciones de presunta obstrucción descritas en el auto."
 nivel_fuente_efectivo: 3
+importe: 50000
+importe_alcance: componente
+importe_naturaleza: comision_ilicita
+importe_nota: >-
+  Presunto OFRECIMIENTO de 50.000 € a una empresaria para que modificara su
+  declaración judicial; no consta percibido. Se marca componente para NO
+  acumularlo al total atribuido del caso.
 vigencia: vigente
 redaccion_neutra_revisada: false
 estado_publicacion: borrador

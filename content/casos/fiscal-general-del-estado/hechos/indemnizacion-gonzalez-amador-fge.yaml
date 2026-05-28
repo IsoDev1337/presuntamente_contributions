@@ -31,6 +31,13 @@ documentos_respaldo:
   - documento_id: cgpj-condena-fge-2025-11-20
     pasaje: "Mención del importe indemnizatorio y del perjudicado en la nota CGPJ del 20 de noviembre de 2025."
 nivel_fuente_efectivo: 1
+importe: 10000
+importe_alcance: individual
+importe_naturaleza: responsabilidad_civil
+importe_nota: >-
+  Responsabilidad civil por daños morales fijada en sentencia firme, a cargo
+  del condenado Álvaro García Ortiz y a favor del perjudicado Alberto González
+  Amador.
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

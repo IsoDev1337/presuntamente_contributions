@@ -92,6 +92,11 @@ Y abre PR con cuerpo:
    - Para sentencias no firmes: "ha sido condenado en primera instancia, pendiente de recurso".
    - **Si el documento contiene una afirmación tajante, cítala literal entre comillas con atribución, no la incorpores como aserción del proyecto.**
 
+7. **Importe (si el documento cuantifica dinero).** Si un `Hecho` derivado tiene una cifra económica clara y trazable al documento, rellena los campos `importe*` ([doc 01 §2.6](../../../docs/diseno/01-modelo-de-datos.md) + [ficha importe-presunto](../../../docs/web/features/importe-presunto.md)):
+   - `importe` (número normalizado, sin separadores de miles), `importe_alcance` (`total_caso` / `componente` / `individual` — **obligatorio si hay `importe`**, V-22) e `importe_naturaleza` (`perjuicio`, `comision_ilicita`, `multa_penal`, `responsabilidad_civil`, `fondo_publico_concedido`, `objeto_contrato`, `cobro_indebido`, `gasto_publico_cuestionado`).
+   - **Anti-doble-conteo (V-23):** si la misma cifra ya está estructurada en otro Hecho del caso, o desglosa un total ya contabilizado, márcala `componente` (no suma) o no la estructures. Peticiones de pena no firmes y ofrecimientos no percibidos → `componente`. Cifras en divisa extranjera → la cifra estructurada es la relevante en euros; la divisa original va en `importe_nota`.
+   - El importe hereda `tipo` y `nivel_fuente_efectivo` del Hecho. Si dudas, deja la cifra en el `enunciado` y marca `LLM-incierto` para el revisor.
+
 ## Output esperado
 
 Mensaje final al usuario:

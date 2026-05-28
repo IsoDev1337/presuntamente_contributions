@@ -369,6 +369,15 @@ interface Hecho {
   }>;
   nivel_fuente_efectivo: enum<1|2|3|4>;  // el mejor (menor número) entre los documentos_respaldo
   
+  // Importe presuntamente atribuido (opcional). El dinero vive en el Hecho para
+  // heredar tipo (estado epistémico), nivel de fuente y documentos: cada euro es
+  // trazable a un hecho con su grado de prueba. Ficha: docs/web/features/importe-presunto.md.
+  importe?: number;                      // cantidad en unidades de importe_moneda, normalizada
+  importe_moneda?: string;               // ISO 4217, por defecto "EUR"
+  importe_alcance?: enum<ImporteAlcance>; // total_caso | componente | individual (clave anti-doble-conteo)
+  importe_naturaleza?: enum<ImporteNaturaleza>; // qué representa la cifra (perjuicio, multa, comisión…)
+  importe_nota?: markdown;               // origen de la cifra, desglose, divisa original, por qué no acumula
+  
   // Diálogo con otros Hechos
   contraposicion_a?: ref<Hecho>;         // este Hecho rebate / contrasta con otro
   corregido_por?: ref<Hecho>;            // este Hecho ha sido superado por uno posterior
@@ -393,6 +402,11 @@ interface Hecho {
 - `tipo = desmentido` exige documento(s) cuya valoración editorial soporta el desmentido, citado de forma identificable.
 - Una `Persona` privada (no figura pública) no puede aparecer en un Hecho `acreditado` o `investigado` salvo que tenga al menos un `RolEnCaso` activo en el periodo del Hecho.
 - `nivel_fuente_efectivo` se computa desde `documentos_respaldo` y se guarda como cache para la UI.
+- **Importe (opcional).** Si un `Hecho` lleva `importe`, debe llevar `importe_alcance` (V-22, schema-enforced). El importe hereda `tipo`, `nivel_fuente_efectivo` y `documentos_respaldo` del propio Hecho: un perjuicio de sentencia firme (`acreditado`, N1) no es lo mismo que una cifra de un escrito de acusación (`atribuido`, N3) ni que una de prensa (N4), y la UI debe mostrar estado + nivel junto a cada número. El importe estructurado es **siempre** la cifra editorialmente relevante (perjuicio, comisión, multa, fondo concedido); cifras en otra divisa, peticiones de pena no firmes, ofrecimientos no percibidos o el precio bruto de una operación se anotan en `importe_nota` o se marcan `componente`, no se estructuran como cifra acumulable.
+- **Anti-doble-conteo (`importe_alcance`).** Dentro de un mismo `Caso`, una misma cantidad no puede contarse dos veces. Si un total (`total_caso`) se desglosa en partidas, las partidas son `componente` y **no se suman**. Si una misma cifra aparece en dos Hechos (p. ej. una comisión citada en el hecho de la operación y en el hecho dedicado a esa comisión), sólo uno la estructura como cifra que suma; el otro la omite o la marca `componente`. Revisión editorial obligatoria al poblar (V-23, editorial). Agregaciones derivadas:
+  - **Total del caso** = Σ(`importe` con `alcance = total_caso`); si no hay ninguno, Σ(`importe` con `alcance = individual`). Los `componente` nunca suman.
+  - **Por persona/organización** = Σ(`importe` con `alcance = individual`) en Hechos donde el sujeto está implicado **y tiene `RolEnCaso` formal** (guardarraíl de presunción de inocencia).
+  - Los Hechos `exculpatorio` / `desmentido` se excluyen de los totales atribuidos (la cifra puede estructurarse como `componente` para mostrarse, p. ej. "770.000 € — procedimiento archivado", pero no acumula).
 
 ### 2.7 Documento
 
@@ -570,6 +584,22 @@ Los enums siguientes son la lista cerrada inicial. Ampliarlos requiere PR razona
 - `desmentido` — contradicho por evidencia posterior con fuerza suficiente
 - `no_concluyente` — el estado actual no permite categorizar; permanece como "pendiente"
 
+**`ImporteAlcance`** (de Hecho; clave anti-doble-conteo)
+- `total_caso` — cifra global del perjuicio/objeto del caso o de una de sus piezas/objetos diferenciados. Sumable entre sí para dar el total del caso.
+- `componente` — partida que desglosa un `total_caso` ya contabilizado, o cifra meramente citada / no acumulable (petición de pena no firme, ofrecimiento no percibido, importe de un Hecho exculpatorio). **Nunca se suma.**
+- `individual` — importe atribuido nominalmente a una persona u organización (multa, indemnización, cobro, reparto). Alimenta la vista por persona/organización y sólo suma al total del caso si no existe ningún `total_caso`.
+
+**`ImporteNaturaleza`** (de Hecho; opcional, evita sumar cifras incomparables)
+- `perjuicio` — perjuicio económico cuantificado (a la Hacienda, a un ente público, a un perjudicado).
+- `objeto_contrato` — importe del contrato, adjudicación u operación bajo investigación (no necesariamente perjuicio).
+- `fondo_publico_concedido` — préstamo, ayuda o subvención pública concedida (p. ej. el préstamo FASEE de Plus Ultra).
+- `comision_ilicita` — comisión, mordida o pago encubierto presuntamente ilícito.
+- `cobro_indebido` — cantidades presuntamente percibidas de forma irregular (financiación irregular, cobros injustificados).
+- `multa_penal` — pena de multa impuesta o solicitada.
+- `responsabilidad_civil` — indemnización o responsabilidad civil fijada o reclamada.
+- `gasto_publico_cuestionado` — gasto público bajo escrutinio sin perjuicio aún cuantificado como tal.
+- `otro` — no encaja en las anteriores; precisar en `importe_nota`.
+
 **`TipoDocumento`**
 - Jurisdiccionales: `auto_judicial`, `sentencia`, `escrito_fiscalia`, `dictamen_fiscal`, `escrito_defensa`, `escrito_acusacion_particular`, `escrito_acusacion_popular`
 - Policiales/instructores: `atestado_policial`, `informe_uco`, `informe_udef`, `informe_pericial`
@@ -658,6 +688,8 @@ Las reglas que CI ejecuta sobre los YAML antes de mergear cualquier PR. Cada una
 | V-19 | `nivel_fuente_efectivo` de un `Hecho` coincide con el mejor (menor) nivel entre sus `documentos_respaldo` | bloqueante (auto-corregible) |
 | V-20 | `Caso.delitos_atribuidos_en_la_causa` es exactamente la unión de los `delitos_atribuidos` de sus `RolEnCaso` | bloqueante (auto-corregible) |
 | V-21 | Slugs son inmutables tras `estado_publicacion = publicado`. Renombrar requiere entrada en tabla `redirects` | bloqueante |
+| V-22 | Un `Hecho` con `importe` informado tiene `importe_alcance` informado, e `importe_moneda` es un código ISO 4217 (por defecto `EUR`) | bloqueante (schema-enforced vía `if/then`) |
+| V-23 | Anti-doble-conteo: dentro de un `Caso`, ninguna cantidad se contabiliza dos veces. Las partidas que desglosan un `total_caso` son `componente` y no suman; una misma cifra citada en dos Hechos la estructura sólo uno. Los Hechos `exculpatorio`/`desmentido` no acumulan al total atribuido | editorial (revisión obligatoria al poblar; no auto-verificable hoy) |
 
 V-17 es la salvaguarda LOPD/honor más sensible: una persona privada que fue temporalmente investigada y luego desimputada **tiene derecho a desaparecer** del sitio o a aparecer con identificadores reducidos. El sistema obliga a revisarlo.
 
@@ -781,7 +813,7 @@ Cosas que el modelo todavía no resuelve y que conviene cerrar antes o durante l
 
 1. **Multilingüismo del contenido editorial.** Casos catalanes/vascos/gallegos tendrán Documentos en lengua cooficial (catálogo `IdiomaDocumento` ya lo prevé). Pero ¿el `enunciado` de los `Hecho` se redacta sólo en castellano, o también en lengua cooficial? Propuesta: castellano por defecto en MVP; estructura para soportar traducciones añadiendo `traducciones?: { [lang]: markdown }`. Decisión: aplazada al diseño de la ficha.
 2. **Aforamiento y cambios de competencia.** Cuando un aforado pierde el aforamiento, el caso puede pasar de TS a juzgado ordinario. Esto se modela con un `Hito(tipo=cambio_organo)` y opcionalmente actualizando `Caso.organo_judicial_id`. ¿Versionado del `organo_judicial_id` o sólo último valor? Propuesta: sólo último, historial vía Hitos. Confirmar.
-3. **Cantidades implicadas estructuradas.** Hoy `Caso.resumen_cifras` es markdown libre y los Hechos pueden mencionar cifras. Si quisiéramos agregables ("total bajo investigación en casos vivos") necesitaríamos un `Importe` tipado en `Hecho`. Pendiente: ¿lo necesita el MVP? Si no, fuera.
+3. ~~**Cantidades implicadas estructuradas.**~~ **CERRADO (2026-05-29).** Se añadió `importe` tipado al `Hecho` (más `importe_moneda`, `importe_alcance`, `importe_naturaleza`, `importe_nota`), con `ImporteAlcance` para evitar el doble conteo e `ImporteNaturaleza` para no sumar cifras incomparables. Las agregaciones por caso/persona/organización se derivan de los Hechos (ver §2.6, reglas de importe). `Caso.resumen_cifras` y `sintesis_caso.cifras_clave` siguen como markdown libre (titular legible); la cifra estructurada y trazable vive en los Hechos. Validaciones V-22 (schema) y V-23 (editorial). Detalle, guardarraíles de presunción de inocencia y fases de UI en [`docs/web/features/importe-presunto.md`](../web/features/importe-presunto.md).
 4. **Conexiones persona-persona directas.** Hoy las conexiones entre personas emergen de compartir `RolEnCaso` en mismos casos. ¿Necesitamos también una entidad `RelacionEntrePersonas` (cónyuge, socio mercantil, jefe-subordinado) o lo dejamos derivado? Riesgo legal de modelar relaciones personales explícitamente es alto. Propuesta: NO en MVP; sólo lo derivable de casos.
 5. **Materialización canónica: YAML vs MDX.** El modelo conceptual es agnóstico. Pero la decisión de si los `Hecho`-`enunciado` viven en YAML como string Markdown o en archivos `.md` con frontmatter YAML afecta a la usabilidad del PR diff. Decisión arquitectónica, no de modelo.
 6. **Versionado de Documentos.** Si una sentencia se publica en CENDOJ y luego se anonimiza/reedita, ¿guardamos el primer hash y la primera URL? Propuesta: campo `versiones: array<{ fecha, url, hash }>` en `Documento`. Aplazada.

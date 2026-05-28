@@ -53,6 +53,14 @@ documentos_respaldo:
   - documento_id: eldiario-juicio-navalcarnero-lezo-2021-06-07
     pasaje: "Cobertura cruzada del auto de apertura del juicio oral y reparto presunto de aproximadamente 1,8 millones de euros entre los procesados."
 nivel_fuente_efectivo: 4
+importe: 1800000
+importe_alcance: total_caso
+importe_naturaleza: comision_ilicita
+importe_nota: >-
+  Comisiones presuntamente ilícitas repartidas entre los procesados en la
+  adjudicación amañada del tren ligero Móstoles-Navalcarnero (aprox. 1,8 M€).
+  Una línea editorial coetánea cifra el reparto en torno a 2,5 M USD (cifra en
+  dólares, no estructurada).
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

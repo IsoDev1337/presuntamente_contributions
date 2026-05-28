@@ -37,6 +37,15 @@ documentos_respaldo:
   - documento_id: confilegal-bravo-calvo-7-anos-lezo-2019-06-28
     pasaje: "Petición de pena de la Fiscalía Anticorrupción de 7 años de prisión y 15 años de inhabilitación absoluta para Calvo y Bravo y entre 6 y 7 años para los restantes 20 procesados."
 nivel_fuente_efectivo: 4
+importe: 19000000
+importe_alcance: total_caso
+importe_naturaleza: responsabilidad_civil
+importe_nota: >-
+  Perjuicio patrimonial cuya responsabilidad civil reclama la Fiscalía
+  Anticorrupción, conjunta y solidariamente, a los 22 procesados de la pieza
+  Inassa (en torno a 19 M€). La compra del 75% de Inassa se articuló por unos
+  73 M USD vía la sociedad panameña Aguas de América (cifra en dólares, no
+  estructurada aquí).
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

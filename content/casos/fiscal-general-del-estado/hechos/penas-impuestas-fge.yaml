@@ -38,6 +38,13 @@ documentos_respaldo:
   - documento_id: boe-cese-garcia-ortiz-fge-2025-12-10
     pasaje: "Real Decreto 1138/2025 de 9 de diciembre, BOE-A-2025-25142, que ejecuta materialmente la pena de inhabilitación mediante el cese del condenado."
 nivel_fuente_efectivo: 1
+importe: 7200
+importe_alcance: individual
+importe_naturaleza: multa_penal
+importe_nota: >-
+  Multa de la condena firme a Álvaro García Ortiz (12 meses × 20 €/día × 30).
+  La condena incluye además inhabilitación especial de 2 años, de naturaleza
+  no dineraria.
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

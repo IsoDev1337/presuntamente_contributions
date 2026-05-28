@@ -82,6 +82,41 @@
       "maximum": 4,
       "description": "Cache: el mejor (menor) nivel entre los documentos_respaldo. V-19 valida coherencia."
     },
+    "importe": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Cantidad monetaria atribuida en este Hecho, en la unidad de importe_moneda. Normalizada: sin separadores de miles, punto decimal (ej. 113509.32). Hereda estado epistémico (tipo), nivel de fuente y documentos del propio Hecho. Ver docs/diseno/01-modelo-de-datos.md §2.6 y la ficha docs/web/features/importe-presunto.md."
+    },
+    "importe_moneda": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "default": "EUR",
+      "description": "Código ISO 4217. Por defecto EUR. Las cifras en otra divisa citadas en el enunciado (p. ej. dólares en operaciones internacionales) NO se estructuran aquí: el importe estructurado es siempre la cifra editorialmente relevante (perjuicio/comisión/multa en euros) y la divisa original se anota en importe_nota."
+    },
+    "importe_alcance": {
+      "type": "string",
+      "enum": ["total_caso", "componente", "individual"],
+      "description": "Clave para no duplicar al sumar. total_caso: cifra global/de objeto del caso o pieza (sumable entre sí para el total del caso). componente: partida que desglosa un total ya contabilizado o cifra meramente citada/no acumulable (petición de pena no firme, ofrecimiento no percibido, importe de un hecho exculpatorio); NUNCA se suma. individual: importe atribuido nominalmente a una persona/organización (multa, indemnización, cobro); alimenta la vista por persona y sólo suma al total del caso si no existe ningún total_caso."
+    },
+    "importe_naturaleza": {
+      "type": "string",
+      "enum": [
+        "perjuicio",
+        "objeto_contrato",
+        "fondo_publico_concedido",
+        "comision_ilicita",
+        "cobro_indebido",
+        "multa_penal",
+        "responsabilidad_civil",
+        "gasto_publico_cuestionado",
+        "otro"
+      ],
+      "description": "Qué representa el importe. Evita sumar cifras de naturaleza incomparable en agregados (un préstamo concedido ≠ un perjuicio cuantificado ≠ una multa penal). Opcional pero recomendado."
+    },
+    "importe_nota": {
+      "type": "string",
+      "description": "Matiz editorial del importe: origen de la cifra ('según escrito de acusación', 'cuantificado por la UCM'), desglose, divisa original, o por qué no es acumulable. Markdown breve."
+    },
     "contraposicion_a": {
       "type": "string",
       "description": "Slug de otro Hecho que este rebate o contrasta."
@@ -110,5 +145,7 @@
       ]
     },
     "ultima_revision_editorial": { "type": "string", "format": "date" }
-  }
+  },
+  "if": { "required": ["importe"] },
+  "then": { "required": ["importe_alcance"] }
 }

@@ -28,6 +28,13 @@ documentos_respaldo:
   - documento_id: vozpopuli-auto-pedraz-pieza-separada-2026-05-26
     pasaje: "Cobertura de Voz Pópuli (tercera línea editorial, orientación derecha) confirmando las imputaciones."
 nivel_fuente_efectivo: 3
+importe: 188000
+importe_alcance: total_caso
+importe_naturaleza: cobro_indebido
+importe_nota: >-
+  Importe mínimo documentado de pagos del PSOE a la red, canalizados
+  presuntamente mediante facturas falsas (auto del juez Pedraz del 26-may-2026).
+  Es un mínimo documentado, no un total cerrado.
 vigencia: vigente
 redaccion_neutra_revisada: false
 estado_publicacion: borrador

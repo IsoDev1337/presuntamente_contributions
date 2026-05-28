@@ -94,7 +94,7 @@ Pendiente v1.x (no bloquea launch blando):
 - [ ] Barra proporcional corriente editorial — [`cobertura-mediatica-general.md`](docs/web/features/cobertura-mediatica-general.md)
 - [ ] Composición fuentes citadas (UI) — [`composicion-fuentes-citadas.md`](docs/web/features/composicion-fuentes-citadas.md)
 - [ ] Pills §7 cobertura mediática — [`filtros-pills-ficha-caso.md`](docs/web/features/filtros-pills-ficha-caso.md)
-- [ ] **Importe presuntamente atribuido** (dinero por caso/persona/organización + gráficas) — proyecto sin empezar, brief ejecutable en [`importe-presunto.md`](docs/web/features/importe-presunto.md). Decidido 2026-05-28: hacerlo en otra sesión.
+- [~] **Importe presuntamente atribuido** — modelo de datos + backfill **hechos** (2026-05-29): campos `importe*` en el `Hecho` (schema + tipos + doc 01 §2.6, enums `ImporteAlcance`/`ImporteNaturaleza`, V-22/V-23); 17 Hechos poblados en 7 casos con dedup. **Pendiente UI (sesión aparte):** ficha de caso, gráficas en `/graficas`, titular home. Ficha [`importe-presunto.md`](docs/web/features/importe-presunto.md).
 - [ ] Fotos reales + logos: pausa hasta criterio legal
 
 #### Bloque E — higiene técnica `[x]`

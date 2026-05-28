@@ -22,6 +22,13 @@ documentos_respaldo:
   - documento_id: moncloacom-ucm-perjuicio-bg-2026-01-27
   - documento_id: noticiasdenavarra-software-catedra-bg-2026-01-23
 nivel_fuente_efectivo: 4
+importe: 113509.32
+importe_alcance: total_caso
+importe_naturaleza: perjuicio
+importe_nota: >-
+  Perjuicio económico cuantificado indiciariamente por la propia UCM como
+  perjudicada personada; coincide con el coste de desarrollo del software de
+  la cátedra.
 vigencia: vigente
 redaccion_neutra_revisada: false
 estado_publicacion: borrador

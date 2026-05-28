@@ -206,6 +206,8 @@ Al volver, entrega un reporte estructurado:
 
 10. **No concluyas "sin vínculo" entre casos sin cruzar personas/orgs explícitamente** (paso 4).
 
+11. **Importe estructurado**. Si un Hecho nuevo cuantifica dinero trazable a su fuente, rellena `importe` + `importe_alcance` (obligatorio si hay importe, V-22) + `importe_naturaleza` ([doc 01 §2.6](../../../docs/diseno/01-modelo-de-datos.md), [ficha importe-presunto](../../../docs/web/features/importe-presunto.md)). **Anti-doble-conteo (V-23):** si la cifra ya está estructurada en otro Hecho, desglosa un total ya contabilizado, es una petición de pena no firme o un ofrecimiento no percibido → `componente` (no suma). Divisa extranjera → estructura la cifra relevante en euros y anota la original en `importe_nota`. Esto es además del texto libre de `sintesis_caso.cifras_clave`.
+
 ## Errores comunes a evitar
 
 Heredados de sesiones anteriores:
