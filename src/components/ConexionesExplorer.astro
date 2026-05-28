@@ -298,21 +298,19 @@ const nodesByKind = {
   </form>
 
   <aside class="graph-panel graph-panel--details" aria-label="Detalle de la selección">
-    <div class="graph-details__head">
-      <button
-        type="button"
-        class="graph-panel__collapse graph-details__close"
-        data-graph-close-details
-        aria-label="Ocultar panel de detalle"
-      >
-        Cerrar
-      </button>
-    </div>
     <div class="graph-details__content" data-graph-details>
-      <div class="graph-details__top">
+      <div class="graph-details__head">
         <p class="graph-details__kind">Detalle</p>
-        <h2 class="graph-details__title">Sin selección</h2>
+        <button
+          type="button"
+          class="graph-panel__collapse graph-details__close"
+          data-graph-close-details
+          aria-label="Ocultar panel de detalle"
+        >
+          Cerrar
+        </button>
       </div>
+      <h2 class="graph-details__title">Sin selección</h2>
       <p class="graph-details__summary">Selecciona un nodo o una relación para ver sus datos básicos.</p>
     </div>
   </aside>
@@ -464,21 +462,25 @@ const nodesByKind = {
     margin: 0;
   }
 
-  .graph-panel__collapse {
+  /* :global — también en HTML inyectado por renderDetails (sin scope Astro). */
+  :global(.graph-panel__collapse) {
     align-self: start;
     margin: -6px -8px 0 0;
     padding: 0;
     border: 0;
+    border-radius: 0;
+    appearance: none;
     background: transparent;
     color: var(--color-fg-muted);
     cursor: pointer;
     font: 500 var(--font-size-0)/1.2 var(--font-sans);
     text-decoration: none;
     white-space: nowrap;
+    box-shadow: none;
   }
 
-  .graph-panel__collapse:hover,
-  .graph-panel__collapse:focus-visible {
+  :global(.graph-panel__collapse:hover),
+  :global(.graph-panel__collapse:focus-visible) {
     color: var(--color-accent);
     background: transparent;
     outline: none;
@@ -1040,7 +1042,7 @@ const nodesByKind = {
     top: 18px;
     right: 18px;
     width: min(380px, calc(100vw - 36px));
-    max-height: min(48vh, 440px);
+    max-height: min(62vh, 572px);
     padding: 14px 16px 16px;
     overflow: auto;
     transform: translateX(calc(100% + 24px));
@@ -1051,23 +1053,22 @@ const nodesByKind = {
     transform: translateX(0);
   }
 
-  .graph-details__head {
-    display: flex;
-    justify-content: flex-end;
-    margin: -4px -8px 6px 0;
-  }
-
-  .graph-details__close {
-    margin: 0;
-  }
-
   .graph-details__content {
     min-width: 0;
   }
 
-  :global(.graph-details__top) {
-    display: grid;
-    gap: 6px;
+  :global(.graph-details__head) {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 8px 12px;
+    margin: -4px -8px 6px 0;
+  }
+
+  :global(.graph-details__close) {
+    margin: 0;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   :global(.graph-details__kind) {
@@ -1095,11 +1096,46 @@ const nodesByKind = {
     text-underline-offset: 3px;
   }
 
-  :global(.graph-details__summary) {
+  :global(.graph-details__summary),
+  :global(.graph-details__summary-block) {
     margin: 8px 0 10px;
     color: var(--color-fg-muted);
     font-size: var(--font-size-1);
     line-height: 1.45;
+  }
+
+  :global(.graph-details__summary-block .graph-details__summary) {
+    margin: 0;
+  }
+
+  :global(.graph-details__summary-body) {
+    display: block;
+  }
+
+  :global(.graph-details__expand-btn) {
+    display: inline-block;
+    margin: 6px 0 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+    background: transparent;
+    box-shadow: none;
+    color: var(--color-accent);
+    cursor: pointer;
+    font: 600 var(--font-size-1)/1.35 var(--font-sans);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+
+  :global(.graph-details__expand-btn:hover),
+  :global(.graph-details__expand-btn:focus-visible) {
+    color: var(--color-fg);
+    background: transparent;
+    outline: none;
+    text-decoration-thickness: 1px;
   }
 
   :global(.graph-details__meta) {
@@ -1415,7 +1451,7 @@ const nodesByKind = {
       left: 10px;
       bottom: auto;
       width: auto;
-      max-height: 34vh;
+      max-height: 44vh;
       border-radius: var(--radius-2);
       transform: translateY(calc(-100% - 24px));
     }

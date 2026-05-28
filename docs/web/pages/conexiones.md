@@ -16,6 +16,7 @@ Explorador de conexiones y relaciones del inventario. Abre en modo inventario co
 - Superficie full-screen con controles flotantes, panel de detalle flotante y tabla textual activable.
 - Panel de controles redimensionable en desktop, más transparente cuando no tiene foco/hover y adaptado como panel inferior en móvil.
 - Controles diferenciados: centrar/recentrar con icono, relaciones como toggle simple y detalle con modo persistente `No mostrar detalle`.
+- Panel de detalle: texto recortado con `…`, `Ver más` debajo y `Cerrar` en fila con el badge de tipo.
 - Sliders compactos `Profundidad` y `Separación de nodos`, y selector icónico de disposición orgánica/jerárquica.
 - Enlaces profundos desde fichas (CTA unificado con icono de grafo):
   - Caso, persona y organización: `Ver en grafo de conexiones` ([`GraphConexionesLink.astro`](../../../src/components/GraphConexionesLink.astro)).

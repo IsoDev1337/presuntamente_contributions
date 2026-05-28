@@ -188,12 +188,76 @@ function getChecked<T extends string>(
   );
 }
 
-function shortDetail(value: string | undefined, max = 220): string {
-  const flat = (value ?? "").replace(/\s+/g, " ").trim();
+const DETAIL_PREVIEW_MAX = 220;
+
+function flatDetail(value: string | undefined): string {
+  return (value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function shortDetail(value: string | undefined, max = DETAIL_PREVIEW_MAX): string {
+  const flat = flatDetail(value);
   if (flat.length <= max) return flat;
   const slice = flat.slice(0, max);
   const lastSpace = slice.lastIndexOf(" ");
   return `${(lastSpace > 90 ? slice.slice(0, lastSpace) : slice).trim()}…`;
+}
+
+function isDetailTruncated(
+  value: string | undefined,
+  max = DETAIL_PREVIEW_MAX,
+): boolean {
+  const flat = flatDetail(value);
+  return flat.length > 0 && shortDetail(value, max) !== flat;
+}
+
+const DETAILS_CLOSE_BUTTON = `<button type="button" class="graph-panel__collapse graph-details__close" data-graph-close-details aria-label="Ocultar panel de detalle">Cerrar</button>`;
+
+function detailsTopMarkup(kind: string, titleHtml: string): string {
+  return `
+      <div class="graph-details__head">
+        <p class="graph-details__kind">${kind}</p>
+        ${DETAILS_CLOSE_BUTTON}
+      </div>
+      <h2 class="graph-details__title">${titleHtml}</h2>`;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function summaryMarkup(
+  preview: string,
+  full: string,
+  expandable: boolean,
+): string {
+  if (!expandable) {
+    return `<p class="graph-details__summary">${escapeHtml(preview)}</p>`;
+  }
+  return `<div class="graph-details__summary-block">
+      <p class="graph-details__summary"><span class="graph-details__summary-body" data-full-text="${escapeHtml(full)}" data-preview-text="${escapeHtml(preview)}">${escapeHtml(preview)}</span></p>
+      <button type="button" class="graph-details__expand-btn" data-graph-expand-details aria-expanded="false">Ver más</button>
+    </div>`;
+}
+
+function toggleDetailsSummaryExpand(button: HTMLButtonElement) {
+  const body = button
+    .closest(".graph-details__summary-block")
+    ?.querySelector<HTMLElement>(".graph-details__summary-body");
+  if (!body) return;
+  const expanded = button.getAttribute("aria-expanded") === "true";
+  if (expanded) {
+    body.textContent = body.dataset.previewText ?? "";
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "Ver más";
+    return;
+  }
+  body.textContent = body.dataset.fullText ?? "";
+  button.setAttribute("aria-expanded", "true");
+  button.textContent = "Ver menos";
 }
 
 function shortNodeLabel(value: string, kind: NodeKind): string {
@@ -718,14 +782,16 @@ function renderDetails(
     renderedEdgesByRoot.get(root)?.get(selectedId) ??
     payload.edges.find((item) => item.id === selectedId);
   if (node) {
+    const sublabelFull = flatDetail(node.sublabel);
+    const sublabelPreview = sublabelFull ? shortDetail(node.sublabel) : "";
+    const titleHtml = node.href
+      ? `<a href="${escapeHtml(node.href)}">${escapeHtml(node.label)}</a>`
+      : escapeHtml(node.label);
     panel.innerHTML = `
-      <div class="graph-details__top">
-        <p class="graph-details__kind">${NODE_LABEL[node.kind]}</p>
-        <h2 class="graph-details__title">${node.href ? `<a href="${node.href}">${node.label}</a>` : node.label}</h2>
-      </div>
-      ${node.sublabel ? `<p class="graph-details__summary">${node.sublabel}</p>` : ""}
+      ${detailsTopMarkup(NODE_LABEL[node.kind], titleHtml)}
+      ${sublabelPreview ? summaryMarkup(sublabelPreview, sublabelFull, isDetailTruncated(node.sublabel)) : ""}
       <dl class="graph-details__meta">
-        <div><dt>ID</dt><dd class="mono">${node.rawId}</dd></div>
+        <div><dt>ID</dt><dd class="mono">${escapeHtml(node.rawId)}</dd></div>
         <div><dt>Tipo</dt><dd>${NODE_LABEL[node.kind]}</dd></div>
       </dl>
     `;
@@ -735,16 +801,20 @@ function renderDetails(
     const nodes = nodeById(payload);
     const source = nodes.get(edge.source);
     const target = nodes.get(edge.target);
+    const detailFull = flatDetail(edge.detail);
+    const detailFallback = "Relación derivada del modelo de datos.";
+    const detailPreview = detailFull ? shortDetail(edge.detail) : detailFallback;
     panel.innerHTML = `
-      <div class="graph-details__top">
-        <p class="graph-details__kind">${EDGE_LABEL[edge.kind]}</p>
-        <h2 class="graph-details__title">${edge.label}</h2>
-      </div>
-      <p class="graph-details__summary">${shortDetail(edge.detail) || "Relación derivada del modelo de datos."}</p>
+      ${detailsTopMarkup(EDGE_LABEL[edge.kind], escapeHtml(edge.label))}
+      ${summaryMarkup(
+        detailPreview,
+        detailFull || detailFallback,
+        isDetailTruncated(edge.detail),
+      )}
       <dl class="graph-details__meta">
-        <div><dt>Origen</dt><dd>${source?.label ?? edge.source}</dd></div>
-        <div><dt>Destino</dt><dd>${target?.label ?? edge.target}</dd></div>
-        ${edge.date ? `<div><dt>Fecha</dt><dd class="mono">${edge.date}</dd></div>` : ""}
+        <div><dt>Origen</dt><dd>${escapeHtml(source?.label ?? edge.source)}</dd></div>
+        <div><dt>Destino</dt><dd>${escapeHtml(target?.label ?? edge.target)}</dd></div>
+        ${edge.date ? `<div><dt>Fecha</dt><dd class="mono">${escapeHtml(edge.date)}</dd></div>` : ""}
         ${edge.sourceLevel ? `<div><dt>Nivel</dt><dd>N${edge.sourceLevel}</dd></div>` : ""}
       </dl>
     `;
@@ -1585,12 +1655,21 @@ function init(root: HTMLElement) {
       }, 90);
     },
   );
-  qs<HTMLButtonElement>(root, "[data-graph-close-details]")?.addEventListener(
-    "click",
-    () => {
+  root.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    if (target.closest("[data-graph-close-details]")) {
       setPanelOpen(root, "data-details-open", false);
-    },
-  );
+      return;
+    }
+    const expand = target.closest<HTMLButtonElement>(
+      "[data-graph-expand-details]",
+    );
+    if (expand) {
+      event.preventDefault();
+      toggleDetailsSummaryExpand(expand);
+    }
+  });
   qs<HTMLInputElement>(root, "[data-graph-suppress-details]")?.addEventListener(
     "change",
     (event) => {

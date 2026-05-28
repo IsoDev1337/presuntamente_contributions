@@ -4,9 +4,9 @@
 >
 > Roadmap conceptual: [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Histórico largo: [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-28 (cierre microajuste síntesis Leire). Compactado `sintesis_caso.que_se_investiga` del caso Leire Díez sin borrar a la persona que explica el nombre mediático: resumen ejecutivo y síntesis nombran ahora a María Leire Díez Castro como investigada, con cautela procesal. Guardarraíl añadido en [`sintesis-caso.md`](docs/web/features/sintesis-caso.md), schema y skills `investigar-caso`, `actualizar-caso` y `revisar-caso` (CH13). `pnpm validate` OK.
+**Última actualización:** 2026-05-28 (panel detalle `/conexiones`). Expansión de descripciones truncadas con `Ver más`/`Ver menos` (enlace subrayado bajo el párrafo con `…`), `Cerrar` ghost en fila del badge, estilos `:global` para HTML inyectado y `max-height` del panel ~+30 % (`62vh`/`572px`). Fichas: [`explorador-conexiones.md`](docs/web/features/explorador-conexiones.md), [`conexiones.md`](docs/web/pages/conexiones.md).
 
-**Anterior (2026-05-28, iteración UI inventario/conexiones).** `/conexiones` con foco múltiple (`MultiSelectFilter` para casos, personas, organizaciones y documentos), panel redimensionable/adaptativo y controles compactos; `/personas` con filtros multi por causa y delito atribuido, rol procesal en columna casos por causa y `OrgChip` para organización principal. Fichas: [`conexiones.md`](docs/web/pages/conexiones.md), [`personas.md`](docs/web/pages/personas.md), [`explorador-conexiones.md`](docs/web/features/explorador-conexiones.md).
+**Anterior (2026-05-28, síntesis Leire).** Compactado `sintesis_caso.que_se_investiga` del caso Leire Díez; guardarraíl CH13 en schema y skills. Detalle en [`sintesis-caso.md`](docs/web/features/sintesis-caso.md).
 
 ---
 
