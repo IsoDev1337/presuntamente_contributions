@@ -2,6 +2,10 @@
 
 > Documentación operativa de los portales públicos de los que el inventario descarga documentos primarios. **Conocimiento técnico, vivo, ampliable** — cada sesión que descubre un endpoint nuevo, una trampa o un código no documentado lo anota aquí.
 
+> **Dos categorías de fuente en este directorio:**
+> 1. **Portales de primarios oficiales** (el grueso de este catálogo): fuentes **citables** de las que sale `Documento.url_canonica` y, cuando aplica, `ruta_local` + `hash_sha256`. Auditables y reproducibles.
+> 2. **Agregadores de descubrimiento (scouting)** — [`agregadores-y-descubrimiento.md`](agregadores-y-descubrimiento.md): webs de terceros que sólo sirven para **detectar casos candidatos**. **Nunca citables**: no entran en `Documento` ni respaldan `Hecho`. El resto de convenciones de este README aplica sólo a la categoría 1.
+
 ## Para qué sirve este catálogo
 
 El proyecto modela cada `Documento` con `url_canonica` y, cuando aplica la convención de "Documentos primarios descargados" ([AGENTS.md](../../AGENTS.md#documentos-primarios-descargados-a-publicdocumentos)), también con `ruta_local` + `hash_sha256` apuntando a una copia íntegra del PDF/XML/HTML servida desde `/public/documentos/<caso>/`.
@@ -26,6 +30,7 @@ Esto vive **fuera de las skills** porque lo consumen varias (`investigar-caso`, 
 - [`organismos-economicos.md`](organismos-economicos.md) — AEAT, CNMV, CNMC, Tribunal de Cuentas, AIReF, Banco de España, SEPI. *(pendiente catalogar)*.
 - [`legislativo.md`](legislativo.md) — Congreso de los Diputados, Senado, Defensor del Pueblo. *(pendiente catalogar)*.
 - [`archivos-y-mirrors.md`](archivos-y-mirrors.md) — archive.org, archive.ph, mirrors periodísticos auditables, criterios para descartar mirrors anónimos. *(pendiente catalogar)*.
+- [`agregadores-y-descubrimiento.md`](agregadores-y-descubrimiento.md) — **categoría 2, no citable**: agregadores secundarios de scouting (casos-aislados.com…) para descubrir casos candidatos a re-investigar desde primarios.
 
 Los items marcados *(pendiente catalogar)* son placeholders del backlog "Sesión de ingeniería inversa de portales del Estado" del [`ROADMAP.md`](../../ROADMAP.md). Al cerrar cada uno, retirar la marca y rellenar.
 

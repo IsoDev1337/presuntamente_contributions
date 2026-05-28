@@ -166,6 +166,15 @@ Convención de nombres: `<slug-kebab-case>.md` describiendo la capacidad (no el 
 
 5. **No repitas entre secciones de la misma ficha.** "Estado actual" = hitos de entrega y deltas recientes en una línea; el cómo visual detallado vive en un solo sitio dentro del documento (normalmente "Cómo funciona" o el canon externo).
 
+### Memoria del agente vs documentación del proyecto
+
+**Norma incorporada 2026-05-28.** Este repo es open source y multi-desarrollador. La **memoria del agente** (auto-memoria de Claude Code, reglas de Cursor, equivalentes de otros proveedores) es **local y por desarrollador**: no se versiona, no se comparte y ningún otro agente o developer la ve. No es un canal de documentación del proyecto.
+
+1. **Conocimiento general del proyecto → al repo, nunca sólo a la memoria.** Fuentes, convenciones, decisiones de diseño, contexto recurrente de un caso: si le sirve a *otro* developer o agente que abra el repo, va documentado en su canon (ver tabla en "Centralización documental"). Si no existe canon para ese tema, créalo o pregunta dónde ubicarlo.
+2. **La memoria del agente es sólo para lo específico del developer:** preferencias personales de flujo, peculiaridades del entorno local, estilo de colaboración individual. Nada que el proyecto necesite para funcionar.
+3. **Regla de decisión:** "¿esto le serviría a otra persona que abra el repo?" → sí: repo; sólo a mí o a mi setup: memoria.
+4. **Si encuentras conocimiento general atrapado en memoria** (tuya o heredada de otra sesión), migrarlo al repo y dejar en memoria sólo lo personal.
+
 ### Higiene del roadmap y AGENTS.md
 
 **Norma incorporada 2026-05-27.** `ROADMAP.md` no es un diario de sesión. Debe permitir decidir qué hacer ahora en 5 minutos.
