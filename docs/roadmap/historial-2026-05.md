@@ -300,3 +300,16 @@ HoverCard, chips org afectadas, `EstadoPublicacionBadge` en listado. [`casos.md`
 **Noche 8 — contenedor común de cards:** `PersonaCard`, `OrgCard`, `Hecho` alineados con cards de home (borde fino, `--color-surface`, hover `translateX(-2px)` sin `border-left` grueso). Canon en [`DESIGN.md`](../../DESIGN.md); detalle en [`filtros-pills-ficha-caso.md`](../web/features/filtros-pills-ficha-caso.md), [`vinculos-institucionales.md`](../web/features/vinculos-institucionales.md). Validate **690/0**, build **201 páginas + 4563 palabras Pagefind**.
 
 **Noche 9 — preindexación pública:** eliminado `public/_headers` (dejaba `X-Robots-Tag: noindex` en Pages); pendiente barrido actualidad 6 casos; norma higiene roadmap en `AGENTS.md`. Fichas: [`higiene-tecnica.md`](../web/features/higiene-tecnica.md), [`cloudflare-pages-deploy.md`](../web/features/cloudflare-pages-deploy.md).
+
+## 2026-05-28
+
+### Lanzamiento real y primer ciclo de actualidad post-launch (PR1+PR2)
+
+- Sitio publicado, tweet hecho, tráfico real.
+- Caso nuevo `leire-diez` (7º publicable, `pin_destacado: 2`) con auto Pedraz 26-may, registro UCO Ferraz 27-may, imputaciones a la dirigencia PSOE; 16 vínculos institucionales (3 afectación + 13 cargos/nombramientos incluyendo BOE-A-2018-8601 RD 616/2018 nombramiento Fernández Guerrero SEPI descargado + nota FESOFI N3 Leire Correos).
+- Plus Ultra actualizado con hito aplazamiento 26-may, cascada `sintesis_caso` (estado_actual + hechos_clave) y `RelacionEntreCasos` con Leire por nexo SEPI/Fernández Guerrero (`pin_destacado: 1`).
+- Override editorial `pin_destacado` añadido al schema + sort de PgInicio.
+- Schema vínculos ampliado con enum `cargo_funcionarial_carrera` para cargos de carrera (caso Sánchez Yepes capitán UCO).
+- Skill nueva [`/actualizar-caso`](../../.agents/skills/actualizar-caso/SKILL.md) v1 con guardarraíles (queries cruzadas obligatorias, sumarios bajo secreto no se modelan, agencias EFE no cuentan como línea propia, cascada exhaustiva sobre todo `caso.yaml`).
+- 0 bloqueantes tras auditoría paralela `/revisar-caso` PU+Leire (10 sugerencias resueltas).
+- `pnpm validate` 782 OK + build 223 páginas.

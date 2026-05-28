@@ -1,0 +1,21 @@
+id: gaspar-zarrias-consejero-presidencia-junta-andalucia
+naturaleza: cargo_publico_designado
+descripcion: "Gaspar Zarrías Arévalo fue designado Consejero de la Presidencia de la Junta de Andalucía por el Decreto del Presidente 133/96, de 16 de abril de 1996, bajo la presidencia de Manuel Chaves González. Ejerció el cargo ininterrumpidamente durante cuatro legislaturas (V, VI, VII y parte de la VIII del Parlamento de Andalucía), hasta el 23 de abril de 2009, cuando el nuevo gobierno de José Antonio Griñán tomó posesión. A partir del 18 de abril de 2008 compatibilizó la Consejería de la Presidencia con el cargo de Vicepresidente Primero de la Junta (véase el vínculo hermano gaspar-zarrias-vicepresidente-junta-andalucia)."
+sujeto_persona_id: gaspar-zarrias
+objeto_organizacion_id: junta-de-andalucia
+cargo_o_rol: "Consejero de la Presidencia de la Junta de Andalucía"
+desde: "1996-04-17"
+hasta: "2009-04-23"
+precision_desde: dia
+precision_hasta: dia
+vigente: false
+gobierno_o_legislatura: "V, VI, VII y VIII Legislaturas del Parlamento de Andalucía — Gobiernos Chaves V (1996-2000), Chaves VI (2000-2004), Chaves VII (2004-2008) y Chaves VIII (2008-2009)"
+relevancia_para_caso_ids:
+  - leire-diez
+documentos_respaldo:
+  - documento_id: boja-nombramiento-zarrias-consejero-presidencia-1996
+    pasaje: "Decreto del Presidente 133/96, de 16 de abril de 1996: 'Don Gaspar Zarrías Arévalo, como Consejero de la Presidencia.' (BOJA nº 45, p. 3 del decreto de designación de consejeros)"
+  - documento_id: vozpopuli-auto-pedraz-pieza-separada-2026-05-26
+    pasaje: "Cobertura del auto Pedraz de 26 de mayo de 2026 que describe el perfil institucional de Zarrías como ex alto cargo de la Junta de Andalucía."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-28"

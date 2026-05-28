@@ -1,6 +1,6 @@
 id: leire-diez-directora-correos
 naturaleza: cargo_directivo_empresa_publica
-descripcion: "Directora de Filatelia y Relaciones Institucionales de la Sociedad Estatal Correos y Telégrafos, S.A. entre febrero de 2022 y comienzos de 2024. El nombramiento fue decisión interna de Juan Manuel Serrano, presidente de Correos en aquel momento. El cargo no exige RD del Consejo de Ministros ni publicación en BOE. Correos no es objeto formal del procedimiento."
+descripcion: "Directora de Filatelia y Relaciones Institucionales de la Sociedad Estatal Correos y Telégrafos, S.A. entre febrero de 2022 y comienzos de 2024. El nombramiento fue decisión interna de Juan Manuel Serrano, presidente de Correos en aquel momento. El cargo no exige RD del Consejo de Ministros ni publicación en BOE. Correos no es objeto formal del procedimiento. El apoderamiento mercantil paralelo de la sociedad se modela como vínculo separado (leire-diez-apoderada-correos), por tratarse de una figura registral con vida jurídica propia."
 sujeto_persona_id: leire-diez
 objeto_organizacion_id: correos
 cargo_o_rol: "Directora de Filatelia y Relaciones Institucionales"

@@ -14,5 +14,7 @@ relevancia_para_caso_ids: [leire-diez, plus-ultra]
 documentos_respaldo:
   - documento_id: boe-nombramiento-fernandez-guerrero-sepi-2018
     pasaje: "Real Decreto 616/2018, de 22 de junio, por el que se nombra Presidente de la Sociedad Estatal de Participaciones Industriales a don Vicente Fernández Guerrero."
+  - documento_id: boe-cese-fernandez-guerrero-sepi-2019
+    pasaje: "\"Vengo en disponer el cese, a petición propia, de don Vicente Fernández Guerrero como Presidente de la Sociedad Estatal de Participaciones Industriales, agradeciéndole los servicios prestados.\" (Artículo único, BOE núm. 240, 5 de octubre de 2019, p. 109984)"
 estado_publicacion: borrador
 ultima_revision_editorial: "2026-05-28"

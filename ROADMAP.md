@@ -4,9 +4,9 @@
 >
 > Roadmap conceptual: [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Histórico largo: [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-28 (iteración UI inventario/conexiones). `/conexiones` ahora permite foco múltiple con `MultiSelectFilter` para casos, personas, organizaciones y documentos; panel redimensionable/adaptativo, controles compactos de profundidad/disposición/separación y comportamiento móvil afinado. `/personas` añade filtros multi por causa y delito atribuido, mueve el rol procesal a la columna de casos por causa y usa `OrgChip` para organización principal. Docs actualizadas en [`conexiones.md`](docs/web/pages/conexiones.md), [`personas.md`](docs/web/pages/personas.md) y [`explorador-conexiones.md`](docs/web/features/explorador-conexiones.md). `pnpm validate` 786 OK + `pnpm build:no-index` 223 páginas.
+**Última actualización:** 2026-05-28 (cierre completitud institucional Leire / Plus Ultra, PR3). Tres pendientes residuales del PR2 cerrados con primarios oficiales: nuevo vínculo Zarrías Consejero de la Presidencia de la Junta de Andalucía 1996-04-17 → 2009-04-23 con BOJA nº 45 Decreto 133/96 descargado; RD 565/2019 (BOE-A-2019-14254) del cese de Fernández Guerrero en SEPI descargado y añadido como respaldo del vínculo de nombramiento; BORME-A-2022-69-28 del apoderamiento mercantil de Leire en Correos (1-abr-2022 → 29-may-2024) descargado y modelado como **vínculo separado** del cargo directivo interno de Filatelia (Plan A), por tratarse de figura registral con vida jurídica propia. Decisión nueva añadida a "Decisiones pendientes": regla de granularidad de `VinculoInstitucional` cuando coexisten dos figuras formales en la misma relación persona↔organización (precedentes Zarrías Consejero+Vicepresidente y Leire Directora+Apoderada). `pnpm validate` 787 OK + build 223 páginas.
 
-**Anterior (2026-05-28, lanzamiento real + primer ciclo actualidad).** Sitio publicado, tweet hecho, tráfico real; caso `leire-diez` publicable, Plus Ultra actualizado, `pin_destacado`, schema vínculos y skill `/actualizar-caso` v1. Detalle: [`docs/roadmap/historial-2026-05.md`](docs/roadmap/historial-2026-05.md).
+**Anterior (2026-05-28, iteración UI inventario/conexiones).** `/conexiones` con foco múltiple (`MultiSelectFilter` para casos, personas, organizaciones y documentos), panel redimensionable/adaptativo y controles compactos; `/personas` con filtros multi por causa y delito atribuido, rol procesal en columna casos por causa y `OrgChip` para organización principal. Fichas: [`conexiones.md`](docs/web/pages/conexiones.md), [`personas.md`](docs/web/pages/personas.md), [`explorador-conexiones.md`](docs/web/features/explorador-conexiones.md).
 
 ---
 
@@ -29,7 +29,7 @@
 - **Casos publicables:** `plus-ultra` (pin#1), `leire-diez` (pin#2, nuevo), `begona-gomez`, `gonzalez-amador`, `fiscal-general-del-estado`, `kitchen`, `lezo`.
 - **Pre-launch cerrado:** Bloques A, B, C, E.
 - **Bloque D:** suficiente. Pendiente v1.x: composición de fuentes citadas, barra proporcional por corriente editorial, pills en §7 cobertura mediática.
-- **Próximo paso:** archive.org para los N4 nuevos de PU+Leire (`pnpm archive:catchup`); seguimiento declaración Zapatero 17-18 jun; barrido `/actualizar-caso leire-diez` cuando aparezca nota CGPJ del auto Pedraz o auto íntegro en CENDOJ; pendientes anotados en NOTES Leire (Zarrías consejería Presidencia 1996-2008, BOE cese Fernández 2019, BORME apoderada Leire 2022).
+- **Próximo paso:** archive.org para los N4 nuevos de PU+Leire (`pnpm archive:catchup`); seguimiento declaración Zapatero 17-18 jun; barrido `/actualizar-caso leire-diez` cuando aparezca nota CGPJ del auto Pedraz o auto íntegro en CENDOJ.
 - **Infra:** dominio y emails operativos; Cloudflare Pages servida en apex + `www`; deploy automático en `main`.
 - **Dev:** `pnpm dev` → `http://localhost:4321`. **Git:** `main` directo; sin `git add`/`commit`/`push` salvo cierre explícito del maintainer ([`AGENTS.md`](AGENTS.md)).
 
@@ -135,6 +135,7 @@ Resto Bloque D paralelizable: **cerrado** (vínculos, `/conexiones`, cobertura, 
 - [ ] Posible `Organizacion.afiliacion_politica` (declarada + percibida) — sin decisión.
 - [ ] Criterio legal antes de fotos reales o logos con licencia.
 - [ ] Confirmar estrategia de lanzamiento tras activar DNS: revisores externos, espera 48-72h, anuncio público.
+- [ ] **Regla de granularidad de `VinculoInstitucional` cuando coexisten dos figuras formales en la misma relación persona↔organización.** Propuesta: un vínculo por cada figura formal con acto de creación, extinción y consecuencias jurídico-administrativas propias, aunque persona y organización sean las mismas y las fechas se solapen; la asimetría de fuente (interna vs publicación oficial) no las colapsa. Precedentes ya en el repo: Zarrías Consejero Presidencia + Vicepresidente Junta solapados 2008-2009; Leire Directora Filatelia interna + Apoderada Mercantil BORME (2026-05-28). Si se acepta, formalizar en [`01-modelo-de-datos.md`](docs/diseno/01-modelo-de-datos.md) sección `VinculoInstitucional`. Decisión separada sobre extender el enum `naturaleza` con `apoderamiento_mercantil` / `representacion_societaria` cuando aparezcan 2-3 casos análogos más (hoy se reutiliza `cargo_directivo_empresa_publica` con `cargo_o_rol` libre).
 - Cerradas (referencia): clasificación editorial medios · vista instituciones · taxonomía afectación — [`08-afectacion-directa-indirecta.md`](docs/diseno/08-afectacion-directa-indirecta.md).
 
 ---

@@ -1,0 +1,17 @@
+id: leire-diez-apoderada-correos
+naturaleza: cargo_directivo_empresa_publica
+descripcion: "Apoderada mancomunada y mancomunada solidaria de la Sociedad Estatal Correos y Telégrafos, S.A. inscrita en el Registro Mercantil de Madrid el 1 de abril de 2022 (Tomo 42045, Folio 224, Sección 8, Hoja M-284323, Inscripción 288), con publicación en el BORME núm. 69 de 8 de abril de 2022 (anuncio 161348). El apoderamiento mercantil es figura jurídica registral distinta del cargo directivo interno de Directora de Filatelia y Relaciones Institucionales que ejerció en paralelo (modelado aparte como leire-diez-directora-correos): el primero es decisión organizativa interna sin publicación oficial, el segundo es acto notarial inscrito en el Registro Mercantil y oponible a terceros conforme al artículo 21 del Código de Comercio. Los poderes fueron revocados el 29 de mayo de 2024, con publicación en el BORME núm. 107 de 5 de junio de 2024 (anuncio 254875, Inscripción 335)."
+sujeto_persona_id: leire-diez
+objeto_organizacion_id: correos
+cargo_o_rol: "Apoderada mancomunada y mancomunada solidaria"
+desde: "2022-04-01"
+hasta: "2024-05-29"
+precision_desde: dia
+precision_hasta: dia
+vigente: false
+relevancia_para_caso_ids: [leire-diez]
+documentos_respaldo:
+  - documento_id: borme-apoderamiento-leire-correos-2022
+    pasaje: "Anuncio 161348 del BORME núm. 69, 8 de abril de 2022: 'SOCIEDAD ESTATAL CORREOS Y TELEGRAFOS SA S.M.E. Revocaciones. Apoderado: CASTRO AMBROA EDELMIRO. Nombramientos. Apo.Manc.: GONZALEZ GARCIA JULIO;PEREZ PASTOR JOSE LUIS;CASTAÑO OSCAR ADIS;DIEZ DE CASTRO LEIRE [...] Apo.Man.Soli: DIEZ DE CASTRO LEIRE [...] Datos registrales. T 42045 , F 224, S 8, H M 284323, I/A 288 (1.04.22).' Inscripción registral efectiva el 1 de abril de 2022; publicación BORME el 8 de abril de 2022."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-05-28"
