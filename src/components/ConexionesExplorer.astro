@@ -352,7 +352,6 @@ const nodesByKind = {
         max="3"
         step="0.02"
         value="1"
-        orient="vertical"
         aria-label="Nivel de zoom"
         aria-valuemin="0.18"
         aria-valuemax="3"
@@ -1260,29 +1259,128 @@ const nodesByKind = {
 
   @media (max-width: 760px) {
     .graph-explorer {
+      width: 100vw;
+      max-width: 100vw;
       height: calc(100dvh - 64px);
-      min-height: 560px;
+      min-height: calc(100dvh - 64px);
+      margin: calc(-1 * var(--space-5)) calc(50% - 50vw) calc(-1 * var(--space-7));
+      box-sizing: border-box;
+    }
+
+    .graph-panel {
+      border-radius: var(--radius-2) var(--radius-2) 0 0;
+      background: var(--color-surface);
+      box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.14);
+      backdrop-filter: none;
     }
 
     .graph-panel--controls {
       top: auto;
-      right: 10px;
-      left: 10px;
-      bottom: 10px;
+      right: 0;
+      left: 0;
+      bottom: 0;
       width: auto;
       min-width: 0;
       max-width: none;
-      max-height: min(64dvh, 520px);
-      padding: 12px;
+      max-height: calc(100% - 3rem);
+      padding: 10px 12px max(16px, calc(env(safe-area-inset-bottom, 0px) + 12px));
       overflow-x: hidden;
       overflow-y: auto;
-      opacity: 0.58;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      scroll-padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+      opacity: 1;
       resize: none;
+      z-index: 4;
+    }
+
+    .graph-explorer:not([data-controls-minimized]) .graph-panel--controls {
+      max-height: min(
+        78dvh,
+        calc(100% - 3.5rem - env(safe-area-inset-top, 0px)),
+        calc(100dvh - 64px - 3.5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))
+      );
+      padding-bottom: max(28px, calc(env(safe-area-inset-bottom, 0px) + 22px));
+    }
+
+    .graph-explorer:not([data-controls-minimized]) .graph-panel__body {
+      padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+    }
+
+    .graph-explorer:not([data-controls-minimized]) .graph-utilities {
+      margin-bottom: 4px;
+    }
+
+    .graph-panel--controls::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 4px;
+      margin: 0 auto 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--color-border) 82%, transparent);
+    }
+
+    .graph-panel--controls:hover,
+    .graph-panel--controls:focus-within {
+      opacity: 1;
+      background: var(--color-surface);
     }
 
     .graph-explorer[data-controls-minimized] .graph-panel--controls {
+      left: 0;
+      right: 0;
       width: auto;
-      right: 10px;
+      max-height: none;
+      min-height: 6.75rem;
+      padding: 12px 14px max(18px, calc(env(safe-area-inset-bottom, 0px) + 14px));
+      opacity: 1;
+      box-shadow: 0 -10px 32px rgba(15, 23, 42, 0.18);
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-panel--controls::before {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .graph-panel__head {
+      padding-top: 2px;
+    }
+
+    .graph-panel__eyebrow {
+      display: none;
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-panel__eyebrow {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .graph-explorer:not([data-controls-minimized]) .graph-panel__eyebrow {
+      display: block;
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-panel__title-row {
+      gap: 6px;
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-panel h1 {
+      font-size: var(--font-size-4);
+      line-height: 1.15;
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-panel__stats {
+      font-size: var(--font-size-1);
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-panel__summary {
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+
+    .graph-explorer[data-controls-minimized] :global(.graph-panel__summary-line) {
+      font-size: var(--font-size-0);
+      line-height: 1.4;
     }
 
     .graph-panel__title-row {
@@ -1307,6 +1405,10 @@ const nodesByKind = {
       grid-column: span 2;
     }
 
+    .graph-focus-pickers :global(.msf__popover) {
+      max-height: min(240px, 36dvh);
+    }
+
     .graph-panel--details {
       top: 10px;
       right: 10px;
@@ -1314,6 +1416,7 @@ const nodesByKind = {
       bottom: auto;
       width: auto;
       max-height: 34vh;
+      border-radius: var(--radius-2);
       transform: translateY(calc(-100% - 24px));
     }
 
@@ -1321,20 +1424,78 @@ const nodesByKind = {
       transform: translateY(0);
     }
 
+    .graph-explorer[data-table-open] .graph-panel--controls {
+      display: none;
+    }
+
     .graph-panel--table {
-      inset-inline: 10px;
-      bottom: 10px;
-      max-height: 55vh;
+      inset-inline: 0;
+      bottom: 0;
+      max-height: min(68dvh, 520px);
+      padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+      z-index: 5;
     }
 
     .graph-hud {
-      right: 10px;
-      bottom: calc(10px + min(64dvh, 520px));
-      max-width: calc(100vw - 20px);
+      top: max(8px, env(safe-area-inset-top, 0px));
+      right: 8px;
+      bottom: auto;
+      left: 8px;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      max-width: none;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .graph-hud > * {
+      pointer-events: auto;
+    }
+
+    .graph-zoom {
+      order: 2;
+      flex: 0 0 auto;
+      flex-direction: column;
     }
 
     .graph-legend {
-      justify-content: center;
+      order: 1;
+      flex: 1 1 auto;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      padding: 6px 8px;
+      max-width: calc(100% - 48px);
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-hud {
+      top: auto;
+      bottom: var(--graph-dock-offset, 7.75rem);
+      left: 8px;
+      right: 8px;
+      align-items: flex-end;
+    }
+
+    .graph-explorer[data-controls-minimized] .graph-legend {
+      max-width: calc(100% - 48px);
+    }
+
+    .graph-explorer:not([data-controls-minimized]) .graph-hud {
+      top: max(8px, env(safe-area-inset-top, 0px));
+      bottom: auto;
+      left: 8px;
+      right: 8px;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .graph-explorer:not([data-controls-minimized]) .graph-legend {
+      flex: 1 1 auto;
+      max-width: calc(100% - 48px);
+      justify-content: flex-start;
     }
   }
 

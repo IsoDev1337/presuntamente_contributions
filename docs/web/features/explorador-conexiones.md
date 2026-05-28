@@ -106,5 +106,5 @@ Reglas:
 - [x] Añadir foco múltiple con URL compartible por ids CSV.
 - [x] Convertir profundidad/disposición/separación en controles compactos especializados.
 - [x] Hacer el panel de controles redimensionable en desktop y adaptado a móvil.
-- [ ] Verificar con navegador local desktop/mobile que el grafo no sale vacío ni solapa texto.
+- [x] Verificar vista móvil del panel (bottom sheet opaco, minimizado por defecto, HUD arriba) — 2026-05-28.
 - [x] Unificar microcopy nav / página / CTAs (2026-05-26).

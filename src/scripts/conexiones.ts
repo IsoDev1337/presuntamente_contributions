@@ -874,6 +874,26 @@ function bindZoomControls(root: HTMLElement, getCy: () => Core | null) {
   });
 }
 
+function syncMobileControlsLayout(root: HTMLElement) {
+  const narrow = isNarrowGraphViewport(graphViewportWidth(root));
+  root.toggleAttribute("data-graph-narrow", narrow);
+  if (!narrow) {
+    root.style.removeProperty("--graph-dock-offset");
+    return;
+  }
+  queueMobileDockMeasure(root);
+}
+
+function queueMobileDockMeasure(root: HTMLElement) {
+  if (!root.hasAttribute("data-graph-narrow")) return;
+  window.requestAnimationFrame(() => {
+    const panel = qs<HTMLElement>(root, ".graph-panel--controls");
+    if (!panel) return;
+    const height = Math.ceil(panel.getBoundingClientRect().height);
+    root.style.setProperty("--graph-dock-offset", `${height + 12}px`);
+  });
+}
+
 function setControlsMinimized(root: HTMLElement, minimized: boolean) {
   root.toggleAttribute("data-controls-minimized", minimized);
   const button = qs<HTMLButtonElement>(root, "[data-graph-toggle-controls]");
@@ -890,6 +910,7 @@ function setControlsMinimized(root: HTMLElement, minimized: boolean) {
     );
   }
   if (label) label.textContent = minimized ? "Expandir" : "Minimizar";
+  queueMobileDockMeasure(root);
 }
 
 function closeRelationInfoPopovers(root: HTMLElement, except?: HTMLElement) {
@@ -1459,6 +1480,7 @@ function renderGraph(
   if (focuses.length === 1) renderDetails(root, payload, focuses[0]);
   renderFilterSummary(root);
   syncPanelButtons(root);
+  queueMobileDockMeasure(root);
   return cy;
 }
 
@@ -1479,6 +1501,10 @@ function init(root: HTMLElement) {
   enhanceGraphSelects(root);
   bindLayoutControls(root);
   parseUrlState(root, payload);
+  syncMobileControlsLayout(root);
+  if (isNarrowGraphViewport(graphViewportWidth(root))) {
+    setControlsMinimized(root, true);
+  }
   let cy: Core | null = null;
   const rerender = () => {
     syncDepthControl(root);
@@ -1523,6 +1549,19 @@ function init(root: HTMLElement) {
       );
     },
   );
+
+  window.addEventListener("resize", () => {
+    syncMobileControlsLayout(root);
+    queueMobileDockMeasure(root);
+  });
+
+  if (typeof ResizeObserver !== "undefined") {
+    const panel = qs<HTMLElement>(root, ".graph-panel--controls");
+    if (panel) {
+      const dockObserver = new ResizeObserver(() => queueMobileDockMeasure(root));
+      dockObserver.observe(panel);
+    }
+  }
 
   qs<HTMLSelectElement>(root, "[data-graph-focus-type]")?.addEventListener(
     "change",
