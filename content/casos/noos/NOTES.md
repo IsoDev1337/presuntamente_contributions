@@ -137,3 +137,27 @@ de delitos del caso porque no consta en ninguna fuente consultada.
 - Composición completa de la Sala TS que dicta STS 277/2018: presidida por Marchena (con
   Del Moral, Martínez Arrieta, Colmenero, Berdugo). Confirmado parcialmente; número exacto de
   magistrados y posibles votos particulares pendientes de verificar en texto íntegro.
+
+## Correcciones por panel de promoción (2026-05-31)
+
+El panel de revisión ejecutado con la skill `promover-caso` dejó el caso en ROJO por dos
+hallazgos bloqueantes:
+
+**A8 — roles_procesales: completo deshonesto.** El campo `estado_ficha.roles_procesales`
+marcaba `completo` pero la sección "Personas absueltas no modeladas como roles (pendiente PR2)"
+de este mismo fichero listaba ~8 acusados absueltos sin modelar. Corrección aplicada:
+`roles_procesales: completo` → `roles_procesales: parcial` en `caso.yaml`.
+
+**A5 — exposición de persona sin rol penal.** El enunciado de
+`hechos/noos-responsabilidades-civiles-firmes.yaml` nombraba a "Ana María Tejeiro, esposa de
+Diego Torres" como obligada a devolver 172.550 €. Es una partícipe a título lucrativo (art. 122
+CP): no está condenada penalmente, no tiene fichero Persona ni RolEnCaso en el repo. Corrección
+aplicada: el nombre propio se anonimizó en todos los campos renderizables del caso (enunciado
+del hecho, importe_nota e importe_atribucion.nota, resumen_cifras del caso.yaml). El nombre
+sigue presente en NOTES (uso interno) y en el campo `pasaje` de `documentos_respaldo` (cita
+literal de fuente oficial N1 que reproduce el documento, no redacción propia).
+
+**Nota sobre la anonimización:** la decisión es conservadora. Si en el futuro se modela a esta
+persona con un rol `responsable_civil` y con su propio fichero Persona, podría recuperarse el
+nombre en el enunciado con plena trazabilidad. Precedente en el repo: `pp-responsable-civil`
+en el caso `barcenas-caja-b`.

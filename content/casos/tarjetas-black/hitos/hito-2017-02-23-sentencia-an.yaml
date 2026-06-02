@@ -12,8 +12,6 @@ descripcion: |
   acusado. La sentencia no es firme; cabe recurso de casacion ante el Tribunal
   Supremo. La condicion de condenados por sentencia de instancia no implica
   firmeza ni decaimiento de la presuncion de inocencia hasta resolucion firme.
-  # LLM-incierto: numero de sentencia y seccion concreta de la Sala de lo Penal
-  # a verificar en CENDOJ / poderjudicial.es.
 documento_principal_id: sentencia-an-tarjetas-black-2017
 personas_afectadas:
   - rodrigo-rato

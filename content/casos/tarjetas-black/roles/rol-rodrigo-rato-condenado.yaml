@@ -5,8 +5,9 @@ sujeto_persona_id: rodrigo-rato
 rol: condenado_firme
 delitos_atribuidos:
   - apropiacion-indebida
-fecha_inicio: "2018-06-08"
-# LLM-incierto: fecha exacta de la STS a verificar en CENDOJ.
+fecha_inicio: "2018-10-03"
+# Fecha verificada el 2026-05-30 via nota oficial CGPJ (poderjudicial.es).
+# ECLI:ES:TS:2018:3253. Coincide con hito tarjetas-black-sentencia-ts-firme-2018.
 hito_origen_id: tarjetas-black-sentencia-ts-firme-2018
 notas: |
   Rodrigo de Rato y Figaredo fue presidente de Caja Madrid y Bankia en el
@@ -18,4 +19,3 @@ notas: |
   los que figura Rodrigo Rato (ver caso rato-fraude-fiscal). La presuncion de
   inocencia decae unicamente respecto de los hechos declarados probados y
   firmes por la sentencia del Tribunal Supremo.
-  # LLM-incierto: pena exacta impuesta y confirmada a verificar en el texto de la STS.

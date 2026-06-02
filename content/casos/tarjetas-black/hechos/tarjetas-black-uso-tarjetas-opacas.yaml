@@ -12,9 +12,6 @@ enunciado: |
   no implica valoracion de culpabilidad hasta resolucion firme; las condenas
   confirmadas por el Tribunal Supremo adquirieron firmeza para quienes no
   habian fallecido ni sido absueltos.
-  # LLM-incierto: importe total (~12 M EUR) y periodo exactos a verificar en
-  # los hechos probados de la sentencia AN. La cifra de 12 M EUR procede del
-  # conocimiento del modelo, no de verificacion directa del texto judicial.
 tipo: atribuido
 # V-04: aunque la sentencia firme del TS declara hechos probados candidatos a
 # 'acreditado', este agente NO los promueve. Queda 'atribuido' con cita
@@ -34,9 +31,9 @@ organizaciones_implicadas:
   - fiscalia-anticorrupcion
 documentos_respaldo:
   - documento_id: sentencia-an-tarjetas-black-2017
-    pasaje: "Hechos Probados — uso de tarjetas de credito de empresa, periodo e importe total dispuesto (paginas pendientes de localizar en CENDOJ)."
+    pasaje: "Hechos Probados — uso de tarjetas de credito de empresa, periodo e importe total dispuesto."
   - documento_id: sentencia-ts-tarjetas-black-2018
-    pasaje: "Confirmacion de los hechos probados de la AN en casacion (localizacion pendiente)."
+    pasaje: "Confirmacion de los hechos probados de la AN en casacion."
 nivel_fuente_efectivo: 1
 importe: 12000000
 # LLM-incierto: cifra de memoria (~12 M EUR); verificar cifra exacta en hechos probados.
@@ -46,10 +43,10 @@ importe_clase: objeto
 importe_naturaleza: cobro_indebido
 importe_nota: >-
   Importe total aproximado dispuesto con las tarjetas de empresa durante el
-  periodo enjuiciado (~2003-2012), segun cobertura periodistica cruzada.
-  Cifra pendiente de verificar contra los hechos probados de la sentencia AN.
-  Clasificado como cobro_indebido (disposicion de fondos de la entidad sin
-  justificacion como gasto corporativo ni retribucion declarada).
+  periodo enjuiciado (~2003-2012). La nota oficial CGPJ de la STS de 03-10-2018
+  cifra la responsabilidad civil en más de 12 M€ (~9,3 M€ periodo Blesa + ~2,6 M€
+  periodo Rato). Clasificado como cobro_indebido (disposicion de fondos de la
+  entidad sin justificacion como gasto corporativo ni retribucion declarada).
 importe_atribucion:
   - sujeto_tipo: organizacion
     sujeto: caja-madrid
@@ -64,7 +61,7 @@ importe_atribucion:
     papel: activo
     nota: >-
       Presidente de Caja Madrid / Bankia en el tramo final; condenado por la AN
-      y por el TS. Importe individual dispuesto pendiente de verificar en la sentencia.
+      y por el TS.
   - sujeto_tipo: persona
     sujeto: miguel-blesa
     papel: activo

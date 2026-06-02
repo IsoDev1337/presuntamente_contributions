@@ -5,14 +5,16 @@ enunciado: |
   eleva la condena de Juan Antonio Roca de 11 a 17 años de prisión,
   añadiendo un delito contra la Hacienda Pública de 2002 (2 años y
   6 meses adicionales) y agravando el blanqueo de capitales (de 5 a
-  7 años). La pena de multa quedó establecida en 232 millones de
-  euros. Asimismo, la sentencia reduce la condena de Marisol Yagüe
+  7 años). Asimismo, la sentencia reduce la condena de Marisol Yagüe
   de 7 años y 9 meses a 5 años y 6 meses, y la de Isabel García
   Marcos de 4 a 3 años y 6 meses. El Tribunal Supremo absuelve a
   cuatro de los 52 condenados en primera instancia (Joaquín Martínez
   Vilanova, Julio de Marco, José María Pérez Lozano y Francisco
   Soriano), reduciendo el total a 48 condenados. La sentencia gana
-  firmeza con esta resolución del alto tribunal.
+  firmeza con esta resolución del alto tribunal. Según la cobertura
+  periodística, la pena de multa habría rondado los 232 millones de
+  euros, cifra aún no confirmada contra el texto íntegro de la
+  sentencia (pendiente de localización en CENDOJ).
 tipo: acreditado
 # Promovido a 'acreditado' el 2026-05-30 (rev. maintainer V-04).
 # Respaldo: nota oficial CGPJ (N1) sobre sentencia TS de 27-jul-2015, accesible
@@ -42,22 +44,10 @@ documentos_respaldo:
   - documento_id: confilegal-malaya-ts-condena-2015
     pasaje: "Condena de Roca elevada a 17 años; Marisol Yagüe de 6 años a 5 años 6 meses; Isabel García Marcos de 4 años a 3 años 6 meses."
 nivel_fuente_efectivo: 1
-importe: 232000000
-importe_moneda: EUR
-importe_alcance: individual
-importe_clase: consecuencia
-importe_naturaleza: multa_penal
-importe_nota: |
-  Multa penal impuesta a Juan Antonio Roca por sentencia firme del TS
-  de 27-jul-2015. La cifra de 232 M€ es la que resulta tras el ajuste
-  del TS (la AP Málaga había fijado 240 M€). Fuente: cobertura N4
-  cruzada (Confilegal + El Debate). Pendiente verificar cifra exacta
-  en sentencia TS cuando esté localizada en CENDOJ.
-importe_atribucion:
-  - sujeto_tipo: persona
-    sujeto: juan-antonio-roca
-    papel: obligado
-    nota: "Obligado al pago de 232 M€ de multa penal por sentencia firme del TS de 27-jul-2015."
+# Importe de la multa (~232 M€) retirado del modelo estructurado: solo lo
+# respalda cobertura N4 (Confilegal/El Debate) y no consta confirmado en el
+# texto integro de la STS de 27-jul-2015. Se menciona, matizado, en el enunciado.
+# Recuperar como importe estructurado cuando aparezca la sentencia en CENDOJ.
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

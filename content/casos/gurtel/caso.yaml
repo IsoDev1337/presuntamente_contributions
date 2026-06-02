@@ -83,8 +83,8 @@ resumen_cifras: |
   de un único documento judicial y no se contabilizan aquí como cifra
   estructurada para evitar el doble cómputo entre piezas.
 
-estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-30"
+estado_publicacion: beta_publica
+ultima_revision_editorial: "2026-05-31"
 nivel_relevancia_editorial: capital
 
 # Honestidad editorial sobre el trabajo de presuntamente.org en esta ficha
@@ -102,4 +102,4 @@ estado_ficha:
   cobertura_mediatica_general: parcial
   revision_editorial: pendiente
   notas: "Modelado inicial centrado en la Época I (con sentencia firme TS 507/2020) y en la pieza valenciana de la visita del Papa (firme TS 2023). Faltan por modelar piezas relevantes (Boadilla, Fundación, Fitur con detalle, financiación PP) y numerosos roles de segundo nivel (Ricardo Costa, cargos valencianos y madrileños). Sentencias íntegras AN 20/2018 y TS 507/2020 pendientes de localizar en CENDOJ y descargar como primario; notas CGPJ de las piezas valencianas pendientes."
-  fecha_actualizacion: "2026-05-30"
+  fecha_actualizacion: "2026-05-31"

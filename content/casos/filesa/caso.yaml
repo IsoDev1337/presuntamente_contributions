@@ -70,7 +70,7 @@ nivel_relevancia_editorial: alta
 
 estado_ficha:
   cronologia: completo
-  roles_procesales: completo
+  roles_procesales: parcial
   documentos_primarios: parcial
   hechos_modelados: completo
   fuentes_cruzadas: completo

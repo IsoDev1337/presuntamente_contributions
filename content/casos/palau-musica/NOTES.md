@@ -111,3 +111,37 @@ penal propio, revisar.
   modelar como nuevo hito.
 - **Caso 3%**: si se produce algún hito procesal nuevo ante la AN en 2026,
   actualizar la relación entre ambos casos.
+
+---
+
+## Revisión de panel — 2026-05-31
+
+El panel dejó el caso en ROJO por tres hallazgos:
+
+- **A3 (nivel_fuente_efectivo falso)**: el hecho `palau-recuperacion-12-millones`
+  tenía `nivel_fuente_efectivo: 1`, pero la cifra de "más de 12 millones recuperados"
+  no la respalda el documento N1 citado (nota CGPJ sobre pieza CDC, que solo recoge
+  la derivación al concurso, no la cuantificación global de la recuperación). El único
+  soporte de la cifra de 12 M€ es N4 (elDiario.es, 2022). Corregido: cambiado a
+  `nivel_fuente_efectivo: 4`, añadido `nivel_fuente_justificacion` explicativo.
+  El hecho ya era `tipo: atribuido` (correcto; V-13 no bloquea N4 único en `atribuido`).
+  Pendiente de respaldo primario: auto de liquidación/ejecución del Juzgado nº 30 o
+  de la AP Barcelona que acredite el importe recuperado.
+
+- **A5 (exposición de personas privadas sin rol penal)**: los nombres "Marta Vallès"
+  (cónyuge fallecida de Millet) y "Laila Millet" (hija) aparecían en campos
+  renderizables (`resumen_cifras` de `caso.yaml` e `importe_nota` de
+  `palau-expolio-fondos-atribuido.yaml`). Ambas son responsables civiles a título
+  lucrativo (art. 122 CP), sin condena penal propia y sin ficha Persona ni Rol en el
+  repo. Corregido: nombres sustituidos por descripciones genéricas ("cónyuge fallecida
+  del principal responsable", "una hija") en todos los campos que se renderizan.
+  Los nombres se conservan en este NOTES.md (fichero interno, no publicado).
+  La decisión es conservadora y revisable por el maintainer: si en el futuro se
+  modela un rol `responsable_civil` formal (precedente: pp-responsable-civil en
+  barcenas-caja-b), podría reconsiderarse la mención nominal con el rol acotado.
+
+- **A8 (estado_ficha deshonesto)**: `estado_ficha` marcaba como `completo` los flags
+  `roles_procesales` y `fuentes_cruzadas`, contradiciendo lo confesado en NOTES.md
+  (absueltos de Ferrovial no modelados; segunda pasada de medios catalanes pendiente).
+  Corregido: `roles_procesales` → `parcial`; `fuentes_cruzadas` → `parcial`.
+  El campo `notas` del estado_ficha en caso.yaml se actualizó para reflejar ambas razones.

@@ -71,6 +71,22 @@ Los siguientes hechos se mantienen en su tipo actual por insuficiencia de cita v
 - **GIL (Grupo Independiente Liberal)**: Se crea organización nueva `grupo-independiente-liberal` ya que no existe en el inventario. El partido fue el vehículo político de la trama.
 - **Personas privadas**: No se han modelado ni los 41 condenados de segundo nivel ni los absueltos porque carecen de perfil público y su inclusión requeriría revisión V-17 individualizada.
 
+## Registro de revisiones del panel editorial
+
+### 2026-05-31 — Panel dejó el caso en ROJO (criterio A2)
+
+**Problema detectado**: el hecho `malaya-condena-firme-roca` era `tipo: acreditado` y su enunciado afirmaba "La pena de multa quedó establecida en 232 millones de euros" como dato firme. El único documento N1 citado (nota CGPJ sobre sentencia TS 2015) no menciona ese importe; la cifra de 232 M€ procede exclusivamente de cobertura periodística N4 (Confilegal, El Debate). Presentar una cifra de origen N4 como dato firme en un hecho `acreditado` viola el criterio A2 del panel.
+
+**Correcciones aplicadas**:
+
+1. **`hechos/malaya-condena-firme-roca.yaml`**: reescrito el enunciado para que la parte `acreditado` afirme solo lo que respalda el N1 (condena firme de Roca a 17 años, reducción a 48 condenados, penas de Yagüe y García Marcos). La cifra de 232 M€ queda explícitamente atribuida a la cobertura periodística y marcada como no confirmada: "Según la cobertura periodística, la pena de multa habría rondado los 232 millones de euros, cifra aún no confirmada contra el texto íntegro de la sentencia (pendiente de localización en CENDOJ)."
+
+2. **`caso.yaml`**: aplicado el mismo matiz en `descripcion_corta`, `sintesis_caso.hechos_clave`, `cifras_clave` y `resumen_cifras`, donde la cifra 232 M€ aparecía sin matizar. Bajado `fuentes_cruzadas` de `completo` a `parcial` porque la cifra de multa no está cruzada con fuente N1.
+
+**Pendiente sin resolver**: la cifra exacta de la multa penal de Roca según la sentencia TS de 27-jul-2015 sigue sin confirmar. Requiere localizar la sentencia en CENDOJ (ponente Saavedra Ruiz) o que el maintainer descargue el PDF completo desde el mirror de Los Genoveses (3.138 folios). Hasta entonces, 232 M€ se trata como dato periodístico no verificado.
+
+---
+
 ## Relaciones entre casos propuestas
 
 - Con `gurtel`: ambos son macrocausas de corrupción con adjudicaciones ilegales a empresas privadas a cambio de comisiones; Malaya tiene ámbito municipal, Gürtel tiene alcance autonómico y nacional. Tipo propuesto: `causa_analoga`.

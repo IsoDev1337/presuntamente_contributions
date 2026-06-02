@@ -28,7 +28,7 @@ documentos_respaldo:
   - documento_id: cgpj-nota-tarjetas-black-blesa-recurso-desierto
     pasaje: "Nota CGPJ de 21-11-2017: 'El Tribunal Supremo declara desierto el recurso de Miguel Blesa [...] la Sala declaro extinguida la responsabilidad criminal por fallecimiento del reo'; fallecimiento comunicado al tribunal el 28 de julio de 2017."
   - documento_id: sentencia-ts-tarjetas-black-2018
-    pasaje: "Resolucion del TS sobre el recurso de casacion de Blesa (extincion de responsabilidad penal por fallecimiento, art. 130.1.1.a CP). Texto integro pendiente de localizar en CENDOJ para cita con pagina exacta."
+    pasaje: "Resolucion del TS sobre el recurso de casacion de Blesa (extincion de responsabilidad penal por fallecimiento, art. 130.1.1.a CP)."
 nivel_fuente_efectivo: 1
 vigencia: vigente
 redaccion_neutra_revisada: false

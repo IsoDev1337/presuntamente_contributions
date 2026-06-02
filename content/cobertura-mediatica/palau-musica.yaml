@@ -393,11 +393,11 @@ noticias:
     fecha_publicacion: "2023-10-31"
     autor: "Redacción"
     resumen: >-
-      La declaración del concurso de acreedores de la herencia de Marta Vallès
-      Guarro (cónyuge fallecida de Millet, responsable a título lucrativo)
-      paraliza la ejecución de la responsabilidad civil gestionada por la AP
-      Barcelona. Las hijas de Millet son señaladas como obstáculo para la
-      recuperación del dinero expoliado al Palau de la Música.
+      La declaración del concurso de acreedores de la herencia de la cónyuge
+      fallecida del principal responsable (declarada responsable a título
+      lucrativo, art. 122 CP) paraliza la ejecución de la responsabilidad civil
+      gestionada por la AP Barcelona. Las herederas son señaladas en la pieza
+      como obstáculo para la recuperación del dinero expoliado al Palau de la Música.
     tipo_pieza: noticia
     relevancia_editorial: media
     menciones: [titular, lead]

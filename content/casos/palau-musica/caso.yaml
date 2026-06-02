@@ -45,7 +45,7 @@ sintesis_caso:
     - "Los directivos de Ferrovial acusados en la causa fueron absueltos por prescripción de los delitos imputados."
   estado_actual: >-
     Sentencia firme desde el 30 de abril de 2020 (STS 813/2020). En trámite
-    de ejecución: más de 12 millones de euros recuperados por las entidades
+    de ejecución, según la cobertura periodística, más de 12 millones de euros recuperados por las entidades
     perjudicadas; el comiso a CDC (6,67 M€) sigue pendiente ante el Juzgado
     Mercantil 9 de Barcelona por el procedimiento concursal del partido (CDC
     en concurso desde marzo de 2020). Fèlix Millet falleció el 16 de marzo
@@ -82,9 +82,9 @@ resumen_cifras: |
   Música Catalana para uso particular. La responsabilidad civil se
   distribuye: más de 6,29 M€ a la Fundació Orfeó Català-Palau de la
   Música Catalana, más de 6,12 M€ a la Associació Orfeó Català, y más
-  de 3,53 M€ al Consorci del Palau de la Música Catalana. Marta Vallès
-  (cónyuge de Millet, fallecida) debe responder a título lucrativo por
-  6,41 M€ y su hija Laila Millet por 112.782 euros.
+  de 3,53 M€ al Consorci del Palau de la Música Catalana. La cónyuge
+  fallecida del principal responsable debe responder a título lucrativo
+  (art. 122 CP) por 6,41 M€ y una hija suya por 112.782 euros.
   Adicionalmente, la sentencia acuerda el comiso de 6.676.105,58 euros
   a Convergència Democràtica de Catalunya como ganancias obtenidas por
   tráfico de influencias (comisiones del 2,5% de contratos de obra
@@ -101,24 +101,26 @@ nivel_relevancia_editorial: capital
 
 estado_ficha:
   cronologia: completo
-  roles_procesales: completo
+  roles_procesales: parcial
   documentos_primarios: parcial
   hechos_modelados: completo
-  fuentes_cruzadas: completo
+  fuentes_cruzadas: parcial
   composicion_fuentes_citadas: pendiente
   vinculos_institucionales: pendiente
   conexiones: pendiente
   cobertura_mediatica_general: parcial
   revision_editorial: pendiente
   notas: >-
-    Documentos primarios: sentencia AP Barcelona (PA 74/2016, 29-dic-2017) y
-    STS 813/2020 integros no localizados en CENDOJ a fecha 2026-05-30; se modela
-    con notas CGPJ N1 como respaldo principal. Pendiente primario: sentencia
-    completa en CENDOJ. Vínculos institucionales pendientes: afectacion CDC/
-    Generalitat pendiente de aplicar skill documentar-vinculos. Cobertura
-    mediatica: primera pasada completada (14 piezas, 7 medios, 5 ventanas
-    temporales); pendiente segunda pasada con medios en catalán (ARA, Vilaweb,
-    NacióDigital, 324) y medios con paywall (El País, El Mundo, La Vanguardia).
-    El caso 3% (JCI 5 AN / Santiago Pedraz) tiene vinculacion formal investigada
-    pero archivado; ver NOTES.md.
+    Roles procesales (parcial): directivos de Ferrovial absueltos (Pedro
+    Buenaventura, Juan Elízaga) no modelados como Persona; si se requiere
+    modelar el rol absuelto, añadir fichas (ver NOTES.md, decisión 2026-05-30).
+    Fuentes cruzadas (parcial): primera pasada completada (14 piezas, 7 medios,
+    5 ventanas temporales); pendiente segunda pasada con medios en catalán (ARA,
+    Vilaweb, NacióDigital, 324) y medios con paywall (El País, El Mundo,
+    La Vanguardia). Documentos primarios: sentencia AP Barcelona (PA 74/2016,
+    29-dic-2017) y STS 813/2020 íntegras no localizadas en CENDOJ a fecha
+    2026-05-30; se modela con notas CGPJ N1 como respaldo principal.
+    Vínculos institucionales pendientes: afectacion CDC/Generalitat pendiente
+    de aplicar skill documentar-vinculos. El caso 3% (JCI 5 AN / Santiago
+    Pedraz) tiene vinculacion formal investigada pero archivado; ver NOTES.md.
   fecha_actualizacion: "2026-05-30"

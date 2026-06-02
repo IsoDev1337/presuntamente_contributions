@@ -12,9 +12,9 @@ rol: condenado_no_firme
 delitos_atribuidos:
   - apropiacion-indebida
 fecha_inicio: "2017-02-23"
-fecha_fin: "2017-07-17"
-# Fecha fin: fallecimiento de Blesa, que extingue la responsabilidad penal.
-# LLM-incierto: fecha exacta del fallecimiento a verificar.
+fecha_fin: "2017-07-28"
+# Fecha verificada el 2026-05-30 via nota oficial CGPJ (poderjudicial.es).
+# Coincide con hecho tarjetas-black-extincion-blesa (desde: "2017-07-28").
 hito_origen_id: tarjetas-black-sentencia-an-2017
 notas: |
   Miguel Blesa fue presidente de Caja Madrid desde 1996 hasta 2010. La Audiencia
@@ -26,5 +26,3 @@ notas: |
   condenado_no_firme (condicion al momento del fallecimiento) con fecha_fin en la
   fecha de fallecimiento. La presuncion de inocencia rige para cualquier extremo que
   no haya sido declarado probado por resolucion firme, la cual no llego a dictarse.
-  # LLM-incierto: tratamiento exacto en la STS (declaracion de extincion y articulo CP
-  # aplicado) a verificar en CENDOJ.

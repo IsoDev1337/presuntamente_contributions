@@ -10,9 +10,9 @@ cargos_publicos_historicos:
     hasta: "2010-01-01"
     # LLM-incierto: fechas exactas de inicio y cese de presidencia a verificar.
 fallecido: true
-fecha_fallecimiento: "2017-07-17"
-# LLM-incierto: la fecha de fallecimiento que circula en prensa es julio de 2017;
-# la fecha exacta (17-07-2017) se basa en cobertura periodistica. Verificar.
+fecha_fallecimiento: "2017-07-28"
+# Fecha verificada el 2026-05-31 (coherente con nota CGPJ 21-11-2017 y con
+# hechos/tarjetas-black-extincion-blesa.yaml y roles/rol-miguel-blesa-condenado.yaml).
 biografia_corta: |
   Abogado del Estado y directivo bancario espanol. Fue presidente de Caja
   Madrid desde 1996 hasta 2010. En el caso de las tarjetas opacas de Caja

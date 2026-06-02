@@ -27,8 +27,10 @@ descripcion_corta: |
   Reñones (12 años) y Juan Antonio Roca (11 años y 240 M€ de multa).
   El Tribunal Supremo dictó sentencia firme el 27 de julio de 2015
   (ponente Juan Saavedra Ruiz), elevando la condena de Roca a 17 años
-  de prisión y 232 M€ de multa, reduciendo los condenados a 48 y
-  modificando la distribución de los bienes decomisados. A 2026, el
+  de prisión, reduciendo los condenados a 48 y modificando la
+  distribución de los bienes decomisados. La cobertura periodística
+  cifra la multa impuesta a Roca en 232 M€, dato pendiente de
+  confirmar en el texto íntegro de la sentencia. A 2026, el
   Ayuntamiento de Marbella ha recuperado aproximadamente 92 millones
   de euros procedentes de las condenas.
 
@@ -37,13 +39,13 @@ sintesis_caso:
   hechos_clave:
     - "La Operación Malaya, iniciada en noviembre de 2005, culminó el 29 de marzo de 2006 con la detención de 29 personas y la incautación de bienes valorados inicialmente en 2.600 millones de euros."
     - "El Ayuntamiento de Marbella fue disuelto el 7 de abril de 2006, primera vez en la historia democrática española que se disuelve un consistorio."
-    - "El Tribunal Supremo dictó sentencia firme el 27 de julio de 2015, confirmando 48 condenas y elevando la pena de Roca a 17 años de prisión y 232 millones de euros de multa."
+    - "El Tribunal Supremo dictó sentencia firme el 27 de julio de 2015, confirmando 48 condenas y elevando la pena de Roca a 17 años de prisión (la multa, según la cobertura periodística, habría rondado los 232 M€, sin cuantía confirmada en el texto íntegro de la sentencia)."
     - "En 20 años de ejecución de condenas, el Ayuntamiento de Marbella ha recuperado unos 92 millones de euros, frente a una deuda heredada de 450 millones."
   estado_actual: "Sentencia firme del Tribunal Supremo desde el 27 de julio de 2015. La causa se encuentra en fase de ejecución de sentencia."
   cifras_clave:
     - "48 condenados por sentencia firme del TS (2015)"
     - "17 años de prisión para Juan Antonio Roca (pena más alta)"
-    - "232 M€ de multa penal impuesta a Juan Antonio Roca"
+    - "232 M€ de multa atribuidos a Roca según cobertura periodística (pendiente confirmar en sentencia TS)"
     - "92 M€ recuperados por el Ayuntamiento de Marbella en 20 años"
     - "450 M€ de deudas heredadas del período corrupto"
 
@@ -71,12 +73,12 @@ delitos_atribuidos_en_la_causa:
 resumen_cifras: |
   La sentencia firme del Tribunal Supremo de 27 de julio de 2015
   elevó la pena de Juan Antonio Roca, al que el tribunal considera figura central de la red de corrupción, a 17
-  años de prisión y 232 millones de euros de multa, agravando la
-  condena inicial de la Audiencia Provincial de Málaga (11 años y 240
-  M€). El blanqueo de capitales acreditado judicialmente asciende a
-  al menos 12 millones de euros, aunque las estimaciones del expolio
-  total a las arcas municipales oscilan entre 300 y 550 millones de
-  euros en cifras periodísticas. En 20 años de ejecución, el
+  años de prisión, agravando la condena inicial de la Audiencia Provincial de Málaga (11 años y 240 M€ de multa).
+  La cobertura periodística cifra la multa del TS en 232 millones de euros, dato pendiente de
+  confirmar en el texto íntegro de la sentencia (aún no localizada en CENDOJ). El blanqueo de
+  capitales atribuido a la red no tiene una cuantía única confirmada en la
+  sentencia; las estimaciones del expolio total a las arcas municipales oscilan,
+  según cifras periodísticas, entre 300 y 550 millones de euros. En 20 años de ejecución, el
   Ayuntamiento de Marbella ha recuperado aproximadamente 92 millones
   de euros (más de 60 M€ por venta de bienes de Roca y 17 M€ por
   procedimientos del Tribunal de Cuentas), frente a una deuda
@@ -91,7 +93,7 @@ estado_ficha:
   roles_procesales: parcial
   documentos_primarios: parcial
   hechos_modelados: parcial
-  fuentes_cruzadas: completo
+  fuentes_cruzadas: parcial
   composicion_fuentes_citadas: pendiente
   vinculos_institucionales: pendiente
   conexiones: parcial

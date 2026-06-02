@@ -4,9 +4,9 @@ enunciado: |
   La STS 277/2018 impuso responsabilidades civiles a título lucrativo (partícipes que se
   beneficiaron de los delitos sin ser autores penalmente responsables): la Infanta Cristina
   de Borbón fue condenada a abonar 136.950 euros por los delitos de malversación y fraude
-  a la Administración cometidos por su marido; Ana María Tejeiro, esposa de Diego Torres, a
-  172.550 euros por los mismos conceptos. Ambas habían sido absueltas penalmente tanto por la
-  Audiencia Provincial de Palma como por el Tribunal Supremo.
+  a la Administración cometidos por su marido; una partícipe a título lucrativo (familiar de
+  uno de los condenados), a 172.550 euros por los mismos conceptos. Ambas habían sido
+  absueltas penalmente tanto por la Audiencia Provincial de Palma como por el Tribunal Supremo.
 tipo: acreditado
 # Promovido a 'acreditado' el 2026-05-30 (rev. maintainer). La nota CGPJ (N1) STS 277/2018
 # confirma literalmente los importes de responsabilidad civil a título lucrativo:
@@ -30,13 +30,14 @@ importe_clase: consecuencia
 importe_naturaleza: responsabilidad_civil
 importe_nota: |
   Importe de la responsabilidad civil a título lucrativo de Cristina de Borbón (136.950 €).
-  La responsabilidad de Ana María Tejeiro (172.550 €) se modela por separado en importe_sujeto.
+  La responsabilidad civil de la segunda partícipe a título lucrativo (172.550 €) se modela
+  por separado en importe_sujeto.
 importe_atribucion:
   - sujeto_tipo: persona
     sujeto: cristina-de-borbon
     papel: obligado
     importe_sujeto: 136950
-    nota: "Partícipe a título lucrativo por malversación y fraude a la Administración del marido. Absolta penalmente."
+    nota: "Partícipe a título lucrativo por malversación y fraude a la Administración del marido. Absuelta penalmente."
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

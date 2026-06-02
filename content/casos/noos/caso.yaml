@@ -55,10 +55,10 @@ resumen_cifras: |
   El Tribunal Supremo cuantificó en 445.000 euros los fondos públicos percibidos por el
   Instituto Nóos sin la correlativa contraprestación de servicios (importe objeto del caso).
   Las responsabilidades civiles en sentencia firme ascienden a 136.950 euros para Cristina de
-  Borbón y 172.550 euros para Ana María Tejeiro (esposa de Torres), ambas como partícipes a
-  título lucrativo absueltas penalmente. No se suman entre sí objeto y consecuencia:
-  los 445.000 € son el quebranto investigado; las responsabilidades civiles son la consecuencia
-  económica del procedimiento, no el importe malversado.
+  Borbón y 172.550 euros para una segunda partícipe a título lucrativo, ambas absueltas
+  penalmente. No se suman entre sí objeto y consecuencia: los 445.000 € son el quebranto
+  investigado; las responsabilidades civiles son la consecuencia económica del procedimiento,
+  no el importe malversado.
 
 estado_publicacion: borrador
 ultima_revision_editorial: "2026-05-30"
@@ -66,7 +66,7 @@ nivel_relevancia_editorial: capital
 
 estado_ficha:
   cronologia: parcial
-  roles_procesales: completo
+  roles_procesales: parcial
   documentos_primarios: parcial
   hechos_modelados: parcial
   fuentes_cruzadas: completo

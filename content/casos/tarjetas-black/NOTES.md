@@ -174,6 +174,34 @@ calificacion como apropiacion indebida) se mantiene en `atribuido` porque:
 - [ ] Promover `tarjetas-black-uso-tarjetas-opacas` a 'acreditado' tras localizar
       el texto de la sentencia e identificar las paginas exactas de Hechos Probados.
 
+## Revision panel 2026-05-31 (correcciones post-revision ROJO)
+
+Panel de revision dejo el caso en estado ROJO por dos hallazgos:
+
+**A2 — Texto placeholder y afirmacion falsa en campo publico (`resumen_cifras`):**
+El campo contenia la frase "(cifra pendiente de verificar contra los hechos probados
+de la sentencia)" y la afirmacion "No existe una cifra unica de responsabilidad civil
+global publicada oficialmente", que es falsa: la nota CGPJ de la STS de 03-10-2018
+(ECLI:ES:TS:2018:3253) si cifra la responsabilidad civil total en >12 M EUR
+(aprox. 9,3 M EUR periodo Blesa + 2,6 M EUR periodo Rato).
+Correccion aplicada: `resumen_cifras` reescrito con las cifras verificadas y la
+fuente (nota CGPJ). Eliminado el texto placeholder. Las cifras se basan en la nota
+oficial CGPJ documentada en NOTES.md (sesion 2026-05-30, seccion
+"tarjetas-black-condena-firme-ts-2018").
+
+**A7 — Tres fechas erroneas que contradecian valores ya verificados en el caso:**
+- `caso.yaml` / `fecha_cierre`: corregida de "2018-06-08" a "2018-10-03"
+  (fecha verificada del hito tarjetas-black-sentencia-ts-firme-2018 y nota CGPJ).
+- `roles/rol-rodrigo-rato-condenado.yaml` / `fecha_inicio`: corregida de "2018-06-08"
+  a "2018-10-03" (idem).
+- `roles/rol-miguel-blesa-condenado.yaml` / `fecha_fin`: corregida de "2017-07-17"
+  a "2017-07-28" (fecha verificada del hecho tarjetas-black-extincion-blesa y
+  nota CGPJ de 21-11-2017).
+En todos los casos se eliminaron los comentarios `# LLM-incierto` correspondientes
+y se sustituyeron por comentarios que referencian el respaldo verificado.
+
+**FIX 3 (estado_ficha):** ningun subcampo estaba en `completo`; no se modifico.
+
 ## Relaciones con otros casos (propuestas, NO escritas en content/)
 
 - **bankia-salida-bolsa**: nexo formal/funcional fuerte. Las tarjetas afloraron a

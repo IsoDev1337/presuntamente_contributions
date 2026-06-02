@@ -8,11 +8,10 @@ enunciado: |
   12 millones de euros de los más de 23 millones de euros expoliados,
   según la cobertura periodística de 2022. De los condenados se
   recuperaron más de 6 millones de euros de Fèlix Millet, más de
-  1,6 millones de Jordi Montull, y casi 3 millones de Marta Vallès
-  (cónyuge de Millet) y sus herederos. La recuperación del comiso
-  de 6,67 millones de euros a CDC quedó derivada al procedimiento
-  concursal del partido en el Juzgado Mercantil 9 de Barcelona
-  (auto Audiencia Provincial de Barcelona de 15 de febrero de 2022).
+  1,6 millones de Jordi Montull, y casi 3 millones de familiares
+  del principal responsable a título lucrativo y sus herederos. Parte del
+  comiso vinculado a CDC quedó pendiente de ejecución por el procedimiento
+  concursal del partido (Juzgado Mercantil 9 de Barcelona), según la cobertura.
 tipo: atribuido
 fecha_o_periodo:
   desde: "2020-05-01"
@@ -29,9 +28,13 @@ organizaciones_implicadas:
 documentos_respaldo:
   - documento_id: eldiario-recuperacion-fondos-palau-2022
     pasaje: "Más de 12 millones recuperados del saqueo del Palau de la Música"
-  - documento_id: nota-cgpj-ap-barcelona-pieza-ejecucion-cdc-2022
-    pasaje: "La Audiencia de Barcelona paraliza la ejecución del comiso a CDC y la remite al concurso del partido"
-nivel_fuente_efectivo: 1
+# nivel_fuente_efectivo: 4 — la cifra de >12 M€ recuperados la respalda únicamente
+# elDiario.es (N4, 2022). La nota CGPJ N1 (nota-cgpj-ap-barcelona-pieza-ejecucion-cdc-2022)
+# cubre solo la derivación CDC al Juzgado Mercantil 9; no cuantifica la recuperación
+# global. Sin segunda línea editorial N4 ni fuente primaria que acredite el importe.
+# Pendiente_primario: auto de ejecución del Juzgado nº 30 o AP Barcelona.
+# Ver NOTES.md, entrada 2026-05-31.
+nivel_fuente_efectivo: 4
 vigencia: vigente
 redaccion_neutra_revisada: true
 estado_publicacion: borrador

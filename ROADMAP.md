@@ -4,9 +4,9 @@
 >
 > Roadmap conceptual: [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Histórico largo: [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-05-30 (**tanda masiva de casos vía workflow multiagente**). 12 casos nuevos modelados completos desde esqueleto (`gurtel`, `punica`, `pujol`, `eres-andalucia`, `noos`, `malaya`, `tarjetas-black`, `barcenas-caja-b`, `filesa`, `tandem`, `palau-musica`, `forum-filatelico`) + barrido de actualidad en los 8 ya fichados (hitos nuevos en kitchen/plus-ultra/begona/g.amador/fge/atico). Inventario: **20 casos con contenido modelado**; +75 personas, +34 orgs, +105 documentos, +2 delitos (estafa, insolvencia punible), +49 vínculos, +7 relaciones-entre-casos, +12 corpus de cobertura mediática. Dedup `pablo-ruz`→`pablo-ruz-gutierrez`. Auditoría `/revisar-caso` de los 20 + **dos pasadas de corrección**: bloqueantes mecánicos y editoriales resueltos (bios "no modelado", `trama` P-09, fechas rol ERE, `querellante_inicial_id` Bárcenas, ref rota noos, tildes kitchen, `el-confidencial-digital`, `pujol` actualizado, `Cavero` anonimizada, PSOE→afectación indirecta) y **18 hechos con sentencia firme promovidos a `acreditado`** con cita N1 verificada (búsqueda real en CGPJ/BOE). `pnpm validate` **1359 OK / 0 errores**. **Commiteado** en `093e9ce` (625 ficheros); **pendiente `git push`** (lo decide el maintainer: `main` está 2 commits por delante de `origin`). Detalle: [`historial-2026-05.md`](docs/roadmap/historial-2026-05.md). Pendientes no bloqueantes: ver "Estado de los bloqueantes" abajo.
+**Última actualización:** 2026-05-31 (**sistema de promoción probado + 4 casos saneados + hallazgo de fugas**). Skill [`/promover-caso`](.agents/skills/promover-caso/SKILL.md) (panel de 3 sub-agentes Sonnet ciegos que deben coincidir + autorización del maintainer; el maintainer **no revisa contenido**) + campo cola `promocion_propuesta` + bloque "Proponer promoción" en las 5 skills de contenido: **construido y probado a fondo** (3 pasadas sobre el lote; el panel cazó bug real tras bug real). **`gurtel` → `beta_publica`** (panel 3/3 VERDE, autorizado). **`noos`** VERDE (pendiente solo del barrido de comentarios). **malaya/palau/tarjetas-black** saneados (cifras solo-prensa/Wikipedia retiradas, V-19, fechas, placeholders), pendientes de re-panel de confirmación. Rubro afinado a **v0.1** (A3: V-13 no aplica a `atribuido`; A5: citas literales fieles, partes formales no-modeladas = laguna, no exposición). **🚨 HALLAZGO a investigar en otra sesión:** comentarios `# LLM-incierto` dentro de bloques YAML se **renderizan en el sitio público** (plus-ultra, gonzalez-amador, buscador…) → ver "Fugas de comentarios internos" abajo. `validate` 0 / build limpio; **sin commitear** (working tree).
 
-**Anterior (2026-05-29, importe presuntamente atribuido).** Modelado de dinero completo: `importe_atribucion` por sujeto (papel económico ≠ rol procesal) + V-24/V-25; cifras por sujeto en fichas; `/graficas` con cabecera sticky; cobertura de cifras en `/casos`/`/personas`/`/organizaciones`. Ficha [`importe-presunto.md`](docs/web/features/importe-presunto.md).
+**Anterior (2026-05-30, tanda masiva).** 12 casos nuevos modelados + 8 actualizados; +75 personas, +34 orgs, +105 docs, +49 vínculos, +7 relaciones, +12 cobertura; 18 hechos firmes promovidos a `acreditado` (cita N1 verificada). **Commiteado** en `093e9ce`; **pendiente `git push`** (`main` ~3 commits por delante de `origin`). Detalle: [`historial-2026-05.md`](docs/roadmap/historial-2026-05.md).
 
 ---
 
@@ -25,12 +25,12 @@
 
 ## Estado actual
 
-- **Fase activa:** **Post-launch temprano.** Fase 0, 1.0 y 1 cerradas; Fase 2 con **20 casos con contenido modelado** (7 publicables + 13 en borrador tras la tanda 2026-05-30). Sitio público, tráfico real.
-- **Casos publicables:** `plus-ultra` (pin#1), `leire-diez` (pin#2), `begona-gomez`, `gonzalez-amador`, `fiscal-general-del-estado`, `kitchen`, `lezo`.
-- **Casos en borrador (tanda 2026-05-30, pendientes de revisión + subir `estado_publicacion`):** `gurtel`, `punica`, `pujol`, `eres-andalucia`, `noos`, `malaya`, `tarjetas-black`, `barcenas-caja-b`, `filesa`, `tandem`, `palau-musica`, `forum-filatelico`, `atico-estepona`.
-- **Pre-launch cerrado:** Bloques A, B, C, E.
-- **Bloque D:** suficiente. Pendiente v1.x: composición de fuentes citadas, barra proporcional por corriente editorial, pills en §7 cobertura mediática.
-- **Próximo paso:** `git push` de la tanda (commit `093e9ce`, lo decide el maintainer); roles procesales de `pujol` (7 hijos `investigado`→`acusado`, Pujol Soley→`desimputado`); revisar las decisiones de criterio (ver "Estado de los bloqueantes"); `pnpm archive:catchup` de los N4 nuevos (requiere red); seguimiento declaración Zapatero 17-18 jun.
+- **Fase activa:** **Post-launch temprano.** Fase 0, 1.0 y 1 cerradas; Fase 2 con **20 casos con contenido modelado** (7 publicables + `gurtel` recién subido a beta + 12 en borrador). Sitio público, tráfico real.
+- **Casos públicos (beta+):** `plus-ultra` (pin#1), `leire-diez` (pin#2), `begona-gomez`, `gonzalez-amador`, `fiscal-general-del-estado`, `kitchen`, `lezo`, **`gurtel`** (subido 2026-05-31 vía `/promover-caso`).
+- **Casos en borrador:** `punica`, `pujol`, `eres-andalucia`, `noos` (VERDE, pendiente barrido comentarios), `malaya`, `tarjetas-black`, `barcenas-caja-b`, `filesa`, `tandem`, `palau-musica`, `forum-filatelico`, `atico-estepona`.
+- **Sistema de transición de estados — construido y probado:** skill [`/promover-caso`](.agents/skills/promover-caso/SKILL.md) (panel de 3 Sonnet ciegos + autorización del maintainer) + campo cola `promocion_propuesta` en `caso.yaml` + bloque "Proponer promoción" en las 5 skills de contenido. Rubro Puertas A/B/C, v0.1. La cola (`--cola`) escala a 500 casos sin reescanear todo.
+- **Pre-launch cerrado:** Bloques A, B, C, E. **Bloque D:** suficiente (v1.x menor pendiente).
+- **Próximo paso:** **(1)** investigar y limpiar las **fugas de comentarios** (sección abajo) — afecta a casos ya publicados. **(2)** re-panel de confirmación de `malaya`/`palau-musica`/`tarjetas-black` (ya saneados) → subir a beta los VERDE; promover `noos` tras el barrido. **(3)** panel sobre los 8 borradores restantes. **(4)** `git push` (lo decide el maintainer); roles `pujol`; `archive:catchup`; Zapatero 17-18 jun.
 - **Infra:** dominio y emails operativos; Cloudflare Pages servida en apex + `www`; deploy automático en `main`.
 - **Dev:** `pnpm dev` → `http://localhost:4321`. **Git:** `main` directo; sin `git add`/`commit`/`push` salvo cierre explícito del maintainer ([`AGENTS.md`](AGENTS.md)).
 
@@ -119,7 +119,7 @@ Plan detallado fuera de git. Pre-requisitos: deploy + dominio → lanzamiento bl
 | FGE | publicable | amparo TC admisibilidad; indulto parcial pendiente CM |
 | Kitchen | publicable | sentencia otoño 2026 |
 | Lezo | publicable | sentencia Inassa (en curso); pieza golf sep 2027 |
-| Gürtel | borrador (2026-05-30) | 3 hechos firmes promovidos a `acreditado` (STS 507/2020); pieza visita del Papa pendiente de pena individual; decidir "Gürtel" nombre propio (P-09) |
+| Gürtel | **beta_publica (2026-05-31)** | subido vía `/promover-caso` (panel 3/3 VERDE, autorizado); pieza visita del Papa pendiente de pena individual; decidir "Gürtel" nombre propio (P-09) |
 | Púnica | borrador (2026-05-30) | crear docs N1 sentencias filtración 2017/2019; auto apertura juicio pieza 8 (hoy N4) |
 | Pujol | borrador (2026-05-30) | **actualizado**: juicio nov-2025/may-2026 + sobreseimiento Pujol Soley + visto para sentencia modelados; doc huérfano eliminado. Falta: roles 7 hijos `investigado`→`acusado` y Pujol Soley→`desimputado` (rev. humana) |
 | ERE Andalucía | borrador (2026-05-30) | **0 promovidos a propósito** (TC anuló/matizó condenas 2024; firmeza no limpia); piezas específicas; ponente TS; PDF íntegro CENDOJ |
@@ -145,6 +145,19 @@ Plan detallado fuera de git. Pre-requisitos: deploy + dominio → lanzamiento bl
 3. **Promociones a `acreditado` no hechas a propósito**: ERE (TC matizó la firmeza 2024) y tándem (Salamanca sin confirmar casación; Villarejo no firme). Revisar cuando haya certeza de firmeza.
 4. **Posible 7.ª regla de afectación** (doc 08) para "partido cuya caja es objeto de investigación" (caso PSOE/leire-diez) — decisión de modelo, no urgente.
 5. **PDFs íntegros / `pendiente_primario`**: varias sentencias firmes respaldadas por nota CGPJ N1 pero sin PDF en CENDOJ (descarga con `ruta_local`+hash cuando aparezcan). `archive:catchup` de los N4 nuevos (requiere red).
+
+### Saneamiento del lote noos/malaya/palau/tarjetas (2026-05-31, vía `/promover-caso`)
+
+Tres pasadas del panel sobre estos 4 casos. Bugs reales cazados y **arreglados**: cifras solo-prensa/Wikipedia presentadas como firmes (malaya: 232 M€ y 12 M€ retiradas del modelo estructurado), violación **V-19** (palau: `nivel_fuente_efectivo` vs docs listados), **fechas erróneas** (tarjetas: ficha persona Blesa + roles Rato/Blesa), texto placeholder y comentarios incrustados en campos públicos. **`noos` = VERDE** (pendiente solo del barrido de comentarios); los otros 3 saneados, **pendientes de re-panel de confirmación** antes de subir a beta. Aprendizaje: los arreglos deben ser **exhaustivos por caso** (grep de TODOS los ficheros — fichas de persona, cobertura, hitos, roles, citas — no solo el que cita el panel); el residuo de la tanda vive disperso. Rubro afinado a **v0.1** (A3 y A5) y registrado en el `## Histórico` de la skill.
+
+### Fugas de comentarios internos en el sitio público (🚨 a investigar en sesión dedicada)
+
+**Problema (descubierto 2026-05-31).** El hábito de la tanda de dejar `# LLM-incierto: …` (y notas internas similares) **dentro de bloques de texto YAML** (`|` / `>-`) es un bug de exposición: en YAML, `#` dentro de un bloque escalar **no es comentario, es texto literal** → se renderiza en la web. Confirmado grepeando `dist/` (HTML construido, que solo contiene casos publicados): aparece en **`plus-ultra`** (pin#1), **`gonzalez-amador`**, fichas de persona (`miguel-blesa`, `pedro-roman-malaga`), 3 organizaciones de Andalucía y el **índice de búsqueda** (`/conexiones`, `/buscar`). Es **independiente de la tanda de borradores** y afecta a páginas **ya publicadas**.
+
+- **Alcance bruto:** `LLM-incierto` aparece ~131 veces en ~106 ficheros de `content/`. La mayoría son comentarios **seguros** (a nivel de mapping / columna 0, no se renderizan); solo los que están **dentro de un bloque `|`/`>-`** filtran. Distinguir es la clave del barrido.
+- **Ya limpiado (esta sesión, solo en los 4 casos del lote):** instancias en `caso.yaml`, hechos, hitos y roles de noos/malaya/palau/tarjetas. El resto del repo **sigue pendiente**.
+- **Fix propuesto:** escáner line-based que detecte bloques escalares y elimine las líneas `#` internas en TODO `content/`, revalidar + re-grepear `dist/` hasta cero. **Mejor aún: añadir un check en `scripts/validate.mjs` (regla V nueva)** que falle si hay `#` dentro de un bloque escalar, para que no recurra.
+- **Verificación de éxito:** `grep -rioE 'LLM-incierto|pendiente de localizar|cifra de memoria' dist/` debe quedar **vacío** tras el arreglo.
 
 ---
 

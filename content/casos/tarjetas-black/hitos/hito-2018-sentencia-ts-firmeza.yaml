@@ -17,8 +17,6 @@ descripcion: |
   no existe para el condena firme. La presuncion de inocencia decae respecto
   de los hechos declarados probados y firmes de los condenados cuya sentencia
   adquirio firmeza.
-  # LLM-incierto: numero de STS, ECLI y tratamiento exacto del fallecimiento de Blesa
-  # a verificar en el texto de la resolucion en CENDOJ.
 documento_principal_id: sentencia-ts-tarjetas-black-2018
 personas_afectadas:
   - rodrigo-rato

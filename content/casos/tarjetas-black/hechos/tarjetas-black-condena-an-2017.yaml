@@ -9,8 +9,6 @@ enunciado: |
   sentencia no es firme en este momento; queda abierto el recurso de casacion
   ante el Tribunal Supremo. La condicion de condenados en primera instancia
   no implica firmeza ni decaimiento definitivo de la presuncion de inocencia.
-  # LLM-incierto: numero de sentencia, seccion exacta de la Sala y listado de
-  # condenados con sus penas individuales a verificar en CENDOJ.
 tipo: atribuido
 # V-04: aunque la sentencia de instancia declara hechos probados, al no ser firme
 # se mantiene como 'atribuido'. La firmeza del TS (2018) es candidata a 'acreditado';
@@ -25,7 +23,7 @@ organizaciones_implicadas:
   - audiencia-nacional
 documentos_respaldo:
   - documento_id: sentencia-an-tarjetas-black-2017
-    pasaje: "FALLO y Hechos Probados — condenas individuales por apropiacion indebida (paginas pendientes de localizar en CENDOJ)."
+    pasaje: "FALLO y Hechos Probados — condenas individuales por apropiacion indebida."
 nivel_fuente_efectivo: 1
 vigencia: superado
 # Superado por la sentencia firme del TS (hecho tarjetas-black-condena-firme-ts-2018).

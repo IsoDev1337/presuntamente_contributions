@@ -58,7 +58,6 @@ sintesis_caso:
     - >-
       Importe total dispuesto con las tarjetas enjuiciadas: en torno a
       12 millones de euros a lo largo del periodo.
-      # LLM-incierto: cifra de memoria; verificar en hechos probados de la sentencia.
 
 organo_judicial_id: juzgado-central-instruccion-6
 # LLM-incierto: el juzgado instructor se cree que fue el JCI nº 6 (magistrado Fernando
@@ -73,9 +72,9 @@ fecha_apertura: "2013-01-01"
 # LLM-incierto: fecha de apertura formal de las DP; el caso afloró publicamente en
 # octubre de 2014 pero la instruccion se inicio antes. Verificar fecha exacta del auto
 # de incoacion.
-fecha_cierre: "2018-06-08"
-# LLM-incierto: fecha de la STS confirmatoria usada como cierre de la fase de recurso.
-# Verificar fecha exacta de la STS en CENDOJ.
+fecha_cierre: "2018-10-03"
+# Fecha verificada el 2026-05-30 via nota oficial CGPJ (poderjudicial.es).
+# ECLI:ES:TS:2018:3253. Coincide con hito tarjetas-black-sentencia-ts-firme-2018.
 
 origen_denuncia: fiscalia_anticorrupcion
 # LLM-incierto: la causa nacio en parte como pieza derivada de la causa Bankia y en
@@ -86,12 +85,13 @@ delitos_atribuidos_en_la_causa:
 
 resumen_cifras: |
   El importe total dispuesto con las tarjetas black durante el periodo enjuiciado
-  (aprox. 2003-2012) asciende a en torno a 12 millones de euros (cifra pendiente
-  de verificar contra los hechos probados de la sentencia). Las penas individuales
-  se graduaron segun el importe que cada condenado dispuso. No existe una cifra
-  unica de responsabilidad civil global publicada oficialmente; la responsabilidad
-  civil fue sustituida en varios casos por la devolucion de cantidades.
-  # LLM-incierto: verificar cifras exactas y responsabilidades civiles en la sentencia.
+  (aprox. 2003-2012) asciende a en torno a 12 millones de euros. La responsabilidad
+  civil fijada por el Tribunal Supremo en la STS de 3 de octubre de 2018 supera
+  los 12 millones de euros en total: aproximadamente 9,3 millones de euros
+  correspondientes al periodo de presidencia de Miguel Blesa y aproximadamente
+  2,6 millones de euros correspondientes al periodo de presidencia de Rodrigo Rato.
+  Las penas individuales se graduaron segun el importe que cada condenado dispuso.
+  Fuente: nota oficial CGPJ de 03-10-2018 (ECLI:ES:TS:2018:3253).
 
 estado_publicacion: borrador
 ultima_revision_editorial: "2026-05-30"
