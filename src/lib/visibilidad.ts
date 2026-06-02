@@ -82,6 +82,9 @@ interface VinculoLike {
 interface DocumentoLike {
   data: { caso_principal_id?: string; productor_organizacion_id?: string };
 }
+interface CoberturaLike {
+  data: { caso_id: string; noticias?: { medio_id?: string }[] };
+}
 
 export interface EntidadesVisiblesInput {
   casos: CasoLike[];
@@ -90,6 +93,7 @@ export interface EntidadesVisiblesInput {
   hitos?: HitoLike[];
   vinculos?: VinculoLike[];
   documentos?: DocumentoLike[];
+  cobertura?: CoberturaLike[];
 }
 
 export interface EntidadesVisibles {
@@ -145,6 +149,14 @@ export function entidadesEnCasosVisibles(input: EntidadesVisiblesInput): Entidad
   for (const d of input.documentos ?? []) {
     if (d.data.caso_principal_id && casos.has(d.data.caso_principal_id) && d.data.productor_organizacion_id) {
       organizaciones.add(d.data.productor_organizacion_id);
+    }
+  }
+  // Medios citados en la cobertura mediática de un caso visible: tienen ficha de
+  // clasificación editorial y la propia ficha del caso enlaza a ellos.
+  for (const c of input.cobertura ?? []) {
+    if (!casos.has(c.data.caso_id)) continue;
+    for (const n of c.data.noticias ?? []) {
+      if (n.medio_id) organizaciones.add(n.medio_id);
     }
   }
 

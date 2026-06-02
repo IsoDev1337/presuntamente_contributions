@@ -20,15 +20,16 @@ export const prerender = true;
 export const getStaticPaths: GetStaticPaths = async () => {
   const orgs = await getCollection('organizaciones');
   if (import.meta.env.DEV) return orgs.map((o) => ({ params: { slug: o.id } }));
-  const [casos, roles, hechos, hitos, vinculos, documentos] = await Promise.all([
+  const [casos, roles, hechos, hitos, vinculos, documentos, cobertura] = await Promise.all([
     getCollection('casos'),
     getCollection('roles'),
     getCollection('hechos'),
     getCollection('hitos'),
     getCollection('vinculos'),
     getCollection('documentos'),
+    getCollection('coberturaMediatica'),
   ]);
-  const { organizaciones: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos });
+  const { organizaciones: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos, cobertura });
   return orgs.filter((o) => visibles.has(o.data.id)).map((o) => ({ params: { slug: o.id } }));
 };
 

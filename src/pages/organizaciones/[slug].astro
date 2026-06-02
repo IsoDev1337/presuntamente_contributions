@@ -11,15 +11,16 @@ export async function getStaticPaths() {
   if (import.meta.env.DEV) {
     return organizaciones.map((organizacion) => ({ params: { slug: organizacion.id }, props: { organizacion } }));
   }
-  const [casos, roles, hechos, hitos, vinculos, documentos] = await Promise.all([
+  const [casos, roles, hechos, hitos, vinculos, documentos, cobertura] = await Promise.all([
     getCollection('casos'),
     getCollection('roles'),
     getCollection('hechos'),
     getCollection('hitos'),
     getCollection('vinculos'),
     getCollection('documentos'),
+    getCollection('coberturaMediatica'),
   ]);
-  const { organizaciones: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos });
+  const { organizaciones: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos, cobertura });
   return organizaciones
     .filter((organizacion) => visibles.has(organizacion.data.id))
     .map((organizacion) => ({ params: { slug: organizacion.id }, props: { organizacion } }));
