@@ -15,9 +15,10 @@ import { ultimaActualizacionDeCaso } from '@/lib/git-meta';
 import { toImporteEntries, totalesPorCaso, type HechoImporteInput } from '@/lib/importe';
 import { formatEurosCompact, formatEurosFull } from '@/lib/money';
 
-// En producción los casos en `pendiente`/`borrador` aparecen en la tabla
-// pero no son clickables y la ruta /casos/<slug> no se genera (ver
-// src/pages/casos/[slug].astro getStaticPaths). En dev local TODO es
+// En producción los casos en `pendiente`/`borrador` NO aparecen en el listado
+// (se filtran abajo) y la ruta /casos/<slug> tampoco se genera (ver
+// src/pages/casos/[slug].astro getStaticPaths): no debe asomar su nombre, su
+// síntesis ni sus organizaciones afectadas. En dev local TODO aparece y es
 // clickable para que el maintainer pueda trabajar fichas en construcción.
 const IS_PROD = import.meta.env.PROD;
 const ESTADOS_BLOQUEADOS_EN_PROD: ReadonlyArray<string> = ['pendiente', 'borrador'];
@@ -235,6 +236,9 @@ const casos = casosCol
         : null,
     };
   })
+  // En producción se excluyen del listado los casos no publicados (sus filas
+  // exponían nombre, síntesis y afectadas de un borrador). En dev no se filtra.
+  .filter((c) => !c.bloqueadoEnProd)
   // Orden por defecto: último hito ↓ (más reciente primero). Los casos sin
   // hitos quedan al final.
   .sort((a, b) => {
@@ -280,6 +284,16 @@ const opcionesOrgsAfectadas = Array.from(orgIdsPresentes)
     ];
   })
   .sort((a, b) => a.label.localeCompare(b.label, 'es'));
+
+// Nombres de los casos en preparación (ficha en estado `borrador`, en
+// desarrollo activo) para el listado rápido del pie: SÓLO el nombre mediático,
+// sin enlace ni detalle —su ficha no se genera en producción—. Da señal de
+// transparencia ("estos casos están en marcha") sin exponer rol, síntesis ni
+// afectados del borrador. En dev ya aparecen además como filas del listado.
+const casosEnPreparacion = casosCol
+  .filter((c) => c.data.estado_publicacion === 'borrador')
+  .map((c) => c.data.nombre_mediatico)
+  .sort((a, b) => a.localeCompare(b, 'es'));
 
 // Lista única de estados de elaboración de ficha que aparecen en el listado
 // (los 7 valores legales no aparecen todos en producción). Mantener el orden
@@ -632,6 +646,12 @@ function miniDescripcion(raw: string, max = 140): string {
   </p>
 
   <aside class="casos-backlog">
+    {casosEnPreparacion.length > 0 && (
+      <p class="casos-backlog__prep">
+        <strong>Fichas en preparación ahora mismo</strong> (aún no publicadas; se abrirán cuando
+        estén verificadas): {casosEnPreparacion.join(' · ')}.
+      </p>
+    )}
     <p>
       Este catálogo crece de forma curada. Mantenemos además, en abierto, una
       <strong>lista de trabajo de casos candidatos por verificar</strong>: cientos de
@@ -932,6 +952,15 @@ function miniDescripcion(raw: string, max = 140): string {
     font-size: var(--font-size-1);
     color: var(--color-fg-muted);
     line-height: 1.5;
+  }
+  .casos-backlog p.casos-backlog__prep {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-fg);
+  }
+  .casos-backlog__prep strong {
+    font-weight: 600;
   }
   .casos-backlog__link {
     font-weight: 600;

@@ -13,6 +13,7 @@ import {
   organizacionesAfectadasDeCaso,
   partidosAfectadosIndirectosDeCaso,
 } from '@/lib/afectacion';
+import { idsCasosVisibles, entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
 interface Props {
   lang?: 'es' | 'ca';
@@ -22,7 +23,7 @@ const { lang = 'es' } = Astro.props;
 
 // --- Cifras del inventario --------------------------------------------------
 
-const [casos, personas, organizaciones, documentos, hitosCol, rolesCol, vinculosCol] = await Promise.all([
+const [casos, personas, organizaciones, documentos, hitosCol, rolesCol, vinculosCol, hechosCol] = await Promise.all([
   getCollection('casos'),
   getCollection('personas'),
   getCollection('organizaciones'),
@@ -30,7 +31,23 @@ const [casos, personas, organizaciones, documentos, hitosCol, rolesCol, vinculos
   getCollection('hitos'),
   getCollection('roles'),
   getCollection('vinculos'),
+  getCollection('hechos'),
 ]);
+
+// Cifras del sello: en prod cuentan SÓLO el inventario visible (casos
+// publicados y lo que cuelga de ellos), igual que /cifras. En dev, todo.
+const casosVisiblesHome = idsCasosVisibles(casos);
+const entidadesHome = entidadesEnCasosVisibles({
+  casos,
+  roles: rolesCol,
+  hechos: hechosCol as unknown as { data: { caso_id: string; personas_implicadas?: string[]; organizaciones_implicadas?: string[] } }[],
+  hitos: hitosCol,
+  vinculos: vinculosCol,
+  documentos,
+});
+const totalDocumentosHome = documentos.filter(
+  (d) => !d.data.caso_principal_id || casosVisiblesHome.has(d.data.caso_principal_id),
+).length;
 
 const orgIdx = new Map(organizaciones.map((o) => [o.data.id, o.data]));
 
@@ -185,10 +202,10 @@ const strings = {
     { title: 'Presunción de inocencia', body: 'Investigado, procesado y condenado son cosas distintas — y se distinguen.' },
   ],
   contadores: [
-    { label: 'Casos catalogados',       value: casos.length },
-    { label: 'Personas con papel formal', value: personas.length },
-    { label: 'Organizaciones citadas',  value: organizaciones.length },
-    { label: 'Documentos de respaldo',  value: documentos.length },
+    { label: 'Casos catalogados',       value: casosVisiblesHome.size },
+    { label: 'Personas con papel formal', value: entidadesHome.personas.size },
+    { label: 'Organizaciones citadas',  value: entidadesHome.organizaciones.size },
+    { label: 'Documentos de respaldo',  value: totalDocumentosHome },
   ],
   secciones: [
     {

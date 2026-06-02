@@ -20,11 +20,12 @@ import {
   type HechoImporteInput,
 } from '@/lib/importe';
 import { formatEurosCompact, formatEurosFull } from '@/lib/money';
+import { idsCasosVisibles, entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
 interface Props { lang?: Lang; }
 const { lang = 'es' } = Astro.props;
 
-const [personasCol, rolesCol, vinculosCol, organizacionesCol, casosCol, delitosCol, hechosCol] = await Promise.all([
+const [personasCol, rolesCol, vinculosCol, organizacionesCol, casosCol, delitosCol, hechosCol, hitosCol, documentosCol] = await Promise.all([
   getCollection('personas'),
   getCollection('roles'),
   getCollection('vinculos'),
@@ -32,13 +33,32 @@ const [personasCol, rolesCol, vinculosCol, organizacionesCol, casosCol, delitosC
   getCollection('casos'),
   getCollection('delitos'),
   getCollection('hechos'),
+  getCollection('hitos'),
+  getCollection('documentos'),
 ]);
+
+// En prod sólo cuentan los casos publicados; en dev, todos. Filtra roles, casos
+// e importe para que el índice no liste a nadie por un caso en borrador ni deje
+// enlaces a fichas no generadas.
+const casosVisibles = idsCasosVisibles(casosCol);
+// Organizaciones cuya ficha se genera (para no enlazar el chip de cargo a una
+// página inexistente).
+const orgsGeneradas = entidadesEnCasosVisibles({
+  casos: casosCol,
+  roles: rolesCol,
+  hechos: hechosCol as unknown as { data: { caso_id: string; personas_implicadas?: string[]; organizaciones_implicadas?: string[] } }[],
+  hitos: hitosCol,
+  vinculos: vinculosCol,
+  documentos: documentosCol,
+}).organizaciones;
 
 // Importe presuntamente atribuido por persona (cubetas beneficiario + activo,
 // clase objeto), misma semántica que el "Importe atribuido" de /casos. No
 // incluye el perjuicio sufrido (víctimas) ni las consecuencias económicas.
 const importeEntries = toImporteEntries(
-  hechosCol.map((h) => h.data as unknown as HechoImporteInput),
+  hechosCol
+    .filter((h) => casosVisibles.has(h.data.caso_id))
+    .map((h) => h.data as unknown as HechoImporteInput),
 );
 function importeAtribuidoDe(sujeto: string): number {
   return importeAtribuidoSujeto(analizarSujeto(importeEntries, sujeto));
@@ -76,7 +96,7 @@ const personas = personasCol
     const rolesPersona = rolesCol.filter(
       (r) => r.data.sujeto_tipo === 'persona' && r.data.sujeto_persona_id === p.data.id,
     );
-    const roles = rolesPersona.map((r) => r.data);
+    const roles = rolesPersona.map((r) => r.data).filter((r) => casosVisibles.has(r.caso_id));
     const activos = roles.filter((r) => !r.fecha_fin);
     const referencia = activos.length > 0
       ? (activos.find((r) => rolGrupo(r.rol) === 'condenado')
@@ -124,7 +144,9 @@ const personas = personasCol
         return (b.data.desde ?? '').localeCompare(a.data.desde ?? '');
       });
     const vincRef = vinculosCargo[0]?.data;
-    const orgRefId = vincRef?.objeto_organizacion_id;
+    // Sólo se enlaza el cargo si la org tiene ficha generada en este entorno.
+    const orgRefIdRaw = vincRef?.objeto_organizacion_id;
+    const orgRefId = orgRefIdRaw && (import.meta.env.DEV || orgsGeneradas.has(orgRefIdRaw)) ? orgRefIdRaw : undefined;
     const orgRef = orgRefId ? orgIdx.get(orgRefId) : undefined;
 
     return {
@@ -144,6 +166,9 @@ const personas = personasCol
       importeAtribuido: importeAtribuidoDe(p.data.id),
     };
   })
+  // En prod no se lista a quien sólo aparece en casos no publicados (su ficha
+  // tampoco se genera). En dev se listan todas.
+  .filter((p) => import.meta.env.DEV || p.casosCount > 0)
   .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
 const casoIdsPresentes = new Set(personas.flatMap((p) => p.casoIds));

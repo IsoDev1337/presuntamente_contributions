@@ -1,13 +1,28 @@
 ---
 import { getCollection } from 'astro:content';
 import PgOrganizacionDetalle from '@/components/pages/PgOrganizacionDetalle.astro';
+import { entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
+// En producción sólo se generan fichas de organización ligadas a un caso
+// visible. Las que sólo aparecen en casos `pendiente`/`borrador` NO tienen
+// página pública (su ruta responde 404). En dev se generan todas.
 export async function getStaticPaths() {
   const organizaciones = await getCollection('organizaciones');
-  return organizaciones.map((organizacion) => ({
-    params: { slug: organizacion.id },
-    props: { organizacion },
-  }));
+  if (import.meta.env.DEV) {
+    return organizaciones.map((organizacion) => ({ params: { slug: organizacion.id }, props: { organizacion } }));
+  }
+  const [casos, roles, hechos, hitos, vinculos, documentos] = await Promise.all([
+    getCollection('casos'),
+    getCollection('roles'),
+    getCollection('hechos'),
+    getCollection('hitos'),
+    getCollection('vinculos'),
+    getCollection('documentos'),
+  ]);
+  const { organizaciones: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos });
+  return organizaciones
+    .filter((organizacion) => visibles.has(organizacion.data.id))
+    .map((organizacion) => ({ params: { slug: organizacion.id }, props: { organizacion } }));
 }
 
 const { organizacion } = Astro.props;

@@ -9,6 +9,7 @@
 
 import { getCollection } from 'astro:content';
 import { tipoHitoLabel } from './labels';
+import { casoVisibleAqui } from './visibilidad';
 
 /** Cuántos hitos se publican en el feed. Suficiente para periodistas que se
  *  suscriben (cubre ~3-6 meses al ritmo actual) sin inflar el XML. */
@@ -46,11 +47,10 @@ export interface FeedItem {
 /**
  * Devuelve los items del feed ordenados por fecha descendente y limitados a
  * `FEED_LIMIT`. Se omiten hitos cuyo caso no existe en la collection (refs
- * rotas, defensa en profundidad — `pnpm validate` ya las atrapa). El filtro
- * por `estado_publicacion` queda intencionalmente fuera: el resto del sitio
- * (PgCasos, PgCasoDetalle, etc.) tampoco filtra hoy, y todo el inventario
- * está en `borrador` durante el MVP. Si en el futuro se activa un gate
- * site-wide por `publicado`, este endpoint hereda la decisión sin cambios.
+ * rotas, defensa en profundidad — `pnpm validate` ya las atrapa) y los hitos de
+ * casos no publicados (`pendiente`/`borrador`): en prod el feed sólo expone
+ * hitos de casos visibles, igual que el resto del sitio (ver `lib/visibilidad`).
+ * En dev se incluyen todos.
  */
 export async function getFeedItems(siteUrl: URL): Promise<FeedItem[]> {
   const [hitos, casos] = await Promise.all([
@@ -64,6 +64,7 @@ export async function getFeedItems(siteUrl: URL): Promise<FeedItem[]> {
   for (const h of hitos) {
     const caso = casoIndex.get(h.data.caso_id);
     if (!caso) continue;
+    if (!casoVisibleAqui(caso.estado_publicacion)) continue;
 
     items.push({
       id: h.data.id,

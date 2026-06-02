@@ -1,13 +1,29 @@
 ---
 import { getCollection } from 'astro:content';
 import PgPersonaDetalle from '@/components/pages/PgPersonaDetalle.astro';
+import { entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
+// En producción sólo se generan fichas de persona ligadas a un caso visible.
+// Las personas que sólo aparecen en casos `pendiente`/`borrador` NO tienen
+// página pública (su ruta responde 404), evitando que su bio, roles y delitos
+// atribuidos asomen un caso aún no publicado. En dev se generan todas.
 export async function getStaticPaths() {
   const personas = await getCollection('personas');
-  return personas.map((persona) => ({
-    params: { slug: persona.id },
-    props: { persona },
-  }));
+  if (import.meta.env.DEV) {
+    return personas.map((persona) => ({ params: { slug: persona.id }, props: { persona } }));
+  }
+  const [casos, roles, hechos, hitos, vinculos, documentos] = await Promise.all([
+    getCollection('casos'),
+    getCollection('roles'),
+    getCollection('hechos'),
+    getCollection('hitos'),
+    getCollection('vinculos'),
+    getCollection('documentos'),
+  ]);
+  const { personas: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos });
+  return personas
+    .filter((persona) => visibles.has(persona.data.id))
+    .map((persona) => ({ params: { slug: persona.id }, props: { persona } }));
 }
 
 const { persona } = Astro.props;

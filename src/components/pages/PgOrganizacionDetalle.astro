@@ -13,6 +13,7 @@ import OrientacionBadge from '@/components/OrientacionBadge.astro';
 import NaturalezaBadge from '@/components/NaturalezaBadge.astro';
 import { tipoOrgLabel, rolLabel, naturalezaVinculoLabel, type Lang } from '@/lib/labels';
 import { toImporteEntries, analizarSujeto, type HechoImporteInput } from '@/lib/importe';
+import { entidadesEnCasosVisibles } from '@/lib/visibilidad';
 import EstadoPublicacionBadge from '@/components/EstadoPublicacionBadge.astro';
 import Aclaracion from '@/components/Aclaracion.astro';
 
@@ -34,19 +35,37 @@ const [rolesCol, casosCol, hechosCol, hitosCol, documentosCol, vinculosCol, pers
   getCollection('organizaciones'),
 ]);
 
+// Visibilidad pública: en prod sólo casos publicados y las entidades ligadas a
+// ellos. Filtra casos, roles, cifras, documentos y vínculos para no asomar un
+// caso en `borrador`/`pendiente`. En dev se ve todo.
+const visibles = entidadesEnCasosVisibles({
+  casos: casosCol,
+  roles: rolesCol,
+  hechos: hechosCol as unknown as { data: { caso_id: string; personas_implicadas?: string[]; organizaciones_implicadas?: string[] } }[],
+  hitos: hitosCol,
+  vinculos: vinculosCol,
+  documentos: documentosCol,
+});
+const entidadVisible = (tipo: 'persona' | 'organizacion', id: string): boolean =>
+  import.meta.env.DEV ||
+  (tipo === 'persona' ? visibles.personas.has(id) : visibles.organizaciones.has(id));
+
 const casoIndex = new Map(casosCol.map((c) => [c.data.id, c.data]));
 const personaIndex = new Map(personasCol.map((p) => [p.data.id, p.data]));
 const orgIndex = new Map(organizacionesCol.map((o) => [o.data.id, o.data]));
 const docIndex = new Map(documentosCol.map((d) => [d.data.id, d.data]));
 
-// Cifras económicas atribuidas a esta organización (por papel económico).
+// Cifras económicas atribuidas a esta organización (por papel económico). Sólo
+// de Hechos de casos visibles.
 const importeEntries = toImporteEntries(
-  hechosCol.map((h) => h.data as unknown as HechoImporteInput),
+  hechosCol
+    .filter((h) => visibles.casos.has(h.data.caso_id))
+    .map((h) => h.data as unknown as HechoImporteInput),
 );
 const analisisCifras = analizarSujeto(importeEntries, data.id);
 const hayCifras = analisisCifras.hayCifras;
 const casosNombre: Record<string, string> = Object.fromEntries(
-  casosCol.map((c) => [c.data.id, c.data.nombre_mediatico]),
+  casosCol.filter((c) => visibles.casos.has(c.data.id)).map((c) => [c.data.id, c.data.nombre_mediatico]),
 );
 
 // Casos con implicación procesual (rol, hecho, hito, órgano titular o querellante).
@@ -54,6 +73,7 @@ const casoIds = new Set<string>();
 for (const c of casosCol) if (c.data.organo_judicial_id === data.id || c.data.querellante_inicial_id === data.id) casoIds.add(c.data.id);
 const rolesOrg = rolesCol
   .filter((r) => r.data.sujeto_tipo === 'organizacion' && r.data.sujeto_organizacion_id === data.id)
+  .filter((r) => visibles.casos.has(r.data.caso_id))
   .map((r) => ({
     caso_id: r.data.caso_id,
     rol: r.data.rol,
@@ -73,9 +93,15 @@ for (const h of hitosCol) {
 
 const casos = Array.from(casoIds)
   .map((id) => casoIndex.get(id))
-  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+  .filter((c): c is NonNullable<typeof c> => Boolean(c))
+  .filter((c) => visibles.casos.has(c.id));
 
-const documentosProducidos = documentosCol.filter((d) => d.data.productor_organizacion_id === data.id);
+// Documentos producidos por esta org, salvo los de un caso no visible.
+const documentosProducidos = documentosCol.filter(
+  (d) =>
+    d.data.productor_organizacion_id === data.id &&
+    (!d.data.caso_principal_id || visibles.casos.has(d.data.caso_principal_id)),
+);
 
 function personaLabel(id: string): string {
   return personaIndex.get(id)?.nombre_completo ?? id;
@@ -115,24 +141,32 @@ function formatVinculoPeriodo(v: {
   return `${desde} → ${hasta}`;
 }
 
+// Enlaza la otra entidad sólo si su ficha se genera en este entorno (en prod,
+// sólo entidades ligadas a un caso visible). Si no, texto plano.
 function vinculoEntity(v: CollectionEntry<'vinculos'>['data'], side: 'sujeto' | 'objeto') {
   if (side === 'sujeto') {
-    if (v.sujeto_persona_id) return { label: personaLabel(v.sujeto_persona_id), href: personaHref(v.sujeto_persona_id) };
-    if (v.sujeto_organizacion_id) return { label: orgLabel(v.sujeto_organizacion_id), href: orgHref(v.sujeto_organizacion_id) };
+    if (v.sujeto_persona_id) return { label: personaLabel(v.sujeto_persona_id), href: entidadVisible('persona', v.sujeto_persona_id) ? personaHref(v.sujeto_persona_id) : undefined };
+    if (v.sujeto_organizacion_id) return { label: orgLabel(v.sujeto_organizacion_id), href: entidadVisible('organizacion', v.sujeto_organizacion_id) ? orgHref(v.sujeto_organizacion_id) : undefined };
   }
-  if (v.objeto_persona_id) return { label: personaLabel(v.objeto_persona_id), href: personaHref(v.objeto_persona_id) };
-  if (v.objeto_organizacion_id) return { label: orgLabel(v.objeto_organizacion_id), href: orgHref(v.objeto_organizacion_id) };
+  if (v.objeto_persona_id) return { label: personaLabel(v.objeto_persona_id), href: entidadVisible('persona', v.objeto_persona_id) ? personaHref(v.objeto_persona_id) : undefined };
+  if (v.objeto_organizacion_id) return { label: orgLabel(v.objeto_organizacion_id), href: entidadVisible('organizacion', v.objeto_organizacion_id) ? orgHref(v.objeto_organizacion_id) : undefined };
   return { label: 'Entidad no resuelta' };
 }
 
 const vinculosOrg = vinculosCol
   .filter((v) => v.data.sujeto_organizacion_id === data.id || v.data.objeto_organizacion_id === data.id)
   .filter((v) => v.data.estado_publicacion !== 'retirado_definitivamente')
+  .filter((v) => {
+    // Vínculo institucional puro (sin caso) o relevante a algún caso visible.
+    const rel = v.data.relevancia_para_caso_ids ?? [];
+    return rel.length === 0 || rel.some((id) => visibles.casos.has(id));
+  })
   .sort((a, b) => b.data.desde.localeCompare(a.data.desde))
   .map((v) => {
     const sujeto = vinculoEntity(v.data, 'sujeto');
     const objeto = vinculoEntity(v.data, 'objeto');
-    const primerCaso = v.data.relevancia_para_caso_ids?.[0];
+    // Puntero a caso: primer caso relevante que sea visible (nunca un borrador).
+    const primerCaso = (v.data.relevancia_para_caso_ids ?? []).find((id) => visibles.casos.has(id));
     const caso = primerCaso ? casoIndex.get(primerCaso) : undefined;
     return {
       id: v.data.id,
@@ -144,8 +178,8 @@ const vinculosOrg = vinculosCol
       descripcion: v.data.descripcion,
       periodo: formatVinculoPeriodo(v.data),
       gobierno: v.data.gobierno_o_legislatura,
-      casoLabel: caso?.nombre_mediatico ?? primerCaso,
-      casoHref: primerCaso ? `/casos/${primerCaso}` : undefined,
+      casoLabel: caso?.nombre_mediatico,
+      casoHref: caso ? `/casos/${primerCaso}` : undefined,
       papel: v.data.sujeto_organizacion_id === data.id ? 'Sujeto' : 'Objeto',
       documentos: v.data.documentos_respaldo.map((ref) => {
         const doc = docIndex.get(ref.documento_id);
@@ -242,6 +276,8 @@ const personasRelacionadas = vinculosCol
       NATURALEZAS_CARGO_PERSONA.has(v.data.naturaleza) &&
       v.data.estado_publicacion !== 'retirado_definitivamente',
   )
+  // Sólo personas cuya ficha se genera en este entorno (evita enlaces muertos).
+  .filter((v) => entidadVisible('persona', v.data.sujeto_persona_id!))
   .sort((a, b) => {
     const aV = a.data.vigente ? 1 : 0;
     const bV = b.data.vigente ? 1 : 0;

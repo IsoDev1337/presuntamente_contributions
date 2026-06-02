@@ -21,6 +21,7 @@ import {
   type DelitoLite,
   type GlosarioLite,
 } from '@/lib/richProse';
+import { entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
 interface Props {
   text: string;
@@ -45,25 +46,52 @@ const {
   excludePersonaIds,
 } = Astro.props as Props;
 
-const [orgsCol, personasCol, delitosCol, glosarioCol] = await Promise.all([
+const [orgsCol, personasCol, delitosCol, glosarioCol, casosCol, rolesCol, hechosCol, hitosCol, vinculosCol, documentosCol] = await Promise.all([
   getCollection('organizaciones'),
   getCollection('personas'),
   getCollection('delitos'),
   getCollection('glosario'),
+  getCollection('casos'),
+  getCollection('roles'),
+  getCollection('hechos'),
+  getCollection('hitos'),
+  getCollection('vinculos'),
+  getCollection('documentos'),
 ]);
 
-const orgs: OrgLite[] = orgsCol.map((o) => ({
-  id: o.data.id,
-  nombre: o.data.nombre,
-  nombres_alternativos: (o.data as { nombres_alternativos?: string[] }).nombres_alternativos,
-  siglas: (o.data as { siglas?: string }).siglas,
-}));
+// Sólo se auto-enlazan entidades cuya ficha se genera en este entorno (en prod,
+// las ligadas a un caso visible). Una organización o persona mencionada en la
+// prosa pero sin página pública se renderiza como texto plano: no debe quedar un
+// enlace a una página inexistente ni asomar una entidad de un caso en borrador.
+const ent = entidadesEnCasosVisibles({
+  casos: casosCol,
+  roles: rolesCol,
+  hechos: hechosCol as unknown as { data: { caso_id: string; personas_implicadas?: string[]; organizaciones_implicadas?: string[] } }[],
+  hitos: hitosCol,
+  vinculos: vinculosCol,
+  documentos: documentosCol,
+});
 
-const personas: PersonaLite[] = personasCol.map((p) => ({
-  id: p.data.id,
-  nombre_completo: p.data.nombre_completo,
-  nombres_alternativos: (p.data as { nombres_alternativos?: string[] }).nombres_alternativos,
-}));
+// En dev se generan todas las fichas, así que se auto-enlazan todas; en prod
+// sólo las que tienen página (ligadas a un caso visible).
+const gateLinks = !import.meta.env.DEV;
+
+const orgs: OrgLite[] = orgsCol
+  .filter((o) => !gateLinks || ent.organizaciones.has(o.data.id))
+  .map((o) => ({
+    id: o.data.id,
+    nombre: o.data.nombre,
+    nombres_alternativos: (o.data as { nombres_alternativos?: string[] }).nombres_alternativos,
+    siglas: (o.data as { siglas?: string }).siglas,
+  }));
+
+const personas: PersonaLite[] = personasCol
+  .filter((p) => !gateLinks || ent.personas.has(p.data.id))
+  .map((p) => ({
+    id: p.data.id,
+    nombre_completo: p.data.nombre_completo,
+    nombres_alternativos: (p.data as { nombres_alternativos?: string[] }).nombres_alternativos,
+  }));
 
 const delitos: DelitoLite[] = delitosCol.map((d) => ({
   id: d.data.id,

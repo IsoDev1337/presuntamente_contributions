@@ -6,6 +6,7 @@ import CatalogoLeyenda from '@/components/CatalogoLeyenda.astro';
 import SectionH from '@/components/SectionH.astro';
 import { getCollection } from 'astro:content';
 import { familiaDelitoLabel, type Lang } from '@/lib/labels';
+import { idsCasosVisibles } from '@/lib/visibilidad';
 import Aclaracion from '@/components/Aclaracion.astro';
 
 interface Props { lang?: Lang; }
@@ -17,21 +18,24 @@ const [delitosCol, casosCol, rolesCol] = await Promise.all([
   getCollection('roles'),
 ]);
 
-// Para cada delito calculamos:
+// En prod sólo cuentan los casos publicados; en dev, todos.
+const casosVisibles = idsCasosVisibles(casosCol);
+
+// Para cada delito calculamos (sólo sobre casos visibles):
 //   - casos: número de casos cuyos `delitos_atribuidos_en_la_causa` lo incluyen.
 //   - atribuciones: número de roles (persona+org) que se lo atribuyen formalmente.
 function countCasos(delitoId: string): number {
   const set = new Set<string>();
   for (const c of casosCol) {
-    if (c.data.delitos_atribuidos_en_la_causa?.includes(delitoId)) set.add(c.data.id);
+    if (casosVisibles.has(c.data.id) && c.data.delitos_atribuidos_en_la_causa?.includes(delitoId)) set.add(c.data.id);
   }
   for (const r of rolesCol) {
-    if (r.data.delitos_atribuidos?.includes(delitoId)) set.add(r.data.caso_id);
+    if (casosVisibles.has(r.data.caso_id) && r.data.delitos_atribuidos?.includes(delitoId)) set.add(r.data.caso_id);
   }
   return set.size;
 }
 function countAtribuciones(delitoId: string): number {
-  return rolesCol.filter((r) => r.data.delitos_atribuidos?.includes(delitoId)).length;
+  return rolesCol.filter((r) => casosVisibles.has(r.data.caso_id) && r.data.delitos_atribuidos?.includes(delitoId)).length;
 }
 
 const delitos = delitosCol

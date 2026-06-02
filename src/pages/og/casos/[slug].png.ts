@@ -14,12 +14,16 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { renderOgCaso } from '@/lib/og';
 import { rolGrupo } from '@/lib/labels';
+import { casoVisibleAqui } from '@/lib/visibilidad';
 
 export const prerender = true;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const casos = await getCollection('casos');
-  return casos.map((c) => ({ params: { slug: c.id } }));
+  // Sin OG card para casos no publicados en prod (la ficha tampoco se genera).
+  return casos
+    .filter((c) => casoVisibleAqui(c.data.estado_publicacion))
+    .map((c) => ({ params: { slug: c.id } }));
 };
 
 export const GET: APIRoute = async ({ params }) => {

@@ -14,12 +14,23 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { renderOgPersona, rolOgStyle } from '@/lib/og';
 import { rolLabel } from '@/lib/labels';
+import { entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
 export const prerender = true;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const personas = await getCollection('personas');
-  return personas.map((p) => ({ params: { slug: p.id } }));
+  if (import.meta.env.DEV) return personas.map((p) => ({ params: { slug: p.id } }));
+  const [casos, roles, hechos, hitos, vinculos, documentos] = await Promise.all([
+    getCollection('casos'),
+    getCollection('roles'),
+    getCollection('hechos'),
+    getCollection('hitos'),
+    getCollection('vinculos'),
+    getCollection('documentos'),
+  ]);
+  const { personas: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos });
+  return personas.filter((p) => visibles.has(p.data.id)).map((p) => ({ params: { slug: p.id } }));
 };
 
 export const GET: APIRoute = async ({ params }) => {

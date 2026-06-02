@@ -6,6 +6,7 @@ import {
   tipoDocLabel,
   tipoOrgLabel,
 } from '@/lib/labels';
+import { entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
 export type GraphNodeKind = 'caso' | 'persona' | 'organizacion' | 'documento';
 export type GraphEdgeKind = 'procesal' | 'institucional' | 'caso_caso' | 'documental';
@@ -100,6 +101,21 @@ function docRefsFromUnknown(value: unknown): string[] {
 export function buildGraphPayload(input: BuildGraphInput): GraphPayload {
   const visibleCases = input.casos.filter((c) => !CASES_EXCLUDED_FROM_GRAPH.has(c.data.estado_publicacion));
   const visibleCaseIds = new Set(visibleCases.map((c) => c.data.id));
+
+  // Sólo se crean nodos de persona/organización cuya ficha se genera en este
+  // entorno (en prod, las ligadas a un caso visible). Evita nodos clickables
+  // hacia páginas inexistentes cuando un vínculo institucional araña hacia una
+  // entidad que sólo aparece en casos no publicados. En dev se generan todas las
+  // fichas, así que no se filtran nodos.
+  const gateNodos = !import.meta.env.DEV;
+  const generadas = entidadesEnCasosVisibles({
+    casos: input.casos,
+    roles: input.roles,
+    hechos: input.hechos as unknown as { data: { caso_id: string; personas_implicadas?: string[]; organizaciones_implicadas?: string[] } }[],
+    hitos: input.hitos,
+    vinculos: input.vinculos,
+    documentos: input.documentos,
+  });
   const personaIndex = new Map(input.personas.map((p) => [p.data.id, p.data]));
   const orgIndex = new Map(input.organizaciones.map((o) => [o.data.id, o.data]));
   const docIndex = new Map(input.documentos.map((d) => [d.data.id, d.data]));
@@ -131,6 +147,7 @@ export function buildGraphPayload(input: BuildGraphInput): GraphPayload {
   }
 
   function addPersonaNode(personaId: string) {
+    if (gateNodos && !generadas.personas.has(personaId)) return;
     const p = personaIndex.get(personaId);
     if (!p) return;
     addNode({
@@ -149,6 +166,7 @@ export function buildGraphPayload(input: BuildGraphInput): GraphPayload {
   }
 
   function addOrgNode(orgId: string) {
+    if (gateNodos && !generadas.organizaciones.has(orgId)) return;
     const o = orgIndex.get(orgId);
     if (!o) return;
     addNode({

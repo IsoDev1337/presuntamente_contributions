@@ -16,6 +16,7 @@ import {
 } from '@/lib/labels';
 import { getCollection } from 'astro:content';
 import { bump, entries, type Counter } from '@/lib/aggregation';
+import { idsCasosVisibles, entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
 interface Props {
   lang?: 'es' | 'ca';
@@ -25,16 +26,17 @@ const { lang = 'es' } = Astro.props;
 // TODO i18n: cuando se active el catalán, traducir strings.
 
 const [
-  casosCol,
-  personasCol,
-  organizacionesCol,
-  documentosCol,
+  casosColRaw,
+  personasColRaw,
+  organizacionesColRaw,
+  documentosColRaw,
   delitosCol,
   glosarioCol,
-  hitosCol,
-  hechosCol,
-  rolesCol,
-  relacionesCol,
+  hitosColRaw,
+  hechosColRaw,
+  rolesColRaw,
+  relacionesColRaw,
+  vinculosColRaw,
 ] = await Promise.all([
   getCollection('casos'),
   getCollection('personas'),
@@ -46,7 +48,35 @@ const [
   getCollection('hechos'),
   getCollection('roles'),
   getCollection('relaciones'),
+  getCollection('vinculos'),
 ]);
+
+// Alcance público: en prod estas cifras cuentan SÓLO el inventario visible
+// (casos publicados y lo que cuelga de ellos); en dev, todo. Se filtran aquí las
+// colecciones y el resto del fichero opera sobre ellas sin cambios. Los
+// catálogos de referencia (delitos, glosario) se cuentan completos: son tipos
+// penales y términos, no contenido de un caso.
+const casosVisibles = idsCasosVisibles(casosColRaw);
+const ent = entidadesEnCasosVisibles({
+  casos: casosColRaw,
+  roles: rolesColRaw,
+  hechos: hechosColRaw as unknown as { data: { caso_id: string; personas_implicadas?: string[]; organizaciones_implicadas?: string[] } }[],
+  hitos: hitosColRaw,
+  vinculos: vinculosColRaw,
+  documentos: documentosColRaw,
+});
+const casosCol = casosColRaw.filter((c) => casosVisibles.has(c.data.id));
+const personasCol = personasColRaw.filter((p) => ent.personas.has(p.data.id));
+const organizacionesCol = organizacionesColRaw.filter((o) => ent.organizaciones.has(o.data.id));
+const hitosCol = hitosColRaw.filter((h) => casosVisibles.has(h.data.caso_id));
+const hechosCol = hechosColRaw.filter((h) => casosVisibles.has(h.data.caso_id));
+const rolesCol = rolesColRaw.filter((r) => casosVisibles.has(r.data.caso_id));
+const documentosCol = documentosColRaw.filter(
+  (d) => !d.data.caso_principal_id || casosVisibles.has(d.data.caso_principal_id),
+);
+const relacionesCol = relacionesColRaw.filter(
+  (r) => casosVisibles.has(r.data.caso_a_id) && casosVisibles.has(r.data.caso_b_id),
+);
 
 // Helpers de agregación: bump / entries / Counter en @/lib/aggregation.
 

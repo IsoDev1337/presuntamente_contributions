@@ -18,6 +18,7 @@ import RichProse from '@/components/RichProse.astro';
 import RolBadge from '@/components/RolBadge.astro';
 import { familiaDelitoLabel, rolLabel, type Lang } from '@/lib/labels';
 import { toImporteEntries, analizarCaso, type HechoImporteInput } from '@/lib/importe';
+import { idsCasosVisibles } from '@/lib/visibilidad';
 import { formatEurosCompact, formatEurosFull } from '@/lib/money';
 import Aclaracion from '@/components/Aclaracion.astro';
 
@@ -37,13 +38,20 @@ const casoIndex = new Map(casosCol.map((c) => [c.data.id, c.data]));
 const personaIndex = new Map(personasCol.map((p) => [p.data.id, p.data]));
 const orgIndex = new Map(organizacionesCol.map((o) => [o.data.id, o.data]));
 
+// En prod sólo se cruzan casos publicados; en dev, todos. Filtra casos y roles
+// para que la ficha del delito no liste un caso en borrador ni enlace a sujetos
+// cuya ficha no se genera.
+const casosVisibles = idsCasosVisibles(casosCol);
+
 // Casos donde el delito aparece en la causa (vía caso.delitos_atribuidos_en_la_causa)
 // o en alguno de los roles del caso.
 const casoIds = new Set<string>();
 for (const c of casosCol) {
-  if (c.data.delitos_atribuidos_en_la_causa?.includes(data.id)) casoIds.add(c.data.id);
+  if (casosVisibles.has(c.data.id) && c.data.delitos_atribuidos_en_la_causa?.includes(data.id)) casoIds.add(c.data.id);
 }
-const rolesDelito = rolesCol.filter((r) => r.data.delitos_atribuidos?.includes(data.id));
+const rolesDelito = rolesCol.filter(
+  (r) => r.data.delitos_atribuidos?.includes(data.id) && casosVisibles.has(r.data.caso_id),
+);
 for (const r of rolesDelito) casoIds.add(r.data.caso_id);
 
 const casos = Array.from(casoIds)
@@ -99,7 +107,9 @@ const atribuciones: Atribucion[] = rolesDelito.map((r) => {
 // son heterogéneas): se listan por caso, separando dinero en juego (objeto) de
 // consecuencias económicas (multas/responsabilidad civil).
 const importeEntries = toImporteEntries(
-  hechosCol.map((h) => h.data as unknown as HechoImporteInput),
+  hechosCol
+    .filter((h) => casosVisibles.has(h.data.caso_id))
+    .map((h) => h.data as unknown as HechoImporteInput),
 );
 const entriesPorCaso = new Map<string, typeof importeEntries>();
 for (const e of importeEntries) {

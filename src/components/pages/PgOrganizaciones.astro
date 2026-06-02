@@ -16,6 +16,7 @@ import {
   type HechoImporteInput,
 } from '@/lib/importe';
 import { formatEurosCompact, formatEurosFull } from '@/lib/money';
+import { idsCasosVisibles } from '@/lib/visibilidad';
 
 // Orden canónico del eje editorial (izquierda → derecha), no alfabético.
 // Coincide con el enum de orientacion_editorial_declarada/percibida.
@@ -55,8 +56,13 @@ const [organizacionesCol, rolesCol, casosCol, hechosCol, hitosCol] = await Promi
 // activo, clase objeto): el dinero en juego vinculado a su conducta. NO incluye
 // el perjuicio sufrido por las víctimas (p. ej. Canal de Isabel II) ni las
 // consecuencias; eso vive en su ficha de detalle. Misma semántica que /casos.
+// En prod sólo cuentan los casos publicados; en dev, todos.
+const casosVisibles = idsCasosVisibles(casosCol);
+
 const importeEntries = toImporteEntries(
-  hechosCol.map((h) => h.data as unknown as HechoImporteInput),
+  hechosCol
+    .filter((h) => casosVisibles.has(h.data.caso_id))
+    .map((h) => h.data as unknown as HechoImporteInput),
 );
 function importeAtribuidoDe(sujeto: string): number {
   return importeAtribuidoSujeto(analizarSujeto(importeEntries, sujeto));
@@ -64,7 +70,7 @@ function importeAtribuidoDe(sujeto: string): number {
 
 const orgs = organizacionesCol
   .map((o) => {
-    // Casos donde esta organización aparece (como órgano judicial,
+    // Casos VISIBLES donde esta organización aparece (como órgano judicial,
     // querellante, en hechos o como afectada en hitos).
     const casosIds = new Set<string>();
     for (const c of casosCol) if (c.data.organo_judicial_id === o.data.id || c.data.querellante_inicial_id === o.data.id) casosIds.add(c.data.id);
@@ -76,6 +82,8 @@ const orgs = organizacionesCol
     for (const h of hitosCol) {
       if (h.data.organizaciones_afectadas?.includes(o.data.id)) casosIds.add(h.data.caso_id);
     }
+    // Descarta los casos no visibles del recuento (en dev no descarta nada).
+    for (const id of [...casosIds]) if (!casosVisibles.has(id)) casosIds.delete(id);
     const editorial = o.data as {
       naturaleza_editorial?: string;
       orientacion_editorial_declarada?: { valor: string };
@@ -94,6 +102,9 @@ const orgs = organizacionesCol
       importeAtribuido: importeAtribuidoDe(o.data.id),
     };
   })
+  // En prod no se lista la organización que sólo aparece en casos no publicados
+  // (su ficha tampoco se genera). En dev se listan todas.
+  .filter((o) => import.meta.env.DEV || o.casosCount > 0)
   .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
 const strings = {

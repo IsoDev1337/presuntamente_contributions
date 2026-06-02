@@ -13,12 +13,23 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { renderOgOrganizacion } from '@/lib/og';
 import { tipoOrgLabel } from '@/lib/labels';
+import { entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
 export const prerender = true;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const orgs = await getCollection('organizaciones');
-  return orgs.map((o) => ({ params: { slug: o.id } }));
+  if (import.meta.env.DEV) return orgs.map((o) => ({ params: { slug: o.id } }));
+  const [casos, roles, hechos, hitos, vinculos, documentos] = await Promise.all([
+    getCollection('casos'),
+    getCollection('roles'),
+    getCollection('hechos'),
+    getCollection('hitos'),
+    getCollection('vinculos'),
+    getCollection('documentos'),
+  ]);
+  const { organizaciones: visibles } = entidadesEnCasosVisibles({ casos, roles, hechos, hitos, vinculos, documentos });
+  return orgs.filter((o) => visibles.has(o.data.id)).map((o) => ({ params: { slug: o.id } }));
 };
 
 export const GET: APIRoute = async ({ params }) => {
