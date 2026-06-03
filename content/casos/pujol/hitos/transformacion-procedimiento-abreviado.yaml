@@ -1,16 +1,14 @@
 id: pujol-auto-transformacion-pa-2020
 caso_id: pujol
 tipo: auto_transformacion
-fecha: "2020-07-01"
-fecha_precision: mes
+fecha: "2020-07-16"
+fecha_precision: dia
 titulo: "Auto de transformación a procedimiento abreviado contra la familia Pujol"
 descripcion: >-
-  El magistrado instructor José de la Mata dictó el auto que transformó la
-  causa en procedimiento abreviado, dejando a los miembros de la familia Pujol
-  a las puertas del juicio oral por presunta organización criminal y blanqueo
-  de capitales, entre otros delitos.
-# LLM-incierto: fecha exacta del auto pendiente de verificar contra CENDOJ /
-# nota del CGPJ; marcada fecha_precision mes (verano 2020).
+  El 16 de julio de 2020 el magistrado instructor José de la Mata dictó el auto
+  que concluyó la instrucción y transformó la causa en procedimiento abreviado,
+  dejando a los miembros de la familia Pujol a las puertas del juicio oral por
+  presunta organización criminal y blanqueo de capitales, entre otros delitos.
 personas_afectadas:
   - jordi-pujol-soley
   - marta-ferrusola-llados

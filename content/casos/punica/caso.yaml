@@ -67,7 +67,7 @@ organo_judicial_id: audiencia-nacional
 numero_procedimiento: "DP 85/2014 → PA 91/2016"
 tipo_procedimiento: procedimiento_abreviado
 
-fase_actual: juicio_oral
+fase_actual: fase_intermedia
 fecha_apertura: "2014-06-13"
 
 origen_denuncia: fiscalia_anticorrupcion
@@ -101,8 +101,8 @@ resumen_cifras: |
   piezas y no proceden de un único documento oficial; se citan sólo
   los importes verificados pieza por pieza.
 
-estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-30"
+estado_publicacion: beta_publica
+ultima_revision_editorial: "2026-06-03"
 nivel_relevancia_editorial: capital
 
 estado_ficha:
@@ -136,4 +136,4 @@ estado_ficha:
     Cobertura mediática (pasada 2026-05-30): 9 piezas, 7 medios, 7 ventanas
     (oct-2014 a may-2026). Estado parcial: falta elpais.com, elmundo.es,
     abc.es y cobertura autonómica. url_archivo pendientes de archive:catchup.
-  fecha_actualizacion: "2026-05-30"
+  fecha_actualizacion: "2026-06-03"

@@ -106,8 +106,8 @@ resumen_cifras: |
   y de 200.000 € a cada administrador de Unifica. La pieza de donaciones
   finalistas fue sobreseída sin cuantificación de daño acreditado.
 
-estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-30"
+estado_publicacion: beta_publica
+ultima_revision_editorial: "2026-06-03"
 nivel_relevancia_editorial: capital
 
 estado_ficha:
@@ -129,4 +129,4 @@ estado_ficha:
     Sentencia AN 28/10/2021 y STS 2024 pendientes de localizar en CENDOJ.
     El archivo de la pieza donaciones (auto Pedraz 19-dic-2022) no tiene
     número de diligencias identificado con certeza.
-  fecha_actualizacion: "2026-05-30"
+  fecha_actualizacion: "2026-06-03"

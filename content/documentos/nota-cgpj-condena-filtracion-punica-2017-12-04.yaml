@@ -1,0 +1,21 @@
+id: nota-cgpj-condena-filtracion-punica-2017-12-04
+titulo: "Nota del CGPJ: la Audiencia Nacional condena a dos años a Francisco Granados por la filtración de la investigación de la Operación Púnica"
+tipo: nota_prensa_institucional
+nivel_fuente: 1
+nivel_fuente_justificacion: |
+  Nota oficial de la Oficina de Comunicación de la Audiencia Nacional / CGPJ
+  publicada en poderjudicial.es (dominio oficial en lista blanca). Recoge la
+  sentencia de la Sección Primera de la Sala de lo Penal de la Audiencia
+  Nacional de 4 de diciembre de 2017 que condenó a Francisco Granados a dos
+  años de prisión por la filtración de la investigación de la Operación Púnica.
+  URL verificada el 2026-06-03 (el archivo de notas del CGPJ sirve esta nota
+  bajo el segmento /en/ de su gestor de contenidos, pero el texto es la nota
+  oficial en español).
+productor_organizacion_id: audiencia-nacional
+fecha_documento: "2017-12-04"
+url_canonica: "https://www.poderjudicial.es/cgpj/en/Judiciary/Pressroom/News-archive/La-Audiencia-Nacional-condena-a-dos-anos-a-Francisco-Granados-por-la-filtracion-de-la-investigacion-de-la--Operacion-Punica-"
+estado_acceso: publico
+idioma: es
+caso_principal_id: punica
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-06-03"

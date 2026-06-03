@@ -88,8 +88,11 @@ porque el archivo elimina su condición procesal en esta pieza.
 - Nota CGPJ archivo financiación PP (N1): oct-2022.
 - El Español detenciones Púnica (N4): 27-oct-2014.
 - Público conformidad Marjaliza (N4): dic-2025.
-- Nota CGPJ condena filtración (N1 citada en hito, documento pendiente de
-  localización exacta en poderjudicial.es).
+- Nota CGPJ condena filtración: localizada y creada el 2026-06-03 como dos
+  documentos N1 con URL oficial verificada — `nota-cgpj-condena-filtracion-punica-2017-12-04`
+  (sentencia AN 4-dic-2017) y `nota-cgpj-firme-filtracion-punica-2019-03-14`
+  (confirmación firme del TS 14-mar-2019, ECLI:ES:TS:2019:679). El hito de
+  firmeza se reapuntó a este último documento.
 
 ## Anotaciones migradas desde comentarios YAML (2026-06-02)
 

@@ -1,0 +1,21 @@
+id: rol-merce-girones-acusada
+caso_id: pujol
+sujeto_tipo: persona
+sujeto_persona_id: merce-girones-riera
+rol: acusado
+delitos_atribuidos:
+  - organizacion-criminal
+  - blanqueo-de-capitales
+  - delito-contra-hacienda-publica
+  - falsedad-documental
+fecha_inicio: "2021-06-15"
+hito_origen_id: pujol-apertura-juicio-oral-2021
+notas: >-
+  Mercè Gironès Riera, exmujer de Jordi Pujol Ferrusola, fue enviada a juicio por
+  el auto de apertura de juicio oral de 15 de junio de 2021. La Fiscalía
+  Anticorrupción solicita para ella 17 años de prisión (petición acusatoria, no
+  condena), situándola en el presunto entramado patrimonial junto al
+  primogénito. Acusada bajo plena presunción de inocencia: no existe sentencia en
+  este procedimiento. Los delitos se toman del escrito de acusación reseñado en
+  la cobertura cruzada (N4); pendiente de cotejo con el escrito íntegro. Ver
+  NOTES.md.

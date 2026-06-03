@@ -220,6 +220,79 @@ Nota: el `id` y el nombre de fichero de los roles conservan el sufijo
 
 ---
 
+## Cierre del cuadro procesal y de las 4 incertidumbres — 2026-06-03
+
+Sesión con acceso web. Investigación cruzada del escrito de acusación de la
+Fiscalía Anticorrupción y del estado del juicio (Confilegal, elDiario.es, El
+Español, Público, El Nacional; auto de apertura vía Confilegal/El Independiente).
+**Todo el contenido sigue siendo `investigado`/`atribuido`: no hay sentencia,
+presunción de inocencia intacta.** Las fuentes son N4 (no se ha localizado el
+escrito de acusación íntegro como primario); por eso se mantiene un flag de
+cotejo.
+
+### Las 4 incertidumbres — RESUELTAS
+
+1. ~~Convención de `fecha_inicio` de los roles `acusado`~~ → **RESUELTO.** El doc
+   01 (ejemplos de `RolEnCaso`, §2.4) fija la convención: `fecha_inicio` = fecha
+   del acto/hito que abre el rol. Para `acusado` es la apertura de juicio oral.
+   Los 7 hijos (+ Gironès + empresarios) llevan ahora `fecha_inicio: 2021-06-15`
+   y `hito_origen_id: pujol-apertura-juicio-oral-2021`. (Antes `2014-07-01`, que
+   es el inicio de la implicación en la causa, no la apertura del rol acusatorio.)
+2. ~~`cohecho` en Jordi Pujol Ferrusola~~ → **RESUELTO: retirado.** El escrito de
+   acusación NO le imputa cohecho (confirmado por 4 medios). Quitado de su rol y
+   de `delitos_atribuidos_en_la_causa` del caso.
+3. ~~Mercè Gironès y los empresarios sin modelar~~ → **RESUELTO: modelados** (ver
+   abajo).
+4. ~~Fecha del hito de apertura de juicio oral~~ → **RESUELTO.** Era
+   `2021-01-01`/`anio`; la fecha real es **15-jun-2021** (auto de Santiago
+   Pedraz, JCI nº 5). Corregido a `fecha: 2021-06-15` / `fecha_precision: dia`.
+
+### Delitos por persona (según escrito de acusación reseñado en cobertura N4)
+
+- **Jordi Pujol Ferrusola** (29 años pedidos): asociación ilícita, blanqueo, 5
+  delitos contra la Hacienda Pública, falsificación de documento mercantil,
+  alzamiento de bienes. Modelado: `organizacion-criminal`,
+  `blanqueo-de-capitales`, `delito-contra-hacienda-publica`, `falsedad-documental`.
+- **Josep Pujol Ferrusola** (14 años): asociación ilícita, blanqueo, falsificación
+  doc. mercantil, 1 delito Hacienda. Modelado igual que arriba.
+- **Oriol, Marta, Mireia, Pere, Oleguer Pujol Ferrusola** (8 años c/u): asociación
+  ilícita + blanqueo → `organizacion-criminal` + `blanqueo-de-capitales`.
+- **Mercè Gironès Riera** (17 años): asociación ilícita, blanqueo, falsificación
+  doc. mercantil, 1 delito Hacienda, alzamiento de bienes. Slug
+  `merce-girones-riera` + rol `rol-merce-girones-acusada`.
+- **Empresarios** (5 años c/u = 3 blanqueo + 2 falsificación doc. mercantil):
+  `blanqueo-de-capitales` + `falsedad-documental`. 9 personas + 9 roles creados
+  (`es_figura_publica: false`, minimización): luis-delso-heras,
+  carles-sumarroca-claverol, josep-cornado-mateu, alejandro-guerrero-kandler,
+  gustavo-buesa-ibanez, josep-mayola-comadira, jorge-barrigon-lafita,
+  bernardo-dominguez-cerecedes, francesc-robert-ribes.
+
+### Decisiones y flags de taxonomía (pendiente de primario)
+
+- **"Asociación ilícita" → ranura `organizacion-criminal`.** La taxonomía
+  (`content/delitos/`) no tiene `asociacion-ilicita` (art. 515 CP) ni
+  `alzamiento-de-bienes`/`frustracion-de-la-ejecucion`. Para no inventar
+  taxonomía sobre base N4 se reutiliza `organizacion-criminal` como ranura más
+  cercana. **Pendiente:** al localizar el escrito/auto íntegro, valorar crear el
+  delito `asociacion-ilicita` y reclasificar (la conducta es anterior a 2010,
+  cuando el art. 570 bis "organización criminal" aún no existía: el tipo aplicable
+  es probablemente la asociación ilícita).
+- **Alzamiento de bienes / frustración de la ejecución** (Jordi PF y Gironès): no
+  modelado por ausencia de entidad-delito; anotado aquí. Crear entidad si se
+  decide cerrar la taxonomía.
+- **Carles Vilarrubí Carrió**: estaba en el auto de apertura de 2021 como acusado,
+  pero falleció (dic-2025) y el fiscal retiró su acusación en conclusiones
+  (may-2026). **NO modelado** como acusado activo.
+- **Fuente.** Identidades, delitos y penas provienen de cobertura cruzada N4, no
+  del escrito de acusación íntegro. `estado_ficha.roles_procesales` se mantiene
+  `parcial`. `pendiente_primario`: escrito de acusación de Anticorrupción + auto
+  de apertura de 15-jun-2021 (localizar en CENDOJ).
+- Pendientes previos que siguen abiertos: nº de procedimiento exacto, fecha de
+  incoación de 2014 (la causa se abrió de oficio tras la confesión pública), auto
+  formal de sobreseimiento libre de Pujol Soley (N1).
+
+---
+
 ## Posibles relaciones con otros casos (propuestas, no escritas)
 
 - `itv-cataluna` — `comparte_persona`: Oriol Pujol Ferrusola, investigado aquí,
@@ -229,3 +302,23 @@ Nota: el `id` y el nombre de fichero de los roles conservan el sufijo
   Convergència; verificar nexo documental antes de afirmarlo.
 - `pretoria` — verificar si hay solapamiento de personas/organizaciones (caso
   catalán de corrupción urbanística); NO afirmar sin documento.
+
+---
+
+## Documentos y promoción a beta — 2026-06-03
+
+- **Apertura de juicio oral**: localizada la nota oficial del CGPJ
+  (poderjudicial.es, 16-jun-2021), URL verificada; `nota-cgpj-apertura-juicio-oral-pujol`
+  pasa a `estado_acceso: publico` con `url_canonica`. La nota **confirma desde
+  N1** el cuadro de delitos (asociación ilícita, blanqueo, falsedad, Hacienda) y
+  que **no hay cohecho**.
+- **Auto de transformación a PA**: fecha confirmada (16-jul-2020, De la Mata);
+  sigue `acceso_restringido_pero_citable` (los autos de instrucción de la AN no
+  se publican en CENDOJ) → `pendiente_primario`.
+- **Confesión 2014 (El País / Vozpópuli)**: URLs no verificables en sandbox
+  (elpais.com bloqueado; el slug antiguo de Vozpópuli da 404) → `pendiente_primario`,
+  archivar en archive.org cuando haya red.
+- **Promoción**: panel `/promover-caso` (re-panel) **VERDE 3/3**; el maintainer
+  autorizó subir el caso a `beta_publica`. Pendiente principal abierto: el
+  escrito de acusación íntegro de Anticorrupción (para el detalle de cargos y
+  penas por persona, hoy N4) y la sentencia (~jul-2026).

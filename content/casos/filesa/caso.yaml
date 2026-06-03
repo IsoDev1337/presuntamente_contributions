@@ -64,8 +64,8 @@ resumen_cifras: |
   inhabilitación de estos tres condenados. La rama Viajes Ceres investiga
   presuntos desvíos adicionales de 42,2 M€ en subvenciones del Imserso.
 
-estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-30"
+estado_publicacion: beta_publica
+ultima_revision_editorial: "2026-06-03"
 nivel_relevancia_editorial: alta
 
 estado_ficha:
@@ -80,4 +80,4 @@ estado_ficha:
   cobertura_mediatica_general: parcial
   revision_editorial: pendiente
   notas: "Caso histórico con sentencia firme (1997). La sentencia íntegra de la STS 1/1997 no está disponible en CENDOJ pero sí en el portal Equipo Nizkor (derechos.org), que ofrece antecedentes y fundamentos aunque no el fallo completo. Se cita como N4 cruzado con dos líneas editoriales. Los indultos del año 2000 están documentados con BOE (N1). La rama Viajes Ceres, pendiente de juicio oral en 2024, se recoge en NOTES como caso derivado a fichar separadamente si prospera."
-  fecha_actualizacion: "2026-05-30"
+  fecha_actualizacion: "2026-06-03"

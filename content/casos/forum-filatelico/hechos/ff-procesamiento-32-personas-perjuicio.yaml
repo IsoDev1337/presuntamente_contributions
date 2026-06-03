@@ -26,6 +26,8 @@ organizaciones_implicadas:
 documentos_respaldo:
   - documento_id: publico-forum-procesamiento-ruz-2014-10-08
     pasaje: "El juez Ruz procesa a 32 responsables y colaboradores de Fórum a diferentes grados de participación, imponiendo fianza de responsabilidad civil de 3.702 millones de euros a 22 de ellos."
+  - documento_id: confilegal-forum-procesamiento-ruz-2014
+    pasaje: "Pablo Ruz procesó en octubre de 2014 a 32 exresponsables de Fórum por un delito continuado de estafa cualificada, falseamiento de cuentas anuales, insolvencia punible y blanqueo."
 nivel_fuente_efectivo: 4
 vigencia: superado
 corregido_por: ff-condena-an-briones

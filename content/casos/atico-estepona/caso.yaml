@@ -82,8 +82,8 @@ resumen_cifras: |
   mercado de un inmueble de las características del
   investigado.
 
-estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-30"
+estado_publicacion: beta_publica
+ultima_revision_editorial: "2026-06-03"
 nivel_relevancia_editorial: media
 
 # Honestidad editorial sobre el trabajo de presuntamente.org en esta ficha
@@ -101,4 +101,4 @@ estado_ficha:
   cobertura_mediatica_general: pendiente
   revision_editorial: completo
   notas: "Caso modelado como esqueleto inicial. Conexo factualmente con Lezo por compartir el principal investigado. Barrido de actualidad 2026-05-30: se añadió el hito de confirmación del sobreseimiento provisional en apelación por la AP de Málaga (9-nov-2020). El procedimiento sigue archivado provisionalmente; no se localizó novedad posterior a 2020. Pendiente el auto íntegro de la AP (hoy respaldado solo con N4). Pendiente desarrollar a publicable o consolidar como sub-entidad de Lezo; la elección la decide el maintainer."
-  fecha_actualizacion: "2026-05-30"
+  fecha_actualizacion: "2026-06-03"

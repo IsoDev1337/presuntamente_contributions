@@ -6,9 +6,14 @@ rol: acusado
 delitos_atribuidos:
   - blanqueo-de-capitales
   - organizacion-criminal
-fecha_inicio: "2014-07-01"
+  - delito-contra-hacienda-publica
+  - falsedad-documental
+fecha_inicio: "2021-06-15"
+hito_origen_id: pujol-apertura-juicio-oral-2021
 notas: >-
-  Josep Pujol Ferrusola está acusado bajo plena presunción de inocencia. No
-  existe sentencia condenatoria en este procedimiento. La condición de
-  acusado no implica culpabilidad. Atribución de delitos pendiente de
-  verificar; ver NOTES.md.
+  Josep Pujol Ferrusola fue enviado a juicio por el auto de apertura de juicio
+  oral de 15 de junio de 2021. La Fiscalía Anticorrupción solicita para él 14
+  años de prisión (petición acusatoria, no condena). Acusado bajo plena
+  presunción de inocencia: no existe sentencia en este procedimiento. Los
+  delitos se toman del escrito de acusación reseñado en la cobertura; pendiente
+  de cotejo con el escrito íntegro. Ver NOTES.md.

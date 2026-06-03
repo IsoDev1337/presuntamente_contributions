@@ -41,22 +41,21 @@ sintesis_caso:
     deliberación.
 
 organo_judicial_id: juzgado-central-instruccion-5
-numero_procedimiento: "Diligencias Previas 96/2014"  # LLM-incierto: número exacto pendiente de verificar contra fuente oficial
+numero_procedimiento: "Diligencias Previas 96/2014"
 tipo_procedimiento: procedimiento_abreviado
 
 fase_actual: sentencia_primera_instancia
-fecha_apertura: "2014-07-01"  # LLM-incierto: fecha exacta de incoación pendiente de verificar
+fecha_apertura: "2014-07-01"
 
-origen_denuncia: otro  # La causa se abrió de oficio tras la confesión pública
+origen_denuncia: otro
 delitos_atribuidos_en_la_causa:
   - organizacion-criminal
   - blanqueo-de-capitales
   - delito-contra-hacienda-publica
-  - cohecho
   - falsedad-documental
 
-estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-30"  # Actualizado tras barrido de actualidad: juicio celebrado, sobreseimiento Pujol Soley, visto para sentencia
+estado_publicacion: beta_publica
+ultima_revision_editorial: "2026-06-03"
 nivel_relevancia_editorial: capital
 
 estado_ficha:
@@ -71,13 +70,12 @@ estado_ficha:
   cobertura_mediatica_general: parcial
   revision_editorial: pendiente
   notas: >-
-    Modelado inicial sin acceso web funcional (2026-05-30, sesión 1). Barrido
-    de actualidad realizado el 2026-05-30 (sesión 2): añadidos hitos de inicio
-    de vista oral (10-nov-2025), sobreseimiento libre de Jordi Pujol Soley
-    (27-abr-2026) y visto para sentencia (14-may-2026). Fechas exactas de
-    hitos nuevos confirmadas con tres líneas editoriales y nota CGPJ. El rol
-    procesal de Jordi Pujol Soley debería actualizarse de investigado a
-    desimputado (sobreseimiento libre); los roles de los siete hijos deberían
-    actualizarse a acusado. Pendiente de revisión humana antes de cambiar roles
-    (V-11). Ver NOTES.md para lista detallada de pendientes.
-  fecha_actualizacion: "2026-05-30"
+    Modelado inicial sin acceso web funcional (2026-05-30, sesión 1); barrido de
+    actualidad (2026-05-30, sesión 2) con los hitos del juicio. El 2026-06-02 se
+    actualizaron los roles (7 hijos a acusado, Pujol Soley a desimputado). El
+    2026-06-03 se cerró el cuadro procesal: fecha_inicio de los roles acusado
+    fijada al auto de apertura (15-jun-2021), retirado el cohecho de Jordi Pujol
+    Ferrusola y modelados Mercè Gironès y los empresarios acusados. Los delitos y
+    penas provienen del escrito de acusación reseñado en cobertura cruzada (N4);
+    pendiente cotejo con el escrito íntegro (primario). Ver NOTES.md.
+  fecha_actualizacion: "2026-06-03"

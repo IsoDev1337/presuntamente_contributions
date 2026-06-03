@@ -65,8 +65,8 @@ resumen_cifras: |
   —en torno a 5.000 millones de euros— es una agregación periodística de
   ambas causas, no una cifra de un documento judicial único.
 
-estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-30"
+estado_publicacion: beta_publica
+ultima_revision_editorial: "2026-06-03"
 nivel_relevancia_editorial: alta
 
 estado_ficha:
@@ -81,4 +81,4 @@ estado_ficha:
   cobertura_mediatica_general: parcial
   revision_editorial: pendiente
   notas: "Sentencia AN y STS 688/2019 íntegras pendientes de localizar en CENDOJ y descargar como primario. Los 16 acusados restantes (de los 20 condenados en AN) no han podido identificarse con nombre completo verificado; se modelan sólo los tres con nombre confirmado en múltiples fuentes N4 cruzadas. José Manuel Carlos Llorca Rodríguez (en rebeldía) pendiente de modelar como rol separado cuando se confirme extradición o entrega."
-  fecha_actualizacion: "2026-05-30"
+  fecha_actualizacion: "2026-06-03"

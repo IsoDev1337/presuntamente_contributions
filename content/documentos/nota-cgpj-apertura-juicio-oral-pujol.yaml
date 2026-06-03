@@ -1,16 +1,18 @@
 id: nota-cgpj-apertura-juicio-oral-pujol
-titulo: "Comunicación oficial sobre la apertura de juicio oral en el caso Pujol"
+titulo: "Nota del CGPJ: el juez de la Audiencia Nacional abre juicio oral contra el expresidente de la Generalitat de Cataluña y sus siete hijos"
 tipo: nota_prensa_institucional
 nivel_fuente: 1
-nivel_fuente_justificacion: >-
-  Comunicación oficial del órgano judicial (Audiencia Nacional / CGPJ) sobre la
-  fase de juicio oral. Nivel 1 por proceder del órgano emisor. Fecha y URL
-  pendientes de verificar contra poderjudicial.es; marcado pendiente_primario
-  en NOTES.md.
+nivel_fuente_justificacion: |
+  Nota oficial del CGPJ publicada en poderjudicial.es (dominio oficial en lista
+  blanca) sobre el auto del juez Santiago Pedraz de 15 de junio de 2021 que
+  abrió juicio oral contra Jordi Pujol Soley, sus siete hijos y otros acusados.
+  La nota enumera los delitos (asociación ilícita, blanqueo de capitales,
+  falsedad documental y delitos contra la Hacienda Pública), lo que corrobora
+  desde fuente N1 el cuadro de delitos del caso. URL verificada el 2026-06-03.
 productor_organizacion_id: consejo-general-poder-judicial
-fecha_documento: "2021-01-01"
-# LLM-incierto: fecha exacta pendiente de verificar; aproximada como 2021.
-estado_acceso: acceso_restringido_pero_citable
+fecha_documento: "2021-06-16"
+url_canonica: "https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Noticias-Judiciales/El-juez-de-la-Audiencia-Nacional-abre-juicio-oral-contra-el-expresidente-de-la-Generalitat-de-Cataluna-y-sus-siete-hijos"
+estado_acceso: publico
 caso_principal_id: pujol
 idioma: es
 estado_publicacion: borrador

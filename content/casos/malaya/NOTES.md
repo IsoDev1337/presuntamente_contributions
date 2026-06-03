@@ -98,3 +98,14 @@ Notas internas que vivían como comentarios `#` dentro de bloques de texto YAML,
 
 - **`../../documentos/sentencia-ts-malaya-2015.yaml`** — pendiente_primario: localizar la URL directa en CENDOJ para elevar de N3 a N1.
 - **`../../personas/pedro-roman-malaga.yaml`** — El apellido completo no está confirmado en fuentes N1; se usa el nombre con el que aparece en los autos y en la cobertura de prensa.
+
+## Corrección de nivel de fuente — 2026-06-03
+
+- **`hechos/malaya-expolio-municipal.yaml`**: bajado `nivel_fuente_efectivo` de
+  `1` a `4`. El hecho es `tipo: atribuido` y su importe estructurado (92 M€
+  recuperados) descansa en El Debate (N4, 2026). La nota CGPJ (N1) que también se
+  cita respalda el principio de que los bienes decomisados revierten al
+  Ayuntamiento, pero **no** la cifra de 92 M€; declarar efectivo N1 sobrevaloraba
+  el respaldo de la cifra. Con `atribuido` + N4 el hecho es válido (V-13). Se
+  retiró además el bloque de comentarios `#` internos del YAML (su contenido ya
+  está recogido en "Candidatos a 'acreditado' no promovidos", punto 2).
