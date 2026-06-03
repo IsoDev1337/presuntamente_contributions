@@ -63,12 +63,12 @@ const totalHint = esObjeto
   : 'Suma de multas y responsabilidad civil del conjunto de casos (impuestas o solicitadas). Nunca se mezcla con el dinero presuntamente atribuido.';
 ---
 
-<div class="cifras-clase">
+<div class="cifras-clase" data-cifras-clase={clase} data-cifras-modo={modo} data-cifras-vista={vista}>
   <h3 class="cifras-clase__title">{tituloClase}</h3>
   <p class="cifras-clase__intro">{introClase}</p>
 
   {total > 0 && (
-    <div class="cifras-clase__total">
+    <div class="cifras-clase__total" data-cifras-total>
       <CifrasTotalBox label={totalLabel} value={total} tone={clase} hint={totalHint} />
     </div>
   )}
@@ -76,10 +76,16 @@ const totalHint = esObjeto
   <h4 class="sub-h">Por caso</h4>
   <p class="lead">
     Importe por caso, sumando sus piezas sin doble conteo. <strong>Pulsa un caso</strong> para ir a
-    su ficha.
+    su ficha; usa la <strong>×</strong> para quitarlo de la comparación y reescalar el resto (útil
+    cuando un caso muy grande aplasta a los demás).
   </p>
   {casoBars.length > 0 ? (
-    <BarRow items={casoBars} ariaLabel={`${tituloClase} por caso${sufijo}`} />
+    <BarRow
+      items={casoBars}
+      ariaLabel={`${tituloClase} por caso${sufijo}`}
+      rescalable
+      scope="cifras"
+    />
   ) : (
     <p class="chart-foot">{esFirme ? vacioFirme : 'Ningún caso con esta cifra cuantificada todavía.'}</p>
   )}
@@ -97,7 +103,9 @@ const totalHint = esObjeto
         <strong>investiga</strong> o se <strong>atribuye</strong>? <strong>Pulsa un tramo</strong>
         para ver sus casos.
       </p>
-      <StackedBar segments={estadoSegments} ariaLabel={`${tituloClase} según el grado de prueba${sufijo}`} />
+      <div data-cifras-stack="estado">
+        <StackedBar segments={estadoSegments} ariaLabel={`${tituloClase} según el grado de prueba${sufijo}`} />
+      </div>
     </>
   )}
 
@@ -107,7 +115,9 @@ const totalHint = esObjeto
     cobertura periodística cruzada (N4). <strong>Pulsa un nivel</strong> para ver sus casos.
   </p>
   {nivelSegments.length > 0 ? (
-    <StackedBar segments={nivelSegments} ariaLabel={`${tituloClase} según el nivel de fuente N1 a N4${sufijo}`} />
+    <div data-cifras-stack="nivel">
+      <StackedBar segments={nivelSegments} ariaLabel={`${tituloClase} según el nivel de fuente N1 a N4${sufijo}`} />
+    </div>
   ) : (
     <p class="chart-foot">Sin cifras cuantificadas en esta vista.</p>
   )}
@@ -122,6 +132,9 @@ const totalHint = esObjeto
   ) : (
     <p class="chart-foot">Sin cifras cuantificadas en esta vista.</p>
   )}
+  <p class="chart-foot" data-cifras-treemap-note hidden>
+    El mapa por naturaleza refleja el <strong>conjunto completo</strong>: no se filtra al ocultar casos.
+  </p>
 </div>
 
 <style>

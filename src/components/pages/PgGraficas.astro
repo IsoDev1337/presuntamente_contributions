@@ -404,6 +404,7 @@ interface CifrasBundle {
   nivelSegments: StackSegment[];
   natCells: TreemapCell[];
   repCuantificados: number;
+  breakdown: Record<string, { t: number; e: Record<string, number>; n: Record<string, number> }>;
 }
 
 // Construye el bundle de gráficas para un conjunto de entradas (nominal o
@@ -467,6 +468,7 @@ function buildCifrasBundle(
       valueLabel: formatEurosCompact(porEstado.get(t)!.total),
       color: EPIS_MONEY_COLOR[t],
       refKey: `${kp}estado:${t}`,
+      key: t,
     }));
   for (const t of EPIS_MONEY_ORDER) {
     const b = porEstado.get(t);
@@ -488,6 +490,7 @@ function buildCifrasBundle(
       valueLabel: formatEurosCompact(porNivel.get(n)!.total),
       color: NIVEL_COLOR[n],
       refKey: `${kp}nivel:${n}`,
+      key: n,
     }));
   for (const n of ['1', '2', '3', '4']) {
     const b = porNivel.get(n);
@@ -501,12 +504,29 @@ function buildCifrasBundle(
     });
   }
 
+  // Desglose por caso para el filtrado en cliente de TODA la sección: por cada
+  // caso, su total sumable + reparto por estado y por nivel. Mismo origen que los
+  // segmentos (sumables), así Σ(casos visibles) == segmento recalculado y el
+  // total recalculado coincide con el render de build cuando no hay exclusiones.
+  const breakdown: Record<
+    string,
+    { t: number; e: Record<string, number>; n: Record<string, number> }
+  > = {};
+  for (const e of sumables) {
+    const b = breakdown[e.casoId] || (breakdown[e.casoId] = { t: 0, e: {}, n: {} });
+    b.t += e.importe;
+    b.e[e.tipo] = (b.e[e.tipo] ?? 0) + e.importe;
+    const nk = String(e.nivel);
+    b.n[nk] = (b.n[nk] ?? 0) + e.importe;
+  }
+
   return {
     casoBars: totalesCaso.map(casoBar),
     estadoSegments,
     nivelSegments,
     natCells,
     repCuantificados: totalesCaso.length,
+    breakdown,
   };
 }
 
@@ -539,6 +559,37 @@ const MODOS = ['nominal', 'constante'] as const;
 const VISTAS = ['abierto', 'firme'] as const;
 // El total de la clase = Σ de los totales por caso (mismo conjunto sumable).
 const totalDe = (b: CifrasBundle) => b.casoBars.reduce((s, x) => s + x.value, 0);
+
+// Universo de casos del selector global de la sección (unión de ambas clases en
+// la vista más amplia, "abierto"; "firme" es subconjunto). La clave es el slug
+// del href, idéntica a la que usa BarRow `rescalable` (data-bar-key), para que
+// el dropdown del header y la × de cada subapartado compartan el mismo estado.
+const casosFiltrables = (() => {
+  const m = new Map<string, string>();
+  for (const clase of ['objeto', 'consecuencia'] as const) {
+    for (const b of cifrasBundles[clase].nominal.abierto.casoBars) {
+      const slug = (b.href || '').replace(/\/+$/, '').split('/').pop();
+      if (slug) m.set(slug, b.label);
+    }
+  }
+  return Array.from(m, ([slug, label]) => ({ slug, label })).sort((a, b) =>
+    a.label.localeCompare(b.label, 'es'),
+  );
+})();
+
+// Desglose por caso embebido para el filtrado en cliente de toda la sección
+// (clase → modo → vista → { slug: { t, e, n } }). La isla recalcula total y las
+// dos barras (grado de prueba / nivel) sumando los casos visibles.
+const cifrasBreakdown: Record<string, Record<string, Record<string, unknown>>> = {};
+for (const clase of ['objeto', 'consecuencia'] as const) {
+  cifrasBreakdown[clase] = {};
+  for (const modo of MODOS) {
+    cifrasBreakdown[clase][modo] = {};
+    for (const vista of VISTAS) {
+      cifrasBreakdown[clase][modo][vista] = cifrasBundles[clase][modo][vista].breakdown;
+    }
+  }
+}
 
 // Intros de cada clase (se pasan al componente; se escriben una vez).
 const INTRO_OBJETO =
@@ -782,6 +833,17 @@ const mapaTabs = [
            sólo cambia cuál es visible y, al vivir en el .sec-h sticky, sigue
            accesible tras hacer scroll. -->
       <div class="cifras-toggles" data-cifras-bar slot="header-actions">
+        <button
+          type="button"
+          class="cifras-toggles__trigger"
+          data-cifras-trigger
+          aria-expanded="false"
+          aria-controls="cifras-filtros-panel"
+        >
+          <span class="cifras-toggles__preview" data-cifras-preview>Abiertos · € nominales</span>
+          <span class="cdrop__caret" aria-hidden="true"><svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5 7 9 10.5 5.5"/></svg></span>
+        </button>
+        <div class="cifras-toggles__panel" id="cifras-filtros-panel" data-cifras-panel>
         <div class="seg" role="group" aria-label="Qué cifras se muestran">
           <button type="button" class="seg__btn" data-vista-btn="abierto" aria-pressed="true">Procedimientos abiertos</button>
           <button type="button" class="seg__btn" data-vista-btn="firme" aria-pressed="false">Solo condenas firmes</button>
@@ -789,6 +851,30 @@ const mapaTabs = [
         <div class="seg" role="group" aria-label="Ajuste por inflación de las cifras">
           <button type="button" class="seg__btn" data-modo-btn="nominal" aria-pressed="true">€ nominales</button>
           <button type="button" class="seg__btn" data-modo-btn="constante" aria-pressed="false">€ de 2025</button>
+        </div>
+        <details class="cdrop" data-casos-drop data-scope="cifras">
+          <summary class="cdrop__btn">
+            <span class="cdrop__txt">Casos</span>
+            <span class="cdrop__badge" data-casos-badge hidden></span>
+            <span class="cdrop__caret" aria-hidden="true"><svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.5 7 9 10.5 5.5"/></svg></span>
+          </summary>
+          <div class="cdrop__panel" role="group" aria-label="Mostrar u ocultar casos del ranking">
+            <div class="cdrop__head">
+              <span class="cdrop__count" data-casos-count>{casosFiltrables.length} casos</span>
+              <button type="button" class="cdrop__all" data-casos-all hidden>Mostrar todos</button>
+            </div>
+            <ul class="cdrop__list">
+              {casosFiltrables.map((c) => (
+                <li>
+                  <label class="cdrop__opt">
+                    <input type="checkbox" data-caso-check value={c.slug} checked />
+                    <span>{c.label}</span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </details>
         </div>
       </div>
       <p class="lead">
@@ -903,6 +989,7 @@ const mapaTabs = [
       </Aclaracion>
 
       <script type="application/json" data-importe-dataset set:html={JSON.stringify(importeDataset)} is:inline></script>
+      <script type="application/json" data-cifras-breakdown set:html={JSON.stringify(cifrasBreakdown)} is:inline></script>
     </FichaTocSection>
 
     <!-- 3. Recorrido procesal -->
@@ -1165,6 +1252,33 @@ const mapaTabs = [
     // sólo cambia cuál es visible y revela las gráficas que entran en pantalla.
     function __initCifrasToggles() {
       const armed = () => document.documentElement.hasAttribute('data-charts-armed');
+
+      // Preview del botón "Filtros" (móvil): resume vista + modo + nº de casos
+      // ocultos leyendo el estado del propio DOM. Lo llaman apply() y la isla de
+      // rescale (vía window) cuando cambia cualquiera de los tres.
+      const updateCifrasPreview = () => {
+        document.querySelectorAll<HTMLElement>('[data-cifras-preview]').forEach((prev) => {
+          const bar = prev.closest<HTMLElement>('[data-cifras-bar]');
+          if (!bar) return;
+          const vista =
+            bar.querySelector<HTMLElement>('[data-vista-btn][aria-pressed="true"]')?.dataset.vistaBtn ||
+            'abierto';
+          const modo =
+            bar.querySelector<HTMLElement>('[data-modo-btn][aria-pressed="true"]')?.dataset.modoBtn ||
+            'nominal';
+          const badge = bar.querySelector<HTMLElement>('[data-casos-badge]');
+          const n = badge && !badge.hidden ? (badge.textContent || '').trim() : '';
+          const parts = [
+            vista === 'firme' ? 'Solo firmes' : 'Abiertos',
+            modo === 'constante' ? '€ 2025' : '€ nominales',
+          ];
+          if (n) parts.push(`${n} ${n === '−1' ? 'caso' : 'casos'}`);
+          prev.textContent = parts.join(' · ');
+        });
+      };
+      (window as unknown as { __updateCifrasPreview?: () => void }).__updateCifrasPreview =
+        updateCifrasPreview;
+
       document.querySelectorAll<HTMLElement>('[data-cifras-bar]').forEach((bar) => {
         const scope = bar.closest<HTMLElement>('[data-toc-section]') ?? document.body;
         const state = { vista: 'abierto', modo: 'nominal' };
@@ -1193,6 +1307,7 @@ const mapaTabs = [
           scope.querySelectorAll<HTMLElement>('[data-note-vista]').forEach((n) => {
             n.hidden = n.dataset.noteVista !== state.vista;
           });
+          updateCifrasPreview();
         };
 
         vistaBtns.forEach((b) =>
@@ -1208,9 +1323,275 @@ const mapaTabs = [
           }),
         );
       });
+
+      updateCifrasPreview();
+
+      // Trigger del desplegable "Filtros" en móvil (delegación, una sola vez).
+      const W = window as unknown as { __cifrasTrigBound?: boolean };
+      if (!W.__cifrasTrigBound) {
+        W.__cifrasTrigBound = true;
+        document.addEventListener('click', (ev) => {
+          const t = ev.target as HTMLElement;
+          const trig = t.closest<HTMLElement>('[data-cifras-trigger]');
+          if (trig) {
+            const bar = trig.closest<HTMLElement>('[data-cifras-bar]');
+            if (bar) {
+              const open = bar.classList.toggle('is-open');
+              trig.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            return;
+          }
+          // Click fuera: cierra cualquier panel "Filtros" abierto.
+          document.querySelectorAll<HTMLElement>('.cifras-toggles.is-open').forEach((bar) => {
+            if (!bar.contains(t)) {
+              bar.classList.remove('is-open');
+              bar.querySelector('[data-cifras-trigger]')?.setAttribute('aria-expanded', 'false');
+            }
+          });
+        });
+      }
     }
     __initCifrasToggles();
     document.addEventListener('astro:page-load', __initCifrasToggles);
+  </script>
+
+  <script>
+    // Filtro de casos de la sección de cifras: ocultar casos (× de cada gráfica o
+    // selector del header) reescala el ranking "Por caso" Y recalcula en cliente
+    // el total y las dos barras (grado de prueba / nivel) sumando sólo los casos
+    // visibles, a partir del desglose pre-agregado en build ([data-cifras-breakdown]),
+    // así no se duplica la lógica anti-doble-conteo. El treemap por naturaleza NO
+    // se recalcula (su layout se computa en build con d3, 0 dibujo en cliente):
+    // muestra una nota de que refleja el conjunto completo. Estado por scope en
+    // window; se aplica a las 4 combinaciones (modo×vista) y sobrevive a navegación.
+    function __initCifrasRescale() {
+      const W = window as unknown as {
+        __cifrasExcluded?: Record<string, Set<string>>;
+        __cifrasRescaleBound?: boolean;
+      };
+      const excluded: Record<string, Set<string>> = W.__cifrasExcluded || (W.__cifrasExcluded = {});
+
+      // Formato de euros portado de money.ts (mismas reglas: punto de miles, coma
+      // decimal, compacto ≥1 M€). Necesario para reescribir cifras recalculadas.
+      const fmtGrouped = (num: number): string => {
+        const neg = num < 0;
+        const r = Math.round(Math.abs(num) * 100) / 100;
+        const ip = Math.trunc(r);
+        const dp = r - ip;
+        let out = String(ip).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        if (dp > 0) {
+          const d = dp.toFixed(2).slice(2).replace(/0+$/, '');
+          if (d) out += `,${d}`;
+        }
+        return neg ? `-${out}` : out;
+      };
+      const fmtCompact = (e: number) =>
+        Math.abs(e) >= 1_000_000 ? `${fmtGrouped(e / 1_000_000)} M€` : `${fmtGrouped(e)} €`;
+      const fmtFull = (e: number) => `${fmtGrouped(e)} €`;
+
+      type Caso = { t: number; e: Record<string, number>; n: Record<string, number> };
+      type Breakdown = Record<string, Record<string, Record<string, Record<string, Caso>>>>;
+      let breakdown: Breakdown | null = null;
+      try {
+        const el = document.querySelector('[data-cifras-breakdown]');
+        breakdown = el ? JSON.parse(el.textContent || 'null') : null;
+      } catch (e) {
+        breakdown = null;
+      }
+
+      // Recalcula UNA barra apilada (estado o nivel) sumando los casos visibles.
+      const recomputeStack = (
+        wrap: HTMLElement | null,
+        slugs: string[],
+        perCaso: Record<string, Caso>,
+        field: 'e' | 'n',
+      ) => {
+        if (!wrap) return;
+        const segs = Array.from(wrap.querySelectorAll<HTMLElement>('.stacked-seg[data-seg-key]'));
+        const items = Array.from(
+          wrap.querySelectorAll<HTMLElement>('.stacked-legend__item[data-seg-key]'),
+        );
+        const valOf = (k: string) => slugs.reduce((a, s) => a + (perCaso[s]?.[field]?.[k] ?? 0), 0);
+        let tot = 0;
+        for (const seg of segs) tot += valOf(seg.dataset.segKey || '');
+        const denom = tot > 0 ? tot : 1;
+        const pctTxt = (v: number) => {
+          const p = (v / denom) * 100;
+          return p > 0 && p < 1 ? '<1%' : `${Math.round(p)}%`;
+        };
+        for (const seg of segs) {
+          const v = valOf(seg.dataset.segKey || '');
+          if (v <= 0) seg.style.display = 'none';
+          else {
+            seg.style.display = '';
+            seg.style.setProperty('--seg-w', `${(v / denom) * 100}%`);
+          }
+        }
+        for (const it of items) {
+          const v = valOf(it.dataset.segKey || '');
+          if (v <= 0) {
+            it.style.display = 'none';
+            continue;
+          }
+          it.style.display = '';
+          const valEl = it.querySelector<HTMLElement>('.stacked-legend__val');
+          if (valEl) valEl.textContent = `${fmtCompact(v)} · ${pctTxt(v)}`;
+        }
+      };
+
+      // Recalcula total + barras de TODOS los bloques de clase (todas las combos).
+      const recomputeSection = (scope: string) => {
+        if (scope !== 'cifras' || !breakdown) return;
+        const set = excluded[scope] || (excluded[scope] = new Set<string>());
+        document.querySelectorAll<HTMLElement>('.cifras-clase[data-cifras-clase]').forEach((block) => {
+          const perCaso =
+            breakdown?.[block.dataset.cifrasClase || '']?.[block.dataset.cifrasModo || '']?.[
+              block.dataset.cifrasVista || ''
+            ];
+          if (!perCaso) return;
+          const slugs = Object.keys(perCaso).filter((s) => !set.has(s));
+          const total = slugs.reduce((a, s) => a + (perCaso[s].t || 0), 0);
+          const num = block.querySelector<HTMLElement>('[data-cifras-total] .ctb__num');
+          if (num) num.textContent = fmtCompact(total);
+          const valWrap = block.querySelector<HTMLElement>('[data-cifras-total] .ctb__value');
+          if (valWrap) valWrap.setAttribute('title', fmtFull(total));
+          recomputeStack(block.querySelector('[data-cifras-stack="estado"]'), slugs, perCaso, 'e');
+          recomputeStack(block.querySelector('[data-cifras-stack="nivel"]'), slugs, perCaso, 'n');
+          const note = block.querySelector<HTMLElement>('[data-cifras-treemap-note]');
+          if (note) note.hidden = set.size === 0;
+        });
+      };
+
+      const chartsFor = (scope: string) =>
+        Array.from(document.querySelectorAll<HTMLElement>('.chart--bars[data-rescalable]')).filter(
+          (c) => (c.dataset.scope || '') === scope,
+        );
+
+      function applyScope(scope: string) {
+        const set = excluded[scope] || (excluded[scope] = new Set<string>());
+        for (const chart of chartsFor(scope)) {
+          const rows = Array.from(chart.querySelectorAll<HTMLElement>('.bar-row'));
+          let mx = 1;
+          for (const r of rows)
+            if (!set.has(r.dataset.barKey || '')) mx = Math.max(mx, Number(r.dataset.value || '0'));
+          let visible = 0;
+          for (const r of rows) {
+            if (set.has(r.dataset.barKey || '')) {
+              r.classList.add('is-excluded');
+            } else {
+              r.classList.remove('is-excluded');
+              r.style.setProperty('--w', `${Math.max(0, (Number(r.dataset.value || '0') / mx) * 100)}%`);
+              visible++;
+            }
+          }
+          // Panel inferior de ESTE subapartado: sólo los casos ocultos que
+          // existen en este chart (un caso sin esta clase de dinero no aparece).
+          const ui = chart.querySelector<HTMLElement>('[data-rescale-ui]');
+          if (!ui) continue;
+          const status = ui.querySelector<HTMLElement>('[data-rescale-status]');
+          const chips = ui.querySelector<HTMLElement>('[data-rescale-chips]');
+          const ocultosAqui = rows.filter((r) => set.has(r.dataset.barKey || ''));
+          if (ocultosAqui.length === 0) {
+            ui.hidden = true;
+            if (status) status.textContent = '';
+            if (chips) chips.replaceChildren();
+          } else {
+            ui.hidden = false;
+            if (status) status.textContent = `Comparando ${visible} de ${rows.length} casos · ocultos:`;
+            if (chips) {
+              chips.replaceChildren();
+              for (const r of ocultosAqui) {
+                const key = r.dataset.barKey || '';
+                const name = (r.querySelector('.bar-row__label')?.textContent || key).trim();
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'bar-rescale__chip';
+                btn.dataset.barRestore = key;
+                btn.textContent = name;
+                btn.setAttribute('aria-label', `Volver a mostrar ${name}`);
+                chips.appendChild(btn);
+              }
+            }
+          }
+        }
+
+        // Sincroniza el selector global del header (mismo scope): checks, badge
+        // «−N», botón «Mostrar todos» y el contador de visibles.
+        for (const drop of Array.from(
+          document.querySelectorAll<HTMLElement>('[data-casos-drop]'),
+        ).filter((d) => (d.dataset.scope || '') === scope)) {
+          const checks = Array.from(drop.querySelectorAll<HTMLInputElement>('[data-caso-check]'));
+          for (const cb of checks) cb.checked = !set.has(cb.value);
+          const badge = drop.querySelector<HTMLElement>('[data-casos-badge]');
+          if (badge) {
+            badge.textContent = set.size ? `−${set.size}` : '';
+            badge.hidden = set.size === 0;
+          }
+          const allBtn = drop.querySelector<HTMLElement>('[data-casos-all]');
+          if (allBtn) allBtn.hidden = set.size === 0;
+          const count = drop.querySelector<HTMLElement>('[data-casos-count]');
+          if (count)
+            count.textContent = set.size
+              ? `${checks.length - set.size} de ${checks.length} visibles`
+              : `${checks.length} casos`;
+        }
+
+        // Recalcula total + barras (grado/nivel) de toda la sección y la nota del
+        // treemap, sumando los casos visibles desde el desglose pre-agregado.
+        recomputeSection(scope);
+
+        // Refresca el preview del botón "Filtros" (móvil): el contador de ocultos
+        // vive en el header de toggles, gobernado por el otro script.
+        (window as unknown as { __updateCifrasPreview?: () => void }).__updateCifrasPreview?.();
+      }
+
+      // Reaplica el estado persistido (navegación con view transitions).
+      for (const scope of Object.keys(excluded)) applyScope(scope);
+
+      if (W.__cifrasRescaleBound) return;
+      W.__cifrasRescaleBound = true;
+
+      // El scope vive en el ancestro [data-scope]: la gráfica (× / chips / reset)
+      // o el dropdown del header (checks / mostrar todos). Por defecto 'cifras'.
+      const scopeOf = (el: Element): string => {
+        const host = el.closest<HTMLElement>('[data-scope]');
+        return host ? host.dataset.scope || '' : 'cifras';
+      };
+      const setFor = (scope: string) => excluded[scope] || (excluded[scope] = new Set<string>());
+
+      document.addEventListener('click', (ev) => {
+        const t = ev.target as HTMLElement;
+        const hideBtn = t.closest('[data-bar-hide]');
+        const restoreBtn = t.closest<HTMLElement>('[data-bar-restore]');
+        const resetBtn = t.closest('[data-bar-reset]');
+        const allBtn = t.closest('[data-casos-all]');
+        const anchor = hideBtn || restoreBtn || resetBtn || allBtn;
+        if (!anchor) return;
+        const scope = scopeOf(anchor);
+        const set = setFor(scope);
+        if (hideBtn) {
+          const row = hideBtn.closest<HTMLElement>('.bar-row');
+          if (row) set.add(row.dataset.barKey || '');
+        } else if (restoreBtn) {
+          set.delete(restoreBtn.dataset.barRestore || '');
+        } else if (resetBtn || allBtn) {
+          set.clear();
+        }
+        applyScope(scope);
+      });
+
+      document.addEventListener('change', (ev) => {
+        const cb = (ev.target as HTMLElement).closest<HTMLInputElement>('[data-caso-check]');
+        if (!cb) return;
+        const scope = scopeOf(cb);
+        const set = setFor(scope);
+        if (cb.checked) set.delete(cb.value);
+        else set.add(cb.value);
+        applyScope(scope);
+      });
+    }
+    __initCifrasRescale();
+    document.addEventListener('astro:page-load', __initCifrasRescale);
   </script>
 </BaseLayout>
 
@@ -1247,10 +1628,19 @@ const mapaTabs = [
      necesitan sticky propio: viajan con el título y siguen accesibles tras
      hacer scroll, sin duplicar la cabecera. */
   .cifras-toggles {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 6px 10px;
   }
+  .cifras-toggles__panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+  }
+  /* El trigger "Filtros" sólo existe en móvil (ver media query). */
+  .cifras-toggles__trigger { display: none; }
   .seg { display: inline-flex; border: 1px solid var(--color-border); }
   .seg__btn {
     appearance: none;
@@ -1270,6 +1660,161 @@ const mapaTabs = [
   }
   .seg__btn[aria-pressed='true']:hover { color: var(--color-accent-fg); }
   .seg__btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+  /* Selector global de casos del header (dropdown nativo <details>). Estado
+     compartido con la × de cada subapartado vía la isla de rescale. */
+  .cdrop { position: relative; }
+  .cdrop__btn {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font: 600 12px/1 var(--font-sans);
+    color: var(--color-fg-muted);
+    cursor: pointer;
+    user-select: none;
+  }
+  .cdrop__btn::-webkit-details-marker { display: none; }
+  .cdrop__btn::marker { content: ''; }
+  .cdrop__btn:hover { color: var(--color-fg); }
+  .cdrop[open] .cdrop__btn { color: var(--color-fg); border-color: var(--color-border-strong); }
+  .cdrop__btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .cdrop__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: var(--color-accent-fg);
+    font: 600 11px/1.45 var(--font-sans);
+  }
+  .cdrop__caret {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-fg-muted);
+    transition: transform 160ms ease-out;
+  }
+  .cdrop__caret svg { display: block; }
+  .cdrop[open] .cdrop__caret { transform: rotate(180deg); }
+  .cdrop__panel {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    z-index: 20;
+    width: 264px;
+    max-width: min(82vw, 320px);
+    padding: 8px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
+  }
+  .cdrop__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 2px 4px 8px;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 6px;
+  }
+  .cdrop__count { font: 500 12px/1.3 var(--font-sans); color: var(--color-fg-subtle); }
+  .cdrop__all {
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 0;
+    color: var(--color-accent);
+    font: 600 12px/1 var(--font-sans);
+    cursor: pointer;
+  }
+  .cdrop__all:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .cdrop__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 264px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .cdrop__opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 4px;
+    font: 400 13px/1.3 var(--font-sans);
+    color: var(--color-fg);
+    cursor: pointer;
+  }
+  .cdrop__opt:hover { background: var(--color-surface-muted); }
+  .cdrop__opt input { flex: none; accent-color: var(--color-accent); }
+
+  /* Móvil: los tres controles (vista + modo + casos) se colapsan en un único
+     desplegable "Filtros" cuyo botón previsualiza el estado seleccionado
+     ("Abiertos · € 2025 · −1 caso"). En escritorio se mantienen inline. */
+  @media (max-width: 640px) {
+    .cifras-toggles__trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-fg-muted);
+      font: 600 12px/1 var(--font-sans);
+      cursor: pointer;
+    }
+    .cifras-toggles__trigger:hover { color: var(--color-fg); }
+    .cifras-toggles__trigger:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+    .cifras-toggles__trigger[aria-expanded='true'] .cdrop__caret { transform: rotate(180deg); }
+    /* El trigger comparte fila con el título de la sección: en vez de caer a una
+       segunda fila, el preview trunca con elipsis. Se fuerza no-wrap en el header
+       de esta sección y se deja encoger toda la cadena (min-width:0). */
+    :global([data-toc-section='cifras-economicas'] .sec-h) { flex-wrap: nowrap; }
+    :global([data-toc-section='cifras-economicas'] .sec-h__actions) { min-width: 0; }
+    .cifras-toggles { min-width: 0; }
+    .cifras-toggles__trigger { min-width: 0; max-width: 100%; }
+    .cifras-toggles__preview {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cifras-toggles__trigger .cdrop__caret { flex: none; }
+    .cifras-toggles__panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + 5px);
+      right: 0;
+      z-index: 25;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      width: 250px;
+      max-width: 86vw;
+      padding: 12px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-strong);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
+    }
+    .cifras-toggles.is-open .cifras-toggles__panel { display: flex; }
+    .cifras-toggles__panel .seg { width: 100%; }
+    .cifras-toggles__panel .seg__btn { flex: 1; }
+    /* La lista de casos se expande inline dentro del panel, no como popover anidado. */
+    .cifras-toggles__panel .cdrop { width: 100%; }
+    .cifras-toggles__panel .cdrop__panel {
+      position: static;
+      width: auto;
+      max-width: none;
+      border: 0;
+      box-shadow: none;
+      padding: 6px 0 0;
+    }
+  }
   .modo-note {
     margin: 0 0 var(--space-4);
     font: 400 12.5px/1.5 var(--font-sans);

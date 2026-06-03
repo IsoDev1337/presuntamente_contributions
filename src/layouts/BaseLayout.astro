@@ -725,7 +725,7 @@ const brandSub = 'Inventario público de casos de corrupción en España';
         document.addEventListener('click', (e) => {
           const target = e.target;
           if (!(target instanceof Element)) return;
-          if (target.closest('a, button, input, select, textarea, label, summary, [role="button"]')) return;
+          if (target.closest('a, button, input, select, textarea, label, summary, [role="button"], [data-cifras-bar]')) return;
           const sec = target.closest<HTMLElement>('.main .sec-h[id]');
           if (!sec) return;
           if (e instanceof MouseEvent && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;

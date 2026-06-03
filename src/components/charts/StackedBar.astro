@@ -19,6 +19,8 @@ export interface StackSegment {
   /** Texto a mostrar como valor en vez del número crudo (p. ej. "53 M€").
    *  El ancho del segmento sigue usando `value`. */
   valueLabel?: string;
+  /** Clave estable del segmento (estado/nivel) para recálculo en cliente. */
+  key?: string;
 }
 
 interface Props {
@@ -46,6 +48,7 @@ const visible = segments.filter((s) => s.value > 0);
         style={`--seg-w:${pct(s.value)}%;--seg-c:${s.color};--i:${i};`}
         title={`${s.label}: ${s.valueLabel ?? s.value} (${fmtPct(s.value)})`}
         data-sheet={s.refKey}
+        data-seg-key={s.key}
       ></div>
     ))}
   </div>
@@ -55,6 +58,7 @@ const visible = segments.filter((s) => s.value > 0);
         <li
           class:list={['stacked-legend__item', s.refKey && 'is-clickable']}
           data-sheet={s.refKey}
+          data-seg-key={s.key}
           role={s.refKey ? 'button' : undefined}
           tabindex={s.refKey ? 0 : undefined}
         >

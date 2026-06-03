@@ -33,22 +33,49 @@ interface Props {
   valueSuffix?: string;
   /** Sufijo en singular cuando el valor es 1. Default: quita la "s" final. */
   valueSuffixSingular?: string;
+  /** Permite ocultar filas individuales y reescalar el eje en cliente (isla de
+   *  /graficas). Cada fila gana una × y se emite su valor crudo + clave estable. */
+  rescalable?: boolean;
+  /** Namespace del estado de exclusión compartido entre instancias (p. ej. la
+   *  clase de dinero), para que conmutar modo/vista conserve lo ocultado. */
+  scope?: string;
 }
 
-const { items, ariaLabel, max, valueSuffix = '', valueSuffixSingular } = Astro.props;
+const {
+  items,
+  ariaLabel,
+  max,
+  valueSuffix = '',
+  valueSuffixSingular,
+  rescalable = false,
+  scope,
+} = Astro.props;
 const topMax = max ?? Math.max(1, ...items.map((i) => i.value));
 const pct = (v: number) => `${Math.max(0, (v / topMax) * 100)}%`;
 const suffixFor = (v: number) =>
   v === 1 && valueSuffix ? (valueSuffixSingular ?? valueSuffix.replace(/s$/, '')) : valueSuffix;
+// Clave estable por fila para el estado de exclusión: el slug del href si lo
+// hay (p. ej. /casos/gurtel → "gurtel"), si no la etiqueta.
+const keyOf = (it: BarItem) =>
+  it.href ? it.href.replace(/\/+$/, '').split('/').pop() || it.label : it.label;
 ---
 
-<figure class="chart chart--bars" data-reveal role="group" aria-label={ariaLabel}>
+<figure
+  class="chart chart--bars"
+  data-reveal
+  data-rescalable={rescalable ? '' : undefined}
+  data-scope={rescalable ? scope : undefined}
+  role="group"
+  aria-label={ariaLabel}
+>
   <ol class="bar-rows">
     {items.map((it, i) => (
       <li
         class:list={['bar-row', it.refKey && 'is-clickable']}
         style={`--w:${pct(it.value)};--i:${i};${it.color ? `--c:${it.color};` : ''}`}
         data-sheet={it.refKey}
+        data-value={rescalable ? it.value : undefined}
+        data-bar-key={rescalable ? keyOf(it) : undefined}
         role={it.refKey ? 'button' : undefined}
         tabindex={it.refKey ? 0 : undefined}
       >
@@ -56,7 +83,18 @@ const suffixFor = (v: number) =>
           <span class="bar-row__label">
             {it.href && !it.refKey ? <a href={it.href}>{it.label}</a> : it.label}
           </span>
-          <span class="bar-row__val">{it.valueLabel ?? `${it.value}${suffixFor(it.value)}`}</span>
+          <span class="bar-row__right">
+            <span class="bar-row__val">{it.valueLabel ?? `${it.value}${suffixFor(it.value)}`}</span>
+            {rescalable && (
+              <button
+                type="button"
+                class="bar-row__hide"
+                data-bar-hide
+                aria-label={`Quitar ${it.label} de la comparación`}
+                title="Quitar de la comparación"
+              >×</button>
+            )}
+          </span>
         </div>
         <div class="bar-row__track" aria-hidden="true">
           <div class="bar-row__fill"></div>
@@ -65,6 +103,13 @@ const suffixFor = (v: number) =>
       </li>
     ))}
   </ol>
+  {rescalable && (
+    <figcaption class="bar-rescale" data-rescale-ui hidden>
+      <span class="bar-rescale__status" data-rescale-status aria-live="polite"></span>
+      <span class="bar-rescale__chips" data-rescale-chips></span>
+      <button type="button" class="bar-rescale__reset" data-bar-reset>Mostrar todos</button>
+    </figcaption>
+  )}
 </figure>
 
 <style>
@@ -93,12 +138,97 @@ const suffixFor = (v: number) =>
     text-decoration: none;
   }
   .bar-row__label a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .bar-row__right {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
+  }
   .bar-row__val {
     font: 600 13px/1 var(--font-mono);
     color: var(--color-fg-muted);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
+  /* Botón × para quitar una fila de la comparación (solo charts rescalables). */
+  .bar-row__hide {
+    appearance: none;
+    flex: none;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    background: var(--color-surface-muted);
+    color: var(--color-fg-subtle);
+    font: 600 13px/1 var(--font-sans);
+    cursor: pointer;
+    transition: color 140ms ease-out, border-color 140ms ease-out, background 140ms ease-out;
+  }
+  .bar-row__hide:hover {
+    color: var(--color-fg);
+    border-color: var(--color-fg-subtle);
+    background: var(--color-surface);
+  }
+  .bar-row__hide:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .bar-row.is-excluded { display: none; }
+
+  /* Panel inferior: estado + chips de casos ocultos + restaurar todos. */
+  .bar-rescale {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    font: 400 12.5px/1.4 var(--font-sans);
+    color: var(--color-fg-subtle);
+  }
+  .bar-rescale__status { color: var(--color-fg-muted); }
+  .bar-rescale__chips {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .bar-rescale__chip {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-fg-muted);
+    font: 500 12px/1 var(--font-sans);
+    cursor: pointer;
+    transition: color 140ms ease-out, border-color 140ms ease-out;
+  }
+  .bar-rescale__chip::after {
+    content: '×';
+    color: var(--color-fg-subtle);
+    font-weight: 600;
+  }
+  .bar-rescale__chip:hover { color: var(--color-fg); border-color: var(--color-fg-subtle); }
+  .bar-rescale__chip:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .bar-rescale__reset {
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 2px 0;
+    color: var(--color-accent);
+    font: 600 12.5px/1 var(--font-sans);
+    cursor: pointer;
+  }
+  .bar-rescale__reset:hover { text-decoration: underline; text-underline-offset: 3px; }
   .bar-row__track {
     height: 14px;
     background: var(--color-surface-muted);
