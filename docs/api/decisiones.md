@@ -20,6 +20,7 @@
 - [D8 — Visibilidad: la API es un vector más del gate](#d8--visibilidad-la-api-es-un-vector-más-del-gate)
 - [D9 — Versionado y promesa de estabilidad](#d9--versionado-y-promesa-de-estabilidad)
 - [D10 — Identificadores de organización para el join externo](#d10--identificadores-de-organización-para-el-join-externo)
+- [D11 — Denormalizar para el join externo (CIF inline y aristas bidireccionales)](#d11--denormalizar-para-el-join-externo-cif-inline-y-aristas-bidireccionales)
 
 ---
 
@@ -295,16 +296,25 @@ es público y verificado en registros oficiales"). Cobertura en junio 2026: **1 
   registro oficial (BORME para empresas, Registro de Partidos, fuentes oficiales para el
   NIF de administraciones). Los **órganos judiciales** (juzgado/tribunal/fiscalía) **no
   tienen CIF propio** y se dejan vacíos — y no son por los que se filtra territorio.
-- **Valorar identificadores hermanos** como ampliación futura: **DIR3** (código canónico
-  de unidad orgánica de la administración española, mejor que el NIF para administraciones
-  y enlaza con contratación/transparencia) y **QID de Wikidata** (join universal,
-  agnóstico de idioma). Posible modelado en un objeto `identificadores: { cif, dir3,
-  wikidata }` cuando se aborde.
+- **Identificadores hermanos — fuertemente motivados, mantener muy presente** (no
+  necesariamente en la v1): **DIR3** (código canónico de unidad orgánica de la
+  administración española, mejor que el NIF para administraciones y enlaza con
+  contratación/transparencia) y **QID de Wikidata** (crosswalk universal, agnóstico de
+  idioma). Modelado en un objeto `identificadores: { cif, dir3, wikidata }` cuando se
+  aborde.
 
 **Razón.** El CIF/NIF es el identificador canónico español de entidad; convierte el join
 de "fuzzy por nombre" a "exacto por id", y es un multiplicador de composabilidad (enlaza
 con BORME, contratación pública, portales de transparencia). Para entidades jurídicas es
 dato público.
+
+**Señal de uso real (Menjòmetre, junio 2026).** Un consumidor real confirmó que su
+problema central no es *tener* el dato sino **cruzarlo**: los portales de transparencia
+traen mucha información pero sin identificador único (ni CIF ni UUID) y con erratas en los
+nombres — el problema clásico de *entity resolution*. Eso refuerza que los hermanos del
+`cif` no son cosméticos: **DIR3** es el id canónico de la administración española (justo el
+universo de esos portales) y el **QID de Wikidata** está hecho para cruzar datasets sucios.
+Mantenerlos muy presentes aunque no entren en la v1.
 
 **Consecuencias.**
 - **Tarea de contenido**: poblar el `cif` de las orgs entidad en casos beta+ (sweep
@@ -313,6 +323,51 @@ dato público.
 - **Guardarraíl de privacidad**: el `cif` vive sólo en `Organizacion`; **nunca** se
   expone el NIF/DNI de una persona física (cuidado con autónomos cuyo "organismo" sea en
   realidad su NIF personal).
+
+---
+
+## D11 — Denormalizar para el join externo (CIF inline y aristas bidireccionales)
+
+**Contexto.** Adoptado el filtro territorial en cliente
+([D5](#d5--faceta-de-territorio-administración-afectada-pendiente-de-modelar)) con join
+por `cif` ([D10](#d10--identificadores-de-organización-para-el-join-externo)), surge la
+pregunta de cuánto trabajo de cruce absorbe el productor y cuánto deja al consumidor.
+Caso de uso real (Menjòmetre): "tengo una lista de CIF, dame los casos".
+
+**Decisión.** El productor absorbe el cruce. Tres denormalizaciones:
+
+1. **CIF inline en `/casos.json`.** Cada entrada de `organizaciones_afectadas` lleva,
+   además del `id` (slug), el `cif`. El `cif` canónico vive en `/organizaciones.json`,
+   pero se duplica en el caso para que un consumidor filtre con un solo fichero. (Sólo el
+   `cif`, la clave de cruce común; DIR3/Wikidata se quedan en el registro.)
+2. **Arista bidireccional: la organización lleva sus casos.** Además de "el caso lista sus
+   organizaciones", "la organización lista sus `casos_relacionados`" (con
+   `naturaleza`/`nivel_afectacion`). Es la arista inversa que
+   [D2](#d2--el-inventario-se-expone-como-grafo-de-tres-entidades) ya prevé en principio,
+   aquí explicitada en la dirección org→casos.
+3. **Acceso por CIF.** El índice `/organizaciones.json` lleva, por org, su `cif` y sus
+   `casos_relacionados`. Así un consumidor con CIF resuelve los casos **sin tocar
+   `/casos.json` ni hacer join**: filtra el índice por sus CIF y lee los casos. Canónico =
+   slug (estable, siempre existe); CIF = clave secundaria; un `/organizaciones/{cif}.json`
+   por separado es opcional (el índice ya cubre el acceso por CIF). **Sólo las entidades
+   tienen CIF** (empresa, administración, partido…); juzgados/tribunales/fiscalías no.
+
+**Razón.** Principio **1-productor-N-consumidores**: el productor absorbe una complejidad
+**acotada** en build para que *todos* los consumidores integren sin reimplementar el mismo
+join (cada uno con sus bugs). El coste es ~0 (una línea en el serializador) y la data
+añadida es mínima (un CIF de 9 caracteres por org afectada). El argumento clásico contra
+duplicar —que el dato se desincronice— **no aplica**: ambos ficheros se generan del mismo
+YAML en cada build, así que siempre van a la vez. Y empuja hacia el objetivo declarado
+(composabilidad / fricción mínima).
+
+**Consecuencias.**
+- El serializador inlinea el `cif` en `organizaciones_afectadas` y resuelve
+  `casos_relacionados` por organización (recorriendo los `VinculoInstitucional` con
+  `relevancia_para_caso_ids`).
+- Depende de poblar el `cif`
+  ([D10](#d10--identificadores-de-organización-para-el-join-externo)); sin él, el inline
+  queda vacío y el consumidor cae al match por nombre.
+- `/organizaciones/{cif}.json` queda como opcional, no necesario.
 
 ---
 

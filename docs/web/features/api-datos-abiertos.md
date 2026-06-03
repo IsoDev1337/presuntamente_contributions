@@ -37,6 +37,9 @@ proyecto serio de datos abiertos. Detalle de audiencia y casos de uso en el
   + slices pre-construidos por URL (decisión [D3](../../api/decisiones.md#d3--acceso-por-índice-detalle-y-slices)).
 - **Modelo de grafo**: cada nodo (caso/persona/organización) serializa sus aristas
   (decisión [D2](../../api/decisiones.md#d2--el-inventario-se-expone-como-grafo-de-tres-entidades)).
+- **Denormalización para el join externo**: el caso inlinea el `cif` de sus organizaciones
+  y la organización lleva sus `casos_relacionados`; un consumidor con CIF va de CIF a casos
+  con un solo fichero (decisión [D11](../../api/decisiones.md#d11--denormalizar-para-el-join-externo-cif-inline-y-aristas-bidireccionales)).
 - **Gate de visibilidad obligatorio**: pasa por `visibilidad.ts`; sólo `beta_publica+`
   (decisión [D8](../../api/decisiones.md#d8--visibilidad-la-api-es-un-vector-más-del-gate)).
 
@@ -79,7 +82,9 @@ proyecto serio de datos abiertos. Detalle de audiencia y casos de uso en el
   reglas de presunción de inocencia al renderizar.
 - **`datapackage.json`** (Frictionless Data) como descriptor estándar del dataset.
 - **Identificadores hermanos de organización**: `dir3` (administraciones) y `wikidata`
-  (QID universal) junto al `cif`, para joins aún más limpios. Ver
+  (QID universal) junto al `cif`, para joins aún más limpios. **Fuertemente motivados** por
+  la entity-resolution de consumidores reales (Menjòmetre: portales de transparencia sin id
+  único, con erratas en los nombres); mantener muy presente. Ver
   [D10](../../api/decisiones.md#d10--identificadores-de-organización-para-el-join-externo).
 
 ### Sin compromiso

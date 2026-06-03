@@ -87,8 +87,8 @@ el contrato de forma: `caso.schema.json`, `persona.schema.json`,
   "fecha_apertura": "YYYY-MM-DD",
   "organo_judicial_id": "...",
   "organizaciones_afectadas": [
-    { "id": "ministerio-del-interior", "naturaleza": "ambito_administrativo_directo_del_acto_en_caso", "nivel_afectacion": "directa" },
-    { "id": "pp", "naturaleza": "afectacion_indirecta_en_caso", "nivel_afectacion": "indirecta" }
+    { "id": "ministerio-del-interior", "cif": "...", "naturaleza": "ambito_administrativo_directo_del_acto_en_caso", "nivel_afectacion": "directa" },
+    { "id": "pp", "cif": "...", "naturaleza": "afectacion_indirecta_en_caso", "nivel_afectacion": "indirecta" }
   ],
   "personas_clave": ["...", "..."],
   "delitos": ["...", "..."],
@@ -104,10 +104,15 @@ El cliente hace `casos.filter(...)` sobre estas filas y luego pide
 Las `organizaciones_afectadas` se resuelven inlineando los `VinculoInstitucional` del
 caso (afectación, [doc 08](../diseno/08-afectacion-directa-indirecta.md#7-modelo-de-datos)):
 no sólo el órgano judicial sino las administraciones afectadas y empresas implicadas, que
-son las que cargan la señal territorial. Para el cruce externo, el índice de
-organizaciones (`/api/v1/organizaciones.json`) lleva el `cif`/NIF de cada entidad, de
-modo que un consumidor identifica las suyas por identificador estable en vez de por
-nombre (ver [`decisiones.md` — D10](decisiones.md#d10--identificadores-de-organización-para-el-join-externo)).
+son las que cargan la señal territorial. Cada entrada lleva también el `cif` **inline**
+(denormalizado del registro) para que el consumidor filtre con un solo fichero.
+
+La arista es **bidireccional**: el índice de organizaciones
+(`/api/v1/organizaciones.json`) lleva, por cada org, su `cif`/NIF **y** sus
+`casos_relacionados`. Así un consumidor con una lista de CIF va directo de CIF a casos sin
+tocar `/casos.json` ni hacer join. Detalle en
+[`decisiones.md` — D10](decisiones.md#d10--identificadores-de-organización-para-el-join-externo)
+y [D11](decisiones.md#d11--denormalizar-para-el-join-externo-cif-inline-y-aristas-bidireccionales).
 
 ## El sobre de metadatos (los guardarraíles viajan con el dato)
 
