@@ -3,6 +3,7 @@ nombre: "Vox"
 nombres_alternativos:
   - "VOX"
 tipo: partido_politico
+cif: "G86867108"
 descripcion_corta: |
   Partido político español fundado el 17 de diciembre de 2013. Tiene
   representación en el Congreso de los Diputados, el Senado y diversos

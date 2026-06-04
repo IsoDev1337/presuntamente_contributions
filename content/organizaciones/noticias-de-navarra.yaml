@@ -3,6 +3,7 @@ nombre: "Noticias de Navarra"
 nombres_alternativos:
   - "Diario de Noticias"
 tipo: medio_comunicacion
+cif: "A31455082"
 descripcion_corta: |
   Diario generalista con sede en Pamplona, integrado en el grupo
   editorial Zeroa Multimedia. Cubre actualidad navarra, nacional y

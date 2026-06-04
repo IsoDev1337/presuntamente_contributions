@@ -3,6 +3,7 @@ nombre: "Partido Socialista Obrero Español"
 nombres_alternativos:
   - "PSOE"
 tipo: partido_politico
+cif: "G28477727"
 descripcion_corta: |
   Partido político español de orientación socialdemócrata, fundado en
   1879 y refundado en su forma actual en 1976. Una de las dos

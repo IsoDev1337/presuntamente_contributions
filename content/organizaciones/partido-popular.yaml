@@ -4,6 +4,7 @@ nombres_alternativos:
   - "PP"
   - "Partido Popular Español"
 tipo: partido_politico
+cif: "G28570927"
 siglas: "PP"
 descripcion_corta: |
   Formación política española de centro-derecha refundada en 1989 como

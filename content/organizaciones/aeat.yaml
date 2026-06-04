@@ -5,6 +5,7 @@ nombres_alternativos:
   - "Agencia Tributaria"
   - "Hacienda"
 tipo: organismo_publico
+cif: "Q2826000H"
 descripcion_corta: |
   Entidad de Derecho público dependiente del Ministerio de Hacienda
   responsable, en nombre y por cuenta del Estado, de la aplicación
