@@ -24,11 +24,14 @@ Dos capas:
 1. **Generación de rutas** (`pages/personas/[slug].astro`, `pages/organizaciones/[slug].astro`, `pages/og/{casos,personas,organizaciones}/[slug].png.ts`): en prod sólo se generan rutas de entidades ligadas a un caso visible.
 2. **Filtrado de contenido y enlaces** en cada vector: fichas de detalle (roles, "casos donde aparece", cifras, vínculos), índices `/personas` `/organizaciones` `/delitos`, `/cifras` y la home (alcance visible para las cifras), `/casos` (filas bloqueadas fuera del listado en prod), feed ([`lib/feed.ts`](../../../src/lib/feed.ts)), grafo ([`lib/conexiones.ts`](../../../src/lib/conexiones.ts)) y auto-enlaces de [`RichProse`](../../../src/components/RichProse.astro).
 
+**Retractación a nivel de `Hecho` (no de caso).** Las dos capas anteriores operan sobre la visibilidad del **caso**. Dentro de un caso visible, un `Hecho` retractado —`vigencia: retirado` o `estado_publicacion: retirado_*`— tampoco debe asomar: [`PgCasoDetalle.astro`](../../../src/components/pages/PgCasoDetalle.astro) lo excluye al construir la lista de hechos, con el **mismo criterio que la API** ([doc API — "D12"](../../api/decisiones.md#d12--decisiones-de-implementación-junio-2026)). Los `vigencia: superado` (histórico corregido por un `Hecho` posterior vía `corregido_por`) **sí** se conservan: son trayectoria, no retractación (principio #6 "conserva el histórico").
+
 Verificación de no-fuga: build de producción + barrido de `dist/` (0 referencias —en cualquier formato— a slugs de casos/entidades no generados) + 0 enlaces internos colgantes.
 
 ## Estado actual
 
 - **2026-06-02 — entregado.** Antes del push de la tanda de 12 casos en borrador se detectó que el gate de borradores sólo cubría la página de caso, la home, `/casos`, `/graficas` y `/conexiones`; las fichas de persona/organización, el feed, los índices, `/cifras`, `/delitos`, las OG y los auto-enlaces de `RichProse` exponían contenido de casos en borrador (rol + delitos + bio + cifras + hitos recientes). Cerrado extendiendo el gate a todos los vectores con el helper central. Build prod: 8 casos, 90 personas, 82 organizaciones; `dist/` sin fugas ni enlaces colgantes; `validate` 1359 OK.
+- **2026-06-04 — retractación a nivel de `Hecho` (coherencia web↔API).** `PgCasoDetalle` no filtraba los hechos por estado/vigencia (los renderizaba todos), incoherencia que [D12](../../api/decisiones.md#d12--decisiones-de-implementación-junio-2026) había dejado anotada como follow-up. Resuelto: excluye `vigencia: retirado` / `estado_publicacion: retirado_*`, conserva `superado`. Borrado además el único hecho retractado del repo (placeholder obsoleto de `tarjetas-black`, que filtraba el texto interno «Fichero obsoleto…» a la ficha y a `/graficas`). Verificado: `grep 'Fichero obsoleto' dist/` = 0; el hecho canónico y los `superado` siguen.
 
 ## Decisiones editoriales y aprendizajes
 

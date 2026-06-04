@@ -139,7 +139,18 @@ const [
 const hitos = hitosCol
   .filter((h) => h.data.caso_id === data.id)
   .sort((a, b) => b.data.fecha.localeCompare(a.data.fecha));
-const hechos = hechosCol.filter((h) => h.data.caso_id === data.id);
+// Mismo criterio que la API de datos abiertos (src/lib/api.ts; ver
+// docs/api/decisiones.md D12): un Hecho retractado no se propaga. Excluye
+// `estado_publicacion` retirado_* y `vigencia: retirado`. Los `vigencia:
+// superado` SÍ se conservan (histórico corregido por un Hecho posterior vía
+// `corregido_por`; principio "conserva el histórico" de AGENTS.md).
+const hechos = hechosCol.filter((h) => {
+  if (h.data.caso_id !== data.id) return false;
+  const ep = (h.data as { estado_publicacion?: string }).estado_publicacion;
+  if (ep === 'retirado_temporalmente' || ep === 'retirado_definitivamente') return false;
+  if ((h.data as { vigencia?: string }).vigencia === 'retirado') return false;
+  return true;
+});
 const roles = rolesCol.filter((r) => r.data.caso_id === data.id);
 
 // Índices auxiliares

@@ -387,8 +387,9 @@ fijaba. Se resolvieron así:
   retractación **no debe propagar un hecho retractado**. La API, por tanto, es **más
   estricta que la web**: excluye `Hecho` con `vigencia: retirado` o
   `estado_publicacion: retirado_*`, y vínculos/documentos/relaciones `retirado_*`.
-  (La incoherencia de la web —que sí muestra un hecho `retirado_definitivamente`— se
-  dejó anotada como follow-up editorial aparte; no es de la API.)
+  (La incoherencia de la web —que sí mostraba un hecho `retirado_definitivamente`— se
+  resolvió el 2026-06-04: `PgCasoDetalle` aplica ahora el mismo criterio que la API;
+  web y API quedan coherentes. Detalle en la [ficha de visibilidad](../web/features/visibilidad-estados-publicacion.md#estado-actual).)
 - **Los campos internos no se exponen.** El `Caso` puede llevar `promocion_propuesta`
   (cola interna de `/promover-caso`, nunca renderizada en web). Se elimina del payload
   con una **denylist** (`CASO_CAMPOS_INTERNOS`), no una whitelist, para que los campos
