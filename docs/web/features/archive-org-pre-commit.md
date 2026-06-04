@@ -51,6 +51,8 @@ Backlog típico sin catchup: Kitchen (N4 sin `url_canonica`), cobertura de Bego�
 
 - El archivado es **post-commit**, no condición del commit. Los agentes pueden dejar `url_archivo` vacío y anotar en `notas`; el maintainer corre catchup con red.
 - Paywall / anti-bot (HTTP 520): marcar `url_archivo_no_disponible` en documentos N4 con justificación; confiar en respaldo cruzado (doc 01).
+- **HTTP 520/523 de archive.org en `--catchup` = error transitorio de su CDN/origen (Cloudflare), no fallo nuestro.** Los `OK (reuse)` reutilizan un snapshot existente; los `FAIL ... respuesta sin Location utilizable` son capturas frescas que su infraestructura no completó en ese momento. Quedan sin `url_archivo` (inocuo, conservan `url_canonica`): reintentar más tarde. Solo marcar `url_archivo_no_disponible` si falla de forma persistente.
+- **Bug del inyector con `url_canonica` plegado, corregido 2026-06-04.** `insertUrlArchivoDocumento` insertaba `url_archivo` en `idx+1`, partiendo un escalar `url_canonica: >-` (cuyo valor vive en líneas indentadas) y rompiendo el YAML. Incidente real: 3 documentos de `barcenas-caja-b` rotos por sucesivos `archive:catchup`. Arreglado para avanzar hasta el final del bloque antes de insertar. Si se vuelve a tocar el inyector, conservar el manejo de escalares plegados/literales.
 
 ## Pendientes operativos
 

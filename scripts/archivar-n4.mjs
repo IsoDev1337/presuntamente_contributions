@@ -277,11 +277,24 @@ function insertUrlArchivoDocumento(rawYaml, archiveUrl) {
   if (idx < 0) {
     return null;
   }
-  const next = lines[idx + 1];
+  // url_canonica puede ser un escalar plegado/literal (`>-`, `>`, `|`, `|-`): su valor
+  // ocupa las líneas indentadas siguientes. Hay que avanzar hasta el final del nodo para
+  // insertar url_archivo DESPUÉS del bloque; insertarlo en idx+1 partiría el escalar y
+  // rompería el YAML (incidente caja-b 2026-06-04).
+  let end = idx;
+  const inline = lines[idx].slice(lines[idx].indexOf(':') + 1).trim();
+  if (/^[>|]/.test(inline)) {
+    let j = idx + 1;
+    while (j < lines.length && /^\s+\S/.test(lines[j])) {
+      end = j;
+      j++;
+    }
+  }
+  const next = lines[end + 1];
   if (next && /^url_archivo:\s/.test(next)) {
-    lines[idx + 1] = `url_archivo: "${archiveUrl}"`;
+    lines[end + 1] = `url_archivo: "${archiveUrl}"`;
   } else {
-    lines.splice(idx + 1, 0, `url_archivo: "${archiveUrl}"`);
+    lines.splice(end + 1, 0, `url_archivo: "${archiveUrl}"`);
   }
   return lines.join('\n');
 }
