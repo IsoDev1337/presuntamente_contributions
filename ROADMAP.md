@@ -4,9 +4,9 @@
 >
 > Roadmap conceptual: [`docs/diseno/06-roadmap-por-fases.md`](docs/diseno/06-roadmap-por-fases.md). Histórico largo: [`docs/roadmap/`](docs/roadmap/README.md).
 
-**Última actualización:** 2026-06-04 (**migración a Astro 6**). `astro` 5.18.1 → **6.4.2** (+ `@astrojs/sitemap` 3.7.3, `@astrojs/check` 0.9.9). Cierra las **2 alertas de Astro** del escáner (XSS `define:vars` y replay de server islands; **ninguna afectaba** —sitio estático sin SSR, sin `define:vars` ni server islands—, pero ≥6.1.10 las resuelve). 6.4.2 elegida **madura a propósito** (~7 días) para no bypassar el cooldown `minimumReleaseAge` anti-supply-chain. Único arreglo de código: `src/lib/og.ts` devuelve `Uint8Array<ArrayBuffer>` en vez de `Buffer` (los tipos de Astro 6 / TS 5.7 rechazan `Buffer` como `BodyInit`). Verde **antes** de la contaminación de una sesión paralela: `validate` 1386 OK, `check` 0/0, build 317 págs + 288 OG. Deuda menor dev-only: `yaml` transitivo vía `@astrojs/check` (no entra en producción).
+**Última actualización:** 2026-06-04 (**caso `leire-diez` al día**). Vía `/actualizar-caso` + `/revisar-caso`: nuevo hito del **levantamiento parcial del secreto del sumario** (auto Pedraz 1-jun; la pieza de contratos públicos/SEPI sigue secreta un mes más); incorporada la **nota oficial CGPJ (N1)** como respaldo del marco de delitos (el caso deja de depender del auto filtrado N3); delitos ampliados (`organizacion-criminal`, `prevaricacion`). Auditoría editorial aplicada: empresaria anonimizada (V-17 / presunción), `"trama"`→`"estructura"` en un título, `beneficiario`→`activo` en el hecho Hirurok. Aparte (otra naturaleza, commit separado): corregido un **bug de `scripts/archivar-n4.mjs`** que rompía el YAML al insertar `url_archivo` dentro de un `url_canonica` plegado (3 fichas de `barcenas-caja-b` reparadas). Detalle: [`NOTES` del caso](content/casos/leire-diez/NOTES.md) · [`archive-org-pre-commit.md`](docs/web/features/archive-org-pre-commit.md).
 
-**Anterior (2026-06-03).** Filtro de casos en `/graficas` con recálculo en cliente + saneada fuga de prosa interna en `punica`. Antes: 8 borradores cerrados vía `/promover-caso` (6 → `beta_publica`) y diseño de la API de datos abiertos (sin código). Detalle: [`importe-presunto.md`](docs/web/features/importe-presunto.md) · [`historial-2026-06.md`](docs/roadmap/historial-2026-06.md) · [`historial-2026-05.md`](docs/roadmap/historial-2026-05.md).
+**Anterior (2026-06-04).** Migración a Astro 6 (6.4.2): resuelve 2 alertas del escáner (ninguna afectaba; sitio estático), único cambio de código `src/lib/og.ts` → `Uint8Array`. Antes (06-03): filtro de casos en `/graficas` + saneada fuga de prosa en `punica`. Detalle: [`historial-2026-06.md`](docs/roadmap/historial-2026-06.md) · [`historial-2026-05.md`](docs/roadmap/historial-2026-05.md).
 
 ---
 
@@ -114,7 +114,7 @@ Plan detallado fuera de git. Pre-requisitos: deploy + dominio → lanzamiento bl
 | Caso | Estado | Pendiente principal |
 |------|--------|---------------------|
 | Plus Ultra | publicable · pin#1 | declaración Zapatero 17-18 jun; auto Calama íntegro en CENDOJ; ampliación CNI/Venezuela cuando aparezca auto |
-| Leire Díez | publicable · pin#2 (nuevo 28-may) | nota CGPJ del auto Pedraz; auto JI 9 con número; vínculos institucionales formales (PSOE/SEPI); Carmen Pano si adquiere rol formal |
+| Leire Díez | publicable · pin#2 | **secreto levantado parcial 1-jun (hito + nota CGPJ N1 incorporados)**; primarios cuando suba el sumario a la nube (~días); resolución de la inhibición JI 9→AN y del recurso de nulidad de Díez; **decisión 7.ª regla afectación PSOE → directa** (ver Decisiones abiertas); auto JI 9 con número |
 | Begoña Gómez | publicable | UCO prevaricación Cantó (1 fuente, V-13 pendiente); audiencia previa 9-jun |
 | González Amador | publicable | informe UCO Quirón (+300 días) |
 | FGE | publicable | amparo TC admisibilidad; indulto parcial pendiente CM |
@@ -144,7 +144,7 @@ Plan detallado fuera de git. Pre-requisitos: deploy + dominio → lanzamiento bl
 1. **Roles procesales de `pujol`**: 7 hijos `investigado`→`acusado` y Pujol Soley→`desimputado` (cambian badge; toca presunción → decisión humana).
 2. **Excepción de nombre propio "Gürtel"/"Púnica"/"Malaya"**: hoy sustituidos en prosa; decidir si se documenta excepción en [`AGENTS.md`](AGENTS.md) o se mantiene. Viven en `nombres_alternativos`.
 3. **Promociones a `acreditado` no hechas a propósito**: ERE (TC matizó la firmeza 2024) y tándem (Salamanca sin confirmar casación; Villarejo no firme). Revisar cuando haya certeza de firmeza.
-4. **Posible 7.ª regla de afectación** (doc 08) para "partido cuya caja es objeto de investigación" (caso PSOE/leire-diez) — decisión de modelo, no urgente.
+4. **7.ª regla de afectación** (doc 08): "partido cuya caja/fondos son objeto de la investigación" → **directa**, no indirecta (caso PSOE/leire-diez). El maintainer se inclina por adoptarla (2026-06-04); **pendiente su luz verde** para redactar la regla + naturaleza nueva `caja_partido_objeto_investigacion_en_caso` (directa) + reclasificar PSOE en leire y revisar uno a uno Bárcenas/Filesa/Gürtel-caja-b/Pujol. Clave: NO usar `entidad_investigada_en_caso` (el partido no está imputado como persona jurídica → insinuaría imputación inexistente).
 5. **PDFs íntegros / `pendiente_primario`**: varias sentencias firmes respaldadas por nota CGPJ N1 pero sin PDF en CENDOJ (descarga con `ruta_local`+hash cuando aparezcan). `archive:catchup` de los N4 nuevos (requiere red).
 
 ### Saneamiento del lote noos/malaya/palau/tarjetas (2026-05-31, vía `/promover-caso`)

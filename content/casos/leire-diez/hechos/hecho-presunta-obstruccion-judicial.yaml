@@ -24,7 +24,7 @@ organizaciones_implicadas:
   - uco-guardia-civil
 documentos_respaldo:
   - documento_id: el-lliberal-cat-auto-pedraz-integro-2026-05-27
-    pasaje: "Auto íntegro del juez Pedraz (N3 filtrado_verificado): presuntas acciones de desestabilización, ofrecimiento a Carmen Pano, búsqueda de información sobre jueces y contactos con excapitán UCO Sánchez Yepes."
+    pasaje: "Auto íntegro del juez Pedraz (N3 filtrado_verificado): presuntas acciones de desestabilización, ofrecimiento a una empresaria para que modificara su declaración, búsqueda de información sobre jueces y contactos con excapitán UCO Sánchez Yepes."
   - documento_id: vozpopuli-auto-pedraz-pieza-separada-2026-05-26
     pasaje: "Cobertura de Voz Pópuli confirmando las acciones de presunta obstrucción descritas en el auto."
 nivel_fuente_efectivo: 3
@@ -44,4 +44,4 @@ importe_atribucion:
 vigencia: vigente
 redaccion_neutra_revisada: false
 estado_publicacion: borrador
-ultima_revision_editorial: "2026-05-28"
+ultima_revision_editorial: "2026-06-04"

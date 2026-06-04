@@ -58,7 +58,7 @@ No existía en el inventario. Se crea en PR1 como `medio_comunicacion` con `natu
 
 ## Pendientes para PR2+
 
-- [ ] Localizar nota oficial CGPJ sobre el auto Pedraz del 26-may-2026. Si existe, elevar `el-lliberal-cat-auto-pedraz-integro-2026-05-27` a N1 o crear nuevo documento N1 CGPJ y actualizar `documento_principal_id` del hito `auto-pedraz-pieza-separada-2026-05-26`.
+- [x] ~~Localizar nota oficial CGPJ sobre el auto Pedraz del 26-may-2026.~~ **RESUELTO (barrido 2026-06-03):** localizada la nota de la Oficina de Comunicación del CGPJ del 27-may-2026 → catalogada como `cgpj-nota-requerimiento-psoe-leire-2026-05-27` (N1, `nota_prensa_institucional`). Es ahora `documento_principal_id` del hito `uco-en-ferraz-2026-05-27` y `documentos_relacionados` del hito `auto-pedraz-pieza-separada-2026-05-26`. Pendiente menor: archivo local (`ruta_local` + `hash_sha256`) del HTML nativo vía `/incorporar-hito`.
 - [ ] Localizar auto JCI nº 6 diciembre 2025 (origen de las detenciones). Si es accesible, crear documento y actualizar hito `detencion-leire-diez-2025-12-10`.
 - [ ] Confirmar número de diligencias previas de la pieza A (JCI nº 5) y de la pieza B (JI nº 9 Madrid).
 - [ ] Confirmar fecha exacta de la detención de diciembre 2025 (actualmente `2025-12-10`, estimada).
@@ -109,3 +109,42 @@ El auto del 26-may sitúa el presunto ofrecimiento de **50.000 €** a la empres
 - [ ] Vigilar imputación formal de Leticia de la Hoz en la pieza Pedraz; si llega, crear persona + rol y elevar nexo Koldo a `comparte_actor_con`.
 - [ ] Confirmar nº de DP de la pieza Pedraz ("DP 150/2025" citado sólo por fuente no auditable).
 - [ ] Refinar `hecho-presunta-obstruccion-judicial`: la cobertura precisa que el ofrecimiento de 50.000 € se habría canalizado vía De la Hoz y apunta a la retractación sobre los 90.000 € de Pano/Aldama; valorar añadir ese matiz al `enunciado`/`importe_nota` cuando se localice el auto íntegro (no se toca ahora para no introducir a De la Hoz sin imputación formal).
+
+---
+
+## Barrido de actualidad — 2026-06-03 (`/actualizar-caso`)
+
+**Disparador:** el maintainer pregunta si el sumario del caso ya es público.
+**Ventana revisada:** 2026-05-30 (última revisión editorial) → 2026-06-03. Última fecha procesal previa catalogada: 27-may-2026 (UCO en Ferraz). Búsqueda en ≥6 líneas editoriales (Público, The Objective, Infobae, El Debate, eldiario, Telecinco, Moncloa, El Ideal Gallego, Última Hora) + nota oficial CGPJ/poderjudicial.es.
+
+### Respuesta a la pregunta del maintainer: SÍ, parcialmente público desde el 1-jun-2026
+El secreto **ya no es total**. El **1 de junio de 2026** el juez Pedraz dictó auto **levantando parcialmente** el secreto del sumario, al considerar practicadas gran parte de las diligencias que lo motivaron. **Matiz clave:** mantiene **bajo reserva un mes más** la pieza relativa a **presuntas irregularidades en contratos públicos** (investigados Leire Díez, el expresidente de la SEPI Vicente Fernández Guerrero y Antxon Alonso) — es decir, **la rama que conecta con Plus Ultra/SEPI sigue secreta**. La parte cuyo secreto se levanta es la de la **presunta estructura de desestabilización judicial**. La Audiencia Nacional/Ministerio de Justicia avisó de que el sumario podría tardar 3-4 días en estar materialmente accesible a las partes (subida a la nube), de modo que a fecha de este barrido el contenido íntegro aún no está necesariamente disponible.
+
+### Novedades MODELADAS
+1. **Hito nuevo** `auto-pedraz-levantamiento-parcial-secreto-2026-06-01` (`tipo: auto_diligencias`). Respaldo N4 multi-línea (Público izq. + The Objective der. + Infobae indep.), V-13 cumplido. `hechos_introducidos: []` (es un cambio de estado procesal, no introduce hechos sustantivos nuevos).
+2. **Documento N1 nuevo** `cgpj-nota-requerimiento-psoe-leire-2026-05-27`: nota oficial de la Oficina de Comunicación del CGPJ sobre el requerimiento de documentación al PSOE. Resuelve el pendiente histórico de "localizar nota CGPJ". Pasa a ser `documento_principal_id` del hito `uco-en-ferraz-2026-05-27` y `documentos_relacionados` del hito `auto-pedraz-pieza-separada-2026-05-26`. La columna vertebral documental del caso deja de depender sólo del auto filtrado N3.
+3. **Documentos N4 nuevos** del levantamiento: `publico-levantamiento-secreto-leire-2026-06-01`, `theobjective-levantamiento-secreto-leire-2026-06-01`.
+4. **Cascade en `caso.yaml`**: `estado_actual` reescrito (decía "Causa bajo secreto sumarial" → obsoleto); `delitos_atribuidos_en_la_causa` ampliado con `organizacion-criminal` y `prevaricacion` (confirmados por la nota CGPJ N1); `ultima_revision_editorial` y `estado_ficha.fecha_actualizacion` → 2026-06-03; `estado_ficha.notas` ampliada. Sin tocar `hechos_clave` (al máximo de 4 y siguen siendo los hechos sustantivos más relevantes; el levantamiento es estado procesal → `estado_actual`), `cifras_clave` ni `que_se_investiga`.
+
+### Delitos: lista oficial completa (nota CGPJ N1, 27-may) vs slugs disponibles
+La nota CGPJ enumera: organización criminal, cohecho, revelación de secretos, **inducción al falso testimonio**, **acusación falsa**, falsedad en documento mercantil, prevaricación, tráfico de influencias y **delito contra las instituciones del Estado**. Los tres en negrita **NO tienen slug** en `content/delitos/` y NO se inventan en una pasada de actualización (decisión de modelo del maintainer). El más relevante es **"delito contra las instituciones del Estado"**: es el que fundamenta la competencia de la Audiencia Nacional y la petición de inhibición al JI nº 9 de Madrid. **Pendiente:** decidir si se crean esos tres slugs de delito.
+
+### Novedades NO modeladas (a propósito) — guardarraíles
+- **Petición de inhibición Pedraz → JI nº 9 Madrid (Zamarriego):** Pedraz solicita asumir la causa que el JI nº 9 (mag. Arturo Zamarriego) abrió en verano de 2025, por competencia sobre el delito contra las instituciones del Estado. Es una **petición no resuelta**, no un auto de acumulación. **No se modela como Hito** todavía; cuando se resuelva (inhibición aceptada) será un `acumulacion_causas` o `cambio_organo`. Recogido en `estado_actual`. **Avanza** (no cierra) el pendiente "evaluar pieza B".
+- **Recurso de nulidad de Leire Díez** contra la orden de entrada en Ferraz del 26-may (alega uso de información personal fuera de la ventana 2021-2023). Es **escrito de parte no resuelto**; sin `tipo` de Hito adecuado en instrucción. Se anota aquí; no se modela hasta que Pedraz lo resuelva. Cruzado en The Objective, El Debate, Telecinco.
+- **Contenido sensible del sumario recién desvelado que NO se modela** (presunción de inocencia + no exposición de personas sin rol formal + V-13 sobre interpretación periodística):
+  - Conversaciones UCO con referencias a "el presidente", "one", "jefe" interpretadas por la prensa como posibles indicios de conocimiento por parte de Pedro Sánchez. Es **interpretación periodística de informes UCO**, no hallazgo judicial. NO modelar. Pedro Sánchez no tiene rol procesal en esta causa.
+  - Mención a **Mercedes González** (directora de la Guardia Civil) a quien Díez habría dicho "controlar". Claim de informe UCO; **no consta imputación formal**; no se crea persona ni rol.
+  - Cifras sueltas atribuidas en algunas coberturas (43.225 €, 125.000 € a Teijelo, 20.000 € a un medio, trabajos 2015-2017) que chocan con la ventana 2021-2023 del caso y no están cruzadas con solidez. **Pendiente de verificación**; no se incorporan a `cifras_clave` ni a hechos.
+
+### Cruce con otros casos del inventario (sin novedad de relación)
+- **plus-ultra**: el nexo (Fernández Guerrero / SEPI) sigue en la **pieza que continúa secreta** un mes más; nada nuevo que consolidar. Relación `leire-diez-conexion-factual-plus-ultra` ya existe.
+- **koldo / begona-gomez / david-sanchez-badajoz**: pendientes del barrido 30-may siguen abiertos; este levantamiento parcial no aporta primario nuevo sobre ellos (la rama de obstrucción se ha desvelado pero el detalle fino se irá conociendo según suba el sumario). Re-evaluar cuando el sumario esté accesible.
+
+### Pendientes nuevos / actualizados por este barrido
+- [ ] Cuando el sumario suba a la nube (≈3-4 días → a partir del 4-5 jun), localizar el **auto íntegro del levantamiento** y los **informes UCO** ya no secretos; valorar elevar a N1 hechos hoy en N3 `filtrado_verificado` y refinar `hecho-presunta-obstruccion-judicial` (matiz De la Hoz, ya pendiente del barrido 30-may).
+- [ ] Decidir creación de slugs de delito: "inducción al falso testimonio", "acusación falsa", "delito contra las instituciones del Estado".
+- [ ] Vigilar resolución de la **petición de inhibición** al JI nº 9 Madrid → si se acepta, Hito `acumulacion_causas` y posible `cambio_organo` (cierra el pendiente "pieza B").
+- [ ] Vigilar resolución del **recurso de nulidad** de Díez sobre la entrada en Ferraz.
+- [ ] Archivo local (`ruta_local` + `hash_sha256`) de la nota CGPJ N1 vía `/incorporar-hito` (HTML nativo del órgano emisor).
+- [ ] Ejecutar `pnpm archive:catchup -- --caso=leire-diez` para los N4 nuevos (Público, The Objective).
