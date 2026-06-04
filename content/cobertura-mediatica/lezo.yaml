@@ -67,6 +67,7 @@ noticias:
 
   - id: eldiario-52-investigados-lezo-2017
     url: "https://www.eldiario.es/politica/investigados-operacion-lezo_1_3396617.html"
+    url_archivo: "https://web.archive.org/web/20240706193958/https://www.eldiario.es/politica/investigados-operacion-lezo_1_3396617.html"
     medio_id: eldiario-es
     titular: "Estos son los 52 investigados en la Operación Lezo"
     fecha_publicacion: "2017-04-21"
@@ -82,6 +83,7 @@ noticias:
 
   - id: eldiario-juez-prision-gonzalez-2017
     url: "https://www.eldiario.es/politica/juez-envia-prision-ignacio-gonzalez_1_3452636.html"
+    url_archivo: "https://web.archive.org/web/20250702090003/https://www.eldiario.es/politica/juez-envia-prision-ignacio-gonzalez_1_3452636.html"
     medio_id: eldiario-es
     titular: "El juez encarcela a Ignacio González por sacar un millón de euros de la Comunidad «para sanear» las cuentas del PP"
     fecha_publicacion: "2017-04-22"
@@ -97,6 +99,7 @@ noticias:
 
   - id: publico-anticorrupcion-pide-prision-2017
     url: "https://www.publico.es/politica/anticorrupcion-pide-prision-incondicional-ignacio.html"
+    url_archivo: "https://web.archive.org/web/20200309045924/https://www.publico.es/politica/anticorrupcion-pide-prision-incondicional-ignacio.html"
     medio_id: publico-es
     titular: "Operación Lezo: Anticorrupción pide prisión incondicional para Ignacio González, que lo niega todo"
     fecha_publicacion: "2017-04-22"
@@ -114,6 +117,7 @@ noticias:
 
   - id: publico-uco-acs-campo-golf-lezo
     url: "https://www.publico.es/politica/caso-lezo-uco-sospecha-acs-desvio-fondos-entorno-personal-gonzalez-cambio-campo-golf.html"
+    url_archivo: "https://web.archive.org/web/20260603233440/https://www.publico.es/politica/uco-sospecha-acs-desvio-fondos-entorno-personal-gonzalez-cambio-campo-golf.html"
     medio_id: publico-es
     titular: "Caso Lezo: La UCO sospecha que ACS desvió fondos al entorno personal de González a cambio de un campo de golf"
     fecha_publicacion: "2017-05-10"
@@ -129,6 +133,7 @@ noticias:
 
   - id: publico-archivo-gallardon-inassa-2019
     url: "https://www.publico.es/politica/juez-lezo-archiva-investigacion-gallardon-compra-inassa.html"
+    url_archivo: "https://web.archive.org/web/20260526090658/https://www.publico.es/politica/juez-lezo-archiva-investigacion-gallardon-compra-inassa.html"
     medio_id: publico-es
     titular: "Caso Lezo: El juez de Lezo archiva la investigación a Gallardón por la compra de Inassa"
     fecha_publicacion: "2019-05-31"
@@ -144,6 +149,7 @@ noticias:
 
   - id: elespanol-gallardon-inassa-exonerado-2019
     url: "https://www.elespanol.com/espana/tribunales/20190522/anticorrupcion-exculpa-gallardon-compra-inassa-primera-lezo/400211195_0.html"
+    url_archivo: "https://web.archive.org/web/20260603233508/https://www.elespanol.com/espana/tribunales/20190522/anticorrupcion-exculpa-gallardon-compra-inassa-primera-lezo/400211195_0.html"
     medio_id: el-espanol
     titular: "Anticorrupción exculpa a Gallardón en la compra de Inassa, la primera pieza de Lezo que irá a juicio"
     fecha_publicacion: "2019-05-22"
@@ -160,6 +166,7 @@ noticias:
 
   - id: publico-archivo-blanqueo-gonzalez-2022
     url: "https://www.publico.es/ultima-hora/juez-caso-lezo-archiva-investigacion-ignacio-gonzalez-blanqueo.html"
+    url_archivo: "https://web.archive.org/web/20260603233556/https://www.publico.es/ultima-hora/juez-caso-lezo-archiva-investigacion-ignacio-gonzalez-blanqueo.html"
     medio_id: publico-es
     titular: "El juez del 'caso Lezo' archiva la investigación a Ignacio González por blanqueo"
     fecha_publicacion: "2022-05-05"
@@ -177,6 +184,7 @@ noticias:
 
   - id: infolibre-juez-envia-juicio-dos-piezas-2021
     url: "https://www.infolibre.es/politica/juez-envia-juicio-primeras-piezas-caso-lezo-sienta-banquillo-ignacio-gonzalez_1_1181340.html"
+    url_archivo: "https://web.archive.org/web/20250126015156/https://www.infolibre.es/politica/juez-envia-juicio-primeras-piezas-caso-lezo-sienta-banquillo-ignacio-gonzalez_1_1181340.html"
     medio_id: infolibre
     titular: "El juez envía a juicio las dos primeras piezas del 'caso Lezo' y sienta en el banquillo a Ignacio González"
     fecha_publicacion: "2021-05-27"
@@ -192,6 +200,7 @@ noticias:
 
   - id: eldiario-juez-procesa-gonzalez-campo-golf-2021
     url: "https://www.eldiario.es/politica/juez-procesa-ignacio-gonzalez-amano-campo-golf-pp-construyo-centro-madrid_1_7971803.html"
+    url_archivo: "https://web.archive.org/web/20240712131309/https://www.eldiario.es/politica/juez-procesa-ignacio-gonzalez-amano-campo-golf-pp-construyo-centro-madrid_1_7971803.html"
     medio_id: eldiario-es
     titular: "El juez procesa a Ignacio González por el amaño del campo de golf que el PP construyó en el centro de Madrid"
     fecha_publicacion: "2021-05-27"
@@ -209,6 +218,7 @@ noticias:
 
   - id: infolibre-juez-lezo-navalcarnero-2021
     url: "https://www.infolibre.es/politica/juez-caso-lezo-envia-juicio-ignacio-gonzalez-lopez-madrid-obras-tren-navalcarnero_1_1198668.html"
+    url_archivo: "https://web.archive.org/web/20250812221702/https://www.infolibre.es/politica/juez-caso-lezo-envia-juicio-ignacio-gonzalez-lopez-madrid-obras-tren-navalcarnero_1_1198668.html"
     medio_id: infolibre
     titular: "El juez del 'caso Lezo' envía a juicio a Ignacio González y a López Madrid por las obras del tren de Navalcarnero"
     fecha_publicacion: "2021-06-05"
@@ -225,6 +235,7 @@ noticias:
 
   - id: vozpopuli-lezo-gonzalez-canal-golf-procesado
     url: "https://www.vozpopuli.com/espana/lezo-ignacio-gonzalez-canal-golf.html"
+    url_archivo: "https://web.archive.org/web/20250113075749/https://www.vozpopuli.com/espana/lezo-ignacio-gonzalez-canal-golf.html"
     medio_id: vozpopuli
     titular: "El juez de 'Lezo' procesa a Ignacio González por las adjudicaciones asociadas al canal Golf"
     fecha_publicacion: "2021-05-26"
@@ -241,6 +252,7 @@ noticias:
 
   - id: okdiario-gonzalez-banquillo-campo-golf-2021
     url: "https://okdiario.com/espana/ignacio-gonzalez-banquillo-amano-adjudicaciones-campo-golf-del-canal-isabel-ii-7632632"
+    url_archivo: "https://web.archive.org/web/20230501092706/https://okdiario.com/espana/ignacio-gonzalez-banquillo-amano-adjudicaciones-campo-golf-del-canal-isabel-ii-7632632"
     medio_id: okdiario
     titular: "Ignacio González al banquillo por el amaño de adjudicaciones en el campo de golf del Canal de Isabel II"
     fecha_publicacion: "2021-05-26"
@@ -257,6 +269,7 @@ noticias:
 
   - id: publico-anticorrupcion-seis-anos-gonzalez-golf
     url: "https://www.publico.es/politica/anticorrupcion-pide-seis-anos-carcel-ignacio-gonzalez-adjudicaciones-asociadas-campo-golf-canal.html"
+    url_archivo: "https://web.archive.org/web/20260526090659/https://www.publico.es/politica/anticorrupcion-pide-seis-anos-carcel-ignacio-gonzalez-adjudicaciones-asociadas-campo-golf-canal.html"
     medio_id: publico-es
     titular: "Anticorrupción pide seis años de cárcel para Ignacio González por adjudicaciones asociadas al campo de golf del Canal"
     fecha_publicacion: "2022-12-01"
@@ -275,6 +288,7 @@ noticias:
 
   - id: eldiario-juicio-gonzalez-golf-23-anos-2025
     url: "https://www.eldiario.es/politica/audiencia-nacional-juzgara-ignacio-gonzalez-campo-golf-canal-23-anos-despues_1_12865400.html"
+    url_archivo: "https://web.archive.org/web/20260603231234/https://www.eldiario.es/politica/audiencia-nacional-juzgara-ignacio-gonzalez-campo-golf-canal-23-anos-despues_1_12865400.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional juzgará a Ignacio González por el campo de golf del Canal 23 años después"
     fecha_publicacion: "2025-12-22"
@@ -290,6 +304,7 @@ noticias:
 
   - id: publico-juicio-gonzalez-golf-2027-cachondeo
     url: "https://www.publico.es/tremending/cachondeo-saberse-ignacio-gonzalez-sera-juzgado-supuesto-amano-23-anos-despues-velocidad-pueden-juzgar-23-fiscales-generales.html"
+    url_archivo: "https://web.archive.org/web/20260603233659/https://www.publico.es/tremending/cachondeo-saberse-ignacio-gonzalez-sera-juzgado-supuesto-amano-23-anos-despues-velocidad-pueden-juzgar-23-fiscales-generales.html"
     medio_id: publico-es
     titular: "Cachondeo tras saberse que Ignacio González será juzgado por un supuesto amaño... 23 años después: «A esa velocidad pueden juzgar a 23 fiscales generales»"
     fecha_publicacion: "2025-12-22"
@@ -306,6 +321,7 @@ noticias:
 
   - id: eldiario-ocaso-ignacio-gonzalez-perfil
     url: "https://www.eldiario.es/politica/ignacio-gonzalez_1_1054862.html"
+    url_archivo: "https://web.archive.org/web/20251204073628/https://www.eldiario.es/politica/ignacio-gonzalez_1_1054862.html"
     medio_id: eldiario-es
     titular: "El ocaso de Ignacio González: de mano derecha de Aguirre a enfrentarse a ocho años de cárcel por corrupción"
     fecha_publicacion: "2017-04-20"

@@ -89,6 +89,7 @@ noticias:
 
   - id: eldiario-7-anos-estallido-sin-juicio-2016-07-22
     url: "https://www.eldiario.es/catalunya/politica/estallido-palau-convergencia-expolio-millet_1_3905285.html"
+    url_archivo: "https://web.archive.org/web/20231228150551/https://www.eldiario.es/catalunya/politica/estallido-palau-convergencia-expolio-millet_1_3905285.html"
     medio_id: eldiario-es
     titular: "Siete años del estallido del caso Palau: Convergència y el expolio de Millet siguen sin juicio"
     fecha_publicacion: "2016-07-22"
@@ -114,6 +115,7 @@ noticias:
 
   - id: publico-sentencia-ap-condena-millet-montull-2018-01-15
     url: "https://publico.es/politica/caso-palau-audiencia-condena-9-anos-millet-7-montull-expolio-palau-musica.html"
+    url_archivo: "https://web.archive.org/web/20231211201721/https://www.publico.es/politica/caso-palau-audiencia-condena-9-anos-millet-7-montull-expolio-palau-musica.html"
     medio_id: publico-es
     titular: "La Audiencia condena a 9 años a Millet y a 7 a Montull por el expolio del Palau de la Música"
     fecha_publicacion: "2018-01-15"
@@ -133,6 +135,7 @@ noticias:
 
   - id: eldiario-cdc-condenada-comisiones-sentencia-ap-2018-01-15
     url: "https://www.eldiario.es/catalunya/politica/tribunal-caso-palau-convergencia_1_2924879.html"
+    url_archivo: "https://web.archive.org/web/20260603232844/https://www.eldiario.es/catalunya/politica/tribunal-caso-palau-convergencia_1_2924879.html"
     medio_id: eldiario-es
     titular: "Convergència, condenada por cobrar comisiones en el caso Palau"
     fecha_publicacion: "2018-01-15"
@@ -156,6 +159,7 @@ noticias:
 
   - id: okdiario-sentencia-ap-millet-montull-2018-01-15
     url: "https://okdiario.com/espana/caso-palau-millet-montull-condenados-9-7-anos-prision-1692616"
+    url_archivo: "https://web.archive.org/web/20251008093002/https://okdiario.com/espana/caso-palau-millet-montull-condenados-9-7-anos-prision-1692616"
     medio_id: okdiario
     titular: "Caso Palau: Millet y Montull condenados a 9 y 7 años de prisión"
     fecha_publicacion: "2018-01-15"
@@ -179,6 +183,7 @@ noticias:
 
   - id: eldiario-10-anos-devuelto-solo-6m-2019-07-21
     url: "https://www.eldiario.es/catalunya/politica/palau-millet-montull-devuelto-saquearon_1_1430703.html"
+    url_archivo: "https://web.archive.org/web/20260603232918/https://www.eldiario.es/catalunya/politica/palau-millet-montull-devuelto-saquearon_1_1430703.html"
     medio_id: eldiario-es
     titular: "Diez años del caso Palau: Millet y Montull han devuelto solo seis millones de los 23 que saquearon"
     fecha_publicacion: "2019-07-21"
@@ -197,6 +202,7 @@ noticias:
 
   - id: eldiario-sts-813-cdc-condena-confirmada-2020-04-30
     url: "https://www.eldiario.es/catalunya/politica/supremo-confirma-convergencia-comisiones-palau_1_1261438.html"
+    url_archivo: "https://web.archive.org/web/20240911162943/https://www.eldiario.es/catalunya/politica/supremo-confirma-convergencia-comisiones-palau_1_1261438.html"
     medio_id: eldiario-es
     titular: "El Supremo confirma la condena a Convergència por cobrar comisiones ilegales en el caso Palau"
     fecha_publicacion: "2020-04-30"
@@ -216,6 +222,7 @@ noticias:
 
   - id: publico-sts-confirmacion-condenas-2020-04-30
     url: "https://www.publico.es/politica/supremo-confirma-condenas-millet-montull-caso-palau.html"
+    url_archivo: "https://web.archive.org/web/20260603232956/https://www.publico.es/politica/supremo-confirma-condenas-millet-montull-caso-palau.html"
     medio_id: publico-es
     titular: "El Supremo confirma las condenas de Millet y Montull por el 'caso Palau'"
     fecha_publicacion: "2020-04-30"
@@ -237,6 +244,7 @@ noticias:
 
   - id: vozpopuli-sts-corrupcion-convergencia-2020-05-01
     url: "https://www.vozpopuli.com/espana/supremo-corrupcion-convergencia-caso-palau_0_1234977124.html"
+    url_archivo: "https://web.archive.org/web/20220211035951/https://www.vozpopuli.com/espana/supremo-corrupcion-convergencia-caso-palau_0_1234977124.html"
     medio_id: vozpopuli
     titular: "El Supremo evidencia la corrupción de Convergència en la condena del 'caso Palau'"
     fecha_publicacion: "2020-05-01"
@@ -256,6 +264,7 @@ noticias:
 
   - id: confilegal-sts-millet-condena-2020-04-30
     url: "https://confilegal.com/20200430-el-supremo-confirma-la-condena-a-9-anos-y-8-meses-de-prision-a-felix-millet-por-el-caso-palau/"
+    url_archivo: "https://web.archive.org/web/20221002023359/https://confilegal.com/20200430-el-supremo-confirma-la-condena-a-9-anos-y-8-meses-de-prision-a-felix-millet-por-el-caso-palau/"
     medio_id: confilegal
     titular: "El Supremo confirma la condena a 9 años y 8 meses de prisión a Felix Millet por el 'caso Palau'"
     fecha_publicacion: "2020-04-30"
@@ -276,6 +285,7 @@ noticias:
 
   - id: publico-millet-osacar-prision-2020-06-25
     url: "https://www.publico.es/politica/caso-palau-felix-millet-entra-prision-brians-2-cumplir-nueve-anos-desfalco-palau.html"
+    url_archivo: "https://web.archive.org/web/20230516165730/https://www.publico.es/politica/caso-palau-felix-millet-entra-prision-brians-2-cumplir-nueve-anos-desfalco-palau.html"
     medio_id: publico-es
     titular: "Millet y Osàcar ingresan en prisión para cumplir condena por el caso Palau"
     fecha_publicacion: "2020-06-25"
@@ -296,6 +306,7 @@ noticias:
 
   - id: infolibre-archivo-junts-pdecat-6-6m-2022-02-25
     url: "https://www.infolibre.es/politica/archivada-causa-junts-pdecat-6-6-millones-caso-palau_1_1220476.html"
+    url_archivo: "https://web.archive.org/web/20250426034842/https://www.infolibre.es/politica/archivada-causa-junts-pdecat-6-6-millones-caso-palau_1_1220476.html"
     medio_id: infolibre
     titular: "Archivada la causa contra Junts y PDeCAT por los 6,6 millones del 'caso Palau'"
     fecha_publicacion: "2022-02-25"
@@ -314,6 +325,7 @@ noticias:
 
   - id: eldiario-recuperacion-12m-expolio-2022-11-07
     url: "https://www.eldiario.es/catalunya/justicia-logra-recuperar-12-millones-saqueo-palau-musica_1_9689454.html"
+    url_archivo: "https://web.archive.org/web/20260603231159/https://www.eldiario.es/catalunya/justicia-logra-recuperar-12-millones-saqueo-palau-musica_1_9689454.html"
     medio_id: eldiario-es
     titular: "La Justicia logra recuperar más de 12 millones del saqueo del Palau de la Música"
     fecha_publicacion: "2022-11-07"
@@ -334,6 +346,7 @@ noticias:
 
   - id: cronica-global-5-anos-sentencia-2023-01-15
     url: "https://cronicaglobal.elespanol.com/vida/20230115/cinco-sentencia-del-palau-encuentran-responsables-expolio/733926630_0.html"
+    url_archivo: "https://web.archive.org/web/20250515043420/https://cronicaglobal.elespanol.com/vida/20230115/cinco-sentencia-del-palau-encuentran-responsables-expolio/733926630_0.html"
     medio_id: cronica-global
     titular: "Cinco años de la sentencia del 'caso Palau': así se encuentran hoy los responsables del expolio"
     fecha_publicacion: "2023-01-15"
@@ -352,6 +365,7 @@ noticias:
 
   - id: publico-muerte-millet-2023-03-16
     url: "https://www.publico.es/sociedad/muere-87-anos-felix-millet-saqueador-confeso-condenado-palau-musica.html"
+    url_archivo: "https://web.archive.org/web/20230331215614/https://www.publico.es/sociedad/muere-87-anos-felix-millet-saqueador-confeso-condenado-palau-musica.html"
     medio_id: publico-es
     titular: "Muere a los 87 años Fèlix Millet, el saqueador confeso y condenado del Palau de la Música"
     fecha_publicacion: "2023-03-16"
@@ -370,6 +384,7 @@ noticias:
 
   - id: eldiario-muerte-millet-no-frena-venta-bienes-2023-03-17
     url: "https://www.eldiario.es/catalunya/muerte-felix-millet-no-frena-venta-bienes-devolver-saqueo-palau_1_10043959.html"
+    url_archivo: "https://web.archive.org/web/20251204073710/https://www.eldiario.es/catalunya/muerte-felix-millet-no-frena-venta-bienes-devolver-saqueo-palau_1_10043959.html"
     medio_id: eldiario-es
     titular: "La muerte de Fèlix Millet no frena la venta de sus bienes para devolver el saqueo del Palau"
     fecha_publicacion: "2023-03-17"
@@ -388,6 +403,7 @@ noticias:
 
   - id: cronica-global-hijas-millet-frenan-devolucion-2023-10-31
     url: "https://cronicaglobal.elespanol.com/business/20231031/las-de-felix-millet-del-palau-musica/806169603_0.html"
+    url_archivo: "https://web.archive.org/web/20250724122124/https://cronicaglobal.elespanol.com/business/20231031/las-de-felix-millet-del-palau-musica/806169603_0.html"
     medio_id: cronica-global
     titular: "Las hijas de Fèlix Millet frenan la devolución del expolio del Palau de la Música"
     fecha_publicacion: "2023-10-31"

@@ -112,6 +112,7 @@ noticias:
 
   - id: maldita-querella-explicacion-2024-04-25
     url: "https://maldita.es/malditateexplica/20240425/denuncia-manos-limpias-begona-gomez/"
+    url_archivo: "https://web.archive.org/web/20260522185649/https://maldita.es/malditateexplica/20240425/denuncia-manos-limpias-begona-gomez/"
     medio_id: maldita-es
     titular: "En qué consiste la querella de Manos Limpias contra Begoña Gómez por supuesto tráfico de influencias"
     fecha_publicacion: "2024-04-25"
@@ -128,6 +129,7 @@ noticias:
 
   - id: infobae-fiscalia-archivo-2024-04-25
     url: "https://www.infobae.com/espana/2024/04/25/la-fiscalia-pide-archivar-la-causa-abierta-contra-begona-gomez-tras-la-denuncia-de-manos-limpias/"
+    url_archivo: "https://web.archive.org/web/20240526034930/https://www.infobae.com/espana/2024/04/25/la-fiscalia-pide-archivar-la-causa-abierta-contra-begona-gomez-tras-la-denuncia-de-manos-limpias/"
     medio_id: infobae
     titular: "La Fiscalía pide archivar la causa abierta contra Begoña Gómez tras la denuncia de Manos Limpias"
     fecha_publicacion: "2024-04-25"
@@ -147,6 +149,7 @@ noticias:
 
   - id: eldiario-caso-peinado-columna-2024-07-23
     url: "https://www.eldiario.es/cultura/caso-begona-gomez-caso-juez-peinado_129_11543008.html"
+    url_archivo: "https://web.archive.org/web/20250125051300/https://www.eldiario.es/cultura/caso-begona-gomez-caso-juez-peinado_129_11543008.html"
     medio_id: eldiario-es
     titular: "De 'caso Begoña Gómez' a 'caso juez Peinado'"
     fecha_publicacion: "2024-07-23"
@@ -163,6 +166,7 @@ noticias:
 
   - id: moncloa-goyache-contradicciones-2024-09-11
     url: "https://www.moncloa.com/2024/09/11/caso-begona-gomez-goyache-goni-2858623/"
+    url_archivo: "https://web.archive.org/web/20241013010419/https://www.moncloa.com/2024/09/11/caso-begona-gomez-goyache-goni-2858623/"
     medio_id: moncloa-com
     titular: "Caso Begoña Gómez: el juez Peinado detectó las contradicciones de Goyache Goñi"
     fecha_publicacion: "2024-09-11"
@@ -179,6 +183,7 @@ noticias:
 
   - id: newtral-cronologia-caso-2024-10-07
     url: "https://www.newtral.es/caso-begona-gomez/20241007/"
+    url_archivo: "https://web.archive.org/web/20260529210301/https://www.newtral.es/caso-begona-gomez/20241007/"
     medio_id: newtral
     titular: "Guía del caso Begoña Gómez: cronología de la investigación judicial e imputados clave"
     fecha_publicacion: "2024-10-07"
@@ -196,6 +201,7 @@ noticias:
 
   - id: libertad-digital-jurado-popular-2024-10-08
     url: "https://www.libertaddigital.com/espana/2024-10-08/begona-gomez-sera-juzgada-jurado-popular-procesada-trafico-influencias-7171823/"
+    url_archivo: "https://web.archive.org/web/20260603235130/https://www.libertaddigital.com/espana/2024-10-08/begona-gomez-sera-juzgada-jurado-popular-procesada-trafico-influencias-7171823/"
     medio_id: libertad-digital
     titular: "Begoña Gómez será juzgada por un jurado popular si es procesada por tráfico de influencias"
     fecha_publicacion: "2024-10-08"
@@ -214,6 +220,7 @@ noticias:
 
   - id: eldiario-guemes-archivo-falseo-2025-02-10
     url: "https://www.eldiario.es/politica/guemes-pide-archivo-causa-peinado-falseo-declaracion-testigo-caso-begona-gomez_1_12040067.html"
+    url_archivo: "https://web.archive.org/web/20251212071908/https://www.eldiario.es/politica/guemes-pide-archivo-causa-peinado-falseo-declaracion-testigo-caso-begona-gomez_1_12040067.html"
     medio_id: eldiario-es
     titular: "Güemes pide el archivo de la causa contra él porque Peinado falseó la declaración de una testigo en el caso de Begoña Gómez"
     fecha_publicacion: "2025-02-10"
@@ -230,6 +237,7 @@ noticias:
 
   - id: eldiario-acusaciones-ultras-excesos-2025-02-11
     url: "https://www.eldiario.es/politica/acusaciones-ultras-caso-begona-gomez-empiezan-preocuparse-excesos-juez-peinado_1_12045331.html"
+    url_archivo: "https://web.archive.org/web/20250617134317/https://www.eldiario.es/politica/acusaciones-ultras-caso-begona-gomez-empiezan-preocuparse-excesos-juez-peinado_1_12045331.html"
     medio_id: eldiario-es
     titular: "Las acusaciones ultras en el caso de Begoña Gómez empiezan a preocuparse por los excesos del juez Peinado"
     fecha_publicacion: "2025-02-11"
@@ -246,6 +254,7 @@ noticias:
 
   - id: infobae-auto-ap-dos-investigados-menos-2025-05-19
     url: "https://www.infobae.com/espana/2025/05/19/como-queda-el-caso-begona-gomez-con-el-ultimo-auto-de-la-audiencia-de-madrid-descartado-el-rescate-a-air-europa-y-dos-investigados-menos/"
+    url_archivo: "https://web.archive.org/web/20250620174220/https://www.infobae.com/espana/2025/05/19/como-queda-el-caso-begona-gomez-con-el-ultimo-auto-de-la-audiencia-de-madrid-descartado-el-rescate-a-air-europa-y-dos-investigados-menos/"
     medio_id: infobae
     titular: "Cómo queda el 'caso Begoña Gómez' con el último auto de la Audiencia de Madrid: descartado el rescate a Air Europa y dos investigados menos"
     fecha_publicacion: "2025-05-19"
@@ -266,6 +275,7 @@ noticias:
 
   - id: eldiario-fiscalia-bolanos-2025-07-03
     url: "https://www.eldiario.es/politica/fiscalia-rechaza-peticion-juez-peinado-imputar-ministro-bolanos-caso-begona-gomez_1_12434900.html"
+    url_archivo: "https://web.archive.org/web/20250824084800/https://www.eldiario.es/politica/fiscalia-rechaza-peticion-juez-peinado-imputar-ministro-bolanos-caso-begona-gomez_1_12434900.html"
     medio_id: eldiario-es
     titular: "La Fiscalía rechaza la petición del juez Peinado de imputar al ministro Bolaños en el caso contra Begoña Gómez"
     fecha_publicacion: "2025-07-03"
@@ -283,6 +293,7 @@ noticias:
 
   - id: eldiario-peinado-estrella-supremo-2025-07-15
     url: "https://www.eldiario.es/politica/juez-peinado-estrella-supremo-implicar-moncloa-caso-begona-gomez_1_12466438.html"
+    url_archivo: "https://web.archive.org/web/20260508142513/https://www.eldiario.es/politica/juez-peinado-estrella-supremo-implicar-moncloa-caso-begona-gomez_1_12466438.html"
     medio_id: eldiario-es
     titular: "El juez Peinado se estrella contra el Supremo en su intento de implicar a Moncloa en el caso contra Begoña Gómez"
     fecha_publicacion: "2025-07-15"
@@ -299,6 +310,7 @@ noticias:
 
   - id: publico-chapuzas-peinado-2025-07-19
     url: "https://www.publico.es/politica/tribunales/grandes-chapuzas-juez-peinado-registros-ilegales-imputaciones-proceden-despistes-principiante.html"
+    url_archivo: "https://web.archive.org/web/20260603235217/https://www.publico.es/politica/tribunales/grandes-chapuzas-juez-peinado-registros-ilegales-imputaciones-proceden-despistes-principiante.html"
     medio_id: publico-es
     titular: "Las grandes chapuzas del juez Peinado: registros ilegales, imputaciones que no proceden y 'despistes' de principiante"
     fecha_publicacion: "2025-07-19"
@@ -315,6 +327,7 @@ noticias:
 
   - id: eldiario-peinado-comunica-jurado-malversacion-2025-09-24
     url: "https://www.eldiario.es/politica/juez-peinado-envia-begona-gomez-juicio-malversacion-jurado-popular_1_12627406.html"
+    url_archivo: "https://web.archive.org/web/20260105094313/https://www.eldiario.es/politica/juez-peinado-envia-begona-gomez-juicio-malversacion-jurado-popular_1_12627406.html"
     medio_id: eldiario-es
     titular: "El juez Peinado comunica a Begoña Gómez que será juzgada por malversación ante un jurado popular"
     fecha_publicacion: "2025-09-24"
@@ -332,6 +345,7 @@ noticias:
 
   - id: eldiario-peinado-acumula-sola-pieza-2025-10-20
     url: "https://www.eldiario.es/politica/juez-peinado-acata-orden-audiencia-madrid-acumula-sola-pieza-causa-begona-gomez_1_12699746.html"
+    url_archivo: "https://web.archive.org/web/20251022202445/https://www.eldiario.es/politica/juez-peinado-acata-orden-audiencia-madrid-acumula-sola-pieza-causa-begona-gomez_1_12699746.html"
     medio_id: eldiario-es
     titular: "El juez Peinado acata la orden de la Audiencia de Madrid y acumula en una sola pieza la causa contra Begoña Gómez"
     fecha_publicacion: "2025-10-20"
@@ -348,6 +362,7 @@ noticias:
 
   - id: publico-fiscalia-pide-archivar-2025-11-26
     url: "https://www.publico.es/politica/fiscalia-pide-archivar-causa-begona-gomez-francisco-martin.html"
+    url_archivo: "https://web.archive.org/web/20260221023439/https://www.publico.es/politica/fiscalia-pide-archivar-causa-begona-gomez-francisco-martin.html"
     medio_id: publico-es
     titular: "La Fiscalía pide archivar la causa contra Begoña Gómez y Francisco Martín"
     fecha_publicacion: "2025-11-26"
@@ -366,6 +381,7 @@ noticias:
 
   - id: elindependiente-desmonta-relato-2025-12-06
     url: "https://www.elindependiente.com/espana/2025/12/06/caso-begona-gomez-desmonta-relato-justicia-politizada/"
+    url_archivo: "https://web.archive.org/web/20260118234358/https://www.elindependiente.com/espana/2025/12/06/caso-begona-gomez-desmonta-relato-justicia-politizada/"
     medio_id: el-independiente
     titular: "El 'caso Begoña Gómez' desmonta el relato de una Justicia politizada"
     fecha_publicacion: "2025-12-06"
@@ -383,6 +399,7 @@ noticias:
 
   - id: eldiario-ap-avala-malversacion-2025-12-19
     url: "https://www.eldiario.es/politica/audiencia-provincial-avala-juez-peinado-imputase-begona-gomez-asistente-malversacion_1_12859563.html"
+    url_archivo: "https://web.archive.org/web/20260304141837/https://www.eldiario.es/politica/audiencia-provincial-avala-juez-peinado-imputase-begona-gomez-asistente-malversacion_1_12859563.html"
     medio_id: eldiario-es
     titular: "La Audiencia Provincial avala que el juez Peinado imputase a Begoña Gómez y su asistente por malversación"
     fecha_publicacion: "2025-12-19"
@@ -400,6 +417,7 @@ noticias:
 
   - id: publico-13-varapalos-2025-12-22
     url: "https://www.publico.es/politica/tribunales/superiores-peinado-le-han-corregido-13-veces-causa-begona-gomez-falta-indicios-motivacion.html"
+    url_archivo: "https://web.archive.org/web/20260514133559/https://www.publico.es/politica/tribunales/superiores-peinado-le-han-corregido-13-veces-causa-begona-gomez-falta-indicios-motivacion.html"
     medio_id: publico-es
     titular: "Los superiores de Peinado ya le han corregido 13 veces en la causa contra Begoña Gómez por falta de \"indicios\" y de \"motivación\""
     fecha_publicacion: "2025-12-22"
@@ -417,6 +435,7 @@ noticias:
 
   - id: vozpopuli-recta-final-2025-12-28
     url: "https://www.vozpopuli.com/tribunales/el-caso-begona-gomez-encara-su-recta-final-tres-acusados-cinco-delitos-y-una-veintena-de-recursos.html"
+    url_archivo: "https://web.archive.org/web/20260303020622/https://www.vozpopuli.com/tribunales/el-caso-begona-gomez-encara-su-recta-final-tres-acusados-cinco-delitos-y-una-veintena-de-recursos.html"
     medio_id: vozpopuli
     titular: "El 'caso Begoña Gómez' encara su recta final: tres acusados, cinco delitos y una veintena de recursos"
     fecha_publicacion: "2025-12-28"
@@ -435,6 +454,7 @@ noticias:
 
   - id: eldebate-paso-a-paso-2026-01-03
     url: "https://www.eldebate.com/espana/20260103/caso-begona-gomez-paso-paso-desde-imputacion-hasta-posible-juicio-ante-jurado-popular_358556.html"
+    url_archivo: "https://web.archive.org/web/20260107195212/https://www.eldebate.com/espana/20260103/caso-begona-gomez-paso-paso-desde-imputacion-hasta-posible-juicio-ante-jurado-popular_358556.html"
     medio_id: el-debate
     titular: "El caso Begoña Gómez, paso a paso: desde su imputación hasta un posible juicio ante un jurado popular"
     fecha_publicacion: "2026-01-03"
@@ -452,6 +472,7 @@ noticias:
 
   - id: infobae-ap-frena-jurado-popular-2026-02-23
     url: "https://www.infobae.com/espana/agencias/2026/02/23/la-audiencia-provincial-frena-la-decision-de-peinado-de-que-el-caso-begona-gomez-acabe-en-un-jurado-popular/"
+    url_archivo: "https://web.archive.org/web/20260305041838/https://www.infobae.com/espana/agencias/2026/02/23/la-audiencia-provincial-frena-la-decision-de-peinado-de-que-el-caso-begona-gomez-acabe-en-un-jurado-popular/"
     medio_id: infobae
     titular: "La Audiencia Provincial frena la decisión de Peinado de que el 'caso Begoña Gómez' acabe en un jurado popular"
     fecha_publicacion: "2026-02-23"
@@ -468,6 +489,7 @@ noticias:
 
   - id: publico-14-varapalos-2026-02-23
     url: "https://www.publico.es/politica/tribunales/juez-peinado-acumula-14-varapalos-caso-begona-gomez-pero-desinfla-posible-sancion-cgpj.html"
+    url_archivo: "https://web.archive.org/web/20260514133559/https://www.publico.es/politica/tribunales/juez-peinado-acumula-14-varapalos-caso-begona-gomez-pero-desinfla-posible-sancion-cgpj.html"
     medio_id: publico-es
     titular: "El juez Peinado acumula ya 14 varapalos en el 'caso Begoña Gómez' pero se desinfla una posible sanción del CGPJ"
     fecha_publicacion: "2026-02-23"
@@ -485,6 +507,7 @@ noticias:
 
   - id: elespanol-procesamiento-cuatro-delitos-2026-04-13
     url: "https://www.elespanol.com/espana/tribunales/20260413/juez-peinado-manda-juicio-jurado-begona-gomez-delitos/1003744204456_0.html"
+    url_archivo: "https://web.archive.org/web/20260414035445/https://www.elespanol.com/espana/tribunales/20260413/juez-peinado-manda-juicio-jurado-begona-gomez-delitos/1003744204456_0.html"
     medio_id: el-espanol
     titular: "El juez Peinado finaliza la instrucción y propone juzgar ante un jurado a Begoña Gómez por cuatro delitos"
     fecha_publicacion: "2026-04-13"
@@ -501,6 +524,7 @@ noticias:
 
   - id: elplural-procesamiento-2026-04-13
     url: "https://www.elplural.com/politica/espana/juez-peinado-finaliza-instruccion-procesa-begona-gomez-cuatro-delitos_386824102"
+    url_archivo: "https://web.archive.org/web/20260505112409/https://www.elplural.com/politica/espana/juez-peinado-finaliza-instruccion-procesa-begona-gomez-cuatro-delitos_386824102"
     medio_id: el-plural
     titular: "El juez Peinado finaliza la instrucción y procesa a Begoña Gómez por cuatro delitos"
     fecha_publicacion: "2026-04-13"
@@ -519,6 +543,7 @@ noticias:
 
   - id: elindependiente-gobierno-salvajada-2026-04-14
     url: "https://www.elindependiente.com/espana/2026/04/14/gobierno-indignado-salvajada-procesamiento-begona-gomez-locura-pp-auto/"
+    url_archivo: "https://web.archive.org/web/20260415013516/https://www.elindependiente.com/espana/2026/04/14/gobierno-indignado-salvajada-procesamiento-begona-gomez-locura-pp-auto/"
     medio_id: el-independiente
     titular: "El Gobierno, indignado por la \"salvajada\" del procesamiento de Begoña Gómez: \"Es una locura que el PP valide el auto del juez\""
     fecha_publicacion: "2026-04-14"
@@ -534,6 +559,7 @@ noticias:
 
   - id: okdiario-acusacion-24-anos-2026-04-20
     url: "https://okdiario.com/espana/acusacion-pide-24-anos-carcel-begona-gomez-corrupcion-trafico-influencias-apropiacion-indebida-16640166"
+    url_archivo: "https://web.archive.org/web/20260421015042/https://okdiario.com/espana/acusacion-pide-24-anos-carcel-begona-gomez-corrupcion-trafico-influencias-apropiacion-indebida-16640166"
     medio_id: okdiario
     titular: "La acusación pide 24 años de cárcel para Begoña Gómez por corrupción, tráfico de influencias y apropiación indebida"
     fecha_publicacion: "2026-04-20"
@@ -550,6 +576,7 @@ noticias:
 
   - id: theobjective-conclusiones-defensa-2026-05-18
     url: "https://theobjective.com/espana/tribunales/2026-05-18/begona-gomez-ucm-sanchez-cargo-publico/"
+    url_archivo: "https://web.archive.org/web/20260603235307/https://theobjective.com/espana/tribunales/2026-05-18/begona-gomez-ucm-sanchez-cargo-publico/"
     medio_id: the-objective
     titular: "Begoña Gómez alega que colaboraba con la UCM cuando Sánchez no tenía cargo público"
     fecha_publicacion: "2026-05-18"

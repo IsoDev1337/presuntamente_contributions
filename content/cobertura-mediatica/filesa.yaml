@@ -90,6 +90,7 @@ noticias:
 
   - id: libertad-digital-penas-condenados-filesa-2001
     url: "https://www.libertaddigital.com/espana/2001-06-04/las-penas-a-los-ocho-condenados-del-caso-filesa-32154/"
+    url_archivo: "https://web.archive.org/web/20260603230135/https://www.libertaddigital.com/espana/2001-06-04/las-penas-a-los-ocho-condenados-del-caso-filesa-32154/"
     medio_id: libertad-digital
     titular: "Las penas a los ocho condenados del «caso Filesa»"
     fecha_publicacion: "2001-06-04"
@@ -116,6 +117,7 @@ noticias:
 
   - id: elespanol-pp-reabre-filesa-viajes-ceres-2022-02-01
     url: "https://www.elespanol.com/espana/tribunales/20220201/pp-reabrir-ultima-filesa-financiacion-psoe-despues/646935411_0.html"
+    url_archivo: "https://web.archive.org/web/20220201115344/https://www.elespanol.com/espana/tribunales/20220201/pp-reabrir-ultima-filesa-financiacion-psoe-despues/646935411_0.html"
     medio_id: el-espanol
     titular: "El PP logra reabrir la última rama de Filesa, sobre financiación ilegal del PSOE, 30 años después"
     fecha_publicacion: "2022-02-01"
@@ -134,6 +136,7 @@ noticias:
 
   - id: publico-supremo-reabre-filesa-viajes-ceres-2022-02
     url: "https://www.publico.es/politica/supremo-fuerza-reapertura-causa-vinculada-caso-filesa-financiacion-ilegal-psoe-30-anos.html"
+    url_archivo: "https://web.archive.org/web/20220203035006/https://www.publico.es/politica/supremo-fuerza-reapertura-causa-vinculada-caso-filesa-financiacion-ilegal-psoe-30-anos.html"
     medio_id: publico-es
     titular: "El Supremo fuerza la reapertura de una causa vinculada al 'caso Filesa', de financiación ilegal del PSOE, de hace 30 años"
     fecha_publicacion: "2022-02-01"
@@ -154,6 +157,7 @@ noticias:
 
   - id: theobjective-supremo-reabre-filesa-2022-02-01
     url: "https://theobjective.com/espana/2022-02-01/supremo-caso-filesa-financiacion-irregular-psoe/"
+    url_archivo: "https://web.archive.org/web/20220201161747/https://theobjective.com/espana/2022-02-01/supremo-caso-filesa-financiacion-irregular-psoe/"
     medio_id: the-objective
     titular: "El Supremo reabre el último fleco del 'caso Filesa' sobre la financiación irregular del PSOE"
     fecha_publicacion: "2022-02-01"
@@ -174,6 +178,7 @@ noticias:
 
   - id: vozpopuli-supremo-reabre-filesa-2022
     url: "https://www.vozpopuli.com/economia_y_finanzas/caso-filesa-supremo.html"
+    url_archivo: "https://web.archive.org/web/20220309051047/https://www.vozpopuli.com/economia_y_finanzas/caso-filesa-supremo.html"
     medio_id: vozpopuli
     titular: "El Tribunal Supremo reabre la última rama del 'caso Filesa' 30 años después"
     fecha_publicacion: "2022-02-01"
@@ -195,6 +200,7 @@ noticias:
 
   - id: eldebate-supremo-reabre-filesa-2022-02-01
     url: "https://www.eldebate.com/espana/20220201/supremo-reabre-ultima-pieza-filesa-sobre-financiacion-ilegal-psoe.html"
+    url_archivo: "https://web.archive.org/web/20220214210126/https://www.eldebate.com/espana/20220201/supremo-reabre-ultima-pieza-filesa-sobre-financiacion-ilegal-psoe.html"
     medio_id: el-debate
     titular: "El Supremo reabre la última pieza de «Filesa» sobre la financiación ilegal del PSOE"
     fecha_publicacion: "2022-02-01"
@@ -219,6 +225,7 @@ noticias:
 
   - id: eldebate-juzgado-prepara-juicio-viajes-ceres-2024-03-16
     url: "https://www.eldebate.com/espana/20240316/juzgado-madrid-prepara-juicio-contra-rama-filesa-desvio-422-m-euros-financiar-psoe_182403.html"
+    url_archivo: "https://web.archive.org/web/20260114013419/https://www.eldebate.com/espana/20240316/juzgado-madrid-prepara-juicio-contra-rama-filesa-desvio-422-m-euros-financiar-psoe_182403.html"
     medio_id: el-debate
     titular: "Un juzgado de Madrid prepara el juicio contra una rama de Filesa que desvió 42,2 millones para financiar al PSOE"
     fecha_publicacion: "2024-03-16"
@@ -237,6 +244,7 @@ noticias:
 
   - id: eldiario-financiacion-ilegal-partidos-filesa-contexto
     url: "https://www.eldiario.es/agendapublica/nueva_politica/principales-financiacion-ilegal-partidos-politicos_1_4420229.html"
+    url_archivo: "https://web.archive.org/web/20230123151551/https://www.eldiario.es/agendapublica/nueva_politica/principales-financiacion-ilegal-partidos-politicos_1_4420229.html"
     medio_id: eldiario-es
     titular: "Las principales causas de la financiación ilegal de los partidos políticos"
     fecha_publicacion: "2015-03-17"
@@ -259,6 +267,7 @@ noticias:
 
   - id: confilegal-opinion-filesa-registros-ferraz-2026-05-29
     url: "https://confilegal.com/20260529-caso-filesa-psoe-responsabilidad-penal-corrupcion-financiacion-ilegal/"
+    url_archivo: "https://web.archive.org/web/20260603234908/https://confilegal.com/20260529-caso-filesa-psoe-responsabilidad-penal-corrupcion-financiacion-ilegal/"
     medio_id: confilegal
     titular: "La historia vuelve a repetirse: nuevos registros en la sede federal del PSOE, en Madrid"
     fecha_publicacion: "2026-05-29"

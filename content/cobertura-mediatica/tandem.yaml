@@ -71,6 +71,7 @@ noticias:
 
   - id: publico-dos-anos-macrocausa-2019-11-03
     url: "https://www.publico.es/politica/caso-villarejo-cumple-dos-anos-convertido-macrocausa-casi-50-imputados-10-piezas-miles-datos-abrir.html"
+    url_archivo: "https://web.archive.org/web/20260603232127/https://www.publico.es/politica/caso-villarejo-cumple-dos-anos-convertido-macrocausa-casi-50-imputados-10-piezas-miles-datos-abrir.html"
     medio_id: publico-es
     titular: "El caso Villarejo cumple dos años convertido en macrocausa: casi 50 imputados, 10 piezas y miles de datos por abrir"
     fecha_publicacion: "2019-11-03"
@@ -88,6 +89,7 @@ noticias:
 
   - id: publico-villarejo-sale-libertad-provisional-2020
     url: "https://publico.es/politica/villarejo-sale-libertad-provisional-fiscalia.html"
+    url_archivo: "https://web.archive.org/web/20240227131106/https://www.publico.es/politica/villarejo-sale-libertad-provisional-fiscalia.html"
     medio_id: publico-es
     titular: "Villarejo sale en libertad provisional porque Fiscalía nunca pidió cárcel por el resto de las 28 piezas de la causa 'Tándem'"
     fecha_publicacion: "2020-11-04"
@@ -105,6 +107,7 @@ noticias:
 
   - id: infolibre-imputados-ibex-lista-2022
     url: "https://www.infolibre.es/economia/lista-interminable-imputados-ibex-caso-villarejo-33-directivos-iberdrola-bbva-repsol-caixa_1_1206973.html"
+    url_archivo: "https://web.archive.org/web/20241010143039/https://www.infolibre.es/economia/lista-interminable-imputados-ibex-caso-villarejo-33-directivos-iberdrola-bbva-repsol-caixa_1_1206973.html"
     medio_id: infolibre
     titular: "La lista interminable de imputados del Ibex por el 'caso Villarejo': 33 directivos de Iberdrola, BBVA, Repsol y Caixa"
     fecha_publicacion: "2022-03-15"
@@ -120,6 +123,7 @@ noticias:
 
   - id: eldiario-ibex-directivos-villarejo-imputados
     url: "https://www.eldiario.es/economia/escandalo-villarejo-golpea-vieja-guardia-ibex-suma-treinta-directivos-imputados_1_8075781.html"
+    url_archivo: "https://web.archive.org/web/20250720112445/https://www.eldiario.es/economia/escandalo-villarejo-golpea-vieja-guardia-ibex-suma-treinta-directivos-imputados_1_8075781.html"
     medio_id: eldiario-es
     titular: "El escándalo Villarejo golpea a la vieja guardia del Ibex y ya suma más de treinta directivos imputados"
     fecha_publicacion: "2022-01-14"
@@ -135,6 +139,7 @@ noticias:
 
   - id: infolibre-villarejo-cien-anos-primer-juicio-2021
     url: "https://www.infolibre.es/politica/villarejo-enfrenta-cien-anos-carcel-primer-juicio-macrocausa-tandem_1_1211666.html"
+    url_archivo: "https://web.archive.org/web/20251217055922/https://www.infolibre.es/politica/villarejo-enfrenta-cien-anos-carcel-primer-juicio-macrocausa-tandem_1_1211666.html"
     medio_id: infolibre
     titular: "Villarejo se enfrenta a más de cien años de cárcel en el primer juicio de la macrocausa 'Tándem'"
     fecha_publicacion: "2021-10-04"
@@ -151,6 +156,7 @@ noticias:
 
   - id: publico-primer-macrojuicio-inicio-2021
     url: "https://www.publico.es/politica/comienza-primer-macrojuicio-villarejo-juega-110-anos-prision.html"
+    url_archivo: "https://web.archive.org/web/20250316172517/https://www.publico.es/politica/comienza-primer-macrojuicio-villarejo-juega-110-anos-prision.html"
     medio_id: publico-es
     titular: "Comienza el primer macrojuicio contra Villarejo, que se juega 110 años de prisión"
     fecha_publicacion: "2021-10-04"
@@ -170,6 +176,7 @@ noticias:
 
   - id: eldiario-sentencia-19-anos-iron-land-pintor-2023
     url: "https://www.eldiario.es/politica/audiencia-nacional-condena-villarejo-19-anos-primera-sentencia-macrocausa-comisario_1_10401602.html"
+    url_archivo: "https://web.archive.org/web/20250917132343/https://www.eldiario.es/politica/audiencia-nacional-condena-villarejo-19-anos-primera-sentencia-macrocausa-comisario_1_10401602.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional condena a Villarejo a 19 años en la primera sentencia de la macrocausa contra el comisario"
     fecha_publicacion: "2023-07-24"
@@ -186,6 +193,7 @@ noticias:
 
   - id: infolibre-sentencia-19-anos-villarejo-2023
     url: "https://www.infolibre.es/politica/audiencia-nacional-condena-villarejo-19-anos-prision-primera-sentencia-encargos-privados_1_1557582.html"
+    url_archivo: "https://web.archive.org/web/20240920001808/https://www.infolibre.es/politica/audiencia-nacional-condena-villarejo-19-anos-prision-primera-sentencia-encargos-privados_1_1557582.html"
     medio_id: infolibre
     titular: "La Audiencia Nacional condena a Villarejo a 19 años por revelación de secretos y falsedad documental"
     fecha_publicacion: "2023-07-24"
@@ -203,6 +211,7 @@ noticias:
 
   - id: vozpopuli-condena-19-anos-libra-cohecho-2023
     url: "https://www.vozpopuli.com/espana/audiencia-condena-19-anos-villarejo-libra-cohecho.html"
+    url_archivo: "https://web.archive.org/web/20260531144438/https://www.vozpopuli.com/espana/audiencia-condena-19-anos-villarejo-libra-cohecho.html"
     medio_id: vozpopuli
     titular: "La Audiencia condena a 19 años de cárcel a Villarejo frente a los 80 que afrontaba y le libra del cohecho"
     fecha_publicacion: "2023-07-24"
@@ -219,6 +228,7 @@ noticias:
 
   - id: eldiario-absolucion-cohecho-clave-macrocausa-2023
     url: "https://www.eldiario.es/politica/caso-villarejo-debilita-exculpacion-poderosos-absolucion-cohecho-comisario_1_10416033.html"
+    url_archivo: "https://web.archive.org/web/20260406110836/https://www.eldiario.es/politica/caso-villarejo-debilita-exculpacion-poderosos-absolucion-cohecho-comisario_1_10416033.html"
     medio_id: eldiario-es
     titular: "El caso Villarejo se debilita con la exculpación de los más poderosos y la absolución por cohecho del comisario"
     fecha_publicacion: "2023-07-25"
@@ -237,6 +247,7 @@ noticias:
 
   - id: eldiario-apelacion-rebaja-13-anos-2025
     url: "https://www.eldiario.es/politica/sala-apelaciones-audiencia-nacional-rebaja-19-anos-13-primera-condena-villarejo_1_12610095.html"
+    url_archivo: "https://web.archive.org/web/20260220150925/https://www.eldiario.es/politica/sala-apelaciones-audiencia-nacional-rebaja-19-anos-13-primera-condena-villarejo_1_12610095.html"
     medio_id: eldiario-es
     titular: "La sala de apelaciones de la Audiencia Nacional rebaja de 19 años a 13 la primera condena a Villarejo"
     fecha_publicacion: "2025-09-17"
@@ -253,6 +264,7 @@ noticias:
 
   - id: elespanol-apelacion-rebaja-villarejo-13-anos-2025
     url: "https://www.elespanol.com/espana/tribunales/20250917/audiencia-nacional-rebaja-anos-primera-condena-villarejo-vuelve-absolverle-delito-cohecho/1003743928832_0.html"
+    url_archivo: "https://web.archive.org/web/20250920203536/https://www.elespanol.com/espana/tribunales/20250917/audiencia-nacional-rebaja-anos-primera-condena-villarejo-vuelve-absolverle-delito-cohecho/1003743928832_0.html"
     medio_id: el-espanol
     titular: "La Audiencia Nacional rebaja de 19 a 13 años de cárcel la primera condena de Villarejo y vuelve a absolverle de cohecho"
     fecha_publicacion: "2025-09-17"
@@ -272,6 +284,7 @@ noticias:
 
   - id: eldiario-bbva-francisco-gonzalez-banquillo-2026
     url: "https://www.eldiario.es/politica/audiencia-nacional-aboca-banquillo-bbva-francisco-gonzalez-presuntos-encargos-ilegales-villarejo_1_13007918.html"
+    url_archivo: "https://web.archive.org/web/20260302160621/https://www.eldiario.es/politica/audiencia-nacional-aboca-banquillo-bbva-francisco-gonzalez-presuntos-encargos-ilegales-villarejo_1_13007918.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional aboca al banquillo al BBVA y Francisco González por los presuntos encargos ilegales a Villarejo"
     fecha_publicacion: "2026-02-20"
@@ -289,6 +302,7 @@ noticias:
 
   - id: elespanol-bbva-gonzalez-procesamiento-confirmado-2026
     url: "https://www.elespanol.com/invertia/empresas/banca/20260220/audiencia-nacional-avala-bbva-expresidente-francisco-gonzalez-juzgados-caso-villarejo/1003744139241_0.html"
+    url_archivo: "https://web.archive.org/web/20260222112247/https://www.elespanol.com/invertia/empresas/banca/20260220/audiencia-nacional-avala-bbva-expresidente-francisco-gonzalez-juzgados-caso-villarejo/1003744139241_0.html"
     medio_id: el-espanol
     titular: "La Audiencia Nacional avala que el BBVA y su expresidente Francisco González sean juzgados por el 'caso Villarejo'"
     fecha_publicacion: "2026-02-20"
@@ -306,6 +320,7 @@ noticias:
 
   - id: infolibre-bbva-gonzalez-confirmacion-juicio-2026
     url: "https://www.infolibre.es/politica/audiencia-nacional-confirma-juzgara-bbva-francisco-gonzalez-contratar-villarejo_1_2149013.html"
+    url_archivo: "https://web.archive.org/web/20260318223906/https://www.infolibre.es/politica/audiencia-nacional-confirma-juzgara-bbva-francisco-gonzalez-contratar-villarejo_1_2149013.html"
     medio_id: infolibre
     titular: "La Audiencia Nacional confirma que se juzgará a BBVA y a Francisco González por contratar a Villarejo"
     fecha_publicacion: "2026-02-20"
@@ -323,6 +338,7 @@ noticias:
 
   - id: infolibre-anticorrupcion-173-anos-gonzalez-2026
     url: "https://www.infolibre.es/politica/anticorrupcion-pide-173-anos-carcel-expresidente-bbva-francisco-gonzalez_1_2164385.html"
+    url_archivo: "https://web.archive.org/web/20260319220124/https://www.infolibre.es/politica/anticorrupcion-pide-173-anos-carcel-expresidente-bbva-francisco-gonzalez_1_2164385.html"
     medio_id: infolibre
     titular: "Anticorrupción pide 173 años de cárcel para el expresidente del BBVA Francisco González"
     fecha_publicacion: "2026-03-01"
@@ -339,6 +355,7 @@ noticias:
 
   - id: eldiario-anticorrupcion-173-anos-gonzalez-2026
     url: "https://www.eldiario.es/politica/anticorrupcion-pide-173-anos-carcel-expresidente-bbva-francisco-gonzalez_1_13079981.html"
+    url_archivo: "https://web.archive.org/web/20260319052914/https://www.eldiario.es/politica/anticorrupcion-pide-173-anos-carcel-expresidente-bbva-francisco-gonzalez_1_13079981.html"
     medio_id: eldiario-es
     titular: "Anticorrupción pide 173 años de cárcel para el expresidente de BBVA Francisco González"
     fecha_publicacion: "2026-03-01"
@@ -356,6 +373,7 @@ noticias:
 
   - id: eldiario-sentencia-dina-villarejo-tres-anos-2026
     url: "https://www.eldiario.es/politica/audiencia-nacional-condena-villarejo-tres-anos-medio-carcel-filtrar-datos-movil-dina-bousselham-periodistas_1_13196935.html"
+    url_archivo: "https://web.archive.org/web/20260519094104/https://www.eldiario.es/politica/audiencia-nacional-condena-villarejo-tres-anos-medio-carcel-filtrar-datos-movil-dina-bousselham-periodistas_1_13196935.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional condena a Villarejo a tres años y medio de cárcel por el caso Dina"
     fecha_publicacion: "2026-05-05"
@@ -372,6 +390,7 @@ noticias:
 
   - id: eldiario-sentencia-dina-operacion-policial-podemos-2026
     url: "https://www.eldiario.es/politica/sentencia-caso-dina-certifica-primera-vez-operacion-policial-desprestigio_1_13206211.html"
+    url_archivo: "https://web.archive.org/web/20260519094103/https://www.eldiario.es/politica/sentencia-caso-dina-certifica-primera-vez-operacion-policial-desprestigio_1_13206211.html"
     medio_id: eldiario-es
     titular: "La sentencia del caso Dina certifica por primera vez una operación policial para el \"desprestigio\" de Podemos"
     fecha_publicacion: "2026-05-07"
@@ -387,6 +406,7 @@ noticias:
 
   - id: publico-sentencia-dina-villarejo-2026
     url: "https://www.publico.es/sociedad/audiencia-nacional-rebaja-19-13-anos-carcel-pena-villarejo.html"
+    url_archivo: "https://web.archive.org/web/20251208170935/https://www.publico.es/sociedad/audiencia-nacional-rebaja-19-13-anos-carcel-pena-villarejo.html"
     medio_id: publico-es
     titular: "La Audiencia Nacional condena a Villarejo a tres años y medio de cárcel por el 'caso Dina'"
     fecha_publicacion: "2026-05-05"
@@ -404,6 +424,7 @@ noticias:
 
   - id: okdiario-sentencia-dina-condena-2026
     url: "https://okdiario.com/espana/condenan-villarejo-revelar-contenido-del-movil-dina-mientras-ex-vicedircom-sanchez-va-rositas-16735856"
+    url_archivo: "https://web.archive.org/web/20260506042419/https://okdiario.com/espana/condenan-villarejo-revelar-contenido-del-movil-dina-mientras-ex-vicedircom-sanchez-va-rositas-16735856"
     medio_id: okdiario
     titular: "Condenan a Villarejo por revelar el contenido del móvil de Dina mientras el ex 'vicedircom' de Sánchez se va de rositas"
     fecha_publicacion: "2026-05-05"

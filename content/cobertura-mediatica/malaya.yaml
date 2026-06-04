@@ -70,6 +70,7 @@ noticias:
 
   - id: vozpopuli-sentencia-ap-2013-10-04
     url: "https://www.vozpopuli.com/sociedad/caso_malaya-marbella-juan_antonio_roca-sentencias-juicios_0_630836929.html"
+    url_archivo: "https://web.archive.org/web/20260603233229/https://www.vozpopuli.com/sociedad/caso_malaya-marbella-juan_antonio_roca-sentencias-juicios_0_630836929.html"
     medio_id: vozpopuli
     titular: "Roca, condenado a 11 años de prisión por el 'caso Malaya'; Yagüe a 6 y Muñoz a 2"
     fecha_publicacion: "2013-10-04"
@@ -89,6 +90,7 @@ noticias:
 
   - id: confilegal-supremo-17-anos-roca-2015-07-29
     url: "https://confilegal.com/20150729-supremo-eleva-11-17-anos-condena-juan-antonio-roca-caso-malaya-29072015-1340/"
+    url_archivo: "https://web.archive.org/web/20260603231522/https://confilegal.com/20150729-supremo-eleva-11-17-anos-condena-juan-antonio-roca-caso-malaya-29072015-1340/"
     medio_id: confilegal
     titular: "El Supremo eleva a 17 años la condena a Roca por el 'CASO MALAYA'"
     fecha_publicacion: "2015-07-29"
@@ -106,6 +108,7 @@ noticias:
 
   - id: eldiario-supremo-17-anos-roca-2015-07-29
     url: "https://www.eldiario.es/politica/Supremo-Antonio-Roca-Caso-Malaya_0_414358968.html"
+    url_archivo: "https://web.archive.org/web/20260603233254/https://www.eldiario.es/politica/supremo-antonio-roca-caso-malaya_1_2549077.html"
     medio_id: eldiario-es
     titular: "El Supremo condena a Juan Antonio Roca a 17 años de cárcel por el Caso Malaya"
     fecha_publicacion: "2015-07-29"
@@ -127,6 +130,7 @@ noticias:
 
   - id: confilegal-12-anos-malaya-condenados-libres-2018-03-30
     url: "https://confilegal.com/20180330-la-operacion-malaya-cumple-12-anos-con-la-mayoria-de-los-condenados-fuera-de-prision/"
+    url_archivo: "https://web.archive.org/web/20250906041908/https://confilegal.com/20180330-la-operacion-malaya-cumple-12-anos-con-la-mayoria-de-los-condenados-fuera-de-prision/"
     medio_id: confilegal
     titular: "La operación Malaya cumple 12 años con la mayoría de los condenados fuera de prisión"
     fecha_publicacion: "2018-03-30"
@@ -144,6 +148,7 @@ noticias:
 
   - id: vozpopuli-12-anos-malaya-2018-03-29
     url: "https://www.vozpopuli.com/espana/caso-malaya-cumple-doce-anos-implicados-continuan-prision-quienes-marbella_0_1121888254.html"
+    url_archivo: "https://web.archive.org/web/20250828043933/https://www.vozpopuli.com/espana/caso-malaya-cumple-doce-anos-implicados-continuan-prision-quienes-marbella_0_1121888254.html"
     medio_id: vozpopuli
     titular: "El caso Malaya cumple doce años: solo cuatro implicados continúan en prisión"
     fecha_publicacion: "2018-03-29"
@@ -163,6 +168,7 @@ noticias:
 
   - id: publico-libertad-condicional-roca-2019-02-07
     url: "https://www.publico.es/politica/caso-malaya-juez-da-libertad-condicional-juan-antonio-roca.html"
+    url_archivo: "https://web.archive.org/web/20200612222416/https://www.publico.es/politica/caso-malaya-juez-da-libertad-condicional-juan-antonio-roca.html"
     medio_id: publico-es
     titular: "El juez da la libertad condicional a Juan Antonio Roca"
     fecha_publicacion: "2019-02-07"
@@ -182,6 +188,7 @@ noticias:
 
   - id: eldiario-muerte-julian-munoz-2024-09-24
     url: "https://www.eldiario.es/andalucia/malaga/muere-julian-munoz-sucesor-jesus-gil-marbella-condenado-caso-malaya_1_11675499.html"
+    url_archivo: "https://web.archive.org/web/20260203203208/https://www.eldiario.es/andalucia/malaga/muere-julian-munoz-sucesor-jesus-gil-marbella-condenado-caso-malaya_1_11675499.html"
     medio_id: eldiario-es
     titular: "Muere Julián Muñoz, el sucesor de Jesús Gil en Marbella condenado por el 'caso Malaya'"
     fecha_publicacion: "2024-09-24"
@@ -198,6 +205,7 @@ noticias:
 
   - id: elespanol-muerte-julian-munoz-2024-09-24
     url: "https://www.elespanol.com/malaga/marbella/20240924/julian-munoz-exalcalde-marbella-icono-corrupcion-prensa-rosa/888411201_0.html"
+    url_archivo: "https://web.archive.org/web/20241124174529/https://www.elespanol.com/malaga/marbella/20240924/julian-munoz-exalcalde-marbella-icono-corrupcion-prensa-rosa/888411201_0.html"
     medio_id: el-espanol
     titular: "Julián Muñoz, el exalcalde de Marbella icono de la corrupción y la prensa rosa"
     fecha_publicacion: "2024-09-24"
@@ -214,6 +222,7 @@ noticias:
 
   - id: eldiario-auge-caida-julian-munoz-2024-09-24
     url: "https://www.eldiario.es/andalucia/malaga/auge-caida-julian-munoz-exalcalde-paseo-corrupcion-marbella-prime-time_1_11677905.html"
+    url_archivo: "https://web.archive.org/web/20240926122453/https://www.eldiario.es/andalucia/malaga/auge-caida-julian-munoz-exalcalde-paseo-corrupcion-marbella-prime-time_1_11677905.html"
     medio_id: eldiario-es
     titular: "Auge y caída de Julián Muñoz, el sucesor de Jesús Gil que paseó la corrupción de Marbella por el 'prime time'"
     fecha_publicacion: "2024-09-24"
@@ -231,6 +240,7 @@ noticias:
 
   - id: confilegal-sentencia-2013-leida-2025-01-05
     url: "https://confilegal.com/20250105-la-sentencia-del-caso-malaya-de-2013-es-la-segunda-mas-leida-en-2024-coincide-con-la-muerte-de-julian-munoz/"
+    url_archivo: "https://web.archive.org/web/20250522074212/https://confilegal.com/20250105-la-sentencia-del-caso-malaya-de-2013-es-la-segunda-mas-leida-en-2024-coincide-con-la-muerte-de-julian-munoz/"
     medio_id: confilegal
     titular: "La sentencia del 'caso Malaya' de 2013 es la segunda más leída en 2024: coincide con la muerte de Julián Muñoz"
     fecha_publicacion: "2025-01-05"
@@ -248,6 +258,7 @@ noticias:
 
   - id: eldiario-detenido-carlos-fernandez-profugo-2025-10-29
     url: "https://www.eldiario.es/andalucia/malaga/detenido-barajas-exconcejal-marbella-acusado-caso-malaya-fugado-2006_1_12724708.html"
+    url_archivo: "https://web.archive.org/web/20260226105832/https://www.eldiario.es/andalucia/malaga/detenido-barajas-exconcejal-marbella-acusado-caso-malaya-fugado-2006_1_12724708.html"
     medio_id: eldiario-es
     titular: "Detenido en Barajas Carlos Fernández, el exconcejal de Marbella que se fugó en el Camino de Santiago para evitar la cárcel"
     fecha_publicacion: "2025-10-29"
@@ -265,6 +276,7 @@ noticias:
 
   - id: vozpopuli-profugo-detenido-argentina-2025-10-29
     url: "https://www.vozpopuli.com/espana/andalucia/carlos-fernandez-el-ultimo-profugo-del-caso-malaya-detenido-tras-casi-20-anos-de-fuga-en-argentina.html"
+    url_archivo: "https://web.archive.org/web/20251101193136/https://www.vozpopuli.com/espana/andalucia/carlos-fernandez-el-ultimo-profugo-del-caso-malaya-detenido-tras-casi-20-anos-de-fuga-en-argentina.html"
     medio_id: vozpopuli
     titular: "Carlos Fernández, el último prófugo del 'caso Malaya', detenido tras casi 20 años de fuga en Argentina"
     fecha_publicacion: "2025-10-29"
@@ -284,6 +296,7 @@ noticias:
 
   - id: elespanol-carlos-fernandez-profugo-2025-11-05
     url: "https://www.elespanol.com/malaga/marbella/20251105/carlos-fernandez-concejal-profugo-operacion-malaya-reconoce-corrupto-libra-carcel/1003744000508_0.html"
+    url_archivo: "https://web.archive.org/web/20260603233345/https://www.elespanol.com/malaga/marbella/20251105/carlos-fernandez-concejal-profugo-operacion-malaya-reconoce-corrupto-libra-carcel/1003744000508_0.html"
     medio_id: el-espanol
     titular: "Carlos Fernández, el exconcejal prófugo de la 'operación Malaya', reconoce que fue corrupto pero se libra de la cárcel"
     fecha_publicacion: "2025-11-05"
@@ -301,6 +314,7 @@ noticias:
 
   - id: eldebate-marbella-92-millones-2026-04-02
     url: "https://www.eldebate.com/espana/andalucia/malaga/20260402/marbella-recupera-92-millones-veinte-anos-despues-caso-malaya-tuvimos-embargado-hasta-cementerio_402709.html"
+    url_archivo: "https://web.archive.org/web/20260403125552/https://www.eldebate.com/espana/andalucia/malaga/20260402/marbella-recupera-92-millones-veinte-anos-despues-caso-malaya-tuvimos-embargado-hasta-cementerio_402709.html"
     medio_id: el-debate
     titular: "Marbella recupera 92 millones veinte años después del 'caso Malaya': «Tuvimos embargado hasta el cementerio»"
     fecha_publicacion: "2026-04-02"

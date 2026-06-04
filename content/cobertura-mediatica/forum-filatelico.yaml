@@ -70,6 +70,7 @@ noticias:
 
   - id: publico-ruz-procesa-32-forum-2014
     url: "https://www.publico.es/politica/ruz-procesa-32-responsables-forum-filatelico-estafar-269-203-personas-causarles-perjuicio-3-700-millones-euros.html"
+    url_archivo: "https://web.archive.org/web/20260603225952/https://www.publico.es/politica/ruz-procesa-32-responsables-forum-filatelico-estafar-269-203-personas-causarles-perjuicio-3-700-millones-euros.html"
     medio_id: publico-es
     titular: "Ruz procesa a los 32 responsables de Forum Filatélico por estafar a 269.203 personas y causarles un perjuicio de 3.700 millones de euros"
     fecha_publicacion: "2014-10-08"
@@ -88,6 +89,7 @@ noticias:
 
   - id: elespanol-juicio-oral-forum-2017
     url: "https://www.elespanol.com/espana/20170918/247725502_0.html"
+    url_archivo: "https://web.archive.org/web/20260603234338/https://www.elespanol.com/espana/20170918/247725502_0.html"
     medio_id: el-espanol
     titular: "Acusados por Fórum van a juicio tras 11 años de la estafa a 269.000 inversores"
     fecha_publicacion: "2017-09-18"
@@ -106,6 +108,7 @@ noticias:
 
   - id: publico-sentencia-an-forum-2018
     url: "https://www.publico.es/espana/sentencia-12-anos-carcel-ex-presidente-forum-filatelico-estafa-blanqueo.html"
+    url_archivo: "https://web.archive.org/web/20220811121258/https://www.publico.es/espana/sentencia-12-anos-carcel-ex-presidente-forum-filatelico-estafa-blanqueo.html"
     medio_id: publico-es
     titular: "Doce años de cárcel para el expresidente de Fórum Filatélico por estafa y blanqueo"
     fecha_publicacion: "2018-07-13"
@@ -123,6 +126,7 @@ noticias:
 
   - id: libertad-digital-sentencia-an-forum-2018
     url: "https://www.libertaddigital.com/espana/2018-07-13/hasta-doce-anos-de-carcel-para-20-acusados-por-la-estafa-de-forum-filatelico-1276622005/"
+    url_archivo: "https://web.archive.org/web/20251219082429/https://www.libertaddigital.com/espana/2018-07-13/hasta-doce-anos-de-carcel-para-20-acusados-por-la-estafa-de-forum-filatelico-1276622005/"
     medio_id: libertad-digital
     titular: "Hasta doce años de cárcel para 20 acusados por la estafa de Fórum Filatélico"
     fecha_publicacion: "2018-07-13"
@@ -142,6 +146,7 @@ noticias:
 
   - id: infolibre-victimas-forum-afinsa-13-anos-2019
     url: "https://www.infolibre.es/politica/estafa-piramidal-eterna-victimas-forum-afinsa-siguen-recuperar-dinero-despues-13-anos_1_1167872.html"
+    url_archivo: "https://web.archive.org/web/20260603234424/https://www.infolibre.es/politica/estafa-piramidal-eterna-victimas-forum-afinsa-siguen-recuperar-dinero-despues-13-anos_1_1167872.html"
     medio_id: infolibre
     titular: "Una estafa piramidal y eterna: las víctimas de Fórum y Afinsa siguen sin recuperar su dinero después de 13 años"
     fecha_publicacion: "2019-03-03"
@@ -161,6 +166,7 @@ noticias:
 
   - id: confilegal-ts-confirma-forum-2020
     url: "https://confilegal.com/20200305-el-supremo-confirma-la-estafa-de-forum-filatelico-y-rebaja-levemente-la-condena-a-briones/"
+    url_archivo: "https://web.archive.org/web/20220121020338/https://confilegal.com/20200305-el-supremo-confirma-la-estafa-de-forum-filatelico-y-rebaja-levemente-la-condena-a-briones/"
     medio_id: confilegal
     titular: "El Supremo confirma la estafa de Fórum Filatélico y rebaja levemente la condena a Briones"
     fecha_publicacion: "2020-03-05"
@@ -177,6 +183,7 @@ noticias:
 
   - id: elespanol-ts-cierre-forum-2020
     url: "https://www.elespanol.com/espana/tribunales/20200305/ts-punto-final-forum-filatelico-proceso-condenados/472453299_0.html"
+    url_archivo: "https://web.archive.org/web/20200806162610/https://www.elespanol.com/espana/tribunales/20200305/ts-punto-final-forum-filatelico-proceso-condenados/472453299_0.html"
     medio_id: el-espanol
     titular: "El TS pone punto final al caso Forum Filatélico tras 14 años de proceso y con 16 condenados"
     fecha_publicacion: "2020-03-05"
@@ -194,6 +201,7 @@ noticias:
 
   - id: infolibre-ts-confirma-forum-2020
     url: "https://www.infolibre.es/politica/supremo-confirma-estafa-piramidal-forum-rebaja-levemente-condena-briones-dilaciones-indebidas_1_1180856.html"
+    url_archivo: "https://web.archive.org/web/20260603234459/https://www.infolibre.es/politica/supremo-confirma-estafa-piramidal-forum-rebaja-levemente-condena-briones-dilaciones-indebidas_1_1180856.html"
     medio_id: infolibre
     titular: "El Supremo confirma la estafa piramidal de Fórum aunque rebaja levemente las condena a Briones por dilaciones indebidas"
     fecha_publicacion: "2020-03-05"
@@ -214,6 +222,7 @@ noticias:
 
   - id: vozpopuli-cierre-concurso-forum-2025
     url: "https://www.vozpopuli.com/economia/forum-filatelico-millones-muertos.html"
+    url_archivo: "https://web.archive.org/web/20260603234529/https://www.vozpopuli.com/economia/forum-filatelico-millones-muertos.html"
     medio_id: vozpopuli
     titular: "El caso Fórum Filatélico se cierra tras 15 años con un coste de 46 millones y 15.000 muertos"
     fecha_publicacion: "2025-05-26"
@@ -233,6 +242,7 @@ noticias:
 
   - id: theobjective-decomiso-llorca-2026
     url: "https://theobjective.com/espana/tribunales/2026-01-15/audiencia-nacional-confisca-huido-forum-filatelico/"
+    url_archivo: "https://web.archive.org/web/20260115162803/https://theobjective.com/espana/tribunales/2026-01-15/audiencia-nacional-confisca-huido-forum-filatelico/"
     medio_id: the-objective
     titular: "La Audiencia Nacional confisca 2,6 millones a un huido por la estafa de Fórum Filatélico"
     fecha_publicacion: "2026-01-15"
@@ -250,6 +260,7 @@ noticias:
 
   - id: elespanol-decomiso-llorca-liechtenstein-2026
     url: "https://www.elespanol.com/castilla-y-leon/region/20260116/decomisa-millones-ocultos-liechtenstein-fugado-caso-forum-repartira-estafados/1003744091922_0.html"
+    url_archivo: "https://web.archive.org/web/20260117042723/https://www.elespanol.com/castilla-y-leon/region/20260116/decomisa-millones-ocultos-liechtenstein-fugado-caso-forum-repartira-estafados/1003744091922_0.html"
     medio_id: el-espanol
     titular: "Decomisan 2,6 millones ocultos en Liechtenstein a un fugado del caso Fórum: se repartirá entre los estafados"
     fecha_publicacion: "2026-01-16"

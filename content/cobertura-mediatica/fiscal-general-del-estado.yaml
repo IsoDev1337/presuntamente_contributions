@@ -70,6 +70,7 @@ noticias:
 
   - id: maldita-imputacion-fiscal-general-2024-10
     url: "https://maldita.es/malditateexplica/20241017/imputacion-fiscal-general-estado/"
+    url_archivo: "https://web.archive.org/web/20260522212234/https://maldita.es/malditateexplica/20241017/imputacion-fiscal-general-estado/"
     medio_id: maldita-es
     titular: "La imputación del fiscal general del Estado por un delito de revelación de secretos: preguntas y respuestas"
     fecha_publicacion: "2024-10-17"
@@ -85,6 +86,7 @@ noticias:
 
   - id: newtral-guia-investigacion-garcia-ortiz-2024
     url: "https://www.newtral.es/guia-investigacion-supremo-garcia-ortiz/20241018/"
+    url_archivo: "https://web.archive.org/web/20251104033555/https://www.newtral.es/guia-investigacion-supremo-garcia-ortiz/20241018/"
     medio_id: newtral
     titular: "La investigación del Supremo a García Ortiz"
     fecha_publicacion: "2024-10-18"
@@ -100,6 +102,7 @@ noticias:
 
   - id: theobjective-acusacion-rastreo-filtracion-2024-10
     url: "https://theobjective.com/espana/tribunales/2024-10-18/acusacion-garcia-ortiz-filtracion-ayuso/"
+    url_archivo: "https://web.archive.org/web/20241107133125/https://theobjective.com/espana/tribunales/2024-10-18/acusacion-garcia-ortiz-filtracion-ayuso/"
     medio_id: the-objective
     titular: "Una acusación en el 'caso García Ortiz' pedirá el rastreo de la filtración del novio de Ayuso"
     fecha_publicacion: "2024-10-18"
@@ -115,6 +118,7 @@ noticias:
 
   - id: theobjective-garcia-ortiz-mensajes-destruidos-2024-12
     url: "https://theobjective.com/espana/tribunales/2024-12-20/mensajes-garcia-ortiz-filtracion-ayuso/"
+    url_archivo: "https://web.archive.org/web/20241220070331/https://theobjective.com/espana/tribunales/2024-12-20/mensajes-garcia-ortiz-filtracion-ayuso/"
     medio_id: the-objective
     titular: "Varios mensajes demuestran que García Ortiz destruyó pruebas sobre la filtración de Ayuso"
     fecha_publicacion: "2024-12-20"
@@ -130,6 +134,7 @@ noticias:
 
   - id: theobjective-fiscalia-borra-mensajes-2024-12
     url: "https://theobjective.com/espana/tribunales/2024-12-20/fiscalia-garcia-ortiz-mensajes-filtracion/"
+    url_archivo: "https://web.archive.org/web/20241220152207/https://theobjective.com/espana/tribunales/2024-12-20/fiscalia-garcia-ortiz-mensajes-filtracion/"
     medio_id: the-objective
     titular: "La Fiscalía admite que García Ortiz borró los mensajes de los días de la presunta filtración"
     fecha_publicacion: "2024-12-20"
@@ -150,6 +155,7 @@ noticias:
 
   - id: theobjective-procesa-fiscal-general-2025-06-09
     url: "https://theobjective.com/espana/tribunales/2025-06-09/juez-procesa-fiscal-general-revelacion-secretos/"
+    url_archivo: "https://web.archive.org/web/20250618183913/https://theobjective.com/espana/tribunales/2025-06-09/juez-procesa-fiscal-general-revelacion-secretos//"
     medio_id: the-objective
     titular: "El Supremo procesa al fiscal general por revelación de secretos contra el novio de Ayuso"
     fecha_publicacion: "2025-06-09"
@@ -165,6 +171,7 @@ noticias:
 
   - id: theobjective-cronologia-garcia-ortiz-2025-06
     url: "https://theobjective.com/espana/tribunales/2025-06-09/cronologia-caso-garcia-ortiz-llamadas-chats-correos-fiscal-banquillo/"
+    url_archivo: "https://web.archive.org/web/20250717232334/https://theobjective.com/espana/tribunales/2025-06-09/cronologia-caso-garcia-ortiz-llamadas-chats-correos-fiscal-banquillo/"
     medio_id: the-objective
     titular: "Cronología del 'caso García Ortiz': las llamadas, chats y correos que acercan al fiscal al banquillo"
     fecha_publicacion: "2025-06-09"
@@ -179,6 +186,7 @@ noticias:
 
   - id: theobjective-novio-ayuso-pide-procesamiento-2025-06
     url: "https://theobjective.com/espana/tribunales/2025-06-05/novio-ayuso-supremo-fiscal-general-secretos/"
+    url_archivo: "https://web.archive.org/web/20250902230128/https://theobjective.com/espana/tribunales/2025-06-05/novio-ayuso-supremo-fiscal-general-secretos/"
     medio_id: the-objective
     titular: "El novio de Ayuso pide al Supremo que procese al fiscal general por revelar sus secretos"
     fecha_publicacion: "2025-06-05"
@@ -193,6 +201,7 @@ noticias:
 
   - id: theobjective-inicio-juicio-garcia-ortiz-2025-11-03
     url: "https://theobjective.com/espana/tribunales/2025-11-03/supremo-fiscal-general-juicio/"
+    url_archivo: "https://web.archive.org/web/20251117032725/https://theobjective.com/espana/tribunales/2025-11-03/supremo-fiscal-general-juicio/"
     medio_id: the-objective
     titular: "El Supremo inicia el juicio histórico al fiscal general por la filtración sobre la pareja de Ayuso"
     fecha_publicacion: "2025-11-03"
@@ -208,6 +217,7 @@ noticias:
 
   - id: theobjective-fiscalia-defiende-impunidad-2025-11-13
     url: "https://theobjective.com/espana/tribunales/2025-11-13/fiscalia-garcia-ortiz/"
+    url_archivo: "https://web.archive.org/web/20251129150423/https://theobjective.com/espana/tribunales/2025-11-13/fiscalia-garcia-ortiz/"
     medio_id: the-objective
     titular: "La Fiscalía defiende que aunque García Ortiz hubiera filtrado era «impune»"
     fecha_publicacion: "2025-11-13"
@@ -223,6 +233,7 @@ noticias:
 
   - id: eldiario-condena-garcia-ortiz-supremo-2025-11-20
     url: "https://www.eldiario.es/politica/supremo-condena-fiscal-general-multa-7-200-euros-anos-inhabilitacion-filtracion-correo-pareja-ayuso_1_12773048.html"
+    url_archivo: "https://web.archive.org/web/20260507052059/https://www.eldiario.es/politica/supremo-condena-fiscal-general-multa-7-200-euros-anos-inhabilitacion-filtracion-correo-pareja-ayuso_1_12773048.html"
     medio_id: eldiario-es
     titular: "El Supremo condena al fiscal general a dos años de inhabilitación por la filtración del correo de la pareja de Ayuso"
     fecha_publicacion: "2025-11-20"
@@ -238,6 +249,7 @@ noticias:
 
   - id: elespanol-condena-garcia-ortiz-5-votos-2-2025-11
     url: "https://www.elespanol.com/espana/tribunales/20251120/ts-condena-garcia-ortiz-revelar-datos-tributarios-pareja-ayuso-votos-inhabilita-fiscal-general/1003744022429_0.html"
+    url_archivo: "https://web.archive.org/web/20260522192406/https://www.elespanol.com/espana/tribunales/20251120/ts-condena-garcia-ortiz-revelar-datos-tributarios-pareja-ayuso-votos-inhabilita-fiscal-general/1003744022429_0.html"
     medio_id: el-espanol
     titular: "El TS condena a García Ortiz por revelar datos tributarios de la pareja de Ayuso por 5 votos a 2 y le inhabilita como fiscal general"
     fecha_publicacion: "2025-11-20"
@@ -255,6 +267,7 @@ noticias:
 
   - id: eldiario-dimision-garcia-ortiz-2025-11-24
     url: "https://www.eldiario.es/politica/fiscal-general-dimite-despues-condenado-supremo-he-servido-fielmente-institucion_1_12791200.html"
+    url_archivo: "https://web.archive.org/web/20260603234631/https://www.eldiario.es/politica/fiscal-general-dimite-despues-condenado-supremo-he-servido-fielmente-institucion_1_12791200.html"
     medio_id: eldiario-es
     titular: "El fiscal general dimite tras ser condenado por el Supremo: «He servido fielmente a la institución»"
     fecha_publicacion: "2025-11-24"
@@ -270,6 +283,7 @@ noticias:
 
   - id: publico-carta-dimision-fiscal-general-2025
     url: "https://www.publico.es/politica/carta-dimision-fiscal-general.html"
+    url_archivo: "https://web.archive.org/web/20260119154559/https://www.publico.es/politica/carta-dimision-fiscal-general.html"
     medio_id: publico-es
     titular: "Esta es la carta de dimisión del fiscal general del Estado"
     fecha_publicacion: "2025-11-24"
@@ -286,6 +300,7 @@ noticias:
 
   - id: elespanol-ocho-pruebas-sentencia-2025-12-10
     url: "https://www.elespanol.com/espana/tribunales/20251210/fiscalia_general_del_estado-Alvaro_garcia_ortiz-tribunal_supremo-revelacion_de_secretos-isabel_diaz_ayuso-alberto_gonzalez_amador-tribunales/1003744048621_0.html"
+    url_archivo: "https://web.archive.org/web/20251217015453/https://www.elespanol.com/espana/tribunales/20251210/fiscalia_general_del_estado-Alvaro_garcia_ortiz-tribunal_supremo-revelacion_de_secretos-isabel_diaz_ayuso-alberto_gonzalez_amador-tribunales/1003744048621_0.html"
     medio_id: el-espanol
     titular: "Las ocho pruebas de la sentencia del Tribunal Supremo que han acabado con García Ortiz como fiscal general"
     fecha_publicacion: "2025-12-10"
@@ -301,6 +316,7 @@ noticias:
 
   - id: eldiario-claves-condena-fiscal-general-2025
     url: "https://www.eldiario.es/politica/claves-condena-fiscal-general-tendra-puesto-futuro-fiscalia-queda-aire_1_12783818.html"
+    url_archivo: "https://web.archive.org/web/20260603234705/https://www.eldiario.es/politica/claves-condena-fiscal-general-tendra-puesto-futuro-fiscalia-queda-aire_1_12783818.html"
     medio_id: eldiario-es
     titular: "Las claves de la condena del fiscal general: tendrá que dejar su puesto y su futuro en la Fiscalía queda en el aire"
     fecha_publicacion: "2025-11-21"
@@ -316,6 +332,7 @@ noticias:
 
   - id: publico-supremo-sentencia-sin-pruebas-2025
     url: "https://www.publico.es/politica/tribunales/supremo-considera-probado-garcia-ortiz-persona-entorno-filtraron-correo-confesion-novio-ayuso.html"
+    url_archivo: "https://web.archive.org/web/20260330140258/https://www.publico.es/politica/tribunales/supremo-considera-probado-garcia-ortiz-persona-entorno-filtraron-correo-confesion-novio-ayuso.html"
     medio_id: publico-es
     titular: "El Supremo sentencia sin pruebas que García Ortiz o «una persona de su entorno» filtraron el correo de la confesión del novio de Ayuso"
     fecha_publicacion: "2025-12-10"
@@ -331,6 +348,7 @@ noticias:
 
   - id: theobjective-sentencia-garcia-ortiz-correo-2025-12-09
     url: "https://theobjective.com/espana/tribunales/2025-12-09/sentencia-garcia-ortiz-correo/"
+    url_archivo: "https://web.archive.org/web/20260603234743/https://theobjective.com/espana/tribunales/2025-12-09/sentencia-garcia-ortiz-correo/"
     medio_id: the-objective
     titular: "El Supremo sentencia que García Ortiz o alguien «con su conocimiento» filtró el correo"
     fecha_publicacion: "2025-12-09"
@@ -348,6 +366,7 @@ noticias:
 
   - id: libertad-digital-supremo-inspeccion-fiscal-2025-12
     url: "https://www.libertaddigital.com/espana/2025-12-17/el-supremo-envia-la-sentencia-contra-garcia-ortiz-a-la-inspeccion-fiscal-para-que-estudie-su-expulsion-7334752/"
+    url_archivo: "https://web.archive.org/web/20251223081932/https://www.libertaddigital.com/espana/2025-12-17/el-supremo-envia-la-sentencia-contra-garcia-ortiz-a-la-inspeccion-fiscal-para-que-estudie-su-expulsion-7334752/"
     medio_id: libertad-digital
     titular: "El Supremo envía la sentencia contra García Ortiz a la Inspección Fiscal para que estudie su expulsión"
     fecha_publicacion: "2025-12-17"
@@ -365,6 +384,7 @@ noticias:
 
   - id: elespanol-supremo-rechaza-anular-condena-2026-02-26
     url: "https://www.elespanol.com/espana/tribunales/20260226/tribunal-supremo-rechaza-anular-condena-garcia-ortiz-exfiscal-general-puede-acudir-constitucional/1003744147061_0.html"
+    url_archivo: "https://web.archive.org/web/20260603234819/https://www.elespanol.com/espana/tribunales/20260226/tribunal-supremo-rechaza-anular-condena-garcia-ortiz-exfiscal-general-puede-acudir-constitucional/1003744147061_0.html"
     medio_id: el-espanol
     titular: "El Tribunal Supremo rechaza anular la condena a García Ortiz: el exfiscal general ya puede acudir al Constitucional"
     fecha_publicacion: "2026-02-26"
@@ -380,6 +400,7 @@ noticias:
 
   - id: eldiario-garcia-ortiz-constitucional-2026
     url: "https://www.eldiario.es/politica/ex-fiscal-general-constitucional-supremo-hizo-valoracion-irracional-arbitraria-indicios_1_13137884.html"
+    url_archivo: "https://web.archive.org/web/20260414074113/https://www.eldiario.es/politica/ex-fiscal-general-constitucional-supremo-hizo-valoracion-irracional-arbitraria-indicios_1_13137884.html"
     medio_id: eldiario-es
     titular: "El ex fiscal general, al Constitucional: «El Supremo hizo una valoración irracional y arbitraria de los indicios»"
     fecha_publicacion: "2026-04-15"
@@ -395,6 +416,7 @@ noticias:
 
   - id: eldiario-garcia-ortiz-primera-entrevista-2026
     url: "https://www.eldiario.es/politica/ex-fiscal-general-primera-entrevista-condena-sorpresa-dura-no-habia-pruebas_1_13188145.html"
+    url_archivo: "https://web.archive.org/web/20260506093828/https://www.eldiario.es/politica/ex-fiscal-general-primera-entrevista-condena-sorpresa-dura-no-habia-pruebas_1_13188145.html"
     medio_id: eldiario-es
     titular: "El ex fiscal general del Estado, en la primera entrevista tras su condena: «Fue una sorpresa muy dura, no había pruebas»"
     fecha_publicacion: "2026-05-01"

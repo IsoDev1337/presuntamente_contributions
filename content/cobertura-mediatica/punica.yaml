@@ -80,6 +80,7 @@ noticias:
 
   - id: libertaddigital-detenciones-punica-2014-10-27
     url: "https://www.libertaddigital.com/espana/2014-10-27/el-juez-velasco-ordena-el-arresto-de-francisco-granados-1276531780/"
+    url_archivo: "https://web.archive.org/web/20221207143219/https://www.libertaddigital.com/espana/2014-10-27/el-juez-velasco-ordena-el-arresto-de-francisco-granados-1276531780/"
     medio_id: libertad-digital
     titular: "Francisco Granados y seis alcaldes de Madrid, entre los detenidos"
     fecha_publicacion: "2014-10-27"
@@ -97,6 +98,7 @@ noticias:
 
   - id: eldiario-lista-detenidos-punica-2014
     url: "https://www.eldiario.es/politica/lista-empresarios-detenidos-operacion-punica_1_4556780.html"
+    url_archivo: "https://web.archive.org/web/20260603232230/https://www.eldiario.es/politica/lista-empresarios-detenidos-operacion-punica_1_4556780.html"
     medio_id: eldiario-es
     titular: "Lista completa de los 35 detenidos en la operación Púnica"
     fecha_publicacion: "2014-10-27"
@@ -115,6 +117,7 @@ noticias:
 
   - id: elespanol-supremo-condena-granados-filtracion-2019-03-14
     url: "https://www.elespanol.com/espana/tribunales/20190314/supremo-confirma-condena-carcel-granados-chivatazo-punica/383212056_0.html"
+    url_archivo: "https://web.archive.org/web/20210922004123/https://www.elespanol.com/espana/tribunales/20190314/supremo-confirma-condena-carcel-granados-chivatazo-punica/383212056_0.html"
     medio_id: el-espanol
     titular: "El Supremo confirma la condena de dos años de cárcel para Granados por el 'chivatazo' de Púnica"
     fecha_publicacion: "2019-03-14"
@@ -133,6 +136,7 @@ noticias:
 
   - id: eldiario-archivo-aguirre-caja-b-2022
     url: "https://www.eldiario.es/politica/garcia-castellon-archiva-causa-esperanza-aguirre-caja-b-pp-madrid_1_9218894.html"
+    url_archivo: "https://web.archive.org/web/20251228022043/https://www.eldiario.es/politica/garcia-castellon-archiva-causa-esperanza-aguirre-caja-b-pp-madrid_1_9218894.html"
     medio_id: eldiario-es
     titular: "García Castellón archiva la causa contra Esperanza Aguirre por la caja B del PP de Madrid"
     fecha_publicacion: "2022-10-14"
@@ -151,6 +155,7 @@ noticias:
 
   - id: eldiario-punica-decada-2024
     url: "https://www.eldiario.es/politica/punica-decada-despues-alcaldes-pactan-condenas-mayor-pelotazo-juicios-pendientes_1_12215850.html"
+    url_archivo: "https://web.archive.org/web/20260603232307/https://www.eldiario.es/politica/punica-decada-despues-alcaldes-pactan-condenas-mayor-pelotazo-juicios-pendientes_1_12215850.html"
     medio_id: eldiario-es
     titular: "Púnica, una década después: dos alcaldes pactan condenas por su mayor pelotazo y varios juicios pendientes"
     fecha_publicacion: "2024-10-27"
@@ -169,6 +174,7 @@ noticias:
 
   - id: publico-condena-exalcaldes-cofely-2025-12-22
     url: "https://www.publico.es/politica/tribunales/audiencia-nacional-condena-seis-exalcaldes-comunidad-madrid-practicas-corruptas-contratos-punica-cofely.html"
+    url_archivo: "https://web.archive.org/web/20260531210714/https://www.publico.es/politica/tribunales/audiencia-nacional-condena-seis-exalcaldes-comunidad-madrid-practicas-corruptas-contratos-punica-cofely.html"
     medio_id: publico-es
     titular: "La Audiencia Nacional condena a seis exalcaldes de la Comunidad de Madrid por \"prácticas corruptas\" en contratos de 'Púnica' con Cofely"
     fecha_publicacion: "2025-12-22"
@@ -185,6 +191,7 @@ noticias:
 
   - id: theobjective-condena-exalcaldes-punica-2025-12-22
     url: "https://theobjective.com/espana/tribunales/2025-12-22/condenados-seis-exalcaldes-corrupcion-punica/"
+    url_archivo: "https://web.archive.org/web/20251222185026/https://theobjective.com/espana/tribunales/2025-12-22/condenados-seis-exalcaldes-corrupcion-punica/"
     medio_id: the-objective
     titular: "Condenados seis exalcaldes del PP en la Comunidad de Madrid por la trama Púnica"
     fecha_publicacion: "2025-12-22"
@@ -204,6 +211,7 @@ noticias:
 
   - id: theobjective-apertura-juicio-granados-pieza8-2026-05-26
     url: "https://theobjective.com/espana/tribunales/2026-05-26/juez-juicio-francisco-granados-caso-punica/"
+    url_archivo: "https://web.archive.org/web/20260527050110/https://theobjective.com/espana/tribunales/2026-05-26/juez-juicio-francisco-granados-caso-punica/"
     medio_id: the-objective
     titular: "El juez manda a juicio a Granados y otras 40 personas por otra pieza del 'caso Púnica'"
     fecha_publicacion: "2026-05-26"
@@ -220,6 +228,7 @@ noticias:
 
   - id: infolibre-granados-segundo-juicio-pieza8-2026
     url: "https://www.infolibre.es/politica/granados-afronta-2026-segundo-juicio-punica-11-anos-despues-arresto_1_2117842.html"
+    url_archivo: "https://web.archive.org/web/20260103222126/https://www.infolibre.es/politica/granados-afronta-2026-segundo-juicio-punica-11-anos-despues-arresto_1_2117842.html"
     medio_id: infolibre
     titular: "Granados afronta en 2026 su segundo juicio de Púnica, más de 11 años después de su arresto"
     fecha_publicacion: "2026-05-26"

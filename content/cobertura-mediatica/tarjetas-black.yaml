@@ -87,6 +87,7 @@ noticias:
 
   - id: eldiario-exclusiva-tarjetas-caja-madrid-2013-12
     url: "https://www.eldiario.es/politica/anticorrupcion-investiga-tarjetas-caja-madrid_1_4615282.html"
+    url_archivo: "https://web.archive.org/web/20221128080935/https://www.eldiario.es/politica/anticorrupcion-investiga-tarjetas-caja-madrid_1_4615282.html"
     medio_id: eldiario-es
     titular: "Anticorrupción investiga el gasto de 15 millones con tarjetas en 'negro' de la cúpula de Caja Madrid"
     fecha_publicacion: "2014-10-01"
@@ -110,6 +111,7 @@ noticias:
 
   - id: eldiario-como-salio-luz-escandalo-2014
     url: "https://www.eldiario.es/economia/salio-luz-escandalo-tarjetas-black_1_2750767.html"
+    url_archivo: "https://web.archive.org/web/20230131112815/https://www.eldiario.es/economia/salio-luz-escandalo-tarjetas-black_1_2750767.html"
     medio_id: eldiario-es
     titular: "Cómo salió a la luz el escándalo de las tarjetas black"
     fecha_publicacion: "2014-10-15"
@@ -131,6 +133,7 @@ noticias:
 
   - id: eldiario-claves-tarjetas-caja-madrid-bankia-2014
     url: "https://www.eldiario.es/politica/tarjetas-consejeros-caja-madrid-bankia_1_1909519.html"
+    url_archivo: "https://web.archive.org/web/20251217072430/https://www.eldiario.es/politica/tarjetas-consejeros-caja-madrid-bankia_1_1909519.html"
     medio_id: eldiario-es
     titular: "Las claves de las black, las tarjetas que usaron \"a su antojo\" los consejeros de Caja Madrid y Bankia"
     fecha_publicacion: "2014-10-16"
@@ -150,6 +153,7 @@ noticias:
 
   - id: eldiario-banquillo-politicos-sindicalistas-2016
     url: "https://www.eldiario.es/politica/tarjetas-banquillo-empresarios-sindicalistas-politicos_1_1907519.html"
+    url_archivo: "https://web.archive.org/web/20240525144008/https://www.eldiario.es/politica/tarjetas-banquillo-empresarios-sindicalistas-politicos_1_1907519.html"
     medio_id: eldiario-es
     titular: "Las tarjetas black: el caso que juntó en el banquillo a empresarios, sindicalistas y políticos de todo signo"
     fecha_publicacion: "2016-10-01"
@@ -169,6 +173,7 @@ noticias:
 
   - id: confilegal-juicio-visto-para-sentencia-2017-02
     url: "https://confilegal.com/20170203-el-juicio-de-las-tarjetas-black-queda-visto-para-sentencia/"
+    url_archivo: "https://web.archive.org/web/20250326072636/https://confilegal.com/20170203-el-juicio-de-las-tarjetas-black-queda-visto-para-sentencia/"
     medio_id: confilegal
     titular: "El juicio de las tarjetas 'black' queda visto para sentencia"
     fecha_publicacion: "2017-02-03"
@@ -186,6 +191,7 @@ noticias:
 
   - id: poderjudicial-nota-condenas-65-acusados-2017
     url: "https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Audiencia-Nacional/Noticias-Judiciales/Condenas-desde-tres-meses-a-seis-anos-de-prision-a-los-65-acusados-de-las--tarjetas-black-"
+    url_archivo: "https://web.archive.org/web/20221225232739/https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Audiencia-Nacional/Noticias-Judiciales/Condenas-desde-tres-meses-a-seis-anos-de-prision-a-los-65-acusados-de-las--tarjetas-black-"
     medio_id: consejo-general-poder-judicial
     titular: "Condenas desde tres meses a seis años de prisión a los 65 acusados de las 'tarjetas black'"
     fecha_publicacion: "2017-02-23"
@@ -207,6 +213,7 @@ noticias:
 
   - id: okdiario-condenas-65-blesa-rato-2017-02-23
     url: "https://okdiario.com/investigacion/blesa-condenado-6-anos-rato-4-medio-tarjetas-black-776781"
+    url_archivo: "https://web.archive.org/web/20211206051901/https://okdiario.com/investigacion/blesa-condenado-6-anos-rato-4-medio-tarjetas-black-776781"
     medio_id: okdiario
     titular: "6 años de cárcel para Blesa, 4 para Rato y los otros 63 procesados también condenados por las Black"
     fecha_publicacion: "2017-02-23"
@@ -222,6 +229,7 @@ noticias:
 
   - id: elespanol-rato-condenado-sentencia-an-2017-02-23
     url: "https://www.elespanol.com/espana/tribunales/20170223/195980683_0.html"
+    url_archivo: "https://web.archive.org/web/20220208141310/https://www.elespanol.com/espana/tribunales/20170223/195980683_0.html"
     medio_id: el-espanol
     titular: "Rato, condenado a cuatro años y medio de cárcel por las tarjetas black"
     fecha_publicacion: "2017-02-23"
@@ -237,6 +245,7 @@ noticias:
 
   - id: eldiario-juicio-era-tarjetas-black-2017
     url: "https://www.eldiario.es/economia/juicio-banqueros-responderan_1_3820507.html"
+    url_archivo: "https://web.archive.org/web/20260529053314/https://www.eldiario.es/economia/juicio-banqueros-responderan_1_3820507.html"
     medio_id: eldiario-es
     titular: "Juicio a una era: las tarjetas black"
     fecha_publicacion: "2017-02-23"
@@ -256,6 +265,7 @@ noticias:
 
   - id: poderjudicial-nota-ts-confirma-rato-2018
     url: "https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Tribunal-Supremo/Noticias-Judiciales/El-Tribunal-Supremo-confirma-la-condena-de-Rodrigo-Rato-a-cuatro-anos-y-medio-de-prision-por-las--tarjetas-black-"
+    url_archivo: "https://web.archive.org/web/20240922010749/https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Tribunal-Supremo/Noticias-Judiciales/El-Tribunal-Supremo-confirma-la-condena-de-Rodrigo-Rato-a-cuatro-anos-y-medio-de-prision-por-las--tarjetas-black-"
     medio_id: consejo-general-poder-judicial
     titular: "El Tribunal Supremo confirma la condena de Rodrigo Rato a cuatro años y medio de prisión por las \"tarjetas black\""
     fecha_publicacion: "2018-10-03"
@@ -273,6 +283,7 @@ noticias:
 
   - id: confilegal-supremo-confirma-rato-63-2018-10-03
     url: "https://confilegal.com/20181003-el-supremo-confirma-4-anos-y-medio-carcel-rato-por-tarjetas-black-y-condena-a-otros-63-ex-directivos-o-exconsejeros/"
+    url_archivo: "https://web.archive.org/web/20260603232022/https://confilegal.com/20181003-el-supremo-confirma-4-anos-y-medio-carcel-rato-por-tarjetas-black-y-condena-a-otros-63-ex-directivos-o-exconsejeros/"
     medio_id: confilegal
     titular: "El Supremo confirma 4 años y medio cárcel Rato por 'tarjetas black' y condena a otros 63 ex directivos o exconsejeros"
     fecha_publicacion: "2018-10-03"
@@ -289,6 +300,7 @@ noticias:
 
   - id: elindependiente-supremo-mantiene-rato-2018-10-03
     url: "https://www.elindependiente.com/politica/2018/10/03/tarjetas-black-supremo-mantiene-la-condena-4-anos-seis-meses-prision-rato/"
+    url_archivo: "https://web.archive.org/web/20251214163932/https://www.elindependiente.com/politica/2018/10/03/tarjetas-black-supremo-mantiene-la-condena-4-anos-seis-meses-prision-rato/"
     medio_id: el-independiente
     titular: "Tarjetas black: el Supremo mantiene la condena de 4 años y seis meses de prisión a Rato"
     fecha_publicacion: "2018-10-03"
@@ -304,6 +316,7 @@ noticias:
 
   - id: eldiario-supremo-confirma-rato-tarjetas-black-2018
     url: "https://www.eldiario.es/politica/tarjetas-rodrigo-rato-tribunal-supremo_1_2750446.html"
+    url_archivo: "https://web.archive.org/web/20260130080251/https://www.eldiario.es/politica/tarjetas-rodrigo-rato-tribunal-supremo_1_2750446.html"
     medio_id: eldiario-es
     titular: "El Supremo confirma la condena de 4 años y seis meses de cárcel para Rodrigo Rato por las tarjetas black"
     fecha_publicacion: "2018-10-03"
@@ -319,6 +332,7 @@ noticias:
 
   - id: okdiario-supremo-confirma-rato-carcel-2018
     url: "https://okdiario.com/espana/supremo-confirma-condena-4-anos-medio-rato-tarjetas-black-3187195"
+    url_archivo: "https://web.archive.org/web/20260212011558/https://okdiario.com/espana/supremo-confirma-condena-4-anos-medio-rato-tarjetas-black-3187195"
     medio_id: okdiario
     titular: "Rodrigo Rato irá a la cárcel: el Supremo confirma su condena de cuatro años y medio por las black"
     fecha_publicacion: "2018-10-03"
@@ -336,6 +350,7 @@ noticias:
 
   - id: confilegal-solo-4-de-15-en-prision-2019-08
     url: "https://confilegal.com/20190807-solo-4-de-los-15-condenados-por-las-tarjetas-black-siguen-en-prision/"
+    url_archivo: "https://web.archive.org/web/20220926085745/https://confilegal.com/20190807-solo-4-de-los-15-condenados-por-las-tarjetas-black-siguen-en-prision/"
     medio_id: confilegal
     titular: "Sólo 4 de los 15 condenados por las tarjetas \"black\" siguen en prisión"
     fecha_publicacion: "2019-08-07"
@@ -352,6 +367,7 @@ noticias:
 
   - id: vozpopuli-diez-aniversario-tarjetas-black-2024
     url: "https://www.vozpopuli.com/economia/banca/diez-anos-tarjetas-black-caja-madrid-suicidio-blesa.html"
+    url_archivo: "https://web.archive.org/web/20260603232052/https://www.vozpopuli.com/economia/banca/diez-anos-tarjetas-black-caja-madrid-suicidio-blesa.html"
     medio_id: vozpopuli
     titular: "Diez años de las tarjetas black de Caja Madrid y más de siete desde el suicidio de Blesa"
     fecha_publicacion: "2024-10-01"

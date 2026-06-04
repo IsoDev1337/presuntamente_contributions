@@ -9,6 +9,7 @@ productor_organizacion_id: eldiario-es
 fecha_documento: "2025-12-10"
 fecha_publicacion: "2025-12-10"
 url_canonica: "https://www.eldiario.es/"
+url_archivo: "https://web.archive.org/web/20260603130453/https://www.eldiario.es/"
 # LLM-incierto: URL exacta no disponible sin fetch.
 estado_acceso: publico
 idioma: es

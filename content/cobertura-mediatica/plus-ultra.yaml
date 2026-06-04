@@ -73,6 +73,7 @@ noticias:
 
   - id: eldiario-anticorrupcion-blanqueo-venezuela-2025-11
     url: "https://www.eldiario.es/politica/anticorrupcion-sostiene-plus-ultra-rescate-sepi-blanquear-dinero-ilicito-venezuela_1_12840351.html"
+    url_archivo: "https://web.archive.org/web/20260420061816/https://www.eldiario.es/politica/anticorrupcion-sostiene-plus-ultra-rescate-sepi-blanquear-dinero-ilicito-venezuela_1_12840351.html"
     medio_id: eldiario-es
     titular: "Anticorrupción sostiene que Plus Ultra usó el rescate de la SEPI para blanquear dinero «ilícito» de Venezuela"
     fecha_publicacion: "2025-11-01"
@@ -89,6 +90,7 @@ noticias:
 
   - id: eldiario-detenidos-libertad-cautelares-2025-12
     url: "https://www.eldiario.es/politica/juzgado-acuerda-libertad-medidas-cautelares-tres-detenidos-plus-ultra_1_12843305.html"
+    url_archivo: "https://web.archive.org/web/20260111023625/https://www.eldiario.es/politica/juzgado-acuerda-libertad-medidas-cautelares-tres-detenidos-plus-ultra_1_12843305.html"
     medio_id: eldiario-es
     titular: "Un juzgado acuerda la libertad con medidas cautelares para los tres detenidos de Plus Ultra"
     fecha_publicacion: "2025-12-12"
@@ -106,6 +108,7 @@ noticias:
 
   - id: infobae-guia-caso-plus-ultra-2026-05-20
     url: "https://www.infobae.com/espana/2026/05/20/guia-para-entender-el-caso-plus-ultra-un-rescate-aprobado-por-el-gobierno-la-implicacion-de-zapatero-conexiones-con-venezuela-y-acercamientos-a-figuras-del-psoe/"
+    url_archivo: "https://web.archive.org/web/20260521141150/https://www.infobae.com/espana/2026/05/20/guia-para-entender-el-caso-plus-ultra-un-rescate-aprobado-por-el-gobierno-la-implicacion-de-zapatero-conexiones-con-venezuela-y-acercamientos-a-figuras-del-psoe/"
     medio_id: infobae
     titular: "Guía para entender el 'caso Plus Ultra' y la imputación de Zapatero: un rescate aprobado por el Gobierno, conexiones con Venezuela y acercamientos a figuras del PSOE"
     fecha_publicacion: "2026-05-20"
@@ -122,6 +125,7 @@ noticias:
 
   - id: infobae-zapatero-pequena-aerolinea-2026-05-19
     url: "https://www.infobae.com/espana/2026/05/19/plus-ultra-la-pequena-aerolinea-con-perdidas-y-cientos-de-reclamaciones-cuyo-rescate-de-53-millones-vuelve-al-foco-por-la-imputacion-de-zapatero/"
+    url_archivo: "https://web.archive.org/web/20260520072100/https://www.infobae.com/espana/2026/05/19/plus-ultra-la-pequena-aerolinea-con-perdidas-y-cientos-de-reclamaciones-cuyo-rescate-de-53-millones-vuelve-al-foco-por-la-imputacion-de-zapatero/"
     medio_id: infobae
     titular: "Plus Ultra, la pequeña aerolínea con pérdidas y cientos de reclamaciones cuyo rescate de 53 millones vuelve al foco por la imputación de Zapatero"
     fecha_publicacion: "2026-05-19"
@@ -136,6 +140,7 @@ noticias:
 
   - id: elespanol-historia-rescate-2026-05-19
     url: "https://www.elespanol.com/invertia/empresas/20260519/plus-ultra-historia-rescate-millones-sospecha-siempre-planea-sombra-zapatero/1003744053634_0.html"
+    url_archivo: "https://web.archive.org/web/20260520063731/https://www.elespanol.com/invertia/empresas/20260519/plus-ultra-historia-rescate-millones-sospecha-siempre-planea-sombra-zapatero/1003744053634_0.html"
     medio_id: el-espanol
     titular: "Plus Ultra: historia de un rescate de 53 millones bajo sospecha y sobre el que siempre planea la sombra de Zapatero"
     fecha_publicacion: "2026-05-19"
@@ -151,6 +156,7 @@ noticias:
 
   - id: elespanol-zapatero-sociedad-dubai-2026-05-19
     url: "https://www.elespanol.com/espana/tribunales/20260519/audiencia-nacional-imputa-zapatero-presunto-blanqueo-capitales-rescate-plus-ultra/1003744250635_0.html"
+    url_archivo: "https://web.archive.org/web/20260520085100/https://www.elespanol.com/espana/tribunales/20260519/audiencia-nacional-imputa-zapatero-presunto-blanqueo-capitales-rescate-plus-ultra/1003744250635_0.html"
     medio_id: el-espanol
     titular: "El juez sostiene que Zapatero creó una sociedad en Dubái para cobrar el 1% del rescate de Plus Ultra y le atribuye haber recibido hasta 2 millones"
     fecha_publicacion: "2026-05-19"
@@ -166,6 +172,7 @@ noticias:
 
   - id: theobjective-zapatero-imputado-an-2026-05-19
     url: "https://theobjective.com/espana/tribunales/2026-05-19/zapatero-imputado-blanqueo-audiencia-nacional/"
+    url_archivo: "https://web.archive.org/web/20260520041606/https://theobjective.com/espana/tribunales/2026-05-19/zapatero-imputado-blanqueo-audiencia-nacional/"
     medio_id: the-objective
     titular: "La Audiencia Nacional imputa a Zapatero por su papel en el rescate de la aerolínea Plus Ultra"
     fecha_publicacion: "2026-05-19"
@@ -180,6 +187,7 @@ noticias:
 
   - id: theobjective-pp-capos-caen-2026-05-19
     url: "https://theobjective.com/espana/politica/2026-05-19/pp-imputacion-zapatero-tinglado-desmorona-capos/"
+    url_archivo: "https://web.archive.org/web/20260520054805/https://theobjective.com/espana/politica/2026-05-19/pp-imputacion-zapatero-tinglado-desmorona-capos/"
     medio_id: the-objective
     titular: "El PP, tras la imputación de Zapatero: «Los capos empiezan a caer»"
     fecha_publicacion: "2026-05-19"
@@ -195,6 +203,7 @@ noticias:
 
   - id: vozpopuli-imputacion-zapatero-directo-2026-05-19
     url: "https://www.vozpopuli.com/tribunales/imputacion-zapatero-en-directo-reacciones-investigacion-del-caso-plus-ultra-y-ultimas-noticias.html"
+    url_archivo: "https://web.archive.org/web/20260603232515/https://www.vozpopuli.com/tribunales/imputacion-zapatero-en-directo-reacciones-investigacion-del-caso-plus-ultra-y-ultimas-noticias.html"
     medio_id: vozpopuli
     titular: "Última hora de la imputación de Zapatero por el caso Plus Ultra, en directo: reacciones y apoyos al expresidente"
     fecha_publicacion: "2026-05-19"
@@ -209,6 +218,7 @@ noticias:
 
   - id: eldiario-zapatero-imputado-organizacion-2026-05-19
     url: "https://www.eldiario.es/politica/zapatero-imputado-blanqueo-capitales-caso-plus-ultra_1_13231540.html"
+    url_archivo: "https://web.archive.org/web/20260520064038/https://www.eldiario.es/politica/zapatero-imputado-blanqueo-capitales-caso-plus-ultra_1_13231540.html"
     medio_id: eldiario-es
     titular: "Zapatero, imputado por organización criminal, falsedad y tráfico de influencias en el caso Plus Ultra"
     fecha_publicacion: "2026-05-19"
@@ -224,6 +234,7 @@ noticias:
 
   - id: eldiario-claves-imputacion-zapatero-2026-05
     url: "https://www.eldiario.es/politica/claves-imputacion-zapatero-investigacion-defendio-labor-consultoria_1_13231890.html"
+    url_archivo: "https://web.archive.org/web/20260520061850/https://www.eldiario.es/politica/claves-imputacion-zapatero-investigacion-defendio-labor-consultoria_1_13231890.html"
     medio_id: eldiario-es
     titular: "Claves de la imputación de Zapatero: qué sabemos sobre la investigación y qué defendió él sobre su labor de consultoría"
     fecha_publicacion: "2026-05-20"
@@ -240,6 +251,7 @@ noticias:
 
   - id: eldiario-caso-zapatero-conjeturas-2026-05
     url: "https://www.eldiario.es/politica/caso-zapatero-contrato-sospechoso-trafico-influencias-cargado-conjeturas_129_13235557.html"
+    url_archivo: "https://web.archive.org/web/20260603232621/https://www.eldiario.es/politica/caso-zapatero-contrato-sospechoso-trafico-influencias-cargado-conjeturas_129_13235557.html"
     medio_id: eldiario-es
     titular: "Caso Zapatero: un contrato sospechoso para un tráfico de influencias cargado de conjeturas"
     fecha_publicacion: "2026-05-21"
@@ -256,6 +268,7 @@ noticias:
 
   - id: eldiario-siete-claves-rescate-2026-05
     url: "https://www.eldiario.es/politica/siete-claves-rescate-plus-ultra-investiga-juez-caso-zapatero_1_13240595.html"
+    url_archivo: "https://web.archive.org/web/20260523181136/https://www.eldiario.es/politica/siete-claves-rescate-plus-ultra-investiga-juez-caso-zapatero_1_13240595.html"
     medio_id: eldiario-es
     titular: "Siete claves del rescate a Plus Ultra que investiga el juez del caso Zapatero"
     fecha_publicacion: "2026-05-22"
@@ -271,6 +284,7 @@ noticias:
 
   - id: publico-origen-causa-zapatero-2026-05
     url: "https://www.publico.es/politica/tribunales/origen-causa-zapatero-archivo-prestamo-plus-ultra-impulso-anticorrupcion-trama-blanqueo.html"
+    url_archivo: "https://web.archive.org/web/20260602183810/https://www.publico.es/politica/tribunales/origen-causa-zapatero-archivo-prestamo-plus-ultra-impulso-anticorrupcion-trama-blanqueo.html"
     medio_id: publico-es
     titular: "El origen de la causa contra Zapatero: del archivo por el préstamo a Plus Ultra al impulso de Anticorrupción por una trama de blanqueo"
     fecha_publicacion: "2026-05-20"
@@ -286,6 +300,7 @@ noticias:
 
   - id: publico-zapatero-respuesta-imputacion-2026-05-19
     url: "https://www.publico.es/politica/zapatero-imputacion-he-realizado-ninguna-gestion-ninguna-administracion-publica-relacion-rescate-plus-ultra.html"
+    url_archivo: "https://web.archive.org/web/20260519200650/https://www.publico.es/politica/zapatero-imputacion-he-realizado-ninguna-gestion-ninguna-administracion-publica-relacion-rescate-plus-ultra.html"
     medio_id: publico-es
     titular: "Zapatero, tras su imputación: «Jamás he realizado ninguna gestión en relación al rescate de Plus Ultra»"
     fecha_publicacion: "2026-05-19"
@@ -300,6 +315,7 @@ noticias:
 
   - id: publico-querella-manos-limpias-zapatero-2026-05
     url: "https://www.publico.es/politica/tribunales/querella-manos-limpias-zapatero-entrevista-aldama-iker-jimenez-afirmacion-youtuber.html"
+    url_archivo: "https://web.archive.org/web/20260603232657/https://www.publico.es/politica/tribunales/querella-manos-limpias-zapatero-entrevista-aldama-iker-jimenez-afirmacion-youtuber.html"
     medio_id: publico-es
     titular: "La querella de Manos Limpias contra Zapatero: una entrevista de Aldama con Iker Jiménez y una afirmación de un 'youtuber'"
     fecha_publicacion: "2026-05-20"
@@ -315,6 +331,7 @@ noticias:
 
   - id: publico-informes-policiales-sin-pruebas-2026-05
     url: "https://www.publico.es/politica/dos-informes-policiales-clave-aportan-pruebas-influencia-zapatero-sobre-responsables-sepi.html"
+    url_archivo: "https://web.archive.org/web/20260602183809/https://www.publico.es/politica/dos-informes-policiales-clave-aportan-pruebas-influencia-zapatero-sobre-responsables-sepi.html"
     medio_id: publico-es
     titular: "Los dos informes policiales clave no aportan pruebas de la influencia de Zapatero sobre los responsables de la SEPI"
     fecha_publicacion: "2026-05-22"
@@ -330,6 +347,7 @@ noticias:
 
   - id: libertad-digital-trama-zapatero-fiscalia-2026-05-23
     url: "https://www.libertaddigital.com/espana/2026-05-23/la-trama-zapatero-recurrio-fiscalia-para-boicotear-la-investigacion-plus-ultra-la-fiscal-jefa-es-amiga-7409066/"
+    url_archivo: "https://web.archive.org/web/20260525010832/https://www.libertaddigital.com/espana/2026-05-23/la-trama-zapatero-recurrio-fiscalia-para-boicotear-la-investigacion-plus-ultra-la-fiscal-jefa-es-amiga-7409066/"
     medio_id: libertad-digital
     titular: "La trama Zapatero recurrió a la Fiscalía para boicotear la investigación a Plus Ultra: «La fiscal jefa es amiga»"
     fecha_publicacion: "2026-05-23"
@@ -345,6 +363,7 @@ noticias:
 
   - id: infobae-quien-es-quien-plus-ultra-2026-05-24
     url: "https://www.infobae.com/espana/2026/05/24/quien-es-quien-en-el-caso-plus-ultra-un-entramado-de-empresarios-politicos-y-sociedades-que-coloca-en-el-centro-de-la-investigacion-a-zapatero/"
+    url_archivo: "https://web.archive.org/web/20260525115213/https://www.infobae.com/espana/2026/05/24/quien-es-quien-en-el-caso-plus-ultra-un-entramado-de-empresarios-politicos-y-sociedades-que-coloca-en-el-centro-de-la-investigacion-a-zapatero/"
     medio_id: infobae
     titular: "Quién es quién en el caso Plus Ultra: un entramado de empresarios, políticos y sociedades que coloca en el centro de la investigación a Zapatero"
     fecha_publicacion: "2026-05-24"
@@ -360,6 +379,7 @@ noticias:
 
   - id: maldita-preguntas-respuestas-imputacion-2026-05-20
     url: "https://maldita.es/desinfo/20260520/preguntas-y-respuestas-imputacion-zapatero-plus-ultra/"
+    url_archivo: "https://web.archive.org/web/20260529122130/https://maldita.es/desinfo/20260520/preguntas-y-respuestas-imputacion-zapatero-plus-ultra/"
     medio_id: maldita-es
     titular: "Preguntas y respuestas sobre la imputación a Zapatero en el caso del rescate a la aerolínea Plus Ultra"
     fecha_publicacion: "2026-05-20"
@@ -375,6 +395,7 @@ noticias:
 
   - id: maldita-no-denuncia-manos-limpias-2026-05-20
     url: "https://maldita.es/desinfo/20260520/zapatero-esta-siendo-investigado-por-una-denuncia-de-la-extrema-derecha/"
+    url_archivo: "https://web.archive.org/web/20260521100435/https://maldita.es/desinfo/20260520/zapatero-esta-siendo-investigado-por-una-denuncia-de-la-extrema-derecha/"
     medio_id: maldita-es
     titular: "No, la imputación de Zapatero no es por una denuncia de Manos Limpias basada en una entrevista a Aldama"
     fecha_publicacion: "2026-05-20"
@@ -392,6 +413,7 @@ noticias:
 
   - id: maldita-delitos-zapatero-2026-05-20
     url: "https://maldita.es/desinfo/20260520/zapatero-imputado-por-blanqueo-de-capitales-en-la-audiencia-nacional-en-el-caso-plus-ultra/"
+    url_archivo: "https://web.archive.org/web/20260521085753/https://maldita.es/desinfo/20260520/zapatero-imputado-por-blanqueo-de-capitales-en-la-audiencia-nacional-en-el-caso-plus-ultra/"
     medio_id: maldita-es
     titular: "Qué sabemos sobre los delitos que la Audiencia Nacional imputa a Zapatero en el caso Plus Ultra"
     fecha_publicacion: "2026-05-20"
@@ -407,6 +429,7 @@ noticias:
 
   - id: okdiario-trama-zapatero-fiscal-amiga-2026-05
     url: "https://okdiario.com/espana/trama-zapatero-jactaba-cercania-fiscal-que-logro-archivo-causa-del-rescate-plus-ultra-amiga-17140841"
+    url_archivo: "https://web.archive.org/web/20260524025957/https://okdiario.com/espana/trama-zapatero-jactaba-cercania-fiscal-que-logro-archivo-causa-del-rescate-plus-ultra-amiga-17140841"
     medio_id: okdiario
     titular: "La trama de Zapatero se jactaba de su cercanía a la fiscal que logró el archivo de la causa del rescate a Plus Ultra: «Es amiga»"
     fecha_publicacion: "2026-05-23"
@@ -424,6 +447,7 @@ noticias:
 
   - id: eldiario-policia-incauto-107000-euros-2026-05
     url: "https://www.eldiario.es/politica/policia-incauto-107-000-euros-75-000-dolares-registro-casa-presidente-plus-ultra_1_13249419.html"
+    url_archivo: "https://web.archive.org/web/20260603232733/https://www.eldiario.es/politica/policia-incauto-107-000-euros-75-000-dolares-registro-casa-presidente-plus-ultra_1_13249419.html"
     medio_id: eldiario-es
     titular: "La Policía se incautó de 107.000 euros y 75.000 dólares en el registro de la casa del presidente de Plus Ultra"
     fecha_publicacion: "2026-05-25"
@@ -439,6 +463,7 @@ noticias:
 
   - id: eldiario-busca-captura-antiguo-dueno-2026-05
     url: "https://www.eldiario.es/politica/juez-calama-acusa-antiguo-dueno-plus-ultra-esconder-parte-rescate-paraisos-fiscales-medio-mundo_1_13249423.html"
+    url_archivo: "https://web.archive.org/web/20260527064025/https://www.eldiario.es/politica/juez-calama-acusa-antiguo-dueno-plus-ultra-esconder-parte-rescate-paraisos-fiscales-medio-mundo_1_13249423.html"
     medio_id: eldiario-es
     titular: "Busca y captura para el antiguo dueño de Plus Ultra por llevarse parte del dinero del rescate a paraísos fiscales"
     fecha_publicacion: "2026-05-25"
@@ -454,6 +479,7 @@ noticias:
 
   - id: eldiario-medidas-cautelares-rebajadas-2026-05
     url: "https://www.eldiario.es/politica/audiencia-nacional-rebaja-medidas-cautelares-principales-investigados-caso-plus-ultra_1_13216201.html"
+    url_archivo: "https://web.archive.org/web/20260603232807/https://www.eldiario.es/politica/audiencia-nacional-rebaja-medidas-cautelares-principales-investigados-caso-plus-ultra_1_13216201.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional rebaja las medidas cautelares a los principales investigados del caso Plus Ultra"
     fecha_publicacion: "2026-05-10"

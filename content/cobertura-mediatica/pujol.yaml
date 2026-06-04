@@ -78,6 +78,7 @@ noticias:
 
   - id: publico-ocho-claves-causa-pujol-2014
     url: "https://publico.es/politica/ocho-claves-causa-abierta-familia.html"
+    url_archivo: "https://web.archive.org/web/20231226085146/https://www.publico.es/politica/ocho-claves-causa-abierta-familia.html"
     medio_id: publico-es
     titular: "Ocho claves de la causa abierta a la familia Pujol"
     fecha_publicacion: "2014-07-01"
@@ -97,6 +98,7 @@ noticias:
 
   - id: publico-pujol-version-herencia-margen-negocios
     url: "https://www.publico.es/politica/pujol-aferra-version-fortuna-oculta-herencia-margen-negocios-hijo.html"
+    url_archivo: "https://web.archive.org/web/20260603232341/https://www.publico.es/politica/pujol-aferra-version-fortuna-oculta-herencia-margen-negocios-hijo.html"
     medio_id: publico-es
     titular: "Pujol se aferra a su versión: la fortuna oculta es una herencia y él está al margen de los negocios de su hijo"
     fecha_publicacion: "2014-07-25"
@@ -115,6 +117,7 @@ noticias:
 
   - id: publico-an-confirma-indicios-organizacion-criminal
     url: "https://www.publico.es/politica/audiencia-nacional-confirma-hay-indicios-juzgar-familia-pujol-organizacion-criminal.html"
+    url_archivo: "https://web.archive.org/web/20260603232406/https://www.publico.es/politica/audiencia-nacional-confirma-hay-indicios-juzgar-familia-pujol-organizacion-criminal.html"
     medio_id: publico-es
     titular: "La Audiencia Nacional confirma que hay indicios para juzgar a la familia Pujol por organización criminal"
     fecha_publicacion: "2021-07-01"
@@ -133,6 +136,7 @@ noticias:
 
   - id: infolibre-familia-pujol-pierde-recursos-juicio
     url: "https://www.infolibre.es/politica/familia-pujol-pierde-recursos-e-ira-juicio-organizacion-criminal-blanqueo-fraude_1_1196582.html"
+    url_archivo: "https://web.archive.org/web/20250206135239/https://www.infolibre.es/politica/familia-pujol-pierde-recursos-e-ira-juicio-organizacion-criminal-blanqueo-fraude_1_1196582.html"
     medio_id: infolibre
     titular: "La familia Pujol pierde los recursos e irá a juicio por organización criminal, blanqueo y fraude"
     fecha_publicacion: "2021-07-01"
@@ -153,6 +157,7 @@ noticias:
 
   - id: eldiario-confesion-diez-anos-2024-07-25
     url: "https://www.eldiario.es/catalunya/confesion-jordi-pujol-fortuna-oculta-cumple-diez-anos-juicio-vista_1_11539274.html"
+    url_archivo: "https://web.archive.org/web/20251124105755/https://www.eldiario.es/catalunya/confesion-jordi-pujol-fortuna-oculta-cumple-diez-anos-juicio-vista_1_11539274.html"
     medio_id: eldiario-es
     titular: "La confesión de Jordi Pujol sobre su fortuna oculta cumple diez años sin juicio a la vista"
     fecha_publicacion: "2024-07-25"
@@ -169,6 +174,7 @@ noticias:
 
   - id: eldiario-an-celebrara-juicio-noviembre-2025-abril-2026
     url: "https://www.eldiario.es/catalunya/audiencia-nacional-celebrara-juicio-familia-pujol-noviembre-2025-abril-2026_1_11799937.html"
+    url_archivo: "https://web.archive.org/web/20251124105754/https://www.eldiario.es/catalunya/audiencia-nacional-celebrara-juicio-familia-pujol-noviembre-2025-abril-2026_1_11799937.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional celebrará el juicio contra la familia Pujol entre noviembre de 2025 y abril de 2026"
     fecha_publicacion: "2024-10-01"
@@ -188,6 +194,7 @@ noticias:
 
   - id: okdiario-an-fija-juicio-clan-pujol-2024
     url: "https://okdiario.com/espana/audiencia-nacional-fija-juicio-contra-clan-jordi-pujol-noviembre-2025-abril-2026-13783833"
+    url_archivo: "https://web.archive.org/web/20241207075938/https://okdiario.com/espana/audiencia-nacional-fija-juicio-contra-clan-jordi-pujol-noviembre-2025-abril-2026-13783833"
     medio_id: okdiario
     titular: "La Audiencia Nacional fija el juicio contra el 'clan' Pujol entre noviembre de 2025 y abril de 2026"
     fecha_publicacion: "2024-10-01"
@@ -208,6 +215,7 @@ noticias:
 
   - id: vozpopuli-an-juzgara-pujol-noviembre-2025
     url: "https://www.vozpopuli.com/espana/la-audiencia-nacional-juzgara-a-la-familia-pujol-en-noviembre-de-2025.html"
+    url_archivo: "https://web.archive.org/web/20251001031036/https://www.vozpopuli.com/espana/la-audiencia-nacional-juzgara-a-la-familia-pujol-en-noviembre-de-2025.html"
     medio_id: vozpopuli
     titular: "La Audiencia Nacional juzgará a la familia Pujol en noviembre de 2025 por una causa que se abrió en 2012"
     fecha_publicacion: "2024-10-01"
@@ -229,6 +237,7 @@ noticias:
 
   - id: eldiario-cronologia-confesion-juicio-11-anos
     url: "https://www.eldiario.es/catalunya/cronologia-confesion-juicio-11-anos-resolver-enigma-fortuna-pujol_1_12782795.html"
+    url_archivo: "https://web.archive.org/web/20260517060607/https://www.eldiario.es/catalunya/cronologia-confesion-juicio-11-anos-resolver-enigma-fortuna-pujol_1_12782795.html"
     medio_id: eldiario-es
     titular: "Cronología: de la confesión al juicio, más de 11 años sin resolver el enigma de la fortuna de los Pujol"
     fecha_publicacion: "2025-11-01"
@@ -248,6 +257,7 @@ noticias:
 
   - id: eldiario-pujol-banquillo-juicio-tardio-2025
     url: "https://www.eldiario.es/catalunya/pujol-banquillo-juicio-tardio-cruza-rehabilitacion-politica-expresident_1_12784699.html"
+    url_archivo: "https://web.archive.org/web/20260422123620/https://www.eldiario.es/catalunya/pujol-banquillo-juicio-tardio-cruza-rehabilitacion-politica-expresident_1_12784699.html"
     medio_id: eldiario-es
     titular: "Los Pujol, al banquillo: un juicio tardío que se cruza en la rehabilitación política del expresident"
     fecha_publicacion: "2025-11-10"
@@ -264,6 +274,7 @@ noticias:
 
   - id: cronica-global-forenses-pujol-condiciones-juicio-2025
     url: "https://cronicaglobal.elespanol.com/politica/20251117/pujol-comparecera-audiencia-nacional-videoconferencia-explicar-juicio/1003742708111_0.html"
+    url_archivo: "https://web.archive.org/web/20251117233155/https://cronicaglobal.elespanol.com/politica/20251117/pujol-comparecera-audiencia-nacional-videoconferencia-explicar-juicio/1003742708111_0.html"
     medio_id: cronica-global
     titular: "Los forenses no ven a Pujol \"en condiciones físicas ni cognitivas\" de ir a juicio"
     fecha_publicacion: "2025-11-17"
@@ -280,6 +291,7 @@ noticias:
 
   - id: eldiario-an-decide-juzgar-pujol-pese-salud-2025
     url: "https://www.eldiario.es/catalunya/audiencia-nacional-decide-juzgar-jordi-pujol-fortuna-familiar-pese-deteriorada-salud_1_12791096.html"
+    url_archivo: "https://web.archive.org/web/20260315072115/https://www.eldiario.es/catalunya/audiencia-nacional-decide-juzgar-jordi-pujol-fortuna-familiar-pese-deteriorada-salud_1_12791096.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional decide juzgar a Jordi Pujol por la fortuna familiar pese a su deteriorada salud"
     fecha_publicacion: "2025-11-24"
@@ -296,6 +308,7 @@ noticias:
 
   - id: eldiario-pujol-nonagenario-audiencia-caso-estudio-2026
     url: "https://www.eldiario.es/catalunya/jordi-pujol-caso-estudio-nonagenario-audiencia-nacional-pese-unanimidad-forense_1_13164761.html"
+    url_archivo: "https://web.archive.org/web/20260512105530/https://www.eldiario.es/catalunya/jordi-pujol-caso-estudio-nonagenario-audiencia-nacional-pese-unanimidad-forense_1_13164761.html"
     medio_id: eldiario-es
     titular: "Jordi Pujol, caso de estudio: un nonagenario en la Audiencia Nacional pese a la unanimidad forense"
     fecha_publicacion: "2026-04-20"
@@ -312,6 +325,7 @@ noticias:
 
   - id: vozpopuli-an-archiva-causa-pujol-mantiene-hijos-2026
     url: "https://www.vozpopuli.com/espana/cataluna/la-audiencia-nacional-archiva-la-causa-contra-jordi-pujol-por-su-estado-de-salud-y-mantiene-el-juicio-para-sus-siete-hijos.html"
+    url_archivo: "https://web.archive.org/web/20260519222431/https://www.vozpopuli.com/espana/cataluna/la-audiencia-nacional-archiva-la-causa-contra-jordi-pujol-por-su-estado-de-salud-y-mantiene-el-juicio-para-sus-siete-hijos.html"
     medio_id: vozpopuli
     titular: "La Audiencia Nacional archiva la causa contra Jordi Pujol por su estado de salud y mantiene el juicio para sus siete hijos"
     fecha_publicacion: "2026-04-27"
@@ -328,6 +342,7 @@ noticias:
 
   - id: eldiario-an-exime-pujol-juicio-deterioro-cognitivo-2026
     url: "https://www.eldiario.es/catalunya/audiencia-nacional-exime-jordi-pujol-juicio-fortuna-oculta-deterioro-cognitivo_1_13166394.html"
+    url_archivo: "https://web.archive.org/web/20260512105530/https://www.eldiario.es/catalunya/audiencia-nacional-exime-jordi-pujol-juicio-fortuna-oculta-deterioro-cognitivo_1_13166394.html"
     medio_id: eldiario-es
     titular: "La Audiencia Nacional exime a Jordi Pujol del juicio sobre la fortuna oculta por su deterioro cognitivo"
     fecha_publicacion: "2026-04-27"
@@ -348,6 +363,7 @@ noticias:
 
   - id: elespanol-pujol-vistos-sentencia-83-anos-2026-05-15
     url: "https://www.elespanol.com/espana/tribunales/20260515/pujol-vistos-sentencia-clan-simbolo-cataluna-nacionalismo-afronta-anos-carcel-corrupcion/1003744246738_0.html"
+    url_archivo: "https://web.archive.org/web/20260516122347/https://www.elespanol.com/espana/tribunales/20260515/pujol-vistos-sentencia-clan-simbolo-cataluna-nacionalismo-afronta-anos-carcel-corrupcion/1003744246738_0.html"
     medio_id: el-espanol
     titular: "Los Pujol, vistos para sentencia: el clan, \"símbolo de Cataluña\" para el nacionalismo, afronta 83 años de cárcel por corrupción"
     fecha_publicacion: "2026-05-15"
@@ -364,6 +380,7 @@ noticias:
 
   - id: eldiario-juicio-termina-seis-meses-2026-05
     url: "https://www.eldiario.es/catalunya/juicio-pujol-termina-seis-meses-despues-hijos-expresident-usen-ultima-palabra_1_13220593.html"
+    url_archivo: "https://web.archive.org/web/20260603230227/https://www.eldiario.es/catalunya/juicio-pujol-termina-seis-meses-despues-hijos-expresident-usen-ultima-palabra_1_13220593.html"
     medio_id: eldiario-es
     titular: "El juicio a los Pujol termina seis meses después sin que los hijos del expresident usen la última palabra"
     fecha_publicacion: "2026-05-15"

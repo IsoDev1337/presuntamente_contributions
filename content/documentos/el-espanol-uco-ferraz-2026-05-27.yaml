@@ -10,6 +10,7 @@ productor_organizacion_id: el-espanol
 fecha_documento: "2026-05-27"
 fecha_publicacion: "2026-05-27"
 url_canonica: "https://www.elespanol.com/"
+url_archivo: "https://web.archive.org/web/20260531151807/https://www.elespanol.com/"
 # LLM-incierto: URL exacta del artículo no disponible sin fetch.
 estado_acceso: publico
 idioma: es

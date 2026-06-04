@@ -70,6 +70,7 @@ noticias:
 
   - id: eldiario-exclusiva-fraude-gonzalez-amador-2024
     url: "https://www.eldiario.es/politica/fraude-fiscal-pareja-ayuso-exclusiva-eldiario-18-meses-excusas-culpar-aparato_1_12623565.html"
+    url_archivo: "https://web.archive.org/web/20251103071026/https://www.eldiario.es/politica/fraude-fiscal-pareja-ayuso-exclusiva-eldiario-18-meses-excusas-culpar-aparato_1_12623565.html"
     medio_id: eldiario-es
     titular: "El fraude fiscal de la pareja de Ayuso: una exclusiva de elDiario.es y 18 meses de excusas para culpar al aparato del Estado"
     fecha_publicacion: "2024-10-15"
@@ -85,6 +86,7 @@ noticias:
 
   - id: publico-fiscal-niega-pacto-conformidad-2024
     url: "https://www.publico.es/politica/tribunales/fiscal-asignado-caso-fraude-fiscal-novio-ayuso-niega-pidiera-pacto-conformidad.html"
+    url_archivo: "https://web.archive.org/web/20251111235841/https://www.publico.es/politica/tribunales/fiscal-asignado-caso-fraude-fiscal-novio-ayuso-niega-pidiera-pacto-conformidad.html"
     medio_id: publico-es
     titular: "El fiscal asignado al caso del novio de Ayuso niega que pidiera un pacto de conformidad"
     fecha_publicacion: "2024-03-15"
@@ -100,6 +102,7 @@ noticias:
 
   - id: theobjective-jueza-retrasa-declaracion-2024-11
     url: "https://theobjective.com/espana/tribunales/2024-11-11/jueza-retrasa-juicio-novio-ayuso/"
+    url_archivo: "https://web.archive.org/web/20241211200631/https://theobjective.com/espana/tribunales/2024-11-11/jueza-retrasa-juicio-novio-ayuso/"
     medio_id: the-objective
     titular: "La jueza suspende por tercera vez la declaración de la pareja de Isabel Díaz Ayuso"
     fecha_publicacion: "2024-11-11"
@@ -115,6 +118,7 @@ noticias:
 
   - id: publico-informe-hacienda-facturas-falsas-2024
     url: "https://www.publico.es/politica/tribunales/prueba-cargo-novio-ayuso-informe-hacienda-evidencia-trama-facturas-falsas.html"
+    url_archivo: "https://web.archive.org/web/20250923081740/https://www.publico.es/politica/tribunales/prueba-cargo-novio-ayuso-informe-hacienda-evidencia-trama-facturas-falsas.html"
     medio_id: publico-es
     titular: "La prueba de cargo contra el novio de Ayuso: el informe de Hacienda que evidencia la trama de facturas falsas"
     fecha_publicacion: "2024-06-01"
@@ -130,6 +134,7 @@ noticias:
 
   - id: eldiario-jueza-tumba-recurso-evitar-juicio-2024
     url: "https://www.eldiario.es/politica/jueza-tumba-pareja-ayuso-evitar-juicio-fraude-fiscal_1_12489214.html"
+    url_archivo: "https://web.archive.org/web/20250826155804/https://www.eldiario.es/politica/jueza-tumba-pareja-ayuso-evitar-juicio-fraude-fiscal_1_12489214.html"
     medio_id: eldiario-es
     titular: "La jueza tumba el intento de la pareja de Ayuso de evitar el juicio por fraude fiscal"
     fecha_publicacion: "2024-09-01"
@@ -147,6 +152,7 @@ noticias:
 
   - id: eldiario-jueza-envia-banquillo-gonzalez-amador-2025
     url: "https://www.eldiario.es/politica/jueza-envia-banquillo-pareja-ayuso-fraude-fiscal_1_12622797.html"
+    url_archivo: "https://web.archive.org/web/20251027192153/https://www.eldiario.es/politica/jueza-envia-banquillo-pareja-ayuso-fraude-fiscal_1_12622797.html"
     medio_id: eldiario-es
     titular: "La jueza envía al banquillo a la pareja de Ayuso por defraudar 350.000 euros con facturas falsas"
     fecha_publicacion: "2025-05-29"
@@ -163,6 +169,7 @@ noticias:
 
   - id: libertad-digital-jueza-procesa-novio-ayuso-2025
     url: "https://www.libertaddigital.com/espana/2025-05-29/la-juez-procesa-al-novio-de-ayuso-en-la-causa-por-fraude-fiscal-y-falsificacion-de-documentos-7259701/"
+    url_archivo: "https://web.archive.org/web/20250722115248/https://www.libertaddigital.com/espana/2025-05-29/la-juez-procesa-al-novio-de-ayuso-en-la-causa-por-fraude-fiscal-y-falsificacion-de-documentos-7259701/"
     medio_id: libertad-digital
     titular: "La juez procesa al novio de Ayuso en la causa por fraude fiscal y falsificación de documentos"
     fecha_publicacion: "2025-05-29"
@@ -179,6 +186,7 @@ noticias:
 
   - id: eldiario-diez-hechos-probados-gonzalez-amador-2025
     url: "https://www.eldiario.es/politica/enganos-pareja-ayuso-procesado-delito-fiscal-diez-hechos-probados_129_12676110.html"
+    url_archivo: "https://web.archive.org/web/20260416063518/https://www.eldiario.es/politica/enganos-pareja-ayuso-procesado-delito-fiscal-diez-hechos-probados_129_12676110.html"
     medio_id: eldiario-es
     titular: "Los engaños de la pareja de Ayuso, procesado por delito fiscal, en diez hechos probados"
     fecha_publicacion: "2025-06-10"
@@ -194,6 +202,7 @@ noticias:
 
   - id: elespanol-fiscalia-pide-3-anos-9-meses-2025
     url: "https://www.elespanol.com/espana/tribunales/20250716/fiscalia-pide-anos-meses-carcel-pareja-ayuso-fraude-fiscal/1003743851293_0.html"
+    url_archivo: "https://web.archive.org/web/20250717163609/https://www.elespanol.com/espana/tribunales/20250716/fiscalia-pide-anos-meses-carcel-pareja-ayuso-fraude-fiscal/1003743851293_0.html"
     medio_id: el-espanol
     titular: "La Fiscalía pide tres años y 9 meses de cárcel para la pareja de Ayuso por fraude fiscal"
     fecha_publicacion: "2025-07-16"
@@ -209,6 +218,7 @@ noticias:
 
   - id: theobjective-apertura-juicio-oral-gonzalez-amador-2025-09-22
     url: "https://theobjective.com/espana/tribunales/2025-09-22/juez-juicio-novio-ayuso-fraude-hacienda/"
+    url_archivo: "https://web.archive.org/web/20260603234138/https://theobjective.com/espana/tribunales/2025-09-22/juez-juicio-novio-ayuso-fraude-hacienda/"
     medio_id: the-objective
     titular: "La juez abre juicio oral contra el novio de Ayuso por fraude a Hacienda"
     fecha_publicacion: "2025-09-22"
@@ -224,6 +234,7 @@ noticias:
 
   - id: elespanol-juicio-gonzalez-amador-cuatro-delitos-2025-09
     url: "https://www.elespanol.com/madrid/comunidad/20250922/juez-manda-juicio-gonzalez-amador-novio-ayuso-fraude-fiscal-organizacion-criminal/1003743935848_0.html"
+    url_archivo: "https://web.archive.org/web/20250922192032/https://www.elespanol.com/madrid/comunidad/20250922/juez-manda-juicio-gonzalez-amador-novio-ayuso-fraude-fiscal-organizacion-criminal/1003743935848_0.html"
     medio_id: el-espanol
     titular: "La juez manda a juicio a González Amador, novio de Ayuso, por fraude fiscal y organización criminal"
     fecha_publicacion: "2025-09-22"
@@ -240,6 +251,7 @@ noticias:
 
   - id: infolibre-juicio-oral-gonzalez-amador-organizacion-criminal-2025
     url: "https://www.infolibre.es/politica/juicio-oral-gonzalez-amador-delito-fiscal-contable-pertenencia-grupo-criminal_1_2067231.html"
+    url_archivo: "https://web.archive.org/web/20260603234220/https://www.infolibre.es/politica/juicio-oral-gonzalez-amador-delito-fiscal-contable-pertenencia-grupo-criminal_1_2067231.html"
     medio_id: infolibre
     titular: "Juicio oral a González Amador por delito fiscal, contable y pertenencia a grupo criminal"
     fecha_publicacion: "2025-09-22"
@@ -257,6 +269,7 @@ noticias:
 
   - id: theobjective-ap-madrid-confirma-procesamiento-2025-11-07
     url: "https://theobjective.com/espana/tribunales/2025-11-07/novio-ayuso-banquillo-fraude-fiscal/"
+    url_archivo: "https://web.archive.org/web/20251107130716/https://theobjective.com/espana/tribunales/2025-11-07/novio-ayuso-banquillo-fraude-fiscal/"
     medio_id: the-objective
     titular: "El novio de Ayuso se sentará en el banquillo por fraude fiscal y falsificación de documentos"
     fecha_publicacion: "2025-11-07"
@@ -271,6 +284,7 @@ noticias:
 
   - id: infolibre-ap-madrid-confirma-procesamiento-2025
     url: "https://www.infolibre.es/politica/audiencia-madrid-confirma-procesamiento-novio-ayuso-fraude-fiscal_1_2094154.html"
+    url_archivo: "https://web.archive.org/web/20260303123835/https://www.infolibre.es/politica/audiencia-madrid-confirma-procesamiento-novio-ayuso-fraude-fiscal_1_2094154.html"
     medio_id: infolibre
     titular: "La Audiencia de Madrid confirma el procesamiento del novio de Ayuso por fraude fiscal"
     fecha_publicacion: "2025-11-07"
@@ -287,6 +301,7 @@ noticias:
 
   - id: eldiario-ap-madrid-confirma-procesamiento-2025
     url: "https://www.eldiario.es/politica/audiencia-madrid-confirma-procesamiento-pareja-ayuso-caso-fraude-fiscal_1_12750060.html"
+    url_archivo: "https://web.archive.org/web/20260603234300/https://www.eldiario.es/politica/audiencia-madrid-confirma-procesamiento-pareja-ayuso-caso-fraude-fiscal_1_12750060.html"
     medio_id: eldiario-es
     titular: "La Audiencia de Madrid confirma que la pareja de Ayuso se sentará en el banquillo por fraude fiscal y falsificación de documentos"
     fecha_publicacion: "2025-11-07"
@@ -304,6 +319,7 @@ noticias:
 
   - id: publico-condena-fge-afecta-dos-causas-novio-ayuso-2025
     url: "https://www.publico.es/politica/tribunales/afecta-condena-fiscal-general-dos-causas-judiciales-novio-ayuso.html"
+    url_archivo: "https://web.archive.org/web/20260214154432/https://www.publico.es/politica/tribunales/afecta-condena-fiscal-general-dos-causas-judiciales-novio-ayuso.html"
     medio_id: publico-es
     titular: "¿Cómo afecta la condena del fiscal general a las dos causas judiciales del novio de Ayuso?"
     fecha_publicacion: "2025-12-10"
@@ -319,6 +335,7 @@ noticias:
 
   - id: maldita-cronologia-fge-gonzalez-amador-2025
     url: "https://maldita.es/malditateexplica/20251209/cronologia-fiscal-general-gonzalez-amador-mar/"
+    url_archivo: "https://web.archive.org/web/20260601214444/https://maldita.es/malditateexplica/20251209/cronologia-fiscal-general-gonzalez-amador-mar/"
     medio_id: maldita-es
     titular: "De MAR y González Amador a García Ortiz: cronología del caso contra el fiscal general del Estado"
     fecha_publicacion: "2025-12-09"
@@ -334,6 +351,7 @@ noticias:
 
   - id: okdiario-jueza-procesa-novio-pese-acuerdo-2025
     url: "https://okdiario.com/espana/juez-procesa-novio-ayuso-pese-acuerdo-fiscalia-saldar-deuda-hacienda-14849558"
+    url_archivo: "https://web.archive.org/web/20251108160958/https://okdiario.com/espana/juez-procesa-novio-ayuso-pese-acuerdo-fiscalia-saldar-deuda-hacienda-14849558"
     medio_id: okdiario
     titular: "La juez procesa a Alberto González Amador, novio de Ayuso, pese a su acuerdo con la Fiscalía para saldar su deuda con Hacienda"
     fecha_publicacion: "2025-05-29"
@@ -351,6 +369,7 @@ noticias:
 
   - id: publico-juez-diez-dias-novio-ayuso-2026
     url: "https://www.publico.es/politica/tribunales/juez-da-diez-dias-novio-ayuso-defenderse-acusaciones-juicio-fraude-fiscal.html"
+    url_archivo: "https://web.archive.org/web/20260518122213/https://www.publico.es/politica/tribunales/juez-da-diez-dias-novio-ayuso-defenderse-acusaciones-juicio-fraude-fiscal.html"
     medio_id: publico-es
     titular: "El juez da diez días al novio de Ayuso para defenderse de las acusaciones ante el juicio por fraude fiscal"
     fecha_publicacion: "2026-02-01"
@@ -366,6 +385,7 @@ noticias:
 
   - id: libertad-digital-gonzalez-amador-sentencia-fge-2025-12
     url: "https://www.libertaddigital.com/espana/2025-12-10/puede-gonzalez-amador-invocar-la-sentencia-sobre-el-fiscal-general-para-tratar-de-anular-su-juicio-por-fraude-fiscal-7331281/"
+    url_archivo: "https://web.archive.org/web/20260120114730/https://www.libertaddigital.com/espana/2025-12-10/puede-gonzalez-amador-invocar-la-sentencia-sobre-el-fiscal-general-para-tratar-de-anular-su-juicio-por-fraude-fiscal-7331281/"
     medio_id: libertad-digital
     titular: "¿Puede González Amador invocar la sentencia sobre el fiscal general para tratar de anular su juicio por fraude fiscal?"
     fecha_publicacion: "2025-12-10"
@@ -381,6 +401,7 @@ noticias:
 
   - id: eldiario-caso-novio-admitio-fraude-2025
     url: "https://www.eldiario.es/politica/caso-novio-ayuso-admitir-fraude-hacienda-pactar-fiscal-evitar-carcel-negar-delito_129_13006696.html"
+    url_archivo: "https://web.archive.org/web/20260514052113/https://www.eldiario.es/politica/caso-novio-ayuso-admitir-fraude-hacienda-pactar-fiscal-evitar-carcel-negar-delito_129_13006696.html"
     medio_id: eldiario-es
     titular: "'Caso novio de Ayuso': de admitir el fraude ante Hacienda y pactar con el fiscal para evitar la cárcel a negar el delito"
     fecha_publicacion: "2026-01-15"

@@ -11,6 +11,7 @@ fecha_documento: "2025-12-10"
 # LLM-incierto: fecha exacta de la detención estimada como 10 de diciembre de 2025; verificación cruzada pendiente.
 fecha_publicacion: "2025-12-10"
 url_canonica: "https://www.infobae.com/espana/"
+url_archivo: "https://web.archive.org/web/20260603131218/https://www.infobae.com/espana/"
 # LLM-incierto: URL exacta del artículo no disponible sin fetch.
 estado_acceso: publico
 idioma: es

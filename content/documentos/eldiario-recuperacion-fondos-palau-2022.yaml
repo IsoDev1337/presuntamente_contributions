@@ -13,6 +13,7 @@ productor_organizacion_id: eldiario-es
 fecha_documento: "2022-11-01" # LLM-incierto: fecha exacta de publicación no verificada; artículo de 2022
 fecha_publicacion: "2022-11-01" # LLM-incierto
 url_canonica: "https://www.eldiario.es/catalunya/justicia-logra-recuperar-12-millones-saqueo-palau-musica_1_9689454.html"
+url_archivo: "https://web.archive.org/web/20260603231159/https://www.eldiario.es/catalunya/justicia-logra-recuperar-12-millones-saqueo-palau-musica_1_9689454.html"
 estado_acceso: publico
 idioma: es
 caso_principal_id: palau-musica

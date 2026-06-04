@@ -70,6 +70,7 @@ noticias:
 
   - id: publico-juicio-caja-b-2021-fecha
     url: "https://www.publico.es/politica/papeles-barcenas-juicio-caja-b-pp-empezara-8-febrero-2021.html"
+    url_archivo: "https://web.archive.org/web/20260603235346/https://www.publico.es/politica/juicio-caja-b-pp-empezara-8-febrero-2021.html"
     medio_id: publico-es
     titular: "Papeles de Bárcenas: El juicio por la caja B del PP empezará el 8 de febrero de 2021"
     fecha_publicacion: "2020-12-01"
@@ -86,6 +87,7 @@ noticias:
 
   - id: confilegal-juicio-barcenas-minimo-5-anos-2021-02-08
     url: "https://confilegal.com/20210208-el-extesorero-del-pp-luis-barcenas-se-juega-en-este-juicio-de-la-caja-b-del-pp-un-minimo-de-5-anos-de-carcel/"
+    url_archivo: "https://web.archive.org/web/20250810235950/https://confilegal.com/20210208-el-extesorero-del-pp-luis-barcenas-se-juega-en-este-juicio-de-la-caja-b-del-pp-un-minimo-de-5-anos-de-carcel/"
     medio_id: confilegal
     titular: "El extesorero del PP, Luis Bárcenas, se juega en este juicio de la \"caja B\" del PP un mínimo de 5 años de cárcel"
     fecha_publicacion: "2021-02-08"
@@ -103,6 +105,7 @@ noticias:
 
   - id: infolibre-juicio-visto-sentencia-2021
     url: "https://www.infolibre.es/politica/juicio-caja-b-pp-visto-sentencia-tribunal-valorara-veracidad-papeles-barcenas_1_1197605.html"
+    url_archivo: "https://web.archive.org/web/20240527213710/https://www.infolibre.es/politica/juicio-caja-b-pp-visto-sentencia-tribunal-valorara-veracidad-papeles-barcenas_1_1197605.html"
     medio_id: infolibre
     titular: "El juicio por la caja b del PP, visto para sentencia: el tribunal valorará la veracidad de los 'papeles de Bárcenas'"
     fecha_publicacion: "2021-05-01"
@@ -124,6 +127,7 @@ noticias:
 
   - id: eldiario-sentencia-caja-b-hechos-probados-2021-10-28
     url: "https://www.eldiario.es/politica/hechos-probados-sentencia-pp-barcenas-manejo-donativos-metalico-traves-contabilidad-b_1_8439559.html"
+    url_archivo: "https://web.archive.org/web/20251130065008/https://www.eldiario.es/politica/hechos-probados-sentencia-pp-barcenas-manejo-donativos-metalico-traves-contabilidad-b_1_8439559.html"
     medio_id: eldiario-es
     titular: "Los hechos probados de la sentencia: Bárcenas manejó donativos en metálico a través de la caja B del PP"
     fecha_publicacion: "2021-10-28"
@@ -141,6 +145,7 @@ noticias:
 
   - id: eldiario-tercera-sentencia-negacionismo-pp-2021-10-28
     url: "https://www.eldiario.es/politica/tercera-sentencia-caja-b-entierra-decada-negacionismo-pp_1_8440848.html"
+    url_archivo: "https://web.archive.org/web/20250823113609/https://www.eldiario.es/politica/tercera-sentencia-caja-b-entierra-decada-negacionismo-pp_1_8440848.html"
     medio_id: eldiario-es
     titular: "La tercera sentencia sobre la caja B entierra una década de negacionismo del PP"
     fecha_publicacion: "2021-10-28"
@@ -159,6 +164,7 @@ noticias:
 
   - id: theobjective-archivo-donaciones-2022-12-19
     url: "https://theobjective.com/espana/tribunales/2022-12-19/audiencia-donaciones-pp/"
+    url_archivo: "https://web.archive.org/web/20260603235419/https://theobjective.com/espana/tribunales/2022-12-19/audiencia-donaciones-pp/"
     medio_id: the-objective
     titular: "La Audiencia archiva la causa de las supuestas donaciones reflejadas en la 'caja B' del PP"
     fecha_publicacion: "2022-12-19"
@@ -176,6 +182,7 @@ noticias:
 
   - id: confilegal-archivo-pieza-donaciones-2022-12-19
     url: "https://confilegal.com/20221219-la-an-archiva-la-pieza-de-los-papeles-de-barcenas-que-investigaba-adjudicaciones-de-obra-publica-a-cambio-de-donaciones/"
+    url_archivo: "https://web.archive.org/web/20230129023234/https://confilegal.com/20221219-la-an-archiva-la-pieza-de-los-papeles-de-barcenas-que-investigaba-adjudicaciones-de-obra-publica-a-cambio-de-donaciones/"
     medio_id: confilegal
     titular: "La AN archiva la pieza de los 'papeles de Bárcenas' que investigaba adjudicaciones de obra pública a cambio de donaciones"
     fecha_publicacion: "2022-12-19"
@@ -195,6 +202,7 @@ noticias:
 
   - id: okdiario-supremo-confirma-condena-pp-2024-11-15
     url: "https://okdiario.com/espana/supremo-reduce-2-anos-8-meses-condena-carcel-barcenas-reforma-b-genova-13821691"
+    url_archivo: "https://web.archive.org/web/20241226165535/https://okdiario.com/espana/supremo-reduce-2-anos-8-meses-condena-carcel-barcenas-reforma-b-genova-13821691"
     medio_id: okdiario
     titular: "El Supremo confirma que el PP pagó en B la reforma de su sede, pero rebaja la condena a Bárcenas"
     fecha_publicacion: "2024-11-15"
@@ -212,6 +220,7 @@ noticias:
 
   - id: elespanol-supremo-condena-pp-dilaciones-2024-11-15
     url: "https://www.elespanol.com/espana/tribunales/20241115/supremo-confirma-condena-pago-sede-pp-reduce-penas-debido-dilaciones/901410036_0.html"
+    url_archivo: "https://web.archive.org/web/20260603235508/https://www.elespanol.com/espana/tribunales/20241115/supremo-confirma-condena-pago-sede-pp-reduce-penas-debido-dilaciones/901410036_0.html"
     medio_id: el-espanol
     titular: "El Supremo confirma la condena por el pago en B de la sede del PP pero reduce las penas debido a las dilaciones"
     fecha_publicacion: "2024-11-15"
@@ -229,6 +238,7 @@ noticias:
 
   - id: infolibre-supremo-confirma-condena-pp-2024-11-15
     url: "https://www.infolibre.es/politica/supremo-confirma-condena-pp-reforma-sede-genova-pagos-negro_1_1899312.html"
+    url_archivo: "https://web.archive.org/web/20250105033547/https://www.infolibre.es/politica/supremo-confirma-condena-pp-reforma-sede-genova-pagos-negro_1_1899312.html"
     medio_id: infolibre
     titular: "El Supremo confirma la condena al PP por reformar su sede de Génova con dinero de su caja B"
     fecha_publicacion: "2024-11-15"
@@ -246,6 +256,7 @@ noticias:
 
   - id: eldiario-supremo-confirma-caja-b-pp-2024-11-15
     url: "https://www.eldiario.es/politica/supremo-confirma-pp-reformo-sede-dinero-negro-caja-b_1_11416358.html"
+    url_archivo: "https://web.archive.org/web/20260406110836/https://www.eldiario.es/politica/supremo-confirma-pp-reformo-sede-dinero-negro-caja-b_1_11416358.html"
     medio_id: eldiario-es
     titular: "El Supremo confirma que el PP reformó su sede con dinero negro de su 'caja B'"
     fecha_publicacion: "2024-11-15"
@@ -263,6 +274,7 @@ noticias:
 
   - id: noticiasdenavarra-tercera-sentencia-opinion-2024-11-17
     url: "https://www.noticiasdenavarra.com/opinion/2024/11/17/tercera-sentencia-caja-b-pp-8942363.html"
+    url_archivo: "https://web.archive.org/web/20241118015512/https://www.noticiasdenavarra.com/opinion/2024/11/17/tercera-sentencia-caja-b-pp-8942363.html"
     medio_id: noticias-de-navarra
     titular: "Tercera sentencia por la caja B del PP"
     fecha_publicacion: "2024-11-17"
@@ -280,6 +292,7 @@ noticias:
 
   - id: confilegal-ts-reduce-condenas-absuelve-falsedad-2024-11-15
     url: "https://confilegal.com/20241115-el-ts-reduce-las-condenas-de-los-papeles-de-barcenas-absuelve-por-el-delito-de-falsedad-y-aprecia-dilaciones-indebidas/"
+    url_archivo: "https://web.archive.org/web/20250116023226/https://confilegal.com/20241115-el-ts-reduce-las-condenas-de-los-papeles-de-barcenas-absuelve-por-el-delito-de-falsedad-y-aprecia-dilaciones-indebidas/"
     medio_id: confilegal
     titular: "El TS reduce las condenas de los papeles de Bárcenas: absuelve por el delito de falsedad y aprecia dilaciones indebidas"
     fecha_publicacion: "2024-11-15"

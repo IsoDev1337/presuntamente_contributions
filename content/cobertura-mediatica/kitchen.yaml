@@ -67,6 +67,7 @@ noticias:
 
   - id: elespanol-procesamiento-policia-kitchen-2021-07-30
     url: "https://www.elespanol.com/espana/tribunales/20210729/investigacion-kitchen-exonera-dolores-cospedal-lopez-hi/600190737_0.html"
+    url_archivo: "https://web.archive.org/web/20260603233726/https://www.elespanol.com/espana/tribunales/20210729/investigacion-kitchen-exonera-dolores-cospedal-lopez-hi/600190737_0.html"
     medio_id: el-espanol
     titular: "El juez cierra el caso Kitchen, exculpa a Dolores Cospedal y ve indicios para juzgar a Jorge Fernández"
     fecha_publicacion: "2021-07-30"
@@ -85,6 +86,7 @@ noticias:
 
   - id: elespanol-an-rechaza-cospedal-2023-02-24
     url: "https://www.elespanol.com/espana/tribunales/20230224/audiencia-nacional-respalda-rechaza-cospedal-espionaje-barcenas/743925862_0.html"
+    url_archivo: "https://web.archive.org/web/20260603233804/https://www.elespanol.com/espana/tribunales/20230224/audiencia-nacional-respalda-rechaza-cospedal-espionaje-barcenas/743925862_0.html"
     medio_id: el-espanol
     titular: "La Audiencia Nacional respalda al juez y rechaza imputar a Cospedal por el espionaje a Bárcenas"
     fecha_publicacion: "2023-02-24"
@@ -100,6 +102,7 @@ noticias:
 
   - id: theobjective-an-rechaza-cospedal-2023-02-24
     url: "https://theobjective.com/espana/tribunales/2023-02-24/audiencia-nacional-kitchen-cospedal/"
+    url_archivo: "https://web.archive.org/web/20260526090127/https://theobjective.com/espana/tribunales/2023-02-24/audiencia-nacional-kitchen-cospedal/"
     medio_id: the-objective
     titular: "La Audiencia Nacional rechaza reabrir el caso Kitchen para investigar a Cospedal"
     fecha_publicacion: "2023-02-24"
@@ -116,6 +119,7 @@ noticias:
 
   - id: elespanol-apertura-juicio-oral-kitchen-2023-10
     url: "https://www.elespanol.com/espana/tribunales/20231013/fiscalia-psoe-urgen-juez-caso-kitchen-sentar-banquillo-encausados/801170362_0.html"
+    url_archivo: "https://web.archive.org/web/20250210015158/https://www.elespanol.com/espana/tribunales/20231013/fiscalia-psoe-urgen-juez-caso-kitchen-sentar-banquillo-encausados/801170362_0.html"
     medio_id: el-espanol
     titular: "La Fiscalía y el PSOE urgen al juez del 'caso Kitchen' a sentar en el banquillo a los encausados"
     fecha_publicacion: "2023-10-13"
@@ -131,6 +135,7 @@ noticias:
 
   - id: elespanol-auto-rectificador-2024-01-23
     url: "https://www.elespanol.com/espana/tribunales/20240123/juez-corrige-error-impide-barcenas-acusar-secuestro-cupula-interior-kitchen/827167480_0.html"
+    url_archivo: "https://web.archive.org/web/20260306112906/https://www.elespanol.com/espana/tribunales/20240123/juez-corrige-error-impide-barcenas-acusar-secuestro-cupula-interior-kitchen/827167480_0.html"
     medio_id: el-espanol
     titular: "El juez se corrige e impide a los Bárcenas acusar por secuestro a la cúpula de Interior en 'Kitchen'"
     fecha_publicacion: "2024-01-23"
@@ -146,6 +151,7 @@ noticias:
 
   - id: vozpopuli-fernandez-diaz-juicio-oral
     url: "https://www.vozpopuli.com/espana/caso-villarejo-juicio-oral-fernandez-diaz-interior-kitchen.html"
+    url_archivo: "https://web.archive.org/web/20250610210123/https://www.vozpopuli.com/espana/caso-villarejo-juicio-oral-fernandez-diaz-interior-kitchen.html"
     medio_id: vozpopuli
     titular: "Caso Villarejo: el juez envía al banquillo a Fernández Díaz por la trama Kitchen"
     fecha_publicacion: "2021-07-29"
@@ -165,6 +171,7 @@ noticias:
 
   - id: eldiario-juicio-kitchen-guerra-sucia-2026-04-06
     url: "https://www.eldiario.es/politica/arranca-juicio-kitchen-guerra-sucia-pp-ministro-interior-nueve-presuntos-colaboradores_1_13115728.html"
+    url_archivo: "https://web.archive.org/web/20260505155835/https://www.eldiario.es/politica/arranca-juicio-kitchen-guerra-sucia-pp-ministro-interior-nueve-presuntos-colaboradores_1_13115728.html"
     medio_id: eldiario-es
     titular: "Arranca el juicio de Kitchen: la guerra sucia del PP con su ministro del Interior y nueve presuntos colaboradores"
     fecha_publicacion: "2026-04-06"
@@ -181,6 +188,7 @@ noticias:
 
   - id: theobjective-juicio-kitchen-arranca-2026-04-05
     url: "https://theobjective.com/espana/tribunales/2026-04-05/juicio-interior-pp-informacion-barcenas/"
+    url_archivo: "https://web.archive.org/web/20260406021512/https://theobjective.com/espana/tribunales/2026-04-05/juicio-interior-pp-informacion-barcenas/"
     medio_id: the-objective
     titular: "Arranca el juicio contra la cúpula de Interior con el PP por intentar robar información a Bárcenas"
     fecha_publicacion: "2026-04-05"
@@ -198,6 +206,7 @@ noticias:
 
   - id: elespanol-psoe-cospedal-primera-sesion-2026-04-06
     url: "https://www.elespanol.com/espana/tribunales/20260406/psoe-quema-primer-dia-juicio-kitchen-ultima-bala-intentar-cospedal-vez-investigada/1003744195945_0.html"
+    url_archivo: "https://web.archive.org/web/20260407074758/https://www.elespanol.com/espana/tribunales/20260406/psoe-quema-primer-dia-juicio-kitchen-ultima-bala-intentar-cospedal-vez-investigada/1003744195945_0.html"
     medio_id: el-espanol
     titular: "El PSOE quema en el primer día del juicio de 'Kitchen' su última bala para intentar que Cospedal sea otra vez investigada"
     fecha_publicacion: "2026-04-06"
@@ -213,6 +222,7 @@ noticias:
 
   - id: elespanol-tribunal-rechaza-cospedal-2026-04-07
     url: "https://www.elespanol.com/espana/tribunales/20260407/fiscal-opone-peticion-psoe-suspender-juicio-espionaje-barcenas-investigar-nuevo-cospedal/1003744197221_0.html"
+    url_archivo: "https://web.archive.org/web/20260408150803/https://www.elespanol.com/espana/tribunales/20260407/fiscal-opone-peticion-psoe-suspender-juicio-espionaje-barcenas-investigar-nuevo-cospedal/1003744197221_0.html"
     medio_id: el-espanol
     titular: "El tribunal de 'Kitchen' desoye al PSOE: no suspende el juicio y rechaza que Cospedal vuelva a ser investigada"
     fecha_publicacion: "2026-04-07"
@@ -228,6 +238,7 @@ noticias:
 
   - id: theobjective-fiscalia-rechaza-suspender-2026-04-07
     url: "https://theobjective.com/espana/tribunales/2026-04-07/fiscalia-rechaza-suspender-juicio-kitchen/"
+    url_archivo: "https://web.archive.org/web/20260603233853/https://theobjective.com/espana/tribunales/2026-04-07/fiscalia-rechaza-suspender-juicio-kitchen/"
     medio_id: the-objective
     titular: "La Fiscalía rechaza suspender el juicio de Kitchen para incluir al PP y a Cospedal"
     fecha_publicacion: "2026-04-07"
@@ -245,6 +256,7 @@ noticias:
 
   - id: eldiario-juicio-final-guerra-sucia-documental-2026
     url: "https://www.eldiario.es/politica/juicio-final-guerra-sucia-pp-especial-eldiario-operacion-kitchen_1_13104422.html"
+    url_archivo: "https://web.archive.org/web/20260603233931/https://www.eldiario.es/politica/juicio-final-guerra-sucia-pp-especial-eldiario-operacion-kitchen_1_13104422.html"
     medio_id: eldiario-es
     titular: "'Juicio final a la guerra sucia del PP': un documental de elDiario.es sobre la Operación Kitchen"
     fecha_publicacion: "2026-04-06"
@@ -259,6 +271,7 @@ noticias:
 
   - id: publico-juicios-mediaticos-kitchen-2026
     url: "https://www.publico.es/politica/tribunales/abalos-kitchen-juicios-mediaticos-marcaran-agenda-politica-2026.html"
+    url_archivo: "https://web.archive.org/web/20260407115257/https://www.publico.es/politica/tribunales/abalos-kitchen-juicios-mediaticos-marcaran-agenda-politica-2026.html"
     medio_id: publico-es
     titular: "De Ábalos a la 'Kitchen': los juicios mediáticos que marcarán la agenda política en 2026"
     fecha_publicacion: "2026-01-02"
@@ -274,6 +287,7 @@ noticias:
 
   - id: eldiario-barcenas-declara-audios-rajoy-2026
     url: "https://www.eldiario.es/politica/barcenas-declara-juicio-kitchen-encargo-prision-destruir-audios-mariano-rajoy-reconociendo-caja-b_1_13155835.html"
+    url_archivo: "https://web.archive.org/web/20260603234010/https://www.eldiario.es/politica/barcenas-declara-juicio-kitchen-encargo-prision-destruir-audios-mariano-rajoy-reconociendo-caja-b_1_13155835.html"
     medio_id: eldiario-es
     titular: "Bárcenas declara en el juicio de Kitchen que encargó desde prisión «destruir los audios» de Rajoy reconociendo la caja B"
     fecha_publicacion: "2026-04-20"
@@ -289,6 +303,7 @@ noticias:
 
   - id: eldiario-barcenas-senala-rajoy-2026-04
     url: "https://www.eldiario.es/politica/barcenas-senala-rajoy-juicio-kitchen-primer-interesado-sabotear-caso-caja-b-pp_1_13158401.html"
+    url_archivo: "https://web.archive.org/web/20260422191457/https://www.eldiario.es/politica/barcenas-senala-rajoy-juicio-kitchen-primer-interesado-sabotear-caso-caja-b-pp_1_13158401.html"
     medio_id: eldiario-es
     titular: "Bárcenas señala a Rajoy en el juicio de Kitchen como el primer interesado en sabotear el caso de la caja B del PP"
     fecha_publicacion: "2026-04-21"
@@ -304,6 +319,7 @@ noticias:
 
   - id: eldiario-rajoy-cospedal-testigos-23-abril-2026
     url: "https://www.eldiario.es/politica/ultima-hora-declaracion-mariano-rajoy-actualidad-politica-directo_6_13165520.html"
+    url_archivo: "https://web.archive.org/web/20260423083321/https://www.eldiario.es/politica/ultima-hora-declaracion-mariano-rajoy-actualidad-politica-directo_6_13165520.html"
     medio_id: eldiario-es
     titular: "Última hora de la declaración de Rajoy y Cospedal en el juicio Kitchen, en directo"
     fecha_publicacion: "2026-04-23"
@@ -320,6 +336,7 @@ noticias:
 
   - id: publico-declaracion-rajoy-cospedal-kitchen-2026
     url: "https://www.publico.es/politica/tribunales/declaracion-mariano-rajoy-juicio-kitchen-directo.html"
+    url_archivo: "https://web.archive.org/web/20260519172459/https://www.publico.es/politica/tribunales/declaracion-mariano-rajoy-juicio-kitchen-directo.html"
     medio_id: publico-es
     titular: "Así hemos contado en directo las declaraciones de Rajoy y Cospedal en el juicio del caso 'Kitchen'"
     fecha_publicacion: "2026-04-23"
@@ -336,6 +353,7 @@ noticias:
 
   - id: okdiario-quien-es-quien-kitchen-2026
     url: "https://okdiario.com/espana/quien-quien-caso-kitchen-principales-acusados-testigos-trama-que-destapo-okdiario-16641189"
+    url_archivo: "https://web.archive.org/web/20260519125601/https://okdiario.com/espana/quien-quien-caso-kitchen-principales-acusados-testigos-trama-que-destapo-okdiario-16641189"
     medio_id: okdiario
     titular: "Quién es quién en el 'caso Kitchen': los principales acusados y testigos de la trama que destapó OKDIARIO"
     fecha_publicacion: "2026-04-06"
@@ -350,6 +368,7 @@ noticias:
 
   - id: libertad-digital-juicio-kitchen-sanchismo-2026-04
     url: "https://www.libertaddigital.com/espana/2026-04-05/el-juicio-de-la-operacion-kitchen-que-dara-oxigeno-a-un-pedro-sanchez-acorralado-por-la-corrupcion-7380576/"
+    url_archivo: "https://web.archive.org/web/20260406021854/https://www.libertaddigital.com/espana/2026-04-05/el-juicio-de-la-operacion-kitchen-que-dara-oxigeno-a-un-pedro-sanchez-acorralado-por-la-corrupcion-7380576/"
     medio_id: libertad-digital
     titular: "El juicio de la Operación Kitchen que dará oxígeno a un Pedro Sánchez acorralado por la corrupción"
     fecha_publicacion: "2026-04-05"
@@ -365,6 +384,7 @@ noticias:
 
   - id: eldiario-garcia-castellon-kitchen-rajoy-cospedal-testigos
     url: "https://www.eldiario.es/politica/efecto-garcia-castellon-kitchen-cinco-anos-despues-rajoy-cospedal-pasan-juicio-testigos_1_13161987.html"
+    url_archivo: "https://web.archive.org/web/20260528112320/https://www.eldiario.es/politica/efecto-garcia-castellon-kitchen-cinco-anos-despues-rajoy-cospedal-pasan-juicio-testigos_1_13161987.html"
     medio_id: eldiario-es
     titular: "El efecto de García Castellón en Kitchen, cinco años después: Rajoy y Cospedal pasan por el juicio como testigos"
     fecha_publicacion: "2026-04-23"
@@ -380,6 +400,7 @@ noticias:
 
   - id: publico-dilaciones-rebajas-pena-kitchen-2026
     url: "https://www.publico.es/politica/tribunales/rebajas-pena-dilaciones-beneficiaron-proxenetas-politicos-corruptos-villarejo-planean-sobre-kitchen.html"
+    url_archivo: "https://web.archive.org/web/20260602183958/https://www.publico.es/politica/tribunales/rebajas-pena-dilaciones-beneficiaron-proxenetas-politicos-corruptos-villarejo-planean-sobre-kitchen.html"
     medio_id: publico-es
     titular: "Las rebajas de pena por dilaciones de la justicia que planean sobre el 'caso Kitchen' y que han beneficiado a proxenetas, políticos corruptos y Villarejo"
     fecha_publicacion: "2026-04-08"
@@ -394,6 +415,7 @@ noticias:
 
   - id: eldiario-policia-caja-b-pp-kitchen-2026-05
     url: "https://www.eldiario.es/politica/policia-caja-b-pp-declara-juicio-kitchen-espionaje-barcenas-hizo-espaldas_1_13181295.html"
+    url_archivo: "https://web.archive.org/web/20260528065339/https://www.eldiario.es/politica/policia-caja-b-pp-declara-juicio-kitchen-espionaje-barcenas-hizo-espaldas_1_13181295.html"
     medio_id: eldiario-es
     titular: "El policía de la caja B del PP denuncia «presiones» de los mandos para no incluir a Rajoy como perceptor de dinero negro"
     fecha_publicacion: "2026-05-05"
@@ -410,6 +432,7 @@ noticias:
 
   - id: theobjective-policia-duda-informe-espionaje-2026-04
     url: "https://theobjective.com/espana/tribunales/2026-04-19/policia-duda-autenticidad-informe-espionaje-ilegal-barcenas/"
+    url_archivo: "https://web.archive.org/web/20260420015705/https://theobjective.com/espana/tribunales/2026-04-19/policia-duda-autenticidad-informe-espionaje-ilegal-barcenas/"
     medio_id: the-objective
     titular: "La Policía duda de la autenticidad del informe clave sobre el espionaje ilegal a Bárcenas"
     fecha_publicacion: "2026-04-19"

@@ -16,6 +16,7 @@ fecha_documento: "2026-05-01"
 # devolvió error 522/403 de Cloudflare; sólo se dispone del snippet de búsqueda.
 # Se fija a nivel de mes (día 01 como convención). Precisar al rellenar url_archivo.
 url_canonica: "https://www.elplural.com/autonomias/madrid/justicia-fija-juicio-novio-ayuso-despues-elecciones-2027_378583102"
+url_archivo: "https://web.archive.org/web/20260216180829/https://www.elplural.com/autonomias/madrid/justicia-fija-juicio-novio-ayuso-despues-elecciones-2027_378583102"
 estado_acceso: publico
 idioma: es
 caso_principal_id: gonzalez-amador

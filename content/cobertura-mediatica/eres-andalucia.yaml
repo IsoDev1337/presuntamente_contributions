@@ -66,6 +66,7 @@ noticias:
 
   - id: elespanol-diez-anos-ere-2021-01-10
     url: "https://www.elespanol.com/espana/andalucia/20210110/anos-ere-sentencia-piezas-investigandose-juicios-pendientes/549696459_0.html"
+    url_archivo: "https://web.archive.org/web/20221225212623/https://www.elespanol.com/espana/andalucia/20210110/anos-ere-sentencia-piezas-investigandose-juicios-pendientes/549696459_0.html"
     medio_id: el-espanol
     titular: "Diez años del 'caso ERE': una sola sentencia, 100 piezas aún investigándose y 40 juicios pendientes"
     fecha_publicacion: "2021-01-10"
@@ -84,6 +85,7 @@ noticias:
 
   - id: elindependiente-culebron-sentencia-ere-2019-11-02
     url: "https://www.elindependiente.com/politica/2019/11/02/el-culebron-de-la-sentencia-del-caso-ere/"
+    url_archivo: "https://web.archive.org/web/20240529173845/https://www.elindependiente.com/politica/2019/11/02/el-culebron-de-la-sentencia-del-caso-ere/"
     medio_id: el-independiente
     titular: "El culebrón de la sentencia del 'caso ERE'"
     fecha_publicacion: "2019-11-02"
@@ -102,6 +104,7 @@ noticias:
 
   - id: eldiario-cronologia-trece-anos-ere-2022-07-26
     url: "https://www.eldiario.es/andalucia/jueza-alaya-fallo-supremo-cronologia-trece-anos-caso-ere_1_9179641.html"
+    url_archivo: "https://web.archive.org/web/20240725191339/https://www.eldiario.es/andalucia/jueza-alaya-fallo-supremo-cronologia-trece-anos-caso-ere_1_9179641.html"
     medio_id: eldiario-es
     titular: "De la jueza Alaya al fallo del Supremo: cronología de trece años del caso ERE"
     fecha_publicacion: "2022-07-26"
@@ -118,6 +121,7 @@ noticias:
 
   - id: publico-supremo-confirma-condena-ere-2022-07-26
     url: "https://www.publico.es/politica/tribunal-supremo-confirma-condena-grinan-chaves-fraude-ere.html"
+    url_archivo: "https://web.archive.org/web/20240810114355/https://www.publico.es/politica/tribunal-supremo-confirma-condena-grinan-chaves-fraude-ere.html"
     medio_id: publico-es
     titular: "El Supremo confirma la condena a Griñán y Chaves por el fraude de los ERE"
     fecha_publicacion: "2022-07-26"
@@ -134,6 +138,7 @@ noticias:
 
   - id: elespanol-supremo-confirma-mayoria-ere-2022-07-26
     url: "https://www.elespanol.com/espana/tribunales/20220726/mayoria-supremo-confirmar-condena-grinan-chaves-ere/686931736_0.html"
+    url_archivo: "https://web.archive.org/web/20250616012839/https://www.elespanol.com/espana/tribunales/20220726/mayoria-supremo-confirmar-condena-grinan-chaves-ere/686931736_0.html"
     medio_id: el-espanol
     titular: "El Supremo confirma por mayoría la condena a Griñán y Chaves por el fraude de los ERE"
     fecha_publicacion: "2022-07-26"
@@ -152,6 +157,7 @@ noticias:
 
   - id: elindependiente-supremo-palmaria-ilegalidad-ere-2022-07-26
     url: "https://www.elindependiente.com/espana/2022/07/26/el-supremo-confirma-que-grinan-y-chaves-fueron-conscientes-de-la-palmaria-ilegalidad-de-los-ere/"
+    url_archivo: "https://web.archive.org/web/20251110171504/https://www.elindependiente.com/espana/2022/07/26/el-supremo-confirma-que-grinan-y-chaves-fueron-conscientes-de-la-palmaria-ilegalidad-de-los-ere/"
     medio_id: el-independiente
     titular: "El Supremo confirma que Griñán y Chaves fueron \"conscientes de la palmaria ilegalidad\" de los ERE"
     fecha_publicacion: "2022-07-26"
@@ -170,6 +176,7 @@ noticias:
 
   - id: okdiario-pp-exige-grinan-cumpla-prision-2022-09-14
     url: "https://okdiario.com/andalucia/pp-exige-que-grinan-cumpla-sentencia-prision-no-hay-ciudadanos-primera-segunda-9668159"
+    url_archivo: "https://web.archive.org/web/20230501124734/https://okdiario.com/andalucia/pp-exige-que-grinan-cumpla-sentencia-prision-no-hay-ciudadanos-primera-segunda-9668159"
     medio_id: okdiario
     titular: "El PP-A exige que Griñán cumpla la condena a prisión: «No hay ciudadanos de primera y de segunda»"
     fecha_publicacion: "2022-09-14"
@@ -188,6 +195,7 @@ noticias:
 
   - id: publico-claves-juicio-historico-ere-supremo-2022
     url: "https://www.publico.es/politica/claves-juicio-historico-causa-ere-andalucia-inminente-fallo-supremo.html"
+    url_archivo: "https://web.archive.org/web/20220725180615/https://www.publico.es/politica/claves-juicio-historico-causa-ere-andalucia-inminente-fallo-supremo.html"
     medio_id: publico-es
     titular: "Las claves del juicio histórico por la causa de los ERE en Andalucía ante el inminente fallo del Supremo"
     fecha_publicacion: "2022-07-25"
@@ -204,6 +212,7 @@ noticias:
 
   - id: publico-sentencia-definitiva-tc-ere-2024-07-15
     url: "https://www.publico.es/politica/sentencia-definitiva-caso-ere-constitucional-apuesta-anular-condena-grinan-rebajar-chaves.html"
+    url_archivo: "https://web.archive.org/web/20250426004215/https://www.publico.es/politica/sentencia-definitiva-caso-ere-constitucional-apuesta-anular-condena-grinan-rebajar-chaves.html"
     medio_id: publico-es
     titular: "La sentencia definitiva del 'caso ERE': el Constitucional apuesta por anular la condena de Griñán y rebajar la de Chaves"
     fecha_publicacion: "2024-07-15"
@@ -220,6 +229,7 @@ noticias:
 
   - id: publico-fraude-ere-seis-claves-2024-06-19
     url: "https://www.publico.es/politica/fraude-ere-caso-liquido-hegemonia-psoe-andalucia-seis-claves.html"
+    url_archivo: "https://web.archive.org/web/20260226191212/https://www.publico.es/politica/fraude-ere-caso-liquido-hegemonia-psoe-andalucia-seis-claves.html"
     medio_id: publico-es
     titular: "El fraude de los ERE: el caso que liquidó la hegemonía del PSOE en Andalucía en seis claves"
     fecha_publicacion: "2024-06-19"
@@ -235,6 +245,7 @@ noticias:
 
   - id: eldiario-tc-interpretacion-extravagante-ere-2024-07-17
     url: "https://www.eldiario.es/andalucia/constitucional-afea-audiencia-supremo-interpretacion-extravagante-ley-condenar-chaves-grinan_1_11531327.html"
+    url_archivo: "https://web.archive.org/web/20240812035345/https://www.eldiario.es/andalucia/constitucional-afea-audiencia-supremo-interpretacion-extravagante-ley-condenar-chaves-grinan_1_11531327.html"
     medio_id: eldiario-es
     titular: "El Constitucional afea a la Audiencia y al Supremo su \"interpretación extravagante\" de la ley para condenar a Chaves y Griñán"
     fecha_publicacion: "2024-07-17"
@@ -252,6 +263,7 @@ noticias:
 
   - id: infolibre-tc-anula-condenas-chaves-grinan-ere-2024-07-16
     url: "https://www.infolibre.es/politica/constitucional-chaves-grinan-caso-ere_1_1842470.html"
+    url_archivo: "https://web.archive.org/web/20260603061912/https://www.infolibre.es/politica/constitucional-chaves-grinan-caso-ere_1_1842470.html"
     medio_id: infolibre
     titular: "El Constitucional anula las condenas a los expresidentes andaluces Chaves y Griñán por los 'ERE'"
     fecha_publicacion: "2024-07-16"
@@ -270,6 +282,7 @@ noticias:
 
   - id: elespanol-15-hitos-ere-tc-2024-07-14
     url: "https://www.elespanol.com/espana/andalucia/20240714/hitos-caso-ere-fallo-tribunal-constitucional-no-borrara-memoria-colectiva/868913480_0.html"
+    url_archivo: "https://web.archive.org/web/20240715042140/https://www.elespanol.com/espana/andalucia/20240714/hitos-caso-ere-fallo-tribunal-constitucional-no-borrara-memoria-colectiva/868913480_0.html"
     medio_id: el-espanol
     titular: "Los 15 hitos del 'caso ERE' que el fallo del Tribunal Constitucional no borrará de la memoria colectiva"
     fecha_publicacion: "2024-07-14"
@@ -286,6 +299,7 @@ noticias:
 
   - id: publico-cronologia-14-anos-ere-2024-07-05
     url: "https://www.publico.es/politica/cronologia-14-anos-caso-ere-investigacion-condena-revision-tribunal-constitucional.html"
+    url_archivo: "https://web.archive.org/web/20250815174122/https://www.publico.es/politica/cronologia-14-anos-caso-ere-investigacion-condena-revision-tribunal-constitucional.html"
     medio_id: publico-es
     titular: "Cronología de 14 años del 'caso de los ERE': investigación, condena y revisión del Tribunal Constitucional"
     fecha_publicacion: "2024-07-05"
@@ -306,6 +320,7 @@ noticias:
 
   - id: infolibre-ap-sevilla-cuestiona-amparo-tc-ere-2025-03-19
     url: "https://www.infolibre.es/politica/audiencia-sevilla-cuestiona-amparo-constitucional-chaves-grinan_1_1963126.html"
+    url_archivo: "https://web.archive.org/web/20260603235010/https://www.infolibre.es/politica/audiencia-sevilla-cuestiona-amparo-constitucional-chaves-grinan_1_1963126.html"
     medio_id: infolibre
     titular: "La Audiencia de Sevilla cuestiona el amparo del Constitucional a Chaves y Griñán"
     fecha_publicacion: "2025-03-19"
@@ -322,6 +337,7 @@ noticias:
 
   - id: publico-ap-sevilla-suspende-tc-envia-tjue-ere-2025-07-15
     url: "https://www.publico.es/politica/audiencia-sevilla-suspende-sentencias-tc-sobre-ere-envia-caso-justicia-europea.html"
+    url_archivo: "https://web.archive.org/web/20260211234820/https://www.publico.es/politica/audiencia-sevilla-suspende-sentencias-tc-sobre-ere-envia-caso-justicia-europea.html"
     medio_id: publico-es
     titular: "La Audiencia de Sevilla suspende las sentencias del TC sobre los ERE y envía el caso a la Justicia europea"
     fecha_publicacion: "2025-07-15"
@@ -338,6 +354,7 @@ noticias:
 
   - id: eldiario-ap-sevilla-lleva-tjue-ere-2025-07-15
     url: "https://www.eldiario.es/andalucia/audiencia-sevilla-lleva-justicia-europea-sentencias-constitucional-anulan-condenas-caso-ere_1_12293725.html"
+    url_archivo: "https://web.archive.org/web/20260603235044/https://www.eldiario.es/andalucia/audiencia-sevilla-lleva-justicia-europea-sentencias-constitucional-anulan-condenas-caso-ere_1_12293725.html"
     medio_id: eldiario-es
     titular: "La Audiencia de Sevilla lleva a la Justicia europea las sentencias del Constitucional que anulan las condenas del caso ERE"
     fecha_publicacion: "2025-07-15"
@@ -356,6 +373,7 @@ noticias:
 
   - id: eldiario-bruselas-frena-pp-tjue-ere-2026-04-20
     url: "https://www.eldiario.es/andalucia/bruselas-frena-pp-justicia-europea-revise-fallo-tc-anulo-condenas-chaves-grinan_1_13155857.html"
+    url_archivo: "https://web.archive.org/web/20260517060608/https://www.eldiario.es/andalucia/bruselas-frena-pp-justicia-europea-revise-fallo-tc-anulo-condenas-chaves-grinan_1_13155857.html"
     medio_id: eldiario-es
     titular: "Bruselas frena el intento del PP de que la Justicia Europea revise el fallo del TC que anuló las condenas a Chaves y Griñán"
     fecha_publicacion: "2026-04-20"

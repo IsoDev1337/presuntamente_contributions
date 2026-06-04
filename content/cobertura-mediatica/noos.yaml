@@ -71,6 +71,7 @@ noticias:
 
   - id: eldiario-papeles-perdidos-noos-2018
     url: "https://www.eldiario.es/politica/papeles-extraviados-noos-supremo-calvario_1_2076628.html"
+    url_archivo: "https://web.archive.org/web/20260213063513/https://www.eldiario.es/politica/papeles-extraviados-noos-supremo-calvario_1_2076628.html"
     medio_id: eldiario-es
     titular: "Caso Nóos: los ocho folios perdidos con los que arrancó el calvario judicial de la familia real"
     fecha_publicacion: "2018-06-10"
@@ -88,6 +89,7 @@ noticias:
 
   - id: theobjective-caso-noos-seis-anos-proceso-2017
     url: "https://theobjective.com/further/espana/2017-02-17/el-caso-noos-punto-y-seguido-a-seis-anos-de-proceso-judicial/"
+    url_archivo: "https://web.archive.org/web/20260603233056/https://theobjective.com/further/espana/2017-02-17/el-caso-noos-punto-y-seguido-a-seis-anos-de-proceso-judicial/"
     medio_id: the-objective
     titular: "El caso Nóos: punto y seguido a seis años de proceso judicial"
     fecha_publicacion: "2017-02-17"
@@ -105,6 +107,7 @@ noticias:
 
   - id: eldiario-sentencia-ap-absuelve-infanta-2017
     url: "https://www.eldiario.es/politica/tribunal-absuelve-noos-urdangarin-infanta_1_3579093.html"
+    url_archivo: "https://web.archive.org/web/20260603231820/https://www.eldiario.es/politica/tribunal-absuelve-noos-urdangarin-infanta_1_3579093.html"
     medio_id: eldiario-es
     titular: "El tribunal del caso Nóos absuelve a la infanta y condena a Urdangarin a 6 años de cárcel"
     fecha_publicacion: "2017-02-17"
@@ -121,6 +124,7 @@ noticias:
 
   - id: confilegal-sentencia-noos-absolucion-infanta-2017
     url: "https://confilegal.com/20170217-la-sentencia-del-caso-noos-confirma-la-absolucion-la-infanta-cristina/"
+    url_archivo: "https://web.archive.org/web/20260603233134/https://confilegal.com/20170217-la-sentencia-del-caso-noos-confirma-la-absolucion-la-infanta-cristina/"
     medio_id: confilegal
     titular: "La sentencia del caso Nóos confirma la absolución de la infanta Cristina"
     fecha_publicacion: "2017-02-17"
@@ -138,6 +142,7 @@ noticias:
 
   - id: eldiario-supremo-urdangarin-carcel-rebaja-2018
     url: "https://www.eldiario.es/politica/tribunal-supremo-urdangarin-noos_1_2079775.html"
+    url_archivo: "https://web.archive.org/web/20260213063513/https://www.eldiario.es/politica/tribunal-supremo-urdangarin-noos_1_2079775.html"
     medio_id: eldiario-es
     titular: "El Supremo aboca a Urdangarin a la cárcel con una rebaja leve en su condena"
     fecha_publicacion: "2018-06-12"
@@ -153,6 +158,7 @@ noticias:
 
   - id: eldiario-nombre-a-nombre-condenas-ts-2018
     url: "https://www.eldiario.es/politica/nombre-condenas-tribunal-supremo-noos_1_2083303.html"
+    url_archivo: "https://web.archive.org/web/20230704215731/https://www.eldiario.es/politica/nombre-condenas-tribunal-supremo-noos_1_2083303.html"
     medio_id: eldiario-es
     titular: "Nombre a nombre: todas las condenas del Tribunal Supremo por el caso Nóos"
     fecha_publicacion: "2018-06-12"
@@ -167,6 +173,7 @@ noticias:
 
   - id: elespanol-urdangarin-ingresa-prision-brieva-2018
     url: "https://www.elespanol.com/espana/20180617/inaki-urdangarin-ingresa-prision-brieva-cumplir-noos/315718805_0.html"
+    url_archivo: "https://web.archive.org/web/20220504155607/https://www.elespanol.com/espana/20180617/inaki-urdangarin-ingresa-prision-brieva-cumplir-noos/315718805_0.html"
     medio_id: el-espanol
     titular: "Iñaki Urdangarin ingresa en la prisión de Brieva (Ávila) para cumplir su pena por el caso Noos"
     fecha_publicacion: "2018-06-18"
@@ -184,6 +191,7 @@ noticias:
 
   - id: elindependiente-urdangarin-libera-condena-2024
     url: "https://www.elindependiente.com/espana/2024/04/07/inaki-urdangarin-se-libera-de-su-condena-por-el-caso-noos/"
+    url_archivo: "https://web.archive.org/web/20251005121503/https://www.elindependiente.com/espana/2024/04/07/inaki-urdangarin-se-libera-de-su-condena-por-el-caso-noos/"
     medio_id: el-independiente
     titular: "Iñaki Urdangarin se libera de su condena por el caso Nóos"
     fecha_publicacion: "2024-04-07"
