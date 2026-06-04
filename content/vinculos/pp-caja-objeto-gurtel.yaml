@@ -1,0 +1,38 @@
+id: pp-caja-objeto-gurtel
+naturaleza: caja_partido_objeto_investigacion_en_caso
+descripcion: >
+  La Audiencia Nacional, confirmada por el Tribunal Supremo en su sentencia
+  507/2020, declaró al Partido Popular partícipe a título lucrativo en la causa
+  Gürtel y lo condenó a abonar 245.492,80 euros (responsabilidad civil a título
+  lucrativo, no condena penal), al apreciar que la formación se benefició
+  económicamente de la actividad de la red de adjudicaciones. La financiación del
+  partido es, por esa vía, objeto del procedimiento.
+sujeto_organizacion_id: partido-popular
+objeto_organizacion_id: audiencia-nacional
+desde: "2009-02-06"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [gurtel]
+documentos_respaldo:
+  - documento_id: nota-cgpj-sentencia-gurtel-epoca-i-an-2018
+    pasaje: >
+      La nota del CGPJ recoge que la Audiencia Nacional declaró al Partido Popular
+      partícipe a título lucrativo y lo condenó a abonar 245.492,80 euros, al
+      apreciar que la formación se benefició económicamente de la actividad de la
+      red de adjudicaciones.
+  - documento_id: nota-cgpj-sentencia-gurtel-ts-2020
+    pasaje: >
+      El Tribunal Supremo confirmó en casación la responsabilidad civil a título
+      lucrativo del Partido Popular por 245.492,80 euros fijada en la sentencia de
+      la Audiencia Nacional.
+nivel_afectacion: directa
+justificacion_afectacion: >
+  La Audiencia Nacional (2018) y el Tribunal Supremo (sentencia 507/2020)
+  declararon al Partido Popular partícipe a título lucrativo y lo condenaron a
+  devolver 245.492,80 euros por el beneficio económico obtenido de la red. Es el
+  supuesto (a) de la regla 7 del doc 08: partido condenado como responsable civil
+  a título lucrativo, sujeto procesal pasivo de una consecuencia firme sobre su
+  patrimonio. La afectación es directa, sin que ello suponga condena penal del
+  partido como persona jurídica.
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-06-04"

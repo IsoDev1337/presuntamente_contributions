@@ -1,0 +1,36 @@
+id: cdc-caja-objeto-palau-musica
+naturaleza: caja_partido_objeto_investigacion_en_caso
+descripcion: >
+  Convergència Democràtica de Catalunya (CDC) fue condenada por la Sección 10ª de
+  la Audiencia Provincial de Barcelona, con firmeza confirmada por la STS 813/2020,
+  al comiso de 6.676.105,58 euros declarados ganancias obtenidas por tráfico de
+  influencias: comisiones de obra pública canalizadas a través del Palau de la
+  Música hacia la financiación del partido. La financiación de CDC es objeto del
+  procedimiento.
+sujeto_organizacion_id: convergencia-democratica-de-catalunya
+objeto_organizacion_id: audiencia-provincial-barcelona
+desde: "2020-04-30"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [palau-musica]
+documentos_respaldo:
+  - documento_id: nota-cgpj-sentencia-ap-barcelona-palau-2018
+    pasaje: >
+      La Audiencia Provincial de Barcelona acuerda el comiso de las ganancias
+      obtenidas por Convergència Democràtica de Catalunya, que ascienden a
+      6.676.105,58 euros.
+  - documento_id: nota-cgpj-sts-palau-2020
+    pasaje: >
+      El Tribunal Supremo confirma el comiso de 6,6 millones de euros a
+      Convergència Democràtica de Catalunya como ganancias obtenidas por
+      tráfico de influencias.
+nivel_afectacion: directa
+justificacion_afectacion: >
+  CDC fue condenada con firmeza (STS 813/2020) al comiso de 6.676.105,58 euros
+  declarados ganancias ilícitas obtenidas mediante comisiones de obra pública
+  canalizadas por el Palau hacia la financiación del partido. La financiación de
+  CDC es el objeto material del procedimiento (regla 7 del doc 08). La afectación
+  es directa; la condena es al comiso de ganancias, no una pena penal de persona
+  jurídica.
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-06-04"

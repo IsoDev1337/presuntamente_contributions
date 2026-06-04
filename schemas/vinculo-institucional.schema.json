@@ -37,12 +37,13 @@
         "perjudicado_institucional_en_caso",
         "entidad_investigada_en_caso",
         "ambito_administrativo_directo_del_acto_en_caso",
+        "caja_partido_objeto_investigacion_en_caso",
         "afectacion_indirecta_en_caso",
         "vinculo_familiar_publico",
         "vinculo_economico_documentado",
         "vinculo_profesional_documentado"
       ],
-      "description": "Tipo de vínculo. cargo_*: Persona ocupa cargo en Organizacion. cargo_publico_designado: cargo designado por el gobierno (RD, designación de ministro), exige `gobierno_o_legislatura`. cargo_funcionarial_carrera: cargo accedido por oposición o concurso dentro de un cuerpo funcionarial estable (Guardia Civil, judicatura, fiscalía, diplomático, etc.); no depende del gobierno de turno y NO exige `gobierno_o_legislatura`. nombramiento_por_gobierno: vincula a la administración concreta que nombró. *_en_caso: la Organizacion participa o queda alcanzada por un Caso. Las cuatro naturalezas de afectación editorial (entidad_investigada, perjudicado_institucional, ambito_administrativo_directo, afectacion_indirecta) exigen `nivel_afectacion` + `justificacion_afectacion`. acusacion_institucional_en_caso es papel procesal y NO se modela como afectación. ambito_administrativo_directo_del_acto_en_caso: Ministerio/Consejería de cuyo perímetro institucional emana el acto investigado (regla 4 del doc 08). afectacion_indirecta_en_caso: partido del cargo investigado, partido del gobierno responsable, partido del cónyuge, ente dependiente; afectación de segundo grado sin papel procesal (reglas 1-4 del doc 08). vinculo_familiar_publico: sólo si público, relevante y minimizado. vinculo_economico/profesional: sólo si documentado y relevante."
+      "description": "Tipo de vínculo. cargo_*: Persona ocupa cargo en Organizacion. cargo_publico_designado: cargo designado por el gobierno (RD, designación de ministro), exige `gobierno_o_legislatura`. cargo_funcionarial_carrera: cargo accedido por oposición o concurso dentro de un cuerpo funcionarial estable (Guardia Civil, judicatura, fiscalía, diplomático, etc.); no depende del gobierno de turno y NO exige `gobierno_o_legislatura`. nombramiento_por_gobierno: vincula a la administración concreta que nombró. *_en_caso: la Organizacion participa o queda alcanzada por un Caso. Las cinco naturalezas de afectación editorial (entidad_investigada, perjudicado_institucional, ambito_administrativo_directo, caja_partido_objeto_investigacion, afectacion_indirecta) exigen `nivel_afectacion` + `justificacion_afectacion`. acusacion_institucional_en_caso es papel procesal y NO se modela como afectación. ambito_administrativo_directo_del_acto_en_caso: Ministerio/Consejería de cuyo perímetro institucional emana el acto investigado (regla 4 del doc 08). caja_partido_objeto_investigacion_en_caso: partido cuya caja, financiación o contabilidad es el objeto del procedimiento (financiación irregular, caja b, comisiones que van al partido, condena como responsable civil a título lucrativo), aunque no esté imputado como persona jurídica por la vía del art. 31 bis CP; afectación directa (regla 7 del doc 08). afectacion_indirecta_en_caso: partido del cargo investigado, partido del gobierno responsable, partido del cónyuge, ente dependiente; afectación de segundo grado sin papel procesal (reglas 1-4 del doc 08). vinculo_familiar_publico: sólo si público, relevante y minimizado. vinculo_economico/profesional: sólo si documentado y relevante."
     },
 
     "descripcion": {
@@ -205,14 +206,15 @@
       "then": { "required": ["gobierno_o_legislatura"] }
     },
     {
-      "description": "V-22a: las tres naturalezas de afectación directa exigen `nivel_afectacion: directa`, `justificacion_afectacion` no vacía y al menos un caso en `relevancia_para_caso_ids`.",
+      "description": "V-22a: las cuatro naturalezas de afectación directa exigen `nivel_afectacion: directa`, `justificacion_afectacion` no vacía y al menos un caso en `relevancia_para_caso_ids`.",
       "if": {
         "properties": {
           "naturaleza": {
             "enum": [
               "entidad_investigada_en_caso",
               "perjudicado_institucional_en_caso",
-              "ambito_administrativo_directo_del_acto_en_caso"
+              "ambito_administrativo_directo_del_acto_en_caso",
+              "caja_partido_objeto_investigacion_en_caso"
             ]
           }
         },

@@ -12,7 +12,8 @@
 //
 // Naturalezas que aportan afectación:
 //   - directa: entidad_investigada_en_caso, perjudicado_institucional_en_caso,
-//              ambito_administrativo_directo_del_acto_en_caso
+//              ambito_administrativo_directo_del_acto_en_caso,
+//              caja_partido_objeto_investigacion_en_caso (regla 7)
 //   - indirecta: afectacion_indirecta_en_caso
 //
 // Naturaleza que NO aporta afectación (papel procesal voluntario):
@@ -54,6 +55,7 @@ const NATURALEZAS_DIRECTA: ReadonlySet<string> = new Set([
   'entidad_investigada_en_caso',
   'perjudicado_institucional_en_caso',
   'ambito_administrativo_directo_del_acto_en_caso',
+  'caja_partido_objeto_investigacion_en_caso',
 ]);
 
 const NATURALEZA_INDIRECTA = 'afectacion_indirecta_en_caso';
@@ -118,19 +120,22 @@ export function organizacionesAfectadasDeCaso(
 }
 
 /**
- * Atajo: sólo las afectaciones indirectas que son partidos políticos.
- * Reemplaza la lectura del retirado `Caso.partidos_afectados[]` en home
- * y otras vistas que sólo quieren "qué siglas quedan tocadas".
+ * Atajo: las afectaciones a partidos políticos, en cualquier nivel (directa o
+ * indirecta). Reemplaza la lectura del retirado `Caso.partidos_afectados[]` en
+ * home y otras vistas que sólo quieren "qué siglas quedan tocadas". Desde la
+ * regla 7 del doc 08 un partido puede quedar afectado de forma directa (su caja
+ * es objeto del procedimiento), no sólo indirecta, así que se devuelven ambos.
  *
- * Dedupe por `organizacionId` y orden por nombre.
+ * Dedupe por `organizacionId`; directas primero, luego indirectas, cada grupo
+ * ordenado por nombre.
  */
-export function partidosAfectadosIndirectosDeCaso(
+export function partidosAfectadosDeCaso(
   casoId: string,
   vinculos: ReadonlyArray<VinculoLike>,
   orgIndex: ReadonlyMap<string, OrganizacionLite>,
 ): OrgAfectada[] {
-  const { indirectas } = organizacionesAfectadasDeCaso(casoId, vinculos, orgIndex);
-  return indirectas.filter((o) => o.tipo === 'partido_politico');
+  const { directas, indirectas } = organizacionesAfectadasDeCaso(casoId, vinculos, orgIndex);
+  return [...directas, ...indirectas].filter((o) => o.tipo === 'partido_politico');
 }
 
 /**

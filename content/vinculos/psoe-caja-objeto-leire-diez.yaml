@@ -1,0 +1,20 @@
+id: psoe-caja-objeto-leire-diez
+naturaleza: caja_partido_objeto_investigacion_en_caso
+descripcion: "La Secretaría Federal del PSOE —a través de su gerencia y sus cuentas operativas— es el ámbito orgánico del que se investiga que habrían emanado los pagos presuntamente irregulares a la red de Díez Castro. El auto del juez Pedraz del 26 de mayo de 2026 autoriza la entrada de la UCO en la sede federal (Ferraz) y documenta un mínimo de 188.000 euros de pagos del PSOE investigados como posiblemente canalizados mediante facturas falsas. El partido no ha sido imputado como persona jurídica."
+sujeto_organizacion_id: psoe
+objeto_organizacion_id: juzgado-central-instruccion-5
+desde: "2026-05-26"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [leire-diez]
+documentos_respaldo:
+  - documento_id: cgpj-nota-requerimiento-psoe-leire-2026-05-27
+    pasaje: "Nota oficial del CGPJ (N1): la Audiencia Nacional requiere documentación a la sede federal del PSOE en la investigación; los fondos y la documentación del partido son objeto del requerimiento."
+  - documento_id: el-lliberal-cat-auto-pedraz-integro-2026-05-27
+    pasaje: "Auto íntegro del juez Pedraz (N3 filtrado_verificado): investiga pagos del PSOE a la red por importe mínimo documentado de 188.000 euros mediante presuntas facturas falsas."
+  - documento_id: infobae-uco-ferraz-2026-05-27
+    pasaje: "Infobae confirma que la UCO ejecutó el requerimiento en la sede federal del PSOE (Ferraz) durante 12 horas el 27 de mayo de 2026."
+nivel_afectacion: directa
+justificacion_afectacion: "La caja federal del PSOE, su gerencia y sus cuentas son el objeto de la investigación: el auto del JCI nº 5 documenta un mínimo de 188.000 euros de fondos del partido presuntamente canalizados a una red mediante facturas falsas y autoriza el requerimiento de documentación a la UCO en la sede federal. Conforme a la regla 7 del doc 08, el partido cuya caja es objeto del procedimiento queda afectado de forma directa. El PSOE no es una administración pública ni está imputado como persona jurídica (art. 31 bis CP); los cargos investigados son personas físicas. Rige la presunción de inocencia."
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-06-04"

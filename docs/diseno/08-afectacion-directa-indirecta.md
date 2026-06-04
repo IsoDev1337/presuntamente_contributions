@@ -30,15 +30,15 @@ Una sola dimensión con tres valores exhaustivos y mutuamente excluyentes:
 
 | Nivel | Significado | Quién entra |
 |---|---|---|
-| **directa** | Sujeto procesal pasivo, víctima oficial, o ámbito administrativo del que emana el acto investigado. | Persona jurídica investigada; perjudicado institucional declarado por el procedimiento; Ministerio/Consejería desde cuyo ámbito orgánico se atribuyen los actos; norma habilitante cuando subyace causalmente al hecho investigado. |
+| **directa** | Sujeto procesal pasivo, víctima oficial, ámbito administrativo del que emana el acto investigado, o partido cuya caja es el objeto del procedimiento. | Persona jurídica investigada; perjudicado institucional declarado por el procedimiento; Ministerio/Consejería desde cuyo ámbito orgánico se atribuyen los actos; norma habilitante cuando subyace causalmente al hecho investigado; partido cuya caja, financiación o contabilidad es el objeto del procedimiento (regla 7). |
 | **indirecta** | Institución a la que el caso "salpica" por dependencia política, familiar o de cargo, sin ser sujeto procesal ni víctima. | Partido del cargo investigado; partido del cónyuge o pareja sentimental del investigado; partido del gobierno responsable del acto investigado; ente del que depende un investigado sin que el ente sea sujeto procesal. |
 | **no afectada (papel procesal)** | Participa formalmente en el procedimiento, pero no sufre afectación editorial. No se modela como afectación. | Acusación popular constituida; defensa; juzgado instructor; fiscalía; peritos; unidades policiales investigadoras. |
 
 El tercer valor no se modela como "afectación = ninguna": se modela **no marcando** `nivel_afectacion` en el vínculo correspondiente. El vínculo sigue existiendo (acusación popular se documenta), pero no aparece en el bloque editorial de "organizaciones afectadas".
 
-## 4. Las 6 reglas editoriales
+## 4. Las 7 reglas editoriales
 
-Decididas por el maintainer el 2026-05-27 antes de modelar. Resuelven fronteras frecuentes; añadir una séptima regla requiere decisión editorial explícita.
+Decididas por el maintainer el 2026-05-27 antes de modelar (reglas 1-6). La **regla 7** se añadió el 2026-06-04 por decisión editorial explícita del maintainer (caso Leire Díez como detonante). Resuelven fronteras frecuentes; añadir una octava requiere decisión editorial explícita.
 
 ### Regla 1 — Gobierno responsable del acto = indirecta del partido titular
 
@@ -79,6 +79,21 @@ Cuando un cargo con autonomía orgánica formal (Fiscal General del Estado, magi
 > Esta regla decae si lo que se investigara fuera el propio nombramiento (prevaricación en el nombramiento, p. ej.).
 
 **Ejemplo aplicado**: Fiscal General del Estado — los hechos investigados se atribuyen al FGE en ejercicio de su cargo, no al gobierno que lo nombró. PSOE, partido del gobierno que lo designó, **no queda afectado**.
+
+### Regla 7 — Partido cuya caja o financiación es objeto del procedimiento = directa
+
+Cuando lo que se investiga es la **propia caja, financiación o contabilidad de un partido** —financiación irregular, caja b, comisiones que afluyen al partido, fondos del partido usados como instrumento del delito—, el partido queda **directo**, aunque no se le haya imputado como persona jurídica por la vía del art. 31 bis CP. Lo que dispara la afectación directa no es que un cargo del partido esté investigado (eso es la regla 2, indirecta), sino que **el dinero o la contabilidad del partido es el objeto material del procedimiento**.
+
+Incluye dos situaciones:
+
+- **Partido condenado como responsable civil a título lucrativo** (partícipe a título lucrativo, art. 122 CP): declarado beneficiario de fondos de origen ilícito y obligado a devolverlos, sin responsabilidad penal. Es sujeto procesal pasivo con consecuencia, normalmente firme.
+- **Caja o financiación del partido bajo investigación** aunque no haya (todavía) condena ni imputación de la persona jurídica: las cuentas, la tesorería o la contabilidad del partido son el objeto de las diligencias.
+
+> La regla se distingue de las reglas 1, 2 y 3 (gobierno del acto, pareja, cónyuge): aquéllas describen un partido *salpicado* por quién es el investigado; la regla 7 describe un partido cuyo *propio patrimonio* se investiga. Y se distingue de `entidad_investigada_en_caso`, reservada a la imputación formal de la persona jurídica (art. 31 bis): la regla 7 NO afirma que el partido esté imputado.
+
+Se modela con la naturaleza `caja_partido_objeto_investigacion_en_caso` (`nivel_afectacion: directa`). La `justificacion_afectacion` debe precisar si el partido está o no imputado como persona jurídica y conservar la presunción de inocencia.
+
+**Ejemplo aplicado**: Leire Díez — el auto del JCI nº 5 investiga un mínimo de 188.000 € de fondos del PSOE presuntamente canalizados a una red mediante facturas falsas; la caja federal del partido es objeto de la investigación. PSOE queda **directo**, sin estar imputado como persona jurídica.
 
 ## 5. Qué NO es afectación
 
@@ -139,6 +154,20 @@ Esto es el estado canónico tras el refactor del 2026-05-27. Se conserva por tra
 - **Indirecta**: PP (gobiernos PP en la Comunidad de Madrid 2003-2017 + cargos PP procesados: Ignacio González, Pedro Calvo Poch, Juan Bravo Rivera).
 - **No afectada**: Comunidad de Madrid (acusación popular, regla 5).
 
+### Aplicación de la regla 7 (2026-06-04)
+
+Barrido del inventario tras añadir la regla 7. Partidos cuya caja/financiación es objeto del procedimiento, reclasificados a **directa** (`caja_partido_objeto_investigacion_en_caso`):
+
+- **Leire Díez** — PSOE: 188.000 € de fondos del partido presuntamente canalizados a una red; la caja federal es objeto del requerimiento de la UCO. No imputado como persona jurídica.
+- **Bárcenas / caja b** — PP: la contabilidad B del partido es el objeto del caso; condenado como responsable civil subsidiario (firme, TS 2024).
+- **Gürtel** — PP: condenado partícipe a título lucrativo, 245.492,80 € (firme, TS 2020).
+- **Filesa** — PSOE: financiación irregular del partido vía empresas pantalla, objeto de la causa especial 880/1991 (TS).
+- **Palau de la Música** — CDC: comiso firme de 6.676.105,58 € de comisiones canalizadas hacia el partido (STS 813/2020).
+
+Revisados y **mantenidos como indirecta** (la caja del partido NO es el objeto; el partido sólo queda salpicado): **Púnica** (la pieza de financiación del PP fue archivada en 2022; el objeto activo son amaños a cargos, no la caja del partido) y **Pujol** (CDC salpicada por ser el partido del investigado, regla 1). Los partidos en `kitchen`, `plus-ultra`, `begona-gomez`, `gonzalez-amador` y `tarjetas-black` siguen siendo indirecta o papel procesal por sus reglas respectivas (1-5).
+
+**Diferido**: **`tres-por-ciento-cataluna`** — la financiación de CDC sí es el objeto del caso, pero el caso está en estado `pendiente` (stub sin hitos ni documentos propios). Aplicar la regla 7 cuando se fiche con sus primarios.
+
 ## 7. Modelo de datos
 
 Toda la afectación se modela en `VinculoInstitucional`. El campo `Caso.partidos_afectados[]` queda retirado del schema.
@@ -164,9 +193,10 @@ Obligatoria cuando `nivel_afectacion` está presente. Sin verbos prohibidos del 
 
 ### 7.3 Naturalezas nuevas
 
-Se añaden dos naturalezas a `VinculoInstitucional`:
+Se añaden tres naturalezas a `VinculoInstitucional`:
 
 - **`ambito_administrativo_directo_del_acto_en_caso`** — el Ministerio, Consejería u organismo desde cuyo perímetro institucional emana el acto investigado (regla 4). Asocia `nivel_afectacion: directa` obligatorio.
+- **`caja_partido_objeto_investigacion_en_caso`** *(regla 7, añadida 2026-06-04)* — partido cuya caja, financiación o contabilidad es el objeto del procedimiento (financiación irregular, caja b, comisiones al partido, responsable civil a título lucrativo), sin que ello implique imputación de la persona jurídica. Asocia `nivel_afectacion: directa` obligatorio.
 - **`afectacion_indirecta_en_caso`** — naturaleza polivalente para reflejar afectación de segundo grado (partido del cargo, partido del gobierno responsable, partido del cónyuge, ente dependiente). Asocia `nivel_afectacion: indirecta` obligatorio.
 
 ### 7.4 Naturalezas existentes con nivel_afectacion derivable
@@ -176,6 +206,7 @@ Se añaden dos naturalezas a `VinculoInstitucional`:
 | `entidad_investigada_en_caso` | Persona jurídica investigada | `directa` |
 | `perjudicado_institucional_en_caso` | Víctima institucional formalizada | `directa` |
 | `ambito_administrativo_directo_del_acto_en_caso` *(nueva)* | Ministerio/Consejería titular del acto | `directa` |
+| `caja_partido_objeto_investigacion_en_caso` *(nueva, regla 7)* | Partido cuya caja/financiación es el objeto del procedimiento | `directa` |
 | `afectacion_indirecta_en_caso` *(nueva)* | Partido/ente salpicado sin papel procesal | `indirecta` |
 | `acusacion_institucional_en_caso` | Acusación popular constituida | ausente (no afectación) |
 | Cualquier `cargo_*`, `nombramiento_por_gobierno`, `vinculo_*` | Cargos, militancia, vínculos personales | ausente por defecto |
@@ -184,7 +215,7 @@ Se añaden dos naturalezas a `VinculoInstitucional`:
 
 El validador (`scripts/validate.mjs`) impone, a partir de este canon:
 
-- **V-22**: si `naturaleza ∈ {entidad_investigada_en_caso, perjudicado_institucional_en_caso, ambito_administrativo_directo_del_acto_en_caso, afectacion_indirecta_en_caso}`, entonces `relevancia_para_caso_ids` no puede estar vacío, `nivel_afectacion` es obligatorio con valor canónico (`directa` o `indirecta` según naturaleza), y `justificacion_afectacion` es obligatoria.
+- **V-22**: si `naturaleza ∈ {entidad_investigada_en_caso, perjudicado_institucional_en_caso, ambito_administrativo_directo_del_acto_en_caso, caja_partido_objeto_investigacion_en_caso, afectacion_indirecta_en_caso}`, entonces `relevancia_para_caso_ids` no puede estar vacío, `nivel_afectacion` es obligatorio con valor canónico (`directa` para las cuatro primeras, `indirecta` para `afectacion_indirecta_en_caso`), y `justificacion_afectacion` es obligatoria.
 - **V-23**: si `naturaleza == acusacion_institucional_en_caso`, entonces `nivel_afectacion` y `justificacion_afectacion` deben estar ausentes (papel procesal, no afectación).
 - **V-24**: para el resto de naturalezas, `nivel_afectacion` y `justificacion_afectacion` deben estar ausentes (evitar afectación rebozada en cargos).
 
@@ -192,8 +223,10 @@ El validador (`scripts/validate.mjs`) impone, a partir de este canon:
 
 - **Listado `/casos`**: una sola columna "Organizaciones afectadas" con sub-listas "Directa" e "Indirecta" deduplicadas por `organizacion_id`. Los vínculos sin `nivel_afectacion` no aparecen en esta columna.
 - **Ficha de caso (`PgCasoDetalle`)**: el bloque previamente titulado "Instituciones alcanzadas" pasa a llamarse "Organizaciones afectadas" y se subdivide en "Directa" e "Indirecta" con `justificacion_afectacion` visible. El bloque "Organizaciones implicadas" del cuerpo de la ficha distingue "Afectadas" (directa + indirecta) y "Participación procesal" (acusación popular y resto sin afectación).
-- **Home (`PgInicio`)**: el preview de casos destacados muestra como "Partidos afectados" sólo los vínculos `afectacion_indirecta_en_caso` con `objeto_organizacion_id` o `sujeto_organizacion_id` de tipo `partido_politico`. Dedupe obligatorio por `organizacion_id`.
+- **Home (`PgInicio`)**: el preview de casos destacados muestra como "Partidos afectados" los vínculos de afectación —**directa (regla 7) o indirecta**— cuyo `sujeto_organizacion_id` es de tipo `partido_politico`. La "organización principal" del preview es la primera afectada **directa que no sea partido** (los partidos van siempre como siglas en los chips, nunca en el slot principal con badge de rol, para no insinuar que el partido es "investigado"). Dedupe obligatorio por `organizacion_id`.
 
 ## 9. Cuándo añadir una séptima regla
 
-La taxonomía es exhaustiva pero las fronteras son finitas. Si aparece un caso fronterizo no cubierto por las 6 reglas (partido extranjero salpicado, asociación cultural con vínculo difuso, organismo internacional implicado), el agente que lo encuentre **debe consultar al maintainer** antes de modelar. Las reglas nuevas se incorporan a esta sección, no en la skill ni en el código.
+La taxonomía es exhaustiva pero las fronteras son finitas. Si aparece un caso fronterizo no cubierto por las 7 reglas (partido extranjero salpicado, asociación cultural con vínculo difuso, organismo internacional implicado), el agente que lo encuentre **debe consultar al maintainer** antes de modelar. Las reglas nuevas se incorporan a esta sección, no en la skill ni en el código.
+
+> La **regla 7** (partido cuya caja es objeto del procedimiento → directa) se añadió el 2026-06-04 siguiendo exactamente este cauce: frontera detectada al modelar el caso Leire Díez, consulta y decisión del maintainer, e incorporación al canon antes de aplicarla al resto del inventario.

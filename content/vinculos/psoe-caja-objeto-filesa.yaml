@@ -1,0 +1,33 @@
+id: psoe-caja-objeto-filesa
+naturaleza: caja_partido_objeto_investigacion_en_caso
+descripcion: >
+  La causa especial 880/1991 ante el Tribunal Supremo investigó la presunta
+  financiación irregular del PSOE a través de la red de empresas pantalla Filesa,
+  Malesa y Time Export, que habría recaudado más de mil millones de pesetas
+  presuntamente destinados a financiar campañas electorales del partido. La
+  financiación del partido es el objeto central del procedimiento.
+sujeto_organizacion_id: psoe
+objeto_organizacion_id: tribunal-supremo
+desde: "1997-10-28"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [filesa]
+documentos_respaldo:
+  - documento_id: sentencia-ts-filesa-1997
+    pasaje: >
+      La STS 1/1997 acredita que la red Filesa/Malesa/Time Export recaudó más de
+      mil millones de pesetas, investigados como financiación irregular del PSOE.
+  - documento_id: boe-stc-126-2001-filesa
+    pasaje: >
+      Las sentencias del Tribunal Constitucional sobre la causa especial 880/1991
+      confirman el marco de la investigación de la financiación del partido.
+nivel_afectacion: directa
+justificacion_afectacion: >
+  La causa especial 880/1991 del Tribunal Supremo tuvo por objeto la presunta
+  financiación irregular del PSOE mediante una red de empresas pantalla (supuesto
+  (b) de la regla 7 del doc 08: caja o financiación del partido como objeto del
+  procedimiento). Los condenados fueron personas físicas; el PSOE no fue condenado
+  como persona jurídica, pero su financiación electoral fue el objeto material de
+  la causa. La afectación es directa.
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-06-04"

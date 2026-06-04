@@ -410,6 +410,7 @@ const ETIQUETA_NATURALEZA_AFECTACION: Record<string, string> = {
   entidad_investigada_en_caso: 'Persona jurídica investigada',
   perjudicado_institucional_en_caso: 'Perjudicado institucional',
   ambito_administrativo_directo_del_acto_en_caso: 'Ámbito administrativo del acto',
+  caja_partido_objeto_investigacion_en_caso: 'Caja del partido, objeto del caso',
   afectacion_indirecta_en_caso: 'Afectación indirecta',
 };
 type OrgAfectadaView = {
@@ -429,6 +430,7 @@ const orgAfectadasIndirectas: OrgAfectadaView[] = [];
     'entidad_investigada_en_caso',
     'perjudicado_institucional_en_caso',
     'ambito_administrativo_directo_del_acto_en_caso',
+    'caja_partido_objeto_investigacion_en_caso',
   ]);
   const orderForDedup: Array<{ v: OrgAfectadaView; nivel: 'directa' | 'indirecta' }> = [];
   for (const v of vinculosCasoEntries) {

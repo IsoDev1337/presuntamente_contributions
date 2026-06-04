@@ -419,6 +419,7 @@ const NATURALEZA_VINCULO = z.enum([
   'perjudicado_institucional_en_caso',
   'entidad_investigada_en_caso',
   'ambito_administrativo_directo_del_acto_en_caso',
+  'caja_partido_objeto_investigacion_en_caso',
   'afectacion_indirecta_en_caso',
   'vinculo_familiar_publico',
   'vinculo_economico_documentado',

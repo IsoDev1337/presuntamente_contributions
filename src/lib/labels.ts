@@ -242,6 +242,7 @@ const NATURALEZA_VINCULO_LABEL_ES: Record<string, string> = {
   perjudicado_institucional_en_caso: 'Perjudicado institucional en caso',
   entidad_investigada_en_caso: 'Entidad investigada en caso',
   ambito_administrativo_directo_del_acto_en_caso: 'Ámbito administrativo del acto',
+  caja_partido_objeto_investigacion_en_caso: 'Caja del partido, objeto del procedimiento',
   afectacion_indirecta_en_caso: 'Afectación indirecta en caso',
   vinculo_familiar_publico: 'Vínculo familiar público',
   vinculo_economico_documentado: 'Vínculo económico documentado',
@@ -259,6 +260,7 @@ const NATURALEZA_AFECTACION_LABEL_ES: Record<string, string> = {
   entidad_investigada_en_caso: 'Persona jurídica investigada',
   perjudicado_institucional_en_caso: 'Perjudicado institucional',
   ambito_administrativo_directo_del_acto_en_caso: 'Ámbito administrativo del acto',
+  caja_partido_objeto_investigacion_en_caso: 'Caja del partido, objeto del caso',
   afectacion_indirecta_en_caso: 'Afectación indirecta',
 };
 

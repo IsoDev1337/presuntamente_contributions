@@ -11,7 +11,7 @@ import { rolLabel } from '@/lib/labels';
 import { getCollection } from 'astro:content';
 import {
   organizacionesAfectadasDeCaso,
-  partidosAfectadosIndirectosDeCaso,
+  partidosAfectadosDeCaso,
 } from '@/lib/afectacion';
 import { idsCasosVisibles, entidadesEnCasosVisibles } from '@/lib/visibilidad';
 
@@ -130,18 +130,21 @@ const destacados = casos
     const ultimo = hitos[0]?.data;
 
     // Afectadas (directa + indirecta) derivadas de VinculoInstitucional vía
-    // src/lib/afectacion.ts. Tomamos la primera directa (alfabético) como
-    // "organización principal" del caso para el preview compacto.
+    // src/lib/afectacion.ts. Tomamos la primera directa que NO sea partido
+    // (alfabético) como "organización principal" del caso para el preview
+    // compacto; los partidos van a los chips (regla 7 del doc 08: un partido
+    // puede ser afectado directo, pero en el preview se muestra como sigla,
+    // no en el slot principal con badge de rol).
     const afectadas = organizacionesAfectadasDeCaso(caso.id, vinculosCol, orgIdx);
-    const primeraDirecta = afectadas.directas[0];
+    const primeraDirecta = afectadas.directas.find((o) => o.tipo !== 'partido_politico');
     const orgPrincipalId = primeraDirecta?.organizacionId;
     const orgPrincipalNombre = primeraDirecta?.nombre;
     const orgPrincipalRol = primeraDirecta ? NATURALEZA_A_ROL_DESTACADOS[primeraDirecta.naturaleza] : undefined;
     const orgPrincipalTag = primeraDirecta ? NATURALEZA_A_TAG_DESTACADOS[primeraDirecta.naturaleza] : undefined;
 
-    // Partidos como chips: sólo las indirectas que son partido_politico.
-    // Dedupe ya garantizado por afectacion.ts.
-    const partidos = partidosAfectadosIndirectosDeCaso(caso.id, vinculosCol, orgIdx)
+    // Partidos como chips: afectaciones a partido_politico en cualquier nivel
+    // (directa por regla 7 o indirecta). Dedupe ya garantizado por afectacion.ts.
+    const partidos = partidosAfectadosDeCaso(caso.id, vinculosCol, orgIdx)
       .map((o) => ({ id: o.organizacionId, label: o.siglas ?? o.nombre }));
 
     const resumenEjecutivo =

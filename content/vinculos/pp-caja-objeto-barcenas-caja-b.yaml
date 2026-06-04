@@ -1,0 +1,33 @@
+id: pp-caja-objeto-barcenas-caja-b
+naturaleza: caja_partido_objeto_investigacion_en_caso
+descripcion: >
+  La presunta contabilidad paralela («caja B») del Partido Popular es el objeto
+  central del procedimiento. El PP fue absuelto de los cargos penales pero
+  condenado como responsable civil subsidiario por la Audiencia Nacional
+  (28 de octubre de 2021), condena confirmada por el Tribunal Supremo el 15 de
+  noviembre de 2024 (ECLI:ES:TS:2024:5577), debiendo abonar 123.669 euros.
+sujeto_organizacion_id: partido-popular
+objeto_organizacion_id: tribunal-supremo
+desde: "2021-10-28"
+precision_desde: dia
+vigente: true
+relevancia_para_caso_ids: [barcenas-caja-b]
+documentos_respaldo:
+  - documento_id: cgpj-sentencia-an-barcenas-genova-2021
+    pasaje: >
+      La Audiencia Nacional condena al Partido Popular como responsable civil
+      subsidiario en el marco de la causa sobre la contabilidad B del partido.
+  - documento_id: cgpj-sentencia-ts-barcenas-caja-b-2024
+    pasaje: >
+      El Tribunal Supremo confirma la responsabilidad civil subsidiaria del
+      Partido Popular por importe de 123.669 euros en la causa sobre la caja B.
+nivel_afectacion: directa
+justificacion_afectacion: >
+  La contabilidad paralela («caja B») del Partido Popular es el objeto material
+  del procedimiento (supuesto (b) de la regla 7 del doc 08: caja o contabilidad
+  del partido bajo investigación como objeto). Además, el partido fue condenado
+  como responsable civil subsidiario (123.669 euros, sentencia firme del Tribunal
+  Supremo de 2024), aunque fue absuelto de los cargos penales. La afectación es
+  directa; el partido no fue condenado penalmente como persona jurídica.
+estado_publicacion: borrador
+ultima_revision_editorial: "2026-06-04"
