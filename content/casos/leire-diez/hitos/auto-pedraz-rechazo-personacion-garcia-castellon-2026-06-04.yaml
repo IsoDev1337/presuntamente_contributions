@@ -1,0 +1,33 @@
+id: auto-pedraz-rechazo-personacion-garcia-castellon-2026-06-04
+caso_id: leire-diez
+tipo: auto_diligencias
+fecha: "2026-06-04"
+fecha_precision: dia
+titulo: "El juez Pedraz rechaza por ahora la personación del magistrado jubilado García-Castellón como acusación particular (4 junio 2026)"
+descripcion: |
+  El 4 de junio de 2026 se conoce que el magistrado Santiago Pedraz, del JCI nº 5 de la
+  Audiencia Nacional, rechaza "por el momento" la solicitud del magistrado jubilado Manuel
+  García-Castellón de personarse como acusación particular en la causa del caso Leire Díez.
+  García-Castellón alegaba la condición de perjudicado, al sostener que la presunta estructura
+  investigada habría buscado información sobre él y vertido afirmaciones falsas para perjudicarle.
+  El magistrado razona, según la cobertura periodística, que "los hechos alegados por
+  García-Castellón están siendo investigados actualmente en unas diligencias tramitadas por el
+  Juzgado de Instrucción número 9 de Madrid, cuyo titular es el juez Arturo Zamarriego, pero
+  todavía no forman parte de las actuaciones acumuladas" a la causa de la Audiencia Nacional, por
+  lo que no procede admitir la personación en este momento. La resolución se enmarca en la
+  petición de Pedraz al JI nº 9 de Madrid para que se inhiba a su favor y le remita esas
+  diligencias con vistas a estudiar su acumulación. Es una resolución de ordenación procesal que
+  no transita la fase de instrucción ni amplía el objeto de la causa. Rige el principio de
+  presunción de inocencia respecto a todos los investigados.
+personas_afectadas:
+  - santiago-pedraz
+  - manuel-garcia-castellon
+  - leire-diez
+organizaciones_afectadas:
+  - juzgado-central-instruccion-5
+documento_principal_id: confilegal-rechazo-personacion-garcia-castellon-leire-2026-06-04
+documentos_relacionados:
+  - publico-rechazo-personacion-garcia-castellon-leire-2026-06-04
+  - theobjective-rechazo-personacion-garcia-castellon-leire-2026-06-04
+hechos_introducidos: []
+fase_resultante: instruccion

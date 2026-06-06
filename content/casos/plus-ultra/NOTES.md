@@ -2,7 +2,35 @@
 
 Anotaciones internas. **No se publica.** Vive en el repo para humanos y agentes LLM que iteren sobre este caso. Convención en [AGENTS.md → "NOTES.md por caso"](AGENTS.md#notesmd-por-caso).
 
-Última actualización: 2026-05-30 (barrido actualidad — agrupación de acusaciones populares bajo el PP, 29-may; figuras económicas bajo secreto; relación propuesta con `leire-diez`).
+Última actualización: 2026-06-06 (barrido actualidad — ventana procesalmente tranquila; sin hito nuevo; refuerzo del nexo SEPI/Hirurok con `leire-diez`, pero en pieza secreta hasta julio).
+
+---
+
+## Barrido actualidad 2026-06-06
+
+**Disparador:** el maintainer pide actualizar Leire Díez y Plus Ultra ("leire y plus ultra").
+**Ventana:** desde el último hito catalogado (`auto-acusaciones-populares-pp-2026-05-29`, 29-may) y la última revisión (30-may) hasta hoy. Sweep en ≥6 líneas editoriales (Infobae, The Objective, Vozpópuli, El Debate, El Independiente, Newtral, Telecinco, France24) + órgano judicial JCI nº 4 / magistrado Calama + cruce con casos del inventario (leire-diez, koldo).
+
+### Conclusión: SIN Hito procesal nuevo. No se fabrican hitos.
+La ventana 30-may → 6-jun es **procesalmente tranquila**. El próximo hito previsto es la **declaración de Zapatero los días 17 y 18 de junio** (ya recogida en `estado_actual`). Todo lo que devuelve la cobertura de esta ventana es: (a) material ya catalogado o anotado (agrupación de las 8 acusaciones populares bajo el PP del 29-may → ya es hito `auto-acusaciones-populares-pp-2026-05-29`; las 4 órdenes internacionales de detención y el nexo Apamate/Koldo son del 25-26 may, anteriores al barrido del 30-may); (b) relecturas del sumario de 4.000 folios (caja fuerte con joyas y lingotes pendientes de peritaje; 174 transferencias por 2,6 M€; 40 empresas / 60 personas en el grafo UDEF) — material del sumario/UDEF bajo secreto, ya anotado en barridos previos, **no modelable** sin primario que lo fije.
+
+### Detalle de las 4 órdenes internacionales de detención (contexto, no hito nuevo)
+La cobertura del 25-may (Infobae "Las cuatro órdenes internacionales de detención que ha dictado el juez Calama") nombra a los cuatro reclamados: **Rodolfo José Reyes Rojas** (venezolano, considerado gestor real de Plus Ultra desde 2017), su esposa **María Aurora López López** (titular formal de la compañía desde feb-2021), **Luis Felipe Baca Arbulu** (peruano con nacionalidad francesa) y el holandés **Simon Leendert Verhoeven** (residente en Suiza, pieza clave de la presunta estructura de blanqueo Francia-Suiza-Venezuela). Sigue **pendiente** verificar si estas órdenes están contenidas en el auto del 19-may ya catalogado o si requieren hito propio: depende del auto íntegro en CENDOJ, todavía no disponible. **No se ficha persona/rol** para estos cuatro: no consta auto del JCI nº 4 con URL canónica que los incorpore formalmente; son nombres en cobertura N4 sobre actuaciones bajo instrucción.
+
+### Cruce con casos del inventario
+- **`leire-diez` (nexo SEPI / Fernández Guerrero)** — el nexo **se refuerza** en esta ventana: Vozpópuli ("Un alto cargo de la SEPI conecta los casos de Leire Díez y la trama de Zapatero") y reporting de que el **rescate de Plus Ultra podría haber sido una de las primeras actuaciones de la presunta red Hirurok**. **Pero** este hilo vive en la **pieza de contratos SEPI del caso Leire que Pedraz mantiene secreta hasta julio** (Mundiario: la UCO trabaja en esa pieza, registro de Tubos Reunidos). Es filtración/interpretación sobre material bajo reserva → **no se modela**. La relación `leire-diez-conexion-factual-plus-ultra` ya existe y la consolida reconciliación; **propuesta** para cuando se levante ese secreto (~julio): enriquecerla con el hilo "rescate PU = presunta primera actuación de Hirurok" y valorar elevar de `conexion_factual` a `comparte_actor_con` (pivote Fernández Guerrero + SEPI). Anotado igual en el NOTES de leire-diez (bidireccional).
+- **`koldo` (nexo Apamate / Aldama)** — más detalle disponible (Miguel Palomero como conexión más documentada entre Koldo y la red atribuida a Zapatero, "tocamos a Ábalos" mar-2020; Apamate Corporate and Trust → contrato de 120.000 € con Análisis Relevante de Julio Martínez + 300.000 € a Deluxe Fortune de Aldama), pero **sigue procediendo del sumario bajo secreto y de cobertura**, sin auto/informe citable que lo fije. Se mantiene la decisión del barrido 30-may: **NO se propone aún** `RelacionEntreCasos` plus-ultra↔koldo; candidata a `comparte_actor_con` (Julio Martínez / Aldama) cuando aparezca primario.
+- **`begona-gomez`, `david-sanchez-badajoz`** — siguen siendo contexto político compartido, no nexo procesal. NO se propone relación.
+
+### Cascada de coherencia aplicada sobre `caso.yaml`
+- `ultima_revision_editorial` y `estado_ficha.fecha_actualizacion`: 2026-05-30 → **2026-06-06** (la pasada es revisión editorial real aunque su conclusión sea "sin novedad procesal").
+- **Sin tocar** ningún otro campo: `estado_actual` sigue vigente (declaración 17-18 jun, acusaciones agrupadas bajo el PP), `hechos_clave`, `cifras_clave`, `que_se_investiga`, `fase_actual` (`instruccion`), `delitos_atribuidos_en_la_causa`, `organo_judicial_id`.
+
+### Pendientes (sin cambios respecto al barrido 30-may, se mantienen vigentes)
+- [ ] Auto íntegro del JCI nº 4 en CENDOJ (19-may y 25-may) → elevar N4 a N1 y verificar si las 4 órdenes internacionales tienen hito propio.
+- [ ] Declaración de Zapatero 17-18 jun → será el próximo hito (`declaracion_imputado`).
+- [ ] Figuras económicas bajo secreto (16 M€ desviados, 1,95 M€ entorno Zapatero) pendientes de primario.
+- [ ] Relación plus-ultra↔koldo cuando haya primario que fije el nexo Apamate/Aldama.
 
 ---
 

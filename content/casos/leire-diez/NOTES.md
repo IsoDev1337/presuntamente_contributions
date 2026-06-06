@@ -148,3 +148,34 @@ La nota CGPJ enumera: organización criminal, cohecho, revelación de secretos, 
 - [ ] Vigilar resolución del **recurso de nulidad** de Díez sobre la entrada en Ferraz.
 - [ ] Archivo local (`ruta_local` + `hash_sha256`) de la nota CGPJ N1 vía `/incorporar-hito` (HTML nativo del órgano emisor).
 - [ ] Ejecutar `pnpm archive:catchup -- --caso=leire-diez` para los N4 nuevos (Público, The Objective).
+
+---
+
+## Barrido de actualidad — 2026-06-06 (`/actualizar-caso`)
+
+**Disparador:** el maintainer pide actualizar Leire Díez y Plus Ultra ("leire y plus ultra").
+**Ventana revisada:** 2026-06-03 (última revisión editorial) → 2026-06-06. Última fecha procesal previa catalogada: 01-jun-2026 (levantamiento parcial del secreto). Búsqueda en ≥6 líneas editoriales (Infobae, The Objective, Público, Confilegal, Diario Red, eldiario, El Debate, Libertad Digital, Mundiario, Demócrata) + intento de nota oficial CGPJ/poderjudicial.es.
+
+### Novedad MODELADA
+1. **Hito nuevo** `auto-pedraz-rechazo-personacion-garcia-castellon-2026-06-04` (`tipo: auto_diligencias`, `fase_resultante: instruccion`, `hechos_introducidos: []`). El 4-jun Pedraz rechaza "por el momento" la personación como **acusación particular** del magistrado jubilado **Manuel García-Castellón**, que alegaba ser perjudicado (la presunta red habría buscado información sobre él y vertido afirmaciones falsas para perjudicarle). Motivo: esos hechos se investigan en el JI nº 9 de Madrid (Zamarriego) y **no están aún acumulados** a la causa de la AN — lo que enlaza directamente con la petición de inhibición de Pedraz al JI nº 9. **V-13 holgado:** tres N4 de líneas distintas con redacción propia — `confilegal-...` (jurídico independiente, principal), `publico-...` (izquierda), `theobjective-...` (derecha). Diario Red también lo cubrió. García-Castellón **NO se ficha como `RolEnCaso`**: su personación fue rechazada, no es parte en esta causa; su persona ya existía en el inventario (instructor jubilado del caso Koldo), por lo que se referencia en `personas_afectadas` del hito sin crear ficha nueva ni tocar su biografía (no es investigado aquí).
+
+### Novedades NO modeladas (a propósito) — guardarraíles
+- **Recurso de Santos Cerdán contra la petición de inhibición** Pedraz → JI nº 9 (eldiario, 5-jun). Es **escrito de parte no resuelto**; sin `tipo` de Hito adecuado en instrucción. Se anota; no se modela hasta que se resuelva.
+- **La Fiscalía pide que Cristina Narbona (presidenta del PSOE) declare como testigo** (cobertura 5-jun). Es **solicitud no resuelta**; además "testigo" no es `RolEnCaso` de los tipos procesales del schema (investigado/procesado/…). No se crea persona ni rol. Si un auto la cita formalmente como testigo, seguirá sin ser rol de imputación: sólo se anotaría en la descripción del hito correspondiente.
+- **Contenido del sumario recién accesible** (libretas/anotaciones de Díez intervenidas por la UCO — "libreta azul", "Pedro no se fía del DAO", supuesta tesis de "proteger a Sánchez"; mención a **Mercedes González**, directora de la Guardia Civil). Es **interpretación periodística de informes UCO**, no hallazgo judicial; ni Pedro Sánchez ni Mercedes González tienen rol procesal en esta causa. NO modelar (presunción de inocencia + no exposición de personas sin rol formal + cautela V-13 sobre interpretación de la prensa). Pendiente del barrido 03-jun: cuando el sumario esté íntegro, valorar elevar a N1 hechos hoy en N3 `filtrado_verificado`.
+- **Pieza de contratos públicos / SEPI sigue secreta hasta julio.** Mundiario (4-5 jun) publica que la UCO trabaja en esa pieza secreta y habría registrado **Tubos Reunidos** (nueva derivada SEPI, posible rescate de 112,8 M€ que rozaría al PNV). Es **la rama que conecta con Plus Ultra y que Pedraz mantiene bajo reserva**; además es fuente prácticamente única (Mundiario). NO modelar; vigilar cuando se levante ese secreto (~julio).
+
+### Cruce con otros casos del inventario
+- **plus-ultra** — el nexo SEPI/Fernández Guerrero **se refuerza** en cobertura de esta ventana: Vozpópuli ("Un alto cargo de la SEPI conecta los casos de Leire Díez y la trama de Zapatero") y reporting de que el **rescate de Plus Ultra podría haber sido una de las primeras actuaciones de la red Hirurok**. **Matiz crítico:** este nexo vive en la **pieza de contratos SEPI que sigue secreta hasta julio** → es filtración/interpretación sobre material bajo reserva. **NO se toca** la relación existente `leire-diez-conexion-factual-plus-ultra` (la consolida reconciliación). **Propuesta para cuando se levante el secreto (~julio):** enriquecer esa relación con el hilo "rescate PU = presunta primera actuación de Hirurok" y valorar elevar de `conexion_factual` a `comparte_actor_con` (pivote Fernández Guerrero + SEPI). Anotado bidireccionalmente en el NOTES de plus-ultra.
+- **koldo / begona-gomez / david-sanchez-badajoz** — pendientes de barridos previos siguen abiertos; esta ventana no aporta primario nuevo sobre ellos.
+
+### Cascada de coherencia aplicada sobre `caso.yaml`
+- `sintesis_caso.estado_actual`: añadida una frase con el rechazo (por el momento) de la personación de García-Castellón, ligándolo a la petición de inhibición ya recogida. Sin reescribir el resto.
+- `ultima_revision_editorial` y `estado_ficha.fecha_actualizacion`: 2026-06-03 → **2026-06-06**.
+- `estado_ficha.notas`: ampliada con el resumen del barrido.
+- **Sin tocar**: `hechos_clave`, `cifras_clave`, `que_se_investiga`, `fase_actual` (sigue `instruccion`), `delitos_atribuidos_en_la_causa` (el rechazo de personación no altera la calificación), roles y hechos (el auto no introduce hechos sustantivos).
+
+### Pendientes nuevos / actualizados por este barrido
+- [ ] Vigilar la **resolución de la inhibición** JI nº 9 → AN (ahora recurrida por Cerdán); si se acepta, Hito `acumulacion_causas` y posible `cambio_organo`, y entonces reevaluar la personación de García-Castellón (que Pedraz dejó condicionada a la acumulación).
+- [ ] Cuando se levante el secreto de la **pieza de contratos SEPI** (~julio): enriquecer la relación con plus-ultra y valorar `comparte_actor_con`; revisar la derivada Tubos Reunidos / 112,8 M€.
+- [ ] `pnpm archive:catchup -- --caso=leire-diez` para los tres N4 nuevos del auto García-Castellón (Confilegal, Público, The Objective).
