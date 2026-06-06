@@ -233,7 +233,10 @@ validación sigue siendo el script `scripts/validate.mjs` (contenido) y `astro c
   especialmente `dir3` para las administraciones sin NIF propio.
 - [ ] (Diferido) Modelar dimensión territorial propia en `Caso` sólo si se quiere filtro
   territorial en la UI propia; ya no bloquea la API.
-- [ ] Verificar en el deploy real de Cloudflare que `public/_headers` aplica CORS y
-  Content-Type a `/api/*` (sólo comprobable en producción CF, no en `astro preview`).
-- [ ] (Opcional) Página `/api` o `/datos` en el sitio vivo enlazando a `llms.txt` y al
-  contrato, para no obligar a clonar el repo.
+- [x] **Verificado en producción (2026-06-06)** con `curl` cross-origin contra
+  `presuntamente.org`: `Access-Control-Allow-Origin: *` + `GET, OPTIONS` en todo `/api/*`,
+  `Content-Type: application/json` en `/api/v1/*.json`, `text/plain` en `/llms.txt`, y la
+  página `/api` se sirve como `text/html` (la regla JSON pega sólo a `/api/v1/*.json`; `/api`
+  hace 308 → `/api/`, normalización de barra de CF Pages). CORS abierto confirmado para
+  consumidores de navegador (Menjòmetre).
+- [x] Página `/api` entregada — ver "Entregado en v1.x" arriba.
