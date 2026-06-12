@@ -1,6 +1,6 @@
 # Cómo contribuir a presuntamente
 
-> La guía de colaboración técnica completa (Pull Requests, revisión de código, etc.) estará disponible cuando el proyecto abra la contribución directa al repositorio. Mientras tanto, los cauces editoriales descritos abajo están plenamente operativos.
+> El proyecto acepta Pull Requests de contribuyentes externos (ver "Contribuir por Pull Request"). Los cauces editoriales descritos abajo (aportes y rectificaciones por correo o issue) siguen plenamente operativos y no requieren saber git.
 
 ## Antes de cualquier cosa
 
@@ -29,11 +29,16 @@ Procedimiento editorial completo, alcance (qué se acepta y qué no, qué no dep
 
 **Si te consideras aludido** por una información publicada y discrepas, el cauce es distinto del de aportación: es el derecho de rectificación de la Ley Orgánica 2/1984. Ver [`LEGAL.md`](LEGAL.md). Resumen: correo a `rectificacion@presuntamente.org`, o issue con etiqueta `rectificacion` (template en [`.github/ISSUE_TEMPLATE/rectificacion.yml`](.github/ISSUE_TEMPLATE/rectificacion.yml)). Plazos comprometidos: acuse 48 h hábiles, resolución provisional 7 días hábiles. Detalle en [doc 04 — "Mecanismo de rectificación"](docs/diseno/04-riesgos-legales-y-eticos.md#6-mecanismo-de-rectificación).
 
-## Para colaboradores con permisos (futuro)
+## Contribuir por Pull Request
 
-Pendiente: protocolo de PR cuando entren colaboradores externos. Mientras tanto, el maintainer único trabaja en **commits directos a `main`** (sin ramas ni Pull Requests) y el push lo lanza siempre el mantenedor. Detalle en [AGENTS.md → "Workflow de rama y PRs"](AGENTS.md#workflow-de-rama-y-prs).
+Si quieres contribuir directamente al repositorio (catalogar medios, corregir datos, mejorar el sitio):
 
-Política prevista: ver `docs/diseno/03-estrategia-de-mantenimiento.md` y `docs/diseno/04-riesgos-legales-y-eticos.md`.
+1. **Fork + rama** por unidad de cambio coherente.
+2. **PR descriptivo**: qué cambia, por qué, y con qué fuentes (toda afirmación editorial necesita fuente verificable).
+3. **CI verde** antes del merge (`pnpm validate` + `pnpm build` + tests; corre automáticamente en el PR).
+4. **El merge lo hace siempre el maintainer**, tras revisión editorial. Para contenido de casos se aplica además la auditoría cualitativa (presunción de inocencia, niveles de fuente, neutralidad).
+
+Las issues etiquetadas [`good first issue`](https://github.com/davidchicano/presuntamente/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) son el mejor punto de entrada. El maintainer trabaja directamente sobre `main` en sus propias sesiones; el detalle del workflow interno está en [AGENTS.md → "Workflow de rama y PRs"](AGENTS.md#workflow-de-rama-y-prs).
 
 ## Para desarrollo local
 

@@ -65,7 +65,7 @@ Si vas a tocar algo no trivial, consulta primero el doc correspondiente.
 /src/                       ← código Astro
   pages/
     index.astro             ← wrapper mínimo → PgHome lang="es"
-    cat/                    ← rutas catalanas (vacío en MVP)
+    cat/                    ← rutas catalanas (vacío de momento)
   components/
     pages/                  ← Pg* — lógica real de cada página
   layouts/
@@ -104,7 +104,7 @@ const strings = { /* castellano hardcoded */ };
 
 ### I18n
 
-Estructura ES + CAT desde día 1 (carpetas `/src/pages/cat/` listas). MVP castellano hardcoded en `Pg*` con `// TODO i18n` donde irán los catalanes. Migración a `astro-i18n` nativo cuando toque.
+Estructura ES + CAT desde día 1 (carpetas `/src/pages/cat/` listas). De momento castellano hardcoded en `Pg*` con `// TODO i18n` donde irán los catalanes. Migración a `astro-i18n` nativo cuando toque.
 
 ### Tipografía y pesos visuales
 
@@ -218,20 +218,22 @@ Este repo es público. **No incluyas datos personales del maintainer** (direcci�
 
 ### Workflow de rama y PRs
 
-**Política actual (decidida por el maintainer el 2026-05-21):** trabajar **directamente sobre `main`**, sin ramas ni Pull Requests, mientras dure el MVP y hasta que el maintainer indique lo contrario.
+**Política actual (decidida por el maintainer el 2026-05-21; revisada el 2026-06-12 ya con el sitio público):** el trabajo del maintainer con sus agentes va **directamente sobre `main`**, sin ramas ni Pull Requests, hasta que el maintainer indique lo contrario. Los **contribuyentes externos** sí entran por el cauce clásico: rama + PR descriptivo, CI verde antes de merge, y merge sólo del maintainer.
 
 **El agente NO HACE `git add` NI `git commit` durante la sesión. Tampoco hace push.** (Norma incorporada por el maintainer el 2026-05-24 tras dos incidentes de contaminación cruzada entre sesiones paralelas, ver "Repositorio multiagéntico en paralelo" puntos 6-8.) Durante el trabajo el agente **sólo edita archivos en el working tree** y acumula cambios. El **commit final único** se ejecuta cuando el maintainer indica **explícitamente** "cerramos sesión" (o equivalente: "haz el commit", "guarda esto"). Si no hay indicación expresa, no se commitea aunque la tarea esté terminada, aunque `pnpm validate` y `pnpm build` estén verdes, y aunque el agente piense que está listo. El push a `origin/main` lo decide y lo lanza el maintainer cuando le viene bien (norma anterior reforzada el 2026-05-21). Si necesitas saber si puedes commitear, **pregunta primero**.
 
 Excepción única: si la sesión es **monoagente confirmada** (el maintainer dice explícitamente "trabajamos solos" o equivalente, y no hay otros agentes activos sobre el repo), el agente puede hacer commits intermedios siguiendo la norma de granularidad. En la duda, asumir multiagente y no commitear hasta cierre explícito.
 
-Razón: en fase MVP el repo tiene un solo maintainer y los ciclos de feedback se hacen en sesiones de Claude Code, no en una review formal de GitHub. Las ramas + PRs ralentizan sin aportar, pero el push sí es un acto editorial que decide el maintainer (puede querer revisar el árbol de commits, esperar a juntar varios bloques, o vetar uno antes de que salga al repositorio público).
+Razón: el repo tiene un solo maintainer y los ciclos de feedback de sus sesiones se hacen en Claude Code, no en una review formal de GitHub. Las ramas + PRs ralentizan sin aportar en ese circuito, pero el push sí es un acto editorial que decide el maintainer (puede querer revisar el árbol de commits, esperar a juntar varios bloques, o vetar uno antes de que salga al repositorio público — y con deploy automático en `main`, el push es publicar).
 
-**Cuando el maintainer reactive el modelo de ramas + PRs** (esperable cuando entren contribuyentes externos o cuando se establezcan CODEOWNERS), volver a:
+**Para contribuciones externas** (el repo es público y ya llegan): rama + PR siempre, con:
 
 - Una rama por unidad de cambio coherente.
 - PR descriptivo con qué, por qué y fuentes.
 - CI verde antes de merge.
-- Self-merge sólo del maintainer.
+- Merge sólo del maintainer (revisión editorial previa; `/revisar-caso` si toca contenido).
+
+**Cuando el maintainer generalice el modelo de ramas + PRs también para sus propias sesiones** (esperable si crece el número de colaboradores habituales o se establecen CODEOWNERS), este apartado se actualizará.
 
 Si una sesión va a tocar algo arriesgado (migración, refactor amplio, cambio que rompe convenciones), aún en política directa el agente debe **proponer crear una rama puntual y preguntar** antes de meter el cambio en main.
 
